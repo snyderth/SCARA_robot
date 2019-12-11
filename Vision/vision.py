@@ -9,11 +9,18 @@ Convert image to valid g-code
 @returns g-code string
 '''
 def asGCode(img, huePalette):
-    cv.cvtColor(img, cv.COLOR_BGR2HSV)
-    coerceHue(img, huePalette)
+
+    #Set image to be drawn in avaliable hue palette
+    img = coerceHue(img, huePalette)
+
+    h,s,v = cv.split(img)
+
 
     return ""
 
+
+def hueEdge(hueImg, lowBound, highBound):
+    return cv.Canny(hueImg, highBound, lowBound)
 
 # Set an RGB image to only have a specific set of hues
 # Inputs:
