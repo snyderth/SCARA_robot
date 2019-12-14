@@ -1,7 +1,7 @@
 import cv2 as cv
 import numpy as np
 import math
-from GCode import gcodeFormatter as gcode
+from GCode import gcodeFormatter as gc
 from functools import reduce, partial
 
 '''
@@ -14,28 +14,55 @@ Convert image to valid g-code
 '''
 def asGCode(img, colorPalette, granularity, maxLines, paperSize):
     edges = grayEdge(img)
-    contours = filter(lambda c: int(len(c) * granularity) > 0 , imageContours(edges))
+    contours = imageContours(edges)
 
     contours.sort(key=lambda c: cv.contourArea(c))
 
     #get maxLines biggest contours
     majorContours = contours[len(contours) - maxLines:]
 
-
     contoursColors = contourColors(img, majorContours)
 
     #Convert contour colors to a set of indexes into colorPalette
-    contourPalette = map(lambda c: colorPalette.index(reduce(closestTo(c), colorPalette)), contoursColors)
+    contourPalette = list(map(lambda c: colorPalette.index(reduce(closestTo(c), colorPalette)), contoursColors))
 
     #Make major contours into a set of lines to draw
     contoursAsLines = list(map(partial(contourLines, granularity), majorContours))
 
+    return linesAsGCode(contoursAsLines, contourPalette, img.shape[0:2], paperSize)
 
+def linesAsGCode(contoursAsLines, palette, imageSize, paperSize):
+    mmPerPxX = paperSize[0]/imageSize[0]
+    mmPerPxY = paperSize[1]/imageSize[1]
 
+    gcode = []
 
-    return ""
+    #initialize to be absolute coordnates
+    gcode.append(gc.g90)
 
-#def linesAsGCode(lines, palette, paperSize):
+    #Initialize to use metric (better accuracy)
+    gcode.append(gc.g21)
+
+    currentTool = 0
+    for i in range(len(contoursAsLines)):
+        segments = contoursAsLines[i]
+
+        #If the current segment has a color different than the current pen, swap the pen out
+        if palette[i] != currentTool:
+            currentTool = palette[i]
+            gcode.append(gc.m6.format(tool = currentTool))
+
+        #Send pen to first point
+        gcode.append(gc.m72)
+        gcode.append(gc.g01.format(x=segments[0][0][0] * mmPerPxX, y=segments[0][0][1] * mmPerPxY))
+        gcode.append(gc.m72)
+
+        for s in range(len(contoursAsLines[i])):
+            #Draw to subsequent points
+            gcode.append(gc.g01.format(x = segments[s][1][0] * mmPerPxX, y = segments[s][1][1] * mmPerPxY))
+
+    gcode.append(gc.m2)
+    return "\n".join(gcode)
 
 
 

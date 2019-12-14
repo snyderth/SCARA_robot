@@ -1,12 +1,12 @@
 from string import Template
 
-g00 = Template("G00 X$x Y$y") #Rapid move
-g01 = Template("G01 X$x Y$y") #Linear move
-g20 = Template("G20") #Inches units
-g21 = Template("G21") #Millimiter units
-g90 = Template("G90") #Absolute coordnates
-g91 = Template("G91") #RelativeCoordnates
+g00 = "G00 X{x} Y{y}" #Rapid move
+g01 = "G01 X{x} Y{y}" #Linear move
+g20 = "G20" #Inches units
+g21 = "G21" #Millimiter units
+g90 = "G90" #Absolute coordnates
+g91 = "G91" #RelativeCoordnates
 
-m2 = Template("M2") #End of program
-m6 = Template("M6 T$num") #Tool change
-m72 = Template("M72") #Raise tool
+m2 = "M2" #End of program
+m6 = "M6 T{tool}" #Tool change
+m72 = "M72" #Raise tool
