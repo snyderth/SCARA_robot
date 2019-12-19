@@ -1,5 +1,6 @@
 import numpy as np
-import matplotlib as plt
+import matplotlib as mpt
+import matplotlib.pyplot as plt
 
 
 
@@ -15,17 +16,20 @@ class SCARA_IK:
         joint_len: List of doubles. The double at index i represents the length of link i
         Assume: starting angle is 0 degrees for all angles
         """
+
         self.joint_lengths = joint_len
-        self.joint_pos = [(0,0)] # First joint is always at origin 0,0
+        self.joint_pos = [np.array([0,0])] # First joint is always at origin 0,0
         self.joint_ang = []
         for i in range(len(joint_len)):
             if i is 0:
                 x = joint_len[i]
             else:
-                x = joint_len[i] + self.joint_pos[i-1][0]
+                x = joint_len[i] + joint_len[i-1]
+                print(self.joint_pos[i-1])
+            # All joints start in pure positive x position
             y = 0
             ang = 0
-            self.joint_pos.append((x, y))
+            self.joint_pos.append(np.array([x, y]))
             self.joint_ang.append(ang)
             
 
@@ -37,6 +41,8 @@ class SCARA_IK:
         self.target = None
         self.target_dist = None
         self.target_tolerance = 0.1
+        
+
 
     def set_target(self, x, y):
         self.target = (x, y)
@@ -47,12 +53,48 @@ class SCARA_IK:
 
     def FABRIK_method(self):
         if self.target_dist > self.length_max:
+            print("Target distance is larger than max reach")
             raise Exception("Error: Target is out of reach")
         else:
-            p_0 = joint_pos[0] # Set inital origin
+            p_0 = self.joint_pos[0] # Set inital origin
             e_pos = np.array(self.effector_pos())
+
             t = np.array(self.target)
             
+            joint_pos_temp = self.joint_pos
+
+            dif_a = np.linalg.norm(t-e_pos)
+
+            while dif_a > self.target_tolerance:
+                # Move from the effector to the base: Forward reaching
+                joint_pos_temp[len(joint_pos_temp)-1] = self.target
+
+                for i in reversed(range(len(joint_pos_temp)-1)):
+                    r_i = np.linalg.norm(joint_pos_temp[i] - joint_pos_temp[i+1])
+                    # if(r_i == 0):
+                    lambda_i = float(self.joint_lengths[i]) / float(r_i)
+                    # print("1. Joint number {} at {}".format(i, joint_pos_temp[i]))
+                    joint_pos_temp[i] = np.multiply((1-lambda_i),joint_pos_temp[i+1]) + np.multiply(lambda_i,joint_pos_temp[i])
+                    # print("2. Joint number {} at {}".format(i, joint_pos_temp[i]))
+
+                # Backward reaching
+                # set the initial position of root back
+                joint_pos_temp[0] = p_0
+                for i in range(len(joint_pos_temp)-1):
+                    r_i = np.linalg.norm(joint_pos_temp[i+1] - joint_pos_temp[i])
+                    # if(r_i == 0):
+                    lambda_i = float(self.joint_lengths[i]) / float(r_i)
+                    joint_pos_temp[i+1] = np.multiply((1-lambda_i), joint_pos_temp[i]) + np.multiply(lambda_i, joint_pos_temp[i+1])
+                    # print("Joint number {} at {}".format(i+1, joint_pos_temp[i+1]))
+                dif_a = (np.linalg.norm(t - joint_pos_temp[len(joint_pos_temp)-1]))
+                # print("Difference: {}".format(dif_a))
+
+            
+
+            #Set the positions and calculate the angles
+            self.joint_pos = joint_pos_temp
+            self.calc_angles()                    
+
 
     def effector_pos(self):
         x = 0
@@ -66,23 +108,27 @@ class SCARA_IK:
     def run(self):
         if self.target is None:
             raise Exception("Error: No target has been set")
-            
-    def calc_angles(self):
-        for i in range(len(self.joint_pos)):
-            pos = self.joint_pos[i]
-            angle = np.arctan2(pos[1], pos[0])
-                
-            if i is 0:
-                # First joint
-                self.joint_ang[i] = angle
-            else:
-                # Must transform other joint coordinates
-                cumu_ang = 0
-                for j in range(i):
-                    cumu_ang += self.joint_ang[j]
-                
-                self.joint_ang[i] = angle - cumu_ang
+        
+        self.FABRIK_method()
 
+        self.draw()
+
+
+    def draw(self):
+        x_pos = [x[0] for x in self.joint_pos]
+        y_pos = [y[1] for y in self.joint_pos]
+        plt.plot(x_pos, y_pos, 'bo--', linewidth=2, markersize=12)
+        plt.show()
+        
+
+    def calc_angles(self):
+         for i in range(1, len(self.joint_pos)):
+            if i is 1:
+                self.joint_ang[i-1] = np.arctan2(self.joint_pos[i][1], self.joint_pos[i][0])
+            else:
+                self.joint_ang[i-1] = np.arctan2(self.joint_pos[i][1], self.joint_pos[i][0]) - self.joint_ang[i-2]
+
+           
     def max_len(self):
         return self.length_max
 
@@ -101,5 +147,9 @@ if __name__ == '__main__':
 
 
 
+    robot.set_target(0, 10)
+    robot.run()
 
-        
+    print("Current joint angles: {}".format(robot.angles()))
+    print("Current joint pos: {}".format(robot.pos()))
+
