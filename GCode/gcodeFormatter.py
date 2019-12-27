@@ -1,5 +1,3 @@
-from string import Template
-
 g00 = "G00 X{x} Y{y}" #Rapid move
 g01 = "G01 X{x} Y{y}" #Linear move
 g20 = "G20" #Inches units

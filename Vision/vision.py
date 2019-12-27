@@ -1,6 +1,6 @@
 import cv2 as cv
 import numpy as np
-import math
+import operator
 from GCode import gcodeFormatter as gc
 from functools import reduce, partial
 
@@ -23,15 +23,38 @@ def asGCode(img, colorPalette, granularity, maxLines, paperSize):
 
     contoursColors = contourColors(img, majorContours)
 
+
     #Convert contour colors to a set of indexes into colorPalette
     contourPalette = list(map(lambda c: colorPalette.index(reduce(closestTo(c), colorPalette)), contoursColors))
+
+    #Show contours and colors
+    blankImg = np.full(img.shape, (255,255,255),np.uint8)
+    for i in range(len(majorContours)):
+        cv.drawContours(blankImg, majorContours, i, colorPalette[contourPalette[i]])
+    cv.imshow("Contours", blankImg)
 
     #Make major contours into a set of lines to draw
     contoursAsLines = list(map(partial(contourLines, granularity), majorContours))
 
     return linesAsGCode(contoursAsLines, contourPalette, img.shape[0:2], paperSize)
 
+#Organize lines by color and closeness
+#TODO: Might not work
+def organizeLines(contoursAsLines, palette, shape):
+    # sort lines by color
+    contoursAsLines, palette = (list(t) for t in zip(*sorted(zip(contoursAsLines, palette), key=lambda c: c[1])))
+    colorRange = [palette.index(u) for u in np.unique(palette)]
+    colorRange.append(len(palette))
+    sortedLines = []
+    for i in range(len(colorRange) - 1):
+        sortedLines.append(sorted(contoursAsLines[colorRange[i]: colorRange[i + 1]], key = lambda l: l[0][0][0] * shape[0] + l[0][0][1]))
+    return [y for x in sortedLines for y in x]
+
+#Convert line data to g-code text
 def linesAsGCode(contoursAsLines, palette, imageSize, paperSize):
+
+
+    contoursAsLines = organizeLines(contoursAsLines, palette, imageSize)
     mmPerPxX = paperSize[0]/imageSize[0]
     mmPerPxY = paperSize[1]/imageSize[1]
 
@@ -51,35 +74,29 @@ def linesAsGCode(contoursAsLines, palette, imageSize, paperSize):
         if palette[i] != currentTool:
             currentTool = palette[i]
             gcode.append(gc.m6.format(tool = currentTool))
+            #Send pen to first point
+            gcode.append(gc.m72)
+            gcode.append(gc.g01.format(x=segments[0][0][0] * mmPerPxX, y=segments[0][0][1] * mmPerPxY))
+            gcode.append(gc.m72)
 
-        #Send pen to first point
-        gcode.append(gc.m72)
-        gcode.append(gc.g01.format(x=segments[0][0][0] * mmPerPxX, y=segments[0][0][1] * mmPerPxY))
-        gcode.append(gc.m72)
-
-        for s in range(len(contoursAsLines[i])):
-            #Draw to subsequent points
-            gcode.append(gc.g01.format(x = segments[s][1][0] * mmPerPxX, y = segments[s][1][1] * mmPerPxY))
-
+        if(len(segments) > 1):
+            for s in range(1, len(segments)):
+                #Draw to subsequent points
+                gcode.append(gc.g01.format(x = segments[s][0][0] * mmPerPxX, y = segments[s][0][1] * mmPerPxY))
     gcode.append(gc.m2)
     return "\n".join(gcode)
 
 
-
+#Find lines in contours
 def contourLines(granularity, contour):
-    lines = []
-    step = math.ceil(len(contour) * granularity)
-    for i in range(0, len(contour) - step, step):
-        lines.append((tuple(contour[i][0]), tuple(contour[i + step][0])))
-    return lines
+    return cv.approxPolyDP(contour, granularity, True)
 
+#Find contours from edges
 def imageContours(edges):
-    contours, heierarchy = cv.findContours(edges, cv.RETR_TREE, cv.CHAIN_APPROX_NONE)
-    for i in range(len(heierarchy)):
-        if(heierarchy[0][i][3] < 0):
-            del contours[i]
+    contours, heierarchy = cv.findContours(edges, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
     return contours
 
+#Convert image from RGB to grayscale and find edges
 def grayEdge(img):
 
     #Create grayscale version of img with blurring to reduce noise
@@ -98,6 +115,7 @@ def grayEdge(img):
     modifiedEdges = cv.morphologyEx(edges, cv.MORPH_CLOSE, np.ones((2,2)))
 
     return modifiedEdges
+
 #Returns an array of colors representing the average color along each contour in the given image
 def contourColors(img, contours):
     return list(map(partial(avgContourPixelValue, img), contours))
@@ -109,7 +127,7 @@ def avgContourPixelValue(img, contour):
 
 # Returns a function that determines if value y or z is closer to x
 def closestTo(x):
-    return lambda y, z: y if abs(y - x) < z else z
+    return lambda y, z: y if  reduce(operator.and_, np.less(np.abs(np.subtract(y, x)),  np.abs(np.subtract(z, x))))else z
 
 
 # Naive implementation of color coercement. Very slow.

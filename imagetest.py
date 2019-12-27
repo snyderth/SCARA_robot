@@ -27,15 +27,20 @@ for i in range(len(majorContours)):
     cv.drawContours(blankImg, majorContours, i, contoursColors[i])
 cv.imshow("contours", blankImg)
 #contourPalette = map(lambda c: colorPalette.index(reduce(closestTo(c), colorPalette)), contoursColors)
-contourLines = list(map(partial(contourLines, 0.01), majorContours))
+contourLines = list(map(partial(contourLines, 10), majorContours))
 
 blankImg = np.zeros(img.shape, np.uint8)
 
-for c in range(len(contourLines)):
-    color = (random.randint(20, 255), random.randint(20, 255), random.randint(20, 255))
-    for i in range(len(contourLines[c])):
-        cv.line(blankImg, contourLines[c][i][0], contourLines[c][i][1], color)
-cv.imshow("lines", blankImg)
+# for c in range(len(contourLines)):
+#     color = (random.randint(20, 255), random.randint(20, 255), random.randint(20, 255))
+#     for i in range(len(contourLines[c])):
+#         cv.line(blankImg, contourLines[c][i][0], contourLines[c][i][1], color)
+# cv.imshow("lines", blankImg)
+poly = []
+for i in range(len(majorContours)):
+    poly.append(cv.approxPolyDP(majorContours[i], 5, True))
+cv.polylines(blankImg, poly, True, (255,255,255))
+cv.imshow("Poly", blankImg)
 
 while 1:
     k = cv.waitKey(5) & 0xFF
