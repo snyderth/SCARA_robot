@@ -1,7 +1,11 @@
 import numpy as np
 import matplotlib as mpt
 import matplotlib.pyplot as plt
+from enum import Enum
 
+class methodIK(Enum):
+    JACOBIAN_PS = 0
+    FABRIK = 1
 
 
 
@@ -25,13 +29,14 @@ class SCARA_IK:
                 x = joint_len[i]
             else:
                 x = joint_len[i] + joint_len[i-1]
-                print(self.joint_pos[i-1])
+                # print(self.joint_pos[i-1])
             # All joints start in pure positive x position
             y = 0
             ang = 0
             self.joint_pos.append(np.array([x, y]))
             self.joint_ang.append(ang)
             
+        print(self.joint_ang)
 
         self.length_max = 0
         for x in self.joint_lengths:
@@ -48,8 +53,97 @@ class SCARA_IK:
         self.target = (x, y)
         self.target_dist = np.sqrt(x**2 + y**2)
 
-    def jacobian_method(self):
-        pass
+    def linear_spline(self, last, first, step_size):
+
+        slope = (last[1] - first[1]) / (last[0] - first[0])
+        yint = last[1] - (last[0] * slope)
+        line_len = (last[0] - first[0]) / step_size
+        
+        line = []
+        print(step_size)
+        print(first)
+        print(last)
+        print(np.arange(first[0], last[0], step_size))
+        for i in np.arange(first[0], last[0], step_size):
+            line.append((slope * i) + yint)
+
+        return line
+
+
+
+    def jacobian_pseudoinverse_method(self):
+        while(self.target_dist > self.target_tolerance):
+            (x,y) = self.effector_pos()
+            dx = self.target[0] - x
+            dy = self.target[1] - y
+            # step = 0.01
+            # line = self.linear_spline(self.target, self.effector_pos(), step)
+            # print("Line {}".format(line))
+            # for i in range(len(line)):
+            #     (x, y) = self.effector_pos()
+            #     print("Effector Position: {}, {}".format(x, y))
+            #     dx = self.target[0] + (i * step) - x
+            #     dy = self.target[1] + line[i] - y
+            print("Calculating the partials")
+            # Partial derivatives of the forward kinematics equations for the jacobian
+            df1dth1 = -self.joint_lengths[0] * np.sin(self.joint_ang[0]) - self.joint_lengths[1] * np.sin(self.joint_ang[0] + self.joint_ang[1])
+            df1dth2 = -self.joint_lengths[1] * np.sin(self.joint_ang[0] + self.joint_ang[1])
+            df2dth1 = self.joint_lengths[0] * np.cos(self.joint_ang[0]) + self.joint_lengths[1] * np.cos(self.joint_ang[0] + self.joint_ang[1])
+            df2dth2 = self.joint_lengths[1] * np.cos(self.joint_ang[0] + self.joint_ang[1])
+
+            print("Joint lengths:")
+            print(self.joint_lengths)
+            print("Joint angles:")
+            print(self.joint_ang)
+            print("{}, {}, {}, {}".format(df1dth1, df1dth2, df2dth1, df2dth2))
+            
+            det_j = (np.square(df1dth1) + np.square(df1dth2)) * (np.square(df2dth1) + np.square(df2dth2))
+            det_j -= ((df2dth1 * df1dth1) + (df2dth2 * df1dth2)) * ((df1dth1 * df2dth1) + (df1dth2 * df2dth2))
+
+            print("Jacobian Det: ")
+            print(det_j)
+            print("Calculating the javobian pseudo inverse")
+            if det_j != 0.0:
+                a = ((df1dth1 * (np.square(df2dth1) + np.square(df2dth2))) + (df2dth1 * ((-df2dth1 * df1dth1) - (df2dth2 * df1dth2)))) / det_j
+                b = ((df1dth1 * (-(df1dth1 * df2dth1) - (df1dth2 * df2dth2))) + (df2dth1 * ((np.square(df1dth1) + np.square(df1dth2))))) / det_j
+                c = ((df1dth2 * (np.square(df2dth1) + np.square(df2dth2))) + (df2dth2 * (-(df2dth1 * df1dth1) - (df2dth2 * df1dth2)))) / det_j
+                d = ((df1dth2 * (-(df1dth1 * df2dth1) - (df1dth2 * df2dth2))) + (df2dth2 * (np.square(df1dth1) + np.square(df1dth2)))) / det_j
+            else:
+                a = 0 
+                b = 0
+                c = 0
+                d = 0
+            print("Multiplying out by dx and dy")
+            th1 = a * dx + b * dy
+            th2 = c * dx + d * dy
+
+            print("dx, dy: {}, {}, th1, th2, {}, {}".format(dx, dy, th1, th2))
+
+            self.joint_ang[0] = th1
+            self.joint_ang[1] = th2
+
+            self.calc_joint_pos()
+            dx = self.target[0] - x
+            dy = self.target[1] - y
+            self.target_dist = np.sqrt(dx ** 2 + dy ** 2)
+        (x, y) = self.effector_pos()
+
+      
+        print("Tolerance: {}, Error: {}".format(self.target_tolerance,self.target_dist))
+
+
+
+
+    def calc_joint_pos(self):
+        joint_pos = []
+        joint_pos.append(np.array((0,0)))
+        x1 = self.joint_lengths[0] * np.cos(self.joint_ang[0])
+        y1 = self.joint_lengths[0] * np.sin(self.joint_ang[0])
+        (x2, y2) = self.effector_pos()
+        joint_pos.append(np.array((x1, y1)))
+        joint_pos.append(np.array((x2, y2)))
+        self.joint_pos = joint_pos
+
 
     def FABRIK_method(self):
         if self.target_dist > self.length_max:
@@ -96,21 +190,34 @@ class SCARA_IK:
             self.calc_angles()                    
 
 
+    def check_position_viability(self):
+        (x, y) = self.effector_pos()
+        length = np.sqrt(x**2 + y**2)
+        if length < 10.85 or length > 11.15:
+            print("ERROR: Not a viable solution.") 
+
     def effector_pos(self):
         x = 0
         y = 0
-        for i in range(len(self.joint_pos)):
-            x += self.joint_pos[i][0]
-            y += self.joint_pos[i][1]
+        x = self.joint_lengths[0] * np.cos(self.joint_ang[0]) + self.joint_lengths[1] * np.cos(self.joint_ang[0] + self.joint_ang[1])
+        y = self.joint_lengths[0] * np.sin(self.joint_ang[0]) + self.joint_lengths[1] * np.sin(self.joint_ang[0] + self.joint_ang[1])
+        
         return (x, y)
 
 
-    def run(self):
+    def run(self, method):
         if self.target is None:
             raise Exception("Error: No target has been set")
         
-        self.FABRIK_method()
+        # algorithms = {
+        #     methodIK.JACOBIAN_PS: self.jacobian_pseudoinverse_method,
+        #     methodIK.FABRIK: self.FABRIK_method,
+        # }
 
+        # algorithms[method]
+
+        self.jacobian_pseudoinverse_method()
+        self.check_position_viability()
         self.draw()
 
 
@@ -118,6 +225,8 @@ class SCARA_IK:
         x_pos = [x[0] for x in self.joint_pos]
         y_pos = [y[1] for y in self.joint_pos]
         plt.plot(x_pos, y_pos, 'bo--', linewidth=2, markersize=12)
+        plt.xlim((0, 11))
+        plt.ylim((0, 8.5))
         plt.show()
         
 
@@ -145,11 +254,10 @@ if __name__ == '__main__':
     print("Current joint angles: {}".format(robot.angles()))
     print("Current joint pos: {}".format(robot.pos()))
 
+    
 
-
-    robot.set_target(0, 10)
-    robot.run()
+    robot.set_target(10.5, 0.25)
+    robot.run(methodIK.FABRIK)
 
     print("Current joint angles: {}".format(robot.angles()))
     print("Current joint pos: {}".format(robot.pos()))
-
