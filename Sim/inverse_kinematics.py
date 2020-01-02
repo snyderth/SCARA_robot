@@ -69,17 +69,20 @@ class SCARA_IK:
     def plan_path(self, delta = 0.1):
         
         (curr_x, curr_y) = self.effector_pos()
+        # print("Current Position: {},{}".format(curr_x, curr_y))
         targ_x = self.target[0]
         targ_y = self.target[1]
+        # print("Target Position: {}, {}".format(targ_x, targ_y))
         
         dx = targ_x - curr_x
         dy = targ_y - curr_y
-
+        # print("dx: {}, dy: {}".format(dx, dy))
         if np.abs(dx) > np.abs(dy):
-            steps = (int)(np.floor(dx / delta))
+            steps = (int)(np.floor(np.abs(dx) / delta))
         else:
-            steps = (int)(np.floor(dy / delta))
+            steps = (int)(np.floor(np.abs(dy) / delta))
 
+        # print("Number of steps: {}".format(steps))
         step_sz_x = dx / steps
         step_sz_y = dy / steps
 
@@ -88,6 +91,7 @@ class SCARA_IK:
 
         path = list(zip(xpath, ypath))
         path.append(self.target)
+        print(path)
         return path
         
 
@@ -363,7 +367,11 @@ if __name__ == '__main__':
         robot.run(methodIK.JACOBIAN_PS)
         robot.set_target(3, 9)
         robot.run(methodIK.JACOBIAN_PS)
-        animate = animation.FuncAnimation(fig, animate, robot.playback, blit=False, interval=10, repeat=False, init_func=init_animation)
+        robot.set_target(5,7)
+        robot.run(methodIK.JACOBIAN_PS)
+        robot.set_target(1,1)
+        robot.run(methodIK.JACOBIAN_PS)
+        animate = animation.FuncAnimation(fig, animate, robot.playback, blit=False, interval=10, repeat=True, init_func=init_animation)
     except Exception as ex:
         print(ex)
 
