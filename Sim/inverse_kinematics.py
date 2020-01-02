@@ -9,7 +9,7 @@ class methodIK(Enum):
     FABRIK = 1
 
 fig, ax = plt.subplots()
-line, = ax.plot([], [], 'bo--', linewidth=2, markersize=12)
+line, = ax.plot([], [], 'bo-', linewidth=2, markersize=12)
 ax.grid()
 xdata, ydata = [], []
 
@@ -93,8 +93,12 @@ class SCARA_IK:
 
 
     def set_target(self, x, y):
-        self.target = (x, y)
-        self.target_dist = np.sqrt(x**2 + y**2)
+        if np.sqrt(x**2 + y**2) > self.max_len():
+            raise Exception("Target out of reach")
+        else:
+            self.target = (x, y)
+            self.target_dist = np.sqrt(x**2 + y**2)
+        
 
     def linear_spline(self, last, first, step_size):
 
@@ -120,9 +124,13 @@ class SCARA_IK:
         dx = self.target[0] - x
         dy = self.target[1] - y
         self.target_dist = np.sqrt(dx ** 2 + dy ** 2)
-
+        iters = 0
         while(self.target_dist > self.target_tolerance):
-            
+            if iters > 2000:
+                break
+
+            # print("Iteration {}".format(iters))
+            # iters += 1
             # step = 0.01
             # line = self.linear_spline(self.target, self.effector_pos(), step)
             # print("Line {}".format(line))
@@ -138,18 +146,13 @@ class SCARA_IK:
             df2dth1 = self.joint_lengths[0] * np.cos(self.joint_ang[0]) + self.joint_lengths[1] * np.cos(self.joint_ang[0] + self.joint_ang[1])
             df2dth2 = self.joint_lengths[1] * np.cos(self.joint_ang[0] + self.joint_ang[1])
 
-            # print("Joint lengths:")
-            # print(self.joint_lengths)
-            # print("Joint angles:")
-            # print(self.joint_ang)
-            # print("{}, {}, {}, {}".format(df1dth1, df1dth2, df2dth1, df2dth2))
             
+            # Find the determinant
             det_j = (np.square(df1dth1) + np.square(df1dth2)) * (np.square(df2dth1) + np.square(df2dth2))
             det_j -= ((df2dth1 * df1dth1) + (df2dth2 * df1dth2)) * ((df1dth1 * df2dth1) + (df1dth2 * df2dth2))
 
-            # print("Jacobian Det: ")
-            # print(det_j)
-            # print("Calculating the javobian pseudo inverse")
+
+            # Find the Jacobian
             if det_j != 0.0:
                 a = ((df1dth1 * (np.square(df2dth1) + np.square(df2dth2))) + (df2dth1 * ((-df2dth1 * df1dth1) - (df2dth2 * df1dth2)))) / det_j
                 b = ((df1dth1 * (-(df1dth1 * df2dth1) - (df1dth2 * df2dth2))) + (df2dth1 * ((np.square(df1dth1) + np.square(df1dth2))))) / det_j
@@ -160,12 +163,18 @@ class SCARA_IK:
                 b = 0
                 c = 0
                 d = 0
-            # print("Multiplying out by dx and dy")
+
+            # Multiply the jacobian through the x and y
+            # Jacobian:
+            #   --         -- --    -- 
+            #   |   a   b   | |  dx  |
+            #   |   c   d   | |  dy  |
+            #   --         -- --    --
             th1 = a * dx + b * dy
             th2 = c * dx + d * dy
 
-            # print("dx, dy: {}, {}, th1, th2, {}, {}".format(dx, dy, th1, th2))
 
+            # add change to current angles
             self.joint_ang[0] = self.joint_ang[0] + th1
             self.joint_ang[1] = self.joint_ang[1] + th2
 
@@ -174,11 +183,8 @@ class SCARA_IK:
             dx = self.target[0] - x
             dy = self.target[1] - y
             self.target_dist = np.sqrt(dx ** 2 + dy ** 2)
-            # print(self.target_dist)
-            # plt.pause(0.1)
       
-        # print("Tolerance: {}, Error: {}".format(self.target_tolerance,self.target_dist))
-
+        self.target_dist = 300
 
 
 
@@ -241,7 +247,7 @@ class SCARA_IK:
     def check_position_viability(self):
         (x, y) = self.effector_pos()
         length = np.sqrt(x**2 + y**2)
-        if length < 10.85 or length > 11.15:
+        if length < 10.95 or length > 11.05:
             print("ERROR: Not a viable solution.") 
 
 
@@ -266,18 +272,23 @@ class SCARA_IK:
         # }
 
         # algorithms[method]
-        self.arm_path_sim.append(self.joint_pos)
-        path = self.plan_path()
-        for t in path:
-            self.target = t
-            self.jacobian_pseudoinverse_method()
+        if method == methodIK.JACOBIAN_PS:
+            print("")
             self.arm_path_sim.append(self.joint_pos)
-        
-        self.anim_iter_max = len(self.arm_path_sim)
+            path = self.plan_path()
+            for t in path:
+                print("Moving to {}".format(t))
+                self.target = t
+                self.jacobian_pseudoinverse_method()
+                self.arm_path_sim.append(self.joint_pos)
 
+            self.anim_iter_max = len(self.arm_path_sim)
+
+        elif method == methodIK.FABRIK:
+            self.FABRIK_method()
         
 
-        self.check_position_viability()
+        # self.check_position_viability()
 
         # self.draw()
 
@@ -286,8 +297,8 @@ class SCARA_IK:
         x_pos = [x[0] for x in self.joint_pos]
         y_pos = [y[1] for y in self.joint_pos]
         plt.plot(x_pos, y_pos, 'bo--', linewidth=2, markersize=12)
-        plt.xlim((0, 11))
-        plt.ylim((0, 11))
+        plt.xlim((-6, 11))
+        plt.ylim((-6, 11))
         plt.show()
         
 
@@ -299,7 +310,7 @@ class SCARA_IK:
                 self.joint_ang[i-1] = np.arctan2(self.joint_pos[i][1], self.joint_pos[i][0]) - self.joint_ang[i-2]
 
            
-    def max_len(self):
+    def max_len(self) -> float:
         return self.length_max
 
 
@@ -321,8 +332,8 @@ class SCARA_IK:
 def init_animation():
     del xdata[:]
     del ydata[:]
-    ax.set_ylim(-1.1, 1.1)
-    ax.set_xlim(0, 10)
+    ax.set_ylim(-6, 11)
+    ax.set_xlim(-6, 11)
     line.set_data(xdata, ydata)
     return line,
 
@@ -347,18 +358,20 @@ if __name__ == '__main__':
     print("Current joint angles: {}".format(robot.angles()))
     print("Current joint pos: {}".format(robot.pos()))
 
+    try:
+        robot.set_target(7.7, 7.7)
+        robot.run(methodIK.JACOBIAN_PS)
+        robot.set_target(3, 9)
+        robot.run(methodIK.JACOBIAN_PS)
+        animate = animation.FuncAnimation(fig, animate, robot.playback, blit=False, interval=10, repeat=False, init_func=init_animation)
+    except Exception as ex:
+        print(ex)
 
-    robot.set_target(7.5, 7.5)
-    # robot.plan_path()
-    robot.run(methodIK.FABRIK)
+    # robot.set_target(1, 8)
+    # robot.run(methodIK.FABRIK)
+    # animate = animation.FuncAnimation(fig, animate, robot.playback, blit=False, interval=40, repeat=False, init_func=init_animation)
 
-    robot.set_target(8, 1)
-    
-    robot.run(methodIK.FABRIK)
 
-    ax.set_xlim(0, 11)
-    ax.set_ylim(0, 11)
-    animate = animation.FuncAnimation(fig, animate, robot.playback, blit=False, interval=10, repeat=False, init_func=init_animation)
     
     plt.title('SCARA Simulator')
     plt.show()
