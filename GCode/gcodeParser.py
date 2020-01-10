@@ -35,8 +35,8 @@ def gcodeToCommands(gcodeText):
     commands = []
 
     #Assume to be in inches first
-    conversion = IN_TO_BITS
     max = MAX_IN
+    conversion = IN_TO_BITS
 
     for gcodeLine in gcodeCommands:
         command = 0
@@ -128,6 +128,7 @@ if __name__ == '__main__':
     commands = gcodeToCommands(gcode)
 
     print(commands)
+
 
     #Test argument generation
     num1 = "x-200"
