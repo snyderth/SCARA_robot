@@ -7,6 +7,10 @@ from enum import Enum
 class methodIK(Enum):
     JACOBIAN_PS = 0
     FABRIK = 1
+    JACOBIAN_INV = 2
+
+
+METHOD = methodIK.JACOBIAN_INV
 
 fig, ax = plt.subplots()
 line, = ax.plot([], [], 'bo-', linewidth=2, markersize=12)
@@ -52,7 +56,7 @@ class SCARA_IK:
 
         self.target = None
         self.target_dist = None
-        self.target_tolerance = 0.001
+        self.target_tolerance = 0.1
         
         # For animation
         self.arm_path_sim = []
@@ -122,6 +126,70 @@ class SCARA_IK:
 
 
 
+    def jacobian_inverse_method(self):
+        # print("Getting x and y position")
+        (x, y) = self.effector_pos()
+
+        # Assuming target is small enough
+        dx = self.target[0] - x
+        dy = self.target[1] - y
+        # print("dx, dy: {}, {}".format(dx, dy))
+        # Set the distance from current to target position
+        # We'll recalculate this every iteration and break our
+        # loop once it is less than a tolerance
+        self.target_dist = np.sqrt(dx**2 + dy**2)
+        # print("Target distance is {}".format(self.target_dist))
+        i = 0
+
+        while(self.target_dist > self.target_tolerance):
+            i += 1
+            # if i > 2000:
+                # break
+        #     # Calculate the partial derivatives
+            # print("Computing partials...")
+
+            df1dth1 = -self.joint_lengths[0] * np.sin(self.joint_ang[0]) - self.joint_lengths[1] * np.sin(self.joint_ang[0] + self.joint_ang[1])
+            df1dth2 = -self.joint_lengths[1] * np.sin(self.joint_ang[0] + self.joint_ang[1])
+            df2dth1 = self.joint_lengths[0] * np.cos(self.joint_ang[0]) + self.joint_lengths[1] * np.cos(self.joint_ang[0] + self.joint_ang[1])
+            df2dth2 = self.joint_lengths[1] * np.cos(self.joint_ang[0] + self.joint_ang[1])
+
+            # print("|{} {}|\n|{} {}|".format(df1dth1, df1dth2, df2dth1, df2dth2))
+            J = np.matrix([[df1dth1, df1dth2], [df2dth1, df2dth2]])
+            # print("J: {}".format(J))
+            # print("Computing the determinant")
+            # Calculate the determinant (for inverting)
+            # det_j = 0
+            # inv_det = ((df1dth1 * df2dth1) - (df1dth2 * df2dth2))
+            # if(inv_det != 0):
+            #     det_j = 1 / inv_det
+            # else:
+            #     print("[ERROR] Singularity reached")
+            #     exit(1)
+            J_inv = J.I
+
+            # print("Computing dthetas")
+            # Calculate the change in theta by multiplying the inverse jacobian by the change in x, y
+            dxhat = np.matrix([[dx], [dy]])
+            # dth1 = ( ( df2dth2 * dx ) - ( df1dth2 * dy ) ) * det_j
+            # dth2 = ( ( df1dth1 * dy ) - ( df2dth2 * dx ) ) * det_j
+            dthhat =  np.matmul(J_inv, dxhat)
+            print(dthhat)
+            print(dthhat[0])
+            self.joint_ang[0] += dthhat.A[0][0]
+            self.joint_ang[1] += dthhat.A[1][0]
+
+            # Recompute where we're at            
+            self.calc_joint_pos()
+            (x, y) = self.effector_pos()
+            dx = self.target[0] - x
+            dy = self.target[1] - y
+            self.target_dist = np.sqrt(dx**2 + dy**2)
+            print("\rIteration {}, Target Distance: {}".format(i, self.target_dist), end=" ")
+        print("Iteration {}, Target Distance: {}".format(i, self.target_dist))
+        print("Joint angles are now {}".format(self.joint_ang))
+        self.target_dist = 1000
+
+   
     def jacobian_pseudoinverse_method(self):
         (x,y) = self.effector_pos()
 
@@ -130,8 +198,8 @@ class SCARA_IK:
         self.target_dist = np.sqrt(dx ** 2 + dy ** 2)
         iters = 0
         while(self.target_dist > self.target_tolerance):
-            if iters > 2000:
-                break
+            # if iters > 2000:
+                # break
 
             # print("Iteration {}".format(iters))
             # iters += 1
@@ -266,7 +334,7 @@ class SCARA_IK:
         return (x, y)
 
 
-    def run(self, method):
+    def run(self):
         if self.target is None:
             raise Exception("Error: No target has been set")
         self.anim_iter = 0
@@ -276,7 +344,7 @@ class SCARA_IK:
         # }
 
         # algorithms[method]
-        if method == methodIK.JACOBIAN_PS:
+        if METHOD == methodIK.JACOBIAN_PS:
             print("")
             self.arm_path_sim.append(self.joint_pos)
             path = self.plan_path()
@@ -288,9 +356,21 @@ class SCARA_IK:
 
             self.anim_iter_max = len(self.arm_path_sim)
 
-        elif method == methodIK.FABRIK:
+        elif METHOD == methodIK.FABRIK:
             self.FABRIK_method()
         
+        elif METHOD == methodIK.JACOBIAN_INV:
+            # Start the simulator animation at the current position
+            self.arm_path_sim.append(self.joint_pos)
+            path = self.plan_path() # Plan path between current and target. Assumes target is set
+            for t in path:
+                print("Moving to {}".format(t))
+                # Move to the target
+                self.target = t
+                # print("Target set... Calculating angles")
+                self.jacobian_inverse_method()
+                self.arm_path_sim.append(self.joint_pos)
+                print("Moved to {}".format(t))
 
         # self.check_position_viability()
 
@@ -363,14 +443,16 @@ if __name__ == '__main__':
     print("Current joint pos: {}".format(robot.pos()))
 
     try:
+        print("Setting target")
         robot.set_target(7.7, 7.7)
-        robot.run(methodIK.JACOBIAN_PS)
+        print("Running math")
+        robot.run()
         robot.set_target(3, 9)
-        robot.run(methodIK.JACOBIAN_PS)
+        robot.run()
         robot.set_target(5,7)
-        robot.run(methodIK.JACOBIAN_PS)
+        robot.run()
         robot.set_target(1,1)
-        robot.run(methodIK.JACOBIAN_PS)
+        robot.run()
         animate = animation.FuncAnimation(fig, animate, robot.playback, blit=False, interval=10, repeat=True, init_func=init_animation)
     except Exception as ex:
         print(ex)
