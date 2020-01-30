@@ -1,0 +1,74 @@
+\hypertarget{namespaceanimation__ex}{}\section{animation\+\_\+ex Namespace Reference}
+\label{namespaceanimation__ex}\index{animation\+\_\+ex@{animation\+\_\+ex}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespaceanimation__ex_a1bc3cd0fd2deafcc870466428b5cb0d6}\label{namespaceanimation__ex_a1bc3cd0fd2deafcc870466428b5cb0d6}} 
+def {\bfseries update\+\_\+line} (num, data, line)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespaceanimation__ex_a02d5ed3cc605cf0681febc2b37bae780}\label{namespaceanimation__ex_a02d5ed3cc605cf0681febc2b37bae780}} 
+{\bfseries fig1} = plt.\+figure()
+\item 
+\mbox{\Hypertarget{namespaceanimation__ex_a7a011d85142c64a3467c3a1f2d196ef9}\label{namespaceanimation__ex_a7a011d85142c64a3467c3a1f2d196ef9}} 
+{\bfseries data} = np.\+random.\+rand(2, 25)
+\item 
+{\bfseries line\+\_\+ani}
+\item 
+\mbox{\Hypertarget{namespaceanimation__ex_a76edff2bd76ff7bcc36dfb40ccb284cf}\label{namespaceanimation__ex_a76edff2bd76ff7bcc36dfb40ccb284cf}} 
+{\bfseries fig2} = plt.\+figure()
+\item 
+\mbox{\Hypertarget{namespaceanimation__ex_a17e317a806a8c4ddea11d6f1ac831201}\label{namespaceanimation__ex_a17e317a806a8c4ddea11d6f1ac831201}} 
+{\bfseries x} = np.\+arange(-\/9, 10)
+\item 
+\mbox{\Hypertarget{namespaceanimation__ex_ae4a2b3f3de462924cd1035084da069e7}\label{namespaceanimation__ex_ae4a2b3f3de462924cd1035084da069e7}} 
+{\bfseries y} = np.\+arange(-\/9, 10).reshape(-\/1, 1)
+\item 
+\mbox{\Hypertarget{namespaceanimation__ex_a634b973c81c0506526ec7e541414d60c}\label{namespaceanimation__ex_a634b973c81c0506526ec7e541414d60c}} 
+{\bfseries base} = np.\+hypot(x, y)
+\item 
+\mbox{\Hypertarget{namespaceanimation__ex_af37231c6533d6c9e51f943bb5045a3bd}\label{namespaceanimation__ex_af37231c6533d6c9e51f943bb5045a3bd}} 
+list {\bfseries ims} = \mbox{[}$\,$\mbox{]}
+\item 
+{\bfseries im\+\_\+ani}
+\item 
+\mbox{\Hypertarget{namespaceanimation__ex_a3b7f94a8144cc8d7d9a0a72539056411}\label{namespaceanimation__ex_a3b7f94a8144cc8d7d9a0a72539056411}} 
+{\bfseries metadata}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}=========================
+Simple animation examples
+=========================
+
+This example contains two animations. The first is a random walk plot. The
+second is an image animation.
+\end{DoxyVerb}
+ 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceanimation__ex_ab0383e2a36c5426861a44c34ab3fcc59}\label{namespaceanimation__ex_ab0383e2a36c5426861a44c34ab3fcc59}} 
+\index{animation\+\_\+ex@{animation\+\_\+ex}!im\+\_\+ani@{im\+\_\+ani}}
+\index{im\+\_\+ani@{im\+\_\+ani}!animation\+\_\+ex@{animation\+\_\+ex}}
+\subsubsection{\texorpdfstring{im\+\_\+ani}{im\_ani}}
+{\footnotesize\ttfamily animation\+\_\+ex.\+im\+\_\+ani}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+1 =  animation.ArtistAnimation(fig2, ims, interval=50, repeat\_delay=0,
+2                                    blit=\textcolor{keyword}{True})
+\end{DoxyCode}
+\mbox{\Hypertarget{namespaceanimation__ex_a9106489832e7ffd8ba98df3ba6d206b4}\label{namespaceanimation__ex_a9106489832e7ffd8ba98df3ba6d206b4}} 
+\index{animation\+\_\+ex@{animation\+\_\+ex}!line\+\_\+ani@{line\+\_\+ani}}
+\index{line\+\_\+ani@{line\+\_\+ani}!animation\+\_\+ex@{animation\+\_\+ex}}
+\subsubsection{\texorpdfstring{line\+\_\+ani}{line\_ani}}
+{\footnotesize\ttfamily animation\+\_\+ex.\+line\+\_\+ani}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+1 =  animation.FuncAnimation(fig1, update\_line, 25, fargs=(data, l),
+2                                    interval=50, blit=\textcolor{keyword}{True})
+\end{DoxyCode}

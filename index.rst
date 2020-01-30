@@ -11,6 +11,8 @@ Welcome to SCARA Robot's documentation!
    :caption: Contents:
 
 ..automodule:: Vision/vision
+..automodule:: Sim/inverse_kinematics/SCARA_IK
+    :members:
 
 Indices and tables
 ==================

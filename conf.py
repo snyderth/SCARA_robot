@@ -18,8 +18,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'SCARA Robot'
-copyright = '2020, Tristan Thompson, Thomas Snyder, Kyle'
-author = 'Tristan Thompson, Thomas Snyder, Kyle'
+copyright = '2020, Tristan Thompson, Thomas Snyder, Kyle Noble'
+author = 'Tristan Thompson, Thomas Snyder, Kyle Noble'
 
 # The full version, including alpha/beta/rc tags
 release = '1.0'
