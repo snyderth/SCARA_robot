@@ -65,13 +65,21 @@ class SCARA_IK:
 
 
         
-    """
-    @brief path planning function that takes the amount of change between points
-    on the path
-    @param delta norm distance between path points
-    """
+    
     def plan_path(self, delta = 0.1):
+        """ Path planning function that takes the amount of change between points
+        on the path
         
+        Args:
+            delta(float): norm distance between path points
+
+        Returns:
+            list of tuples. The returned list::
+
+                A list of tuples that describes the path in x and y
+                coordinates whose norm distance from the previous
+                coordinate is less than the delta argument provided.
+        """
         (curr_x, curr_y) = self.effector_pos()
         # print("Current Position: {},{}".format(curr_x, curr_y))
         targ_x = self.target[0]

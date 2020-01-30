@@ -10,7 +10,7 @@ Welcome to SCARA Robot's documentation!
    :maxdepth: 3
    :caption: Contents:
 
-
+..automodule:: Vision/vision
 
 Indices and tables
 ==================
