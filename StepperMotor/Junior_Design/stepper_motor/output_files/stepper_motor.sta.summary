@@ -1,0 +1,181 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1100mV 85C Model Setup 'counter:step_time|q[0]'
+Slack : -4.352
+TNS   : -33.327
+
+Type  : Slow 1100mV 85C Model Setup 'clk_50'
+Slack : -4.334
+TNS   : -63.690
+
+Type  : Slow 1100mV 85C Model Hold 'clk_50'
+Slack : 0.368
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'counter:step_time|q[0]'
+Slack : 0.860
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Recovery 'counter:step_time|q[0]'
+Slack : -4.516
+TNS   : -36.097
+
+Type  : Slow 1100mV 85C Model Recovery 'clk_50'
+Slack : -3.526
+TNS   : -56.315
+
+Type  : Slow 1100mV 85C Model Removal 'clk_50'
+Slack : 1.019
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Removal 'counter:step_time|q[0]'
+Slack : 1.207
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'clk_50'
+Slack : -0.394
+TNS   : -8.558
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'new_in'
+Slack : -0.394
+TNS   : -4.726
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'counter:step_time|q[0]'
+Slack : -0.394
+TNS   : -4.233
+
+Type  : Slow 1100mV 0C Model Setup 'counter:step_time|q[0]'
+Slack : -4.541
+TNS   : -34.475
+
+Type  : Slow 1100mV 0C Model Setup 'clk_50'
+Slack : -4.019
+TNS   : -58.138
+
+Type  : Slow 1100mV 0C Model Hold 'clk_50'
+Slack : 0.369
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'counter:step_time|q[0]'
+Slack : 0.840
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Recovery 'counter:step_time|q[0]'
+Slack : -4.673
+TNS   : -37.357
+
+Type  : Slow 1100mV 0C Model Recovery 'clk_50'
+Slack : -3.401
+TNS   : -54.366
+
+Type  : Slow 1100mV 0C Model Removal 'clk_50'
+Slack : 0.737
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Removal 'counter:step_time|q[0]'
+Slack : 1.137
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'clk_50'
+Slack : -0.394
+TNS   : -9.284
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'new_in'
+Slack : -0.394
+TNS   : -5.184
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'counter:step_time|q[0]'
+Slack : -0.394
+TNS   : -4.411
+
+Type  : Fast 1100mV 85C Model Setup 'clk_50'
+Slack : -3.046
+TNS   : -46.125
+
+Type  : Fast 1100mV 85C Model Setup 'counter:step_time|q[0]'
+Slack : -2.093
+TNS   : -15.169
+
+Type  : Fast 1100mV 85C Model Hold 'clk_50'
+Slack : 0.198
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'counter:step_time|q[0]'
+Slack : 0.457
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Recovery 'counter:step_time|q[0]'
+Slack : -2.098
+TNS   : -16.775
+
+Type  : Fast 1100mV 85C Model Recovery 'clk_50'
+Slack : -1.957
+TNS   : -31.224
+
+Type  : Fast 1100mV 85C Model Removal 'counter:step_time|q[0]'
+Slack : 0.627
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Removal 'clk_50'
+Slack : 0.827
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'new_in'
+Slack : -0.084
+TNS   : -0.740
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'clk_50'
+Slack : -0.078
+TNS   : -1.159
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'counter:step_time|q[0]'
+Slack : 0.095
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Setup 'clk_50'
+Slack : -2.477
+TNS   : -37.050
+
+Type  : Fast 1100mV 0C Model Setup 'counter:step_time|q[0]'
+Slack : -2.037
+TNS   : -14.682
+
+Type  : Fast 1100mV 0C Model Hold 'clk_50'
+Slack : 0.188
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'counter:step_time|q[0]'
+Slack : 0.415
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Recovery 'counter:step_time|q[0]'
+Slack : -2.053
+TNS   : -16.412
+
+Type  : Fast 1100mV 0C Model Recovery 'clk_50'
+Slack : -1.519
+TNS   : -24.222
+
+Type  : Fast 1100mV 0C Model Removal 'clk_50'
+Slack : 0.522
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Removal 'counter:step_time|q[0]'
+Slack : 0.556
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'new_in'
+Slack : -0.082
+TNS   : -0.729
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'clk_50'
+Slack : -0.078
+TNS   : -1.204
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'counter:step_time|q[0]'
+Slack : 0.106
+TNS   : 0.000
+
+------------------------------------------------------------
