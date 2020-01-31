@@ -1,11 +1,22 @@
+##
+#@file
+#Vision to gcode module. Use asGCode for main interface to file.
 import cv2 as cv
 import numpy as np
 import operator
 from GCode import gcodeFormatter as gc
 from functools import reduce, partial
 
-
 def asGCode(img, colorPalette: [(int, int, int)], granularity: float, maxLines: int, paperSize: (int, int)):
+    '''
+        Main interface to module.
+        img: RGB numpy matrix
+        colorPalette: Set of rgb color values representing pens
+        granularity: How accurate the lines are to the original image contours. Lower means more accurate and more lines.
+        maxLines: How many contours to draw maximum
+        paperSize: Size of paper in millimeters
+    '''
+
     cv.imshow('Original', img)
     edges = grayEdge(img)
     contours = imageContours(edges)
@@ -37,18 +48,17 @@ def asGCode(img, colorPalette: [(int, int, int)], granularity: float, maxLines: 
 
 
 # Organize lines by color and closeness
-# TODO: Still not producing good results.
 def organizeLines(contoursAsLines, palette, shape):
     # sort lines by color
-    contoursAsLines, palette = (list(t) for t in zip(*sorted(zip(contoursAsLines, palette), key=lambda c: c[1])))
-    colorRange = [palette.index(u) for u in np.unique(palette)]
-    colorRange.append(len(palette))
-    sortedLines = []
-    for i in range(len(colorRange) - 1):
-        sortedLines.append(
-            sorted(contoursAsLines[colorRange[i]: colorRange[i + 1]], key=lambda l: l[0][0][0] * shape[0] + l[0][0][1]))
-    return [y for x in sortedLines for y in x]
-
+    # contoursAsLines, palette = (list(t) for t in zip(*sorted(zip(contoursAsLines, palette), key=lambda c: c[1])))
+    # colorRange = [palette.index(u) for u in np.unique(palette)]
+    # colorRange.append(len(palette))
+    # sortedLines = []
+    # for i in range(len(colorRange) - 1):
+    #     sortedLines.append(
+    #         sorted(contoursAsLines[colorRange[i]: colorRange[i + 1]], key=lambda l: l[0][0][0] * shape[0] + l[0][0][1]))
+    # return [y for x in sortedLines for y in x]
+    return contoursAsLines
 
 # Convert line data to g-code text
 def linesAsGCode(contoursAsLines, palette, imageSize, paperSize):
@@ -140,17 +150,36 @@ def closestTo(x):
 
 
 if __name__ == '__main__':
-    img = cv.imread("burmese.jpg")
+    cam = cv.VideoCapture(0)
+    img_counter = 0
 
-    gcode = asGCode(img, [(0, 0, 0), (0, 255, 0), (105, 71, 59), (158, 124, 219)], 10, 32, (215, 279))
-
-    print(gcode)
-
-    file = open("../test.gcode", "w")
-    file.write(gcode)
-    file.close()
-
-    while 1:
-        k = cv.waitKey(5) & 0xFF
-        if k == 27:
+    while True:
+        ret, frame = cam.read()
+        cv.imshow("test", frame)
+        if not ret:
             break
+        k = cv.waitKey(1)
+
+        if k % 256 == 27:
+            # ESC pressed
+            print("Escape hit, closing...")
+            break
+        elif k % 256 == 32:
+            # SPACE pressed
+            img = frame
+
+            gcode = asGCode(img, [(0, 0, 0), (0, 255, 0), (105, 71, 59), (158, 124, 219)], 10, 32, (215, 279))
+            print(gcode)
+
+            file = open("../test.gcode", "w")
+            file.write(gcode)
+            file.close()
+        elif k % 256 == ord('b'):
+            img = cv.imread('burmese.jpg')
+            gcode = asGCode(img, [(0, 0, 0), (0, 255, 0), (105, 71, 59), (158, 124, 219)], 2, 32, (215, 279))
+            print(gcode)
+
+            file = open("../test.gcode", "w")
+            file.write(gcode)
+            file.close()
+

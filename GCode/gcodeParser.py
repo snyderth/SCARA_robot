@@ -96,15 +96,14 @@ def extractArg(text, conversion, max):
         else:
             raise Exception("Invalid arg prefix: {c}".format(c = text[0:1]))
 
-        #Convert to fixed point
         decimal = float(text[1:])
 
         #Clamp to maximum
         decimal = math.copysign(max, decimal) if abs(decimal) > max else decimal
 
+        #Convert in/mm to bit/in or bit/mm
         decimal *= conversion
 
-        #Apply fixed point number to appropriate location
         arg |= int(decimal) << offset
 
         return arg
