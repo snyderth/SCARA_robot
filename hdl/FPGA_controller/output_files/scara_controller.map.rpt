@@ -1,5 +1,5 @@
 Analysis & Synthesis report for scara_controller
-Sat Jan 18 20:08:16 2020
+Fri Jan 31 11:37:13 2020
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -37,7 +37,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                              ;
 +-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Sat Jan 18 20:08:16 2020           ;
+; Analysis & Synthesis Status ; Failed - Fri Jan 31 11:37:13 2020           ;
 ; Quartus Prime Version       ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
 ; Revision Name               ; scara_controller                            ;
 ; Top-level Entity Name       ; scara_controller                            ;
@@ -161,18 +161,24 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
-    Info: Processing started: Sat Jan 18 20:08:00 2020
+    Info: Processing started: Fri Jan 31 11:36:57 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off scara_controller -c scara_controller
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
-Info (12021): Found 1 design units, including 1 entities, in source file scara_controller.sv
-    Info (12023): Found entity 1: scara_controller File: /home/thomas/Documents/classes/ECE342/SCARA_robot/FPGA_controller/scara_controller.sv Line: 1
-Info (12127): Elaborating entity "scara_controller" for the top level hierarchy
-Warning (12158): Entity "scara_controller" contains only dangling pins
-Error (12061): Can't synthesize current design -- Top partition does not contain any logic
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 1 error, 2 warnings
+Error (10170): Verilog HDL syntax error at scara_controller.sv(16) near text: "(";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller/scara_controller.sv Line: 16
+Error (10170): Verilog HDL syntax error at scara_controller.sv(25) near text: "endcase";  expecting an operand. Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller/scara_controller.sv Line: 25
+Info (12021): Found 0 design units, including 0 entities, in source file scara_controller.sv
+Error (10170): Verilog HDL syntax error at degrees_to_steps.sv(12) near text: "endmodule";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller/degrees_to_steps.sv Line: 12
+Info (12021): Found 0 design units, including 0 entities, in source file degrees_to_steps.sv
+Info (12021): Found 1 design units, including 1 entities, in source file multiply_inv_jac.bdf
+    Info (12023): Found entity 1: multiply_inv_jac
+Error (10170): Verilog HDL syntax error at jacobian.sv(13) near text: "real";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller/jacobian.sv Line: 13
+Info (12021): Found 0 design units, including 0 entities, in source file jacobian.sv
+Info (12021): Found 1 design units, including 1 entities, in source file SIN.v
+    Info (12023): Found entity 1: SIN File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller/SIN.v Line: 40
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 4 errors, 1 warning
     Error: Peak virtual memory: 934 megabytes
-    Error: Processing ended: Sat Jan 18 20:08:16 2020
+    Error: Processing ended: Fri Jan 31 11:37:13 2020
     Error: Elapsed time: 00:00:16
     Error: Total CPU time (on all processors): 00:00:41
 
