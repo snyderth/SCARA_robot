@@ -17,6 +17,8 @@ line, = ax.plot([], [], 'bo-', linewidth=2, markersize=12)
 ax.grid()
 xdata, ydata = [], []
 
+CONVERSION=(2**14)/11
+INCHES=False
 
 class SCARA_IK:
     """
@@ -29,10 +31,15 @@ class SCARA_IK:
         joint_len: List of doubles. The double at index i represents the length of link i
         Assume: starting angle is 0 degrees for all angles
         """
+        if INCHES == False:
+            joint_len = [len * CONVERSION for len in joint_len]
 
         self.joint_lengths = joint_len
+
         self.joint_pos = [np.array([0,0])] # First joint is always at origin 0,0
         self.joint_ang = []
+
+
         for i in range(len(joint_len)):
             if i is 0:
                 x = joint_len[i]
@@ -80,6 +87,8 @@ class SCARA_IK:
                 coordinates whose norm distance from the previous
                 coordinate is less than the delta argument provided.
         """
+        if INCHES == False:
+            delta = delta * CONVERSION
         (curr_x, curr_y) = self.effector_pos()
         # print("Current Position: {},{}".format(curr_x, curr_y))
         targ_x = self.target[0]
@@ -109,6 +118,10 @@ class SCARA_IK:
 
 
     def set_target(self, x, y):
+        if INCHES == False:
+            x = x * CONVERSION
+            y = y * CONVERSION
+
         if np.sqrt(x**2 + y**2) > self.max_len():
             raise Exception("Target out of reach")
         else:
@@ -424,8 +437,12 @@ class SCARA_IK:
 def init_animation():
     del xdata[:]
     del ydata[:]
-    ax.set_ylim(-6, 11)
-    ax.set_xlim(-6, 11)
+    if INCHES == False:
+        ax.set_ylim(-6 * CONVERSION, 11 * CONVERSION)
+        ax.set_xlim(-6 * CONVERSION, 11 * CONVERSION)
+    else:
+        ax.set_ylim(-6, 11)
+        ax.set_xlim(-6, 11)
     line.set_data(xdata, ydata)
     return line,
 
