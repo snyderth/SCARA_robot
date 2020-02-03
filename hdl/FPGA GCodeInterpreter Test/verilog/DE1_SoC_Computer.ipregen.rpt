@@ -1,0 +1,341 @@
+IP Upgrade report for DE1_SoC_Computer
+Thu Jan 30 16:15:41 2020
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. IP Upgrade Summary
+  3. Successfully Upgraded IP Components
+  4. IP Upgrade Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------------+
+; IP Upgrade Summary                                                         ;
++------------------------------+---------------------------------------------+
+; IP Components Upgrade Status ; Passed - Thu Jan 30 16:15:41 2020           ;
+; Quartus Prime Version        ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
+; Revision Name                ; DE1_SoC_Computer                            ;
+; Top-level Entity Name        ; DE1_SoC_Computer                            ;
+; Family                       ; Cyclone V                                   ;
++------------------------------+---------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Successfully Upgraded IP Components                                                                                                                                         ;
++-----------------+----------------+---------+-----------------------------------------------+----------------------+-----------------------------------------------+---------+
+; Entity Name     ; Component Name ; Version ; Original Source File                          ; Generation File Path ; New Source File                               ; Message ;
++-----------------+----------------+---------+-----------------------------------------------+----------------------+-----------------------------------------------+---------+
+; Computer_System ; Qsys           ; 16.0    ; Computer_System/synthesis/Computer_System.qip ; Computer_System.qsys ; Computer_System/synthesis/Computer_System.qip ;         ;
++-----------------+----------------+---------+-----------------------------------------------+----------------------+-----------------------------------------------+---------+
+
+
++---------------------+
+; IP Upgrade Messages ;
++---------------------+
+Info (11902): Backing up file "Computer_System.qsys" to "Computer_System.BAK.qsys"
+Info (11902): Backing up file "Computer_System/synthesis/Computer_System.v" to "Computer_System.BAK.v"
+Info (11837): Started upgrading IP component Qsys with file "Computer_System.qsys"
+Info: 2020.01.30.16:12:57 Info: Starting to upgrade the IP cores in the Platform Designer system
+Info: 2020.01.30.16:12:57 Info: Finished upgrading the ip cores
+Info: 2020.01.30.16:13:16 Info: Saving generation log to C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System
+Info: 2020.01.30.16:13:16 Info: Starting: Create simulation model
+Info: 2020.01.30.16:13:16 Info: qsys-generate "C:\Users\catsr\source\repos\SCARA_robot\hdl\FPGA GCodeInterpreter Test\verilog\Computer_System.qsys" --simulation=VERILOG --allow-mixed-language-simulation --output-directory="C:\Users\catsr\source\repos\SCARA_robot\hdl\FPGA GCodeInterpreter Test\verilog\Computer_System\simulation" --family="Cyclone V" --part=5CSEMA5F31C6
+Info: 2020.01.30.16:13:16 Info: Loading verilog
+Info: 2020.01.30.16:13:16 Info: Reading input file
+Info: 2020.01.30.16:13:16 Info: Adding ARM_A9_HPS [altera_hps 18.1]
+Info: 2020.01.30.16:13:16 Info: Parameterizing module ARM_A9_HPS
+Info: 2020.01.30.16:13:16 Info: Adding Onchip_SRAM [altera_avalon_onchip_memory2 18.1]
+Info: 2020.01.30.16:13:16 Info: Parameterizing module Onchip_SRAM
+Info: 2020.01.30.16:13:16 Info: Adding System_PLL [altera_up_avalon_sys_sdram_pll 18.0]
+Info: 2020.01.30.16:13:16 Info: Parameterizing module System_PLL
+Info: 2020.01.30.16:13:16 Info: Adding clock_bridge_0 [altera_clock_bridge 18.1]
+Info: 2020.01.30.16:13:16 Info: Parameterizing module clock_bridge_0
+Info: 2020.01.30.16:13:16 Info: Adding fifo_FPGA_to_HPS [altera_avalon_fifo 18.1]
+Info: 2020.01.30.16:13:16 Info: Parameterizing module fifo_FPGA_to_HPS
+Info: 2020.01.30.16:13:16 Info: Adding fifo_HPS_to_FPGA [altera_avalon_fifo 18.1]
+Info: 2020.01.30.16:13:16 Info: Parameterizing module fifo_HPS_to_FPGA
+Info: 2020.01.30.16:13:16 Info: Adding pll_0 [altera_pll 18.1]
+Info: 2020.01.30.16:13:16 Info: Parameterizing module pll_0
+Info: 2020.01.30.16:13:16 Info: Building connections
+Info: 2020.01.30.16:13:16 Info: Parameterizing connections
+Info: 2020.01.30.16:13:16 Info: Validating
+Info: 2020.01.30.16:13:23 Info: Done reading input file
+Info: 2020.01.30.16:13:26 Info: Computer_System.ARM_A9_HPS: HPS Main PLL counter settings: n = 0  m = 73
+Info: 2020.01.30.16:13:26 Info: Computer_System.ARM_A9_HPS: HPS peripherial PLL counter settings: n = 0  m = 39
+Warning: 2020.01.30.16:13:26 Warning: Computer_System.ARM_A9_HPS: "QSPI clock frequency" (desired_qspi_clk_mhz) requested 400.0 MHz, but only achieved 370.0 MHz
+Warning: 2020.01.30.16:13:26 Warning: Computer_System.ARM_A9_HPS: 1 or more output clock frequencies cannot be achieved precisely, consider revising desired output clock frequencies.
+Info: 2020.01.30.16:13:26 Info: Computer_System.System_PLL: Refclk Freq: 50.0
+Info: 2020.01.30.16:13:26 Info: Computer_System.pll_0: The legal reference clock frequency is 5.0 MHz..800.0 MHz
+Info: 2020.01.30.16:13:26 Info: Computer_System.pll_0: Able to implement PLL with user settings
+Warning: 2020.01.30.16:13:26 Warning: Computer_System.: You have exported the interface fifo_FPGA_to_HPS.in but not its associated reset interface.  Export the driver(s) of fifo_FPGA_to_HPS.reset_in
+Warning: 2020.01.30.16:13:26 Warning: Computer_System.: You have exported the interface fifo_FPGA_to_HPS.in_csr but not its associated reset interface.  Export the driver(s) of fifo_FPGA_to_HPS.reset_in
+Warning: 2020.01.30.16:13:26 Warning: Computer_System.: You have exported the interface fifo_HPS_to_FPGA.out but not its associated reset interface.  Export the driver(s) of fifo_HPS_to_FPGA.reset_out
+Warning: 2020.01.30.16:13:26 Warning: Computer_System.: You have exported the interface fifo_HPS_to_FPGA.out_csr but not its associated reset interface.  Export the driver(s) of fifo_HPS_to_FPGA.reset_out
+Warning: 2020.01.30.16:13:26 Warning: Computer_System.: You have exported the interface Onchip_SRAM.s1 but not its associated reset interface.  Export the driver(s) of Onchip_SRAM.reset1
+Info: 2020.01.30.16:13:28 Info: Computer_System: Generating Computer_System "Computer_System" for SIM_VERILOG
+Warning: 2020.01.30.16:13:36 Warning: ARM_A9_HPS.f2h_irq0: Cannot connect clock for irq_mapper.sender
+Warning: 2020.01.30.16:13:36 Warning: ARM_A9_HPS.f2h_irq0: Cannot connect reset for irq_mapper.sender
+Warning: 2020.01.30.16:13:36 Warning: ARM_A9_HPS.f2h_irq1: Cannot connect clock for irq_mapper_001.sender
+Warning: 2020.01.30.16:13:36 Warning: ARM_A9_HPS.f2h_irq1: Cannot connect reset for irq_mapper_001.sender
+Info: 2020.01.30.16:13:41 Info: ARM_A9_HPS: "Running  for module: ARM_A9_HPS"
+Info: 2020.01.30.16:13:42 Info: ARM_A9_HPS: HPS Main PLL counter settings: n = 0  m = 73
+Info: 2020.01.30.16:13:42 Info: ARM_A9_HPS: HPS peripherial PLL counter settings: n = 0  m = 39
+Warning: 2020.01.30.16:13:42 Warning: ARM_A9_HPS: "QSPI clock frequency" (desired_qspi_clk_mhz) requested 400.0 MHz, but only achieved 370.0 MHz
+Warning: 2020.01.30.16:13:42 Warning: ARM_A9_HPS: 1 or more output clock frequencies cannot be achieved precisely, consider revising desired output clock frequencies.
+Info: 2020.01.30.16:13:45 Info: ARM_A9_HPS: "Computer_System" instantiated altera_hps "ARM_A9_HPS"
+Info: 2020.01.30.16:13:45 Info: Onchip_SRAM: Starting RTL generation for module 'Computer_System_Onchip_SRAM'
+Info: 2020.01.30.16:13:45 Info: Onchip_SRAM:   Generation command is [exec C:/intelfpga_lite/18.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/18.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/18.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/18.1/quartus/sopc_builder/bin/perl_lib -I C:/intelfpga_lite/18.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/18.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/18.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2 -- C:/intelfpga_lite/18.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2/generate_rtl.pl --name=Computer_System_Onchip_SRAM --dir=C:/Users/catsr/AppData/Local/Temp/alt8292_5631931331774643928.dir/0002_Onchip_SRAM_gen/ --quartus_dir=C:/intelfpga_lite/18.1/quartus --verilog --config=C:/Users/catsr/AppData/Local/Temp/alt8292_5631931331774643928.dir/0002_Onchip_SRAM_gen//Computer_System_Onchip_SRAM_component_configuration.pl  --do_build_sim=1    --sim_dir=C:/Users/catsr/AppData/Local/Temp/alt8292_5631931331774643928.dir/0002_Onchip_SRAM_gen
+Info: 2020.01.30.16:13:45 Info: Onchip_SRAM: Done RTL generation for module 'Computer_System_Onchip_SRAM'
+Info: 2020.01.30.16:13:45 Info: Onchip_SRAM: "Computer_System" instantiated altera_avalon_onchip_memory2 "Onchip_SRAM"
+Info: 2020.01.30.16:13:46 Info: System_PLL: "Computer_System" instantiated altera_up_avalon_sys_sdram_pll "System_PLL"
+Info: 2020.01.30.16:13:46 Info: fifo_FPGA_to_HPS: Starting RTL generation for module 'Computer_System_fifo_FPGA_to_HPS'
+Info: 2020.01.30.16:13:46 Info: fifo_FPGA_to_HPS:   Generation command is [exec C:/intelfpga_lite/18.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/18.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/18.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/18.1/quartus/sopc_builder/bin/perl_lib -I C:/intelfpga_lite/18.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/18.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/18.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_fifo -- C:/intelfpga_lite/18.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_fifo/generate_rtl.pl --name=Computer_System_fifo_FPGA_to_HPS --dir=C:/Users/catsr/AppData/Local/Temp/alt8292_5631931331774643928.dir/0003_fifo_FPGA_to_HPS_gen/ --quartus_dir=C:/intelfpga_lite/18.1/quartus --verilog --config=C:/Users/catsr/AppData/Local/Temp/alt8292_5631931331774643928.dir/0003_fifo_FPGA_to_HPS_gen//Computer_System_fifo_FPGA_to_HPS_component_configuration.pl  --do_build_sim=1    --sim_dir=C:/Users/catsr/AppData/Local/Temp/alt8292_5631931331774643928.dir/0003_fifo_FPGA_to_HPS_gen
+Info: 2020.01.30.16:13:47 Info: fifo_FPGA_to_HPS: Done RTL generation for module 'Computer_System_fifo_FPGA_to_HPS'
+Info: 2020.01.30.16:13:47 Info: fifo_FPGA_to_HPS: "Computer_System" instantiated altera_avalon_fifo "fifo_FPGA_to_HPS"
+Info: 2020.01.30.16:13:47 Info: pll_0: Generating simgen model
+Info: 2020.01.30.16:14:02 Info: pll_0: Simgen was successful
+Info: 2020.01.30.16:14:02 Info: pll_0: "Computer_System" instantiated altera_pll "pll_0"
+Info: 2020.01.30.16:14:03 Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
+Info: 2020.01.30.16:14:04 Info: avalon_st_adapter_001: Inserting error_adapter: error_adapter_0
+Info: 2020.01.30.16:14:04 Info: avalon_st_adapter_002: Inserting error_adapter: error_adapter_0
+Info: 2020.01.30.16:14:05 Info: mm_interconnect_0: "Computer_System" instantiated altera_mm_interconnect "mm_interconnect_0"
+Info: 2020.01.30.16:14:07 Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
+Info: 2020.01.30.16:14:07 Info: avalon_st_adapter_001: Inserting error_adapter: error_adapter_0
+Info: 2020.01.30.16:14:08 Info: mm_interconnect_1: "Computer_System" instantiated altera_mm_interconnect "mm_interconnect_1"
+Info: 2020.01.30.16:14:08 Info: irq_mapper: "Computer_System" instantiated altera_irq_mapper "irq_mapper"
+Info: 2020.01.30.16:14:08 Info: rst_controller: "Computer_System" instantiated altera_reset_controller "rst_controller"
+Info: 2020.01.30.16:14:09 Info: fpga_interfaces: "ARM_A9_HPS" instantiated altera_interface_generator "fpga_interfaces"
+Info: 2020.01.30.16:14:09 Info: hps_io: "ARM_A9_HPS" instantiated altera_hps_io "hps_io"
+Info: 2020.01.30.16:14:09 Info: sys_pll: Generating simgen model
+Info: 2020.01.30.16:14:24 Info: sys_pll: Simgen was successful
+Info: 2020.01.30.16:14:24 Info: sys_pll: "System_PLL" instantiated altera_pll "sys_pll"
+Info: 2020.01.30.16:14:24 Info: reset_from_locked: "System_PLL" instantiated altera_up_avalon_reset_from_locked_signal "reset_from_locked"
+Info: 2020.01.30.16:14:24 Info: fifo_HPS_to_FPGA_in_translator: "mm_interconnect_0" instantiated altera_merlin_slave_translator "fifo_HPS_to_FPGA_in_translator"
+Info: 2020.01.30.16:14:24 Info: ARM_A9_HPS_h2f_axi_master_agent: "mm_interconnect_0" instantiated altera_merlin_axi_master_ni "ARM_A9_HPS_h2f_axi_master_agent"
+Info: 2020.01.30.16:14:24 Info: fifo_HPS_to_FPGA_in_agent: "mm_interconnect_0" instantiated altera_merlin_slave_agent "fifo_HPS_to_FPGA_in_agent"
+Info: 2020.01.30.16:14:24 Info: fifo_HPS_to_FPGA_in_agent_rsp_fifo: "mm_interconnect_0" instantiated altera_avalon_sc_fifo "fifo_HPS_to_FPGA_in_agent_rsp_fifo"
+Info: 2020.01.30.16:14:24 Info: router: "mm_interconnect_0" instantiated altera_merlin_router "router"
+Info: 2020.01.30.16:14:24 Info: router_002: "mm_interconnect_0" instantiated altera_merlin_router "router_002"
+Info: 2020.01.30.16:14:24 Info: ARM_A9_HPS_h2f_axi_master_wr_limiter: "mm_interconnect_0" instantiated altera_merlin_traffic_limiter "ARM_A9_HPS_h2f_axi_master_wr_limiter"
+Info: 2020.01.30.16:14:24 Info: Reusing file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/simulation/submodules
+Info: 2020.01.30.16:14:24 Info: fifo_HPS_to_FPGA_in_burst_adapter: "mm_interconnect_0" instantiated altera_merlin_burst_adapter "fifo_HPS_to_FPGA_in_burst_adapter"
+Info: 2020.01.30.16:14:24 Info: Reusing file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/simulation/submodules
+Info: 2020.01.30.16:14:24 Info: Reusing file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/simulation/submodules
+Info: 2020.01.30.16:14:24 Info: cmd_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "cmd_demux"
+Info: 2020.01.30.16:14:24 Info: cmd_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "cmd_mux"
+Info: 2020.01.30.16:14:24 Info: rsp_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "rsp_demux"
+Info: 2020.01.30.16:14:24 Info: rsp_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "rsp_mux"
+Info: 2020.01.30.16:14:24 Info: Reusing file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/simulation/submodules
+Info: 2020.01.30.16:14:24 Info: fifo_HPS_to_FPGA_in_rsp_width_adapter: "mm_interconnect_0" instantiated altera_merlin_width_adapter "fifo_HPS_to_FPGA_in_rsp_width_adapter"
+Info: 2020.01.30.16:14:24 Info: Reusing file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/simulation/submodules
+Info: 2020.01.30.16:14:24 Info: Reusing file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/simulation/submodules
+Info: 2020.01.30.16:14:25 Info: avalon_st_adapter: "mm_interconnect_0" instantiated altera_avalon_st_adapter "avalon_st_adapter"
+Info: 2020.01.30.16:14:25 Info: router: "mm_interconnect_1" instantiated altera_merlin_router "router"
+Info: 2020.01.30.16:14:25 Info: router_002: "mm_interconnect_1" instantiated altera_merlin_router "router_002"
+Info: 2020.01.30.16:14:25 Info: cmd_demux: "mm_interconnect_1" instantiated altera_merlin_demultiplexer "cmd_demux"
+Info: 2020.01.30.16:14:25 Info: cmd_mux: "mm_interconnect_1" instantiated altera_merlin_multiplexer "cmd_mux"
+Info: 2020.01.30.16:14:25 Info: Reusing file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/simulation/submodules
+Info: 2020.01.30.16:14:25 Info: rsp_demux: "mm_interconnect_1" instantiated altera_merlin_demultiplexer "rsp_demux"
+Info: 2020.01.30.16:14:25 Info: rsp_mux: "mm_interconnect_1" instantiated altera_merlin_multiplexer "rsp_mux"
+Info: 2020.01.30.16:14:25 Info: Reusing file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/simulation/submodules
+Info: 2020.01.30.16:14:25 Info: border: "hps_io" instantiated altera_interface_generator "border"
+Info: 2020.01.30.16:14:25 Info: Reusing file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/simulation/submodules
+Info: 2020.01.30.16:14:25 Info: Reusing file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/simulation/submodules
+Info: 2020.01.30.16:14:25 Info: Reusing file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/simulation/submodules
+Info: 2020.01.30.16:14:25 Info: Reusing file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/simulation/submodules
+Info: 2020.01.30.16:14:25 Info: Reusing file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/simulation/submodules
+Info: 2020.01.30.16:14:25 Info: Reusing file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/simulation/submodules
+Info: 2020.01.30.16:14:25 Info: Reusing file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/simulation/submodules
+Info: 2020.01.30.16:14:25 Info: error_adapter_0: "avalon_st_adapter" instantiated error_adapter "error_adapter_0"
+Info: 2020.01.30.16:14:25 Info: Computer_System: Done "Computer_System" with 36 modules, 64 files
+Info: 2020.01.30.16:14:25 Info: qsys-generate succeeded.
+Info: 2020.01.30.16:14:25 Info: Finished: Create simulation model
+Info: 2020.01.30.16:14:25 Info: Starting: Create Modelsim Project.
+Info: 2020.01.30.16:14:25 Info: Doing: ip-make-simscript --spd=C:\Users\catsr\source\repos\SCARA_robot\hdl\FPGA GCodeInterpreter Test\verilog\Computer_System\Computer_System.spd --output-directory=C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/simulation
+Info: 2020.01.30.16:14:26 Info: Generating the following file(s) for MODELSIM simulator in C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/simulation
+Info: 2020.01.30.16:14:26 Info:     mentor
+Info: 2020.01.30.16:14:26 Info: Generating the following file(s) for VCS simulator in C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/simulation
+Info: 2020.01.30.16:14:26 Info:     synopsys/vcs
+Info: 2020.01.30.16:14:26 Info: Generating the following file(s) for VCSMX simulator in C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/simulation
+Info: 2020.01.30.16:14:26 Info:     synopsys/vcsmx
+Info: 2020.01.30.16:14:26 Info:     synopsys/vcsmx
+Info: 2020.01.30.16:14:26 Info: Generating the following file(s) for NCSIM simulator in C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/simulation
+Info: 2020.01.30.16:14:26 Info:     cadence
+Info: 2020.01.30.16:14:26 Info:     cadence
+Info: 2020.01.30.16:14:26 Info:     cadence
+Info: 2020.01.30.16:14:26 Info:     30 .cds.lib files in cadence/cds_libs
+Info: 2020.01.30.16:14:26 Info: Generating the following file(s) for RIVIERA simulator in C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/simulation
+Info: 2020.01.30.16:14:26 Info:     aldec
+Info: 2020.01.30.16:14:26 Info: For information on how to simulate your IP, see the explanatory comments in the simulator-specific subdirectories under C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/simulation
+Info: 2020.01.30.16:14:26 Info: Regenerate these scripts whenever you make any change to any Quartus-generated IP in your project.
+Info: 2020.01.30.16:14:26 Info: Finished: Create Modelsim Project.
+Info: 2020.01.30.16:14:26 Info: Starting: Create block symbol file (.bsf)
+Info: 2020.01.30.16:14:26 Info: qsys-generate "C:\Users\catsr\source\repos\SCARA_robot\hdl\FPGA GCodeInterpreter Test\verilog\Computer_System.qsys" --block-symbol-file --output-directory="C:\Users\catsr\source\repos\SCARA_robot\hdl\FPGA GCodeInterpreter Test\verilog\Computer_System" --family="Cyclone V" --part=5CSEMA5F31C6
+Info: 2020.01.30.16:14:26 Info: Loading verilog
+Info: 2020.01.30.16:14:27 Info: Reading input file
+Info: 2020.01.30.16:14:27 Info: Adding ARM_A9_HPS [altera_hps 18.1]
+Info: 2020.01.30.16:14:27 Info: Parameterizing module ARM_A9_HPS
+Info: 2020.01.30.16:14:27 Info: Adding Onchip_SRAM [altera_avalon_onchip_memory2 18.1]
+Info: 2020.01.30.16:14:27 Info: Parameterizing module Onchip_SRAM
+Info: 2020.01.30.16:14:27 Info: Adding System_PLL [altera_up_avalon_sys_sdram_pll 18.0]
+Info: 2020.01.30.16:14:27 Info: Parameterizing module System_PLL
+Info: 2020.01.30.16:14:27 Info: Adding clock_bridge_0 [altera_clock_bridge 18.1]
+Info: 2020.01.30.16:14:27 Info: Parameterizing module clock_bridge_0
+Info: 2020.01.30.16:14:27 Info: Adding fifo_FPGA_to_HPS [altera_avalon_fifo 18.1]
+Info: 2020.01.30.16:14:27 Info: Parameterizing module fifo_FPGA_to_HPS
+Info: 2020.01.30.16:14:27 Info: Adding fifo_HPS_to_FPGA [altera_avalon_fifo 18.1]
+Info: 2020.01.30.16:14:27 Info: Parameterizing module fifo_HPS_to_FPGA
+Info: 2020.01.30.16:14:27 Info: Adding pll_0 [altera_pll 18.1]
+Info: 2020.01.30.16:14:27 Info: Parameterizing module pll_0
+Info: 2020.01.30.16:14:27 Info: Building connections
+Info: 2020.01.30.16:14:27 Info: Parameterizing connections
+Info: 2020.01.30.16:14:27 Info: Validating
+Info: 2020.01.30.16:14:34 Info: Done reading input file
+Info: 2020.01.30.16:14:37 Info: Computer_System.ARM_A9_HPS: HPS Main PLL counter settings: n = 0  m = 73
+Info: 2020.01.30.16:14:37 Info: Computer_System.ARM_A9_HPS: HPS peripherial PLL counter settings: n = 0  m = 39
+Warning: 2020.01.30.16:14:37 Warning: Computer_System.ARM_A9_HPS: "QSPI clock frequency" (desired_qspi_clk_mhz) requested 400.0 MHz, but only achieved 370.0 MHz
+Warning: 2020.01.30.16:14:37 Warning: Computer_System.ARM_A9_HPS: 1 or more output clock frequencies cannot be achieved precisely, consider revising desired output clock frequencies.
+Info: 2020.01.30.16:14:37 Info: Computer_System.System_PLL: Refclk Freq: 50.0
+Info: 2020.01.30.16:14:37 Info: Computer_System.pll_0: The legal reference clock frequency is 5.0 MHz..800.0 MHz
+Info: 2020.01.30.16:14:37 Info: Computer_System.pll_0: Able to implement PLL with user settings
+Warning: 2020.01.30.16:14:37 Warning: Computer_System.: You have exported the interface fifo_FPGA_to_HPS.in but not its associated reset interface.  Export the driver(s) of fifo_FPGA_to_HPS.reset_in
+Warning: 2020.01.30.16:14:37 Warning: Computer_System.: You have exported the interface fifo_FPGA_to_HPS.in_csr but not its associated reset interface.  Export the driver(s) of fifo_FPGA_to_HPS.reset_in
+Warning: 2020.01.30.16:14:37 Warning: Computer_System.: You have exported the interface fifo_HPS_to_FPGA.out but not its associated reset interface.  Export the driver(s) of fifo_HPS_to_FPGA.reset_out
+Warning: 2020.01.30.16:14:37 Warning: Computer_System.: You have exported the interface fifo_HPS_to_FPGA.out_csr but not its associated reset interface.  Export the driver(s) of fifo_HPS_to_FPGA.reset_out
+Warning: 2020.01.30.16:14:37 Warning: Computer_System.: You have exported the interface Onchip_SRAM.s1 but not its associated reset interface.  Export the driver(s) of Onchip_SRAM.reset1
+Info: 2020.01.30.16:14:37 Info: qsys-generate succeeded.
+Info: 2020.01.30.16:14:37 Info: Finished: Create block symbol file (.bsf)
+Info: 2020.01.30.16:14:37 Info:
+Info: 2020.01.30.16:14:37 Info: Starting: Create HDL design files for synthesis
+Info: 2020.01.30.16:14:37 Info: qsys-generate "C:\Users\catsr\source\repos\SCARA_robot\hdl\FPGA GCodeInterpreter Test\verilog\Computer_System.qsys" --synthesis=VERILOG --output-directory="C:\Users\catsr\source\repos\SCARA_robot\hdl\FPGA GCodeInterpreter Test\verilog\Computer_System\synthesis" --family="Cyclone V" --part=5CSEMA5F31C6
+Info: 2020.01.30.16:14:37 Info: Loading verilog
+Info: 2020.01.30.16:14:37 Info: Reading input file
+Info: 2020.01.30.16:14:37 Info: Adding ARM_A9_HPS [altera_hps 18.1]
+Info: 2020.01.30.16:14:37 Info: Parameterizing module ARM_A9_HPS
+Info: 2020.01.30.16:14:37 Info: Adding Onchip_SRAM [altera_avalon_onchip_memory2 18.1]
+Info: 2020.01.30.16:14:37 Info: Parameterizing module Onchip_SRAM
+Info: 2020.01.30.16:14:37 Info: Adding System_PLL [altera_up_avalon_sys_sdram_pll 18.0]
+Info: 2020.01.30.16:14:37 Info: Parameterizing module System_PLL
+Info: 2020.01.30.16:14:37 Info: Adding clock_bridge_0 [altera_clock_bridge 18.1]
+Info: 2020.01.30.16:14:37 Info: Parameterizing module clock_bridge_0
+Info: 2020.01.30.16:14:37 Info: Adding fifo_FPGA_to_HPS [altera_avalon_fifo 18.1]
+Info: 2020.01.30.16:14:37 Info: Parameterizing module fifo_FPGA_to_HPS
+Info: 2020.01.30.16:14:37 Info: Adding fifo_HPS_to_FPGA [altera_avalon_fifo 18.1]
+Info: 2020.01.30.16:14:37 Info: Parameterizing module fifo_HPS_to_FPGA
+Info: 2020.01.30.16:14:37 Info: Adding pll_0 [altera_pll 18.1]
+Info: 2020.01.30.16:14:37 Info: Parameterizing module pll_0
+Info: 2020.01.30.16:14:37 Info: Building connections
+Info: 2020.01.30.16:14:37 Info: Parameterizing connections
+Info: 2020.01.30.16:14:37 Info: Validating
+Info: 2020.01.30.16:14:44 Info: Done reading input file
+Info: 2020.01.30.16:14:48 Info: Computer_System.ARM_A9_HPS: HPS Main PLL counter settings: n = 0  m = 73
+Info: 2020.01.30.16:14:48 Info: Computer_System.ARM_A9_HPS: HPS peripherial PLL counter settings: n = 0  m = 39
+Warning: 2020.01.30.16:14:48 Warning: Computer_System.ARM_A9_HPS: "QSPI clock frequency" (desired_qspi_clk_mhz) requested 400.0 MHz, but only achieved 370.0 MHz
+Warning: 2020.01.30.16:14:48 Warning: Computer_System.ARM_A9_HPS: 1 or more output clock frequencies cannot be achieved precisely, consider revising desired output clock frequencies.
+Info: 2020.01.30.16:14:48 Info: Computer_System.System_PLL: Refclk Freq: 50.0
+Info: 2020.01.30.16:14:48 Info: Computer_System.pll_0: The legal reference clock frequency is 5.0 MHz..800.0 MHz
+Info: 2020.01.30.16:14:48 Info: Computer_System.pll_0: Able to implement PLL with user settings
+Warning: 2020.01.30.16:14:48 Warning: Computer_System.: You have exported the interface fifo_FPGA_to_HPS.in but not its associated reset interface.  Export the driver(s) of fifo_FPGA_to_HPS.reset_in
+Warning: 2020.01.30.16:14:48 Warning: Computer_System.: You have exported the interface fifo_FPGA_to_HPS.in_csr but not its associated reset interface.  Export the driver(s) of fifo_FPGA_to_HPS.reset_in
+Warning: 2020.01.30.16:14:48 Warning: Computer_System.: You have exported the interface fifo_HPS_to_FPGA.out but not its associated reset interface.  Export the driver(s) of fifo_HPS_to_FPGA.reset_out
+Warning: 2020.01.30.16:14:48 Warning: Computer_System.: You have exported the interface fifo_HPS_to_FPGA.out_csr but not its associated reset interface.  Export the driver(s) of fifo_HPS_to_FPGA.reset_out
+Warning: 2020.01.30.16:14:48 Warning: Computer_System.: You have exported the interface Onchip_SRAM.s1 but not its associated reset interface.  Export the driver(s) of Onchip_SRAM.reset1
+Info: 2020.01.30.16:14:50 Info: Computer_System: Generating Computer_System "Computer_System" for QUARTUS_SYNTH
+Warning: 2020.01.30.16:14:56 Warning: ARM_A9_HPS.f2h_irq0: Cannot connect clock for irq_mapper.sender
+Warning: 2020.01.30.16:14:56 Warning: ARM_A9_HPS.f2h_irq0: Cannot connect reset for irq_mapper.sender
+Warning: 2020.01.30.16:14:56 Warning: ARM_A9_HPS.f2h_irq1: Cannot connect clock for irq_mapper_001.sender
+Warning: 2020.01.30.16:14:56 Warning: ARM_A9_HPS.f2h_irq1: Cannot connect reset for irq_mapper_001.sender
+Info: 2020.01.30.16:15:00 Info: ARM_A9_HPS: "Running  for module: ARM_A9_HPS"
+Info: 2020.01.30.16:15:01 Info: ARM_A9_HPS: HPS Main PLL counter settings: n = 0  m = 73
+Info: 2020.01.30.16:15:01 Info: ARM_A9_HPS: HPS peripherial PLL counter settings: n = 0  m = 39
+Warning: 2020.01.30.16:15:01 Warning: ARM_A9_HPS: "QSPI clock frequency" (desired_qspi_clk_mhz) requested 400.0 MHz, but only achieved 370.0 MHz
+Warning: 2020.01.30.16:15:01 Warning: ARM_A9_HPS: 1 or more output clock frequencies cannot be achieved precisely, consider revising desired output clock frequencies.
+Info: 2020.01.30.16:15:03 Info: ARM_A9_HPS: "Computer_System" instantiated altera_hps "ARM_A9_HPS"
+Info: 2020.01.30.16:15:03 Info: Onchip_SRAM: Starting RTL generation for module 'Computer_System_Onchip_SRAM'
+Info: 2020.01.30.16:15:03 Info: Onchip_SRAM:   Generation command is [exec C:/intelfpga_lite/18.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/18.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/18.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/18.1/quartus/sopc_builder/bin/perl_lib -I C:/intelfpga_lite/18.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/18.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/18.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2 -- C:/intelfpga_lite/18.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2/generate_rtl.pl --name=Computer_System_Onchip_SRAM --dir=C:/Users/catsr/AppData/Local/Temp/alt8292_5631931331774643928.dir/0032_Onchip_SRAM_gen/ --quartus_dir=C:/intelfpga_lite/18.1/quartus --verilog --config=C:/Users/catsr/AppData/Local/Temp/alt8292_5631931331774643928.dir/0032_Onchip_SRAM_gen/
+Info: 2020.01.30.16:15:03 Info: Onchip_SRAM: Done RTL generation for module 'Computer_System_Onchip_SRAM'
+Info: 2020.01.30.16:15:03 Info: Onchip_SRAM: "Computer_System" instantiated altera_avalon_onchip_memory2 "Onchip_SRAM"
+Info: 2020.01.30.16:15:04 Info: System_PLL: "Computer_System" instantiated altera_up_avalon_sys_sdram_pll "System_PLL"
+Info: 2020.01.30.16:15:04 Info: fifo_FPGA_to_HPS: Starting RTL generation for module 'Computer_System_fifo_FPGA_to_HPS'
+Info: 2020.01.30.16:15:04 Info: fifo_FPGA_to_HPS:   Generation command is [exec C:/intelfpga_lite/18.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/18.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/18.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/18.1/quartus/sopc_builder/bin/perl_lib -I C:/intelfpga_lite/18.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/18.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/18.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_fifo -- C:/intelfpga_lite/18.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_fifo/generate_rtl.pl --name=Computer_System_fifo_FPGA_to_HPS --dir=C:/Users/catsr/AppData/Local/Temp/alt8292_5631931331774643928.dir/0033_fifo_FPGA_to_HPS_gen/ --quartus_dir=C:/intelfpga_lite/18.1/quartus --verilog --config=C:/Users/catsr/AppData/Local/Temp/alt8292_5631931331774643928.dir/0033_fifo_FPGA_to_HPS_gen/
+Info: 2020.01.30.16:15:05 Info: fifo_FPGA_to_HPS: Done RTL generation for module 'Computer_System_fifo_FPGA_to_HPS'
+Info: 2020.01.30.16:15:05 Info: fifo_FPGA_to_HPS: "Computer_System" instantiated altera_avalon_fifo "fifo_FPGA_to_HPS"
+Info: 2020.01.30.16:15:05 Info: pll_0: "Computer_System" instantiated altera_pll "pll_0"
+Info: 2020.01.30.16:15:07 Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
+Info: 2020.01.30.16:15:07 Info: avalon_st_adapter_001: Inserting error_adapter: error_adapter_0
+Info: 2020.01.30.16:15:07 Info: avalon_st_adapter_002: Inserting error_adapter: error_adapter_0
+Info: 2020.01.30.16:15:09 Info: mm_interconnect_0: "Computer_System" instantiated altera_mm_interconnect "mm_interconnect_0"
+Info: 2020.01.30.16:15:10 Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
+Info: 2020.01.30.16:15:10 Info: avalon_st_adapter_001: Inserting error_adapter: error_adapter_0
+Info: 2020.01.30.16:15:11 Info: mm_interconnect_1: "Computer_System" instantiated altera_mm_interconnect "mm_interconnect_1"
+Info: 2020.01.30.16:15:11 Info: irq_mapper: "Computer_System" instantiated altera_irq_mapper "irq_mapper"
+Info: 2020.01.30.16:15:11 Info: rst_controller: "Computer_System" instantiated altera_reset_controller "rst_controller"
+Info: 2020.01.30.16:15:11 Info: fpga_interfaces: "ARM_A9_HPS" instantiated altera_interface_generator "fpga_interfaces"
+Info: 2020.01.30.16:15:12 Info: hps_io: "ARM_A9_HPS" instantiated altera_hps_io "hps_io"
+Info: 2020.01.30.16:15:12 Info: sys_pll: "System_PLL" instantiated altera_pll "sys_pll"
+Info: 2020.01.30.16:15:12 Info: reset_from_locked: "System_PLL" instantiated altera_up_avalon_reset_from_locked_signal "reset_from_locked"
+Info: 2020.01.30.16:15:12 Info: fifo_HPS_to_FPGA_in_translator: "mm_interconnect_0" instantiated altera_merlin_slave_translator "fifo_HPS_to_FPGA_in_translator"
+Info: 2020.01.30.16:15:12 Info: ARM_A9_HPS_h2f_axi_master_agent: "mm_interconnect_0" instantiated altera_merlin_axi_master_ni "ARM_A9_HPS_h2f_axi_master_agent"
+Info: 2020.01.30.16:15:12 Info: fifo_HPS_to_FPGA_in_agent: "mm_interconnect_0" instantiated altera_merlin_slave_agent "fifo_HPS_to_FPGA_in_agent"
+Info: 2020.01.30.16:15:12 Info: fifo_HPS_to_FPGA_in_agent_rsp_fifo: "mm_interconnect_0" instantiated altera_avalon_sc_fifo "fifo_HPS_to_FPGA_in_agent_rsp_fifo"
+Info: 2020.01.30.16:15:12 Info: router: "mm_interconnect_0" instantiated altera_merlin_router "router"
+Info: 2020.01.30.16:15:12 Info: router_002: "mm_interconnect_0" instantiated altera_merlin_router "router_002"
+Info: 2020.01.30.16:15:12 Info: ARM_A9_HPS_h2f_axi_master_wr_limiter: "mm_interconnect_0" instantiated altera_merlin_traffic_limiter "ARM_A9_HPS_h2f_axi_master_wr_limiter"
+Info: 2020.01.30.16:15:12 Info: Reusing file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/synthesis/submodules
+Info: 2020.01.30.16:15:12 Info: fifo_HPS_to_FPGA_in_burst_adapter: "mm_interconnect_0" instantiated altera_merlin_burst_adapter "fifo_HPS_to_FPGA_in_burst_adapter"
+Info: 2020.01.30.16:15:12 Info: Reusing file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/synthesis/submodules
+Info: 2020.01.30.16:15:12 Info: Reusing file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/synthesis/submodules
+Info: 2020.01.30.16:15:12 Info: cmd_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "cmd_demux"
+Info: 2020.01.30.16:15:12 Info: cmd_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "cmd_mux"
+Info: 2020.01.30.16:15:12 Info: rsp_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "rsp_demux"
+Info: 2020.01.30.16:15:12 Info: rsp_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "rsp_mux"
+Info: 2020.01.30.16:15:12 Info: Reusing file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/synthesis/submodules
+Info: 2020.01.30.16:15:12 Info: fifo_HPS_to_FPGA_in_rsp_width_adapter: "mm_interconnect_0" instantiated altera_merlin_width_adapter "fifo_HPS_to_FPGA_in_rsp_width_adapter"
+Info: 2020.01.30.16:15:12 Info: Reusing file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/synthesis/submodules
+Info: 2020.01.30.16:15:12 Info: Reusing file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/synthesis/submodules
+Info: 2020.01.30.16:15:13 Info: avalon_st_adapter: "mm_interconnect_0" instantiated altera_avalon_st_adapter "avalon_st_adapter"
+Info: 2020.01.30.16:15:13 Info: router: "mm_interconnect_1" instantiated altera_merlin_router "router"
+Info: 2020.01.30.16:15:13 Info: router_002: "mm_interconnect_1" instantiated altera_merlin_router "router_002"
+Info: 2020.01.30.16:15:13 Info: cmd_demux: "mm_interconnect_1" instantiated altera_merlin_demultiplexer "cmd_demux"
+Info: 2020.01.30.16:15:13 Info: cmd_mux: "mm_interconnect_1" instantiated altera_merlin_multiplexer "cmd_mux"
+Info: 2020.01.30.16:15:13 Info: Reusing file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/synthesis/submodules
+Info: 2020.01.30.16:15:13 Info: rsp_demux: "mm_interconnect_1" instantiated altera_merlin_demultiplexer "rsp_demux"
+Info: 2020.01.30.16:15:13 Info: rsp_mux: "mm_interconnect_1" instantiated altera_merlin_multiplexer "rsp_mux"
+Info: 2020.01.30.16:15:13 Info: Reusing file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA GCodeInterpreter Test/verilog/Computer_System/synthesis/submodules
+Info: 2020.01.30.16:15:39 Info: border: "hps_io" instantiated altera_interface_generator "border"
+Info: 2020.01.30.16:15:39 Info: error_adapter_0: "avalon_st_adapter" instantiated error_adapter "error_adapter_0"
+Info: 2020.01.30.16:15:39 Info: Computer_System: Done "Computer_System" with 36 modules, 96 files
+Info: 2020.01.30.16:15:40 Info: qsys-generate succeeded.
+Info: 2020.01.30.16:15:40 Info: Finished: Create HDL design files for synthesis
+Info (11131): Completed upgrading IP component Qsys with file "Computer_System.qsys"
+Info (23030): Evaluation of Tcl script c:/intelfpga_lite/18.1/quartus/common/tcl/internal/ip_regen/ip_regen.tcl was successful
+Info: Quartus Prime Shell was successful. 0 errors, 38 warnings
+    Info: Peak virtual memory: 4886 megabytes
+    Info: Processing ended: Thu Jan 30 16:15:54 2020
+    Info: Elapsed time: 00:03:26
+    Info: Total CPU time (on all processors): 00:04:39
+
+

@@ -1,0 +1,63 @@
+
+State Machine - |DE1_SoC_Computer|Processing_state
+Name Processing_state.00000111 Processing_state.00000101 Processing_state.00000110 Processing_state.00000000 
+Processing_state.00000110 0 0 0 0 
+Processing_state.00000101 0 1 1 0 
+Processing_state.00000000 0 0 1 1 
+Processing_state.00000111 1 0 1 0 
+
+State Machine - |DE1_SoC_Computer|FPGA_to_HPS_state
+Name FPGA_to_HPS_state.00000000 FPGA_to_HPS_state.00001000 FPGA_to_HPS_state.00000100 
+FPGA_to_HPS_state.00000000 0 0 0 
+FPGA_to_HPS_state.00000100 1 0 1 
+FPGA_to_HPS_state.00001000 1 1 0 
+
+State Machine - |DE1_SoC_Computer|HPS_to_FPGA_state
+Name HPS_to_FPGA_state.00000010 HPS_to_FPGA_state.00000000 HPS_to_FPGA_state.00000100 HPS_to_FPGA_state.00000011 
+HPS_to_FPGA_state.00000000 0 0 0 0 
+HPS_to_FPGA_state.00000010 1 1 0 0 
+HPS_to_FPGA_state.00000011 0 1 0 1 
+HPS_to_FPGA_state.00000100 0 1 1 0 
+
+State Machine - |DE1_SoC_Computer|commandCount
+Name commandCount.00000011 commandCount.00000010 commandCount.00000001 commandCount.00000000 commandCount.00000100 
+commandCount.00000000 0 0 0 0 0 
+commandCount.00000001 0 0 1 1 0 
+commandCount.00000010 0 1 0 1 0 
+commandCount.00000011 1 0 0 1 0 
+commandCount.00000100 0 0 0 1 1 
+
+State Machine - |DE1_SoC_Computer|Computer_System:The_System|Computer_System_mm_interconnect_1:mm_interconnect_1|altera_merlin_burst_adapter:fifo_fpga_to_hps_out_csr_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
+state.ST_IDLE 0 0 0 0 
+state.ST_COMP_TRANS 1 0 0 1 
+state.ST_UNCOMP_TRANS 1 0 1 0 
+state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
+
+State Machine - |DE1_SoC_Computer|Computer_System:The_System|Computer_System_mm_interconnect_1:mm_interconnect_1|altera_merlin_burst_adapter:fifo_hps_to_fpga_in_csr_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
+state.ST_IDLE 0 0 0 0 
+state.ST_COMP_TRANS 1 0 0 1 
+state.ST_UNCOMP_TRANS 1 0 1 0 
+state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
+
+State Machine - |DE1_SoC_Computer|Computer_System:The_System|Computer_System_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:onchip_sram_s2_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
+state.ST_IDLE 0 0 0 0 
+state.ST_COMP_TRANS 1 0 0 1 
+state.ST_UNCOMP_TRANS 1 0 1 0 
+state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
+
+State Machine - |DE1_SoC_Computer|Computer_System:The_System|Computer_System_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:fifo_fpga_to_hps_out_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
+state.ST_IDLE 0 0 0 0 
+state.ST_COMP_TRANS 1 0 0 1 
+state.ST_UNCOMP_TRANS 1 0 1 0 
+state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
+
+State Machine - |DE1_SoC_Computer|Computer_System:The_System|Computer_System_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:fifo_hps_to_fpga_in_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
+state.ST_IDLE 0 0 0 0 
+state.ST_COMP_TRANS 1 0 0 1 
+state.ST_UNCOMP_TRANS 1 0 1 0 
+state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
