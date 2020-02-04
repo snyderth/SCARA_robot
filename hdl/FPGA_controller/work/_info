@@ -10,51 +10,51 @@ cModel Technology
 dC:/Users/Thomas/Documents/ECE271_Final_Design_Group_2/Simulation
 vCosDeg
 Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z1 !s110 1580699529
+Z1 !s110 1580807259
 !i10b 1
-!s100 ;<3oThX[PazaT13iCLU<c3
-I;Ijh_W>`C8Y4C^Cja6<S91
+!s100 1[Ka:4kTA9Z>dbPhGea7`2
+I58>XXDUQ=R7N`z46_Dn7F2
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 !s105 CosDeg_sv_unit
 S1
 Z3 dC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller
-w1580699520
+Z4 w1580807169
 8C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/CosDeg.sv
 FC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/CosDeg.sv
 L0 1
-Z4 OV;L;10.5b;63
+Z5 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z5 !s108 1580699529.000000
+Z6 !s108 1580807259.000000
 !s107 C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/CosDeg.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/CosDeg.sv|
 !i113 1
-Z6 o-work work -sv
-Z7 tCvgOpt 0
+Z7 o-work work -sv
+Z8 tCvgOpt 0
 n@cos@deg
 vSinDeg
 R0
 R1
 !i10b 1
-!s100 Rga9]3>GMYGeNJ4`ND9LA0
-I:P4kIBzg>5lJMgg3ILI[J2
+!s100 3Q]Z5PFa6an4H<d_^Sa>h3
+IYbWUiP[@3Gj9>G[W44a^g1
 R2
 !s105 SinDeg_sv_unit
 S1
 R3
-w1580699500
-8C:\Users\Thomas\Documents\Classes\ECE342\SCARA_robot\hdl\FPGA_controller\scripts\SinDeg.sv
-FC:\Users\Thomas\Documents\Classes\ECE342\SCARA_robot\hdl\FPGA_controller\scripts\SinDeg.sv
-L0 1
 R4
+8C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv
+FC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv
+L0 1
+R5
 r1
 !s85 0
 31
-R5
-!s107 C:\Users\Thomas\Documents\Classes\ECE342\SCARA_robot\hdl\FPGA_controller\scripts\SinDeg.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:\Users\Thomas\Documents\Classes\ECE342\SCARA_robot\hdl\FPGA_controller\scripts\SinDeg.sv|
-!i113 1
 R6
+!s107 C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv|
+!i113 1
 R7
+R8
 n@sin@deg

@@ -1,15 +1,1 @@
-C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv {1 {vlog -work work -sv -stats=none {C:\Users\Thomas\Documents\Classes\ECE342\SCARA_robot\hdl\FPGA_controller\scripts\SinDeg.sv}
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module SinDeg
 
-Top level modules:
-	SinDeg
-
-} {} {}} C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/CosDeg.sv {1 {vlog -work work -sv -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/CosDeg.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module CosDeg
-
-Top level modules:
-	CosDeg
-
-} {} {}}
