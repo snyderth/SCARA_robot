@@ -1,8 +1,8 @@
 
 typedef struct {
 	reg [3:0] cmd;                  // command number
-	reg [13:0] x_value;               // hi bits of data1
-	reg [13:0] y_value;               // lo bits of data1
+	reg [13:0] x_value;               // x or t argument
+	reg [13:0] y_value;               // y argument
 } command;
 
 module DE1_SoC_Computer (

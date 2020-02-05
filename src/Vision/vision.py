@@ -4,7 +4,7 @@
 import cv2 as cv
 import numpy as np
 import operator
-from GCode import gcodeFormatter as gc
+import gcodeFormatter as gc
 from functools import reduce, partial
 
 def asGCode(img, colorPalette: [(int, int, int)], granularity: float, maxLines: int, paperSize: (int, int)):
