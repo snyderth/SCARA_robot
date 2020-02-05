@@ -1,6 +1,6 @@
 Analysis & Synthesis report for scara_controller
-Fri Jan 31 11:37:13 2020
-Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
+Tue Feb 04 02:23:17 2020
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
 ---------------------
@@ -10,16 +10,17 @@ Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Messages
+  5. Analysis & Synthesis IP Cores Summary
+  6. Analysis & Synthesis Messages
 
 
 
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 2019  Intel Corporation. All rights reserved.
+Copyright (C) 2018  Intel Corporation. All rights reserved.
 Your use of Intel Corporation's design tools, logic functions 
-and other software and tools, and any partner logic 
+and other software and tools, and its AMPP partner logic 
 functions, and any output files from any of the foregoing 
 (including device programming or simulation files), and any 
 associated documentation or information are expressly subject 
@@ -29,16 +30,15 @@ the Intel FPGA IP License Agreement, or other applicable license
 agreement, including, without limitation, that your use is for
 the sole purpose of programming logic devices manufactured by
 Intel and sold by Intel or its authorized distributors.  Please
-refer to the applicable agreement for further details, at
-https://fpgasoftware.intel.com/eula.
+refer to the applicable agreement for further details.
 
 
 
 +---------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                              ;
 +-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Fri Jan 31 11:37:13 2020           ;
-; Quartus Prime Version       ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
+; Analysis & Synthesis Status ; Failed - Tue Feb 04 02:23:17 2020           ;
+; Quartus Prime Version       ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name               ; scara_controller                            ;
 ; Top-level Entity Name       ; scara_controller                            ;
 ; Family                      ; Cyclone V                                   ;
@@ -144,8 +144,8 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 4           ;
-; Maximum allowed            ; 2           ;
+; Number detected on machine ; 12          ;
+; Maximum allowed            ; 6           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
 ; Maximum used               ; 1           ;
@@ -155,31 +155,213 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
++---------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis IP Cores Summary                                                                                                       ;
++--------+---------------+---------+--------------+--------------+----------------------------------------------------------+-----------------+
+; Vendor ; IP Core Name  ; Version ; Release Date ; License Type ; Entity Instance                                          ; IP Include File ;
++--------+---------------+---------+--------------+--------------+----------------------------------------------------------+-----------------+
+; Altera ; ALTFP_CONVERT ; 18.1    ; N/A          ; N/A          ; |scara_controller|ForwardKinematics:x|IntToDouble:l1conv ; IntToDouble.v   ;
+; Altera ; ALTFP_CONVERT ; 18.1    ; N/A          ; N/A          ; |scara_controller|ForwardKinematics:x|IntToDouble:l2conv ; IntToDouble.v   ;
++--------+---------------+---------+--------------+--------------+----------------------------------------------------------+-----------------+
+
+
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
-    Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
-    Info: Processing started: Fri Jan 31 11:36:57 2020
+    Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+    Info: Processing started: Tue Feb 04 02:23:05 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off scara_controller -c scara_controller
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
-Error (10170): Verilog HDL syntax error at scara_controller.sv(16) near text: "(";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller/scara_controller.sv Line: 16
-Error (10170): Verilog HDL syntax error at scara_controller.sv(25) near text: "endcase";  expecting an operand. Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller/scara_controller.sv Line: 25
-Info (12021): Found 0 design units, including 0 entities, in source file scara_controller.sv
-Error (10170): Verilog HDL syntax error at degrees_to_steps.sv(12) near text: "endmodule";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller/degrees_to_steps.sv Line: 12
-Info (12021): Found 0 design units, including 0 entities, in source file degrees_to_steps.sv
+Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file scripts/sindeg.sv
+    Info (12023): Found entity 1: SinDeg File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file scripts/cosdeg.sv
+    Info (12023): Found entity 1: CosDeg File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/CosDeg.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file jacobian.sv
+    Info (12023): Found entity 1: Jacobian File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Jacobian.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file scara_controller.sv
+    Info (12023): Found entity 1: scara_controller File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scara_controller.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file degrees_to_steps.sv
+    Info (12023): Found entity 1: degrees_to_steps File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/degrees_to_steps.sv Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file multiply_inv_jac.bdf
     Info (12023): Found entity 1: multiply_inv_jac
-Error (10170): Verilog HDL syntax error at jacobian.sv(13) near text: "real";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller/jacobian.sv Line: 13
-Info (12021): Found 0 design units, including 0 entities, in source file jacobian.sv
-Info (12021): Found 1 design units, including 1 entities, in source file SIN.v
-    Info (12023): Found entity 1: SIN File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller/SIN.v Line: 40
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 4 errors, 1 warning
-    Error: Peak virtual memory: 934 megabytes
-    Error: Processing ended: Fri Jan 31 11:37:13 2020
-    Error: Elapsed time: 00:00:16
-    Error: Total CPU time (on all processors): 00:00:41
+Info (12021): Found 1 design units, including 1 entities, in source file sin.v
+    Info (12023): Found entity 1: SIN File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/SIN.v Line: 40
+Info (12021): Found 1 design units, including 1 entities, in source file forwardkinematics.sv
+    Info (12023): Found entity 1: ForwardKinematics File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/ForwardKinematics.sv Line: 1
+Info (12021): Found 12 design units, including 12 entities, in source file inttodouble.v
+    Info (12023): Found entity 1: IntToDouble_altbarrel_shift_fof File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 50
+    Info (12023): Found entity 2: IntToDouble_altpriority_encoder_3v7 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 155
+    Info (12023): Found entity 3: IntToDouble_altpriority_encoder_3e8 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 175
+    Info (12023): Found entity 4: IntToDouble_altpriority_encoder_6v7 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 194
+    Info (12023): Found entity 5: IntToDouble_altpriority_encoder_6e8 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 226
+    Info (12023): Found entity 6: IntToDouble_altpriority_encoder_bv7 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 259
+    Info (12023): Found entity 7: IntToDouble_altpriority_encoder_be8 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 291
+    Info (12023): Found entity 8: IntToDouble_altpriority_encoder_r08 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 324
+    Info (12023): Found entity 9: IntToDouble_altpriority_encoder_rf8 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 356
+    Info (12023): Found entity 10: IntToDouble_altpriority_encoder_qb6 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 389
+    Info (12023): Found entity 11: IntToDouble_altfp_convert_4gn File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 417
+    Info (12023): Found entity 12: IntToDouble File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 693
+Info (12021): Found 1 design units, including 1 entities, in source file counter.sv
+    Info (12023): Found entity 1: Counter File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Counter.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file sync.sv
+    Info (12023): Found entity 1: Sync File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Sync.sv Line: 1
+Info (12021): Found 26 design units, including 26 entities, in source file adder.v
+    Info (12023): Found entity 1: Adder_altbarrel_shift_otd File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 50
+    Info (12023): Found entity 2: Adder_altbarrel_shift_u0g File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 115
+    Info (12023): Found entity 3: Adder_altpriority_encoder_3e8 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 224
+    Info (12023): Found entity 4: Adder_altpriority_encoder_6e8 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 243
+    Info (12023): Found entity 5: Adder_altpriority_encoder_be8 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 276
+    Info (12023): Found entity 6: Adder_altpriority_encoder_rf8 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 309
+    Info (12023): Found entity 7: Adder_altpriority_encoder_3v7 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 358
+    Info (12023): Found entity 8: Adder_altpriority_encoder_6v7 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 374
+    Info (12023): Found entity 9: Adder_altpriority_encoder_bv7 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 402
+    Info (12023): Found entity 10: Adder_altpriority_encoder_r08 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 430
+    Info (12023): Found entity 11: Adder_altpriority_encoder_tv8 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 458
+    Info (12023): Found entity 12: Adder_altpriority_encoder_te9 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 490
+    Info (12023): Found entity 13: Adder_altpriority_encoder_uu8 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 523
+    Info (12023): Found entity 14: Adder_altpriority_encoder_nh8 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 600
+    Info (12023): Found entity 15: Adder_altpriority_encoder_qh8 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 619
+    Info (12023): Found entity 16: Adder_altpriority_encoder_vh8 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 652
+    Info (12023): Found entity 17: Adder_altpriority_encoder_fj8 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 685
+    Info (12023): Found entity 18: Adder_altpriority_encoder_hi9 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 718
+    Info (12023): Found entity 19: Adder_altpriority_encoder_n28 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 771
+    Info (12023): Found entity 20: Adder_altpriority_encoder_q28 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 787
+    Info (12023): Found entity 21: Adder_altpriority_encoder_v28 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 815
+    Info (12023): Found entity 22: Adder_altpriority_encoder_f48 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 843
+    Info (12023): Found entity 23: Adder_altpriority_encoder_h39 File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 871
+    Info (12023): Found entity 24: Adder_altpriority_encoder_ina File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 899
+    Info (12023): Found entity 25: Adder_altfp_add_sub_jvk File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 952
+    Info (12023): Found entity 26: Adder File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Adder.v Line: 3487
+Info (12021): Found 2 design units, including 2 entities, in source file multiplier.v
+    Info (12023): Found entity 1: Multiplier_altfp_mult_9oo File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Multiplier.v Line: 46
+    Info (12023): Found entity 2: Multiplier File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/Multiplier.v Line: 519
+Warning (10236): Verilog HDL Implicit Net warning at ForwardKinematics.sv(74): created implicit net for "datab_sig" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/ForwardKinematics.sv Line: 74
+Warning (10236): Verilog HDL Implicit Net warning at ForwardKinematics.sv(75): created implicit net for "result_sig" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/ForwardKinematics.sv Line: 75
+Info (12127): Elaborating entity "scara_controller" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at scara_controller.sv(24): object "next_state" assigned a value but never read File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scara_controller.sv Line: 24
+Warning (10034): Output port "th1_steps" at scara_controller.sv(8) has no driver File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scara_controller.sv Line: 8
+Warning (10034): Output port "th2_steps" at scara_controller.sv(9) has no driver File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scara_controller.sv Line: 9
+Info (12128): Elaborating entity "ForwardKinematics" for hierarchy "ForwardKinematics:x" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scara_controller.sv Line: 45
+Warning (10034): Output port "x" at ForwardKinematics.sv(7) has no driver File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/ForwardKinematics.sv Line: 7
+Warning (10034): Output port "y" at ForwardKinematics.sv(8) has no driver File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/ForwardKinematics.sv Line: 8
+Info (12128): Elaborating entity "Counter" for hierarchy "ForwardKinematics:x|Counter:cnt" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/ForwardKinematics.sv Line: 20
+Info (12128): Elaborating entity "IntToDouble" for hierarchy "ForwardKinematics:x|IntToDouble:l1conv" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/ForwardKinematics.sv Line: 33
+Info (12128): Elaborating entity "IntToDouble_altfp_convert_4gn" for hierarchy "ForwardKinematics:x|IntToDouble:l1conv|IntToDouble_altfp_convert_4gn:IntToDouble_altfp_convert_4gn_component" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 711
+Info (12128): Elaborating entity "IntToDouble_altbarrel_shift_fof" for hierarchy "ForwardKinematics:x|IntToDouble:l1conv|IntToDouble_altfp_convert_4gn:IntToDouble_altfp_convert_4gn_component|IntToDouble_altbarrel_shift_fof:altbarrel_shift5" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 487
+Info (12128): Elaborating entity "IntToDouble_altpriority_encoder_qb6" for hierarchy "ForwardKinematics:x|IntToDouble:l1conv|IntToDouble_altfp_convert_4gn:IntToDouble_altfp_convert_4gn_component|IntToDouble_altpriority_encoder_qb6:altpriority_encoder2" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 491
+Info (12128): Elaborating entity "IntToDouble_altpriority_encoder_r08" for hierarchy "ForwardKinematics:x|IntToDouble:l1conv|IntToDouble_altfp_convert_4gn:IntToDouble_altfp_convert_4gn_component|IntToDouble_altpriority_encoder_qb6:altpriority_encoder2|IntToDouble_altpriority_encoder_r08:altpriority_encoder6" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 403
+Info (12128): Elaborating entity "IntToDouble_altpriority_encoder_bv7" for hierarchy "ForwardKinematics:x|IntToDouble:l1conv|IntToDouble_altfp_convert_4gn:IntToDouble_altfp_convert_4gn_component|IntToDouble_altpriority_encoder_qb6:altpriority_encoder2|IntToDouble_altpriority_encoder_r08:altpriority_encoder6|IntToDouble_altpriority_encoder_bv7:altpriority_encoder8" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 338
+Info (12128): Elaborating entity "IntToDouble_altpriority_encoder_6v7" for hierarchy "ForwardKinematics:x|IntToDouble:l1conv|IntToDouble_altfp_convert_4gn:IntToDouble_altfp_convert_4gn_component|IntToDouble_altpriority_encoder_qb6:altpriority_encoder2|IntToDouble_altpriority_encoder_r08:altpriority_encoder6|IntToDouble_altpriority_encoder_bv7:altpriority_encoder8|IntToDouble_altpriority_encoder_6v7:altpriority_encoder10" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 273
+Info (12128): Elaborating entity "IntToDouble_altpriority_encoder_3v7" for hierarchy "ForwardKinematics:x|IntToDouble:l1conv|IntToDouble_altfp_convert_4gn:IntToDouble_altfp_convert_4gn_component|IntToDouble_altpriority_encoder_qb6:altpriority_encoder2|IntToDouble_altpriority_encoder_r08:altpriority_encoder6|IntToDouble_altpriority_encoder_bv7:altpriority_encoder8|IntToDouble_altpriority_encoder_6v7:altpriority_encoder10|IntToDouble_altpriority_encoder_3v7:altpriority_encoder12" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 208
+Info (12128): Elaborating entity "IntToDouble_altpriority_encoder_3e8" for hierarchy "ForwardKinematics:x|IntToDouble:l1conv|IntToDouble_altfp_convert_4gn:IntToDouble_altfp_convert_4gn_component|IntToDouble_altpriority_encoder_qb6:altpriority_encoder2|IntToDouble_altpriority_encoder_r08:altpriority_encoder6|IntToDouble_altpriority_encoder_bv7:altpriority_encoder8|IntToDouble_altpriority_encoder_6v7:altpriority_encoder10|IntToDouble_altpriority_encoder_3e8:altpriority_encoder13" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 213
+Info (12128): Elaborating entity "IntToDouble_altpriority_encoder_6e8" for hierarchy "ForwardKinematics:x|IntToDouble:l1conv|IntToDouble_altfp_convert_4gn:IntToDouble_altfp_convert_4gn_component|IntToDouble_altpriority_encoder_qb6:altpriority_encoder2|IntToDouble_altpriority_encoder_r08:altpriority_encoder6|IntToDouble_altpriority_encoder_bv7:altpriority_encoder8|IntToDouble_altpriority_encoder_6e8:altpriority_encoder11" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 278
+Info (12128): Elaborating entity "IntToDouble_altpriority_encoder_be8" for hierarchy "ForwardKinematics:x|IntToDouble:l1conv|IntToDouble_altfp_convert_4gn:IntToDouble_altfp_convert_4gn_component|IntToDouble_altpriority_encoder_qb6:altpriority_encoder2|IntToDouble_altpriority_encoder_r08:altpriority_encoder6|IntToDouble_altpriority_encoder_be8:altpriority_encoder9" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 343
+Info (12128): Elaborating entity "IntToDouble_altpriority_encoder_rf8" for hierarchy "ForwardKinematics:x|IntToDouble:l1conv|IntToDouble_altfp_convert_4gn:IntToDouble_altfp_convert_4gn_component|IntToDouble_altpriority_encoder_qb6:altpriority_encoder2|IntToDouble_altpriority_encoder_rf8:altpriority_encoder7" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 408
+Info (12128): Elaborating entity "lpm_add_sub" for hierarchy "ForwardKinematics:x|IntToDouble:l1conv|IntToDouble_altfp_convert_4gn:IntToDouble_altfp_convert_4gn_component|lpm_add_sub:add_sub1" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 602
+Info (12130): Elaborated megafunction instantiation "ForwardKinematics:x|IntToDouble:l1conv|IntToDouble_altfp_convert_4gn:IntToDouble_altfp_convert_4gn_component|lpm_add_sub:add_sub1" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 602
+Info (12133): Instantiated megafunction "ForwardKinematics:x|IntToDouble:l1conv|IntToDouble_altfp_convert_4gn:IntToDouble_altfp_convert_4gn_component|lpm_add_sub:add_sub1" with the following parameter: File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 602
+    Info (12134): Parameter "lpm_direction" = "ADD"
+    Info (12134): Parameter "lpm_width" = "31"
+    Info (12134): Parameter "lpm_type" = "lpm_add_sub"
+    Info (12134): Parameter "lpm_hint" = "ONE_INPUT_IS_CONSTANT=YES"
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_npe.tdf
+    Info (12023): Found entity 1: add_sub_npe File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/db/add_sub_npe.tdf Line: 22
+Info (12128): Elaborating entity "add_sub_npe" for hierarchy "ForwardKinematics:x|IntToDouble:l1conv|IntToDouble_altfp_convert_4gn:IntToDouble_altfp_convert_4gn_component|lpm_add_sub:add_sub1|add_sub_npe:auto_generated" File: c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_add_sub.tdf Line: 118
+Info (12128): Elaborating entity "lpm_add_sub" for hierarchy "ForwardKinematics:x|IntToDouble:l1conv|IntToDouble_altfp_convert_4gn:IntToDouble_altfp_convert_4gn_component|lpm_add_sub:add_sub3" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 627
+Info (12130): Elaborated megafunction instantiation "ForwardKinematics:x|IntToDouble:l1conv|IntToDouble_altfp_convert_4gn:IntToDouble_altfp_convert_4gn_component|lpm_add_sub:add_sub3" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 627
+Info (12133): Instantiated megafunction "ForwardKinematics:x|IntToDouble:l1conv|IntToDouble_altfp_convert_4gn:IntToDouble_altfp_convert_4gn_component|lpm_add_sub:add_sub3" with the following parameter: File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 627
+    Info (12134): Parameter "lpm_direction" = "SUB"
+    Info (12134): Parameter "lpm_width" = "11"
+    Info (12134): Parameter "lpm_type" = "lpm_add_sub"
+    Info (12134): Parameter "lpm_hint" = "ONE_INPUT_IS_CONSTANT=YES"
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_mqe.tdf
+    Info (12023): Found entity 1: add_sub_mqe File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/db/add_sub_mqe.tdf Line: 22
+Info (12128): Elaborating entity "add_sub_mqe" for hierarchy "ForwardKinematics:x|IntToDouble:l1conv|IntToDouble_altfp_convert_4gn:IntToDouble_altfp_convert_4gn_component|lpm_add_sub:add_sub3|add_sub_mqe:auto_generated" File: c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_add_sub.tdf Line: 118
+Info (12128): Elaborating entity "lpm_compare" for hierarchy "ForwardKinematics:x|IntToDouble:l1conv|IntToDouble_altfp_convert_4gn:IntToDouble_altfp_convert_4gn_component|lpm_compare:cmpr4" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 653
+Info (12130): Elaborated megafunction instantiation "ForwardKinematics:x|IntToDouble:l1conv|IntToDouble_altfp_convert_4gn:IntToDouble_altfp_convert_4gn_component|lpm_compare:cmpr4" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 653
+Info (12133): Instantiated megafunction "ForwardKinematics:x|IntToDouble:l1conv|IntToDouble_altfp_convert_4gn:IntToDouble_altfp_convert_4gn_component|lpm_compare:cmpr4" with the following parameter: File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/IntToDouble.v Line: 653
+    Info (12134): Parameter "lpm_representation" = "UNSIGNED"
+    Info (12134): Parameter "lpm_width" = "11"
+    Info (12134): Parameter "lpm_type" = "lpm_compare"
+Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr_2gg.tdf
+    Info (12023): Found entity 1: cmpr_2gg File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/db/cmpr_2gg.tdf Line: 22
+Info (12128): Elaborating entity "cmpr_2gg" for hierarchy "ForwardKinematics:x|IntToDouble:l1conv|IntToDouble_altfp_convert_4gn:IntToDouble_altfp_convert_4gn_component|lpm_compare:cmpr4|cmpr_2gg:auto_generated" File: c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_compare.tdf Line: 280
+Info (12128): Elaborating entity "SinDeg" for hierarchy "ForwardKinematics:x|SinDeg:sine" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/ForwardKinematics.sv Line: 52
+Warning (10270): Verilog HDL Case Statement warning at SinDeg.sv(6): incomplete case statement has no default case item File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Warning (10240): Verilog HDL Always Construct warning at SinDeg.sv(6): inferring latch(es) for variable "data_out", which holds its previous value in one or more paths through the always construct File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Error (10166): SystemVerilog RTL Coding error at SinDeg.sv(6): always_comb construct does not infer purely combinational logic. File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[0]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[1]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[2]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[3]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[4]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[5]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[6]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[7]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[8]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[9]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[10]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[11]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[12]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[13]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[14]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[15]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[16]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[17]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[18]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[19]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[20]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[21]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[22]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[23]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[24]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[25]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[26]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[27]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[28]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[29]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[30]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[31]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[32]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[33]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[34]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[35]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[36]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[37]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[38]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[39]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[40]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[41]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[42]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[43]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[44]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[45]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[46]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[47]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[48]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[49]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[50]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[51]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[52]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[53]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[54]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[55]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[56]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[57]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[58]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[59]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[60]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[61]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[62]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Info (10041): Inferred latch for "data_out[63]" at SinDeg.sv(6) File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv Line: 6
+Error (12152): Can't elaborate user hierarchy "ForwardKinematics:x|SinDeg:sine" File: C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/ForwardKinematics.sv Line: 52
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 2 errors, 10 warnings
+    Error: Peak virtual memory: 4802 megabytes
+    Error: Processing ended: Tue Feb 04 02:23:17 2020
+    Error: Elapsed time: 00:00:12
+    Error: Total CPU time (on all processors): 00:00:25
 
 
