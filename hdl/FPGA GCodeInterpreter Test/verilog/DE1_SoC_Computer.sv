@@ -1,4 +1,9 @@
 
+typedef struct {
+	reg [3:0] cmd;                  // command number
+	reg [13:0] x_value;               // hi bits of data1
+	reg [13:0] y_value;               // lo bits of data1
+} command;
 
 module DE1_SoC_Computer (
 	////////////////////////////////////
@@ -181,8 +186,7 @@ module DE1_SoC_Computer (
 //=======================================================
 //  PARAMETER declarations
 //=======================================================
-enum 
-
+enum {READ_DATA, AWAIT_DATA, DELAY_READ_DATA, DELAY_AWAIT_DATA} HPS_to_FPGA_states;
 //=======================================================
 //  PORT declarations
 //=======================================================
@@ -422,26 +426,20 @@ reg data_buffer_valid ;
 // Controls for FPGA_to_HPS FIFO
 //=======================================================
 
-reg [31:0] fpga_to_hps_in_writedata ; 
-reg fpga_to_hps_in_write ; // write command
+//reg [31:0] fpga_to_hps_in_writedata ; 
+//reg fpga_to_hps_in_write ; // write command
 // status addresses
 // base => fill level
 // base+1 => status bits; 
 //           bit0==1 if full
 //           bit1==1 if empty
-wire [31:0] fpga_to_hps_in_csr_address = 32'd1 ; // fill_level  // should probably init to 0
-reg[31:0] fpga_to_hps_in_csr_readdata ;
-reg fpga_to_hps_in_csr_read ; // status regs read cmd
-reg [7:0] FPGA_to_HPS_state ;
-reg [7:0] Processing_state ;
+//wire [31:0] fpga_to_hps_in_csr_address = 32'd1 ; // fill_level  // should probably init to 0
+//reg[31:0] fpga_to_hps_in_csr_readdata ;
+//reg fpga_to_hps_in_csr_read ; // status regs read cmd
+//reg [7:0] FPGA_to_HPS_state ;
   
-typedef struct {
-	reg [3:0] cmd;                  // command number
-	reg [13:0] x_value;               // hi bits of data1
-	reg [13:0] y_value;               // lo bits of data1
-} command;
 
-testCommand commandIn;   // from HPS
+command commandIn;   // from HPS
 reg [7:0]  commandCount = 8'b0;
 wire fastclock;  // this is the clock to drive the timing
 reg start_digcount = 1'b0;
@@ -455,7 +453,8 @@ reg doLedSet = 1'b0;
 reg [3:0] setLed;
 reg setCondition;
 reg wasInverted = 1'b0;
-
+wire controller_ready = 0;
+wire memory_ready = 0;
 
 always @(posedge CLOCK_50) 
 begin 
@@ -512,9 +511,7 @@ always @(posedge CLOCK_50) begin
 		hex3_hex0[15:12] <= 4'd0;
 		commandCount <= 0 ;
 		data_buffer_valid <= 1'b0;
-		HPS_to_FPGA_state <= 8'd3 ;
-		FPGA_to_HPS_state <= 8'd0 ; 
-		Processing_state <= 8'd0 ; 
+		HPS_to_FPGA_state <= DELAY_AWAIT_DATA ;
 		initEnable = 1;
 	end  // if(init_enable == 0)
 
@@ -531,137 +528,39 @@ always @(posedge CLOCK_50) begin
 	// Is there data in HPS_to_FPGA FIFO
 	// and the last transfer is complete
 	// data_buffer_valid is only used by the FPGA to HPS FIFO !!
-	if (HPS_to_FPGA_state == 8'd0 && !(hps_to_fpga_out_csr_readdata[1]) && !data_buffer_valid)  begin
+	if (HPS_to_FPGA_state == AWAIT_DATA && !(hps_to_fpga_out_csr_readdata[1]) && !data_buffer_valid)  begin
 		hps_to_fpga_read <= 1'b1 ;
-		HPS_to_FPGA_state <= 8'd2 ; //
+		HPS_to_FPGA_state <= DELAY_READ_DATA ; //
 	end
 	
 	// delay before we read
-	if (HPS_to_FPGA_state == 8'd2) begin
+	if (HPS_to_FPGA_state == DELAY_READ_DATA) begin
 		// zero the read request BEFORE the data appears 
 		// in the next state!
 		hps_to_fpga_read <= 1'b0 ;
-		HPS_to_FPGA_state <= 8'd4 ;
+		HPS_to_FPGA_state <= READ_DATA;
 	end
 	
 	
 	// delay  FOR THE TRIP BACK FROM STATE 4 TO STATE 0
 	// this test checks to see if we need more fifo read time
-	if (HPS_to_FPGA_state == 8'd3) begin
-			HPS_to_FPGA_state <= 8'd0 ;
+	if (HPS_to_FPGA_state == DELAY_AWAIT_DATA) begin
+			HPS_to_FPGA_state <= AWAIT_DATA ;
 	end
 	
 	// read the word from the FIFO
-	if ((HPS_to_FPGA_state == 8'd4) && (hps_to_fpga_read == 1'b0)) begin
+	if ((HPS_to_FPGA_state == READ_DATA) && (hps_to_fpga_read == 1'b0)) begin
 		commandIn.cmd <= hps_to_fpga_readdata[3:0] ; // store the data
-		commandIn.x_value <= hps_to_fpga_readdata[13:3]
-		commandIn.y_value <= hps_to_fpga_readdata[31:13]
+		commandIn.x_value <= hps_to_fpga_readdata[13:3];
+		commandIn.y_value <= hps_to_fpga_readdata[31:13];
 		commandCount <= 8'd1;
 		hps_to_fpga_read <= 1'b0 ;
-		HPS_to_FPGA_state <= 8'd3 ; 
-	end
-	
-//----------------------------------------------
-// Processing State Machine below
-// This is where commands are performed before the results
-// are returned by the FPGA_toHPS state machine
-	// process the command from the FIFO
-	if (Processing_state == 8'd0) begin
-	 // this is the 'Home' state, where processing is inactive
-	 //  we dont really need an inactive state but if there were
-	 //  some background tasks to be done, this is where we would do them
-	end
-
-//----------------------------
-//  state 5
-//----------------------------
-	// process the command from the FIFO
-	if (Processing_state == 8'd5) begin
-		commandOut.test_cmd <= commandIn.test_cmd;  // success complete
-		commandOut.test_dat1 <= 0;
-		commandOut.test_dat2 <= 0;
-		commandOut.test_dat3 <= 0;
-		commandCount <= 0;
-		case(commandIn.test_cmd)
-		16'd1:  // turn a single led on or off
-		begin
-			setLed <= commandIn.test_dat1[3:0];
-			setCondition <= commandIn.test_dat2[0];
-			doLedSet <= 1'b1;
-			doLedRun <= 1'b0;
-			doLedInvert <= 1'b0;
-			Processing_state <= 8'd6 ; //return a data packet
-		end
-		16'd2:  // invert the condition of the leds
-		begin
-			start_digcount <= 1'b1;
-			commandOut.test_dat1 <= { 24'd0, hex3_hex0[7:4], hex3_hex0[3:0] };
-			digcount_speed <= commandIn.test_dat1[3:0];
-			doLedSet <= 1'b0;
-			doLedRun <= 1'b0;
-			doLedInvert <= 1'b1;
-			commandOut.test_dat1 <= 1;
-			commandOut.test_dat2 <= 2;
-			commandOut.test_dat3 <= 3;
-			Processing_state <= 8'd6 ; //return a data packet
-		end
-		16'd3:  // start a count sequence on the leds
-		begin
-			doLedSet <= 1'b0;
-			doLedRun <= ~doLedRun;  // turn it off if it is on, or on if it is off
-			doLedInvert <= 1'b0;
-			commandOut.test_dat1 <= 4;
-			commandOut.test_dat2 <= 5;
-			commandOut.test_dat3 <= 6;
-			Processing_state <= 8'd6 ; //return a data packet
-		end
+		HPS_to_FPGA_state <= DELAY_AWAIT_DATA ; 
+		memory_ready <= 1;
 		
-		default:
-		begin
-			commandOut.test_cmd <= 0;  // success complete
-			Processing_state <= 8'd6 ; //return a data packet
-		end
-		endcase
 	end
-
-//-------------------------------------------
-//  state 6
-//----------------------------------------	
-	if ((Processing_state == 8'd6) && (FPGA_to_HPS_state == 0)) begin
-		case(commandCount)
-		8'd0:
-		begin
-			commandCount <= 8'd1;
-			data_buffer_valid <= 1'b1 ; // set the data ready flag - do this to signal HPS that return data is ready
-			Processing_state <= 8'd7 ;  // wait for the outgoing FIFO to swallow that data 
-		end	
-		8'd1:
-		begin
-			commandCount <= 8'd2;
-			data_buffer_valid <= 1'b1 ; // set the data ready flag - do this to signal HPS that return data is ready
-			Processing_state <= 8'd7 ;  // wait for the outgoing FIFO to swallow that data 
-		end	
-		8'd2:
-		begin
-			commandCount <= 8'd3;
-			data_buffer_valid <= 1'b1 ; // set the data ready flag - do this to signal HPS that return data is ready
-			Processing_state <= 8'd7 ;  // wait for the outgoing FIFO to swallow that data 
-		end	
-		8'd3:
-		begin
-			commandCount <= 8'd4;
-			data_buffer_valid <= 1'b1 ; // set the data ready flag - do this to signal HPS that return data is ready
-			Processing_state <= 8'd7 ;  // wait for the outgoing FIFO to swallow that data 
-		end	
-		8'd4:
-		begin
-			commandCount <= 8'd0;
-			Processing_state <= 8'd0 ;  // wait for the outgoing FIFO to swallow that data 
-		end	
 		
-		endcase
-	end
-	
+
 	
 	
 	//==================================
@@ -818,6 +717,8 @@ Computer_System The_System (
 	.hps_io_hps_io_usb1_inst_NXT		(HPS_USB_NXT) //,
 	
 );
+
+
 endmodule // end top level
 
 
