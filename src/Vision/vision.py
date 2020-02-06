@@ -4,7 +4,7 @@
 import cv2 as cv
 import numpy as np
 import operator
-import gcodeFormatter as gc
+from ..GCode.gcodeFormatter import *
 from functools import reduce, partial
 
 def asGCode(img, colorPalette: [(int, int, int)], granularity: float, maxLines: int, paperSize: (int, int)):
@@ -72,10 +72,10 @@ def linesAsGCode(contoursAsLines, palette, imageSize, paperSize):
     gcode = []
 
     # initialize to be absolute coordnates
-    gcode.append(gc.g90)
+    gcode.append(g90)
 
     # Initialize to use metric (better accuracy)
-    gcode.append(gc.g21)
+    gcode.append(g21)
 
     currentTool = palette[0]
     for i in range(len(contoursAsLines)):
@@ -84,19 +84,19 @@ def linesAsGCode(contoursAsLines, palette, imageSize, paperSize):
         # If the current segment has a color different than the current pen, swap the pen out
         if palette[i] != currentTool:
             currentTool = palette[i]
-            gcode.append(gc.m6.format(tool=currentTool))
+            gcode.append(m6.format(tool=currentTool))
 
             # Send pen to first point
-            gcode.append(gc.m72)
-            gcode.append(gc.g01.format(x=segments[0][0][0] * mmPerPxX, y=segments[0][0][1] * mmPerPxY))
-            gcode.append(gc.m72)
+            gcode.append(m72)
+            gcode.append(g01.format(x=segments[0][0][0] * mmPerPxX, y=segments[0][0][1] * mmPerPxY))
+            gcode.append(m72)
 
         if (len(segments) > 1):
             for s in range(1, len(segments)):
                 # Draw to subsequent points
-                gcode.append(gc.g01.format(x=segments[s][0][0] * mmPerPxX, y=segments[s][0][1] * mmPerPxY))
+                gcode.append(g01.format(x=segments[s][0][0] * mmPerPxX, y=segments[s][0][1] * mmPerPxY))
     # End of program
-    gcode.append(gc.m2)
+    gcode.append(m2)
 
     # Form string
     return "\n".join(gcode)

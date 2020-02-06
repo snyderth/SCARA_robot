@@ -1,5 +1,5 @@
 import math
-
+from gcodeFormatter import *
 #Commands are formatted like so:
 #|code|argX|argY|
 #0    3   17    31
@@ -23,13 +23,60 @@ MAX_IN = 11 #in
 MAX_MM = 279.4 #mm
 IN_TO_BITS = 2**ARG_BITS/MAX_IN #bits/in
 MM_TO_BITS = 2**ARG_BITS/MAX_MM #bits/mm
+TOOL_TO_BITS = 1
 
 #Gcode to command map
-GCODE_MAP = {"g00": 0, "g01": 1, "g20": 2, "g21": 3, "g90": 4, "g91": 5, "m2": 6, "m6": 7, "m72": 8}
+GCODE_MAP = {g00Command.lower(): 0, g01Command.lower(): 1, g20.lower(): 2, g21.lower(): 3, g90.lower(): 4, g91.lower(): 5, m2.lower(): 6, m6Command.lower(): 7, m72.lower(): 8}
 
-#Convert gcode text to a list of commands. Throws exceptions if there are errors in the gcode.
+#Inverse command map useful decoding fpga commands
+COMMAND_MAP = {v: k for k, v in GCODE_MAP.items()}
+
+
+def commandsToGcode(commands):
+    program = []
+    conversion = 1 / IN_TO_BITS
+
+    for command in commands:
+
+        gcode = ""
+
+        code = commandCode(command)
+        gcodeCommand = COMMAND_MAP[code]
+
+        units = commandUnits(gcodeCommand)
+        if  units != None:
+            unit_to_bits, _ = units
+            conversion = 1 / unit_to_bits
+
+        gcode += gcodeCommand + " "
+
+        command = command >> CODE_BITS
+        if commandHasArgs(gcodeCommand):
+            for argName in commandArgs(gcodeCommand):
+                gcode += argName
+
+                argValue = (command & ((1 << ARG_BITS) - 1)) * conversion
+                gcode += str(argValue) + " "
+
+                command = command >> ARG_BITS
+
+        program.append(gcode)
+    return '\n'.join(program)
+
+
+def commandCode(command: int):
+    code = (command >> CODE_OFFSET) & ((1 << CODE_BITS) - 1)
+    return code
+
+
+
 def gcodeToCommands(gcodeText):
+    '''
+    Convert gcode text to a list of commands. Throws exceptions if there are errors in the gcode.
 
+    @param gcodeText:
+    @return:
+    '''
     #Format gcode to remove whitespace, convert to lower case, and remove empty lines
     gcodeCommands = filter(lambda t: not t.isspace(), map(lambda t: str.lower(str.strip(t)), gcodeText.split('\n')))
     commands = []
@@ -56,8 +103,8 @@ def gcodeToCommands(gcodeText):
             command |= code << CODE_OFFSET
 
             if commandHasArgs(cmd):
-                if len(gcodeLine) > 1:
 
+                if len(gcodeLine) > 1:
                     # OR each argument into command
                     for argText in gcodeLine[1:]:
                         command |= extractArg(argText, conversion, max)
@@ -74,6 +121,12 @@ def gcodeToCommands(gcodeText):
 #True if given gcode code has arguments attached to it
 def commandHasArgs(code):
     return code == 'g00' or code == 'g01' or code == 'm6'
+
+def commandArgs(code):
+    if code == 'g00' or code == 'g01':
+        return ("x", "y")
+    if code == 'm6':
+        return ("t")
 
 #Returns (conversion factor, max value) for given gcode code if code converts units, None otherwise.
 def commandUnits(code):
@@ -120,19 +173,13 @@ def commandToCode(code):
 #test code
 if __name__ == '__main__':
 
-    gcodeFile = open("../test.gcode", "r")
+    gcodeFile = open("../../test.gcode", "r")
 
     gcode = gcodeFile.read()
 
     commands = gcodeToCommands(gcode)
 
-    print(commands)
+    reverseGcode = commandsToGcode(commands)
 
-
-    #Test argument generation
-    num1 = "x-200"
-    cmd1 = extractArg(num1, MM_TO_BITS, MAX_MM) >> CODE_BITS
-
-    inch = cmd1 * (1/MM_TO_BITS)
-    print(inch)
+    print(reverseGcode)
 
