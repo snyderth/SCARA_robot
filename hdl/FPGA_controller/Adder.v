@@ -33,7 +33,7 @@
 //refer to the applicable agreement for further details.
 
 
-//altfp_add_sub CBX_AUTO_BLACKBOX="ALL" DENORMAL_SUPPORT="NO" DEVICE_FAMILY="Cyclone V" DIRECTION="ADD" OPTIMIZE="SPEED" PIPELINE=14 REDUCED_FUNCTIONALITY="NO" WIDTH_EXP=11 WIDTH_MAN=52 aclr clk_en clock dataa datab overflow result
+//altfp_add_sub CBX_AUTO_BLACKBOX="ALL" DENORMAL_SUPPORT="NO" DEVICE_FAMILY="Cyclone V" DIRECTION="ADD" OPTIMIZE="SPEED" PIPELINE=14 REDUCED_FUNCTIONALITY="NO" WIDTH_EXP=11 WIDTH_MAN=52 clk_en clock dataa datab overflow result
 //VERSION_BEGIN 18.1 cbx_altbarrel_shift 2018:09:12:13:04:24:SJ cbx_altfp_add_sub 2018:09:12:13:04:24:SJ cbx_altpriority_encoder 2018:09:12:13:04:24:SJ cbx_cycloneii 2018:09:12:13:04:24:SJ cbx_lpm_add_sub 2018:09:12:13:04:24:SJ cbx_lpm_compare 2018:09:12:13:04:24:SJ cbx_mgl 2018:09:12:13:10:36:SJ cbx_nadder 2018:09:12:13:04:24:SJ cbx_stratix 2018:09:12:13:04:24:SJ cbx_stratixii 2018:09:12:13:04:24:SJ  VERSION_END
 // synthesis VERILOG_INPUT_VERSION VERILOG_2001
 // altera message_off 10463
@@ -949,16 +949,14 @@ endmodule //Adder_altpriority_encoder_ina
 //synopsys translate_off
 `timescale 1 ps / 1 ps
 //synopsys translate_on
-module  Adder_altfp_add_sub_jvk
+module  Adder_altfp_add_sub_hhk
 	( 
-	aclr,
 	clk_en,
 	clock,
 	dataa,
 	datab,
 	overflow,
 	result) ;
-	input   aclr;
 	input   clk_en;
 	input   clock;
 	input   [63:0]  dataa;
@@ -968,7 +966,6 @@ module  Adder_altfp_add_sub_jvk
 `ifndef ALTERA_RESERVED_QIS
 // synopsys translate_off
 `endif
-	tri0   aclr;
 	tri1   clk_en;
 `ifndef ALTERA_RESERVED_QIS
 // synopsys translate_on
@@ -1135,6 +1132,7 @@ module  Adder_altfp_add_sub_jvk
 	wire  [27:0]   wire_man_res_rounding_add_sub_lower_result;
 	wire  [26:0]   wire_man_res_rounding_add_sub_upper1_result;
 	wire  wire_trailing_zeros_limit_comparator_agb;
+	wire aclr;
 	wire  add_sub_dffe25_wi;
 	wire  add_sub_dffe25_wo;
 	wire  add_sub_w2;
@@ -2972,6 +2970,7 @@ module  Adder_altfp_add_sub_jvk
 		trailing_zeros_limit_comparator.lpm_width = 7,
 		trailing_zeros_limit_comparator.lpm_type = "lpm_compare";
 	assign
+		aclr = 1'b0,
 		add_sub_dffe25_wi = add_sub_w2,
 		add_sub_dffe25_wo = add_sub_dffe25_wi,
 		add_sub_w2 = (~ (dataa_sign_dffe1_wo ^ datab_sign_dffe1_wo)),
@@ -3477,7 +3476,7 @@ module  Adder_altfp_add_sub_jvk
 		zero_man_sign_dffe27_wo = zero_man_sign_dffe27,
 		zero_man_sign_dffe2_wi = (dataa_sign_dffe25_wo & add_sub_dffe25_wo),
 		zero_man_sign_dffe2_wo = zero_man_sign_dffe2;
-endmodule //Adder_altfp_add_sub_jvk
+endmodule //Adder_altfp_add_sub_hhk
 //VALID FILE
 
 
@@ -3485,7 +3484,6 @@ endmodule //Adder_altfp_add_sub_jvk
 `timescale 1 ps / 1 ps
 // synopsys translate_on
 module Adder (
-	aclr,
 	clk_en,
 	clock,
 	dataa,
@@ -3493,7 +3491,6 @@ module Adder (
 	overflow,
 	result);
 
-	input	  aclr;
 	input	  clk_en;
 	input	  clock;
 	input	[63:0]  dataa;
@@ -3506,8 +3503,7 @@ module Adder (
 	wire  overflow = sub_wire0;
 	wire [63:0] result = sub_wire1[63:0];
 
-	Adder_altfp_add_sub_jvk	Adder_altfp_add_sub_jvk_component (
-				.aclr (aclr),
+	Adder_altfp_add_sub_hhk	Adder_altfp_add_sub_hhk_component (
 				.clk_en (clk_en),
 				.clock (clock),
 				.dataa (dataa),
@@ -3533,14 +3529,12 @@ endmodule
 // Retrieval info: CONSTANT: REDUCED_FUNCTIONALITY STRING "NO"
 // Retrieval info: CONSTANT: WIDTH_EXP NUMERIC "11"
 // Retrieval info: CONSTANT: WIDTH_MAN NUMERIC "52"
-// Retrieval info: USED_PORT: aclr 0 0 0 0 INPUT NODEFVAL "aclr"
 // Retrieval info: USED_PORT: clk_en 0 0 0 0 INPUT NODEFVAL "clk_en"
 // Retrieval info: USED_PORT: clock 0 0 0 0 INPUT NODEFVAL "clock"
 // Retrieval info: USED_PORT: dataa 0 0 64 0 INPUT NODEFVAL "dataa[63..0]"
 // Retrieval info: USED_PORT: datab 0 0 64 0 INPUT NODEFVAL "datab[63..0]"
 // Retrieval info: USED_PORT: overflow 0 0 0 0 OUTPUT NODEFVAL "overflow"
 // Retrieval info: USED_PORT: result 0 0 64 0 OUTPUT NODEFVAL "result[63..0]"
-// Retrieval info: CONNECT: @aclr 0 0 0 0 aclr 0 0 0 0
 // Retrieval info: CONNECT: @clk_en 0 0 0 0 clk_en 0 0 0 0
 // Retrieval info: CONNECT: @clock 0 0 0 0 clock 0 0 0 0
 // Retrieval info: CONNECT: @dataa 0 0 64 0 dataa 0 0 64 0

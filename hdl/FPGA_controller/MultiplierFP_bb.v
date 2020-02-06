@@ -4,7 +4,7 @@
 // MODULE: ALTFP_MULT 
 
 // ============================================================
-// File Name: Multiplier.v
+// File Name: MultiplierFP.v
 // Megafunction Name(s):
 // 			ALTFP_MULT
 //
@@ -31,20 +31,26 @@
 //Intel and sold by Intel or its authorized distributors.  Please
 //refer to the applicable agreement for further details.
 
-module Multiplier (
-	aclr,
+module MultiplierFP (
 	clk_en,
 	clock,
 	dataa,
 	datab,
-	result)/* synthesis synthesis_clearbox = 1 */;
+	nan,
+	overflow,
+	result,
+	underflow,
+	zero)/* synthesis synthesis_clearbox = 1 */;
 
-	input	  aclr;
 	input	  clk_en;
 	input	  clock;
 	input	[63:0]  dataa;
 	input	[63:0]  datab;
+	output	  nan;
+	output	  overflow;
 	output	[63:0]  result;
+	output	  underflow;
+	output	  zero;
 
 endmodule
 
@@ -65,8 +71,6 @@ endmodule
 // Retrieval info: CONSTANT: ROUNDING STRING "TO_NEAREST"
 // Retrieval info: CONSTANT: WIDTH_EXP NUMERIC "11"
 // Retrieval info: CONSTANT: WIDTH_MAN NUMERIC "52"
-// Retrieval info: USED_PORT: aclr 0 0 0 0 INPUT NODEFVAL "aclr"
-// Retrieval info: CONNECT: @aclr 0 0 0 0 aclr 0 0 0 0
 // Retrieval info: USED_PORT: clk_en 0 0 0 0 INPUT NODEFVAL "clk_en"
 // Retrieval info: CONNECT: @clk_en 0 0 0 0 clk_en 0 0 0 0
 // Retrieval info: USED_PORT: clock 0 0 0 0 INPUT NODEFVAL "clock"
@@ -75,13 +79,21 @@ endmodule
 // Retrieval info: CONNECT: @dataa 0 0 64 0 dataa 0 0 64 0
 // Retrieval info: USED_PORT: datab 0 0 64 0 INPUT NODEFVAL "datab[63..0]"
 // Retrieval info: CONNECT: @datab 0 0 64 0 datab 0 0 64 0
+// Retrieval info: USED_PORT: nan 0 0 0 0 OUTPUT NODEFVAL "nan"
+// Retrieval info: CONNECT: nan 0 0 0 0 @nan 0 0 0 0
+// Retrieval info: USED_PORT: overflow 0 0 0 0 OUTPUT NODEFVAL "overflow"
+// Retrieval info: CONNECT: overflow 0 0 0 0 @overflow 0 0 0 0
 // Retrieval info: USED_PORT: result 0 0 64 0 OUTPUT NODEFVAL "result[63..0]"
 // Retrieval info: CONNECT: result 0 0 64 0 @result 0 0 64 0
-// Retrieval info: GEN_FILE: TYPE_NORMAL Multiplier.v TRUE FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL Multiplier.qip TRUE FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL Multiplier.bsf TRUE TRUE
-// Retrieval info: GEN_FILE: TYPE_NORMAL Multiplier_inst.v TRUE TRUE
-// Retrieval info: GEN_FILE: TYPE_NORMAL Multiplier_bb.v TRUE TRUE
-// Retrieval info: GEN_FILE: TYPE_NORMAL Multiplier.inc TRUE TRUE
-// Retrieval info: GEN_FILE: TYPE_NORMAL Multiplier.cmp TRUE TRUE
+// Retrieval info: USED_PORT: underflow 0 0 0 0 OUTPUT NODEFVAL "underflow"
+// Retrieval info: CONNECT: underflow 0 0 0 0 @underflow 0 0 0 0
+// Retrieval info: USED_PORT: zero 0 0 0 0 OUTPUT NODEFVAL "zero"
+// Retrieval info: CONNECT: zero 0 0 0 0 @zero 0 0 0 0
+// Retrieval info: GEN_FILE: TYPE_NORMAL MultiplierFP.v TRUE FALSE
+// Retrieval info: GEN_FILE: TYPE_NORMAL MultiplierFP.qip TRUE FALSE
+// Retrieval info: GEN_FILE: TYPE_NORMAL MultiplierFP.bsf TRUE TRUE
+// Retrieval info: GEN_FILE: TYPE_NORMAL MultiplierFP_inst.v TRUE TRUE
+// Retrieval info: GEN_FILE: TYPE_NORMAL MultiplierFP_bb.v TRUE TRUE
+// Retrieval info: GEN_FILE: TYPE_NORMAL MultiplierFP.inc TRUE TRUE
+// Retrieval info: GEN_FILE: TYPE_NORMAL MultiplierFP.cmp TRUE TRUE
 // Retrieval info: LIB_FILE: lpm

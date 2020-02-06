@@ -1,3 +1,16 @@
+/***************************************************
+*	File: 		CosDeg
+*	Author: 		Thomas Snyder
+*	Date:			2/5/2020
+*	Description:Cosine Function inputing a signed integer
+*					in degrees and outputing a double
+					precision floating point number.
+*	Parameters:
+*				None
+*	Dependencies:
+*				None
+*
+***************************************************/
 module	CosDeg(input	signed	[7:0]	data_in,
 			output logic [63:0] data_out);
 
@@ -725,6 +738,7 @@ module	CosDeg(input	signed	[7:0]	data_in,
 			 179: data_out = 64'b1011111111101111111111101100000010010111111011010001111101110111;
 
 			 180: data_out = 64'b1011111111110000000000000000000000000000000000000000000000000000;
-
+			 
+			 default: data_out = 64'd0;
 		endcase
 endmodule

@@ -4,7 +4,7 @@
 // MODULE: ALTFP_MULT 
 
 // ============================================================
-// File Name: Multiplier.v
+// File Name: MultiplierFP.v
 // Megafunction Name(s):
 // 			ALTFP_MULT
 //
@@ -33,34 +33,39 @@
 //refer to the applicable agreement for further details.
 
 
-//altfp_mult CBX_AUTO_BLACKBOX="ALL" DEDICATED_MULTIPLIER_CIRCUITRY="YES" DENORMAL_SUPPORT="NO" DEVICE_FAMILY="Cyclone V" EXCEPTION_HANDLING="NO" PIPELINE=5 REDUCED_FUNCTIONALITY="NO" ROUNDING="TO_NEAREST" WIDTH_EXP=11 WIDTH_MAN=52 aclr clk_en clock dataa datab result
+//altfp_mult CBX_AUTO_BLACKBOX="ALL" DEDICATED_MULTIPLIER_CIRCUITRY="YES" DENORMAL_SUPPORT="NO" DEVICE_FAMILY="Cyclone V" EXCEPTION_HANDLING="NO" PIPELINE=5 REDUCED_FUNCTIONALITY="NO" ROUNDING="TO_NEAREST" WIDTH_EXP=11 WIDTH_MAN=52 clk_en clock dataa datab nan overflow result underflow zero
 //VERSION_BEGIN 18.1 cbx_alt_ded_mult_y 2018:09:12:13:04:24:SJ cbx_altbarrel_shift 2018:09:12:13:04:24:SJ cbx_altera_mult_add 2018:09:12:13:04:24:SJ cbx_altera_mult_add_rtl 2018:09:12:13:04:24:SJ cbx_altfp_mult 2018:09:12:13:04:24:SJ cbx_altmult_add 2018:09:12:13:04:24:SJ cbx_cycloneii 2018:09:12:13:04:24:SJ cbx_lpm_add_sub 2018:09:12:13:04:24:SJ cbx_lpm_compare 2018:09:12:13:04:24:SJ cbx_lpm_mult 2018:09:12:13:04:24:SJ cbx_mgl 2018:09:12:13:10:36:SJ cbx_nadder 2018:09:12:13:04:24:SJ cbx_padd 2018:09:12:13:04:24:SJ cbx_parallel_add 2018:09:12:13:04:24:SJ cbx_stratix 2018:09:12:13:04:24:SJ cbx_stratixii 2018:09:12:13:04:24:SJ cbx_util_mgl 2018:09:12:13:04:24:SJ  VERSION_END
 // synthesis VERILOG_INPUT_VERSION VERILOG_2001
 // altera message_off 10463
 
 
-//synthesis_resources = lpm_add_sub 4 lpm_mult 1 reg 235 
+//synthesis_resources = lpm_add_sub 4 lpm_mult 1 reg 239 
 //synopsys translate_off
 `timescale 1 ps / 1 ps
 //synopsys translate_on
-module  Multiplier_altfp_mult_9oo
+module  MultiplierFP_altfp_mult_e0r
 	( 
-	aclr,
 	clk_en,
 	clock,
 	dataa,
 	datab,
-	result) ;
-	input   aclr;
+	nan,
+	overflow,
+	result,
+	underflow,
+	zero) ;
 	input   clk_en;
 	input   clock;
 	input   [63:0]  dataa;
 	input   [63:0]  datab;
+	output   nan;
+	output   overflow;
 	output   [63:0]  result;
+	output   underflow;
+	output   zero;
 `ifndef ALTERA_RESERVED_QIS
 // synopsys translate_off
 `endif
-	tri0   aclr;
 	tri1   clk_en;
 `ifndef ALTERA_RESERVED_QIS
 // synopsys translate_on
@@ -93,6 +98,8 @@ module  Multiplier_altfp_mult_9oo
 	reg	[51:0]	man_result_ff;
 	reg	[52:0]	man_round_p;
 	reg	[53:0]	man_round_p2;
+	reg	nan_ff;
+	reg	overflow_ff;
 	reg	round_dffe;
 	reg	[0:0]	sign_node_ff0;
 	reg	[0:0]	sign_node_ff1;
@@ -100,11 +107,14 @@ module  Multiplier_altfp_mult_9oo
 	reg	[0:0]	sign_node_ff3;
 	reg	[0:0]	sign_node_ff4;
 	reg	sticky_dffe;
+	reg	underflow_ff;
+	reg	zero_ff;
 	wire  [11:0]   wire_exp_add_adder_result;
 	wire  [12:0]   wire_exp_adj_adder_result;
 	wire  [12:0]   wire_exp_bias_subtr_result;
 	wire  [53:0]   wire_man_round_adder_result;
 	wire  [105:0]   wire_man_product2_mult_result;
+	wire aclr;
 	wire  [12:0]  bias;
 	wire  [10:0]  dataa_exp_all_one;
 	wire  [10:0]  dataa_exp_not_zero;
@@ -316,6 +326,20 @@ module  Multiplier_altfp_mult_9oo
 		else if  (clk_en == 1'b1)   man_round_p2 <= wire_man_round_adder_result;
 	// synopsys translate_off
 	initial
+		nan_ff = 0;
+	// synopsys translate_on
+	always @ ( posedge clock or  posedge aclr)
+		if (aclr == 1'b1) nan_ff <= 1'b0;
+		else if  (clk_en == 1'b1)   nan_ff <= (input_is_nan_ff1 | (input_is_infinity_ff1 & (~ input_not_zero_ff1)));
+	// synopsys translate_off
+	initial
+		overflow_ff = 0;
+	// synopsys translate_on
+	always @ ( posedge clock or  posedge aclr)
+		if (aclr == 1'b1) overflow_ff <= 1'b0;
+		else if  (clk_en == 1'b1)   overflow_ff <= (((exp_is_inf | input_is_infinity_ff1) & (~ input_is_nan_ff1)) & (~ (input_is_infinity_ff1 & (~ input_not_zero_ff1))));
+	// synopsys translate_off
+	initial
 		round_dffe = 0;
 	// synopsys translate_on
 	always @ ( posedge clock or  posedge aclr)
@@ -363,6 +387,20 @@ module  Multiplier_altfp_mult_9oo
 	always @ ( posedge clock or  posedge aclr)
 		if (aclr == 1'b1) sticky_dffe <= 1'b0;
 		else if  (clk_en == 1'b1)   sticky_dffe <= sticky_bit[51];
+	// synopsys translate_off
+	initial
+		underflow_ff = 0;
+	// synopsys translate_on
+	always @ ( posedge clock or  posedge aclr)
+		if (aclr == 1'b1) underflow_ff <= 1'b0;
+		else if  (clk_en == 1'b1)   underflow_ff <= (((exp_is_zero & input_not_zero_ff1) & (~ input_is_nan_ff1)) & (~ (input_is_infinity_ff1 & (~ input_not_zero_ff1))));
+	// synopsys translate_off
+	initial
+		zero_ff = 0;
+	// synopsys translate_on
+	always @ ( posedge clock or  posedge aclr)
+		if (aclr == 1'b1) zero_ff <= 1'b0;
+		else if  (clk_en == 1'b1)   zero_ff <= (((exp_is_zero | (~ input_not_zero_ff1)) & (~ input_is_nan_ff1)) & (~ input_is_infinity_ff1));
 	lpm_add_sub   exp_add_adder
 	( 
 	.aclr(aclr),
@@ -488,6 +526,7 @@ module  Multiplier_altfp_mult_9oo
 		man_product2_mult.lpm_type = "lpm_mult",
 		man_product2_mult.lpm_hint = "DEDICATED_MULTIPLIER_CIRCUITRY=YES";
 	assign
+		aclr = 1'b0,
 		bias = {{3{1'b0}}, {10{1'b1}}},
 		dataa_exp_all_one = {(dataa[62] & dataa_exp_all_one[9]), (dataa[61] & dataa_exp_all_one[8]), (dataa[60] & dataa_exp_all_one[7]), (dataa[59] & dataa_exp_all_one[6]), (dataa[58] & dataa_exp_all_one[5]), (dataa[57] & dataa_exp_all_one[4]), (dataa[56] & dataa_exp_all_one[3]), (dataa[55] & dataa_exp_all_one[2]), (dataa[54] & dataa_exp_all_one[1]), (dataa[53] & dataa_exp_all_one[0]), dataa[52]},
 		dataa_exp_not_zero = {(dataa[62] | dataa_exp_not_zero[9]), (dataa[61] | dataa_exp_not_zero[8]), (dataa[60] | dataa_exp_not_zero[7]), (dataa[59] | dataa_exp_not_zero[6]), (dataa[58] | dataa_exp_not_zero[5]), (dataa[57] | dataa_exp_not_zero[4]), (dataa[56] | dataa_exp_not_zero[3]), (dataa[55] | dataa_exp_not_zero[2]), (dataa[54] | dataa_exp_not_zero[1]), (dataa[53] | dataa_exp_not_zero[0]), dataa[52]},
@@ -502,45 +541,66 @@ module  Multiplier_altfp_mult_9oo
 		lsb_bit = man_shift_full[1],
 		man_result_round = ((man_round_p2[52:0] & {53{(~ man_round_p2[53])}}) | (man_round_p2[53:1] & {53{man_round_p2[53]}})),
 		man_shift_full = ((wire_man_product2_mult_result[104:51] & {54{(~ wire_man_product2_mult_result[105])}}) | (wire_man_product2_mult_result[105:52] & {54{wire_man_product2_mult_result[105]}})),
+		nan = nan_ff,
+		overflow = overflow_ff,
 		result = {sign_node_ff4[0:0], exp_result_ff[10:0], man_result_ff[51:0]},
 		result_exp_all_one = {(result_exp_all_one[9] & wire_exp_adj_adder_result[10]), (result_exp_all_one[8] & wire_exp_adj_adder_result[9]), (result_exp_all_one[7] & wire_exp_adj_adder_result[8]), (result_exp_all_one[6] & wire_exp_adj_adder_result[7]), (result_exp_all_one[5] & wire_exp_adj_adder_result[6]), (result_exp_all_one[4] & wire_exp_adj_adder_result[5]), (result_exp_all_one[3] & wire_exp_adj_adder_result[4]), (result_exp_all_one[2] & wire_exp_adj_adder_result[3]), (result_exp_all_one[1] & wire_exp_adj_adder_result[2]), (result_exp_all_one[0] & wire_exp_adj_adder_result[1]), wire_exp_adj_adder_result[0]},
 		result_exp_not_zero = {(result_exp_not_zero[10] | wire_exp_adj_adder_result[11]), (result_exp_not_zero[9] | wire_exp_adj_adder_result[10]), (result_exp_not_zero[8] | wire_exp_adj_adder_result[9]), (result_exp_not_zero[7] | wire_exp_adj_adder_result[8]), (result_exp_not_zero[6] | wire_exp_adj_adder_result[7]), (result_exp_not_zero[5] | wire_exp_adj_adder_result[6]), (result_exp_not_zero[4] | wire_exp_adj_adder_result[5]), (result_exp_not_zero[3] | wire_exp_adj_adder_result[4]), (result_exp_not_zero[2] | wire_exp_adj_adder_result[3]), (result_exp_not_zero[1] | wire_exp_adj_adder_result[2]), (result_exp_not_zero[0] | wire_exp_adj_adder_result[1]), wire_exp_adj_adder_result[0]},
 		round_bit = man_shift_full[0],
 		round_carry = (round_dffe & (lsb_dffe | sticky_dffe)),
 		sticky_bit = {(sticky_bit[50] | (wire_man_product2_mult_result[105] & wire_man_product2_mult_result[51])), (sticky_bit[49] | wire_man_product2_mult_result[50]), (sticky_bit[48] | wire_man_product2_mult_result[49]), (sticky_bit[47] | wire_man_product2_mult_result[48]), (sticky_bit[46] | wire_man_product2_mult_result[47]), (sticky_bit[45] | wire_man_product2_mult_result[46]), (sticky_bit[44] | wire_man_product2_mult_result[45]), (sticky_bit[43] | wire_man_product2_mult_result[44]), (sticky_bit[42] | wire_man_product2_mult_result[43]), (sticky_bit[41] | wire_man_product2_mult_result[42]), (sticky_bit[40] | wire_man_product2_mult_result[41]), (sticky_bit[39] | wire_man_product2_mult_result[40]), (sticky_bit[38] | wire_man_product2_mult_result[39]), (sticky_bit[37] | wire_man_product2_mult_result[38]), (sticky_bit[36] | wire_man_product2_mult_result[37]), (sticky_bit[35] | wire_man_product2_mult_result[36]), (sticky_bit[34] | wire_man_product2_mult_result[35]), (sticky_bit[33] | wire_man_product2_mult_result[34]), (sticky_bit[32] | wire_man_product2_mult_result[33]), (sticky_bit[31] | wire_man_product2_mult_result[32]), (sticky_bit[30] | wire_man_product2_mult_result[31]), (sticky_bit[29] | wire_man_product2_mult_result[30]), (sticky_bit[28] | wire_man_product2_mult_result[29]), (sticky_bit[27] | wire_man_product2_mult_result[28]), (sticky_bit[26] | wire_man_product2_mult_result[27]), (sticky_bit[25] | wire_man_product2_mult_result[26]), (sticky_bit[24] | wire_man_product2_mult_result[25]), (sticky_bit[23] | wire_man_product2_mult_result[24]), (sticky_bit[22] | wire_man_product2_mult_result[23]), (sticky_bit[21] | wire_man_product2_mult_result[22]), (sticky_bit[20] | wire_man_product2_mult_result[21]), (sticky_bit[19] | wire_man_product2_mult_result[20]), (sticky_bit[18] | wire_man_product2_mult_result[19]), (sticky_bit[17] | wire_man_product2_mult_result[18]), (sticky_bit[16] | wire_man_product2_mult_result[17]), (sticky_bit[15] | wire_man_product2_mult_result[16]), (sticky_bit[14] | wire_man_product2_mult_result[15]
-), (sticky_bit[13] | wire_man_product2_mult_result[14]), (sticky_bit[12] | wire_man_product2_mult_result[13]), (sticky_bit[11] | wire_man_product2_mult_result[12]), (sticky_bit[10] | wire_man_product2_mult_result[11]), (sticky_bit[9] | wire_man_product2_mult_result[10]), (sticky_bit[8] | wire_man_product2_mult_result[9]), (sticky_bit[7] | wire_man_product2_mult_result[8]), (sticky_bit[6] | wire_man_product2_mult_result[7]), (sticky_bit[5] | wire_man_product2_mult_result[6]), (sticky_bit[4] | wire_man_product2_mult_result[5]), (sticky_bit[3] | wire_man_product2_mult_result[4]), (sticky_bit[2] | wire_man_product2_mult_result[3]), (sticky_bit[1] | wire_man_product2_mult_result[2]), (sticky_bit[0] | wire_man_product2_mult_result[1]), wire_man_product2_mult_result[0]};
-endmodule //Multiplier_altfp_mult_9oo
+), (sticky_bit[13] | wire_man_product2_mult_result[14]), (sticky_bit[12] | wire_man_product2_mult_result[13]), (sticky_bit[11] | wire_man_product2_mult_result[12]), (sticky_bit[10] | wire_man_product2_mult_result[11]), (sticky_bit[9] | wire_man_product2_mult_result[10]), (sticky_bit[8] | wire_man_product2_mult_result[9]), (sticky_bit[7] | wire_man_product2_mult_result[8]), (sticky_bit[6] | wire_man_product2_mult_result[7]), (sticky_bit[5] | wire_man_product2_mult_result[6]), (sticky_bit[4] | wire_man_product2_mult_result[5]), (sticky_bit[3] | wire_man_product2_mult_result[4]), (sticky_bit[2] | wire_man_product2_mult_result[3]), (sticky_bit[1] | wire_man_product2_mult_result[2]), (sticky_bit[0] | wire_man_product2_mult_result[1]), wire_man_product2_mult_result[0]},
+		underflow = underflow_ff,
+		zero = zero_ff;
+endmodule //MultiplierFP_altfp_mult_e0r
 //VALID FILE
 
 
 // synopsys translate_off
 `timescale 1 ps / 1 ps
 // synopsys translate_on
-module Multiplier (
-	aclr,
+module MultiplierFP (
 	clk_en,
 	clock,
 	dataa,
 	datab,
-	result);
+	nan,
+	overflow,
+	result,
+	underflow,
+	zero);
 
-	input	  aclr;
 	input	  clk_en;
 	input	  clock;
 	input	[63:0]  dataa;
 	input	[63:0]  datab;
+	output	  nan;
+	output	  overflow;
 	output	[63:0]  result;
+	output	  underflow;
+	output	  zero;
 
-	wire [63:0] sub_wire0;
-	wire [63:0] result = sub_wire0[63:0];
+	wire  sub_wire0;
+	wire  sub_wire1;
+	wire [63:0] sub_wire2;
+	wire  sub_wire3;
+	wire  sub_wire4;
+	wire  nan = sub_wire0;
+	wire  overflow = sub_wire1;
+	wire [63:0] result = sub_wire2[63:0];
+	wire  underflow = sub_wire3;
+	wire  zero = sub_wire4;
 
-	Multiplier_altfp_mult_9oo	Multiplier_altfp_mult_9oo_component (
-				.aclr (aclr),
+	MultiplierFP_altfp_mult_e0r	MultiplierFP_altfp_mult_e0r_component (
 				.clk_en (clk_en),
 				.clock (clock),
 				.dataa (dataa),
 				.datab (datab),
-				.result (sub_wire0));
+				.nan (sub_wire0),
+				.overflow (sub_wire1),
+				.result (sub_wire2),
+				.underflow (sub_wire3),
+				.zero (sub_wire4));
 
 endmodule
 
@@ -561,8 +621,6 @@ endmodule
 // Retrieval info: CONSTANT: ROUNDING STRING "TO_NEAREST"
 // Retrieval info: CONSTANT: WIDTH_EXP NUMERIC "11"
 // Retrieval info: CONSTANT: WIDTH_MAN NUMERIC "52"
-// Retrieval info: USED_PORT: aclr 0 0 0 0 INPUT NODEFVAL "aclr"
-// Retrieval info: CONNECT: @aclr 0 0 0 0 aclr 0 0 0 0
 // Retrieval info: USED_PORT: clk_en 0 0 0 0 INPUT NODEFVAL "clk_en"
 // Retrieval info: CONNECT: @clk_en 0 0 0 0 clk_en 0 0 0 0
 // Retrieval info: USED_PORT: clock 0 0 0 0 INPUT NODEFVAL "clock"
@@ -571,13 +629,21 @@ endmodule
 // Retrieval info: CONNECT: @dataa 0 0 64 0 dataa 0 0 64 0
 // Retrieval info: USED_PORT: datab 0 0 64 0 INPUT NODEFVAL "datab[63..0]"
 // Retrieval info: CONNECT: @datab 0 0 64 0 datab 0 0 64 0
+// Retrieval info: USED_PORT: nan 0 0 0 0 OUTPUT NODEFVAL "nan"
+// Retrieval info: CONNECT: nan 0 0 0 0 @nan 0 0 0 0
+// Retrieval info: USED_PORT: overflow 0 0 0 0 OUTPUT NODEFVAL "overflow"
+// Retrieval info: CONNECT: overflow 0 0 0 0 @overflow 0 0 0 0
 // Retrieval info: USED_PORT: result 0 0 64 0 OUTPUT NODEFVAL "result[63..0]"
 // Retrieval info: CONNECT: result 0 0 64 0 @result 0 0 64 0
-// Retrieval info: GEN_FILE: TYPE_NORMAL Multiplier.v TRUE FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL Multiplier.qip TRUE FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL Multiplier.bsf TRUE TRUE
-// Retrieval info: GEN_FILE: TYPE_NORMAL Multiplier_inst.v TRUE TRUE
-// Retrieval info: GEN_FILE: TYPE_NORMAL Multiplier_bb.v TRUE TRUE
-// Retrieval info: GEN_FILE: TYPE_NORMAL Multiplier.inc TRUE TRUE
-// Retrieval info: GEN_FILE: TYPE_NORMAL Multiplier.cmp TRUE TRUE
+// Retrieval info: USED_PORT: underflow 0 0 0 0 OUTPUT NODEFVAL "underflow"
+// Retrieval info: CONNECT: underflow 0 0 0 0 @underflow 0 0 0 0
+// Retrieval info: USED_PORT: zero 0 0 0 0 OUTPUT NODEFVAL "zero"
+// Retrieval info: CONNECT: zero 0 0 0 0 @zero 0 0 0 0
+// Retrieval info: GEN_FILE: TYPE_NORMAL MultiplierFP.v TRUE FALSE
+// Retrieval info: GEN_FILE: TYPE_NORMAL MultiplierFP.qip TRUE FALSE
+// Retrieval info: GEN_FILE: TYPE_NORMAL MultiplierFP.bsf TRUE TRUE
+// Retrieval info: GEN_FILE: TYPE_NORMAL MultiplierFP_inst.v TRUE TRUE
+// Retrieval info: GEN_FILE: TYPE_NORMAL MultiplierFP_bb.v TRUE TRUE
+// Retrieval info: GEN_FILE: TYPE_NORMAL MultiplierFP.inc TRUE TRUE
+// Retrieval info: GEN_FILE: TYPE_NORMAL MultiplierFP.cmp TRUE TRUE
 // Retrieval info: LIB_FILE: lpm

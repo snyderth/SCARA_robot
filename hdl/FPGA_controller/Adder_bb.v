@@ -32,7 +32,6 @@
 //refer to the applicable agreement for further details.
 
 module Adder (
-	aclr,
 	clk_en,
 	clock,
 	dataa,
@@ -40,7 +39,6 @@ module Adder (
 	overflow,
 	result)/* synthesis synthesis_clearbox = 1 */;
 
-	input	  aclr;
 	input	  clk_en;
 	input	  clock;
 	input	[63:0]  dataa;
@@ -66,14 +64,12 @@ endmodule
 // Retrieval info: CONSTANT: REDUCED_FUNCTIONALITY STRING "NO"
 // Retrieval info: CONSTANT: WIDTH_EXP NUMERIC "11"
 // Retrieval info: CONSTANT: WIDTH_MAN NUMERIC "52"
-// Retrieval info: USED_PORT: aclr 0 0 0 0 INPUT NODEFVAL "aclr"
 // Retrieval info: USED_PORT: clk_en 0 0 0 0 INPUT NODEFVAL "clk_en"
 // Retrieval info: USED_PORT: clock 0 0 0 0 INPUT NODEFVAL "clock"
 // Retrieval info: USED_PORT: dataa 0 0 64 0 INPUT NODEFVAL "dataa[63..0]"
 // Retrieval info: USED_PORT: datab 0 0 64 0 INPUT NODEFVAL "datab[63..0]"
 // Retrieval info: USED_PORT: overflow 0 0 0 0 OUTPUT NODEFVAL "overflow"
 // Retrieval info: USED_PORT: result 0 0 64 0 OUTPUT NODEFVAL "result[63..0]"
-// Retrieval info: CONNECT: @aclr 0 0 0 0 aclr 0 0 0 0
 // Retrieval info: CONNECT: @clk_en 0 0 0 0 clk_en 0 0 0 0
 // Retrieval info: CONNECT: @clock 0 0 0 0 clock 0 0 0 0
 // Retrieval info: CONNECT: @dataa 0 0 64 0 dataa 0 0 64 0

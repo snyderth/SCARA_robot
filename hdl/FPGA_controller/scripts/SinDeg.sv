@@ -1,4 +1,17 @@
-module	SinDeg(input	signed	[7:0]	data_in,
+/***************************************************
+*	File: 		SinDeg
+*	Author: 		Thomas Snyder
+*	Date:			2/5/2020
+*	Description:Sin Function inputing a signed integer
+*					in degrees and outputing a double
+					precision floating point number.
+*	Parameters:
+*				None
+*	Dependencies:
+*				None
+*
+***************************************************/
+module	SinDeg(input	signed	[8:0]	data_in,
 			output logic [63:0] data_out);
 
 
@@ -725,6 +738,7 @@ module	SinDeg(input	signed	[7:0]	data_in,
 			 179: data_out = 64'b0011111110010001110111110000101101101000110110111101010111100000;
 
 			 180: data_out = 64'b0011111000101110110101100000101000010001101001100010011000110011;
-
+			
+			 default: data_out = 64'd0;
 		endcase
 endmodule

@@ -41,7 +41,8 @@ module scara_controller(input logic [13:0] 	x_target,
 								.l1(l1_inch),
 								.l2(l2_inch),
 								.clk(clk),
-								.pos(x_current)
+								.x(x_current),
+								.y(y_current)
 								);
 
 		
