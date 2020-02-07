@@ -1,7 +1,7 @@
 module ForwardKinematics(input signed [8:0] th1,
 								 input signed [8:0] th2,
-								 input logic	[14:0] l1,
-								 input logic 	[14:0] l2,
+								 input logic	[31:0] l1,
+								 input logic 	[31:0] l2,
 								 input logic	enable,
 								 input logic 	clk,
 								 input logic  reset,
@@ -12,30 +12,36 @@ module ForwardKinematics(input signed [8:0] th1,
 
 		logic MultBegin;
 
+		// Ensure conversions do not trigger before clock
+		// timer begins counting
+		logic en;
+		assign en = enable & ~reset;
 		
 		logic [63:0] L1Double;
 		logic [63:0] L2Double;
-		
+
 
 /* Converting integer lengths to double lengths */													
 				
 		
 		IntToDouble	l1conv (
-												.clk_en ( enable ),
+												.clk_en ( en ),
 												.clock ( clk ),
 												.dataa ( l1 ),
 												.result ( L1Double )
 												);
 										
 		IntToDouble	l2conv (
-												.clk_en ( enable ),
+												.clk_en ( en ),
 												.clock ( clk),
 												.dataa ( l2 ),
 												.result ( L2Double )
 												);
 
-	//Six cycle latency for conversion
-	ClockTimer #(10, 6) LConvTime (.clk(clk), .en(enable), .reset(0), .expire(MultBegin));
+	logic [9:0] cnt;
+												
+	//Six cycle latency for conversion (1 cycle latency on counter)
+	ClockTimer #(10, 5) LConvTime (.clk(clk), .en(enable), .reset(reset), .expire(MultBegin), .count(cnt));
 
 /******************************************************/
 
