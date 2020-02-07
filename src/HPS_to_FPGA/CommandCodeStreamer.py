@@ -1,6 +1,6 @@
-from .hps_to_fpga_python import *
-from ..GCode.gcodeParser import commandCode, COMMAND_MAP, GCODE_MAP
-from ..GCode.gcodeFormatter import m2
+from HPS_to_FPGA.hps_to_fpga_python import *
+from GCode.gcodeParser import commandCode, COMMAND_MAP, GCODE_MAP
+from GCode.gcodeFormatter import m2
 
 path = "./hps_to_fpga_c/Debug/libhps_to_fpga_c.so"
 
@@ -17,6 +17,7 @@ def streamProcess(FPGACommands, reportFPGA, reportDone):
 
         #Stop early if end of program command is met
         if COMMAND_MAP[commandCode(command)] == m2.lower():
+            reportDone()
             return
 
         mi.writeFifoBlocking(command)

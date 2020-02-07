@@ -6,7 +6,7 @@ class MemoryInterface:
         @param libhps_to_fpga_cpath: Path to hps_to_fpga .so file. Expects that file implements:
             int write_fifo_dword_blocking(int)
         '''
-        self.hps_to_fpga_c = cdll(libhps_to_fpga_cpath)
+        self.hps_to_fpga_c = CDLL(libhps_to_fpga_cpath)
         self.hps_to_fpga_c.init_fifo()
         if(self.hps_to_fpga_c.init_fifo() < 1):
             raise "Could not initialize memory interface. errno: " + str(get_errno());
@@ -34,7 +34,7 @@ class MemoryInterface:
         @return: Fifo value
         '''
         return self.hps_to_fpga_c.read_fifo_dword_blocking()
-    def readFifoNonblocking(self, success_out: POINTER(int)):
+    def readFifoNonblocking(self, success_out: POINTER(c_int)):
         '''
         Read a fifo value without blocking.
         @param: success_out: Success value pointer. 1 if successful read.

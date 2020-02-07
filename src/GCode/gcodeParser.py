@@ -1,5 +1,5 @@
 import math
-from gcodeFormatter import *
+from GCode.gcodeFormatter import *
 #Commands are formatted like so:
 #|code|argX|argY|
 #0    3   17    31

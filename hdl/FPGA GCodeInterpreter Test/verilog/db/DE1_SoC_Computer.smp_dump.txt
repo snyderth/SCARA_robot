@@ -1,15 +1,10 @@
 
-State Machine - |DE1_SoC_Computer|Processing_state
-Name Processing_state.00000000 
-Processing_state.00000101 0 
-Processing_state.00000000 1 
-
 State Machine - |DE1_SoC_Computer|HPS_to_FPGA_state
-Name HPS_to_FPGA_state.00000000 HPS_to_FPGA_state.00000010 HPS_to_FPGA_state.00000100 HPS_to_FPGA_state.00000011 
-HPS_to_FPGA_state.00000011 0 0 0 0 
-HPS_to_FPGA_state.00000010 0 1 0 1 
-HPS_to_FPGA_state.00000000 1 0 0 1 
-HPS_to_FPGA_state.00000100 0 0 1 1 
+Name HPS_to_FPGA_state.READ_DATA HPS_to_FPGA_state.DELAY_READ_DATA HPS_to_FPGA_state.AWAIT_DATA HPS_to_FPGA_state.DELAY_AWAIT_DATA 
+HPS_to_FPGA_state.DELAY_AWAIT_DATA 0 0 0 0 
+HPS_to_FPGA_state.AWAIT_DATA 0 0 1 1 
+HPS_to_FPGA_state.DELAY_READ_DATA 0 1 0 1 
+HPS_to_FPGA_state.READ_DATA 1 0 0 1 
 
 State Machine - |DE1_SoC_Computer|Computer_System:The_System|Computer_System_mm_interconnect_1:mm_interconnect_1|altera_merlin_burst_adapter:fifo_fpga_to_hps_out_csr_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
 Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 

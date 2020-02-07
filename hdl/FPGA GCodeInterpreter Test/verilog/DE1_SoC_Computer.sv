@@ -368,20 +368,23 @@ output					HPS_USB_STP;
 //  REG/WIRE declarations
 //=======================================================
 
-wire			[15: 0]	hex3_hex0;
+wire			[23: 0]	hex;
 //wire			[15: 0]	hex5_hex4;
 
-//assign HEX0 = ~hex3_hex0[ 6: 0]; // hex3_hex0[ 6: 0]; 
-//assign HEX1 = ~hex3_hex0[14: 8];
-//assign HEX2 = ~hex3_hex0[22:16];
-//assign HEX3 = ~hex3_hex0[30:24];
-assign HEX4 = 7'b1111111;
-assign HEX5 = 7'b1111111;
+//assign HEX0 = ~hex[ 6: 0]; // hex[ 6: 0]; 
+//assign HEX1 = ~hex[14: 8];
+//assign HEX2 = ~hex[22:16];
+//assign HEX3 = ~hex[30:24];
+//assign HEX4 = 7'b1111111;
+//assign HEX5 = 7'b1111111;
 
-HexDigit Digit0(HEX0, hex3_hex0[3:0]);
-HexDigit Digit1(HEX1, hex3_hex0[7:4]);
-HexDigit Digit2(HEX2, hex3_hex0[11:8]);
-HexDigit Digit3(HEX3, hex3_hex0[15:12]);
+HexDigit Digit0(HEX0, hex[3:0]);
+HexDigit Digit1(HEX1, hex[7:4]);
+HexDigit Digit2(HEX2, hex[11:8]);
+HexDigit Digit3(HEX3, hex[15:12]);
+HexDigit Digit4(HEX4, hex[19:16]);
+HexDigit Digit5(HEX5, hex[23:20]);
+
 
 //=======================================================
 // HPS_to_FPGA FIFO state machine
@@ -453,62 +456,18 @@ reg doLedSet = 1'b0;
 reg [3:0] setLed;
 reg setCondition;
 reg wasInverted = 1'b0;
-wire controller_ready = 0;
-wire memory_ready = 0;
+wire controller_interface_in_ready;
+wire memory_ready;
 
-always @(posedge CLOCK_50) 
-begin 
-	if(timecounter == 32'd0)
-	begin
-		oneSecClock <= ~oneSecClock;
-		timecounter <= 32'd25000000;
-	end
-	else
-	begin
-		timecounter <= timecounter - 32'd1;
-	end
-end
 
-always @(posedge oneSecClock)
-begin
-	if(doLedSet)  // set/clear one led
-	begin
-		LEDR[setLed] = setCondition;
-	end
-	else if(doLedRun == 1'b1)  // sequence the leds
-	begin
-		if(LEDcount > 12'd1023)
-		begin
-			LEDcount <= 12'd0;
-		end
-		else
-		begin
-			LEDcount <= LEDcount + 12'd1;
-		end
-		LEDR <= LEDcount[9:0];
-	end
-	else if(doLedInvert == 1'b1)  // invert the led condition
-	begin
-		LEDR <= ~LEDR;
-		wasInverted <= 1'b1;
-	end
-	else if(doLedInvert == 1'b0)
-	begin
-		wasInverted <= 1'b0;
-	end
-end
 
 //=======================================================
 // do the work outlined above
 always @(posedge CLOCK_50) begin 
 
-   // reset state machine and read/write controls
+   //  state machine and read/write controls
 	if(initEnable == 0) begin
 		sram_write <= 1'b0 ;
-		hex3_hex0[3:0] <= 4'd0;		
-		hex3_hex0[7:4] <= 4'd0;
-		hex3_hex0[11:8] <= 4'd0;
-		hex3_hex0[15:12] <= 4'd0;
 		commandCount <= 0 ;
 		data_buffer_valid <= 1'b0;
 		HPS_to_FPGA_state <= DELAY_AWAIT_DATA ;
@@ -542,14 +501,15 @@ always @(posedge CLOCK_50) begin
 	end
 	
 	
-	// delay  FOR THE TRIP BACK FROM STATE 4 TO STATE 0
+	// delay untill controller_interface is ready for new data
 	// this test checks to see if we need more fifo read time
 	if (HPS_to_FPGA_state == DELAY_AWAIT_DATA) begin
+			memory_ready <= 0;
 			HPS_to_FPGA_state <= AWAIT_DATA ;
 	end
 	
 	// read the word from the FIFO
-	if ((HPS_to_FPGA_state == READ_DATA) && (hps_to_fpga_read == 1'b0)) begin
+	if ((HPS_to_FPGA_state == READ_DATA) && (hps_to_fpga_read == 1'b0) && controller_interface_in_ready == 1) begin
 		commandIn.cmd <= hps_to_fpga_readdata[3:0] ; // store the data
 		commandIn.x_value <= hps_to_fpga_readdata[13:3];
 		commandIn.y_value <= hps_to_fpga_readdata[31:13];
@@ -571,6 +531,50 @@ end // always @(posedge state_clock)
 //  Structural coding
 //=======================================================
 // From Qsys
+
+wire [13:0] ci2c_x_value;
+wire [13:0] ci2c_y_value;
+wire [4:0] ci2c_controller_state_reg;
+wire c2ci_controller_ready;
+wire controller_interface_out_ready;
+
+assign LEDR[0] = c2ci_controller_ready;
+assign LEDR[1] = controller_interface_out_ready;
+assign LEDR[2] = controller_interface_in_ready;
+assign LEDR[3] = memory_ready;
+assign LEDR[4] = 1;
+assign LEDR[5] = 0;
+Fake_Controller fake_controller(
+	.reset(~initEnable),
+	.clk(CLOCK_50),
+	.controller_ready(c2ci_controller_ready),
+	.set_ready(~KEY[0]),
+	.controller_interface_out_ready(controller_interface_out_ready),
+	.cmd(ci2c_controller_state_reg),
+	.x_value(ci2c_x_value),
+	.y_value(ci2c_y_value),
+	.cmd_word_1(hex[3:0]),
+	.cmd_word_2(hex[7:4]),
+	.x_value_word_1(hex[11:8]),
+	.x_value_word_2(hex[15:12]),
+	.y_value_word_1(hex[19:16]),
+	.y_value_word_2(hex[23:20])
+);
+
+
+
+Controller_Interface controller_interface (
+	.command_in(commandIn),
+	.memory_ready(memory_ready),
+	.controller_ready(c2ci_controller_ready),
+	.controller_interface_in_ready(controller_interface_in_ready),
+	.controller_interface_out_ready(controller_interface_out_ready),
+	.controller_state_reg(ci2c_controller_state_reg),
+	.x_value(ci2c_x_value),
+	.y_value(ci2c_y_value)
+
+
+);
 
 Computer_System The_System (
 	////////////////////////////////////
