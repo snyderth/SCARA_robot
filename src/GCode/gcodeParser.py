@@ -31,34 +31,36 @@ GCODE_MAP = {g00Command.lower(): 0, g01Command.lower(): 1, g20.lower(): 2, g21.l
 #Inverse command map useful decoding fpga commands
 COMMAND_MAP = {v: k for k, v in GCODE_MAP.items()}
 
+def commandToGcode(command, conversion):
+    gcode = ""
+
+    code = commandCode(command)
+    gcodeCommand = COMMAND_MAP[code]
+
+    units = commandUnits(gcodeCommand)
+    if units != None:
+        unit_to_bits, _ = units
+        conversion = 1 / unit_to_bits
+
+    gcode += gcodeCommand + " "
+
+    command = command >> CODE_BITS
+    if commandHasArgs(gcodeCommand):
+        for argName in commandArgs(gcodeCommand):
+            gcode += argName
+
+            argValue = (command & ((1 << ARG_BITS) - 1)) * conversion
+            gcode += str(argValue) + " "
+
+            command = command >> ARG_BITS
+    return gcode
 
 def commandsToGcode(commands):
     program = []
     conversion = 1 / IN_TO_BITS
 
     for command in commands:
-
-        gcode = ""
-
-        code = commandCode(command)
-        gcodeCommand = COMMAND_MAP[code]
-
-        units = commandUnits(gcodeCommand)
-        if  units != None:
-            unit_to_bits, _ = units
-            conversion = 1 / unit_to_bits
-
-        gcode += gcodeCommand + " "
-
-        command = command >> CODE_BITS
-        if commandHasArgs(gcodeCommand):
-            for argName in commandArgs(gcodeCommand):
-                gcode += argName
-
-                argValue = (command & ((1 << ARG_BITS) - 1)) * conversion
-                gcode += str(argValue) + " "
-
-                command = command >> ARG_BITS
+        gcode = commandToGcode(command, conversion)
 
         program.append(gcode)
     return '\n'.join(program)

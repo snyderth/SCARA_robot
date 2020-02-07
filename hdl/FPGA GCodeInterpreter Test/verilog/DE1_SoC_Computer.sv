@@ -423,7 +423,6 @@ reg[31:0] hps_to_fpga_out_csr_readdata ;
 reg hps_to_fpga_out_csr_read ; // status regs read cmd
 reg [7:0] HPS_to_FPGA_state ;
 reg [31:0] data_buffer ;
-reg data_buffer_valid ;
 
 //=======================================================
 // Controls for FPGA_to_HPS FIFO
@@ -437,7 +436,7 @@ reg data_buffer_valid ;
 //           bit0==1 if full
 //           bit1==1 if empty
 //wire [31:0] fpga_to_hps_in_csr_address = 32'd1 ; // fill_level  // should probably init to 0
-//reg[31:0] fpga_to_hps_in_csr_readdata ;
+reg[31:0] fpga_to_hps_in_csr_readdata ;
 //reg fpga_to_hps_in_csr_read ; // status regs read cmd
 //reg [7:0] FPGA_to_HPS_state ;
   
@@ -456,8 +455,6 @@ reg doLedSet = 1'b0;
 reg [3:0] setLed;
 reg setCondition;
 reg wasInverted = 1'b0;
-wire controller_interface_in_ready;
-wire memory_ready;
 
 
 
@@ -469,9 +466,10 @@ always @(posedge CLOCK_50) begin
 	if(initEnable == 0) begin
 		sram_write <= 1'b0 ;
 		commandCount <= 0 ;
-		data_buffer_valid <= 1'b0;
-		HPS_to_FPGA_state <= DELAY_AWAIT_DATA ;
+		HPS_to_FPGA_state <= AWAIT_DATA ;
 		initEnable = 1;
+		memory_ready <= 0;
+		hps_to_fpga_read <= 0;
 	end  // if(init_enable == 0)
 
 // changing this to - get 4 32-bit words (command-data)
@@ -487,7 +485,7 @@ always @(posedge CLOCK_50) begin
 	// Is there data in HPS_to_FPGA FIFO
 	// and the last transfer is complete
 	// data_buffer_valid is only used by the FPGA to HPS FIFO !!
-	if (HPS_to_FPGA_state == AWAIT_DATA && !(hps_to_fpga_out_csr_readdata[1]) && !data_buffer_valid)  begin
+	if (HPS_to_FPGA_state == AWAIT_DATA && !(hps_to_fpga_out_csr_readdata[1]) )  begin
 		hps_to_fpga_read <= 1'b1 ;
 		HPS_to_FPGA_state <= DELAY_READ_DATA ; //
 	end
@@ -511,8 +509,8 @@ always @(posedge CLOCK_50) begin
 	// read the word from the FIFO
 	if ((HPS_to_FPGA_state == READ_DATA) && (hps_to_fpga_read == 1'b0) && controller_interface_in_ready == 1) begin
 		commandIn.cmd <= hps_to_fpga_readdata[3:0] ; // store the data
-		commandIn.x_value <= hps_to_fpga_readdata[13:3];
-		commandIn.y_value <= hps_to_fpga_readdata[31:13];
+		commandIn.x_value <= hps_to_fpga_readdata[17:4];
+		commandIn.y_value <= hps_to_fpga_readdata[31:18];
 		commandCount <= 8'd1;
 		hps_to_fpga_read <= 1'b0 ;
 		HPS_to_FPGA_state <= DELAY_AWAIT_DATA ; 
@@ -537,13 +535,9 @@ wire [13:0] ci2c_y_value;
 wire [4:0] ci2c_controller_state_reg;
 wire c2ci_controller_ready;
 wire controller_interface_out_ready;
+wire controller_interface_in_ready;
+wire memory_ready;
 
-assign LEDR[0] = c2ci_controller_ready;
-assign LEDR[1] = controller_interface_out_ready;
-assign LEDR[2] = controller_interface_in_ready;
-assign LEDR[3] = memory_ready;
-assign LEDR[4] = 1;
-assign LEDR[5] = 0;
 Fake_Controller fake_controller(
 	.reset(~initEnable),
 	.clk(CLOCK_50),
@@ -553,8 +547,8 @@ Fake_Controller fake_controller(
 	.cmd(ci2c_controller_state_reg),
 	.x_value(ci2c_x_value),
 	.y_value(ci2c_y_value),
-	.cmd_word_1(hex[3:0]),
-	.cmd_word_2(hex[7:4]),
+	.cmd_word_1(LEDR[3:0]),
+	.cmd_word_2(LEDR[7:4]),
 	.x_value_word_1(hex[11:8]),
 	.x_value_word_2(hex[15:12]),
 	.y_value_word_1(hex[19:16]),
@@ -564,6 +558,8 @@ Fake_Controller fake_controller(
 
 
 Controller_Interface controller_interface (
+	.clk(CLOCK_50),
+	.block(~initEnable),
 	.command_in(commandIn),
 	.memory_ready(memory_ready),
 	.controller_ready(c2ci_controller_ready),
@@ -608,8 +604,8 @@ Computer_System The_System (
 	.fifo_hps_to_fpga_out_csr_readdata  (hps_to_fpga_out_csr_readdata),		//   csr.readdata
 	
 	// FPGA to HPS FIFO
-	.fifo_fpga_to_hps_in_writedata      (fpga_to_hps_in_writedata),      // fifo_fpga_to_hps_in.writedata
-	.fifo_fpga_to_hps_in_write          (fpga_to_hps_in_write),          //                     .write
+	.fifo_fpga_to_hps_in_writedata      (0),      // fifo_fpga_to_hps_in.writedata
+	.fifo_fpga_to_hps_in_write          (0),          //                     .write
 	.fifo_fpga_to_hps_in_csr_address    (32'd1), //(fpga_to_hps_in_csr_address),    //  fifo_fpga_to_hps_in_csr.address
 	.fifo_fpga_to_hps_in_csr_read       (1'b1), //(fpga_to_hps_in_csr_read),       //                         .read
 	.fifo_fpga_to_hps_in_csr_writedata  (),  //                         .writedata
