@@ -32,8 +32,8 @@ module ClockTimer #(parameter Width=10, Trigger=10)
 	assign count = n2;
 	// Reset on expire
 	always@(expire)
-		if(expire) res <= 1;
-		else if(~expire) res <= 0;
+		if(expire) res <= 1'b1;
+		else if(~expire) res <= 1'b0;
 	
 	Counter #(Width) c1 (.clk(clk),
 							.enable(en),

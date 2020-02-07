@@ -10,7 +10,8 @@ module ForwardKinematics(input signed [8:0] th1,
 								 output logic [63:0] y);
 		
 
-		
+		logic MultBegin;
+
 		
 		logic [63:0] L1Double;
 		logic [63:0] L2Double;
@@ -80,7 +81,6 @@ module ForwardKinematics(input signed [8:0] th1,
 		logic [63:0] l1Sine, l2CosSum, l1Cos, l2SinSum;
 		logic [63:0] L1SineL2Cosfory, L1CosL2Sineforx;
 		logic data1, data2, data3, data4;
-		logic MultBegin;
 		
 		DoubleMultiply multL1Sine(.dataa(sineth1),
 											.datab(L1Double),
@@ -121,13 +121,15 @@ module ForwardKinematics(input signed [8:0] th1,
 		always_comb
 			add_begin = data1 & data2 & data3 & data4;
 		
+		logic dataX, dataY;
 		
 		DoubleAdder addy(.dataa(l1Sine),
 							 .datab(l2CosSum),
 							 .clk(clk),
 							 .in_ready(add_begin),
 							 .reset(reset),
-							 .result(y));
+							 .result(y),
+							 .data_ready(dataY));
 		
 		
 		DoubleAdder addx(.dataa(l2SinSum),
@@ -135,6 +137,11 @@ module ForwardKinematics(input signed [8:0] th1,
 							 .clk(clk),
 							 .in_ready(add_begin),
 							 .reset(reset),
-							 .result(x));
+							 .result(x),
+							 .data_ready(dataX));
+							 
+		always_comb
+			data_ready = dataX & dataY;
 			
+		
 endmodule

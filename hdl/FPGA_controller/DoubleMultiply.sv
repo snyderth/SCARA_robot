@@ -32,7 +32,8 @@ module DoubleMultiply(input logic [63:0] dataa,
 							output logic [63:0] result);
 
 		logic clock_en, out;
-							
+		
+		
 		/* Make sure we start the mult and the clock time simult.*/
 		SRLatch InCtrl(.set(in_ready),
 							.reset(reset | out),
@@ -51,8 +52,15 @@ module DoubleMultiply(input logic [63:0] dataa,
 							 .zero(zero));
 		
 		
-		logic dsync, n1; // For sync
+//		logic dsync, n1; // For sync
 
+		/* Buffer the ouput from the reset */
+//		logic clock_res;
+//		
+//		always_ff@(posedge clk)
+//		begin
+//			clock_res <= data_ready;
+//		end
 		
 		/* Once the multiplier starts, count to 5, then output
 			Signalling the multiplication is done and the data
@@ -60,7 +68,8 @@ module DoubleMultiply(input logic [63:0] dataa,
 		*/
 		ClockTimer #(5, 5) MultTime(.en(clock_en),
 											.clk(clk),
-											.reset(data_ready),
+//											.reset(clock_res),
+											.reset(reset),
 											.expire(data_ready));
 											
 		

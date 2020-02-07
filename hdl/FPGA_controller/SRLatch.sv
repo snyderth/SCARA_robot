@@ -15,19 +15,19 @@ module SRLatch(input logic set,
 					output logic q,
 					output logic qn);
 		
-		logic qstate;
+//		logic qstate;
 		
 		always_ff@(posedge set, posedge reset)
 		begin
-			if(set)
-			begin
-				q <= 1;
-				qn <= 0;
-			end
-			else if(reset)
+			if(reset)
 			begin
 				q <= 0;
 				qn <= 1;
+			end
+			else if(set)
+			begin
+				q <= 1;
+				qn <= 0;
 			end
 		end
 					

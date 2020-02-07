@@ -154,48 +154,37 @@ class SCARA_IK:
         # Assuming target is small enough
         dx = self.target[0] - x
         dy = self.target[1] - y
-        # print("dx, dy: {}, {}".format(dx, dy))
+
         # Set the distance from current to target position
         # We'll recalculate this every iteration and break our
         # loop once it is less than a tolerance
         self.target_dist = np.sqrt(dx**2 + dy**2)
-        # print("Target distance is {}".format(self.target_dist))
         i = 0
 
         while(self.target_dist > self.target_tolerance):
             i += 1
-            # if i > 2000:
-                # break
-        #     # Calculate the partial derivatives
-            # print("Computing partials...")
 
+            # Form the Jacobian by calculating the partial derivatives
             df1dth1 = -self.joint_lengths[0] * np.sin(self.joint_ang[0]) - self.joint_lengths[1] * np.sin(self.joint_ang[0] + self.joint_ang[1])
             df1dth2 = -self.joint_lengths[1] * np.sin(self.joint_ang[0] + self.joint_ang[1])
             df2dth1 = self.joint_lengths[0] * np.cos(self.joint_ang[0]) + self.joint_lengths[1] * np.cos(self.joint_ang[0] + self.joint_ang[1])
             df2dth2 = self.joint_lengths[1] * np.cos(self.joint_ang[0] + self.joint_ang[1])
 
-            # print("|{} {}|\n|{} {}|".format(df1dth1, df1dth2, df2dth1, df2dth2))
+
+            # Compose the jacobian
             J = np.matrix([[df1dth1, df1dth2], [df2dth1, df2dth2]])
-            # print("J: {}".format(J))
-            # print("Computing the determinant")
-            # Calculate the determinant (for inverting)
-            # det_j = 0
-            # inv_det = ((df1dth1 * df2dth1) - (df1dth2 * df2dth2))
-            # if(inv_det != 0):
-            #     det_j = 1 / inv_det
-            # else:
-            #     print("[ERROR] Singularity reached")
-            #     exit(1)
+           
+            # Invert the jacobian
             J_inv = J.I
 
-            # print("Computing dthetas")
-            # Calculate the change in theta by multiplying the inverse jacobian by the change in x, y
+            # Build the change in position matrix
             dxhat = np.matrix([[dx], [dy]])
-            # dth1 = ( ( df2dth2 * dx ) - ( df1dth2 * dy ) ) * det_j
-            # dth2 = ( ( df1dth1 * dy ) - ( df2dth2 * dx ) ) * det_j
+
+            # Multiply jacobian out by the change in x and y
             dthhat =  np.matmul(J_inv, dxhat)
-            print(dthhat)
-            print(dthhat[0])
+
+            # Update the angles that the joints should be at
+            # print("Change in thetas: {}".format(dthhat))
             self.joint_ang[0] += dthhat.A[0][0]
             self.joint_ang[1] += dthhat.A[1][0]
 
@@ -205,9 +194,11 @@ class SCARA_IK:
             dx = self.target[0] - x
             dy = self.target[1] - y
             self.target_dist = np.sqrt(dx**2 + dy**2)
-            print("\rIteration {}, Target Distance: {}".format(i, self.target_dist), end=" ")
-        print("Iteration {}, Target Distance: {}".format(i, self.target_dist))
+        #     print("\rIteration {}, Target Distance: {}".format(i, self.target_dist), end=" ")
+        # print("Iteration {}, Target Distance: {}".format(i, self.target_dist))
         print("Joint angles are now {}".format(self.joint_ang))
+        print("Change in thetas:\n\tdelta theta1: {} degrees\n\tdelta theta2: {} degrees\n".format(dthhat[0][0] * 180 / np.pi,dthhat[1][0] * 180 / np.pi))
+        print("Converted to steps:\n\tdelta theta1: {} steps\n\tdelta theta2: {} steps\n".format(dthhat[0][0] * 180 / np.pi / 1.8, dthhat[1][0] * 180 / np.pi / 1.8))
         self.target_dist = 1000
 
    
@@ -472,13 +463,15 @@ if __name__ == '__main__':
         robot.set_target(7.7, 7.7)
         print("Running math")
         robot.run()
-        robot.set_target(3, 9)
+        robot.set_target(1, 1)
         robot.run()
-        robot.set_target(5,7)
-        robot.run()
-        robot.set_target(1,1)
-        robot.run()
-        animate = animation.FuncAnimation(fig, animate, robot.playback, blit=False, interval=10, repeat=True, init_func=init_animation)
+        #robot.set_target(3, 9)
+        #robot.run()
+        #robot.set_target(5,7)
+        #robot.run()
+        #robot.set_target(1,1)
+        #robot.run()
+        animate = animation.FuncAnimation(fig, animate, robot.playback, blit=False, interval=50, repeat=True, init_func=init_animation)
     except Exception as ex:
         print(ex)
 
