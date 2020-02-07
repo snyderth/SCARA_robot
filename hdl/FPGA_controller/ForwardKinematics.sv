@@ -1,3 +1,27 @@
+/***************************************************
+*	File: 		ForwardKinematics
+*	Author: 		Thomas Snyder
+*	Date:			2/7/2020
+*	Description:Implementation of the SCARA robot
+*					forward kinematics.
+*		x = l1 * cos(th1) + l2 * sin(th1 + th2)
+*		y = l1 * sin(th1) + l2 * cos(th1 + th2)
+*
+*	Parameters:
+*				None
+*
+*	Dependencies:
+*				ClockTimer.sv
+*				DoubleAdder.sv
+*				DoubleMultiplier.sv
+*				IntToDouble.v
+*				
+*
+*	NOTE: For simulation, the file needs
+*			the library to be specified via 
+*			-L <path_to_model220-lib>
+*
+***************************************************/
 module ForwardKinematics(input signed [8:0] th1,
 								 input signed [8:0] th2,
 								 input logic	[31:0] l1,
@@ -41,7 +65,7 @@ module ForwardKinematics(input signed [8:0] th1,
 	logic [9:0] cnt;
 												
 	//Six cycle latency for conversion (1 cycle latency on counter)
-	ClockTimer #(10, 5) LConvTime (.clk(clk), .en(enable), .reset(reset), .expire(MultBegin), .count(cnt));
+	ClockTimer #(10, 6) LConvTime (.clk(clk), .en(enable), .reset(reset), .expire(MultBegin), .count(cnt));
 
 /******************************************************/
 

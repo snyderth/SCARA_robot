@@ -9,13 +9,13 @@ z2
 cModel Technology
 dC:/Users/Thomas/Documents/ECE271_Final_Design_Group_2/Simulation
 vAdder
-Z0 !s110 1581041066
+Z0 !s110 1581063165
 !i10b 1
 !s100 _>@7hi3L9d1[WW@1_BK_i1
 IQj]O<U65KfWhk68]aQi;h3
 Z1 VDg1SIo80bB@j0V0VzS_@n1
-Z2 dZ:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller
-Z3 w1581002386
+Z2 dC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller
+Z3 w1580977792
 Z4 8Adder.v
 Z5 FAdder.v
 L0 3486
@@ -23,7 +23,7 @@ Z6 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z7 !s108 1581041066.000000
+Z7 !s108 1581063165.000000
 Z8 !s107 Adder.v|
 Z9 !s90 -reportprogress|300|-work|work|Adder.v|
 !i113 1
@@ -582,7 +582,7 @@ R11
 n@adder_altpriority_encoder_vh8
 vClockTimer
 Z13 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z14 !s110 1581041065
+R0
 !i10b 1
 !s100 O1@A02JGlQbgCTEUOON@61
 I`HGaen=1LIToh`2FEFiI:2
@@ -590,7 +590,7 @@ R1
 !s105 ClockTimer_sv_unit
 S1
 R2
-w1581041031
+Z14 w1581060758
 8ClockTimer.sv
 FClockTimer.sv
 Z15 L0 15
@@ -598,7 +598,7 @@ R6
 r1
 !s85 0
 31
-Z16 !s108 1581041065.000000
+R7
 !s107 ClockTimer.sv|
 !s90 -reportprogress|300|-work|work|ClockTimer.sv|
 !i113 1
@@ -607,15 +607,15 @@ R11
 n@clock@timer
 vCosDeg
 R13
-Z17 !s110 1580807259
+Z16 !s110 1580807259
 !i10b 1
 !s100 1[Ka:4kTA9Z>dbPhGea7`2
 I58>XXDUQ=R7N`z46_Dn7F2
 R1
 !s105 CosDeg_sv_unit
 S1
-Z18 dC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller
-Z19 w1580807169
+R2
+Z17 w1580807169
 8C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/CosDeg.sv
 FC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/CosDeg.sv
 L0 1
@@ -623,16 +623,16 @@ R6
 r1
 !s85 0
 31
-Z20 !s108 1580807259.000000
+Z18 !s108 1580807259.000000
 !s107 C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/CosDeg.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/CosDeg.sv|
 !i113 1
-Z21 o-work work -sv
+Z19 o-work work -sv
 R11
 n@cos@deg
 vCounter
 R13
-R14
+R0
 !i10b 1
 !s100 <=D0OFV`gW?mNnVJNj>0K1
 IUQdC4HJX<nJobcPO9VbQC0
@@ -640,7 +640,7 @@ R1
 !s105 Counter_sv_unit
 S1
 R2
-R3
+w1580974576
 8Counter.sv
 FCounter.sv
 R15
@@ -648,7 +648,7 @@ R6
 r1
 !s85 0
 31
-R16
+R7
 !s107 Counter.sv|
 !s90 -reportprogress|300|-work|work|Counter.sv|
 !i113 1
@@ -664,7 +664,7 @@ IO[RGVCCzI0d0RGz6[O<C`2
 R1
 !s105 DoubleAdder_sv_unit
 S1
-R2
+dZ:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller
 w1581040045
 8DoubleAdder.sv
 FDoubleAdder.sv
@@ -682,7 +682,7 @@ R11
 n@double@adder
 vDoubleMultiply
 R13
-R14
+R0
 !i10b 1
 !s100 UR6Cm4@zXI[[CMG2<`27U0
 I>XoClJib]TfSDnKeM?F[F3
@@ -690,7 +690,7 @@ R1
 !s105 DoubleMultiply_sv_unit
 S1
 R2
-w1581039428
+R14
 8DoubleMultiply.sv
 FDoubleMultiply.sv
 L0 21
@@ -698,7 +698,7 @@ R6
 r1
 !s85 0
 31
-R16
+!s108 1581063164.000000
 !s107 DoubleMultiply.sv|
 !s90 -reportprogress|300|-work|work|DoubleMultiply.sv|
 !i113 1
@@ -707,15 +707,15 @@ R11
 n@double@multiply
 vForwardKinematics
 R13
-!s110 1581041067
+R0
 !i10b 1
-!s100 61zFd5g[G`84fiQTY`;:K0
-IkjegMQAWNDF95;RT[8LdN0
+!s100 3foLilf1^R_VjE;2nYej`2
+ICmVgSAReNfRI2G:5FBZHP1
 R1
 !s105 ForwardKinematics_sv_unit
 S1
 R2
-w1581040994
+w1581063151
 8ForwardKinematics.sv
 FForwardKinematics.sv
 L0 1
@@ -723,7 +723,7 @@ R6
 r1
 !s85 0
 31
-!s108 1581041067.000000
+R7
 !s107 ForwardKinematics.sv|
 !s90 -reportprogress|300|-work|work|ForwardKinematics.sv|
 !i113 1
@@ -737,17 +737,17 @@ R0
 I@ZDFOAJ4=OFImlWE2bR1i3
 R1
 R2
-Z22 w1580855567
-Z23 8IntToDouble.v
-Z24 FIntToDouble.v
+Z20 w1580808656
+Z21 8IntToDouble.v
+Z22 FIntToDouble.v
 L0 693
 R6
 r1
 !s85 0
 31
 R7
-Z25 !s107 IntToDouble.v|
-Z26 !s90 -reportprogress|300|-work|work|IntToDouble.v|
+Z23 !s107 IntToDouble.v|
+Z24 !s90 -reportprogress|300|-work|work|IntToDouble.v|
 !i113 1
 R10
 R11
@@ -759,17 +759,17 @@ R0
 IJ^=zizWClLD^AA;1=FBO32
 R1
 R2
+R20
+R21
 R22
-R23
-R24
 R12
 R6
 r1
 !s85 0
 31
 R7
-R25
-R26
+R23
+R24
 !i113 1
 R10
 R11
@@ -781,17 +781,17 @@ R0
 IWF@o;Z=]XM0A7_We0VJBF3
 R1
 R2
+R20
+R21
 R22
-R23
-R24
 L0 417
 R6
 r1
 !s85 0
 31
 R7
-R25
-R26
+R23
+R24
 !i113 1
 R10
 R11
@@ -803,17 +803,17 @@ R0
 Iz>W`SWA@AT^CR51UNO>l50
 R1
 R2
+R20
+R21
 R22
-R23
-R24
 L0 175
 R6
 r1
 !s85 0
 31
 R7
-R25
-R26
+R23
+R24
 !i113 1
 R10
 R11
@@ -825,17 +825,17 @@ R0
 IgTWceM_c0keEMGaf?`gL32
 R1
 R2
+R20
+R21
 R22
-R23
-R24
 L0 155
 R6
 r1
 !s85 0
 31
 R7
-R25
-R26
+R23
+R24
 !i113 1
 R10
 R11
@@ -847,17 +847,17 @@ R0
 Ij>ITmAegBAiaoGK0NQ^a`0
 R1
 R2
+R20
+R21
 R22
-R23
-R24
 L0 226
 R6
 r1
 !s85 0
 31
 R7
-R25
-R26
+R23
+R24
 !i113 1
 R10
 R11
@@ -869,17 +869,17 @@ R0
 Iah`lR38^b=eWLb`93ocO^1
 R1
 R2
+R20
+R21
 R22
-R23
-R24
 L0 194
 R6
 r1
 !s85 0
 31
 R7
-R25
-R26
+R23
+R24
 !i113 1
 R10
 R11
@@ -891,17 +891,17 @@ R0
 IKK:D_A8XRQgLgnS2k;HAE1
 R1
 R2
+R20
+R21
 R22
-R23
-R24
 L0 291
 R6
 r1
 !s85 0
 31
 R7
-R25
-R26
+R23
+R24
 !i113 1
 R10
 R11
@@ -913,17 +913,17 @@ R0
 IT=5fb;<^R@]0dQdJzG15Y1
 R1
 R2
+R20
+R21
 R22
-R23
-R24
 L0 259
 R6
 r1
 !s85 0
 31
 R7
-R25
-R26
+R23
+R24
 !i113 1
 R10
 R11
@@ -935,17 +935,17 @@ R0
 I>7OzXNeo?^JZfnkhCDFZ71
 R1
 R2
+R20
+R21
 R22
-R23
-R24
 L0 389
 R6
 r1
 !s85 0
 31
 R7
-R25
-R26
+R23
+R24
 !i113 1
 R10
 R11
@@ -957,17 +957,17 @@ R0
 IGNR9=aEPZ77Qh528OnQh80
 R1
 R2
+R20
+R21
 R22
-R23
-R24
 L0 324
 R6
 r1
 !s85 0
 31
 R7
-R25
-R26
+R23
+R24
 !i113 1
 R10
 R11
@@ -979,76 +979,76 @@ R0
 I?S96>zUR20=[[B:?9Q3F?3
 R1
 R2
+R20
+R21
 R22
-R23
-R24
 L0 356
 R6
 r1
 !s85 0
 31
 R7
-R25
-R26
+R23
+R24
 !i113 1
 R10
 R11
 n@int@to@double_altpriority_encoder_rf8
 vMultiplierFP
-R14
+R0
 !i10b 1
 !s100 8oRG1IJ3^b^d^hz1ojmh20
 I20Ufg<C>GS5::WonD=g<c3
 R1
 R2
-R3
-Z27 8MultiplierFP.v
-Z28 FMultiplierFP.v
+Z25 w1580945843
+Z26 8MultiplierFP.v
+Z27 FMultiplierFP.v
 L0 562
 R6
 r1
 !s85 0
 31
-R16
-Z29 !s107 MultiplierFP.v|
-Z30 !s90 -reportprogress|300|-work|work|MultiplierFP.v|
+R7
+Z28 !s107 MultiplierFP.v|
+Z29 !s90 -reportprogress|300|-work|work|MultiplierFP.v|
 !i113 1
 R10
 R11
 n@multiplier@f@p
 vMultiplierFP_altfp_mult_e0r
-R14
+R0
 !i10b 1
 !s100 8AcTiE_U?SRMM8:nf8o633
 IXbW9b?[ZMRAz44TJzC^eD1
 R1
 R2
-R3
+R25
+R26
 R27
-R28
 L0 46
 R6
 r1
 !s85 0
 31
-R16
+R7
+R28
 R29
-R30
 !i113 1
 R10
 R11
 n@multiplier@f@p_altfp_mult_e0r
 vSinDeg
 R13
-R17
+R16
 !i10b 1
 !s100 3Q]Z5PFa6an4H<d_^Sa>h3
 IYbWUiP[@3Gj9>G[W44a^g1
 R1
 !s105 SinDeg_sv_unit
 S1
-R18
-R19
+R2
+R17
 8C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv
 FC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv
 L0 1
@@ -1056,11 +1056,11 @@ R6
 r1
 !s85 0
 31
-R20
+R18
 !s107 C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller/scripts/SinDeg.sv|
 !i113 1
-R21
+R19
 R11
 n@sin@deg
 vSRLatch
@@ -1073,7 +1073,7 @@ R1
 !s105 SRLatch_sv_unit
 S1
 R2
-w1581038301
+R14
 8SRLatch.sv
 FSRLatch.sv
 L0 13
@@ -1098,7 +1098,7 @@ R1
 !s105 Sync_sv_unit
 S1
 R2
-R22
+w1580980510
 8Sync.sv
 FSync.sv
 L0 1
