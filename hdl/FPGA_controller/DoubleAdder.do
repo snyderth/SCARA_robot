@@ -4,7 +4,8 @@ vlog -work work Adder.v
 vlog -work work Sync.sv
 
 #Start simulation, loading 220model library because adder is from altera IP
-vsim -L "C:/intelFPGA_lite/18.1/modelsim_ase/altera/verilog/220model" work.DoubleAdder
+#vsim -L "C:/intelFPGA_lite/18.1/modelsim_ase/altera/verilog/220model" work.DoubleAdder
+vsim -L "Z:/home/thomas/intelFPGA_lite/18.1/modelsim_ase/altera/verilog/220model" work.DoubleAdder
 
 #Add waves for display
 add wave -format Logic clk

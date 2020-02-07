@@ -23,19 +23,20 @@ module DoubleAdder(input logic [63:0] datab,
 							.clk_en(en1),
 							.result(result));
 						
-			/* 14 cycle latency on the adder*/
-			ClockTimer #(5, 14) ct(.en(en1),
+			/* 14 cycle latency on the adder, one cycle latency to 
+				output the ready signal, so 14 - 1 = 13*/
+			ClockTimer #(5, 13) ct(.en(en1),
 											.clk(clk),
-											.reset(res),
-											.expire(dsync),
+											.reset(reset),
+											.expire(data_ready),
 											.count(count));
 			
 			/* Sync */
-			Sync sn(.d(dsync),
-						.q(data_ready),
-						.clk(clk),
-						.en(1'b1),
-						.reset(1'b0));
+//			Sync sn(.d(dsync),
+//						.q(data_ready),
+//						.clk(clk),
+//						.en(1'b1),
+//						.reset(1'b0));
 			
 			/* Reset after output logic */
 			always@(data_ready)

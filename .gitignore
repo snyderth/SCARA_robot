@@ -1,2 +1,9 @@
 .vscode
 .idea
+.hdb
+.cdb
+.bpm
+.logdb
+hdl/FPGA_controller/lib/
+hdl/FPGA_controller/db/
+hdl/FPGA_controller/wlft*

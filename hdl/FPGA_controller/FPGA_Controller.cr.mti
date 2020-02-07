@@ -1,1 +1,23 @@
+Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller/Counter.sv {1 {vlog -work work -sv -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller/Counter.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Counter
 
+Top level modules:
+	Counter
+
+} {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller/Sync.sv {1 {vlog -work work -sv -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller/Sync.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Sync
+
+Top level modules:
+	Sync
+
+} {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller/MultiplierFP.v {1 {vlog -work work -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller/MultiplierFP.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module MultiplierFP_altfp_mult_e0r
+-- Compiling module MultiplierFP
+
+Top level modules:
+	MultiplierFP
+
+} {} {}}
