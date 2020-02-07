@@ -1,8 +1,13 @@
 from HPS_to_FPGA.hps_to_fpga_python import *
-from GCode.gcodeParser import commandCode, COMMAND_MAP, GCODE_MAP
+from GCode.gcodeParser import commandCode, COMMAND_MAP, GCODE_MAP, commandToGcode
 from GCode.gcodeFormatter import m2
+import os
 
-path = "./hps_to_fpga_c/Debug/libhps_to_fpga_c.so"
+
+path = os.path.abspath(__file__)
+path = os.path.realpath(path)
+path = os.path.dirname(path)
+path = os.path.join(path, "libhps_to_fpga_c.so")
 
 def streamProcess(FPGACommands, reportFPGA, reportDone):
     '''
@@ -12,19 +17,20 @@ def streamProcess(FPGACommands, reportFPGA, reportDone):
     @param reportDone: Function in the format ()->None that reports when the FPGA is done executing
     @return: None
     '''
-    mi = MemoryInterface(path)
+    #print(os.environ)
+    mi = MemoryInterface(os.path.abspath(path))
     for command in FPGACommands:
 
         #Stop early if end of program command is met
         if COMMAND_MAP[commandCode(command)] == m2.lower():
             reportDone()
             return
-
+        print("sending " + commandToGcode(command, 1))
         mi.writeFifoBlocking(command)
-
+        print("sent data")
         success = 0
-        fpgaReport = mi.readFifoNonblocking(success)
+        #fpgaReport = mi.readFifoNonblocking(success)
 
-        if success:
-            reportFPGA(fpgaReport)
+        #if success:
+            #reportFPGA(fpgaReport)
 

@@ -1,4 +1,6 @@
 from ctypes import *
+import os
+
 class MemoryInterface:
     def __init__(self, libhps_to_fpga_cpath):
         '''
@@ -8,8 +10,8 @@ class MemoryInterface:
         '''
         self.hps_to_fpga_c = CDLL(libhps_to_fpga_cpath)
         self.hps_to_fpga_c.init_fifo()
-        if(self.hps_to_fpga_c.init_fifo() < 1):
-            raise "Could not initialize memory interface. errno: " + str(get_errno());
+       # if(self.hps_to_fpga_c.init_fifo() < 0):
+       #     raise Exception("Could not initialize memory interface. errno: " + os.strerror(get_errno()));
 
     def writeFifoBlocking(self, dword: c_int32):
         '''

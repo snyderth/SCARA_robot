@@ -1,5 +1,7 @@
 
 module Controller_Interface(
+	input logic clk,
+	input logic block,
 	input command command_in,
 	input logic memory_ready,
 	input logic controller_ready,
@@ -13,7 +15,7 @@ module Controller_Interface(
 
 enum {G00, G01, G20, G21, G90, G91, M2, M6, M72} Command_Code;
 
-assign send_new_data = memory_ready & controller_ready;
+//assign send_new_data = memory_ready & controller_ready & ~block;
 
 wire linear;
 wire inches;
@@ -30,38 +32,41 @@ assign controller_interface_out_ready = memory_ready;
 assign controller_interface_in_ready = controller_ready;
 
 
-always @(posedge send_new_data) 
+always_ff @(posedge clk) 
 begin	
-	case (command_in.cmd)
-		G00:
-			begin
-				linear <= 0; //Nonlinear move
-				tool_change <= 0;
-				raise_tool <= 0;
-				x_value <= command_in.x_value;
-				y_value <= command_in.y_value;
-			end
-		G01: 			
-			begin
-				linear <= 1; //Linear move
-				tool_change <= 0;
-				raise_tool <= 0;
-				x_value <= command_in.x_value;
-				y_value <= command_in.y_value;
-			end
-		G20: inches <= 1; //Set Inches
-		G21: inches <= 0; //Set millimeters
-		G90: absolute <= 1;	
-		G91: absolute <= 0;
-		M2: // Should not recive
-		M6: 
-			begin
-				tool_change <= 1;
-				x_value <= command_in.x_value;
-			end
-		
-		M72: raise_tool <= 1;
-	endcase
+	if(memory_ready & controller_ready & ~block)
+	begin
+		case (command_in.cmd)
+			G00:
+				begin
+					linear <= 0; //Nonlinear move
+					tool_change <= 0;
+					raise_tool <= 0;
+					x_value <= command_in.x_value;
+					y_value <= command_in.y_value;
+				end
+			G01: 			
+				begin
+					linear <= 1; //Linear move
+					tool_change <= 0;
+					raise_tool <= 0;
+					x_value <= command_in.x_value;
+					y_value <= command_in.y_value;
+				end
+			G20: inches <= 1; //Set Inches
+			G21: inches <= 0; //Set millimeters
+			G90: absolute <= 1;	
+			G91: absolute <= 0;
+			M2: // Should not recive
+			M6: 
+				begin
+					tool_change <= 1;
+					x_value <= command_in.x_value;
+				end
+			
+			M72: raise_tool <= 1;
+		endcase
+	end
 			
 end
 
