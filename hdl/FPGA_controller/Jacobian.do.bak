@@ -55,8 +55,6 @@ add wave -radix float64 cos_th12
 add wave -Logic en
 add wave -Logic ConvStart
 
-add wave -radix Decimal count
-
 # Perform Simulation
 
 force clk 0 @ 0, 1 @ 5 -r 10
