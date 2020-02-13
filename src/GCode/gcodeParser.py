@@ -1,5 +1,6 @@
 import math
-from GCode.gcodeFormatter import *
+from gcodeFormatter import *
+import pygcode as pygc
 #Commands are formatted like so:
 #|code|argX|argY|
 #0    3   17    31
@@ -26,12 +27,18 @@ MM_TO_BITS = 2**ARG_BITS/MAX_MM #bits/mm
 TOOL_TO_BITS = 1
 
 #Gcode to command map
-GCODE_MAP = {g00Command.lower(): 0, g01Command.lower(): 1, g20.lower(): 2, g21.lower(): 3, g90.lower(): 4, g91.lower(): 5, m2.lower(): 6, m6Command.lower(): 7, m72.lower(): 8}
+GCODE_MAP = {str(pygc.GCodeRapidMove()): 0, str(pygc.GCodeLinearMove()): 1, str(pygc.GCodeUseInches()): 2, str(pygc.GCodeUseMillimeters()): 3, str(pygc.GCodeAbsoluteDistanceMode()): 4, str(pygc.GCodeIncrementalDistanceMode()): 5, str(pygc.GCodeEndProgram()): 6, str(pygc.GCodeToolChange()): 7, "M72": 8}
 
 #Inverse command map useful decoding fpga commands
 COMMAND_MAP = {v: k for k, v in GCODE_MAP.items()}
 
 def commandToGcode(command, conversion):
+    '''
+    Convert one command to gcode using the given conversion
+    @param command: The command to convert
+    @param conversion: The conversion factor
+    @return: (gcode, conversion) conversion may be different if the command changes units.
+    '''
     gcode = ""
 
     code = commandCode(command)
@@ -48,25 +55,37 @@ def commandToGcode(command, conversion):
     if commandHasArgs(gcodeCommand):
         for argName in commandArgs(gcodeCommand):
             gcode += argName
+            if gcodeCommand != str(pygc.GCodeToolChange()):
+                argValue = (command & ((1 << ARG_BITS) - 1)) * conversion
+            else:
+                argValue = (command & ((1 << ARG_BITS) - 1))
 
-            argValue = (command & ((1 << ARG_BITS) - 1)) * conversion
             gcode += str(argValue) + " "
 
             command = command >> ARG_BITS
-    return gcode
+    return (gcode, conversion)
 
 def commandsToGcode(commands):
+    '''
+    Convert a set of commands to gcode strings
+    @param commands: An orderded set of command codes
+    @return: A gcode string
+    '''
     program = []
     conversion = 1 / IN_TO_BITS
 
     for command in commands:
-        gcode = commandToGcode(command, conversion)
+        gcode, conversion = commandToGcode(command, conversion)
 
         program.append(gcode)
     return '\n'.join(program)
 
 
 def commandCode(command: int):
+    '''
+    @param command:
+    @return: code portion of command
+    '''
     code = (command >> CODE_OFFSET) & ((1 << CODE_BITS) - 1)
     return code
 
@@ -80,20 +99,21 @@ def gcodeToCommands(gcodeText):
     @return:
     '''
     #Format gcode to remove whitespace, convert to lower case, and remove empty lines
-    gcodeCommands = filter(lambda t: not t.isspace(), map(lambda t: str.lower(str.strip(t)), gcodeText.split('\n')))
-    commands = []
-
+    # gcodeCommands = filter(lambda t: not t.isspace(), map(lambda t: str.lower(str.strip(t)), gcodeText.split('\n')))
+    # commands = []
+    #
     #Assume to be in inches first
+    lines = gcodeText.split("\n");
+    parsedLines = list(map(pygc.Line, lines))
+    commands = []
     max = MAX_IN
     conversion = IN_TO_BITS
 
-    for gcodeLine in gcodeCommands:
-        command = 0
-        gcodeLine = gcodeLine.split()
+    for gcodeLine in parsedLines:
+        for gcode in gcodeLine.gcodes:
+            command = 0
 
-        # Determine if line contains anything
-        if len(gcodeLine) > 0:
-            cmd = gcodeLine[0]
+            cmd = str(gcode.word)
 
             #check if command changes units
             units = commandUnits(cmd)
@@ -103,71 +123,56 @@ def gcodeToCommands(gcodeText):
             #Get enumeration value of cmd
             code = commandToCode(cmd)
             command |= code << CODE_OFFSET
+            # OR each argument into command
 
-            if commandHasArgs(cmd):
-
-                if len(gcodeLine) > 1:
-                    # OR each argument into command
-                    for argText in gcodeLine[1:]:
-                        command |= extractArg(argText, conversion, max)
-
+            for key in gcode.params:
+                offset = ARGX_OFFSET if key == "X" or key == "T" else ARGY_OFFSET
+                if key != "T":
+                    command |= extractArg(gcode.params[key].value, conversion, max, offset)
                 else:
-                    raise Exception("Code {c} is expected to have arguments, but none are given".format(code))
+                    command |= extractArg(gcode.params[key].value, 1 , 2**ARG_BITS, offset)
+
 
             commands.append(command)
-
-        else:
-            raise Exception("Empty line given")
     return commands
+
+
 
 #True if given gcode code has arguments attached to it
 def commandHasArgs(code):
-    return code == 'g00' or code == 'g01' or code == 'm6'
+    return code == str(pygc.GCodeLinearMove()) or code == str(pygc.GCodeRapidMove()) or code == str(pygc.GCodeToolChange())
 
 def commandArgs(code):
-    if code == 'g00' or code == 'g01':
-        return ("x", "y")
-    if code == 'm6':
-        return ("t")
+    if code == str(pygc.GCodeRapidMove()) or code == str(pygc.GCodeLinearMove()):
+        return ("X", "Y")
+    if code == str(pygc.GCodeToolChange()):
+        return ("T")
 
 #Returns (conversion factor, max value) for given gcode code if code converts units, None otherwise.
 def commandUnits(code):
-    if code == 'g20':
+    if code == str(pygc.GCodeUseInches()):
         return (IN_TO_BITS, MAX_IN)
-    if code == 'g21':
+    if code == str(pygc.GCodeUseMillimeters()):
         return (MM_TO_BITS, MAX_MM)
     return None
 
 #Given a string in the format <x | y | t> <number>.<number>, return an argument value at the approprate offset
-def extractArg(text, conversion, max):
-    if len(text) > 0:
-        arg = 0
+def extractArg(value, conversion, max, offset):
+    decimal = float(value)
 
-        #Find initial offset
-        if text[0:1] == "x" or text[0:1] == "t":
-            offset = ARGX_OFFSET
-        elif text[0:1] == "y":
-            offset = ARGY_OFFSET
-        else:
-            raise Exception("Invalid arg prefix: {c}".format(c = text[0:1]))
+    #Clamp to maximum
+    decimal = math.copysign(max, decimal) if abs(decimal) > max else decimal
 
-        decimal = float(text[1:])
+    #Convert in/mm to bit/in or bit/mm
+    decimal *= conversion
 
-        #Clamp to maximum
-        decimal = math.copysign(max, decimal) if abs(decimal) > max else decimal
+    arg = int(decimal) << offset
 
-        #Convert in/mm to bit/in or bit/mm
-        decimal *= conversion
-
-        arg |= int(decimal) << offset
-
-        return arg
-    else:
-        raise Exception("Empty text provided")
+    return arg
 
 #Given a code in the format <G|M><number> return the appropriate command number.
 def commandToCode(code):
-    if code.lower() in GCODE_MAP:
+    if code in GCODE_MAP:
         return GCODE_MAP[code]
     else:
         raise Exception("Invalid code: {c}".format(c = code))

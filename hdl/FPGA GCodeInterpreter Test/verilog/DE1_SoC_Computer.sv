@@ -1,3 +1,4 @@
+//Code manipulated from https://github.com/Jambie82/CycloneV_HPS_FIFO
 
 typedef struct {
 	reg [3:0] cmd;                  // command number

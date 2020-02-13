@@ -1,3 +1,5 @@
+//Code manipulated from https://github.com/Jambie82/CycloneV_HPS_FIFO
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
