@@ -6,8 +6,8 @@ vlog -work work Counter.sv
 vlog -work work DoubleMultiply.sv
 
 # Start simulator
-#vsim -L "C:/intelFPGA_lite/18.1/modelsim_ase/altera/verilog/220model" work.DoubleMultiply
-vsim -L "Z:/home/thomas/intelFPGA_lite/18.1/modelsim_ase/altera/verilog/220model" work.DoubleMultiply
+vsim -L "C:/intelFPGA_lite/18.1/modelsim_ase/altera/verilog/220model" work.DoubleMultiply
+#vsim -L "Z:/home/thomas/intelFPGA_lite/18.1/modelsim_ase/altera/verilog/220model" work.DoubleMultiply
 
 # Add waves
 add wave -radix float64 dataa

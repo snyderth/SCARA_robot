@@ -1,10 +1,9 @@
 /***************************************************
-*	File: 		DoubleMultiply
+*	File: 		ScaraController
 *	Author: 		Thomas Snyder
 *	Date:			2/5/2020
-*	Description:Wrapper around altera double precision
-*					floating point multiplier to add signal
-*					circuitry for when output can be read.
+*	Description:Implementation of Jacobian Inverse 
+*					control algorithm
 *	Parameters:
 *				None
 *
@@ -76,6 +75,9 @@ module scara_controller(input logic [13:0] 	x_target,
 		MULTReset 	= 	1'b1;
 		MULTEnable 	= 	1'b0;
 	end
+	
+	
+	/* State Transition Logic */
 	
 	// Initialize the arm to the current location
 	always_ff@(posedge clk) begin
@@ -158,6 +160,8 @@ module scara_controller(input logic [13:0] 	x_target,
 		
 	end
 	
+	
+	/* State Logic */
 	
 	ForwardKinematics fk (
 								.reset(FKReset),

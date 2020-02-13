@@ -4,6 +4,8 @@
 *	Date:			2/7/2020
 *	Description:A module to compute the jacobian
 *					of the SCARA forward kinematics.
+*					This module has a latency of 
+*					28 clock cycles.
 *
 *	Parameters:
 *				None
@@ -35,12 +37,22 @@ module Jacobian(input	logic 	[31:0] l1,
 					 
 	/* Convert l1, l2 into 64 bit floating point */
 	logic [63:0] L1Double, L2Double;
-	logic en, ConvComplete;
+	logic en, ConvComplete, ConvStart;
+	
+	logic [9:0] count;
 	
 	assign en = enable & ~reset;
 	
+	// Need to latch the enable for the converters
+	// and the ClockTimer
+	SRLatch ConvLatch(
+							.set(en),
+							.reset(ConvComplete | reset),
+							.q(ConvStart)
+							);
+	
 	IntToDouble len1(
-						.clk_en(en),
+						.clk_en(ConvStart),
 						.clock(clk),
 						.dataa(l1),
 						.result(L1Double)
@@ -48,7 +60,7 @@ module Jacobian(input	logic 	[31:0] l1,
 					
 					
 	IntToDouble len2(
-						.clk_en(en),
+						.clk_en(ConvStart),
 						.clock(clk),
 						.dataa(l2),
 						.result(L2Double)
@@ -57,9 +69,10 @@ module Jacobian(input	logic 	[31:0] l1,
 					
 	// To time the conversion, which takes 6 cycles
 	ClockTimer #(10, 6) ConvTime (
-										.en(enable),
+										.en(ConvStart),
 										.reset(reset),
 										.clk(clk),
+										.count(count),
 										.expire(ConvComplete)
 										);
 	/**********************************************/
@@ -108,6 +121,7 @@ module Jacobian(input	logic 	[31:0] l1,
 						.dataa(cos_th1),
 						.datab(L1Double),
 						.clk(clk),
+						.reset(reset),
 						.in_ready(ConvComplete),
 						.result(l1Cos),
 						.data_ready(ready1)
@@ -117,6 +131,7 @@ module Jacobian(input	logic 	[31:0] l1,
 						.dataa(cos_th12),
 						.datab(L2Double),
 						.clk(clk),
+						.reset(reset),
 						.in_ready(ConvComplete),
 						.result(l2CosSum),
 						.data_ready(ready2)
@@ -126,6 +141,7 @@ module Jacobian(input	logic 	[31:0] l1,
 						.dataa(sin_th1),
 						.datab(L1Double),
 						.clk(clk),
+						.reset(reset),
 						.in_ready(ConvComplete),
 						.result(l1Sin),
 						.data_ready(ready3)
@@ -135,6 +151,7 @@ module Jacobian(input	logic 	[31:0] l1,
 						.dataa(sin_th12),
 						.datab(L2Double),
 						.clk(clk),
+						.reset(reset),
 						.in_ready(ConvComplete),
 						.result(l2SinSum),
 						.data_ready(ready4)
