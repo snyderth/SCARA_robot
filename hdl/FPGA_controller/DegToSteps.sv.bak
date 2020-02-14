@@ -1,0 +1,11 @@
+module DegToSteps (input logic [63:0] dth1,
+						 input logic [63:0] dth2,
+						 output logic [63:0] steps1,
+						 output logic dir1,
+						 output logic [63:0] steps2,
+						 output logic dir2
+						 );
+
+
+
+endmodule

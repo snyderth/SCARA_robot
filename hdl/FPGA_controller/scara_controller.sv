@@ -25,8 +25,10 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 								input signed [7:0]	th2, // Angle of the second joint: may be an internal variable
 								input logic 			clk, // INput clock
 								input logic 			reset, // Reset pin. Resets state machine to init state (waiting)
-								output	logic	[8:0] th1_steps, // Outputs number of steps
-								output	logic [8:0] th2_steps);
+								output	logic	[63:0] m1_steps, // Outputs number of steps
+								output	logic [63:0] m2_steps,
+								output 	logic dir1,
+								output	logic dir2);
 
 	
 	logic [63:0] x_current;
@@ -201,11 +203,30 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 							.aOut(aInv),
 							.bOut_n(bInv),
 							.cOut_n(CInv),
-							.dOut(dInv)
+							.dOut(dInv),
+							.data_ready(JIDone)
 						);
 	
 	
 	/** Change in X and Y logic **/
+	// We need to convert our current
+	// Location to a value that is 
+	// Conducive to our logic.
+	
+	reg signed [13:0] xInt, yInt;
+	
+	DoubleTo14BitInt x_curr(.dataa(x_current),
+									.clk_en(JIEnable),
+									.clock(clk),
+									.result(xInt)
+									);
+									
+									
+	DoubleTo14BitInt y_curr(.dataa(y_current),
+									.clk_en(JIEnable),
+									.clock(clk),
+									.result(yInt)
+									);
 	
 	reg signed [13:0] dx, dy;
 	
@@ -218,12 +239,12 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 		end
 		else begin
 		// Absolute position
-			dx <= x_target - x_current;
-			dy <= y_target - y_current;
+			dx <= x_target - xInt;
+			dy <= y_target - yInt;
 		end
 	end
 	
-	
+	logic [63:0] changeTh1, changeTh2;
 						
 	MatMult multiply (
 						.reset(MULTReset),
@@ -235,8 +256,22 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 						.invD(dInv),
 						.dx(dx),
 						.dy(dy),
-						.dth1(),
-						.dth2()
+						.dth1(changeTh1),
+						.dth2(changeTh2),
+						.data_ready(MULTDone)
+						);
+						
+	DegToSteps d2s (
+						.reset(CONVReset),
+						.en(CONVEnable),
+						.clk(clk),
+						.dth1(changeTh1),
+						.dth2(changeTh2),
+						.dir1(dir1),
+						.steps1(m1_steps),
+						.dir2(dir2),
+						.steps2(m2_steps),
+						.data_ready(CONVDone)
 						);
 		
 endmodule

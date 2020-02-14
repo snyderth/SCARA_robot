@@ -36,23 +36,20 @@ module MatMult(input logic [63:0] invA,
 					output logic [63:0] dth2
 					);
 		
-		logic [17:0] filler;
-		assign filler = 18'd0;
-		
 		
 		/*	Conversion of the integer inputs	*/
 		logic [63:0] dxConv, dyConv;
 		logic convDone;
 		
-		IntToDouble x (
-							.dataa({filler, dx}),
+		Int14BitToDouble x (
+							.dataa(dx),
 							.result(dxConv),
 							.clk_en(enable),
 							.clock(clk)
 							);
 		
-		IntToDouble y (
-							.dataa({filler, dy}),
+		Int14BitToDouble y (
+							.dataa(dy),
 							.result(dyConv),
 							.clk_en(enable),
 							.clock(clk)
