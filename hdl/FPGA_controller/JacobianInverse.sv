@@ -34,10 +34,10 @@ module JacobianInverse(input logic [63:0] a,
 							  input logic clk,
 							  input logic reset,
 							  output logic data_ready,
-							  output logic [63:0] a,
-							  output logic [63:0] b_n,
-							  output logic [63:0] c_n,
-							  output logic [63:0] d);
+							  output logic [63:0] aOut,
+							  output logic [63:0] bOut_n,
+							  output logic [63:0] cOut_n,
+							  output logic [63:0] dOut);
 							  
 			/* Computing the Determinant: 1 / ad- bc */
 			logic DetMultReady, ADReady, BCReady;
@@ -50,7 +50,7 @@ module JacobianInverse(input logic [63:0] a,
 								.clk(clk),
 								.in_ready(data_ready),
 								.data_ready(ADReady),
-								.result(ADResult)
+								.result(ADResult),
 								.dataa(a),
 								.datab(d)
 								);
@@ -61,7 +61,7 @@ module JacobianInverse(input logic [63:0] a,
 								.clk(clk),
 								.in_ready(data_ready),
 								.data_ready(BCReady),
-								.result(BCResult)
+								.result(BCResult),
 								.dataa(b),
 								.datab(c)
 								);

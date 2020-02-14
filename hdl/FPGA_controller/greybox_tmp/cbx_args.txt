@@ -1,4 +1,5 @@
 DENORMAL_SUPPORT=NO
+INTENDED_DEVICE_FAMILY="Cyclone V"
 OPTIMIZE=SPEED
 PIPELINE=10
 REDUCED_FUNCTIONALITY=NO
@@ -11,4 +12,7 @@ dataa
 datab
 division_by_zero
 nan
+overflow
 result
+underflow
+zero
