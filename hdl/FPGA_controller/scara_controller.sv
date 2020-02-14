@@ -176,7 +176,9 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 								.y(y_current),
 								.data_ready(FKdone)
 								);
-								
+	
+	logic [63:0] dx_dth1, dx_dth2, dy_dth1, dy_dth2;
+	
 	Jacobian jk (
 						.reset(JReset),
 						.enable(JEnable),
@@ -184,12 +186,20 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 						.l1(l1_inch),
 						.l2(l2_inch),
 						.data_ready(JDone),
-						.dx_dth1(),
-						.dx_dth2(),
-						.dy_dth1(),
-						.dy_dth2()
+						.dx_dth1(dx_dth1),
+						.dx_dth2(dx_dth2),
+						.dy_dth1(dy_dth1),
+						.dy_dth2(dy_dth2)
 					);
 
-		
+	JacobianInverse ji (
+							.reset(JIReset),
+							.enable(JIEnable),
+							.clk(clk),
+							.a(dx_dth1),
+							.b(dx_dth2),
+							.c(dy_dth1),
+							.d(dy_dth2)
+						);
 		
 endmodule

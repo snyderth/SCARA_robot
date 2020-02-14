@@ -1,1 +1,2 @@
 Info (10281): Verilog HDL Declaration information at scara_controller.sv(55): object "FK" differs only in case from object "fk" in the same scope File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller/scara_controller.sv Line: 55
+Info (10281): Verilog HDL Declaration information at scara_controller.sv(55): object "JI" differs only in case from object "ji" in the same scope File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller/scara_controller.sv Line: 55

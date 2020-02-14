@@ -8,7 +8,8 @@
 *.qmsg
 *.dpi
 *.kpt
-
+*transcript
+hdl/FPGA_controller/transcript
 hdl/FPGA_controller/lib/
 hdl/FPGA_controller/db/
 hdl/FPGA_controller/wlft*

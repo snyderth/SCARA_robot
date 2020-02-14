@@ -45,7 +45,6 @@ module JacobianInverse(input logic [63:0] a,
 			logic [63:0] det;
 		
 			DoubleMultiply aTimesd(
-								.enable(enable),
 								.reset(reset),
 								.clk(clk),
 								.in_ready(data_ready),
@@ -56,7 +55,6 @@ module JacobianInverse(input logic [63:0] a,
 								);
 								
 			DoubleMultiply bTimesc(
-								.enable(enable),
 								.reset(reset),
 								.clk(clk),
 								.in_ready(data_ready),
@@ -78,7 +76,7 @@ module JacobianInverse(input logic [63:0] a,
 									.data_ready(DetReady),
 									.reset(reset),
 									.in_ready(DetMultReady),
-									.result(det),
+									.result(det)
 								);
 								
 			/******************************************/
@@ -88,7 +86,7 @@ module JacobianInverse(input logic [63:0] a,
 			logic [63:0] aDivDet, bDivDet, cDivDet, dDivDet;
 			logic aDivReady, bDivReady, cDivReady, dDivReady;
 			
-			DoubleDiv aDiv(.enable(DetReady),
+			DoubleDivider aDiv(.enable(DetReady),
 								.clk(clk),
 								.reset(reset),
 								.dataa(a),
@@ -97,7 +95,7 @@ module JacobianInverse(input logic [63:0] a,
 								.data_ready(aDivReady)
 								);
 								
-			DoubleDiv bDiv(.enable(DetReady),
+			DoubleDivider bDiv(.enable(DetReady),
 								.clk(clk),
 								.reset(reset),
 								.dataa(b),
@@ -106,7 +104,7 @@ module JacobianInverse(input logic [63:0] a,
 								.data_ready(bDivReady)
 								);
 								
-			DoubleDiv cDiv(.enable(DetReady),
+			DoubleDivider cDiv(.enable(DetReady),
 								.clk(clk),
 								.reset(reset),
 								.dataa(c),
@@ -115,7 +113,7 @@ module JacobianInverse(input logic [63:0] a,
 								.data_ready(cDivReady)
 								);
 			
-			DoubleDiv dDiv(.enable(DetReady),
+			DoubleDivider dDiv(.enable(DetReady),
 								.clk(clk),
 								.reset(reset),
 								.dataa(d),
