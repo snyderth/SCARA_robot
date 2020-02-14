@@ -92,6 +92,6 @@ endmodule
 // Retrieval info: GEN_FILE: TYPE_NORMAL DoubleDiv.v TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL DoubleDiv.inc FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL DoubleDiv.cmp FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL DoubleDiv.bsf TRUE
+// Retrieval info: GEN_FILE: TYPE_NORMAL DoubleDiv.bsf FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL DoubleDiv_inst.v TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL DoubleDiv_bb.v TRUE

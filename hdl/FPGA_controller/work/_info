@@ -582,23 +582,23 @@ R11
 n@adder_altpriority_encoder_vh8
 vClockTimer
 Z13 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z14 !s110 1581662835
+Z14 !s110 1581667015
 !i10b 1
 !s100 O1@A02JGlQbgCTEUOON@61
 I`HGaen=1LIToh`2FEFiI:2
 R1
 !s105 ClockTimer_sv_unit
 S1
-R2
-w1581041031
+Z15 dC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller
+Z16 w1581646377
 8ClockTimer.sv
 FClockTimer.sv
-Z15 L0 15
+Z17 L0 15
 R6
 r1
 !s85 0
 31
-Z16 !s108 1581662835.000000
+Z18 !s108 1581667015.000000
 !s107 ClockTimer.sv|
 !s90 -reportprogress|300|-work|work|ClockTimer.sv|
 !i113 1
@@ -607,7 +607,7 @@ R11
 n@clock@timer
 vCosDeg
 R13
-Z17 !s110 1581527489
+!s110 1581527489
 !i10b 1
 !s100 F_zzdaaXnV1n7jPZ__ldT1
 IbKG5OPH2`_JX5DPVHeHc>1
@@ -615,15 +615,15 @@ R1
 !s105 CosDeg_sv_unit
 S1
 R2
-Z18 w1581524464
+Z19 w1581524464
 8CosDeg.sv
 FCosDeg.sv
-Z19 L0 14
+Z20 L0 14
 R6
 r1
 !s85 0
 31
-Z20 !s108 1581527489.000000
+Z21 !s108 1581527489.000000
 !s107 CosDeg.sv|
 !s90 -reportprogress|300|-work|work|CosDeg.sv|
 !i113 1
@@ -639,16 +639,16 @@ IUQdC4HJX<nJobcPO9VbQC0
 R1
 !s105 Counter_sv_unit
 S1
-R2
-R3
+R15
+R16
 8Counter.sv
 FCounter.sv
-R15
+R17
 R6
 r1
 !s85 0
 31
-R16
+R18
 !s107 Counter.sv|
 !s90 -reportprogress|300|-work|work|Counter.sv|
 !i113 1
@@ -657,15 +657,15 @@ R11
 n@counter
 vDoubleAdder
 R13
-R17
+Z22 !s110 1581671973
 !i10b 1
 !s100 6^1`5^fI7KfHUnDnKA^K03
 IO[RGVCCzI0d0RGz6[O<C`2
 R1
 !s105 DoubleAdder_sv_unit
 S1
-R2
-w1581040045
+R15
+R16
 8DoubleAdder.sv
 FDoubleAdder.sv
 L0 1
@@ -673,7 +673,7 @@ R6
 r1
 !s85 0
 31
-R20
+Z23 !s108 1581671973.000000
 !s107 DoubleAdder.sv|
 !s90 -reportprogress|300|-work|work|DoubleAdder.sv|
 !i113 1
@@ -681,87 +681,90 @@ R10
 R11
 n@double@adder
 vDoubleDiv
-Z21 !s110 1581662858
+R14
 !i10b 1
 !s100 j`@7OSWX7He:^=mLJ>3:g3
-I<J8M[]Bl0dDG1IREiDK9f0
+Id5b=bK=ABX=[9?jlGY=4m3
 R1
-R2
-Z22 w1581662856
-Z23 8DoubleDiv.v
-Z24 FDoubleDiv.v
+R15
+Z24 w1581666983
+Z25 8DoubleDiv.v
+Z26 FDoubleDiv.v
 L0 1748
 R6
 r1
 !s85 0
 31
-Z25 !s108 1581662858.000000
-Z26 !s107 DoubleDiv.v|
-Z27 !s90 -reportprogress|300|DoubleDiv.v|
+R18
+Z27 !s107 DoubleDiv.v|
+Z28 !s90 -reportprogress|300|-work|work|DoubleDiv.v|
 !i113 1
+R10
 R11
 n@double@div
 vDoubleDiv_altfp_div_49m
-R21
+R14
 !i10b 1
 !s100 l]Rdnf<ZJ0XRW9`lEeG0A0
-IGY;XMA_KVm6T7abZUFm9Q2
+I[j]5YoSl9z1^6@Cf:IjbF1
 R1
-R2
-R22
-R23
+R15
 R24
+R25
+R26
 L0 1682
 R6
 r1
 !s85 0
 31
-R25
-R26
+R18
 R27
+R28
 !i113 1
+R10
 R11
 n@double@div_altfp_div_49m
 vDoubleDiv_altfp_div_pst_99j
-R21
+R14
 !i10b 1
-!s100 M[_B9kmJb_kK@RnoeoWXd2
-I2ZMlEKLC8=]8om3[dz45h1
+!s100 QPgEM4>ojg4n1K^]o:AFQ2
+I80dcU6HZO9T;^hf?JW0d[1
 R1
-R2
-R22
-R23
+R15
 R24
+R25
+R26
 R12
 R6
 r1
 !s85 0
 31
-R25
-R26
+R18
 R27
+R28
 !i113 1
+R10
 R11
 n@double@div_altfp_div_pst_99j
 vDoubleDivider
 R13
-R14
+Z29 !s110 1581671748
 !i10b 1
 !s100 Wi:]?jjC_4i;NngJbihI<3
 IkZX3]W0gzAoiUSRJWE^oU2
 R1
 !s105 DoubleDivider_sv_unit
 S1
-R2
-w1581660711
+R15
+w1581666654
 8DoubleDivider.sv
 FDoubleDivider.sv
-R15
+R17
 R6
 r1
 !s85 0
 31
-R16
+Z30 !s108 1581671748.000000
 !s107 DoubleDivider.sv|
 !s90 -reportprogress|300|-work|work|DoubleDivider.sv|
 !i113 1
@@ -770,15 +773,15 @@ R11
 n@double@divider
 vDoubleMultiply
 R13
-!s110 1581662126
+R22
 !i10b 1
 !s100 UR6Cm4@zXI[[CMG2<`27U0
 I>XoClJib]TfSDnKeM?F[F3
 R1
 !s105 DoubleMultiply_sv_unit
 S1
-R2
-w1581039428
+R15
+R16
 8DoubleMultiply.sv
 FDoubleMultiply.sv
 L0 21
@@ -786,7 +789,7 @@ R6
 r1
 !s85 0
 31
-!s108 1581662126.000000
+!s108 1581671972.000000
 !s107 DoubleMultiply.sv|
 !s90 -reportprogress|300|-work|work|DoubleMultiply.sv|
 !i113 1
@@ -795,14 +798,14 @@ R11
 n@double@multiply
 vForwardKinematics
 R13
-Z28 !s110 1581063165
+Z31 !s110 1581063165
 !i10b 1
 !s100 3foLilf1^R_VjE;2nYej`2
 ICmVgSAReNfRI2G:5FBZHP1
 R1
 !s105 ForwardKinematics_sv_unit
 S1
-Z29 dC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller
+R15
 w1581063151
 8ForwardKinematics.sv
 FForwardKinematics.sv
@@ -811,7 +814,7 @@ R6
 r1
 !s85 0
 31
-Z30 !s108 1581063165.000000
+Z32 !s108 1581063165.000000
 !s107 ForwardKinematics.sv|
 !s90 -reportprogress|300|-work|work|ForwardKinematics.sv|
 !i113 1
@@ -819,265 +822,265 @@ R10
 R11
 n@forward@kinematics
 vIntToDouble
-Z31 !s110 1581527490
+Z33 !s110 1581527490
 !i10b 1
 !s100 9:YTbD>Pb;aiWob^<1W3J1
 I@ZDFOAJ4=OFImlWE2bR1i3
 R1
 R2
-Z32 w1580855567
-Z33 8IntToDouble.v
-Z34 FIntToDouble.v
+Z34 w1580855567
+Z35 8IntToDouble.v
+Z36 FIntToDouble.v
 L0 693
 R6
 r1
 !s85 0
 31
-Z35 !s108 1581527490.000000
-Z36 !s107 IntToDouble.v|
-Z37 !s90 -reportprogress|300|-work|work|IntToDouble.v|
+Z37 !s108 1581527490.000000
+Z38 !s107 IntToDouble.v|
+Z39 !s90 -reportprogress|300|-work|work|IntToDouble.v|
 !i113 1
 R10
 R11
 n@int@to@double
 vIntToDouble_altbarrel_shift_fof
-R31
+R33
 !i10b 1
 !s100 FS48IURaE@=X_mTQD=NE42
 IJ^=zizWClLD^AA;1=FBO32
 R1
 R2
-R32
-R33
 R34
+R35
+R36
 R12
 R6
 r1
 !s85 0
 31
-R35
-R36
 R37
+R38
+R39
 !i113 1
 R10
 R11
 n@int@to@double_altbarrel_shift_fof
 vIntToDouble_altfp_convert_4gn
-R31
+R33
 !i10b 1
 !s100 D=W_YH?=]`?<<7h7h68PJ2
 IWF@o;Z=]XM0A7_We0VJBF3
 R1
 R2
-R32
-R33
 R34
+R35
+R36
 L0 417
 R6
 r1
 !s85 0
 31
-R35
-R36
 R37
+R38
+R39
 !i113 1
 R10
 R11
 n@int@to@double_altfp_convert_4gn
 vIntToDouble_altpriority_encoder_3e8
-R31
+R33
 !i10b 1
 !s100 zo0Q63Pf20]aoFoSG@KR`1
 Iz>W`SWA@AT^CR51UNO>l50
 R1
 R2
-R32
-R33
 R34
+R35
+R36
 L0 175
 R6
 r1
 !s85 0
 31
-R35
-R36
 R37
+R38
+R39
 !i113 1
 R10
 R11
 n@int@to@double_altpriority_encoder_3e8
 vIntToDouble_altpriority_encoder_3v7
-R31
+R33
 !i10b 1
 !s100 ;>IZiCFe9N5:Vf==Rc9d[2
 IgTWceM_c0keEMGaf?`gL32
 R1
 R2
-R32
-R33
 R34
+R35
+R36
 L0 155
 R6
 r1
 !s85 0
 31
-R35
-R36
 R37
+R38
+R39
 !i113 1
 R10
 R11
 n@int@to@double_altpriority_encoder_3v7
 vIntToDouble_altpriority_encoder_6e8
-R31
+R33
 !i10b 1
 !s100 E90O_6GJVDPD@fHPhIOcU0
 Ij>ITmAegBAiaoGK0NQ^a`0
 R1
 R2
-R32
-R33
 R34
+R35
+R36
 L0 226
 R6
 r1
 !s85 0
 31
-R35
-R36
 R37
+R38
+R39
 !i113 1
 R10
 R11
 n@int@to@double_altpriority_encoder_6e8
 vIntToDouble_altpriority_encoder_6v7
-R31
+R33
 !i10b 1
 !s100 ^k^Yf[nH^VlO:59DomMe?1
 Iah`lR38^b=eWLb`93ocO^1
 R1
 R2
-R32
-R33
 R34
+R35
+R36
 L0 194
 R6
 r1
 !s85 0
 31
-R35
-R36
 R37
+R38
+R39
 !i113 1
 R10
 R11
 n@int@to@double_altpriority_encoder_6v7
 vIntToDouble_altpriority_encoder_be8
-R31
+R33
 !i10b 1
 !s100 5Mc<4VQR=OQFf9>eZSzSe0
 IKK:D_A8XRQgLgnS2k;HAE1
 R1
 R2
-R32
-R33
 R34
+R35
+R36
 L0 291
 R6
 r1
 !s85 0
 31
-R35
-R36
 R37
+R38
+R39
 !i113 1
 R10
 R11
 n@int@to@double_altpriority_encoder_be8
 vIntToDouble_altpriority_encoder_bv7
-R31
+R33
 !i10b 1
 !s100 `=meUPNfMWHgGKcSjNXad1
 IT=5fb;<^R@]0dQdJzG15Y1
 R1
 R2
-R32
-R33
 R34
+R35
+R36
 L0 259
 R6
 r1
 !s85 0
 31
-R35
-R36
 R37
+R38
+R39
 !i113 1
 R10
 R11
 n@int@to@double_altpriority_encoder_bv7
 vIntToDouble_altpriority_encoder_qb6
-R31
+R33
 !i10b 1
 !s100 Ljk5M1<V4SN:OKC2d;ifW0
 I>7OzXNeo?^JZfnkhCDFZ71
 R1
 R2
-R32
-R33
 R34
+R35
+R36
 L0 389
 R6
 r1
 !s85 0
 31
-R35
-R36
 R37
+R38
+R39
 !i113 1
 R10
 R11
 n@int@to@double_altpriority_encoder_qb6
 vIntToDouble_altpriority_encoder_r08
-R31
+R33
 !i10b 1
 !s100 E1XWTnkU7`ilem7Zi<QaE3
 IGNR9=aEPZ77Qh528OnQh80
 R1
 R2
-R32
-R33
 R34
+R35
+R36
 L0 324
 R6
 r1
 !s85 0
 31
-R35
-R36
 R37
+R38
+R39
 !i113 1
 R10
 R11
 n@int@to@double_altpriority_encoder_r08
 vIntToDouble_altpriority_encoder_rf8
-R31
+R33
 !i10b 1
 !s100 :e2Ai^5o1KojbOXblb>n70
 I?S96>zUR20=[[B:?9Q3F?3
 R1
 R2
-R32
-R33
 R34
+R35
+R36
 L0 356
 R6
 r1
 !s85 0
 31
-R35
-R36
 R37
+R38
+R39
 !i113 1
 R10
 R11
@@ -1107,53 +1110,103 @@ r1
 R10
 R11
 n@jacobian
+vJacobianInverse
+R13
+R29
+!i10b 1
+!s100 T^KT<DDb8dN=37EUBJ[mn1
+IG5G@6C>Pde`9ImJPSnVDO2
+R1
+!s105 JacobianInverse_sv_unit
+S1
+R15
+w1581668790
+8JacobianInverse.sv
+FJacobianInverse.sv
+L0 29
+R6
+r1
+!s85 0
+31
+R30
+!s107 JacobianInverse.sv|
+!s90 -reportprogress|300|-work|work|JacobianInverse.sv|
+!i113 1
+R10
+R11
+n@jacobian@inverse
+vMatMult
+R13
+R22
+!i10b 1
+!s100 8alN@mh7Ac]^j`d]J;3UI0
+Ik`BlXl6>Oi7bzTYGU2S1S0
+R1
+!s105 MatMult_sv_unit
+S1
+R15
+w1581671969
+8MatMult.sv
+FMatMult.sv
+L0 25
+R6
+r1
+!s85 0
+31
+R23
+!s107 MatMult.sv|
+!s90 -reportprogress|300|-work|work|MatMult.sv|
+!i113 1
+R10
+R11
+n@mat@mult
 vMultiplierFP
-Z38 !s110 1581662125
+Z40 !s110 1581662125
 !i10b 1
 !s100 8oRG1IJ3^b^d^hz1ojmh20
 I20Ufg<C>GS5::WonD=g<c3
 R1
 R2
 R3
-Z39 8MultiplierFP.v
-Z40 FMultiplierFP.v
+Z41 8MultiplierFP.v
+Z42 FMultiplierFP.v
 L0 562
 R6
 r1
 !s85 0
 31
-Z41 !s108 1581662125.000000
-Z42 !s107 MultiplierFP.v|
-Z43 !s90 -reportprogress|300|-work|work|MultiplierFP.v|
+Z43 !s108 1581662125.000000
+Z44 !s107 MultiplierFP.v|
+Z45 !s90 -reportprogress|300|-work|work|MultiplierFP.v|
 !i113 1
 R10
 R11
 n@multiplier@f@p
 vMultiplierFP_altfp_mult_e0r
-R38
+R40
 !i10b 1
 !s100 8AcTiE_U?SRMM8:nf8o633
 IXbW9b?[ZMRAz44TJzC^eD1
 R1
 R2
 R3
-R39
-R40
+R41
+R42
 L0 46
 R6
 r1
 !s85 0
 31
-R41
-R42
 R43
+R44
+R45
 !i113 1
 R10
 R11
 n@multiplier@f@p_altfp_mult_e0r
 vSinDeg
 R13
-R31
+R33
 !i10b 1
 !s100 aYKSglDQ7T12_]7YMYXAC2
 IB:GYmT;fNjBhWNKUQ:cIl3
@@ -1161,15 +1214,15 @@ R1
 !s105 SinDeg_sv_unit
 S1
 R2
-R18
+R19
 8SinDeg.sv
 FSinDeg.sv
-R19
+R20
 R6
 r1
 !s85 0
 31
-R20
+R21
 !s107 SinDeg.sv|
 !s90 -reportprogress|300|-work|work|SinDeg.sv|
 !i113 1
@@ -1178,15 +1231,15 @@ R11
 n@sin@deg
 vSRLatch
 R13
-!s110 1581662834
+R14
 !i10b 1
 !s100 HZE4aW]@8^kaz=TbdRL>41
 IDL9^4e7L>RY[HH]A?4Hlf3
 R1
 !s105 SRLatch_sv_unit
 S1
-R2
-w1581038301
+R15
+R16
 8SRLatch.sv
 FSRLatch.sv
 L0 13
@@ -1194,7 +1247,7 @@ R6
 r1
 !s85 0
 31
-!s108 1581662834.000000
+R18
 !s107 SRLatch.sv|
 !s90 -reportprogress|300|-work|work|SRLatch.sv|
 !i113 1
@@ -1203,14 +1256,14 @@ R11
 n@s@r@latch
 vSync
 R13
-R28
+R31
 !i10b 1
 !s100 ?mFSXV1TRjVZR07WnjcG70
 IAXejJ9dS`b=HmB?02aQz41
 R1
 !s105 Sync_sv_unit
 S1
-R29
+R15
 w1580980510
 8Sync.sv
 FSync.sv
@@ -1219,7 +1272,7 @@ R6
 r1
 !s85 0
 31
-R30
+R32
 !s107 Sync.sv|
 !s90 -reportprogress|300|-work|work|Sync.sv|
 !i113 1

@@ -23,7 +23,7 @@
 *
 *	NOTE: For simulation, the file needs
 *			the library to be specified via 
-*			-L <path_to_model220-lib>
+*			-L 220model -L lpm_ver -L altera_mf_ver
 *
 ***************************************************/
 module JacobianInverse(input logic [63:0] a,
@@ -47,7 +47,7 @@ module JacobianInverse(input logic [63:0] a,
 			DoubleMultiply aTimesd(
 								.reset(reset),
 								.clk(clk),
-								.in_ready(data_ready),
+								.in_ready(enable),
 								.data_ready(ADReady),
 								.result(ADResult),
 								.dataa(a),
@@ -57,7 +57,7 @@ module JacobianInverse(input logic [63:0] a,
 			DoubleMultiply bTimesc(
 								.reset(reset),
 								.clk(clk),
-								.in_ready(data_ready),
+								.in_ready(enable),
 								.data_ready(BCReady),
 								.result(BCResult),
 								.dataa(b),

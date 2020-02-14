@@ -8,18 +8,14 @@
 *				None
 *
 *	Dependencies:
-*				SRLatch.sv
-*				MultiplierFP.v
-*				ClockTimer.sv
-*				DoubleAdder.sv
-*				DoubleMultiplier.sv
-*				Adder.v
-*				IntToDouble.v
-*				
+*				ForwardKinematics.sv
+*				Jacobian.sv
+*				JacobianInverse.sv
+*				MatMult.sv
 *
 *	NOTE: For simulation, the MultiplierFP file needs
 *			the library to be specified via 
-*			-L <path_to_model220-lib>
+*			-L 220model -L lpm_ver -L altera_mf_ver
 *
 ***************************************************/
 module scara_controller(input signed [13:0] 	x_target, // X value to go to (either abs. or rel.)
@@ -191,6 +187,8 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 						.dy_dth1(dy_dth1),
 						.dy_dth2(dy_dth2)
 					);
+					
+	logic [63:0] aInv, bInv, cInv, dInv;
 
 	JacobianInverse ji (
 							.reset(JIReset),
@@ -199,7 +197,46 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 							.a(dx_dth1),
 							.b(dx_dth2),
 							.c(dy_dth1),
-							.d(dy_dth2)
+							.d(dy_dth2),
+							.aOut(aInv),
+							.bOut_n(bInv),
+							.cOut_n(CInv),
+							.dOut(dInv)
+						);
+	
+	
+	/** Change in X and Y logic **/
+	
+	reg signed [13:0] dx, dy;
+	
+	always_comb
+	begin
+		if(control_state_reg[2])begin
+		// Relative position
+			dx <= x_target;
+			dy <= y_target;
+		end
+		else begin
+		// Absolute position
+			dx <= x_target - x_current;
+			dy <= y_target - y_current;
+		end
+	end
+	
+	
+						
+	MatMult multiply (
+						.reset(MULTReset),
+						.enable(MULTEnable),
+						.clk(clk),
+						.invA(aInv),
+						.invB(bInv),
+						.invC(cInv),
+						.invD(dInv),
+						.dx(dx),
+						.dy(dy),
+						.dth1(),
+						.dth2()
 						);
 		
 endmodule
