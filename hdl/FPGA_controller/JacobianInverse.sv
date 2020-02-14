@@ -85,9 +85,58 @@ module JacobianInverse(input logic [63:0] a,
 			
 			/* Divide all elements of the array by the determinant */
 			
+			logic [63:0] aDivDet, bDivDet, cDivDet, dDivDet;
+			logic aDivReady, bDivReady, cDivReady, dDivReady;
 			
+			DoubleDiv aDiv(.enable(DetReady),
+								.clk(clk),
+								.reset(reset),
+								.dataa(a),
+								.datab(det),
+								.result(aDivDet),
+								.data_ready(aDivReady)
+								);
+								
+			DoubleDiv bDiv(.enable(DetReady),
+								.clk(clk),
+								.reset(reset),
+								.dataa(b),
+								.datab(det),
+								.result(bDivDet),
+								.data_ready(bDivReady)
+								);
+								
+			DoubleDiv cDiv(.enable(DetReady),
+								.clk(clk),
+								.reset(reset),
+								.dataa(c),
+								.datab(det),
+								.result(cDivDet),
+								.data_ready(cDivReady)
+								);
+			
+			DoubleDiv dDiv(.enable(DetReady),
+								.clk(clk),
+								.reset(reset),
+								.dataa(d),
+								.datab(det),
+								.result(dDivDet),
+								.data_ready(dDivReady)
+								);
+							
 			
 			
 			/*******************************************************/
+			
+			/******** Output Stage ********/
+			
+			assign aOut = aDivDet;
+			assign bOut_n = {~bDivDet[63], bDivDet[62:0]};// Inverting sign
+			assign cOut_n = {~cDivDet[63], cDivDet[62:0]};// Invert sign
+			assign dOut = dDivDet;
+			
+			assign data_ready = aDivReady & bDivReady & cDivReady & dDivReady;
+			
+			/******************************/
 
 endmodule

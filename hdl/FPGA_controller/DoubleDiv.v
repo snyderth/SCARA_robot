@@ -1161,9 +1161,9 @@ module  DoubleDiv_altfp_div_pst_99j
 	`endif
 	);
 	defparam
-		bias_addition.lpm_direction = "ADD",
+		bias_addition.lpm_direction = "add",
 		bias_addition.lpm_pipeline = 1,
-		bias_addition.lpm_representation = "SIGNED",
+		bias_addition.lpm_representation = "signed",
 		bias_addition.lpm_width = 12,
 		bias_addition.lpm_type = "lpm_add_sub";
 	lpm_add_sub   exp_sub
@@ -1187,9 +1187,9 @@ module  DoubleDiv_altfp_div_pst_99j
 	`endif
 	);
 	defparam
-		exp_sub.lpm_direction = "SUB",
+		exp_sub.lpm_direction = "sub",
 		exp_sub.lpm_pipeline = 1,
-		exp_sub.lpm_representation = "SIGNED",
+		exp_sub.lpm_representation = "signed",
 		exp_sub.lpm_width = 12,
 		exp_sub.lpm_type = "lpm_add_sub";
 	lpm_add_sub   quotient_accumulate_0
@@ -1213,9 +1213,9 @@ module  DoubleDiv_altfp_div_pst_99j
 	`endif
 	);
 	defparam
-		quotient_accumulate_0.lpm_direction = "ADD",
+		quotient_accumulate_0.lpm_direction = "add",
 		quotient_accumulate_0.lpm_pipeline = 1,
-		quotient_accumulate_0.lpm_representation = "UNSIGNED",
+		quotient_accumulate_0.lpm_representation = "unsigned",
 		quotient_accumulate_0.lpm_width = 31,
 		quotient_accumulate_0.lpm_type = "lpm_add_sub";
 	lpm_add_sub   quotient_accumulate_1
@@ -1239,9 +1239,9 @@ module  DoubleDiv_altfp_div_pst_99j
 	`endif
 	);
 	defparam
-		quotient_accumulate_1.lpm_direction = "ADD",
+		quotient_accumulate_1.lpm_direction = "add",
 		quotient_accumulate_1.lpm_pipeline = 1,
-		quotient_accumulate_1.lpm_representation = "UNSIGNED",
+		quotient_accumulate_1.lpm_representation = "unsigned",
 		quotient_accumulate_1.lpm_width = 45,
 		quotient_accumulate_1.lpm_type = "lpm_add_sub";
 	lpm_add_sub   quotient_process
@@ -1265,8 +1265,8 @@ module  DoubleDiv_altfp_div_pst_99j
 	`endif
 	);
 	defparam
-		quotient_process.lpm_direction = "ADD",
-		quotient_process.lpm_representation = "UNSIGNED",
+		quotient_process.lpm_direction = "add",
+		quotient_process.lpm_representation = "unsigned",
 		quotient_process.lpm_width = 59,
 		quotient_process.lpm_type = "lpm_add_sub";
 	lpm_add_sub   remainder_sub_0
@@ -1290,8 +1290,8 @@ module  DoubleDiv_altfp_div_pst_99j
 	`endif
 	);
 	defparam
-		remainder_sub_0.lpm_direction = "SUB",
-		remainder_sub_0.lpm_representation = "UNSIGNED",
+		remainder_sub_0.lpm_direction = "sub",
+		remainder_sub_0.lpm_representation = "unsigned",
 		remainder_sub_0.lpm_width = 79,
 		remainder_sub_0.lpm_type = "lpm_add_sub";
 	lpm_add_sub   remainder_sub_1
@@ -1315,8 +1315,8 @@ module  DoubleDiv_altfp_div_pst_99j
 	`endif
 	);
 	defparam
-		remainder_sub_1.lpm_direction = "SUB",
-		remainder_sub_1.lpm_representation = "UNSIGNED",
+		remainder_sub_1.lpm_direction = "sub",
+		remainder_sub_1.lpm_representation = "unsigned",
 		remainder_sub_1.lpm_width = 79,
 		remainder_sub_1.lpm_type = "lpm_add_sub";
 	lpm_add_sub   remainder_sub_2
@@ -1340,8 +1340,8 @@ module  DoubleDiv_altfp_div_pst_99j
 	`endif
 	);
 	defparam
-		remainder_sub_2.lpm_direction = "SUB",
-		remainder_sub_2.lpm_representation = "UNSIGNED",
+		remainder_sub_2.lpm_direction = "sub",
+		remainder_sub_2.lpm_representation = "unsigned",
 		remainder_sub_2.lpm_width = 79,
 		remainder_sub_2.lpm_type = "lpm_add_sub";
 	lpm_compare   cmpr2
@@ -1366,7 +1366,7 @@ module  DoubleDiv_altfp_div_pst_99j
 	`endif
 	);
 	defparam
-		cmpr2.lpm_representation = "UNSIGNED",
+		cmpr2.lpm_representation = "unsigned",
 		cmpr2.lpm_width = 52,
 		cmpr2.lpm_type = "lpm_compare";
 	lpm_mult   a1_prod
@@ -1389,12 +1389,12 @@ module  DoubleDiv_altfp_div_pst_99j
 	);
 	defparam
 		a1_prod.lpm_pipeline = 1,
-		a1_prod.lpm_representation = "UNSIGNED",
+		a1_prod.lpm_representation = "unsigned",
 		a1_prod.lpm_widtha = 54,
 		a1_prod.lpm_widthb = 10,
 		a1_prod.lpm_widthp = 64,
 		a1_prod.lpm_type = "lpm_mult",
-		a1_prod.lpm_hint = "DEDICATED_MULTIPLIER_CIRCUITRY=YES";
+		a1_prod.lpm_hint = "dedicated_multiplier_circuitry=yes";
 	lpm_mult   b1_prod
 	( 
 	.aclr(aclr),
@@ -1415,12 +1415,12 @@ module  DoubleDiv_altfp_div_pst_99j
 	);
 	defparam
 		b1_prod.lpm_pipeline = 1,
-		b1_prod.lpm_representation = "UNSIGNED",
+		b1_prod.lpm_representation = "unsigned",
 		b1_prod.lpm_widtha = 53,
 		b1_prod.lpm_widthb = 10,
 		b1_prod.lpm_widthp = 63,
 		b1_prod.lpm_type = "lpm_mult",
-		b1_prod.lpm_hint = "DEDICATED_MULTIPLIER_CIRCUITRY=YES";
+		b1_prod.lpm_hint = "dedicated_multiplier_circuitry=yes";
 	lpm_mult   q_partial_0
 	( 
 	.aclr(aclr),
@@ -1441,12 +1441,12 @@ module  DoubleDiv_altfp_div_pst_99j
 	);
 	defparam
 		q_partial_0.lpm_pipeline = 1,
-		q_partial_0.lpm_representation = "UNSIGNED",
+		q_partial_0.lpm_representation = "unsigned",
 		q_partial_0.lpm_widtha = 17,
 		q_partial_0.lpm_widthb = 17,
 		q_partial_0.lpm_widthp = 34,
 		q_partial_0.lpm_type = "lpm_mult",
-		q_partial_0.lpm_hint = "DEDICATED_MULTIPLIER_CIRCUITRY=YES";
+		q_partial_0.lpm_hint = "dedicated_multiplier_circuitry=yes";
 	lpm_mult   q_partial_1
 	( 
 	.aclr(aclr),
@@ -1467,12 +1467,12 @@ module  DoubleDiv_altfp_div_pst_99j
 	);
 	defparam
 		q_partial_1.lpm_pipeline = 1,
-		q_partial_1.lpm_representation = "UNSIGNED",
+		q_partial_1.lpm_representation = "unsigned",
 		q_partial_1.lpm_widtha = 17,
 		q_partial_1.lpm_widthb = 17,
 		q_partial_1.lpm_widthp = 34,
 		q_partial_1.lpm_type = "lpm_mult",
-		q_partial_1.lpm_hint = "DEDICATED_MULTIPLIER_CIRCUITRY=YES";
+		q_partial_1.lpm_hint = "dedicated_multiplier_circuitry=yes";
 	lpm_mult   q_partial_2
 	( 
 	.aclr(aclr),
@@ -1493,12 +1493,12 @@ module  DoubleDiv_altfp_div_pst_99j
 	);
 	defparam
 		q_partial_2.lpm_pipeline = 1,
-		q_partial_2.lpm_representation = "UNSIGNED",
+		q_partial_2.lpm_representation = "unsigned",
 		q_partial_2.lpm_widtha = 17,
 		q_partial_2.lpm_widthb = 17,
 		q_partial_2.lpm_widthp = 34,
 		q_partial_2.lpm_type = "lpm_mult",
-		q_partial_2.lpm_hint = "DEDICATED_MULTIPLIER_CIRCUITRY=YES";
+		q_partial_2.lpm_hint = "dedicated_multiplier_circuitry=yes";
 	lpm_mult   q_partial_3
 	( 
 	.aclr(aclr),
@@ -1519,12 +1519,12 @@ module  DoubleDiv_altfp_div_pst_99j
 	);
 	defparam
 		q_partial_3.lpm_pipeline = 1,
-		q_partial_3.lpm_representation = "UNSIGNED",
+		q_partial_3.lpm_representation = "unsigned",
 		q_partial_3.lpm_widtha = 17,
 		q_partial_3.lpm_widthb = 17,
 		q_partial_3.lpm_widthp = 34,
 		q_partial_3.lpm_type = "lpm_mult",
-		q_partial_3.lpm_hint = "DEDICATED_MULTIPLIER_CIRCUITRY=YES";
+		q_partial_3.lpm_hint = "dedicated_multiplier_circuitry=yes";
 	lpm_mult   remainder_mult_0
 	( 
 	.aclr(aclr),
@@ -1545,12 +1545,12 @@ module  DoubleDiv_altfp_div_pst_99j
 	);
 	defparam
 		remainder_mult_0.lpm_pipeline = 1,
-		remainder_mult_0.lpm_representation = "UNSIGNED",
+		remainder_mult_0.lpm_representation = "unsigned",
 		remainder_mult_0.lpm_widtha = 63,
 		remainder_mult_0.lpm_widthb = 17,
 		remainder_mult_0.lpm_widthp = 80,
 		remainder_mult_0.lpm_type = "lpm_mult",
-		remainder_mult_0.lpm_hint = "DEDICATED_MULTIPLIER_CIRCUITRY=YES";
+		remainder_mult_0.lpm_hint = "dedicated_multiplier_circuitry=yes";
 	lpm_mult   remainder_mult_1
 	( 
 	.aclr(aclr),
@@ -1571,12 +1571,12 @@ module  DoubleDiv_altfp_div_pst_99j
 	);
 	defparam
 		remainder_mult_1.lpm_pipeline = 1,
-		remainder_mult_1.lpm_representation = "UNSIGNED",
+		remainder_mult_1.lpm_representation = "unsigned",
 		remainder_mult_1.lpm_widtha = 63,
 		remainder_mult_1.lpm_widthb = 17,
 		remainder_mult_1.lpm_widthp = 80,
 		remainder_mult_1.lpm_type = "lpm_mult",
-		remainder_mult_1.lpm_hint = "DEDICATED_MULTIPLIER_CIRCUITRY=YES";
+		remainder_mult_1.lpm_hint = "dedicated_multiplier_circuitry=yes";
 	lpm_mult   remainder_mult_2
 	( 
 	.aclr(aclr),
@@ -1597,12 +1597,12 @@ module  DoubleDiv_altfp_div_pst_99j
 	);
 	defparam
 		remainder_mult_2.lpm_pipeline = 1,
-		remainder_mult_2.lpm_representation = "UNSIGNED",
+		remainder_mult_2.lpm_representation = "unsigned",
 		remainder_mult_2.lpm_widtha = 63,
 		remainder_mult_2.lpm_widthb = 17,
 		remainder_mult_2.lpm_widthp = 80,
 		remainder_mult_2.lpm_type = "lpm_mult",
-		remainder_mult_2.lpm_hint = "DEDICATED_MULTIPLIER_CIRCUITRY=YES";
+		remainder_mult_2.lpm_hint = "dedicated_multiplier_circuitry=yes";
 	assign		wire_exp_result_muxa_dataout = (exp_result_mux_sel_w === 1'b1) ? underflow_zeros_w : exp_result_w;
 	assign		wire_man_a_adjusteda_dataout = (frac_a_smaller_dffe1_wo === 1'b1) ? {1'b1, man_a_dffe1_wo, 1'b0} : {1'b0, 1'b1, man_a_dffe1_wo};
 	assign		wire_man_result_muxa_dataout = (man_result_mux_select === 1'b1) ? {nan_pipe_dffe_8, man_zeros_w[50:0]} : wire_quotient_process_result[56:5];
