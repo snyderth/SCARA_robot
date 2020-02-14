@@ -50,13 +50,13 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 	logic CONVEnable, CONVReset, 	CONVDone;/* Convert Result			*/
 
 	
-	typedef enum logic [2:0] {FK, J, JI, MULT, CONV} compute_state;
+	typedef enum logic [2:0] {FK, J, JI, MULT, CONV, INIT} compute_state;
 	compute_state next_state;
 	compute_state state;
 	
 	initial begin
-		state 		= 	FK;
-		next_state 	= 	J;
+//		state 		= 	FK;
+//		next_state 	= 	J;
 		
 		FKReset 		= 	1'b1;
 		FKEnable 	= 	1'b0;
@@ -81,7 +81,18 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 	// Initialize the arm to the current location
 	always_ff@(posedge clk) begin
 		state <= next_state;
-		if(state == FK) begin
+		if(reset) begin
+			state <= INIT;
+		end
+		
+		
+		if(state == INIT) begin
+		// Init state
+			if(control_state_reg[0]) next_state <= FK;
+			else next_state <= INIT;
+		end
+		
+		else if(state == FK) begin
 			// Forward Kinematics
 			if(FKdone) begin
 			// Transition to jacobian state
