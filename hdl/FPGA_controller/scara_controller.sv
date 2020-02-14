@@ -22,15 +22,15 @@
 *			-L <path_to_model220-lib>
 *
 ***************************************************/
-module scara_controller(input logic [13:0] 	x_target,
-								input	logic	[13:0]	y_target,
-								input logic [4:0]		control_state_reg,
-								input signed [7:0]	th1,
-								input signed [7:0]	th2,
-								input logic 			clk,
-								input logic 			reset,
-								output	logic	[13:0] th1_steps,
-								output	logic [13:0] th2_steps);
+module scara_controller(input signed [13:0] 	x_target, // X value to go to (either abs. or rel.)
+								input	signed [13:0]	y_target, // Y value to go to 		""
+								input logic  [4:0]	control_state_reg, // State register input
+								input signed [7:0]	th1, // Angle of the first joint: May be an internal variable
+								input signed [7:0]	th2, // Angle of the second joint: may be an internal variable
+								input logic 			clk, // INput clock
+								input logic 			reset, // Reset pin. Resets state machine to init state (waiting)
+								output	logic	[8:0] th1_steps, // Outputs number of steps
+								output	logic [8:0] th2_steps);
 
 	
 	logic [63:0] x_current;
@@ -42,6 +42,7 @@ module scara_controller(input logic [13:0] 	x_target,
 	assign l1_inch = 14'd8936; // Arm length, inches converted to integers
 	logic [13:0] l1_mm;
 	logic [13:0] l2_mm;
+	
 	
 	/* State variables for each state */
 	logic FKEnable, 	FKReset, 	FKdone; 	/* Forward Kinematics 	*/
@@ -81,7 +82,7 @@ module scara_controller(input logic [13:0] 	x_target,
 	
 	// Initialize the arm to the current location
 	always_ff@(posedge clk) begin
-	
+		state <= next_state;
 		if(state == FK) begin
 			// Forward Kinematics
 			if(FKdone) begin
@@ -176,7 +177,18 @@ module scara_controller(input logic [13:0] 	x_target,
 								.data_ready(FKdone)
 								);
 								
-	Jacobian jk ();
+	Jacobian jk (
+						.reset(JReset),
+						.enable(JEnable),
+						.clk(clk),
+						.l1(l1_inch),
+						.l2(l2_inch),
+						.data_ready(JDone),
+						.dx_dth1(),
+						.dx_dth2(),
+						.dy_dth1(),
+						.dy_dth2()
+					);
 
 		
 		
