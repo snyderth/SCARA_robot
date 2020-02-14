@@ -22,8 +22,8 @@ ARGY_OFFSET = ARGX_OFFSET + ARG_BITS
 #Conversion
 MAX_IN = 11 #in
 MAX_MM = 279.4 #mm
-IN_TO_BITS = 2**ARG_BITS/MAX_IN #bits/in
-MM_TO_BITS = 2**ARG_BITS/MAX_MM #bits/mm
+IN_TO_BITS = 2**(ARG_BITS)/MAX_IN #bits/in
+MM_TO_BITS = 2**(ARG_BITS)/MAX_MM #bits/mm
 TOOL_TO_BITS = 1
 
 #Gcode to command map
@@ -55,8 +55,14 @@ def commandToGcode(command, conversion):
     if commandHasArgs(gcodeCommand):
         for argName in commandArgs(gcodeCommand):
             gcode += argName
+            arg = (command & ((1 << ARG_BITS) - 1))
+
+            # Argument is negative in ARG_BITS representation, invert it to be negative in int representation.
+            if arg.bit_length() == ARG_BITS:
+                arg = arg - 2**ARG_BITS
+
             if gcodeCommand != str(pygc.GCodeToolChange()):
-                argValue = (command & ((1 << ARG_BITS) - 1)) * conversion
+                argValue =  arg * conversion
             else:
                 argValue = (command & ((1 << ARG_BITS) - 1))
 
@@ -166,7 +172,10 @@ def extractArg(value, conversion, max, offset):
     #Convert in/mm to bit/in or bit/mm
     decimal *= conversion
 
-    arg = int(decimal) << offset
+    #Constrain decimal to be within the bit space
+    integer = int(decimal) & (2**ARG_BITS - 1)
+
+    arg = (integer) << offset
 
     return arg
 
@@ -184,7 +193,7 @@ if __name__ == '__main__':
 
     gcode = gcodeFile.read()
 
-    commands = gcodeToCommands(gcode)
+    commands = gcodeToCommands("G01 X-2.4 Y2.4")
 
     reverseGcode = commandsToGcode(commands)
 
