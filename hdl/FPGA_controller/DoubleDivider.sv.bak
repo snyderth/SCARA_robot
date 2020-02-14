@@ -1,0 +1,11 @@
+module DoubleDivider(input logic [63:0] dataa,
+							input logic [63:0] datab,
+							input logic clk,
+							input logic enable,
+							input logic reset,
+							output logic [63:0] result,
+							output logic data_ready
+							);
+
+
+endmodule
