@@ -9,6 +9,8 @@ import pygcode as pygc
 #ArgX may also represent a T argument for the relevant codes
 
 #Constants
+ABSOLUTE = "absolute"
+RELATIVE = "relative"
 
 #Bits per section
 CODE_BITS = 4
@@ -24,7 +26,15 @@ MAX_IN = 11 #in
 MAX_MM = 279.4 #mm
 IN_TO_BITS = 2**(ARG_BITS)/MAX_IN #bits/in
 MM_TO_BITS = 2**(ARG_BITS)/MAX_MM #bits/mm
-TOOL_TO_BITS = 1
+
+#Arm parameters
+JOINT_1_LENGTH = 5 * IN_TO_BITS
+JOINT_2_LENGTH = 4 * IN_TO_BITS
+INTERPOLATION_TOLERANCE = (1/16) * IN_TO_BITS
+
+#Set arm to be at 45 degree angles initially
+INIT_X = JOINT_1_LENGTH * math.cos(math.pi/4) + JOINT_2_LENGTH * math.cos(math.pi / 2)
+INIT_Y = JOINT_1_LENGTH * math.sin(math.pi/4) + JOINT_2_LENGTH * math.sin(math.pi / 2)
 
 #Gcode to command map
 GCODE_MAP = {str(pygc.GCodeRapidMove()): 0, str(pygc.GCodeLinearMove()): 1, str(pygc.GCodeUseInches()): 2, str(pygc.GCodeUseMillimeters()): 3, str(pygc.GCodeAbsoluteDistanceMode()): 4, str(pygc.GCodeIncrementalDistanceMode()): 5, str(pygc.GCodeEndProgram()): 6, str(pygc.GCodeToolChange()): 7, "M72": 8}
@@ -100,20 +110,24 @@ def commandCode(command: int):
 def gcodeToCommands(gcodeText):
     '''
     Convert gcode text to a list of commands. Throws exceptions if there are errors in the gcode.
-
     @param gcodeText:
     @return:
+
     '''
-    #Format gcode to remove whitespace, convert to lower case, and remove empty lines
-    # gcodeCommands = filter(lambda t: not t.isspace(), map(lambda t: str.lower(str.strip(t)), gcodeText.split('\n')))
-    # commands = []
-    #
-    #Assume to be in inches first
+
+
     lines = gcodeText.split("\n");
     parsedLines = list(map(pygc.Line, lines))
     commands = []
+
+    #Assume to be in inches first
     max = MAX_IN
     conversion = IN_TO_BITS
+    positioning = ABSOLUTE
+
+    #Arm starts with both joints at 45 degree angle
+    xPos = INIT_X
+    yPos = INIT_Y
 
     for gcodeLine in parsedLines:
         for gcode in gcodeLine.gcodes:
@@ -131,22 +145,44 @@ def gcodeToCommands(gcodeText):
             command |= code << CODE_OFFSET
             # OR each argument into command
 
-            for key in gcode.params:
-                offset = ARGX_OFFSET if key == "X" or key == "T" else ARGY_OFFSET
-                if key != "T":
-                    command |= extractArg(gcode.params[key].value, conversion, max, offset)
+            if commandMovesLinear(cmd) and len(gcode.params) > 0:
+                xNew = xPos
+                yNew = yPos
+                if "X" in gcode.params:
+                    xNew = gcode.params["X"]
+                if "Y" in gcode:
+                    yNew = gcode.params["Y"]
+                xDelta = xNew - xPos if positioning == ABSOLUTE else xPos - (xPos + xNew)
+                yDelta = yNew - yPos if positioning == ABSOLUTE else yPos - (yPos + yNew)
+                delta = math.sqrt(xDelta**2 + yDelta**2)
+                if delta > INTERPOLATION_TOLERANCE:
+                    commands += interpolate(code, xPos, yPos, xNew, yNew, positioning)
                 else:
-                    command |= extractArg(gcode.params[key].value, 1 , 2**ARG_BITS, offset)
-
-
+                    for key in gcode.params:
+                        offset = ARGX_OFFSET if key == "X" or key == "T" else ARGY_OFFSET
+                        if key != "T":
+                            command |= extractArg(gcode.params[key].value, conversion, max, offset)
+                        else:
+                            command |= extractArg(gcode.params[key].value, 1, 2 ** ARG_BITS, offset)
+                xPos += xDelta
+                yPos += yDelta
             commands.append(command)
     return commands
+
+def createCommand(code, xArg, yArg):
+    return code & (xArg << ARGX_OFFSET) &  (yArg << ARGY_OFFSET)
+
+def interpolate(code, xPos, yPos, xNew, yNew):
 
 
 
 #True if given gcode code has arguments attached to it
 def commandHasArgs(code):
     return code == str(pygc.GCodeLinearMove()) or code == str(pygc.GCodeRapidMove()) or code == str(pygc.GCodeToolChange())
+
+#True if given code moves the arm linearly
+def commandMovesLinear(code):
+    return code == str(pygc.GCodeLinearMove()) or code == str(pygc.GCodeRapidMove())
 
 def commandArgs(code):
     if code == str(pygc.GCodeRapidMove()) or code == str(pygc.GCodeLinearMove()):
@@ -161,6 +197,8 @@ def commandUnits(code):
     if code == str(pygc.GCodeUseMillimeters()):
         return (MM_TO_BITS, MAX_MM)
     return None
+
+def paramToArg(paramValue, conversion, max):
 
 #Given a string in the format <x | y | t> <number>.<number>, return an argument value at the approprate offset
 def extractArg(value, conversion, max, offset):
