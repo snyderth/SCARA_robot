@@ -66,6 +66,7 @@ def commandToGcode(command, conversion):
 
     gcode += gcodeCommand + " "
 
+    #shift to arguments
     command = command >> CODE_BITS
     if commandHasArgs(gcodeCommand):
         for argName in commandArgs(gcodeCommand):
@@ -76,13 +77,15 @@ def commandToGcode(command, conversion):
             if arg.bit_length() == ARG_BITS:
                 arg = arg - 2**ARG_BITS
 
+            #Don't convert tool change units
             if gcodeCommand != str(pygc.GCodeToolChange()):
                 argValue =  arg * conversion
             else:
-                argValue = (command & ((1 << ARG_BITS) - 1))
+                argValue = arg
 
             gcode += str(argValue) + " "
 
+            #shift to next argument
             command = command >> ARG_BITS
     return (gcode, conversion)
 
@@ -148,9 +151,8 @@ def gcodeToCommands(gcodeText):
             #Get enumeration value of cmd
             code = commandToCode(cmd)
 
+            #interpolate linear movement commands
             if commandMovesLinear(cmd) and len(gcode.params) > 0:
-
-
                 xNew = noMove(xPos, positioning)
                 yNew = noMove(yPos, positioning)
 
@@ -158,7 +160,6 @@ def gcodeToCommands(gcodeText):
                     xNew = paramToArg(gcode.params["X"].value, conversion, max)
                 if "Y" in gcode.params:
                     yNew = paramToArg(gcode.params["Y"].value, conversion, max)
-
 
                 xEnd = increment(xPos, xNew, positioning)
                 yEnd = increment(yPos, yNew, positioning)
@@ -170,14 +171,16 @@ def gcodeToCommands(gcodeText):
                 yPos = yEnd
 
             else:
+
                 if cmd == str(pygc.GCodeToolChange()):
-                    for key in gcode.params:
-                        command |= extractArg(gcode.params[key].value, 1, 2 ** ARG_BITS, ARGX_OFFSET)
+                    if "T" in gcode.params:
+                        command |= extractArg(gcode.params["T"].value, 1, 2 ** ARG_BITS, ARGX_OFFSET)
                 command |= code << CODE_OFFSET
                 commands.append(command)
     return commands
 
-#Functions that describe how the machine operates in ABSOLUTE and RELATIVE mode
+###Functions that describe how the machine operates in ABSOLUTE and RELATIVE mode
+
 def noMove(value, mode: Mode):
     '''
     What "zero" movement  means in the context of mode
@@ -197,10 +200,30 @@ def increment(value, newValue, mode: Mode):
     '''
     return newValue if mode == Mode.ABSOLUTE else value + newValue
 
+###
+
 def createCommand(code, xArg, yArg):
+    '''
+    Create an FPGA command
+    @param code: command code in GCODE_MAP
+    @param xArg: int size below ARG_BITS
+    @param yArg: int size below ARG_BITS
+    @return:
+    '''
     return code | (xArg << ARGX_OFFSET) | (yArg << ARGY_OFFSET)
 
 def interpolate(code, xStart, yStart, xEnd, yEnd, segLength, mode):
+    '''
+    Split line (xStart, yStart), (xEnd, yEnd) into a number of segments sized segLength or less and return them as commands with the code code.
+    @param code: Command code
+    @param xStart: Starting x point
+    @param yStart: Starting y point
+    @param xEnd: Ending x point
+    @param yEnd: Ending y point
+    @param segLength: Maximum size of segment
+    @param mode: ABSOLUTE or RELATIVE
+    @return: List of move commands that draw the line in increments of segLength
+    '''
     commands = []
 
     xDelta = xEnd - xStart
@@ -226,7 +249,7 @@ def interpolate(code, xStart, yStart, xEnd, yEnd, segLength, mode):
     else:
         for i in range(0, int(hypotenuse // segLength)):
             # Make the length of the line segment be the segment length or the remainder of the hypotenuse smaller than the segment length
-            segHypotenuse = segLength if hypotenuse - (segLength * i + 1) > segLength else hypotenuse - (segLength * i + 1)
+            segHypotenuse = min(segLength, hypotenuse - (segLength * i + 1))
             xInc = segHypotenuse * math.cos(angle)
             yInc = segHypotenuse * math.sin(angle)
 
@@ -235,23 +258,39 @@ def interpolate(code, xStart, yStart, xEnd, yEnd, segLength, mode):
     return commands
 
 
-
-#True if given gcode code has arguments attached to it
 def commandHasArgs(code):
+    '''
+    True if given gcode code has arguments attached to it
+    @param code:
+    @return:
+    '''
     return code == str(pygc.GCodeLinearMove()) or code == str(pygc.GCodeRapidMove()) or code == str(pygc.GCodeToolChange())
 
-#True if given code moves the arm linearly
 def commandMovesLinear(code):
+    '''
+    True if given code moves the arm linearly
+    @param code:
+    @return:
+    '''
     return code == str(pygc.GCodeLinearMove()) or code == str(pygc.GCodeRapidMove())
 
 def commandArgs(code):
+    '''
+    Arguments in order of position in command code for given code. If code has no args returns None
+    @param code:
+    @return:
+    '''
     if code == str(pygc.GCodeRapidMove()) or code == str(pygc.GCodeLinearMove()):
         return ("X", "Y")
     if code == str(pygc.GCodeToolChange()):
         return ("T")
 
-#Returns (conversion factor, max value) for given gcode code if code converts units, None otherwise.
 def commandUnits(code):
+    '''
+
+    @param code:
+    @return: (conversion factor, max value) for given gcode code if code converts units, None otherwise.
+    '''
     if code == str(pygc.GCodeUseInches()):
         return (IN_TO_BITS, MAX_IN)
     if code == str(pygc.GCodeUseMillimeters()):
@@ -259,6 +298,13 @@ def commandUnits(code):
     return None
 
 def paramToArg(value, conversion, max):
+    '''
+    Convert a value in units that is at most max to a value in units * conversion that is at most 2**ARG_BITS
+    @param value:
+    @param conversion:
+    @param max:
+    @return:
+    '''
     decimal = float(value)
 
     # Clamp to maximum
@@ -271,16 +317,27 @@ def paramToArg(value, conversion, max):
     integer = int(decimal) & (2 ** ARG_BITS - 1)
     return integer
 
-#Given a string in the format <x | y | t> <number>.<number>, return an argument value at the approprate offset
 def extractArg(value, conversion, max, offset):
-
+    '''
+    Returns a converted value at the appropriate offset
+    @param value:
+    @param conversion:
+    @param max:
+    @param offset:
+    @return:
+    '''
     integer = paramToArg(value, conversion, max)
     arg = (integer) << offset
 
     return arg
 
-#Given a code in the format <G|M><number> return the appropriate command number.
 def commandToCode(code):
+    '''
+    Given a code in the format <G|M><number> return the appropriate command number.
+
+    @param code:
+    @return:
+    '''
     if code in GCODE_MAP:
         return GCODE_MAP[code]
     else:
