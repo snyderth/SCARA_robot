@@ -1,3 +1,23 @@
+/***************************************************
+*	File: 		DegToSteps
+*	Author: 		Thomas Snyder
+*	Date:			2/5/2020
+*	Description:Module to convert the degrees change
+*					to the number of steps for a stepper
+*					motor that has 1.8 deg/step increments
+*
+*	Parameters:
+*				None
+*
+*	Dependencies:
+*				DoubleDivider.sv
+*				
+*
+*	NOTE: For simulation, the MultiplierFP file needs
+*			the library to be specified via 
+*			-L 220model -L lpm_ver -L altera_mf_ver
+*
+***************************************************/
 module DegToSteps (input logic [63:0] dth1,
 						 input logic [63:0] dth2,
 						 input logic clk,
@@ -22,7 +42,8 @@ module DegToSteps (input logic [63:0] dth1,
 													.clk(clk),
 													.enable(en),
 													.data_ready(s1Ready),
-													.result(s1Res)
+													.result(s1Res),
+													.reset(reset)
 													);
 													
 													
@@ -32,7 +53,8 @@ module DegToSteps (input logic [63:0] dth1,
 													.clk(clk),
 													.enable(en),
 													.data_ready(s2Ready),
-													.result(s2Res)
+													.result(s2Res),
+													.reset(reset)
 													);
 													
 					always_comb begin
@@ -56,6 +78,15 @@ module DegToSteps (input logic [63:0] dth1,
 						end
 						
 					end
+					
+					/* Latch the output high just to make sure
+						the stepper motor driver gets it*/
+//					SRLatch OutLatch(
+//										.set(s1Ready & s2Ready),
+//										.reset(reset),
+//										.q(data_ready)
+//										);
 
 					assign data_ready = s1Ready & s2Ready;
+
 endmodule

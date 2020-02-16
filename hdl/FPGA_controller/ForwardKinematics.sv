@@ -24,8 +24,8 @@
 ***************************************************/
 module ForwardKinematics(input signed [8:0] th1,
 								 input signed [8:0] th2,
-								 input logic	[31:0] l1,
-								 input logic 	[31:0] l2,
+								 input logic	[13:0] l1,
+								 input logic 	[13:0] l2,
 								 input logic	enable,
 								 input logic 	clk,
 								 input logic  reset,
@@ -48,24 +48,24 @@ module ForwardKinematics(input signed [8:0] th1,
 /* Converting integer lengths to double lengths */													
 				
 		
-		IntToDouble	l1conv (
+		Int15BitToDouble	l1conv (
 												.clk_en ( en ),
 												.clock ( clk ),
-												.dataa ( l1 ),
+												.dataa ( {1'b0,l1} ),
 												.result ( L1Double )
 												);
 										
-		IntToDouble	l2conv (
+		Int15BitToDouble	l2conv (
 												.clk_en ( en ),
 												.clock ( clk),
-												.dataa ( l2 ),
+												.dataa ( {1'b0, l2} ),
 												.result ( L2Double )
 												);
 
 	logic [9:0] cnt;
 												
 	//Six cycle latency for conversion (1 cycle latency on counter)
-	ClockTimer #(10, 6) LConvTime (.clk(clk), .en(enable), .reset(reset), .expire(MultBegin), .count(cnt));
+	ClockTimer #(10, 6) LConvTime (.clk(clk), .en(enable), .reset(reset), .expire(MultBegin));//, .count(cnt));
 
 /******************************************************/
 
@@ -154,7 +154,7 @@ module ForwardKinematics(input signed [8:0] th1,
 		logic dataX, dataY;
 		
 		DoubleAdder addy(.dataa(l1Sine),
-							 .datab(l2CosSum),
+							 .datab(l2SinSum),
 							 .clk(clk),
 							 .in_ready(add_begin),
 							 .reset(reset),
@@ -162,7 +162,7 @@ module ForwardKinematics(input signed [8:0] th1,
 							 .data_ready(dataY));
 		
 		
-		DoubleAdder addx(.dataa(l2SinSum),
+		DoubleAdder addx(.dataa(l2CosSum),
 							 .datab(l1Cos),
 							 .clk(clk),
 							 .in_ready(add_begin),

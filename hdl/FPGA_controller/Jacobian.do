@@ -6,10 +6,10 @@ vlog -work work Adder.v
 vlog -work work DoubleAdder.sv
 vlog -work work CosDeg.sv
 vlog -work work SinDeg.sv
-vlog -work work IntToDouble.v
+vlog -work work Int15BitToDouble.v
 
-#vsim -L "C:/intelFPGA_lite/18.1/modelsim_ase/altera/verilog/220model" work.Jacobian
-vsim -L "Z:/home/thomas/intelFPGA_lite/18.1/modelsim_ase/altera/verilog/220model" work.Jacobian
+vsim -L "C:/intelFPGA_lite/18.1/modelsim_ase/altera/verilog/220model" work.Jacobian
+#vsim -L "Z:/home/thomas/intelFPGA_lite/18.1/modelsim_ase/altera/verilog/220model" work.Jacobian
 
 
 add wave -radix float64 dx_dth1
@@ -67,7 +67,7 @@ force th2 9'd45 @ 20
 force enable 0 @ 0, 1 @ 20, 0 @ 40
 force reset 1 @ 0, 0 @ 12
 
-force l1 32'd8936 @ 0
-force l2 32'd7447 @ 0
+force l1 14'd8936 @ 0
+force l2 14'd7447 @ 0
 
 run 2000

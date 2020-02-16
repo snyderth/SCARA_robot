@@ -8,8 +8,8 @@ vlog -work work CosDeg.sv
 vlog -work work SinDeg.sv
 vlog -work work IntToDouble.v
 
-#vsim -L "C:/intelFPGA_lite/18.1/modelsim_ase/altera/verilog/220model" work.Jacobian
-vsim -L "Z:/home/thomas/intelFPGA_lite/18.1/modelsim_ase/altera/verilog/220model" work.Jacobian
+vsim -L "C:/intelFPGA_lite/18.1/modelsim_ase/altera/verilog/220model" work.Jacobian
+#vsim -L "Z:/home/thomas/intelFPGA_lite/18.1/modelsim_ase/altera/verilog/220model" work.Jacobian
 
 
 add wave -radix float64 dx_dth1
@@ -55,6 +55,8 @@ add wave -radix float64 cos_th12
 add wave -Logic en
 add wave -Logic ConvStart
 
+add wave -radix Decimal count
+
 # Perform Simulation
 
 force clk 0 @ 0, 1 @ 5 -r 10
@@ -65,7 +67,7 @@ force th2 9'd45 @ 20
 force enable 0 @ 0, 1 @ 20, 0 @ 40
 force reset 1 @ 0, 0 @ 12
 
-force l1 32'd8936 @ 0
-force l2 32'd7447 @ 0
+force l1 14'd8936 @ 0
+force l2 14'd7447 @ 0
 
 run 2000

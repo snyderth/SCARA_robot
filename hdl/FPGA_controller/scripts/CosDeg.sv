@@ -11,7 +11,7 @@
 *				None
 *
 ***************************************************/
-module	CosDeg(input	signed	[7:0]	data_in,
+module	CosDeg(input	signed	[8:0]	data_in,
 			output logic [63:0] data_out);
 
 

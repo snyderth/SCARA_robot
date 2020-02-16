@@ -1,5 +1,5 @@
 Flow report for scara_controller
-Fri Feb 14 09:42:32 2020
+Sat Feb 15 21:37:02 2020
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,7 +40,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Fri Feb 14 09:42:31 2020       ;
+; Flow Status                     ; Successful - Sat Feb 15 21:37:01 2020       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; scara_controller                            ;
 ; Top-level Entity Name           ; scara_controller                            ;
@@ -48,11 +48,11 @@ refer to the applicable agreement for further details.
 ; Device                          ; 5CSEMA5F31C6                                ;
 ; Timing Models                   ; Final                                       ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 18881                                       ;
-; Total pins                      ; 181                                         ;
+; Total registers                 ; 27684                                       ;
+; Total pins                      ; 167                                         ;
 ; Total virtual pins              ; 0                                           ;
-; Total block memory bits         ; 13,860                                      ;
-; Total DSP Blocks                ; 87                                          ;
+; Total block memory bits         ; 18,468                                      ;
+; Total DSP Blocks                ; 100                                         ;
 ; Total HSSI RX PCSs              ; 0                                           ;
 ; Total HSSI PMA RX Deserializers ; 0                                           ;
 ; Total HSSI TX PCSs              ; 0                                           ;
@@ -67,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 02/14/2020 09:40:58 ;
+; Start date & time ; 02/15/2020 21:35:07 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; scara_controller    ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 30902508563092.158170205724904         ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 30902508563092.158183130605780         ; --            ; --          ; --         ;
 ; FLOW_ENABLE_RTL_VIEWER              ; On                                     ; Off           ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
@@ -103,6 +103,7 @@ refer to the applicable agreement for further details.
 ; MISC_FILE                           ; DoubleTo14BitInt_bb.v                  ; --            ; --          ; --         ;
 ; MISC_FILE                           ; Int14BitToDouble.bsf                   ; --            ; --          ; --         ;
 ; MISC_FILE                           ; Int14BitToDouble_inst.v                ; --            ; --          ; --         ;
+; MISC_FILE                           ; Int15BitToDouble_inst.v                ; --            ; --          ; --         ;
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
 ; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
 ; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
@@ -117,8 +118,8 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:01:23     ; 2.7                     ; 5279 MB             ; 00:02:06                           ;
-; Total                ; 00:01:23     ; --                      ; --                  ; 00:02:06                           ;
+; Analysis & Synthesis ; 00:01:41     ; 2.7                     ; 5448 MB             ; 00:03:28                           ;
+; Total                ; 00:01:41     ; --                      ; --                  ; 00:03:28                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

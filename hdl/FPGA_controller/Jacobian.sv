@@ -22,10 +22,10 @@
 *			-L <path_to_model220-lib>
 *
 ***************************************************/
-module Jacobian(input	logic 	[31:0] l1,
-					 input	logic 	[31:0] l2,
-					 input	logic		[8:0]	th1,
-					 input	logic		[8:0]	th2,
+module Jacobian(input	logic 	[13:0] l1,
+					 input	logic 	[13:0] l2,
+					 input	logic		[7:0]	th1,
+					 input	logic		[7:0]	th2,
 					 input	logic 	clk,
 					 input 	logic		enable,
 					 input 	logic		reset,
@@ -51,18 +51,18 @@ module Jacobian(input	logic 	[31:0] l1,
 							.q(ConvStart)
 							);
 	
-	IntToDouble len1(
+	Int15BitToDouble len1(
 						.clk_en(ConvStart),
 						.clock(clk),
-						.dataa(l1),
+						.dataa({1'b0, l1}),
 						.result(L1Double)
 					);
 					
 					
-	IntToDouble len2(
+	Int15BitToDouble len2(
 						.clk_en(ConvStart),
 						.clock(clk),
-						.dataa(l2),
+						.dataa({1'b0, l2}),
 						.result(L2Double)
 					);
 					

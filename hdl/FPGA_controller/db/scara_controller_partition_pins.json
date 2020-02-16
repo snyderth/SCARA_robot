@@ -4,6 +4,10 @@
 			"name" : "Top",
 			"pins" : [
 				{
+					"name" : "controller_ready",
+					"strict" : false
+				},
+				{
 					"name" : "m1_steps[0]",
 					"strict" : false
 				},
@@ -420,54 +424,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "m1_steps[52]",
-					"strict" : false
-				},
-				{
-					"name" : "m1_steps[53]",
-					"strict" : false
-				},
-				{
-					"name" : "m1_steps[54]",
-					"strict" : false
-				},
-				{
-					"name" : "m1_steps[55]",
-					"strict" : false
-				},
-				{
-					"name" : "m1_steps[56]",
-					"strict" : false
-				},
-				{
-					"name" : "m1_steps[57]",
-					"strict" : false
-				},
-				{
-					"name" : "m1_steps[58]",
-					"strict" : false
-				},
-				{
-					"name" : "m1_steps[59]",
-					"strict" : false
-				},
-				{
-					"name" : "m1_steps[60]",
-					"strict" : false
-				},
-				{
-					"name" : "m1_steps[61]",
-					"strict" : false
-				},
-				{
-					"name" : "m1_steps[62]",
-					"strict" : false
-				},
-				{
-					"name" : "dir1",
-					"strict" : false
-				},
-				{
 					"name" : "m2_steps[52]",
 					"strict" : false
 				},
@@ -516,7 +472,71 @@
 					"strict" : false
 				},
 				{
+					"name" : "m1_steps[52]",
+					"strict" : false
+				},
+				{
+					"name" : "m1_steps[53]",
+					"strict" : false
+				},
+				{
+					"name" : "m1_steps[54]",
+					"strict" : false
+				},
+				{
+					"name" : "m1_steps[55]",
+					"strict" : false
+				},
+				{
+					"name" : "m1_steps[56]",
+					"strict" : false
+				},
+				{
+					"name" : "m1_steps[57]",
+					"strict" : false
+				},
+				{
+					"name" : "m1_steps[58]",
+					"strict" : false
+				},
+				{
+					"name" : "m1_steps[59]",
+					"strict" : false
+				},
+				{
+					"name" : "m1_steps[60]",
+					"strict" : false
+				},
+				{
+					"name" : "m1_steps[61]",
+					"strict" : false
+				},
+				{
+					"name" : "m1_steps[62]",
+					"strict" : false
+				},
+				{
+					"name" : "dir1",
+					"strict" : false
+				},
+				{
+					"name" : "stepper_ready",
+					"strict" : false
+				},
+				{
 					"name" : "clk",
+					"strict" : false
+				},
+				{
+					"name" : "reset",
+					"strict" : false
+				},
+				{
+					"name" : "control_state_reg[0]",
+					"strict" : false
+				},
+				{
+					"name" : "control_state_reg[2]",
 					"strict" : false
 				},
 				{
@@ -525,10 +545,6 @@
 				},
 				{
 					"name" : "x_target[13]",
-					"strict" : false
-				},
-				{
-					"name" : "control_state_reg[2]",
 					"strict" : false
 				},
 				{
@@ -633,70 +649,6 @@
 				},
 				{
 					"name" : "y_target[0]",
-					"strict" : false
-				},
-				{
-					"name" : "th1[3]",
-					"strict" : false
-				},
-				{
-					"name" : "th1[7]",
-					"strict" : false
-				},
-				{
-					"name" : "th1[6]",
-					"strict" : false
-				},
-				{
-					"name" : "th1[5]",
-					"strict" : false
-				},
-				{
-					"name" : "th1[4]",
-					"strict" : false
-				},
-				{
-					"name" : "th1[1]",
-					"strict" : false
-				},
-				{
-					"name" : "th1[2]",
-					"strict" : false
-				},
-				{
-					"name" : "th1[0]",
-					"strict" : false
-				},
-				{
-					"name" : "th2[5]",
-					"strict" : false
-				},
-				{
-					"name" : "th2[7]",
-					"strict" : false
-				},
-				{
-					"name" : "th2[6]",
-					"strict" : false
-				},
-				{
-					"name" : "th2[3]",
-					"strict" : false
-				},
-				{
-					"name" : "th2[4]",
-					"strict" : false
-				},
-				{
-					"name" : "th2[0]",
-					"strict" : false
-				},
-				{
-					"name" : "th2[1]",
-					"strict" : false
-				},
-				{
-					"name" : "th2[2]",
 					"strict" : false
 				}
 			]

@@ -4,6 +4,8 @@
 *	Date:			2/5/2020
 *	Description:Implementation of Jacobian Inverse 
 *					control algorithm
+*
+*				The latency of this block is 138 cycles
 *	Parameters:
 *				None
 *
@@ -21,18 +23,26 @@
 module scara_controller(input signed [13:0] 	x_target, // X value to go to (either abs. or rel.)
 								input	signed [13:0]	y_target, // Y value to go to 		""
 								input logic  [4:0]	control_state_reg, // State register input
-								input signed [7:0]	th1, // Angle of the first joint: May be an internal variable
-								input signed [7:0]	th2, // Angle of the second joint: may be an internal variable
+								input logic  			stepper_ready,
+//								input signed [8:0]	th1, // Angle of the first joint: May be an internal variable
+//								input signed [8:0]	th2, // Angle of the second joint: may be an internal variable
 								input logic 			clk, // INput clock
 								input logic 			reset, // Reset pin. Resets state machine to init state (waiting)
 								output	logic	[63:0] m1_steps, // Outputs number of steps
 								output	logic [63:0] m2_steps,
 								output 	logic dir1,
-								output	logic dir2);
+								output	logic dir2,
+								output 	logic controller_ready);
+
+	
+	reg signed [8:0] th1;
+	reg signed [8:0] th2;
+	reg signed [8:0] dth1;
+	reg signed [8:0] dth2;
 
 	
 	logic [63:0] x_current;
-	logic [13:0] y_current;
+	logic [63:0] y_current;
 	
 	logic [13:0] l1_inch;
 	logic [13:0] l2_inch;
@@ -43,7 +53,7 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 	
 	
 	/* State variables for each state */
-	logic FKEnable, 	FKReset, 	FKdone; 	/* Forward Kinematics 	*/
+	logic FKEnable, 	FKReset, 	FKDone; 	/* Forward Kinematics 	*/
 	logic JEnable, 	JReset, 		JDone;	/* Jacobian 				*/
 	logic JIEnable, 	JIReset, 	JIDone;	/* Jacobian Inverse 		*/
 	logic MULTEnable, MULTReset, 	MULTDone;/* Multiply Out			*/
@@ -54,28 +64,35 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 	compute_state next_state;
 	compute_state state;
 	
-	initial begin
-//		state 		= 	FK;
-//		next_state 	= 	J;
-		
-		FKReset 		= 	1'b1;
-		FKEnable 	= 	1'b0;
-		FKdone 		= 	1'b0;
-		
-		JDone 		= 	1'b0;
-		JReset 		= 	1'b1;
-		JEnable		= 	1'b0;
-		
-		JIDone 		= 	1'b0;
-		JIEnable 	= 	1'b0;
-		JIReset 		=	1'b1;
-		
-		MULTDone 	= 	1'b0;
-		MULTReset 	= 	1'b1;
-		MULTEnable 	= 	1'b0;
-	end
+//	initial begin
+////		state 		= 	FK;
+////		next_state 	= 	J;
+//		
+//		FKReset 		= 	1'b1;
+//		FKEnable 	= 	1'b0;
+//		FKdone 		= 	1'b0;
+//		
+//		JDone 		= 	1'b0;
+//		JReset 		= 	1'b1;
+//		JEnable		= 	1'b0;
+//		
+//		JIDone 		= 	1'b0;
+//		JIEnable 	= 	1'b0;
+//		JIReset 		=	1'b1;
+//		
+//		MULTDone 	= 	1'b0;
+//		MULTReset 	= 	1'b1;
+//		MULTEnable 	= 	1'b0;
+//	end
+	logic [31:0] count;
 	
-	
+	Counter #(32) cnt (
+							.clk(clk),
+							.enable(~reset),
+							.reset(reset),
+							.q(count),
+							.d(count)
+							);
 	/* State Transition Logic */
 	
 	// Initialize the arm to the current location
@@ -83,22 +100,43 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 		state <= next_state;
 		if(reset) begin
 			state <= INIT;
+			th1 <= 9'd45;
+			th2 <= 9'd45;
 		end
 		
 		
 		if(state == INIT) begin
 		// Init state
 			if(control_state_reg[0]) next_state <= FK;
-			else next_state <= INIT;
+			else 
+			begin
+				next_state 	<= 	INIT;
+				FKReset 	  	<= 	1'b1;
+				FKEnable		<= 	1'b0;
+		
+				JReset 		<= 	1'b1;
+				JEnable		<= 	1'b0;
+	
+				JIEnable 	<= 	1'b0;
+				JIReset 		<=		1'b1;
+		
+				MULTReset 	<= 	1'b1;
+				MULTEnable 	<= 	1'b0;
+				
+				CONVReset 	<=		1'b1;
+				CONVEnable	<=		1'b0;
+			end
 		end
 		
 		else if(state == FK) begin
 			// Forward Kinematics
-			if(FKdone) begin
+			if(FKDone) begin
 			// Transition to jacobian state
 				FKReset <= 1;
 				FKEnable <= 0;
 				next_state <= J;
+				
+				
 			end
 			else begin
 			// start/contine FK state
@@ -143,6 +181,7 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 			//transition to conversion state
 				MULTEnable <= 0;
 				MULTReset <= 1;
+				
 				next_state <= CONV;
 			end
 			else begin
@@ -154,10 +193,11 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 		end
 		else if(state == CONV) begin
 		// Convert degrees to steps
-			if(CONVDone) begin
+			if(CONVDone & stepper_ready) begin
 			//Transition to (either sum or FK)
 				CONVEnable <= 0;
 				CONVReset <= 1;
+			
 				next_state <= FK;
 			end
 			else begin
@@ -174,7 +214,7 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 	/* State Logic */
 	
 	ForwardKinematics fk (
-								.reset(FKReset),
+								.reset(FKReset | reset),
 								.enable(FKEnable),
 								.th1(th1),
 								.th2(th2),
@@ -183,17 +223,19 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 								.clk(clk),
 								.x(x_current),
 								.y(y_current),
-								.data_ready(FKdone)
+								.data_ready(FKDone)
 								);
 	
 	logic [63:0] dx_dth1, dx_dth2, dy_dth1, dy_dth2;
 	
 	Jacobian jk (
-						.reset(JReset),
+						.reset(JReset | reset),
 						.enable(JEnable),
 						.clk(clk),
 						.l1(l1_inch),
 						.l2(l2_inch),
+						.th1(th1),
+						.th2(th2),
 						.data_ready(JDone),
 						.dx_dth1(dx_dth1),
 						.dx_dth2(dx_dth2),
@@ -204,7 +246,7 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 	logic [63:0] aInv, bInv, cInv, dInv;
 
 	JacobianInverse ji (
-							.reset(JIReset),
+							.reset(JIReset | reset),
 							.enable(JIEnable),
 							.clk(clk),
 							.a(dx_dth1),
@@ -213,7 +255,7 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 							.d(dy_dth2),
 							.aOut(aInv),
 							.bOut_n(bInv),
-							.cOut_n(CInv),
+							.cOut_n(cInv),
 							.dOut(dInv),
 							.data_ready(JIDone)
 						);
@@ -226,6 +268,8 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 	
 	reg signed [13:0] xInt, yInt;
 	
+	/* We do not need to time this because
+		It will not take longer than other states */
 	DoubleTo14BitInt x_curr(.dataa(x_current),
 									.clk_en(JIEnable),
 									.clock(clk),
@@ -258,7 +302,7 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 	logic [63:0] changeTh1, changeTh2;
 						
 	MatMult multiply (
-						.reset(MULTReset),
+						.reset(MULTReset | reset),
 						.enable(MULTEnable),
 						.clk(clk),
 						.invA(aInv),
@@ -269,11 +313,22 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 						.dy(dy),
 						.dth1(changeTh1),
 						.dth2(changeTh2),
+						.dth1NineBit(dth1),
+						.dth2NineBit(dth2),
 						.data_ready(MULTDone)
 						);
+					
+					
+	always_ff@(posedge MULTDone) begin
+		//Update the thetas after mult
+		//through
+		th1 <= th1 + dth1;
+		th2 <= th2 + dth2;
+	end
+						
 						
 	DegToSteps d2s (
-						.reset(CONVReset),
+						.reset(CONVReset | reset),
 						.en(CONVEnable),
 						.clk(clk),
 						.dth1(changeTh1),
@@ -284,5 +339,7 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 						.steps2(m2_steps),
 						.data_ready(CONVDone)
 						);
-		
+	
+	assign controller_ready = CONVDone & stepper_ready;
+	
 endmodule

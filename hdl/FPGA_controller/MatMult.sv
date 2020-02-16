@@ -33,7 +33,9 @@ module MatMult(input logic [63:0] invA,
 					input logic reset,
 					output logic data_ready,
 					output logic [63:0] dth1,
-					output logic [63:0] dth2
+					output logic [63:0] dth2,
+					output signed [8:0] dth1NineBit,
+					output signed [8:0] dth2NineBit
 					);
 		
 		
@@ -114,6 +116,7 @@ module MatMult(input logic [63:0] invA,
 		/*			Add all the results   	*/
 		
 		logic th1AddDone, th2AddDone;
+		logic [63:0] deltaTh1, deltaTh2;
 		
 		DoubleAdder dth1Add(
 								.in_ready(allMultDone),
@@ -134,11 +137,41 @@ module MatMult(input logic [63:0] invA,
 								.data_ready(th2AddDone),
 								.result(dth2)
 								);
+								
+								
+		
 		
 		
 		/*********************************/
-
-		assign data_ready = th1AddDone & th2AddDone;
+		
+		/* 		Convert Back to update theta vals */
+		logic convEn;
+		
+		SRLatch convert(.set(th2AddDone & th1AddDone), .reset(reset), .q(convEn));
+		
+		DoubleTo9BitInt dth1Conv(
+								.dataa(dth1),
+								.result(dth1NineBit),
+								.clk_en(convEn),
+								.clock(clk));
+								
+		
+		DoubleTo9BitInt dth2Conv(
+								.dataa(dth2),
+								.result(dth2NineBit),
+								.clk_en(convEn),
+								.clock(clk));
+		// Purposefully one more clock thats necessary
+		// for putting data out and then starting next
+		// stage in the controller (updating th1, th2)
+		ClockTimer #(10, 6) convThTimer(
+												.reset(reset),
+												.expire(data_ready),
+												.en(convEn),
+												.clk(clk)
+												);
+		
+		/*********************************************/
 		
 		
 endmodule
