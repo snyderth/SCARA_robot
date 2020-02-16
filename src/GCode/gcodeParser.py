@@ -1,4 +1,5 @@
 import math
+from enum import Enum
 from gcodeFormatter import *
 import pygcode as pygc
 #Commands are formatted like so:
@@ -9,9 +10,9 @@ import pygcode as pygc
 #ArgX may also represent a T argument for the relevant codes
 
 #Constants
-ABSOLUTE = "absolute"
-RELATIVE = "relative"
-
+class Mode(Enum):
+    ABSOLUTE = 1
+    RELATIVE = 2
 #Bits per section
 CODE_BITS = 4
 ARG_BITS = 14
@@ -30,7 +31,9 @@ MM_TO_BITS = 2**(ARG_BITS)/MAX_MM #bits/mm
 #Arm parameters
 JOINT_1_LENGTH = 5 * IN_TO_BITS
 JOINT_2_LENGTH = 4 * IN_TO_BITS
-INTERPOLATION_TOLERANCE = (1/16) * IN_TO_BITS
+
+#Maximum line length
+INTERPOLATION_LENGTH = (1 / 16) * IN_TO_BITS
 
 #Set arm to be at 45 degree angles initially
 INIT_X = JOINT_1_LENGTH * math.cos(math.pi/4) + JOINT_2_LENGTH * math.cos(math.pi / 2)
@@ -41,6 +44,8 @@ GCODE_MAP = {str(pygc.GCodeRapidMove()): 0, str(pygc.GCodeLinearMove()): 1, str(
 
 #Inverse command map useful decoding fpga commands
 COMMAND_MAP = {v: k for k, v in GCODE_MAP.items()}
+
+
 
 def commandToGcode(command, conversion):
     '''
@@ -120,10 +125,10 @@ def gcodeToCommands(gcodeText):
     parsedLines = list(map(pygc.Line, lines))
     commands = []
 
-    #Assume to be in inches first
+    #Assumed starting state
     max = MAX_IN
     conversion = IN_TO_BITS
-    positioning = ABSOLUTE
+    positioning = Mode.ABSOLUTE
 
     #Arm starts with both joints at 45 degree angle
     xPos = INIT_X
@@ -142,37 +147,92 @@ def gcodeToCommands(gcodeText):
 
             #Get enumeration value of cmd
             code = commandToCode(cmd)
-            command |= code << CODE_OFFSET
-            # OR each argument into command
 
             if commandMovesLinear(cmd) and len(gcode.params) > 0:
-                xNew = xPos
-                yNew = yPos
+
+
+                xNew = noMove(xPos, positioning)
+                yNew = noMove(yPos, positioning)
+
                 if "X" in gcode.params:
-                    xNew = gcode.params["X"]
-                if "Y" in gcode:
-                    yNew = gcode.params["Y"]
-                xDelta = xNew - xPos if positioning == ABSOLUTE else xPos - (xPos + xNew)
-                yDelta = yNew - yPos if positioning == ABSOLUTE else yPos - (yPos + yNew)
-                delta = math.sqrt(xDelta**2 + yDelta**2)
-                if delta > INTERPOLATION_TOLERANCE:
-                    commands += interpolate(code, xPos, yPos, xNew, yNew, positioning)
-                else:
+                    xNew = paramToArg(gcode.params["X"].value, conversion, max)
+                if "Y" in gcode.params:
+                    yNew = paramToArg(gcode.params["Y"].value, conversion, max)
+
+
+                xEnd = increment(xPos, xNew, positioning)
+                yEnd = increment(yPos, yNew, positioning)
+
+                #Linear moves must be split into a number of smaller segments for the arm to retain accuracy
+                commands += interpolate(code, xPos, yPos, xEnd, yEnd, INTERPOLATION_LENGTH, positioning)
+
+                xPos = xEnd
+                yPos = yEnd
+
+            else:
+                if cmd == str(pygc.GCodeToolChange()):
                     for key in gcode.params:
-                        offset = ARGX_OFFSET if key == "X" or key == "T" else ARGY_OFFSET
-                        if key != "T":
-                            command |= extractArg(gcode.params[key].value, conversion, max, offset)
-                        else:
-                            command |= extractArg(gcode.params[key].value, 1, 2 ** ARG_BITS, offset)
-                xPos += xDelta
-                yPos += yDelta
-            commands.append(command)
+                        command |= extractArg(gcode.params[key].value, 1, 2 ** ARG_BITS, ARGX_OFFSET)
+                command |= code << CODE_OFFSET
+                commands.append(command)
     return commands
 
-def createCommand(code, xArg, yArg):
-    return code & (xArg << ARGX_OFFSET) &  (yArg << ARGY_OFFSET)
+#Functions that describe how the machine operates in ABSOLUTE and RELATIVE mode
+def noMove(value, mode: Mode):
+    '''
+    What "zero" movement  means in the context of mode
+    @param value: 
+    @param mode: RELATIVE or ABSOLUTE
+    @return: 
+    '''
+    return value if mode == Mode.ABSOLUTE else 0
 
-def interpolate(code, xPos, yPos, xNew, yNew):
+def increment(value, newValue, mode: Mode):
+    '''
+    What position the machine will be in when positioned at value, is moved to newValue, depending on the mode.
+    @param value:
+    @param newValue:
+    @param mode:
+    @return:
+    '''
+    return newValue if mode == Mode.ABSOLUTE else value + newValue
+
+def createCommand(code, xArg, yArg):
+    return code | (xArg << ARGX_OFFSET) | (yArg << ARGY_OFFSET)
+
+def interpolate(code, xStart, yStart, xEnd, yEnd, segLength, mode):
+    commands = []
+
+    xDelta = xEnd - xStart
+    yDelta = yEnd - yStart
+
+    hypotenuse = math.sqrt(xDelta**2 + yDelta**2)
+    angle = math.atan2(yDelta, xDelta)
+
+
+    if mode == Mode.ABSOLUTE:
+        xCurrent = xStart
+        yCurrent = yStart
+        for i in range(0, int(hypotenuse // segLength)):
+            #Make the length of the line segment be the segment length or the remainder of the hypotenuse smaller than the segment length
+            segHypotenuse = min(segLength, hypotenuse - (segLength * i + 1))
+            xInc = segHypotenuse * math.cos(angle)
+            yInc = segHypotenuse * math.sin(angle)
+
+            xCurrent += xInc
+            yCurrent += yInc
+
+            commands.append(createCommand(code, int(xCurrent), int(yCurrent)))
+    else:
+        for i in range(0, int(hypotenuse // segLength)):
+            # Make the length of the line segment be the segment length or the remainder of the hypotenuse smaller than the segment length
+            segHypotenuse = segLength if hypotenuse - (segLength * i + 1) > segLength else hypotenuse - (segLength * i + 1)
+            xInc = segHypotenuse * math.cos(angle)
+            yInc = segHypotenuse * math.sin(angle)
+
+            commands.append(createCommand(code, int(xInc), int(yInc)))
+
+    return commands
 
 
 
@@ -198,21 +258,23 @@ def commandUnits(code):
         return (MM_TO_BITS, MAX_MM)
     return None
 
-def paramToArg(paramValue, conversion, max):
+def paramToArg(value, conversion, max):
+    decimal = float(value)
+
+    # Clamp to maximum
+    decimal = math.copysign(max, decimal) if abs(decimal) > max else decimal
+
+    # Convert in/mm to bit/in or bit/mm
+    decimal *= conversion
+
+    # Constrain integer to be within the bit space
+    integer = int(decimal) & (2 ** ARG_BITS - 1)
+    return integer
 
 #Given a string in the format <x | y | t> <number>.<number>, return an argument value at the approprate offset
 def extractArg(value, conversion, max, offset):
-    decimal = float(value)
 
-    #Clamp to maximum
-    decimal = math.copysign(max, decimal) if abs(decimal) > max else decimal
-
-    #Convert in/mm to bit/in or bit/mm
-    decimal *= conversion
-
-    #Constrain decimal to be within the bit space
-    integer = int(decimal) & (2**ARG_BITS - 1)
-
+    integer = paramToArg(value, conversion, max)
     arg = (integer) << offset
 
     return arg
@@ -231,7 +293,7 @@ if __name__ == '__main__':
 
     gcode = gcodeFile.read()
 
-    commands = gcodeToCommands("G01 X-2.4 Y2.4")
+    commands = gcodeToCommands("G01 X4.0 Y8.0")
 
     reverseGcode = commandsToGcode(commands)
 
