@@ -25,17 +25,39 @@ add wave -format Logic dir1
 add wave -format Logic dir2
 
 
+add wave -radix float64 scara_controller/fk/L1Double
+add wave -radix float64 scara_controller/fk/L2Double
+
 add wave -radix float64 scara_controller/fk/costh1
 add wave -radix float64 scara_controller/fk/cosineth12
 add wave -radix float64 scara_controller/fk/sineth1
 add wave -radix float64 scara_controller/fk/sineth12
 
+add wave -radix signed scara_controller/fk/th12
+add wave -radix signed scara_controller/fk/th1
+add wave -radix signed scara_controller/fk/th2
 
-add wave -radix float64 scara_controller/jk/cos_th1
-add wave -radix float64 scara_controller/jk/cos_th12
-add wave -radix float64 scara_controller/jk/sin_th1
-add wave -radix float64 scara_controller/jk/sin_th12
 
+add wave -radix float64 scara_controller/fk/l1Sine
+add wave -radix float64 scara_controller/fk/l2CosSum
+add wave -radix float64 scara_controller/fk/l1Cos
+add wave -radix float64 scara_controller/fk/l2SinSum
+
+add wave -radix float64 scara_controller/fk/x
+add wave -radix float64 scara_controller/fk/y
+
+
+#add wave -radix float64 scara_controller/jk/cos_th1
+#add wave -radix float64 scara_controller/jk/cos_th12
+#add wave -radix float64 scara_controller/jk/sin_th1
+#add wave -radix float64 scara_controller/jk/sin_th12
+add wave -radix float64 scara_controller/ji/det
+
+
+#add wave -radix float64 dx_dth1
+#add wave -radix float64 dx_dth2
+#add wave -radix float64 dy_dth1
+#add wave -radix float64 dy_dth2
 
 add wave -radix float64 changeTh1
 add wave -radix float64 changeTh2
@@ -48,13 +70,24 @@ add wave CONVDone
 add wave -radix signed dth2
 add wave -radix signed dth1
 
+
+add wave -radix float64 aInv
+add wave -radix float64 bInv
+add wave -radix float64 cInv
+add wave -radix float64 dInv
+
 add wave -format Logic MULTDone
 
 force clk 0 @ 0, 1 @ 5 -r 10
 force reset 1 @ 0, 0 @ 30
 
-force x_target 14'd6000 @ 0, 14'd1362 @ 5000
-force y_target 14'd14000 @ 0, 14'd14262 @ 5000
+force x_target 14'd6200 @ 0
+#, 14'd1362 @ 5000
+force y_target 14'd15000 @ 0
+#, 14'd14262 @ 5000
+
+add wave -radix signed dx
+add wave -radix signed dy
 
 #force th1 9'd45 @ 0
 #force th2 9'd45 @ 0

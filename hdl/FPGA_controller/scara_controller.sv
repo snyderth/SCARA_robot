@@ -48,6 +48,8 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 	logic [13:0] l2_inch;
 	assign l2_inch = 14'd7447; // Arm length, inches converted to integers
 	assign l1_inch = 14'd8936; // Arm length, inches converted to integers
+//	assign l1_inch = 14'd6;
+//	assign l2_inch = 14'd5;
 	logic [13:0] l1_mm;
 	logic [13:0] l2_mm;
 	
@@ -58,9 +60,10 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 	logic JIEnable, 	JIReset, 	JIDone;	/* Jacobian Inverse 		*/
 	logic MULTEnable, MULTReset, 	MULTDone;/* Multiply Out			*/
 	logic CONVEnable, CONVReset, 	CONVDone;/* Convert Result			*/
+	logic ChkFinEn, 	ChkFinRes,	ChkFinDone; /* Forward Kinematics 	*/
 
 	
-	typedef enum logic [2:0] {FK, J, JI, MULT, CONV, INIT} compute_state;
+	typedef enum logic [2:0] {FK, J, JI, MULT, CONV, INIT, CheckFinished} compute_state;
 	compute_state next_state;
 	compute_state state;
 	
@@ -125,6 +128,9 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 				
 				CONVReset 	<=		1'b1;
 				CONVEnable	<=		1'b0;
+				
+				ChkFinRes	<= 	1'b1;
+				ChkFinEn		<= 	1'b0;
 			end
 		end
 		
@@ -134,15 +140,25 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 			// Transition to jacobian state
 				FKReset <= 1;
 				FKEnable <= 0;
-				next_state <= J;
-				
-				
+				next_state <= CheckFinished;
 			end
 			else begin
 			// start/contine FK state
 				FKEnable <= 1;
 				FKReset <= 0;
 				next_state <= FK;
+			end
+		end
+		else if(state == CheckFinished)begin
+			if(ChkFinDone)begin
+			
+				// Enable output
+				// wait for stepper motors
+				// Reset output numbers when finished.
+			end
+			else begin
+				ChkFinRes <= 0;
+				ChkFinEn <= 1;
 			end
 		end
 		else if(state == J) begin
@@ -193,7 +209,7 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 		end
 		else if(state == CONV) begin
 		// Convert degrees to steps
-			if(CONVDone & stepper_ready) begin
+			if(CONVDone) begin
 			//Transition to (either sum or FK)
 				CONVEnable <= 0;
 				CONVReset <= 1;
@@ -207,7 +223,6 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 				next_state <= CONV;
 			end
 		end
-		
 	end
 	
 	
@@ -341,5 +356,9 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 						);
 	
 	assign controller_ready = CONVDone & stepper_ready;
+	
+	
+	
+	
 	
 endmodule

@@ -24,8 +24,8 @@
 ***************************************************/
 module Jacobian(input	logic 	[13:0] l1,
 					 input	logic 	[13:0] l2,
-					 input	logic		[7:0]	th1,
-					 input	logic		[7:0]	th2,
+					 input	logic		[8:0]	th1,
+					 input	logic		[8:0]	th2,
 					 input	logic 	clk,
 					 input 	logic		enable,
 					 input 	logic		reset,

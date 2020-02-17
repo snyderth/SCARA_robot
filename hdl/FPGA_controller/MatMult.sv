@@ -7,8 +7,8 @@
 *					X and Y to produce the desired 
 *					changes in theta 1 and theta 2.
 *
-*					| d_inv 	c_inv ||dx| =  |dth1|
-*					| b_inv	a_inv ||dy|		|dth2|
+*					| d_inv 	b_inv ||dx| =  |dth1|
+*					| c_inv	a_inv ||dy|		|dth2|
 *
 *
 *	Parameters:
@@ -66,7 +66,7 @@ module MatMult(input logic [63:0] invA,
 		/*		Multiply out the matrices 	*/
 		
 		logic dMultDone, cMultDone, bMultDone, aMultDone, allMultDone;
-		logic [63:0] dxDinv, dyCinv, dxBinv, dyAinv;
+		logic [63:0] dxDinv, dxCinv, dyBinv, dyAinv;
 		
 		DoubleMultiply dxTimesDInv(
 											.in_ready(convDone),
@@ -78,25 +78,25 @@ module MatMult(input logic [63:0] invA,
 											.result(dxDinv)
 											);
 											
-		DoubleMultiply dyTimesCInv(
+		DoubleMultiply dxTimesCInv(
 											.in_ready(convDone),
-											.dataa(dyConv), 
+											.dataa(dxConv), 
 											.datab(invC),
 											.clk(clk),
 											.reset(reset),
 											.data_ready(cMultDone),
-											.result(dyCinv)
+											.result(dxCinv)
 											);
 		
 		
-		DoubleMultiply dxTimesBInv(
+		DoubleMultiply dyTimesBInv(
 											.in_ready(convDone),
-											.dataa(dxConv), 
+											.dataa(dyConv), 
 											.datab(invB),
 											.clk(clk),
 											.reset(reset),
 											.data_ready(bMultDone),
-											.result(dxBinv)
+											.result(dyBinv)
 											);
 											
 		DoubleMultiply dyTimesAInv(
@@ -122,7 +122,7 @@ module MatMult(input logic [63:0] invA,
 								.in_ready(allMultDone),
 								.reset(reset),
 								.dataa(dxDinv),
-								.datab(dyCinv),
+								.datab(dyBinv),
 								.clk(clk),
 								.data_ready(th1AddDone),
 								.result(dth1)
@@ -132,7 +132,7 @@ module MatMult(input logic [63:0] invA,
 								.in_ready(allMultDone),
 								.reset(reset),
 								.dataa(dyAinv),
-								.datab(dxBinv),
+								.datab(dxCinv),
 								.clk(clk),
 								.data_ready(th2AddDone),
 								.result(dth2)

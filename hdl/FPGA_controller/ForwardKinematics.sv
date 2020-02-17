@@ -47,11 +47,11 @@ module ForwardKinematics(input signed [8:0] th1,
 
 /* Converting integer lengths to double lengths */													
 				
-		
+		// 15 bits because it expects two's compelement
 		Int15BitToDouble	l1conv (
 												.clk_en ( en ),
 												.clock ( clk ),
-												.dataa ( {1'b0,l1} ),
+												.dataa ( {1'b0, l1} ),
 												.result ( L1Double )
 												);
 										
