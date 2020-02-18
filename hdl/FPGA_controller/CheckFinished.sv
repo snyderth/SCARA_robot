@@ -1,4 +1,4 @@
-module CheckFinised(
+module CheckFinished(
 								input logic clk,
 								input logic enable,
 								input logic reset,
@@ -11,98 +11,153 @@ module CheckFinised(
 								output logic ready
 							);
 						
-		/*NOT EXACTLY FINISHED? STILL NEED SIM AND UNCERTAIN ABOUT
-		THE WHOLE RELATIVE POSITION THING*/			
+		typedef enum logic [1:0] {Convert, CompareRelative, CompareAbsolute, Init} statetype;
+
+		statetype state, nextstate;
+		
+		
+		logic AbsCompDone, AbsCompEn, AbsCompReset;
+		logic RelCompDone,	RelCompEn, RelCompReset;
 			
-			logic beginAddition;
-			logic add_done;
-			logic output_good;
-			logic out;
-			
+		
 			/*	Logic to determine relative location or not */
 			always_ff@(posedge clk, posedge reset)
 			begin
-				if(relative_target & ~reset) begin
-					beginAddition <= 0;
-					if(x_current < threshold & y_current < threshold) begin
-						out <= 1;
-						output_good <= 1;
+				if(reset) begin /* Initialize to Init state */
+					state <= Init;
+				end
+				/* Init state */
+				else if((state == Init) & enable & ~reset) begin
+					if(relative_target)
+						nextstate <= CompareRelative;
+					else
+						nextstate <= CompareAbsolute;
+				end
+				/* Compare Relative Target */
+				else if((state == CompareRelative) & enable & ~reset) begin
+					if(RelCompDone) begin
+						nextstate <= Init;
+						RelCompEn <= 0;
+						RelCompReset <= 1;
 					end
 					else begin
-						out <= 0;
-						output_good <= 1;
+						nextstate <= CompareRelative;
+						RelCompEn <= 1;
+						RelCompReset <= 0;
 					end
 				end
 				
-				else if(~relative_target & ~reset) begin
-					beginAddition <= 1;
+				/* Compare Absoulte coordinates */
+				else if((state == CompareAbsolute) & enable & ~reset) begin
+					if(AbsCompDone) begin
+						nextstate <= Init;
+						AbsCompEn <= 0;
+						AbsCompReset <= 1;
+					end
+					else begin
+						nextstate <= Init;
+						AbsCompEn <= 1;
+						AbsCompReset <= 0;
+					end
 				end
-				else if(reset) begin
-					beginAddition <= 0;
-					output_good <= 0;
-					out <= 0;
-				end
+				
 			end
 			
+			
+			logic x_less_thresh_abs, y_less_thresh_abs;
+			logic x_less_thresh_rel, y_less_thresh_rel;
+
+
+			
+			/* Relative comparison state */
+			DoubleComparator compareXRel(
+								.dataa(x_target),
+								.datab(64'b0100000001011001000000000000000000000000000000000000000000000000),//100
+								.clock(clk),
+								.aleb(x_less_thresh_rel)
+								);
+											
+											
+			DoubleComparator compareYRel(
+								.dataa(y_target),
+								.datab(64'b0100000001011001000000000000000000000000000000000000000000000000),
+								.clock(clk),
+								.aleb(y_less_thresh_rel)
+								);
+										
+			logic add_done_rel, compReadyRel, out_rel_ready;							
+			
+			SRLatch compLatchRel(.reset(RelCompReset),
+							.set(CompAbsEn),
+							.q(compReadyRel));
+									
+			ClockTimer #(2, 1) compTimer(
+								.reset(RelCompReset),
+								.clk(clk),
+								.en(compReadyRel),
+								.expire(out_rel_ready));
+							
 			
 			/* If the computations are absolute, subtract and see if <= 100 */
 			logic add_done_x, add_done_y;
 			logic [63:0] x_added, y_added;
 			
-			DoubleAdder xCheck(
+			DoubleAdder xCheckAbs(
 								.dataa(x_target),
 								.datab({~x_current[63], x_current}),
 								.clk(clk),
-								.in_ready(beginAddition),
-								.reset(reset),
+								.in_ready(CompAbsEn),
+								.reset(CompAbsReset),
 								.data_ready(add_done_x),
 								.result(x_added)
-			);				
+							);				
 			
 			
-			DoubleAdder yCheck(
+			DoubleAdder yCheckAbs(
 								.dataa(y_target),
 								.datab({~y_current[63], y_current}),
 								.clk(clk),
-								.in_ready(beginAddition),
-								.reset(reset),
+								.in_ready(CompAbsEn),
+								.reset(CompAbsReset),
 								.data_ready(add_done_y),
 								.result(y_added)
 			);				
 			
-			assign add_done = add_done_y & add_done_x;
+			assign add_done_abs = add_done_y & add_done_x;
 			
 			
-			logic x_less_thresh, y_less_thresh;
 			
-			DoubleComparator compareX(
+			
+			DoubleComparator compareXAbs(
 											.dataa(x_added),
 											.datab(64'b0100000001011001000000000000000000000000000000000000000000000000),//100
 											.clock(clk),
-											.aleb(x_less_thresh)
+											.aleb(x_less_thresh_abs)
 											);
 											
 											
-			DoubleComparator compareY(
+			DoubleComparator compareYAbs(
 											.dataa(y_added),
 											.datab(64'b0100000001011001000000000000000000000000000000000000000000000000),
 											.clock(clk),
-											.aleb(y_less_thresh)
+											.aleb(y_less_thresh_abs)
 											);
-											
-			assign AtTarget = y_less_thresh & x_less_thresh;
+			
 			
 			// Time the compare
-			logic compReady;
+			logic compReadyAbs, out_abs_ready;
 			
-			SRLatch compLatch(.reset(reset),
-									.set(add_done),
-									.q(compReady));
+			SRLatch compLatchAbs(.reset(AbsCompReset | reset),
+									.set(add_done_abs),
+									.q(compReadyAbs));
 											
-			ClockTimer #(2, 1) compTimer(
+			ClockTimer #(2, 1) compTimerAbs(
 												.reset(reset),
 												.clk(clk),
-												.en(compReady),
-												.expire(ready));
+												.en(compReadyAbs),
+												.expire(out_abs_ready));
+							
+			assign ready = enable & (out_abs_ready | out_rel_ready);
+			assign AtTarget = ((y_less_thresh_rel & x_less_thresh_rel) | (y_less_thresh_abs & x_less_thresh_abs));
 							
 endmodule
