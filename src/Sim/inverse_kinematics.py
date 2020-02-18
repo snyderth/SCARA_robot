@@ -19,7 +19,7 @@ ax.grid()
 xdata, ydata = [], []
 
 CONVERSION=(2**14)/11
-INCHES=True
+INCHES=False
 
 class SCARA_IK:
     """
@@ -180,7 +180,7 @@ class SCARA_IK:
 
         k1 = self.joint_lengths[0] + self.joint_lengths[1] * costh2
         k2 = self.joint_lengths[1] * sinth2
-
+        print("k1: {}, k2: {}".format(k1, k2))
         gamma = np.arctan2(k2, k1)
         th1 = np.arctan2(self.target[1], self.target[0]) - gamma
 

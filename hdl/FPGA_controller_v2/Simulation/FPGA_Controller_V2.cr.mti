@@ -1,0 +1,166 @@
+C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/Arctan2.sv {1 {vlog -work work -sv -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/Arctan2.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Arctan2
+
+Top level modules:
+	Arctan2
+
+} {} {}} C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/BasicBlocks/Counter/Counter.sv {1 {vlog -work work -sv -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/BasicBlocks/Counter/Counter.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Counter
+
+Top level modules:
+	Counter
+
+} {} {}} C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/Atan2.v {1 {vlog -work work -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/Atan2.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Atan2
+
+Top level modules:
+	Atan2
+
+} {} {}} C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDiv.v {1 {vlog -work work -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDiv.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module DoubleDiv_altfp_div_pst_99j
+-- Compiling module DoubleDiv_altfp_div_49m
+-- Compiling module DoubleDiv
+
+Top level modules:
+	DoubleDiv
+
+} {} {}} C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleMultiply.sv {1 {vlog -work work -sv -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleMultiply.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module DoubleMultiply
+
+Top level modules:
+	DoubleMultiply
+
+} {} {}} C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/Sync.sv {1 {vlog -work work -sv -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/Sync.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Sync
+
+Top level modules:
+	Sync
+
+} {} {}} C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/Adder.v {1 {vlog -work work -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/Adder.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Adder_altbarrel_shift_otd
+-- Compiling module Adder_altbarrel_shift_u0g
+-- Compiling module Adder_altpriority_encoder_3e8
+-- Compiling module Adder_altpriority_encoder_6e8
+-- Compiling module Adder_altpriority_encoder_be8
+-- Compiling module Adder_altpriority_encoder_rf8
+-- Compiling module Adder_altpriority_encoder_3v7
+-- Compiling module Adder_altpriority_encoder_6v7
+-- Compiling module Adder_altpriority_encoder_bv7
+-- Compiling module Adder_altpriority_encoder_r08
+-- Compiling module Adder_altpriority_encoder_tv8
+-- Compiling module Adder_altpriority_encoder_te9
+-- Compiling module Adder_altpriority_encoder_uu8
+-- Compiling module Adder_altpriority_encoder_nh8
+-- Compiling module Adder_altpriority_encoder_qh8
+-- Compiling module Adder_altpriority_encoder_vh8
+-- Compiling module Adder_altpriority_encoder_fj8
+-- Compiling module Adder_altpriority_encoder_hi9
+-- Compiling module Adder_altpriority_encoder_n28
+-- Compiling module Adder_altpriority_encoder_q28
+-- Compiling module Adder_altpriority_encoder_v28
+-- Compiling module Adder_altpriority_encoder_f48
+-- Compiling module Adder_altpriority_encoder_h39
+-- Compiling module Adder_altpriority_encoder_ina
+-- Compiling module Adder_altfp_add_sub_hhk
+-- Compiling module Adder
+
+Top level modules:
+	Adder
+
+} {} {}} C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/ClockTimer.sv {1 {vlog -work work -sv -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/ClockTimer.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ClockTimer
+
+Top level modules:
+	ClockTimer
+
+} {} {}} C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library_package.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library_package.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling package dspba_library_package
+
+} {} {}} C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleTo32BitFixed.v {1 {vlog -work work -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleTo32BitFixed.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module DoubleTo32BitFixed_altbarrel_shift_j4h
+-- Compiling module DoubleTo32BitFixed_altfp_convert_jtp
+-- Compiling module DoubleTo32BitFixed
+
+Top level modules:
+	DoubleTo32BitFixed
+
+} {} {}} C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/Atan2_CORDIC_0.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/Atan2_CORDIC_0.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package dspba_library_package
+-- Loading package altera_mf_components
+-- Loading package altera_lnsim_components
+-- Loading package LPM_COMPONENTS
+-- Compiling entity Atan2_CORDIC_0
+-- Compiling architecture normal of Atan2_CORDIC_0
+
+} {} {}} C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleToFixed42Bit.v {1 {vlog -work work -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleToFixed42Bit.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module DoubleToFixed42Bit_altbarrel_shift_p4h
+-- Compiling module DoubleToFixed42Bit_altfp_convert_mtp
+-- Compiling module DoubleToFixed42Bit
+
+Top level modules:
+	DoubleToFixed42Bit
+
+} {} {}} C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/SRLatch.sv {1 {vlog -work work -sv -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/SRLatch.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module SRLatch
+
+Top level modules:
+	SRLatch
+
+} {} {}} C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDivider.sv {1 {vlog -work work -sv -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDivider.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module DoubleDivider
+
+Top level modules:
+	DoubleDivider
+
+} {} {}} C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/MultiplierFP.v {1 {vlog -work work -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/MultiplierFP.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module MultiplierFP_altfp_mult_e0r
+-- Compiling module MultiplierFP
+
+Top level modules:
+	MultiplierFP
+
+} {} {}} C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package dspba_library_package
+-- Compiling entity dspba_delay
+-- Compiling architecture delay of dspba_delay
+-- Loading package NUMERIC_STD
+-- Compiling entity dspba_sync_reg
+-- Compiling architecture sync_reg of dspba_sync_reg
+-- Compiling entity dspba_pipe
+-- Compiling architecture rtl of dspba_pipe
+
+} {} {}} C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleAdder.sv {1 {vlog -work work -sv -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleAdder.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module DoubleAdder
+
+Top level modules:
+	DoubleAdder
+
+} {} {}}

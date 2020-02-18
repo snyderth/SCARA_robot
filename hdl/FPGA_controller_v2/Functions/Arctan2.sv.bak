@@ -1,0 +1,6 @@
+module Arctan2(input logic [63:0] arg1,
+					input logic [63:0] arg2,
+					input logic clk,
+					input logic enable,
+					output logic [32:0] angle,
+					output logic DataReady);
