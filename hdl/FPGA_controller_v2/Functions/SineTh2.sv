@@ -4,7 +4,7 @@
 *	Date:			2/19/2020
 *	Description:Module to calculate the sine of theta 2
 *					for a SCARA robot
-*	Latency: 	52 Clock cycles
+*	Latency: 	59 Clock cycles
 *
 *	Parameters:
 *				None
@@ -16,7 +16,7 @@
 *				SquareRoot.sv
 *
 *	NOTE: This module must be simulated with the
-*			220model_ver library.
+*			220model_ver and lpm_ver library.
 ***************************************************/
 module SineTh2(input logic [63:0] CosTh2,
 					input logic clk,
@@ -25,7 +25,7 @@ module SineTh2(input logic [63:0] CosTh2,
 					output logic [63:0] SinTh2,
 					output logic dataReady);
 				
-				typedef enum [1:0]{Square, Subtract, Root, Init} StateType;
+				typedef enum logic [1:0]{Square, Subtract, Root, Init} StateType;
 				
 				StateType state, nextstate;
 				logic SquareEn, SquareRes, SquareDone;
@@ -37,14 +37,14 @@ module SineTh2(input logic [63:0] CosTh2,
 					if(reset) begin
 						nextstate 		<= Init;
 						
-						SquareRes 		<= 0;
+						SquareRes 		<= 1;
 						SquareEn			<= 0;
 						
 						SubEn				<= 0;
-						SubRes			<= 0;
+						SubRes			<= 1;
 						
 						RootEn			<= 0;
-						RootRes			<= 0;
+						RootRes			<= 1;
 						
 					end
 					else if (state == Init) begin
@@ -57,7 +57,7 @@ module SineTh2(input logic [63:0] CosTh2,
 						if(SquareDone) begin 
 							nextstate 	<= Subtract;
 							SquareEn 	<= 0;
-							SuareRes		<= 1;
+							SquareRes	<= 1;
 						end
 						else begin
 							nextstate 	<= Square;
@@ -96,6 +96,7 @@ module SineTh2(input logic [63:0] CosTh2,
 				end
 
 				logic [63:0] cosSquared;
+				logic [4:0] cnt;
 				
 				DoubleMultiply SquareCos(
 												.in_ready(SquareEn),
@@ -103,7 +104,9 @@ module SineTh2(input logic [63:0] CosTh2,
 												.datab(CosTh2),
 												.result(cosSquared),
 												.data_ready(SquareDone),
-												.reset(SquareRes)
+												.count(cnt),
+												.reset(SquareRes),
+												.clk(clk)
 												);
 				
 				logic [63:0] oneMinusCosSquared;
@@ -114,7 +117,8 @@ module SineTh2(input logic [63:0] CosTh2,
 												.datab({~cosSquared[63], cosSquared[62:0]}),
 												.result(oneMinusCosSquared),
 												.data_ready(SubDone),
-												.reset(SubRes)
+												.reset(SubRes),
+												.clk(clk)
 												);
 												
 				

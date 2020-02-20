@@ -67,3 +67,4 @@ set_global_assignment -name SYSTEMVERILOG_FILE Functions/Arctan2.sv
 set_global_assignment -name QIP_FILE Conversions/Int15BitToDouble.qip
 set_global_assignment -name SYSTEMVERILOG_FILE Functions/SineTh2.sv
 set_global_assignment -name QIP_FILE Arithmetic/SqRoot/SqRoot.qip
+set_global_assignment -name SYSTEMVERILOG_FILE Arithmetic/SqRoot/SquareRoot.sv

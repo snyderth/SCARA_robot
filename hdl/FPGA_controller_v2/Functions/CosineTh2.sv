@@ -17,8 +17,8 @@
 *	NOTE: This module must be simulated with the
 *			220model_ver library.
 ***************************************************/
-module CosineTh2(input logic [13:0] xTarget, 
-						input logic [13:0] yTarget,
+module CosineTh2(input logic [63:0] xTarget_d, 
+						input logic [63:0] yTarget_d,
 						input logic [63:0] l1Squared,
 						input logic [63:0] l2Squared,
 						input logic [63:0] l1,
@@ -30,41 +30,7 @@ module CosineTh2(input logic [13:0] xTarget,
 						output logic dataReady);
 						
 						
-				/******************* Convert targets to double *****************/
-				
-				logic convBegin, convDone;
-				logic [63:0] xTarget_d, yTarget_d;
-						
-				SRLatch ConversionLatch(
-												.set(enable),
-												.reset(reset | convDone),
-												.q(convBegin));
-												
-				ClockTimer #(3, 6) conversionTimer(
-													.en(convBegin),
-													.clk(clk),
-													.reset(reset),
-													.expire(convDone)
-													);
-				
-				//NOTE: Conversions are 15 bit even though
-				// x and y are 14 bit because the converters
-				// take in two's complement, so if MSb is set,
-				// it thinks its negative
-				Int15BitToDouble xtarget(
-												.clk_en(convBegin),
-												.clock(clk),
-												.result(xTarget_d),
-												.dataa({1'b0, xTarget}));
-												
-				Int15BitToDouble ytarget(
-												.clk_en(convBegin),
-												.clock(clk),
-												.result(yTarget_d),
-												.dataa({1'b0, yTarget}));
-												
-				/************************************************/
-				
+
 
 				/*	Square x and y once conversions are finished */
 				
@@ -77,7 +43,7 @@ module CosineTh2(input logic [13:0] xTarget,
 //											);
 											
 				DoubleMultiply xSquared(
-												.in_ready(convDone),
+												.in_ready(enable),
 												.reset(reset),
 												.dataa(xTarget_d),
 												.datab(xTarget_d),
@@ -88,7 +54,7 @@ module CosineTh2(input logic [13:0] xTarget,
 				
 				DoubleMultiply ySquared(
 												.reset(reset),
-												.in_ready(convDone),
+												.in_ready(enable),
 												.dataa(yTarget_d),
 												.datab(yTarget_d),
 												.result(yTargSquared),
@@ -104,7 +70,7 @@ module CosineTh2(input logic [13:0] xTarget,
 				
 			  DoubleMultiply l1Timesl2(
 												.reset(reset),
-												.in_ready(convDone),
+												.in_ready(enable),
 												.dataa(l1),
 												.datab(l2),
 												.result(l1l2),
