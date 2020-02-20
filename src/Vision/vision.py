@@ -86,10 +86,10 @@ def linesAsGCode(contoursAsLines, palette, imageSize, paperSize):
             currentTool = palette[i]
             gcode.append(m6.format(tool=currentTool))
 
-            # Send pen to first point
-            gcode.append(m72)
-            gcode.append(g01.format(x=segments[0][0][0] * mmPerPxX, y=segments[0][0][1] * mmPerPxY))
-            gcode.append(m72)
+        # Send pen to first point
+        gcode.append(m72)
+        gcode.append(g01.format(x=segments[0][0][0] * mmPerPxX, y=segments[0][0][1] * mmPerPxY))
+        gcode.append(m72)
 
         if (len(segments) > 1):
             for s in range(1, len(segments)):
