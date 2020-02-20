@@ -88,6 +88,22 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Loading package std_logic_1164
 -- Compiling package dspba_library_package
 
+} {} {}} C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Int15BitToDouble.v {1 {vlog -work work -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Int15BitToDouble.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Int15BitToDouble_altbarrel_shift_fof
+-- Compiling module Int15BitToDouble_altpriority_encoder_3v7
+-- Compiling module Int15BitToDouble_altpriority_encoder_3e8
+-- Compiling module Int15BitToDouble_altpriority_encoder_6v7
+-- Compiling module Int15BitToDouble_altpriority_encoder_6e8
+-- Compiling module Int15BitToDouble_altpriority_encoder_bv7
+-- Compiling module Int15BitToDouble_altpriority_encoder_be8
+-- Compiling module Int15BitToDouble_altpriority_encoder_rb6
+-- Compiling module Int15BitToDouble_altfp_convert_6gn
+-- Compiling module Int15BitToDouble
+
+Top level modules:
+	Int15BitToDouble
+
 } {} {}} C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleTo32BitFixed.v {1 {vlog -work work -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleTo32BitFixed.v
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module DoubleTo32BitFixed_altbarrel_shift_j4h
@@ -119,6 +135,15 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 
 Top level modules:
 	DoubleToFixed42Bit
+
+} {} {}} C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SqRoot/SqRoot.v {1 {vlog -work work -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SqRoot/SqRoot.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module SqRoot_alt_sqrt_block_mcb
+-- Compiling module SqRoot_altfp_sqrt_l8d
+-- Compiling module SqRoot
+
+Top level modules:
+	SqRoot
 
 } {} {}} C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/SRLatch.sv {1 {vlog -work work -sv -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/SRLatch.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016

@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 dC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation
 vAdder
-Z1 !s110 1582055265
+Z1 !s110 1582154117
 !i10b 1
 !s100 _>@7hi3L9d1[WW@1_BK_i1
 Il9gS]5>zHjS;I6JPKYJ?D3
@@ -23,7 +23,7 @@ Z6 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z7 !s108 1582055264.000000
+Z7 !s108 1582154117.000000
 Z8 !s107 C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/Adder.v|
 Z9 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/Adder.v|
 !i113 1
@@ -31,7 +31,7 @@ Z10 o-work work
 Z11 tCvgOpt 0
 n@adder
 vAdder_altbarrel_shift_otd
-Z12 !s110 1582055264
+R1
 !i10b 1
 !s100 k6Z<kfmKKoGjDRhMM9b?F3
 I_?VhKRnXP[BV>n=3X1oGl3
@@ -40,7 +40,7 @@ R0
 R3
 R4
 R5
-Z13 L0 50
+Z12 L0 50
 R6
 r1
 !s85 0
@@ -53,7 +53,7 @@ R10
 R11
 n@adder_altbarrel_shift_otd
 vAdder_altbarrel_shift_u0g
-R12
+R1
 !i10b 1
 !s100 8oN7TCf<PGXm4^a:>^8@o1
 I@Ch7WejT88R>JgXi<^VEd1
@@ -97,7 +97,7 @@ R10
 R11
 n@adder_altfp_add_sub_hhk
 vAdder_altpriority_encoder_3e8
-R12
+R1
 !i10b 1
 !s100 1iRE?BoA8NjSeIEPaS:Co2
 IR<8X4@j?^2:S6:MRSZKFc2
@@ -119,7 +119,7 @@ R10
 R11
 n@adder_altpriority_encoder_3e8
 vAdder_altpriority_encoder_3v7
-R12
+R1
 !i10b 1
 !s100 ?^C1c_L`jKPX]gF1eld5H3
 I^_[Po5V<`VKBYQRzOkl>[0
@@ -141,7 +141,7 @@ R10
 R11
 n@adder_altpriority_encoder_3v7
 vAdder_altpriority_encoder_6e8
-R12
+R1
 !i10b 1
 !s100 h51N<UYX8cWA6NOzS=Tik1
 IBX@XKMlDa_IjFKCaWm2]M1
@@ -163,7 +163,7 @@ R10
 R11
 n@adder_altpriority_encoder_6e8
 vAdder_altpriority_encoder_6v7
-R12
+R1
 !i10b 1
 !s100 FmCdO[2[bNKQ^D0Pih<6Y3
 IC[dFcbVV>@70d;BMI_`8J1
@@ -185,7 +185,7 @@ R10
 R11
 n@adder_altpriority_encoder_6v7
 vAdder_altpriority_encoder_be8
-R12
+R1
 !i10b 1
 !s100 LFf>9^`b9Ah:oQ=41FI@>1
 IALO`m<UUJ@=cY`nFb=b5=1
@@ -207,7 +207,7 @@ R10
 R11
 n@adder_altpriority_encoder_be8
 vAdder_altpriority_encoder_bv7
-R12
+R1
 !i10b 1
 !s100 4=C1UdKf4CAIMR^U6Fjlf3
 I_[PL104N[J2=KDcaD21hm1
@@ -229,7 +229,7 @@ R10
 R11
 n@adder_altpriority_encoder_bv7
 vAdder_altpriority_encoder_f48
-R12
+R1
 !i10b 1
 !s100 ChB_oL0H=?LCS<58C4hI41
 IVG3C1k5K4^H1gmEja0k5d1
@@ -251,7 +251,7 @@ R10
 R11
 n@adder_altpriority_encoder_f48
 vAdder_altpriority_encoder_fj8
-R12
+R1
 !i10b 1
 !s100 08CiEBdKC]C=]Vz3Qb9f40
 I_2^WZ_g;QE]Y^C^9K`^kf2
@@ -295,7 +295,7 @@ R10
 R11
 n@adder_altpriority_encoder_h39
 vAdder_altpriority_encoder_hi9
-R12
+R1
 !i10b 1
 !s100 ;L9d:<i>W7Ch7:Z=PEZ`j1
 I2GfSfMHMzZORCS?hMD;ed2
@@ -339,7 +339,7 @@ R10
 R11
 n@adder_altpriority_encoder_ina
 vAdder_altpriority_encoder_n28
-R12
+R1
 !i10b 1
 !s100 1RB`_35S8abPU>?eI993G3
 ISQNa4Rhe20n9[fk4<9^el0
@@ -361,7 +361,7 @@ R10
 R11
 n@adder_altpriority_encoder_n28
 vAdder_altpriority_encoder_nh8
-R12
+R1
 !i10b 1
 !s100 oA1>6]30TiLZFGDXU@ndi1
 Ib>I>A8JhIC]=P43hbl@9W3
@@ -383,7 +383,7 @@ R10
 R11
 n@adder_altpriority_encoder_nh8
 vAdder_altpriority_encoder_q28
-R12
+R1
 !i10b 1
 !s100 ca0iTi5Can=MCXnA40U=d2
 IV?]UMBzUJISh>F7QNFNjn0
@@ -405,7 +405,7 @@ R10
 R11
 n@adder_altpriority_encoder_q28
 vAdder_altpriority_encoder_qh8
-R12
+R1
 !i10b 1
 !s100 oO_n4[2T9TLV4Li1iD8DZ2
 IB>E<UDhg[h;:I[65b4eRZ3
@@ -427,7 +427,7 @@ R10
 R11
 n@adder_altpriority_encoder_qh8
 vAdder_altpriority_encoder_r08
-R12
+R1
 !i10b 1
 !s100 7WNoXezkjemE[dHC1UAn70
 I@Y7GZJD18=aWAKWJ>g69^3
@@ -449,7 +449,7 @@ R10
 R11
 n@adder_altpriority_encoder_r08
 vAdder_altpriority_encoder_rf8
-R12
+R1
 !i10b 1
 !s100 Ljg71ed`]B6CT:Kd<N2_93
 IGEbg65:5L;`nSE5zQT=Bm3
@@ -471,7 +471,7 @@ R10
 R11
 n@adder_altpriority_encoder_rf8
 vAdder_altpriority_encoder_te9
-R12
+R1
 !i10b 1
 !s100 ;D=7Wed`FG4Ta[P<B;fX72
 I:lWOV`@OdK3N:NI6AnR]Y0
@@ -493,7 +493,7 @@ R10
 R11
 n@adder_altpriority_encoder_te9
 vAdder_altpriority_encoder_tv8
-R12
+R1
 !i10b 1
 !s100 RQ;^]OI0HmBF5@37l8V4o1
 In?ATY^TP>5;I7YcJUSE;d2
@@ -515,7 +515,7 @@ R10
 R11
 n@adder_altpriority_encoder_tv8
 vAdder_altpriority_encoder_uu8
-R12
+R1
 !i10b 1
 !s100 4bO_9I;0kFh^dQ7cZFfRM0
 ICI1QM@enhWzQGn5de[00n2
@@ -537,7 +537,7 @@ R10
 R11
 n@adder_altpriority_encoder_uu8
 vAdder_altpriority_encoder_v28
-R12
+R1
 !i10b 1
 !s100 G@HMeVlh?K484PnO1oWIc1
 I31lnBeGQe3SBb6YfUY14^1
@@ -559,7 +559,7 @@ R10
 R11
 n@adder_altpriority_encoder_v28
 vAdder_altpriority_encoder_vh8
-R12
+R1
 !i10b 1
 !s100 aeDHj22IB`Oemg_Vc5bRL3
 I3LJ7SB_eW81N]T;2VYc[V3
@@ -581,24 +581,24 @@ R10
 R11
 n@adder_altpriority_encoder_vh8
 vArctan2
-Z14 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z15 !s110 1582055349
+Z13 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z14 !s110 1582154279
 !i10b 1
-!s100 MOU^3ABj=id6meGfoOjjU0
-IaNj<M957TERDMA0z:o]ee3
+!s100 KMXmWCCLXckIDeJk>F3M41
+IMikfz6_1T8S>PkbL8_`Ad1
 R2
 !s105 Arctan2_sv_unit
 S1
 R0
-w1582054827
+w1582139253
 8../Functions/Arctan2.sv
 F../Functions/Arctan2.sv
-L0 17
+L0 19
 R6
 r1
 !s85 0
 31
-Z16 !s108 1582055349.000000
+!s108 1582154279.000000
 !s107 ../Functions/Arctan2.sv|
 !s90 -reportprogress|300|-work|work|../Functions/Arctan2.sv|
 !i113 1
@@ -606,7 +606,7 @@ R10
 R11
 n@arctan2
 vAtan2
-R15
+R14
 !i10b 1
 !s100 O6CYiT0N3;]I0@68T[gMB0
 ISb<<`CnzUW<1O?0RWPicE1
@@ -620,7 +620,7 @@ R6
 r1
 !s85 0
 31
-R16
+Z15 !s108 1582154278.000000
 !s107 Atan2.v|
 !s90 -reportprogress|300|-work|work|Atan2.v|
 !i113 1
@@ -628,33 +628,34 @@ R10
 R11
 n@atan2
 Eatan2_cordic_0
-Z17 w1582048276
-Z18 DPx3 lpm 14 lpm_components 0 22 BZZBj]8LhndN7CkCjD@L`2
-Z19 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 QZo1Vh6en2ZO3=hNmAfQ>0
-Z20 DPx9 altera_mf 20 altera_mf_components 0 22 gV:l9C^?PSb6]b5V?_jR@3
-Z21 DPx4 work 21 dspba_library_package 0 22 g5ge0<PbUA3NecLg[8;Cj3
-Z22 DPx4 ieee 9 math_real 0 22 Sk6CSihbPL<f[^Shm]=KX0
-Z23 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
-Z24 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
-Z25 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z16 w1582048276
+Z17 DPx3 lpm 14 lpm_components 0 22 BZZBj]8LhndN7CkCjD@L`2
+Z18 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 QZo1Vh6en2ZO3=hNmAfQ>0
+Z19 DPx9 altera_mf 20 altera_mf_components 0 22 gV:l9C^?PSb6]b5V?_jR@3
+Z20 DPx4 work 21 dspba_library_package 0 22 g5ge0<PbUA3NecLg[8;Cj3
+Z21 DPx4 ieee 9 math_real 0 22 Sk6CSihbPL<f[^Shm]=KX0
+Z22 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z23 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z24 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
 R0
-Z26 8C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/Atan2_CORDIC_0.vhd
-Z27 FC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/Atan2_CORDIC_0.vhd
+Z25 8C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/Atan2_CORDIC_0.vhd
+Z26 FC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/Atan2_CORDIC_0.vhd
 l0
 L36
 V;YeoP_T?Y^_oR3S=kQILU3
 !s100 eKfQ;Tlk@mNOF;?o93:BE0
-Z28 OV;C;10.5b;63
+Z27 OV;C;10.5b;63
 32
-R1
+Z28 !s110 1582154118
 !i10b 1
-Z29 !s108 1582055265.000000
+Z29 !s108 1582154118.000000
 Z30 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/Atan2_CORDIC_0.vhd|
 Z31 !s107 C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/Atan2_CORDIC_0.vhd|
 !i113 1
 Z32 o-work work -2002 -explicit
 Z33 tExplicit 1 CvgOpt 0
 Anormal
+R17
 R18
 R19
 R20
@@ -662,15 +663,14 @@ R21
 R22
 R23
 R24
-R25
 DEx4 work 14 atan2_cordic_0 0 22 ;YeoP_T?Y^_oR3S=kQILU3
 l472
 L47
 V2X=E8nUT4cS3Fjf7QMej22
 !s100 ;E?e@TKS19[F?z[m1l?FE1
-R28
+R27
 32
-R1
+R28
 !i10b 1
 R29
 R30
@@ -679,8 +679,8 @@ R31
 R32
 R33
 vClockTimer
-R14
-R15
+R13
+Z34 !s110 1582154278
 !i10b 1
 !s100 O1@A02JGlQbgCTEUOON@61
 I`HGaen=1LIToh`2FEFiI:2
@@ -691,21 +691,46 @@ R0
 w1581701774
 8ClockTimer.sv
 FClockTimer.sv
-Z34 L0 15
+Z35 L0 15
 R6
 r1
 !s85 0
 31
-R16
+R15
 !s107 ClockTimer.sv|
 !s90 -reportprogress|300|-work|work|ClockTimer.sv|
 !i113 1
 R10
 R11
 n@clock@timer
+vCosineTh2
+R13
+!s110 1582178846
+!i10b 1
+!s100 VP=ifPgM8FohJ5ZIJD=^91
+I;Vz@jl^o_VQznP0:AHP>H2
+R2
+!s105 CosineTh2_sv_unit
+S1
+R0
+w1582178415
+8C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/CosineTh2.sv
+FC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/CosineTh2.sv
+Z36 L0 21
+R6
+r1
+!s85 0
+31
+!s108 1582178846.000000
+!s107 C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/CosineTh2.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/CosineTh2.sv|
+!i113 1
+Z37 o-work work -sv
+R11
+n@cosine@th2
 vCounter
-R14
-R15
+R13
+R34
 !i10b 1
 !s100 <=D0OFV`gW?mNnVJNj>0K1
 IUQdC4HJX<nJobcPO9VbQC0
@@ -716,12 +741,12 @@ R0
 R3
 8Counter.sv
 FCounter.sv
-R34
+R35
 R6
 r1
 !s85 0
 31
-R16
+R15
 !s107 Counter.sv|
 !s90 -reportprogress|300|-work|work|Counter.sv|
 !i113 1
@@ -729,7 +754,7 @@ R10
 R11
 n@counter
 vDoubleAdder
-R14
+R13
 R1
 !i10b 1
 !s100 6^1`5^fI7KfHUnDnKA^K03
@@ -746,11 +771,11 @@ R6
 r1
 !s85 0
 31
-R29
+R7
 !s107 C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleAdder.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleAdder.sv|
 !i113 1
-Z35 o-work work -sv
+R37
 R11
 n@double@adder
 vDoubleDiv
@@ -760,17 +785,17 @@ R1
 I3dTN9o8dRdNIT>OnanO@<3
 R2
 R0
-Z36 w1581666983
-Z37 8C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDiv.v
-Z38 FC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDiv.v
+Z38 w1581666983
+Z39 8C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDiv.v
+Z40 FC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDiv.v
 L0 1748
 R6
 r1
 !s85 0
 31
-R29
-Z39 !s107 C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDiv.v|
-Z40 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDiv.v|
+R7
+Z41 !s107 C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDiv.v|
+Z42 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDiv.v|
 !i113 1
 R10
 R11
@@ -782,17 +807,17 @@ R1
 I;T`XE@RigFI[Ncon_PTa?1
 R2
 R0
-R36
-R37
 R38
+R39
+R40
 L0 1682
 R6
 r1
 !s85 0
 31
-R29
-R39
-R40
+R7
+R41
+R42
 !i113 1
 R10
 R11
@@ -804,49 +829,49 @@ R1
 Id@TV:I[D6GYQ>KUZ9=]aX1
 R2
 R0
-R36
-R37
 R38
-R13
+R39
+R40
+R12
 R6
 r1
 !s85 0
 31
-R29
-R39
-R40
+R7
+R41
+R42
 !i113 1
 R10
 R11
 n@double@div_altfp_div_pst_99j
 vDoubleDivider
-R14
-R1
+R13
+!s110 1582154964
 !i10b 1
 !s100 Wi:]?jjC_4i;NngJbihI<3
-Ig?VbP^H9oSeX65_?<6XoC3
+IMRYn6g[H8Ii2oJ1nj6JVX2
 R2
 !s105 DoubleDivider_sv_unit
 S1
 R0
 w1581666654
-8C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDivider.sv
-FC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDivider.sv
-R34
+8../Arithmetic/DoubleDivider/DoubleDivider.sv
+F../Arithmetic/DoubleDivider/DoubleDivider.sv
+R35
 R6
 r1
 !s85 0
 31
-R29
-!s107 C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDivider.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDivider.sv|
+!s108 1582154964.000000
+!s107 ../Arithmetic/DoubleDivider/DoubleDivider.sv|
+!s90 -reportprogress|300|-work|work|../Arithmetic/DoubleDivider/DoubleDivider.sv|
 !i113 1
-R35
+R10
 R11
 n@double@divider
 vDoubleMultiply
-R14
-R1
+R13
+R28
 !i10b 1
 !s100 UR6Cm4@zXI[[CMG2<`27U0
 IUj7U:J::AOLk:bJ8oHj`o0
@@ -857,195 +882,195 @@ R0
 R3
 8C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleMultiply.sv
 FC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleMultiply.sv
-L0 21
+R36
 R6
 r1
 !s85 0
 31
-R29
+R7
 !s107 C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleMultiply.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleMultiply.sv|
 !i113 1
-R35
+R37
 R11
 n@double@multiply
 vDoubleTo32BitFixed
-R15
+R34
 !i10b 1
 !s100 [a0^Z`QEn?WLTcS9D;5<o2
 IgO=mRE]O_5Y?AB=DbAA4Q3
 R2
 R0
-Z41 w1582049247
-Z42 8DoubleTo32BitFixed.v
-Z43 FDoubleTo32BitFixed.v
-Z44 L0 1035
+Z43 w1582049247
+Z44 8DoubleTo32BitFixed.v
+Z45 FDoubleTo32BitFixed.v
+Z46 L0 1035
 R6
 r1
 !s85 0
 31
-R16
-Z45 !s107 DoubleTo32BitFixed.v|
-Z46 !s90 -reportprogress|300|-work|work|DoubleTo32BitFixed.v|
+R15
+Z47 !s107 DoubleTo32BitFixed.v|
+Z48 !s90 -reportprogress|300|-work|work|DoubleTo32BitFixed.v|
 !i113 1
 R10
 R11
 n@double@to32@bit@fixed
 vDoubleTo32BitFixed_altbarrel_shift_j4h
-R15
+R34
 !i10b 1
 !s100 M_EBYH@RUFC?AVX5me7Af1
 I5_eh5:1nm@EZ>Hf=PYbJR0
 R2
 R0
-R41
-R42
 R43
-R13
+R44
+R45
+R12
 R6
 r1
 !s85 0
 31
-R16
-R45
-R46
+R15
+R47
+R48
 !i113 1
 R10
 R11
 n@double@to32@bit@fixed_altbarrel_shift_j4h
 vDoubleTo32BitFixed_altfp_convert_jtp
-R15
+R34
 !i10b 1
 !s100 V`TZ;Ye^[@F6Z2iChRWHz1
 IWLekjnYe8H=a24XDZo[S^1
 R2
 R0
-R41
-R42
 R43
-Z47 L0 146
+R44
+R45
+Z49 L0 146
 R6
 r1
 !s85 0
 31
-R16
-R45
-R46
+R15
+R47
+R48
 !i113 1
 R10
 R11
 n@double@to32@bit@fixed_altfp_convert_jtp
 vDoubleToFixed42Bit
-R1
+R28
 !i10b 1
 !s100 778jHkBb@6UMYJFGScnA>2
 I[1hG=6`iB1h:TgT?O8cH=0
 R2
 R0
-Z48 w1582048206
-Z49 8C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleToFixed42Bit.v
-Z50 FC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleToFixed42Bit.v
-R44
+Z50 w1582048206
+Z51 8C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleToFixed42Bit.v
+Z52 FC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleToFixed42Bit.v
+R46
 R6
 r1
 !s85 0
 31
 R29
-Z51 !s107 C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleToFixed42Bit.v|
-Z52 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleToFixed42Bit.v|
+Z53 !s107 C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleToFixed42Bit.v|
+Z54 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleToFixed42Bit.v|
 !i113 1
 R10
 R11
 n@double@to@fixed42@bit
 vDoubleToFixed42Bit_altbarrel_shift_p4h
-R1
+R28
 !i10b 1
 !s100 H6bb;dE<k6YYOZEd0]3Mj0
 IG17Y^;H660[e;aV64:SJO2
 R2
 R0
-R48
-R49
 R50
-R13
+R51
+R52
+R12
 R6
 r1
 !s85 0
 31
 R29
-R51
-R52
+R53
+R54
 !i113 1
 R10
 R11
 n@double@to@fixed42@bit_altbarrel_shift_p4h
 vDoubleToFixed42Bit_altfp_convert_mtp
-R1
+R28
 !i10b 1
 !s100 ]_ka^ZBUi=k7ZJnhhOm5i2
 IdoYD26jT`95Y_O69DMI@92
 R2
 R0
-R48
-R49
 R50
-R47
+R51
+R52
+R49
 R6
 r1
 !s85 0
 31
 R29
-R51
-R52
+R53
+R54
 !i113 1
 R10
 R11
 n@double@to@fixed42@bit_altfp_convert_mtp
 Edspba_delay
-Z53 w1582048323
-R21
+Z55 w1582048323
+R20
+R23
 R24
-R25
 R0
-Z54 8C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library.vhd
-Z55 FC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library.vhd
+Z56 8C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library.vhd
+Z57 FC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library.vhd
 l0
 L18
 VJZ>XXZi]3nAML><T1OJmD2
 !s100 >TY9@l4a>2O5Wd_6jF4:g0
-R28
+R27
 32
-R1
+R28
 !i10b 1
 R29
-Z56 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library.vhd|
-Z57 !s107 C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library.vhd|
+Z58 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library.vhd|
+Z59 !s107 C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library.vhd|
 !i113 1
 R32
 R33
 Adelay
-R21
+R20
+R23
 R24
-R25
 DEx4 work 11 dspba_delay 0 22 JZ>XXZi]3nAML><T1OJmD2
 l37
 L34
 VH[ibU<H]FT4<DCgHmIjFa0
 !s100 DAfPXKZhR<Ac>Wg8zYj1H3
-R28
+R27
 32
-R1
+R28
 !i10b 1
 R29
-R56
-R57
+R58
+R59
 !i113 1
 R32
 R33
 Pdspba_library_package
+R23
 R24
-R25
-R53
+R55
 R0
 8C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library_package.vhd
 FC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library_package.vhd
@@ -1053,147 +1078,458 @@ l0
 L17
 Vg5ge0<PbUA3NecLg[8;Cj3
 !s100 @e;XE0e^oAdIdzY=Rc];H3
-R28
+R27
 32
-Z58 !s110 1582055266
+R28
 !i10b 1
-!s108 1582055266.000000
+R29
 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library_package.vhd|
 !s107 C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library_package.vhd|
 !i113 1
 R32
 R33
 Edspba_pipe
-R53
+R55
+R22
 R23
 R24
-R25
 R0
-R54
-R55
+R56
+R57
 l0
 L343
 VhX_ehDHUhEGT`<4CLHDEW1
 !s100 ko3XcgZgdPgSD;SDR?Wmi2
-R28
+R27
 32
-R58
+R28
 !i10b 1
 R29
-R56
-R57
+R58
+R59
 !i113 1
 R32
 R33
 Artl
+R22
 R23
 R24
-R25
 DEx4 work 10 dspba_pipe 0 22 hX_ehDHUhEGT`<4CLHDEW1
 l362
 L356
 VF>oh8b`LjePmYI9jU_S=k2
 !s100 =]hA3YBJaaU9dNBMla?I?2
-R28
+R27
 32
-R58
+R28
 !i10b 1
 R29
-R56
-R57
+R58
+R59
 !i113 1
 R32
 R33
 Edspba_sync_reg
-R53
-R21
+R55
+R20
+R22
 R23
 R24
-R25
 R0
-R54
-R55
+R56
+R57
 l0
 L93
 V[2:MQ1fH@k]9VCDY^FzcN0
 !s100 G`[2Ci2RQWoL`zK>2h>oj2
-R28
+R27
 32
-R58
+R28
 !i10b 1
 R29
-R56
-R57
+R58
+R59
 !i113 1
 R32
 R33
 Async_reg
-R21
+R20
+R22
 R23
 R24
-R25
 DEx4 work 14 dspba_sync_reg 0 22 [2:MQ1fH@k]9VCDY^FzcN0
 l136
 L117
 VXjK]3?6G<i`:[Y@3Y=3Bo1
 !s100 D5ba3Bk5_`1nL6?j<JkK81
-R28
+R27
 32
-R58
+R28
 !i10b 1
 R29
-R56
-R57
+R58
+R59
 !i113 1
 R32
 R33
+vInt15BitToDouble
+R28
+!i10b 1
+!s100 2a77RA7LfHc=hh16CeYL53
+I_c`B5m8RW^SzX^_:Y79CT2
+R2
+R0
+Z60 w1582140144
+Z61 8C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Int15BitToDouble.v
+Z62 FC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Int15BitToDouble.v
+L0 626
+R6
+r1
+!s85 0
+31
+R29
+Z63 !s107 C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Int15BitToDouble.v|
+Z64 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Int15BitToDouble.v|
+!i113 1
+R10
+R11
+n@int15@bit@to@double
+vInt15BitToDouble_altbarrel_shift_fof
+R28
+!i10b 1
+!s100 STdR<m3nESlA;X5fOm3782
+IAzG;9Gf7>OS>RG6APm]<J3
+R2
+R0
+R60
+R61
+R62
+R12
+R6
+r1
+!s85 0
+31
+R29
+R63
+R64
+!i113 1
+R10
+R11
+n@int15@bit@to@double_altbarrel_shift_fof
+vInt15BitToDouble_altfp_convert_6gn
+R28
+!i10b 1
+!s100 >anoLz86n>z93BjnKoRfP2
+I;JS`_:9AcRj_VekKU2_iH2
+R2
+R0
+R60
+R61
+R62
+L0 348
+R6
+r1
+!s85 0
+31
+R29
+R63
+R64
+!i113 1
+R10
+R11
+n@int15@bit@to@double_altfp_convert_6gn
+vInt15BitToDouble_altpriority_encoder_3e8
+R28
+!i10b 1
+!s100 35d05jD;haT`j[94fZiE?0
+ITiNTn7Q@B@zcQVK4n?nD`0
+R2
+R0
+R60
+R61
+R62
+L0 171
+R6
+r1
+!s85 0
+31
+R29
+R63
+R64
+!i113 1
+R10
+R11
+n@int15@bit@to@double_altpriority_encoder_3e8
+vInt15BitToDouble_altpriority_encoder_3v7
+R28
+!i10b 1
+!s100 `2;EdeXAM@zWaAR:amK`S1
+IeOZ>X1bP<J5z7]>I6zHzb3
+R2
+R0
+R60
+R61
+R62
+L0 151
+R6
+r1
+!s85 0
+31
+R29
+R63
+R64
+!i113 1
+R10
+R11
+n@int15@bit@to@double_altpriority_encoder_3v7
+vInt15BitToDouble_altpriority_encoder_6e8
+R28
+!i10b 1
+!s100 ]WA;JICa`@DWeM^m<e1U33
+I_[]?_9NAeDKL:KB_<<51a1
+R2
+R0
+R60
+R61
+R62
+L0 222
+R6
+r1
+!s85 0
+31
+R29
+R63
+R64
+!i113 1
+R10
+R11
+n@int15@bit@to@double_altpriority_encoder_6e8
+vInt15BitToDouble_altpriority_encoder_6v7
+R28
+!i10b 1
+!s100 gW7Hb2?FV[NC4jUiF=GlR1
+I5RCTF2z2nPlWmYzB45jmT3
+R2
+R0
+R60
+R61
+R62
+L0 190
+R6
+r1
+!s85 0
+31
+R29
+R63
+R64
+!i113 1
+R10
+R11
+n@int15@bit@to@double_altpriority_encoder_6v7
+vInt15BitToDouble_altpriority_encoder_be8
+R28
+!i10b 1
+!s100 HSMeYfDM:5DLj@jJQA<ae0
+ICA9@`Pb6aM]Udj[eSW[R30
+R2
+R0
+R60
+R61
+R62
+L0 287
+R6
+r1
+!s85 0
+31
+R29
+R63
+R64
+!i113 1
+R10
+R11
+n@int15@bit@to@double_altpriority_encoder_be8
+vInt15BitToDouble_altpriority_encoder_bv7
+R28
+!i10b 1
+!s100 zQo@QEZo9:5YMH4TV6j7[3
+In6Y8A[RCgNbDg5;Y[;Y6e0
+R2
+R0
+R60
+R61
+R62
+L0 255
+R6
+r1
+!s85 0
+31
+R29
+R63
+R64
+!i113 1
+R10
+R11
+n@int15@bit@to@double_altpriority_encoder_bv7
+vInt15BitToDouble_altpriority_encoder_rb6
+R28
+!i10b 1
+!s100 ^C;GA<`R2>ZDecY4[<Wfa3
+I;G4zkT8hTniUUSEa?Cmee2
+R2
+R0
+R60
+R61
+R62
+L0 320
+R6
+r1
+!s85 0
+31
+R29
+R63
+R64
+!i113 1
+R10
+R11
+n@int15@bit@to@double_altpriority_encoder_rb6
 vMultiplierFP
-R1
+R28
 !i10b 1
 !s100 8oRG1IJ3^b^d^hz1ojmh20
 I`X4Gl2=N3zXA7NA;7c4@Y0
 R2
 R0
 R3
-Z59 8C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/MultiplierFP.v
-Z60 FC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/MultiplierFP.v
+Z65 8C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/MultiplierFP.v
+Z66 FC:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/MultiplierFP.v
 L0 562
 R6
 r1
 !s85 0
 31
 R29
-Z61 !s107 C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/MultiplierFP.v|
-Z62 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/MultiplierFP.v|
+Z67 !s107 C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/MultiplierFP.v|
+Z68 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/MultiplierFP.v|
 !i113 1
 R10
 R11
 n@multiplier@f@p
 vMultiplierFP_altfp_mult_e0r
-R1
+R28
 !i10b 1
 !s100 8AcTiE_U?SRMM8:nf8o633
 I7I7DMoiHBdVYca7kC=;RP1
 R2
 R0
 R3
-R59
-R60
+R65
+R66
 L0 46
 R6
 r1
 !s85 0
 31
 R29
-R61
-R62
+R67
+R68
 !i113 1
 R10
 R11
 n@multiplier@f@p_altfp_mult_e0r
+vSqRoot
+Z69 !s110 1582179271
+!i10b 1
+!s100 _QMzl:Q@LR`HFgTicjEn[1
+I4AcOhJSbQ>A9?M0[Mi2;M3
+R2
+R0
+Z70 w1582162326
+Z71 8../Arithmetic/SqRoot/SqRoot.v
+Z72 F../Arithmetic/SqRoot/SqRoot.v
+L0 3523
+R6
+r1
+!s85 0
+31
+Z73 !s108 1582179271.000000
+Z74 !s107 ../Arithmetic/SqRoot/SqRoot.v|
+Z75 !s90 -reportprogress|300|-work|work|../Arithmetic/SqRoot/SqRoot.v|
+!i113 1
+R10
+R11
+n@sq@root
+vSqRoot_alt_sqrt_block_mcb
+R69
+!i10b 1
+!s100 @7Bh@KM>4>:Bd6CL>VGPa3
+Ioid07]I;^I_K^dI3On:3F2
+R2
+R0
+R70
+R71
+R72
+R12
+R6
+r1
+!s85 0
+31
+R73
+R74
+R75
+!i113 1
+R10
+R11
+n@sq@root_alt_sqrt_block_mcb
+vSqRoot_altfp_sqrt_l8d
+R69
+!i10b 1
+!s100 IWPL:C2<z0e7QoL_Aacbo0
+I_8cOQhbgYg5_43i<`YK[X3
+R2
+R0
+R70
+R71
+R72
+L0 2233
+R6
+r1
+!s85 0
+31
+R73
+R74
+R75
+!i113 1
+R10
+R11
+n@sq@root_altfp_sqrt_l8d
+vSquareRoot
+R13
+R69
+!i10b 1
+!s100 FW53ho4SV<mX_MV0UFFRI2
+I0_F4[P:LcD2IZ[^l=e3De0
+R2
+!s105 SquareRoot_sv_unit
+S1
+R0
+w1582179249
+8../Arithmetic/SqRoot/SquareRoot.sv
+F../Arithmetic/SqRoot/SquareRoot.sv
+L0 17
+R6
+r1
+!s85 0
+31
+R73
+!s107 ../Arithmetic/SqRoot/SquareRoot.sv|
+!s90 -reportprogress|300|-work|work|../Arithmetic/SqRoot/SquareRoot.sv|
+!i113 1
+R10
+R11
+n@square@root
 vSRLatch
-R14
-R1
+R13
+R28
 !i10b 1
 !s100 HZE4aW]@8^kaz=TbdRL>41
 IVM<M8Pen50A]XZ7GjI<PY3
@@ -1213,12 +1549,12 @@ R29
 !s107 C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/SRLatch.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/SRLatch.sv|
 !i113 1
-R35
+R37
 R11
 n@s@r@latch
 vSync
-R14
-R12
+R13
+R1
 !i10b 1
 !s100 ?mFSXV1TRjVZR07WnjcG70
 IYHKQ=V3P16Jo<m0mUljin0
@@ -1238,6 +1574,6 @@ R7
 !s107 C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/Sync.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/Sync.sv|
 !i113 1
-R35
+R37
 R11
 n@sync

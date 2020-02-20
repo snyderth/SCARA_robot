@@ -13,6 +13,8 @@
 *				ClockTimer.sv
 *				Atan2.v
 *
+*	NOTE: This module must be simulated with the
+*			220model_ver library.
 ***************************************************/
 module Arctan2(input logic [63:0] arg1,
 					input logic [63:0] arg2,
@@ -64,13 +66,17 @@ module Arctan2(input logic [63:0] arg1,
 					
 					Atan2 arctangent(.en(atanStart),
 							.clk(clk),
-							.areset(~atanStart),
+							.areset(reset),
 							.x(arg2FixedPoint),//arg2
 							.y(arg1FixedPoint), //arg1
 							.q(angle));
 							
-					ClockTimer #(4, 8) atanTimer(
+							
+					logic [3:0] cnt;		
+					
+					ClockTimer #(4, 13) atanTimer(
 															.clk(clk),
+															.count(cnt),
 															.en(atanStart),
 															.reset(reset | ~atanStart),
 															.expire(atanDone));
