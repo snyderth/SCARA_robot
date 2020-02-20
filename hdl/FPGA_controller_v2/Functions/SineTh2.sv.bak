@@ -1,0 +1,12 @@
+module SineTh2(input logic [63:0] CosTh2,
+					input logic clk,
+					input logic reset,
+					input logic enable,
+					output logic [63:0] SinTh2);
+					
+					
+
+
+
+endmodule
+

@@ -1,0 +1,84 @@
+Info: Starting: Create simulation model
+Info: qsys-generate C:\Users\Thomas\Documents\Classes\ECE342\SCARA_robot\hdl\FPGA_controller_v2\Atan2.qsys --simulation=VERILOG --allow-mixed-language-simulation --output-directory=C:\Users\Thomas\Documents\Classes\ECE342\SCARA_robot\hdl\FPGA_controller_v2\Atan2\simulation --family="Cyclone V" --part=5CEBA2F17A7
+Progress: Loading FPGA_controller_v2/Atan2.qsys
+Progress: Reading input file
+Progress: Adding CORDIC_0 [altera_CORDIC 18.1]
+Progress: Parameterizing module CORDIC_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: Atan2: Generating Atan2 "Atan2" for SIM_VERILOG
+Info: CORDIC_0: C:/intelfpga_lite/18.1/quartus/dspba/backend/windows64/cmdPolyEval -target CycloneV -frequency 400 -name none -noChanValid -faithfulRounding -enable -printMachineReadable -noFileGenerate -speedgrade 7 FXPAtan2Expert 32 15 1 10 0 0
+Warning: CORDIC_0: Frequency search for this target may take up to 10 seconds
+Info: CORDIC_0: C:/intelfpga_lite/18.1/quartus/dspba/backend/windows64/cmdPolyEval -target CycloneV -frequency 200 -name none -noChanValid -faithfulRounding -enable -printMachineReadable -noFileGenerate -speedgrade 7 FXPAtan2Expert 32 15 1 10 0 0
+Info: CORDIC_0: C:/intelfpga_lite/18.1/quartus/dspba/backend/windows64/cmdPolyEval -target CycloneV -frequency 100 -name none -noChanValid -faithfulRounding -enable -printMachineReadable -noFileGenerate -speedgrade 7 FXPAtan2Expert 32 15 1 10 0 0
+Info: CORDIC_0: C:/intelfpga_lite/18.1/quartus/dspba/backend/windows64/cmdPolyEval -target CycloneV -frequency 150 -name none -noChanValid -faithfulRounding -enable -printMachineReadable -noFileGenerate -speedgrade 7 FXPAtan2Expert 32 15 1 10 0 0
+Info: CORDIC_0: Could achieve 8 cycles latency maximum at Frequency 150 MHz, padding with registers to reach requested 13 cycles latency
+Info: CORDIC_0: C:/intelfpga_lite/18.1/quartus/dspba/backend/windows64/cmdPolyEval -target CycloneV -frequency 100 -name Atan2_CORDIC_0 -noChanValid -faithfulRounding -enable -printMachineReadable -lang VHDL -constrainLatency 13 -speedgrade 7 FXPAtan2Expert 32 15 1 10 0 0
+Info: CORDIC_0: DSP Blocks Used: 0
+Info: CORDIC_0: LUTs Used: 1970
+Info: CORDIC_0: Memory Bits Used: 0
+Info: CORDIC_0: Memory Blocks Used: 0
+Info: CORDIC_0: "Atan2" instantiated altera_CORDIC "CORDIC_0"
+Info: Atan2: Done "Atan2" with 2 modules, 4 files
+Info: qsys-generate succeeded.
+Info: Finished: Create simulation model
+Info: Starting: Create Modelsim Project.
+Info: sim-script-gen --spd=C:\Users\Thomas\Documents\Classes\ECE342\SCARA_robot\hdl\FPGA_controller_v2\Atan2\Atan2.spd --output-directory=C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/ --use-relative-paths=true
+Info: Doing: ip-make-simscript --spd=C:\Users\Thomas\Documents\Classes\ECE342\SCARA_robot\hdl\FPGA_controller_v2\Atan2\Atan2.spd --output-directory=C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/ --use-relative-paths=true
+Info: Generating the following file(s) for MODELSIM simulator in C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/ directory:
+Info: 	mentor/msim_setup.tcl
+Info: Skipping VCS script generation since VHDL file $QUARTUS_INSTALL_DIR/eda/sim_lib/altera_syn_attributes.vhd is required for simulation
+Info: Generating the following file(s) for VCSMX simulator in C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/ directory:
+Info: 	synopsys/vcsmx/synopsys_sim.setup
+Info: 	synopsys/vcsmx/vcsmx_setup.sh
+Info: Generating the following file(s) for NCSIM simulator in C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/ directory:
+Info: 	cadence/cds.lib
+Info: 	cadence/hdl.var
+Info: 	cadence/ncsim_setup.sh
+Info: 	1 .cds.lib files in cadence/cds_libs/ directory
+Info: Generating the following file(s) for RIVIERA simulator in C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/ directory:
+Info: 	aldec/rivierapro_setup.tcl
+Info: For information on how to simulate your IP, see the explanatory comments in the simulator-specific subdirectories under C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/.
+Info: Regenerate these scripts whenever you make any change to any Quartus-generated IP in your project.
+Info: Finished: Create Modelsim Project.
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate C:\Users\Thomas\Documents\Classes\ECE342\SCARA_robot\hdl\FPGA_controller_v2\Atan2.qsys --block-symbol-file --output-directory=C:\Users\Thomas\Documents\Classes\ECE342\SCARA_robot\hdl\FPGA_controller_v2\Atan2 --family="Cyclone V" --part=5CEBA2F17A7
+Progress: Loading FPGA_controller_v2/Atan2.qsys
+Progress: Reading input file
+Progress: Adding CORDIC_0 [altera_CORDIC 18.1]
+Progress: Parameterizing module CORDIC_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: qsys-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate C:\Users\Thomas\Documents\Classes\ECE342\SCARA_robot\hdl\FPGA_controller_v2\Atan2.qsys --synthesis=VERILOG --output-directory=C:\Users\Thomas\Documents\Classes\ECE342\SCARA_robot\hdl\FPGA_controller_v2\Atan2\synthesis --family="Cyclone V" --part=5CEBA2F17A7
+Progress: Loading FPGA_controller_v2/Atan2.qsys
+Progress: Reading input file
+Progress: Adding CORDIC_0 [altera_CORDIC 18.1]
+Progress: Parameterizing module CORDIC_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: Atan2: Generating Atan2 "Atan2" for QUARTUS_SYNTH
+Info: CORDIC_0: C:/intelfpga_lite/18.1/quartus/dspba/backend/windows64/cmdPolyEval -target CycloneV -frequency 400 -name none -noChanValid -faithfulRounding -enable -printMachineReadable -noFileGenerate -speedgrade 7 FXPAtan2Expert 32 15 1 10 0 0
+Warning: CORDIC_0: Frequency search for this target may take up to 10 seconds
+Info: CORDIC_0: C:/intelfpga_lite/18.1/quartus/dspba/backend/windows64/cmdPolyEval -target CycloneV -frequency 200 -name none -noChanValid -faithfulRounding -enable -printMachineReadable -noFileGenerate -speedgrade 7 FXPAtan2Expert 32 15 1 10 0 0
+Info: CORDIC_0: C:/intelfpga_lite/18.1/quartus/dspba/backend/windows64/cmdPolyEval -target CycloneV -frequency 100 -name none -noChanValid -faithfulRounding -enable -printMachineReadable -noFileGenerate -speedgrade 7 FXPAtan2Expert 32 15 1 10 0 0
+Info: CORDIC_0: C:/intelfpga_lite/18.1/quartus/dspba/backend/windows64/cmdPolyEval -target CycloneV -frequency 150 -name none -noChanValid -faithfulRounding -enable -printMachineReadable -noFileGenerate -speedgrade 7 FXPAtan2Expert 32 15 1 10 0 0
+Info: CORDIC_0: Could achieve 8 cycles latency maximum at Frequency 150 MHz, padding with registers to reach requested 13 cycles latency
+Info: CORDIC_0: C:/intelfpga_lite/18.1/quartus/dspba/backend/windows64/cmdPolyEval -target CycloneV -frequency 100 -name Atan2_CORDIC_0 -noChanValid -faithfulRounding -enable -printMachineReadable -lang VHDL -constrainLatency 13 -speedgrade 7 FXPAtan2Expert 32 15 1 10 0 0
+Info: CORDIC_0: DSP Blocks Used: 0
+Info: CORDIC_0: LUTs Used: 1970
+Info: CORDIC_0: Memory Bits Used: 0
+Info: CORDIC_0: Memory Blocks Used: 0
+Info: CORDIC_0: "Atan2" instantiated altera_CORDIC "CORDIC_0"
+Info: Atan2: Done "Atan2" with 2 modules, 4 files
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis

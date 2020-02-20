@@ -7,6 +7,8 @@ vlog -work work scara_controller.sv
 vlog -work work Int14BitToDouble.v
 vlog -work work DoubleTo14BitInt.v
 vlog -work work DoubleTo9BitInt.v
+vlog -work work DoubleTo15BitInt.v
+vlog -work work CheckFinished.sv
 
 vsim -L lpm_ver -L 220model -L altera_mf_ver work.scara_controller
 
@@ -70,20 +72,29 @@ add wave CONVDone
 add wave -radix signed dth2
 add wave -radix signed dth1
 
+add wave target_reached
 
 add wave -radix float64 aInv
 add wave -radix float64 bInv
 add wave -radix float64 cInv
 add wave -radix float64 dInv
 
-add wave -format Logic MULTDone
+#add wave -format Logic MULTDone
+
+add wave ChkFinDone
+add wave ChkFinRes
+add wave ChkFinEn
+add wave checkFinishedEnable
+
+add wave -radix unsigned x_target_loc
+add wave -radix unsigned y_target_loc
 
 force clk 0 @ 0, 1 @ 5 -r 10
 force reset 1 @ 0, 0 @ 30
 
-force x_target 14'd6200 @ 0
+force x_target 14'd3000 @ 0
 #, 14'd1362 @ 5000
-force y_target 14'd15000 @ 0
+force y_target 14'd3000 @ 0
 #, 14'd14262 @ 5000
 
 add wave -radix signed dx
@@ -95,4 +106,4 @@ add wave -radix signed dy
 force stepper_ready 1 @ 1500
 force control_state_reg 5'b00000 @ 0, 5'b00001 @ 50
 
-run 100000
+run 500000

@@ -1,0 +1,20 @@
+# system info Atan2 on 2020.02.18.09:51:16
+system_info:
+name,value
+DEVICE,5CEBA2F17A7
+DEVICE_FAMILY,Cyclone V
+GENERATION_ID,1582048235
+#
+#
+# Files generated for Atan2 on 2020.02.18.09:51:16
+files:
+filepath,kind,attributes,module,is_top
+simulation/Atan2.v,VERILOG,,Atan2,true
+simulation/submodules/dspba_library_package.vhd,VHDL,,Atan2_CORDIC_0,false
+simulation/submodules/dspba_library.vhd,VHDL,,Atan2_CORDIC_0,false
+simulation/submodules/Atan2_CORDIC_0.vhd,VHDL,,Atan2_CORDIC_0,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+Atan2.CORDIC_0,Atan2_CORDIC_0

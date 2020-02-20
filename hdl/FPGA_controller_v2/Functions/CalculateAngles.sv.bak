@@ -1,0 +1,49 @@
+module CalculateAngles (input logic [63:0] k1,
+							input logic [63:0] k2,
+							input logic [63:0] yTarget,
+							input logic [63:0] xTarget,
+							input logic clk,
+							input logic enable,
+							input logic reset,
+							output logic dataReady,
+							output logic [63:0] th1,
+							output logic [63:0] th2);
+							
+									/******************* Convert targets to double *****************/
+				
+				logic convBegin, convDone;
+				logic [63:0] xTarget_d, yTarget_d;
+						
+				SRLatch ConversionLatch(
+												.set(enable),
+												.reset(reset | convDone),
+												.q(convBegin));
+												
+				ClockTimer #(3, 6) conversionTimer(
+													.en(convBegin),
+													.clk(clk),
+													.reset(reset),
+													.expire(convDone)
+													);
+				
+				//NOTE: Conversions are 15 bit even though
+				// x and y are 14 bit because the converters
+				// take in two's complement, so if MSb is set,
+				// it thinks its negative
+				Int15BitToDouble xtarget(
+												.clk_en(convBegin),
+												.clock(clk),
+												.result(xTarget_d),
+												.dataa({1'b0, xTarget}));
+												
+				Int15BitToDouble ytarget(
+												.clk_en(convBegin),
+												.clock(clk),
+												.result(yTarget_d),
+												.dataa({1'b0, yTarget}));
+												
+				/************************************************/
+						
+							
+endmodule
+

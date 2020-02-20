@@ -1,0 +1,35 @@
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate C:\Users\Thomas\Documents\Classes\ECE342\SCARA_robot\hdl\FPGA_controller\Atan2.qsys --block-symbol-file --output-directory=C:\Users\Thomas\Documents\Classes\ECE342\SCARA_robot\hdl\FPGA_controller\Atan2 --family="Cyclone V" --part=5CSEMA5F31C6
+Progress: Loading FPGA_controller/Atan2.qsys
+Progress: Reading input file
+Progress: Adding CORDIC_0 [altera_CORDIC 18.1]
+Progress: Parameterizing module CORDIC_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: qsys-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate C:\Users\Thomas\Documents\Classes\ECE342\SCARA_robot\hdl\FPGA_controller\Atan2.qsys --synthesis=VERILOG --output-directory=C:\Users\Thomas\Documents\Classes\ECE342\SCARA_robot\hdl\FPGA_controller\Atan2\synthesis --family="Cyclone V" --part=5CSEMA5F31C6
+Progress: Loading FPGA_controller/Atan2.qsys
+Progress: Reading input file
+Progress: Adding CORDIC_0 [altera_CORDIC 18.1]
+Progress: Parameterizing module CORDIC_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: Atan2: Generating Atan2 "Atan2" for QUARTUS_SYNTH
+Info: CORDIC_0: C:/intelfpga_lite/18.1/quartus/dspba/backend/windows64/cmdPolyEval -target CycloneV -frequency 400 -name none -noChanValid -faithfulRounding -enable -printMachineReadable -noFileGenerate -speedgrade 6 FXPAtan2Expert 32 10 1 8 0 0
+Warning: CORDIC_0: Frequency search for this target may take up to 10 seconds
+Info: CORDIC_0: C:/intelfpga_lite/18.1/quartus/dspba/backend/windows64/cmdPolyEval -target CycloneV -frequency 200 -name none -noChanValid -faithfulRounding -enable -printMachineReadable -noFileGenerate -speedgrade 6 FXPAtan2Expert 32 10 1 8 0 0
+Info: CORDIC_0: C:/intelfpga_lite/18.1/quartus/dspba/backend/windows64/cmdPolyEval -target CycloneV -frequency 100 -name none -noChanValid -faithfulRounding -enable -printMachineReadable -noFileGenerate -speedgrade 6 FXPAtan2Expert 32 10 1 8 0 0
+Info: CORDIC_0: C:/intelfpga_lite/18.1/quartus/dspba/backend/windows64/cmdPolyEval -target CycloneV -frequency 50 -name none -noChanValid -faithfulRounding -enable -printMachineReadable -noFileGenerate -speedgrade 6 FXPAtan2Expert 32 10 1 8 0 0
+Error: CORDIC_0: Could not achieve the requested latency at any frequency.
+Error: CORDIC_0: Cannot generate for specified latency
+Info: CORDIC_0: "Atan2" instantiated altera_CORDIC "CORDIC_0"
+Info: Atan2: Done "Atan2" with 2 modules, 1 files
+Error: qsys-generate failed with exit code 1: 2 Errors, 1 Warning
+Info: Finished: Create HDL design files for synthesis

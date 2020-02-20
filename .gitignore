@@ -13,3 +13,5 @@ hdl/FPGA_controller/transcript
 hdl/FPGA_controller/lib/
 hdl/FPGA_controller/db/
 hdl/FPGA_controller/wlft*
+hdl/FPGA_controller_v2/Simulation/wlft*
+hdl/FPGA_controller_v2/db/*.flock

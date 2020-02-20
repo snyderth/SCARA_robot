@@ -40,6 +40,13 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 	reg signed [8:0] dth1;
 	reg signed [8:0] dth2;
 
+	// Local x- y- targets: keep track of absolute position of target
+	logic [13:0] x_target_loc;
+	logic [13:0] y_target_loc;
+	
+	// Keep track of when our target has been reached
+	logic target_reached;
+	
 	
 	logic [63:0] x_current;
 	logic [63:0] y_current;
@@ -61,9 +68,21 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 	logic MULTEnable, MULTReset, 	MULTDone;/* Multiply Out			*/
 	logic CONVEnable, CONVReset, 	CONVDone;/* Convert Result			*/
 	logic ChkFinEn, 	ChkFinRes,	ChkFinDone; /* Forward Kinematics 	*/
+	logic ACCUMEnable, 	ACCUMReset,	ACCUMDone;/* Accumulate Steps */
 
 	
-	typedef enum logic [2:0] {FK, J, JI, MULT, CONV, INIT, CheckFinished} compute_state;
+	typedef enum logic [4:0] {
+								FK, 
+								J, 
+								JI, 
+								MULT, 
+								CONV, 
+								INIT, 
+								CheckFinished, 
+								ACCUMULATE
+							} compute_state;
+							
+							
 	compute_state next_state;
 	compute_state state;
 	
@@ -151,7 +170,10 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 		end
 		else if(state == CheckFinished)begin
 			if(ChkFinDone)begin
-			
+				ChkFinRes <= 1;
+				ChkFinEn <= 0;
+				
+				next_state <= J;
 				// Enable output
 				// wait for stepper motors
 				// Reset output numbers when finished.
@@ -223,6 +245,27 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 				next_state <= CONV;
 			end
 		end
+		else if(state == ACCUMULATE) begin
+			// Accumulator state. Keep record
+			// Of the direction and magnitude 
+			// Of stepper motor steps until we've
+			// reached the target
+			if(ACCUMDone) begin
+				ACCUMEnable <= 0;
+				ACCUMReset <= 1;
+				
+				next_state <= FK;
+				
+			end
+			else begin
+				ACCUMEnable <= 1;
+				ACCUMReset <= 0;
+				
+				next_state <= ACCUMULATE;
+			end
+			
+		end
+		
 	end
 	
 	
@@ -240,6 +283,60 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 								.y(y_current),
 								.data_ready(FKDone)
 								);
+								
+	logic target_converted, checkFinishedEnable;
+	logic [63:0] convX, convY;
+	
+	// The CheckFinished block compairs the xtarget and ytarget
+	// with the current state. We get it in as a 14-bit unsigned
+	// integer. The comparison blocks are 15-bit to double because
+	// they receive a signed integer input, meaning if it were 14-bit
+	// and the value was such that the most significant bit was flipped
+	// then the value would be considered negative. After the conversion
+	// happens, then the target converts.
+	ClockTimer #(10,6) convXYTarget(
+											.clk(clk),
+											.en(ChkFinEn),
+											.expire(target_converted),
+											.reset(ChkFinRes | reset)); 
+											
+											
+	Int15BitToDouble xTarget(
+									.clock(clk),
+									.clk_en(ChkFinEn),
+									.dataa({1'b0, x_target_loc}),
+									.result(convX)
+									);
+									
+									
+	Int15BitToDouble yTarget(
+									.clock(clk),
+									.clk_en(ChkFinEn),
+									.dataa({1'b0, y_target_loc}),
+									.result(convY)
+									);
+	
+	SRLatch latchCheckFinEn(.reset(ChkFinRes | reset),
+									.set(target_converted),
+									.q(checkFinishedEnable));
+	
+	
+	CheckFinished cf (
+							.reset(ChkFinRes | reset),
+							.enable(checkFinishedEnable),
+							.x_current(x_current),
+							.y_current(y_current),
+							.x_target(convX),
+							.y_target(convY),
+							.AtTarget(target_reached),
+							.relative_target(1'b0),
+							.ready(ChkFinDone),
+							.clk(clk)
+							);
+	
+	/**********************************************************/
+	
+	/********************* Take the Jacobian ********************/
 	
 	logic [63:0] dx_dth1, dx_dth2, dy_dth1, dy_dth2;
 	
@@ -258,6 +355,9 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 						.dy_dth2(dy_dth2)
 					);
 					
+	/************************************************************/
+	
+	/********************* Invert the Jacobian *****************/
 	logic [63:0] aInv, bInv, cInv, dInv;
 
 	JacobianInverse ji (
@@ -275,24 +375,27 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 							.data_ready(JIDone)
 						);
 	
+	/*************************************************************/
 	
+	
+	/***********************Multiply Logic**************/
 	/** Change in X and Y logic **/
 	// We need to convert our current
 	// Location to a value that is 
 	// Conducive to our logic.
 	
-	reg signed [13:0] xInt, yInt;
+	logic [14:0] xInt, yInt;
 	
 	/* We do not need to time this because
 		It will not take longer than other states */
-	DoubleTo14BitInt x_curr(.dataa(x_current),
+	DoubleTo15BitInt x_curr(.dataa(x_current),
 									.clk_en(JIEnable),
 									.clock(clk),
 									.result(xInt)
 									);
 									
 									
-	DoubleTo14BitInt y_curr(.dataa(y_current),
+	DoubleTo15BitInt y_curr(.dataa(y_current),
 									.clk_en(JIEnable),
 									.clock(clk),
 									.result(yInt)
@@ -304,14 +407,24 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 	begin
 		if(control_state_reg[2])begin
 		// Relative position
-			dx <= x_target;
-			dy <= y_target;
+//			dx <= x_target;
+//			dy <= y_target;
+		// If relative, add to the current position
+		// The delta in x
+			x_target_loc = xInt[13:0] + x_target; 
+			y_target_loc = yInt[13:0] + y_target;
 		end
 		else begin
 		// Absolute position
-			dx <= x_target - xInt;
-			dy <= y_target - yInt;
+		// If absolute, our target is simply our target
+			x_target_loc = x_target;
+			y_target_loc = y_target;
 		end
+		
+	
+		dx <= x_target_loc - xInt[13:0];
+		dy <= y_target_loc - yInt[13:0];
+		
 	end
 	
 	logic [63:0] changeTh1, changeTh2;
@@ -355,7 +468,7 @@ module scara_controller(input signed [13:0] 	x_target, // X value to go to (eith
 						.data_ready(CONVDone)
 						);
 	
-	assign controller_ready = CONVDone & stepper_ready;
+	assign controller_ready = target_reached;
 	
 	
 	

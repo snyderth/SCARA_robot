@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="simulation/submodules/dspba_library_package.vhd"
+   type="VHDL"
+   library="CORDIC_0" />
+ <file
+   path="simulation/submodules/dspba_library.vhd"
+   type="VHDL"
+   library="CORDIC_0" />
+ <file
+   path="simulation/submodules/Atan2_CORDIC_0.vhd"
+   type="VHDL"
+   library="CORDIC_0" />
+ <file path="simulation/Atan2.v" type="VERILOG" />
+ <topLevel name="Atan2" />
+ <deviceFamily name="cyclonev" />
+</simPackage>

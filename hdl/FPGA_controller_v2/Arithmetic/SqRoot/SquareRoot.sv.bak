@@ -1,0 +1,10 @@
+module SquareRoot(input logic [63:0] dataa,
+						input logic clk,
+						input logic clk_en,
+						output logic [63:0] result
+						output logic dataReady);
+						
+						
+						
+						
+	

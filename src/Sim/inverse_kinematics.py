@@ -8,9 +8,10 @@ class methodIK(Enum):
     JACOBIAN_PS = 0
     FABRIK = 1
     JACOBIAN_INV = 2
+    GEOMETRIC = 3
 
 
-METHOD = methodIK.JACOBIAN_INV
+METHOD = methodIK.GEOMETRIC
 
 fig, ax = plt.subplots()
 line, = ax.plot([], [], 'bo-', linewidth=2, markersize=12)
@@ -146,6 +147,48 @@ class SCARA_IK:
         return line
 
 
+    def geometric_method(self):
+        """
+        x = l1 cos(th1) + l2 cos(th1 + th2)
+        y = l1 sin(th1) + l2 sin(th1 + th2)
+        x^2 + y^2 = l1^2 + l_2^2 + 2 l1 l2 cos(th2)
+
+
+        cos(th2) = (x^2 + y^2 - l1^2 - l2^2) / 2l1l2
+        sin(th2) = +/- sqrt(1-cos^2(th2))
+        th2 = Atan2(sin(th2), cos(th2)) NOTE: Sign of sin(th2) determines 
+                                            manipulator elbow-up (+) or 
+                                            elbow-down (-)
+        
+        k1 = l1 + l2 cos(th2)
+        k2 = l2 * sin(th2)
+
+        gamma = Atan2(k2, k1)
+
+        th1 = Atan2(y, x) - Atan2(k2, k1)
+        """
+        (x, y) = self.effector_pos()
+
+        print(self.target[0])
+        print(self.target[1])
+        
+        print(self.joint_lengths[0])
+        print(self.joint_lengths[1])
+        costh2 = ((self.target[0] ** 2) + (self.target[1] ** 2) - (self.joint_lengths[0] ** 2) - (self.joint_lengths[1] ** 2)) / (2 * self.joint_lengths[0] * self.joint_lengths[1])
+        sinth2 = np.sqrt(1 - (costh2 ** 2))
+        th2 = np.arctan2(sinth2, costh2)
+
+        k1 = self.joint_lengths[0] + self.joint_lengths[1] * costh2
+        k2 = self.joint_lengths[1] * sinth2
+        print("k1: {}, k2: {}".format(k1, k2))
+        gamma = np.arctan2(k2, k1)
+        th1 = np.arctan2(self.target[1], self.target[0]) - gamma
+
+        self.joint_ang[0] = th1
+        self.joint_ang[1] = th2
+
+        self.calc_joint_pos()
+        
 
     def jacobian_inverse_method(self):
         # print("Getting x and y position")
@@ -384,6 +427,15 @@ class SCARA_IK:
                 self.arm_path_sim.append(self.joint_pos)
                 print("Moved to {}".format(t))
 
+        elif METHOD == methodIK.GEOMETRIC:
+            self.arm_path_sim.append(self.joint_pos)
+            path = self.plan_path()
+            for t in path:
+                print("Moving to {}".format(t))
+                self.target = t
+                self.geometric_method()
+                print(self.joint_pos)
+                self.arm_path_sim.append(self.joint_pos)
         # self.check_position_viability()
 
         # self.draw()
@@ -460,18 +512,18 @@ if __name__ == '__main__':
 
     try:
         print("Setting target")
-        robot.set_target(7.7, 7.7)
+        robot.set_target(3, 3)
         print("Running math")
         robot.run()
-        robot.set_target(1, 1)
-        robot.run()
+        # robot.set_target(1, 1)
+        # robot.run()
         #robot.set_target(3, 9)
         #robot.run()
         #robot.set_target(5,7)
         #robot.run()
         #robot.set_target(1,1)
         #robot.run()
-        animate = animation.FuncAnimation(fig, animate, robot.playback, blit=False, interval=50, repeat=True, init_func=init_animation)
+        animate = animation.FuncAnimation(fig, animate, robot.playback, blit=False, interval=1, repeat=True, init_func=init_animation)
     except Exception as ex:
         print(ex)
 
