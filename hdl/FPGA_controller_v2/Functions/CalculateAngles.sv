@@ -46,12 +46,15 @@ module CalculateAngles (
 					end
 					else if (state == TargetToDouble) begin
 						if(T2DDone) begin
-							dataReady <= 0;
 							nextstate <= CosineTh2;
 							T2DEn <= 0;
 						end
-						else 
+						else begin
 							T2DEn <= 1;
+							dataReady <= 0;
+							
+						end
+
 						
 					end
 					else if (state == CosineTh2) begin
@@ -260,15 +263,23 @@ module CalculateAngles (
 		
 		assign th1 = th1res;
 		
+		reg signed [12:0] th2res, th2hold;
+		
 		Arctan2 Theta2Calc(
 								.arg1(SinTh2),
 								.arg2(CosTh2),
 								.clk(clk),
 								.enable(ThetaEn),
 								.reset(~ThetaEn),
-								.angle(th2),
+								.angle(th2res),
 								.DataReady(ThetaDone)
 								);
+		
+		always_ff@(posedge ThetaDone)
+			th2hold <= th2res;
+			
+			
+		assign th2 = th2hold;
 		
 		/********************************************/
 		

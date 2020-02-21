@@ -8,6 +8,7 @@ vsim -L lpm_ver -L altera_mf_ver work.CalculateAngles
 
 
 radix define fixed13 -fixed -signed -fraction 10
+radix define fixed32 -fixed -signed -fraction 15
 
 #add wave -radix float64 k1
 #add wave -radix float64 k2
@@ -21,6 +22,12 @@ add wave -radix unsigned yTarget
 add wave -radix unsigned xTarget
 add wave state
 add wave nextstate
+
+add wave -radix fixed32 CalculateAngles/Theta2Calc/arg1FixedPoint
+add wave -radix fixed32 CalculateAngles/Theta2Calc/arg2FixedPoint
+
+add wave -radix float64 CosTh2
+add wave -radix float64 SinTh2
 
 add wave clk
 add wave enable

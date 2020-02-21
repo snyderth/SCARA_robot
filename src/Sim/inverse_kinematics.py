@@ -186,7 +186,7 @@ class SCARA_IK:
 
         self.joint_ang[0] = th1
         self.joint_ang[1] = th2
-
+        print("Joint Angles: {}, {}".format(th1, th2))
         self.calc_joint_pos()
         
 
@@ -436,6 +436,7 @@ class SCARA_IK:
                 self.geometric_method()
                 print(self.joint_pos)
                 self.arm_path_sim.append(self.joint_pos)
+            print("End Goal: {}".format(robot.target))
         # self.check_position_viability()
 
         # self.draw()
@@ -512,9 +513,11 @@ if __name__ == '__main__':
 
     try:
         print("Setting target")
-        robot.set_target(3, 3)
+        robot.set_target(0.67, 1.34)
         print("Running math")
         robot.run()
+        print("Joint Angles:")
+        print(robot.angles)
         # robot.set_target(1, 1)
         # robot.run()
         #robot.set_target(3, 9)
