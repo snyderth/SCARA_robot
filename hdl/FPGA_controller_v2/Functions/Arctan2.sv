@@ -4,7 +4,9 @@
 *	Date:			2/18/2020
 *	Description:Atan2 wrapper that accepts 64-bit floating
 *					point numbers
-*
+*	Outputs: Fixed point 13 bit number:
+					3 integer bits
+					10 Fractional bits
 *	Parameters:
 *				None
 *	Dependencies:
@@ -21,7 +23,7 @@ module Arctan2(input logic [63:0] arg1,
 					input logic clk,
 					input logic enable,
 					input logic reset,
-					output logic [12:0] angle,
+					output signed [12:0] angle,
 					output logic DataReady);
 					
 					/* 		Convert the numbers to fixed point  	*/
