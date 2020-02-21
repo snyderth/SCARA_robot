@@ -9,11 +9,12 @@ path = os.path.realpath(path)
 path = os.path.dirname(path)
 path = os.path.join(path, "libhps_to_fpga_c.so")
 
-def streamProcess(FPGACommands, reportFPGA, reportDone):
+def streamProcess(FPGACommands, reportDone, reportSend, reportSent):
     '''
 
     @param FPGACommands: FPGA command values, in order of execution.
-    @param reportFPGA: Function in the format (int)->None that reports any value returned by the FPGA
+    @param reportSend: Function in the format (int)->None that reports when a value is about to be sent
+    @param reportSent: Function in the format (bool, int)->None that reports when a value has been sent, and if it was successful or not.
     @param reportDone: Function in the format ()->None that reports when the FPGA is done executing
     @return: None
     '''
@@ -25,12 +26,7 @@ def streamProcess(FPGACommands, reportFPGA, reportDone):
         if COMMAND_MAP[commandCode(command)] == m2.lower():
             reportDone()
             return
-        print("sending " + commandToGcode(command, 1))
-        mi.writeFifoBlocking(command)
-        print("sent data")
-        success = 0
-        #fpgaReport = mi.readFifoNonblocking(success)
-
-        #if success:
-            #reportFPGA(fpgaReport)
+        reportSend(command)
+        success = mi.writeFifoBlocking(command)
+        reportSent(success == 1, command)
 

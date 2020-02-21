@@ -1,6 +1,6 @@
 //Code manipulated from https://github.com/Jambie82/CycloneV_HPS_FIFO
 
-typedef struct {
+typedef struct packed {
 	reg [3:0] cmd;                  // command number
 	reg [13:0] x_value;               // x or t argument
 	reg [13:0] y_value;               // y argument
@@ -429,18 +429,19 @@ reg [31:0] data_buffer ;
 // Controls for FPGA_to_HPS FIFO
 //=======================================================
 
-//reg [31:0] fpga_to_hps_in_writedata ; 
-//reg fpga_to_hps_in_write ; // write command
+reg [31:0] fpga_to_hps_in_writedata ; 
+reg fpga_to_hps_in_write ; // write command
 // status addresses
 // base => fill level
 // base+1 => status bits; 
 //           bit0==1 if full
 //           bit1==1 if empty
-//wire [31:0] fpga_to_hps_in_csr_address = 32'd1 ; // fill_level  // should probably init to 0
+wire [31:0] fpga_to_hps_in_csr_address = 32'd1 ; // fill_level  // should probably init to 0
 reg[31:0] fpga_to_hps_in_csr_readdata ;
-//reg fpga_to_hps_in_csr_read ; // status regs read cmd
-//reg [7:0] FPGA_to_HPS_state ;
-  
+reg fpga_to_hps_in_csr_read ; // status regs read cmd
+reg [7:0] FPGA_to_HPS_state ;
+ reg data_buffer_valid ;
+
 
 command commandIn;   // from HPS
 reg [7:0]  commandCount = 8'b0;
@@ -468,6 +469,8 @@ always @(posedge CLOCK_50) begin
 		sram_write <= 1'b0 ;
 		commandCount <= 0 ;
 		HPS_to_FPGA_state <= AWAIT_DATA ;
+		FPGA_to_HPS_state <= 8'd0 ; 
+
 		initEnable = 1;
 		memory_ready <= 0;
 		hps_to_fpga_read <= 0;
@@ -519,6 +522,35 @@ always @(posedge CLOCK_50) begin
 		
 	end
 		
+	// =================================
+	// FPGA_to_HPS state machine
+	//================================== 
+	// is there space in the 
+	// FPGA_to_HPS FIFO
+	// and data is available
+	if (FPGA_to_HPS_state==0 && !(fpga_to_hps_in_csr_readdata[0]) && data_buffer_valid) begin
+//		fpga_to_hps_in_writedata <= data_buffer ;	
+//		fpga_to_hps_in_write <= 1'b1 ;
+//		FPGA_to_HPS_state <= 8'd4 ;
+//hex3_hex0[7:4] <= 4'd4;
+			fpga_to_hps_in_writedata <= commandIn;	
+			fpga_to_hps_in_write <= 1'b1 ;
+			FPGA_to_HPS_state <= 8'd4 ;
+
+	end
+	
+	// finish the write to FPGA_to_HPS FIFO
+	if ((FPGA_to_HPS_state == 4) && (fpga_to_hps_in_write == 1'b1)) begin
+		fpga_to_hps_in_write <= 1'b0 ;
+		data_buffer_valid <= 1'b0 ; // used the data, so clear flag
+		FPGA_to_HPS_state <= 8'd8 ;
+	end
+	
+	// another delay state to see if we need some write time too
+	if ((FPGA_to_HPS_state == 8) && (data_buffer_valid == 1'b0))begin
+		data_buffer_valid <= 1'b0 ; // used the data, so clear flag
+			FPGA_to_HPS_state <= 8'd0 ;
+	end
 
 	
 	
@@ -543,7 +575,7 @@ Fake_Controller fake_controller(
 	.reset(~initEnable),
 	.clk(CLOCK_50),
 	.controller_ready(c2ci_controller_ready),
-	.set_ready(~KEY[0]),
+	.set_ready(~KEY[0]), 
 	.controller_interface_out_ready(controller_interface_out_ready),
 	.cmd(ci2c_controller_state_reg),
 	.x_value(ci2c_x_value),
