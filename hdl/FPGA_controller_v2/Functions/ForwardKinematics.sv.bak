@@ -1,0 +1,11 @@
+module ForwardKinematics(
+								input signed [12:0] theta1,
+								input signed [12:0] theta2,
+								input logic clk,
+								input logic enable,
+								input logic reset,
+								input logic [63:0] l1,
+								input logic [63:0] l2,
+								output logic [13:0] x,
+								output logic [13:0] y,
+								output logic dataReady);

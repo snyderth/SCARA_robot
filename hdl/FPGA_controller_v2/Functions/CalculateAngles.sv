@@ -1,3 +1,26 @@
+/***************************************************
+*	File: 		CalculateAngles
+*	Author: 		Thomas Snyder
+*	Date:			2/21/2020
+*	Description:Module to calculate the cosine of theta 2
+*					for a SCARA robot
+*	Latency: 	239 Clock cycles
+*
+*	Parameters:
+*				None
+*	Dependencies:
+*				SRLatch.sv
+*				ClockTimer.sv
+*				Int15BitToDouble.sv
+*				CosineTh2.sv
+*				SineTh2.sv
+*				k1.sv
+*				DoubleMultiply.sv
+*				Arctan2.sv
+*
+*	NOTE: This module must be simulated with the
+*			lpm_ver and altera_mf_ver library.
+***************************************************/
 module CalculateAngles (
 							input logic [13:0] yTarget,
 							input logic [13:0] xTarget,

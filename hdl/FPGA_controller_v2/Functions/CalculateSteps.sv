@@ -1,12 +1,31 @@
+/***************************************************
+*	File: 		CalculateSteps
+*	Author: 		Thomas Snyder
+*	Date:			2/22/2020
+*	Description:Module to calculate the cosine of theta 2
+*					for a SCARA robot
+*	Latency: 	28 Clock cycles
+*
+*	Parameters:
+*				None
+*	Dependencies:
+*				DoubleToInt9Bit.v
+*				ClockTimer.sv
+*				DoubleMultiply.sv
+*
+*	NOTE: This module must be simulated with the
+*			lpm_ver library.
+***************************************************/
 module CalculateSteps(input signed [12:0] th1,
 							input signed [12:0] th2,
 							input logic clk,
 							input logic enable,
 							input logic reset,
-							output logic [7:0] steps1,
-							output logic [7:0] steps2,
+							output logic [8:0] steps1,
+							output logic [8:0] steps2,
 							output logic dir1,
-							output logic dir2);
+							output logic dir2,
+							output logic dataReady);
 				//31.8310155049 steps/rad
 				logic [63:0] convRadToSteps = 64'b0100000000111111110101001011110101101110101000000000001110110001;
 							
@@ -91,7 +110,7 @@ module CalculateSteps(input signed [12:0] th1,
 				/*		Multiply by conversion 	*/
 				logic [63:0] steps1Double, steps2Double;
 				
-				DoubleMultiply steps1(
+				DoubleMultiply steps1Converter(
 											.dataa(th1Double),
 											.datab(convRadToSteps),
 											.result(steps1Double),
@@ -100,7 +119,7 @@ module CalculateSteps(input signed [12:0] th1,
 											.data_ready(MultDone),
 											.reset(~MultEn | reset)
 											);
-				DoubleMultiply steps2(
+				DoubleMultiply steps2Converter(
 											.dataa(th2Double),
 											.datab(convRadToSteps),
 											.result(steps2Double),
@@ -118,6 +137,28 @@ module CalculateSteps(input signed [12:0] th1,
 				assign dir2 = ~steps2Double[63]; // 0 means negative rotation
 				
 				
+				DoubleToInt9Bit StepsConversion1 (
+															.dataa({steps1Double[63] ^ steps1Double[63], steps1Double[62:0]}),
+															.clk_en(ConvStepEn),
+															.clock(clk),
+															.result(steps1)
+															);
+				
+				DoubleToInt9Bit StepsConversion2(
+															.dataa({steps2Double[63] ^ steps2Double[63],steps2Double[62:0]}),
+															.clk_en(ConvStepEn),
+															.clock(clk),
+															.result(steps2)
+															);
+															
+				ClockTimer #(3, 6) StepsConversionTimer(
+															.en(ConvStepEn),
+															.reset(~ConvStepEn | reset),
+															.clk(clk),
+															.expire(ConvStepDone)
+															);
+															
+				assign dataReady = ConvStepDone;											
 				
 				
 				/************************************************/

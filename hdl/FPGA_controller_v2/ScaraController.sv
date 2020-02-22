@@ -1,5 +1,172 @@
-module ScaraController();
+module ScaraController(input logic [4:0] controlStateReg,
+								input signed [13:0] xTarget,
+								input signed [13:0] yTarget,
+								input logic stepperReady,
+								input logic enable,
+								input logic clk,
+								input logic reset,
+								output logic [7:0] steps1,
+								output logic [7:0] steps2,
+								output logic dir1,
+								output logic dir2,
+								output logic endEffectorState,
+								output logic dataReady);
+								
+		logic [63:0] l2 = 64'b0100000011000111010001011101000101110100010111001100100100101110;
+		logic [63:0] l1 = 64'b0100000011000000101110100010111010001011101000101110000011101011;
+		logic [63:0] l1Squared = 64'b0100000110010001011111001101001110010001111110111100110100110101;
+		logic [63:0] l2Squared = 64'b0100000110100000111011001111010101101011111001100110011001100110;
+		
+		
+		logic [13:0] xCurrent, yCurrent, xTarg, yTarg;
+		
+		logic [12:0] th1Current, th2Current, th1Target, th2Target;
+		
+		logic FKEn, FKDone;
+		logic AnglesEn, AnglesDone;
+		logic StepsEn, StepsDone;
+		logic WaitEn, WaitDone;
+		
+		
+		typedef enum logic [3:0] {FK, Angles, Steps, Wait, Init} statetype;
+		statetype state, nextstate;
+		
+		
+		always_ff@(posedge clk, posedge reset) begin
+			if(reset) begin
+				th1Current <= 13'b000_0110010010;
+				th2Current <= 13'b000_0110010010; //pi/4
+				nextstate <= Init;
+				FKEn <= 0;
+				AnglesEn <= 0;
+				StepsEn <= 0;
+				WaitEn <= 0;
+			end
+			else if(state == Init) begin
+				
+				FKEn <= 0;
+				AnglesEn <= 0;
+				StepsEn <= 0;
+				WaitEn <= 0;
+				if(enable) begin
+				// Hold or pulse on register??
+					if(controlStateReg[3]) endEffectorState <= 1;
+					else endEffectorState <= 0;
+					
+					if(controlStateReg[4]) nextstate <= Wait;
+					else if(controlStateReg[2] & controlStateReg[0]) nextstate <= FK;
+					else if(controlStateReg[0]) nextstate <= Angles;
+				end
+			
+			end
+			else if(state == FK) begin
+				if(FKDone) begin
+					FKEn <= 0;
+					nextstate <= Angles;
+				end
+				else FKEn <= 1;
+			end
+			else if(state == Angles) begin
+				if(AnglesDone) begin
+					AnglesEn <= 0;
+					nextstate <= Steps;
+				end
+				else AnglesEn <= 1;
+			end
+			else if (state == Steps) begin
+				if(StepsDone) begin
+					StepsEn <= 0;
+					nextstate <= Init;
+				end
+				else StepsEn <= 1;
+			end
+		
+			else if(state == Wait) begin
+				if(WaitDone) begin
+					WaitEn <= 0;
+					endEffectorState <= 0;
+					nextstate <= Init;
+				end
+				else begin
+					WaitEn <= 1;
+					endEffectorState <= 1;
+				end
+		
+			end
+			state <= nextstate;
+		
+		end
+		
+		
+		ForwardKinematics FKine (.theta1(th1Current),
+										.theta2(th2Current),
+										.clk(clk),
+										.enable(FKEn),
+										.reset(~FKEn | reset),
+										.l1(l1),
+										.l2(l2),
+										.x(xCurrent),
+										.y(yCurrent),
+										.dataReady(FKDone));
+										
+		always_comb begin
+			if(controlStateReg[2]) begin
+				xTarg = xTarget + xCurrent;
+				yTarg = yTarget + yCurrent;
+			end
+			else begin
+				xTarg = xTarget;
+				yTarg = yTarget;
+			end
+		end
+		
+		
+		CalculateAngles anglesCalc(
+							.yTarget(yTarg),
+							.xTarget(xTarg),
+							.l1(l1),
+							.l2(l2),
+							.l1Squared(l1Squared),
+							.l2Squared(l2Squared),
+							.clk(clk),
+							.enable(AnglesEn),
+							.reset(~AnglesEn | reset),
+							.dataReady(AnglesDone),
+							.th1(th1Target),
+							.th2(th2Target)
+							);
+							
+		logic [12:0] theta1Diff, theta2Diff;
+		always_comb begin
+			theta1Diff = th1Target - th1Current;
+			theta2Diff = th2Target - th2Current;
+		end
+		
+		
+		logic [8:0] steps1int, steps2int;
+		
+		CalculateSteps stepsCalc(
+							.th1(theta1Diff),
+							.th2(theta2Diff),
+							.clk(clk),
+							.enable(StepsEn),
+							.reset(~StepsEn | reset),
+							.dataReady(StepsDone),
+							.dir1(dir1),
+							.dir2(dir2),
+							.steps1(steps1int),
+							.steps2(steps2int)
+							);
+							
+		assign steps1 = steps1int[7:0];
+		assign steps2 = steps2int[7:0];
+		
+		assign dataReady = StepsDone;
 
-
-
+		
+		ClockTimer #(13, 200) WaitState (.en(WaitEn), 
+													.reset(~WaitEn | reset),
+													.expire(WaitDone),
+													.clk(clk)); 
+		
 endmodule

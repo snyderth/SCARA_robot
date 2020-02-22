@@ -1,6 +1,6 @@
 IP Upgrade report for ScaraController
-Sat Feb 22 09:31:10 2020
-Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
+Sat Feb 22 10:34:23 2020
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
 ---------------------
@@ -8,18 +8,16 @@ Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 ---------------------
   1. Legal Notice
   2. IP Upgrade Summary
-  3. Successfully Upgraded IP Components
-  4. Failed Upgrade IP Components
-  5. IP Upgrade Messages
+  3. IP Upgrade Messages
 
 
 
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 2019  Intel Corporation. All rights reserved.
+Copyright (C) 2018  Intel Corporation. All rights reserved.
 Your use of Intel Corporation's design tools, logic functions 
-and other software and tools, and any partner logic 
+and other software and tools, and its AMPP partner logic 
 functions, and any output files from any of the foregoing 
 (including device programming or simulation files), and any 
 associated documentation or information are expressly subject 
@@ -29,93 +27,31 @@ the Intel FPGA IP License Agreement, or other applicable license
 agreement, including, without limitation, that your use is for
 the sole purpose of programming logic devices manufactured by
 Intel and sold by Intel or its authorized distributors.  Please
-refer to the applicable agreement for further details, at
-https://fpgasoftware.intel.com/eula.
+refer to the applicable agreement for further details.
 
 
 
 +----------------------------------------------------------------------------+
 ; IP Upgrade Summary                                                         ;
 +------------------------------+---------------------------------------------+
-; IP Components Upgrade Status ; Failed - Sat Feb 22 09:31:10 2020           ;
-; Quartus Prime Version        ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
+; IP Components Upgrade Status ; Failed - Sat Feb 22 10:34:23 2020           ;
+; Quartus Prime Version        ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                ; ScaraController                             ;
 ; Top-level Entity Name        ; ScaraController                             ;
 ; Family                       ; Cyclone V                                   ;
 +------------------------------+---------------------------------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Successfully Upgraded IP Components                                                                                                                                       ;
-+-------------+----------------+---------+----------------------------------------+--------------------------------------+----------------------------------------+---------+
-; Entity Name ; Component Name ; Version ; Original Source File                   ; Generation File Path                 ; New Source File                        ; Message ;
-+-------------+----------------+---------+----------------------------------------+--------------------------------------+----------------------------------------+---------+
-; DoubleDiv   ; ALTFP_DIV      ; 18.1    ; Arithmetic/DoubleDivider/DoubleDiv.qip ; Arithmetic/DoubleDivider/DoubleDiv.v ; Arithmetic/DoubleDivider/DoubleDiv.qip ;         ;
-; Adder       ; ALTFP_ADD_SUB  ; 18.1    ; Arithmetic/Adder/Adder.qip             ; Arithmetic/Adder/Adder.v             ; Arithmetic/Adder/Adder.qip             ;         ;
-; SqRoot      ; ALTFP_SQRT     ; 18.1    ; Arithmetic/SqRoot/SqRoot.qip           ; Arithmetic/SqRoot/SqRoot.v           ; Arithmetic/SqRoot/SqRoot.qip           ;         ;
-+-------------+----------------+---------+----------------------------------------+--------------------------------------+----------------------------------------+---------+
-
-
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Failed Upgrade IP Components                                                                                                                                                                               ;
-+--------------------+----------------+---------+------------------------------------+----------------------------------+-----------------+------------------------------------------------------------------+
-; Entity Name        ; Component Name ; Version ; Original Source File               ; Generation File Path             ; New Source File ; Message                                                          ;
-+--------------------+----------------+---------+------------------------------------+----------------------------------+-----------------+------------------------------------------------------------------+
-; Fixed13BitToDouble ; ALTFP_CONVERT  ; 18.1    ; Conversions/Fixed13BitToDouble.qip ; Conversions/Fixed13BitToDouble.v ;                 ; Error upgrading IP component "Conversions/Fixed13BitToDouble.v". ;
-; DoubleToFixed42Bit ; ALTFP_CONVERT  ; 18.1    ; Conversions/DoubleToFixed42Bit.qip ; Conversions/DoubleToFixed42Bit.v ;                 ; Error upgrading IP component "Conversions/DoubleToFixed42Bit.v". ;
-; DoubleTo32BitFixed ; ALTFP_CONVERT  ; 18.1    ; Conversions/DoubleTo32BitFixed.qip ; Conversions/DoubleTo32BitFixed.v ;                 ; Error upgrading IP component "Conversions/DoubleTo32BitFixed.v". ;
-; Int15BitToDouble   ; ALTFP_CONVERT  ; 18.1    ; Conversions/Int15BitToDouble.qip   ; Conversions/Int15BitToDouble.v   ;                 ; Error upgrading IP component "Conversions/Int15BitToDouble.v".   ;
-; Inverter           ; ALTFP_INV      ; 18.1    ; Arithmetic/Inverter/Inverter.qip   ; Arithmetic/Inverter/Inverter.v   ;                 ; Error upgrading IP component "Arithmetic/Inverter/Inverter.v".   ;
-+--------------------+----------------+---------+------------------------------------+----------------------------------+-----------------+------------------------------------------------------------------+
-
-
 +---------------------+
 ; IP Upgrade Messages ;
 +---------------------+
-Info (11902): Backing up file "Conversions/Fixed13BitToDouble.v" to "Conversions/Fixed13BitToDouble.BAK.v"
-Info (11837): Started upgrading IP component ALTFP_CONVERT with file "Conversions/Fixed13BitToDouble.v"
-Info (11904): Restoring file "Conversions/Fixed13BitToDouble.BAK.v" to "Conversions/Fixed13BitToDouble.v"
-Error (14921): Error upgrading IP component "Conversions/Fixed13BitToDouble.v".
-Info (11902): Backing up file "Conversions/DoubleToFixed42Bit.v" to "Conversions/DoubleToFixed42Bit.BAK.v"
-Info (11837): Started upgrading IP component ALTFP_CONVERT with file "Conversions/DoubleToFixed42Bit.v"
-Info (11904): Restoring file "Conversions/DoubleToFixed42Bit.BAK.v" to "Conversions/DoubleToFixed42Bit.v"
-Error (14921): Error upgrading IP component "Conversions/DoubleToFixed42Bit.v".
-Info (11902): Backing up file "Conversions/DoubleTo32BitFixed.v" to "Conversions/DoubleTo32BitFixed.BAK.v"
-Info (11837): Started upgrading IP component ALTFP_CONVERT with file "Conversions/DoubleTo32BitFixed.v"
-Info (11904): Restoring file "Conversions/DoubleTo32BitFixed.BAK.v" to "Conversions/DoubleTo32BitFixed.v"
-Error (14921): Error upgrading IP component "Conversions/DoubleTo32BitFixed.v".
-Info (11902): Backing up file "Arithmetic/DoubleDivider/DoubleDiv.v" to "Arithmetic/DoubleDivider/DoubleDiv.BAK.v"
-Info (11837): Started upgrading IP component ALTFP_DIV with file "Arithmetic/DoubleDivider/DoubleDiv.v"
-Info (11902): Backing up file "Arithmetic/Adder/Adder.v" to "Arithmetic/Adder/Adder.BAK.v"
-Info (11837): Started upgrading IP component ALTFP_ADD_SUB with file "Arithmetic/Adder/Adder.v"
-Info (11902): Backing up file "Conversions/Int15BitToDouble.v" to "Conversions/Int15BitToDouble.BAK.v"
-Info (11837): Started upgrading IP component ALTFP_CONVERT with file "Conversions/Int15BitToDouble.v"
-Info (11904): Restoring file "Conversions/Int15BitToDouble.BAK.v" to "Conversions/Int15BitToDouble.v"
-Error (14921): Error upgrading IP component "Conversions/Int15BitToDouble.v".
-Info (11902): Backing up file "Arithmetic/SqRoot/SqRoot.v" to "Arithmetic/SqRoot/SqRoot.BAK.v"
-Info (11837): Started upgrading IP component ALTFP_SQRT with file "Arithmetic/SqRoot/SqRoot.v"
-Info (11902): Backing up file "Arithmetic/Inverter/Inverter.v" to "Arithmetic/Inverter/Inverter.BAK.v"
-Info (11837): Started upgrading IP component ALTFP_INV with file "Arithmetic/Inverter/Inverter.v"
-Info (11904): Restoring file "Arithmetic/Inverter/Inverter.BAK.v" to "Arithmetic/Inverter/Inverter.v"
-Error (14921): Error upgrading IP component "Arithmetic/Inverter/Inverter.v".
-Error (11133): IP component ALTFP_CONVERT with file "Conversions/Fixed13BitToDouble.v" upgrade failed
-Error (11889): IP component upgrade failed
-Error (11133): IP component ALTFP_CONVERT with file "Conversions/DoubleToFixed42Bit.v" upgrade failed
-Error (11889): IP component upgrade failed
-Error (11133): IP component ALTFP_CONVERT with file "Conversions/DoubleTo32BitFixed.v" upgrade failed
-Error (11889): IP component upgrade failed
-Info (11131): Completed upgrading IP component ALTFP_DIV with file "Arithmetic/DoubleDivider/DoubleDiv.v"
-Info (11131): Completed upgrading IP component ALTFP_ADD_SUB with file "Arithmetic/Adder/Adder.v"
-Error (11133): IP component ALTFP_CONVERT with file "Conversions/Int15BitToDouble.v" upgrade failed
-Error (11889): IP component upgrade failed
-Info (11131): Completed upgrading IP component ALTFP_SQRT with file "Arithmetic/SqRoot/SqRoot.v"
-Error (11133): IP component ALTFP_INV with file "Arithmetic/Inverter/Inverter.v" upgrade failed
-Error (11889): IP component upgrade failed
-Error (23031): Evaluation of Tcl script /home/thomas/intelFPGA_lite/19.1/quartus/common/tcl/internal/ip_regen/ip_regen.tcl unsuccessful
-Error: Quartus Prime Shell was unsuccessful. 16 errors, 0 warnings
-    Error: Peak virtual memory: 1053 megabytes
-    Error: Processing ended: Sat Feb 22 09:31:10 2020
-    Error: Elapsed time: 00:00:46
-    Error: Total CPU time (on all processors): 00:01:54
+Error (114006): Database file C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/db/ScaraController.cmp.rdb, created by Quartus II Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition software, not compatible with current Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition software
+Error (114006): Database file C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/db/ScaraController.cmp.rdb, created by Quartus II Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition software, not compatible with current Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition software
+Error (23031): Evaluation of Tcl script c:/intelfpga_lite/18.1/quartus/common/tcl/internal/ip_regen/ip_regen.tcl unsuccessful
+Error: Quartus Prime Shell was unsuccessful. 3 errors, 0 warnings
+    Error: Peak virtual memory: 4859 megabytes
+    Error: Processing ended: Sat Feb 22 10:34:23 2020
+    Error: Elapsed time: 00:00:11
+    Error: Total CPU time (on all processors): 00:00:21
 
 
