@@ -424,6 +424,7 @@ reg[31:0] hps_to_fpga_out_csr_readdata ;
 reg hps_to_fpga_out_csr_read ; // status regs read cmd
 reg [7:0] HPS_to_FPGA_state ;
 reg [31:0] data_buffer ;
+reg data_buffer_valid ;
 
 //=======================================================
 // Controls for FPGA_to_HPS FIFO
@@ -440,7 +441,6 @@ wire [31:0] fpga_to_hps_in_csr_address = 32'd1 ; // fill_level  // should probab
 reg[31:0] fpga_to_hps_in_csr_readdata ;
 reg fpga_to_hps_in_csr_read ; // status regs read cmd
 reg [7:0] FPGA_to_HPS_state ;
- reg data_buffer_valid ;
 
 
 command commandIn;   // from HPS
@@ -470,7 +470,7 @@ always @(posedge CLOCK_50) begin
 		commandCount <= 0 ;
 		HPS_to_FPGA_state <= AWAIT_DATA ;
 		FPGA_to_HPS_state <= 8'd0 ; 
-
+		data_buffer_valid <= 1'b0;
 		initEnable = 1;
 		memory_ready <= 0;
 		hps_to_fpga_read <= 0;
@@ -489,7 +489,7 @@ always @(posedge CLOCK_50) begin
 	// Is there data in HPS_to_FPGA FIFO
 	// and the last transfer is complete
 	// data_buffer_valid is only used by the FPGA to HPS FIFO !!
-	if (HPS_to_FPGA_state == AWAIT_DATA && !(hps_to_fpga_out_csr_readdata[1]) )  begin
+	if (HPS_to_FPGA_state == AWAIT_DATA && !(hps_to_fpga_out_csr_readdata[1]) && !data_buffer_valid)  begin
 		hps_to_fpga_read <= 1'b1 ;
 		HPS_to_FPGA_state <= DELAY_READ_DATA ; //
 	end
@@ -508,6 +508,9 @@ always @(posedge CLOCK_50) begin
 	if (HPS_to_FPGA_state == DELAY_AWAIT_DATA) begin
 			memory_ready <= 0;
 			HPS_to_FPGA_state <= AWAIT_DATA ;
+		// Signal that return data is ready
+		data_buffer_valid <= 1'b1 ;
+
 	end
 	
 	// read the word from the FIFO
@@ -519,7 +522,6 @@ always @(posedge CLOCK_50) begin
 		hps_to_fpga_read <= 1'b0 ;
 		HPS_to_FPGA_state <= DELAY_AWAIT_DATA ; 
 		memory_ready <= 1;
-		
 	end
 		
 	// =================================
@@ -533,7 +535,7 @@ always @(posedge CLOCK_50) begin
 //		fpga_to_hps_in_write <= 1'b1 ;
 //		FPGA_to_HPS_state <= 8'd4 ;
 //hex3_hex0[7:4] <= 4'd4;
-			fpga_to_hps_in_writedata <= commandIn;	
+			fpga_to_hps_in_writedata <= hps_to_fpga_readdata;	
 			fpga_to_hps_in_write <= 1'b1 ;
 			FPGA_to_HPS_state <= 8'd4 ;
 
@@ -637,8 +639,8 @@ Computer_System The_System (
 	.fifo_hps_to_fpga_out_csr_readdata  (hps_to_fpga_out_csr_readdata),		//   csr.readdata
 	
 	// FPGA to HPS FIFO
-	.fifo_fpga_to_hps_in_writedata      (0),      // fifo_fpga_to_hps_in.writedata
-	.fifo_fpga_to_hps_in_write          (0),          //                     .write
+	.fifo_fpga_to_hps_in_writedata      (fpga_to_hps_in_writedata),      // fifo_fpga_to_hps_in.writedata
+	.fifo_fpga_to_hps_in_write          (fpga_to_hps_in_write),          //                     .write
 	.fifo_fpga_to_hps_in_csr_address    (32'd1), //(fpga_to_hps_in_csr_address),    //  fifo_fpga_to_hps_in_csr.address
 	.fifo_fpga_to_hps_in_csr_read       (1'b1), //(fpga_to_hps_in_csr_read),       //                         .read
 	.fifo_fpga_to_hps_in_csr_writedata  (),  //                         .writedata
