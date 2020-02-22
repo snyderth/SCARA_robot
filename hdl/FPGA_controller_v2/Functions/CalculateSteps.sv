@@ -7,15 +7,120 @@ module CalculateSteps(input signed [12:0] th1,
 							output logic [7:0] steps2,
 							output logic dir1,
 							output logic dir2);
-							
+				//31.8310155049 steps/rad
+				logic [63:0] convRadToSteps = 64'b0100000000111111110101001011110101101110101000000000001110110001;
 							
 				logic ConvThEn, ConvThDone;
-				logic DivEn, DivDone;
+				logic MultEn, MultDone;
 				logic ConvStepEn, ConvStepDone;
+				
+				typedef enum logic [2:0] {Init, ConvertThetaToDouble, MultiplyConversion, ConvertToInt} statetype;
+				statetype state, nextstate;
+				
+				
+				always_ff@(posedge clk, posedge reset) begin
+					if(reset) begin
+						nextstate <= Init;
+						ConvThEn <= 0;
+						MultEn <= 0;
+						ConvStepEn <= 0;
+					end
+					else if(state == Init) begin
+						ConvThEn <= 0;
+						MultEn <= 0;
+						ConvStepEn <= 0;
+						if(enable)
+							nextstate <= ConvertThetaToDouble;
+					end
+					else if(state == ConvertThetaToDouble) begin
+						if(ConvThDone) begin
+							ConvThEn <= 0;
+							nextstate <= MultiplyConversion;
+						end
+						else begin
+							ConvThEn <= 1;
+						end
+					end
+					else if(state == MultiplyConversion) begin
+						if(MultDone) begin
+							MultEn <= 0;
+							nextstate <= ConvertToInt;
+						end
+						else begin
+							MultEn <= 1;
+						end
+					end
+					else if(state == ConvertToInt) begin
+						if(ConvStepDone) begin
+							ConvStepEn <= 0;
+							nextstate <= Init;
+						end	
+						else begin
+							ConvStepEn <= 1;
+						end
+					end
+				
+					state <= nextstate;
+				end
 							
-			
+				
+				/*		Convert fixed point thetas to doubles */
+							
 				logic [63:0] th1Double, th2Double;
-			
+				
+				Fixed13BitToDouble ConvertTheta1(
+														.clock(clk),
+														.clk_en(ConvThEn),
+														.dataa(th1),
+														.result(th1Double)
+															);
+				Fixed13BitToDouble ConvertTheta2(
+														.clock(clk),
+														.clk_en(ConvThEn),
+														.dataa(th2),
+														.result(th2Double)
+															);
+				ClockTimer #(3, 6) conversionTimer(
+														.en(ConvThEn),
+														.reset(~ConvThEn | reset),
+														.clk(clk),
+														.expire(ConvThDone)
+															);
+				/**********************************************/
+				
+				/*		Multiply by conversion 	*/
+				logic [63:0] steps1Double, steps2Double;
+				
+				DoubleMultiply steps1(
+											.dataa(th1Double),
+											.datab(convRadToSteps),
+											.result(steps1Double),
+											.clk(clk),
+											.in_ready(MultEn),
+											.data_ready(MultDone),
+											.reset(~MultEn | reset)
+											);
+				DoubleMultiply steps2(
+											.dataa(th2Double),
+											.datab(convRadToSteps),
+											.result(steps2Double),
+											.clk(clk),
+											.in_ready(MultEn),
+											.data_ready(MultDone),
+											.reset(~MultEn | reset)
+											);			
+											
+				/***********************************************/
+				
+				/* Convert 64 bit double precision to integer. */
+				
+				assign dir1 = ~steps1Double[63]; // 1 means positive rotation
+				assign dir2 = ~steps2Double[63]; // 0 means negative rotation
+				
+				
+				
+				
+				/************************************************/
 				
 							
 							

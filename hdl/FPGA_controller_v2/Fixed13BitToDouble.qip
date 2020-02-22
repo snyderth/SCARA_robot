@@ -1,6 +1,0 @@
-set_global_assignment -name IP_TOOL_NAME "ALTFP_CONVERT"
-set_global_assignment -name IP_TOOL_VERSION "18.1"
-set_global_assignment -name IP_GENERATED_DEVICE_FAMILY "{Cyclone V}"
-set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "Fixed13BitToDouble.v"]
-set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) "Fixed13BitToDouble_inst.v"]
-set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) "Fixed13BitToDouble_bb.v"]

@@ -41,13 +41,14 @@ set_global_assignment -name DEVICE 5CEBA2F17A7
 set_global_assignment -name TOP_LEVEL_ENTITY ScaraController
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "23:42:36  FEBRUARY 17, 2020"
-set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "19.1.0 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP "-40"
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 125
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name QIP_FILE Conversions/Fixed13BitToDouble.qip
 set_global_assignment -name SYSTEMVERILOG_FILE Functions/CosineTh2.sv
 set_global_assignment -name QIP_FILE Conversions/DoubleToFixed42Bit.qip
 set_global_assignment -name QIP_FILE Conversions/DoubleTo32BitFixed.qip
@@ -72,4 +73,3 @@ set_global_assignment -name SYSTEMVERILOG_FILE Functions/K1.sv
 set_global_assignment -name SYSTEMVERILOG_FILE Functions/CalculateAngles.sv
 set_global_assignment -name QIP_FILE Arithmetic/Inverter/Inverter.qip
 set_global_assignment -name SYSTEMVERILOG_FILE Functions/CalculateSteps.sv
-set_global_assignment -name QIP_FILE Fixed13BitToDouble.qip
