@@ -211,7 +211,7 @@ module CalculateAngles (
 		
 		DoubleMultiply k2Calculation(
 											.dataa(l2),
-											.datab(CosTh2),
+											.datab(SinTh2),
 											.clk(clk),
 											.in_ready(K2En),
 											.result(k2),
@@ -223,24 +223,26 @@ module CalculateAngles (
 		
 		/* Calculate Gamma */
 		
-		reg signed [12:0] gammaResult;
+		reg signed [12:0] gammaResult, gammaIntermediate;
 		
 		Arctan2 gammaCalculation(.arg1(k2),
 											.arg2(k1),
 											.clk(clk),
 											.enable(GammaEn),
 											.reset(~GammaEn),
-											.angle(gammaResult),
+											.angle(gammaIntermediate),
 											.DataReady(GammaDone)
 										);
-										
+		
+		always_ff@(posedge GammaDone)
+			gammaResult <= gammaIntermediate;
 										
 		/**********************************************/
 		
 		
 		/* Calculate AtanXY */
 		
-		reg signed [12:0] arctanXY;
+		reg signed [12:0] arctanXY, arctanXYRes;
 		
 		Arctan2 atanXYCalculation(
 										.arg1(yTarget_d),
@@ -248,22 +250,27 @@ module CalculateAngles (
 										.clk(clk),
 										.enable(AtanXYEn),
 										.reset(~AtanXYEn),
-										.angle(arctanXY),
+										.angle(arctanXYRes),
 										.DataReady(AtanXYDone)
 										);
+		always_ff@(posedge AtanXYDone)
+			arctanXY <= arctanXYRes;
 		
 		/*********************************************/
 		
 		reg signed [12:0] th1res;
+		reg signed [12:0] th2res, th2hold;
 		
 		/*	Calculate Thetas */
-		always_ff@(posedge AtanXYDone) begin
-			th1res <= arctanXY - gammaResult;
+		always_ff@(posedge ThetaDone) begin
+			th1res <= arctanXY - gammaResult;			
+			th2hold <= th2res;
+
 		end
 		
 		assign th1 = th1res;
 		
-		reg signed [12:0] th2res, th2hold;
+		assign th2 = th2hold;
 		
 		Arctan2 Theta2Calc(
 								.arg1(SinTh2),
@@ -274,12 +281,9 @@ module CalculateAngles (
 								.angle(th2res),
 								.DataReady(ThetaDone)
 								);
-		
-		always_ff@(posedge ThetaDone)
-			th2hold <= th2res;
+	
 			
 			
-		assign th2 = th2hold;
 		
 		/********************************************/
 		

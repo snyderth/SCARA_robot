@@ -1,0 +1,18 @@
+DENORMAL_SUPPORT=NO
+INTENDED_DEVICE_FAMILY="Cyclone V"
+OPTIMIZE=SPEED
+PIPELINE=10
+REDUCED_FUNCTIONALITY=NO
+WIDTH_EXP=11
+WIDTH_MAN=52
+DEVICE_FAMILY="Cyclone V"
+clk_en
+clock
+dataa
+datab
+division_by_zero
+nan
+overflow
+result
+underflow
+zero

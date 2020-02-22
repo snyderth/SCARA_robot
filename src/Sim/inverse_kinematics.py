@@ -177,13 +177,16 @@ class SCARA_IK:
         costh2 = ((self.target[0] ** 2) + (self.target[1] ** 2) - (self.joint_lengths[0] ** 2) - (self.joint_lengths[1] ** 2)) / (2 * self.joint_lengths[0] * self.joint_lengths[1])
         sinth2 = np.sqrt(1 - (costh2 ** 2))
         th2 = np.arctan2(sinth2, costh2)
-
+        print("CosTh2: {}".format(costh2))
+        print("SinTh2: {}".format(sinth2))
         k1 = self.joint_lengths[0] + self.joint_lengths[1] * costh2
         k2 = self.joint_lengths[1] * sinth2
+        print("len2: {}".format(self.joint_lengths[1]))
         print("k1: {}, k2: {}".format(k1, k2))
         gamma = np.arctan2(k2, k1)
         th1 = np.arctan2(self.target[1], self.target[0]) - gamma
-
+        print("Gamma: {}".format(gamma))
+        print("Arctan xy: {}".format(th1 + gamma))
         self.joint_ang[0] = th1
         self.joint_ang[1] = th2
         print("Joint Angles: {}, {}".format(th1, th2))
@@ -505,7 +508,7 @@ def animate(data):
     return line, 
 
 if __name__ == '__main__':
-    robot = SCARA_IK([5, 6])
+    robot = SCARA_IK([5.75, 8])
 
     print("Maximum stretch: {}".format(robot.max_len()))
     print("Current joint angles: {}".format(robot.angles()))
@@ -513,7 +516,7 @@ if __name__ == '__main__':
 
     try:
         print("Setting target")
-        robot.set_target(0.67, 1.34)
+        robot.set_target(2, 2)
         print("Running math")
         robot.run()
         print("Joint Angles:")

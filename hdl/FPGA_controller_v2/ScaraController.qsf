@@ -68,3 +68,8 @@ set_global_assignment -name QIP_FILE Conversions/Int15BitToDouble.qip
 set_global_assignment -name SYSTEMVERILOG_FILE Functions/SineTh2.sv
 set_global_assignment -name QIP_FILE Arithmetic/SqRoot/SqRoot.qip
 set_global_assignment -name SYSTEMVERILOG_FILE Arithmetic/SqRoot/SquareRoot.sv
+set_global_assignment -name SYSTEMVERILOG_FILE Functions/K1.sv
+set_global_assignment -name SYSTEMVERILOG_FILE Functions/CalculateAngles.sv
+set_global_assignment -name QIP_FILE Arithmetic/Inverter/Inverter.qip
+set_global_assignment -name SYSTEMVERILOG_FILE Functions/CalculateSteps.sv
+set_global_assignment -name QIP_FILE Fixed13BitToDouble.qip

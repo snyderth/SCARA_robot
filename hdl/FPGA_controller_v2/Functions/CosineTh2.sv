@@ -156,17 +156,63 @@ module CosineTh2(input logic [63:0] xTarget_d,
 				/************************************/
 				
 				/*********** Divide out everything ***********/
+		
+		
+				logic invEnable, invDone;
+		
+
+				SRLatch dividerLatch (.set(subtractionDone),
+											.reset(reset),
+											.q(invEnable));
+		
+				ClockTimer #(4, 27) divTimer(.en(invEnable),
+														.clk(clk),
+														.reset(~invEnable | reset),
+														.expire(invDone));
+														
+//				logic NaN, underflow, overflow, zero, divByZero;
 				
-				DoubleDivider finalDiv(
-									.dataa(xyMinl1l2),
-									.datab(divisor),
-									.result(CosTh2),
-									.reset(reset),
-									.clk(clk),
-									.enable(subtractionDone),
-									.data_ready(dataReady)
-								);
-								
+				
+				logic [63:0] twicel1l2Inv;
+				
+				Inverter invertdivisor(.data(divisor),
+												.result(twicel1l2Inv),
+												.clock(clk),
+												.clk_en(divEnable));
+				
+				DoubleMultiply performDivision(.dataa(xyMinl1l2),
+														.datab(twicel1l2Inv),
+														.in_ready(invDone),
+														.clk(clk),
+														.data_ready(dataReady),
+														.reset(reset),
+														.result(CosTh2)
+														);
+				
+//														
+//				DoubleDiv finalDiv(
+//									.dataa(xyMinl1l2),
+//									.datab(divisor),
+//									.clock(clk),
+//									.clk_en(divEnable),
+//									.result(CosTh2),
+//									.underflow(underflow),
+//									.overflow(overflow),
+//									.zero(zero),
+//									.nan(NaN),
+//									.division_by_zero(divByZero)
+//				);
+		
+//				DoubleDivider finalDiv(
+//									.dataa(xyMinl1l2),
+//									.datab(divisor),
+//									.result(CosTh2),
+//									.reset(reset),
+//									.clk(clk),
+//									.enable(subtractionDone),
+//									.data_ready(dataReady)
+//								);
+//								
 				
 				
 endmodule 

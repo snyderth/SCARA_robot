@@ -1,7 +1,8 @@
 #vlog -work work Adder.v
 #vlog -work work MuliplerFP.v
 #vlog -work work DoubleDiv.v
-vlog -work work ../Arithmetic/DoubleDivider/DoubleDivider.sv
+#vlog -work work ../Arithmetic/DoubleDivider/DoubleDivider.sv
+vlog -work work ../Arithmetic/Inverter/Inverter.v
 #vlog -work work DoubleMultiply.sv
 #vlog -work work DoubleAdder.sv
 #vlog -work work SRLatch.sv
@@ -41,24 +42,32 @@ add wave -format Logic xSquareDone
 add wave -radix float64 l1l2
 add wave -format Logic l1l2Done
 
+add wave -radix float64 xyMinl1l2
 
+add wave divEnable
 
+#add wave underflow
+#add wave overflow
+#add wave divByZero
+#add wave zero
+#add wave NaN
 
 add wave -radix float64 l1l2SquaredSum
 add wave -radix float64 xySquaredSum
 add wave -radix float64 twicel1l2
+add wave -radix float64 twicel1l2Inv
 add wave -radix float64 divisor
 
 force clk 0 @ 0, 1 @ 5 -r 10
 force enable 0 @ 0, 1 @ 15
 force reset 1 @ 0, 0 @ 15
 
-force l1 64'b0100000011000001011101000101110100010111010001011101000011011110 @ 0
-force l1Squared 64'b0100000110010011000010101001010000011001011000110110111000101110 @ 0
-force l2 64'b0100000010111101000101110100010111010001011101000101100111110111 @ 0
-force l2Squared 64'b0100000110001010011100100011111101111000100110000101010010001010 @ 0
+force l1Squared 64'b0100000110010001011111001101001110010001111110111100110100110101 @ 0
+force l1 64'b0100000011000000101110100010111010001011101000101110000011101011 @ 0
+force l2Squared 64'b0100000110100000111011001111010101101011111001100110011001100110 @ 0
+force l2 64'b0100000011000111010001011101000101110100010111001100100100101110 @ 0
 
-force xTarget_d 64'b0100000010001111010000000000000000000000000000000000000000000000 @ 0
-force yTarget_d 64'b0100000010011111010000000000000000000000000000000000000000000000 @ 0
+force xTarget_d 64'b0100000010100111010001100000000000000000000000000000000000000000 @ 0
+force yTarget_d 64'b0100000010100111010001100000000000000000000000000000000000000000 @ 0
 
-run 1000
+run 4000

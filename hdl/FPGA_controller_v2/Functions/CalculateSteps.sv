@@ -1,0 +1,23 @@
+module CalculateSteps(input signed [12:0] th1,
+							input signed [12:0] th2,
+							input logic clk,
+							input logic enable,
+							input logic reset,
+							output logic [7:0] steps1,
+							output logic [7:0] steps2,
+							output logic dir1,
+							output logic dir2);
+							
+							
+				logic ConvThEn, ConvThDone;
+				logic DivEn, DivDone;
+				logic ConvStepEn, ConvStepDone;
+							
+			
+				logic [63:0] th1Double, th2Double;
+			
+				
+							
+							
+endmodule
+							
