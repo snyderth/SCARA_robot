@@ -10,6 +10,8 @@ class MemoryInterface:
         '''
         self.hps_to_fpga_c = CDLL(libhps_to_fpga_cpath)
         self.hps_to_fpga_c.init_fifo()
+        self.hps_to_fpga_c.read_fifo_dword_nonblocking.argtypes = [POINTER(c_int)]
+        #print(dir(self.hps_to_fpga_c))
        # if(self.hps_to_fpga_c.init_fifo() < 0):
        #     raise Exception("Could not initialize memory interface. errno: " + os.strerror(get_errno()));
 
@@ -19,7 +21,7 @@ class MemoryInterface:
         @param dword: 32 bit value to write to fifo
         @return: -1 if error, 1 if success
         '''
-
+        #print(dir(self.hps_to_fpga_c))
         return self.hps_to_fpga_c.write_fifo_dword_blocking(dword)
 
     def writeFifoNonBlocking(self, dword: c_int32):

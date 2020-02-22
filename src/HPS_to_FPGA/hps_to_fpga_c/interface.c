@@ -109,7 +109,7 @@ int write_fifo_dword_blocking(int dword)
 int write_fifo_dword_nonblocking(int dword)
 {
 	int success = 0;
-	FIFO_READ_NOBLOCK(dword, success)
+	FIFO_WRITE_NOBLOCK(dword, success)
 	return success;
 }
 int read_fifo_dword_blocking()
