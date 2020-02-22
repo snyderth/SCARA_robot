@@ -48,6 +48,7 @@ set_global_assignment -name MAX_CORE_JUNCTION_TEMP 125
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name QIP_FILE Conversions/Fixed13BitToDouble.qip
 set_global_assignment -name SYSTEMVERILOG_FILE Functions/CosineTh2.sv
 set_global_assignment -name QIP_FILE Conversions/DoubleToFixed42Bit.qip
 set_global_assignment -name QIP_FILE Conversions/DoubleTo32BitFixed.qip
@@ -68,3 +69,16 @@ set_global_assignment -name QIP_FILE Conversions/Int15BitToDouble.qip
 set_global_assignment -name SYSTEMVERILOG_FILE Functions/SineTh2.sv
 set_global_assignment -name QIP_FILE Arithmetic/SqRoot/SqRoot.qip
 set_global_assignment -name SYSTEMVERILOG_FILE Arithmetic/SqRoot/SquareRoot.sv
+set_global_assignment -name SYSTEMVERILOG_FILE Functions/K1.sv
+set_global_assignment -name SYSTEMVERILOG_FILE Functions/CalculateAngles.sv
+set_global_assignment -name QIP_FILE Arithmetic/Inverter/Inverter.qip
+set_global_assignment -name SYSTEMVERILOG_FILE Functions/CalculateSteps.sv
+set_global_assignment -name QIP_FILE Conversions/DoubleToInt9Bit.qip
+set_global_assignment -name SYSTEMVERILOG_FILE Functions/ForwardKinematics.sv
+set_global_assignment -name QIP_FILE Arithmetic/SinCos/Sine.qip
+set_global_assignment -name QIP_FILE Arithmetic/SinCos/Cosine.qip
+set_global_assignment -name QIP_FILE Conversions/Fixed13BitToFloat.qip
+set_global_assignment -name QIP_FILE Arithmetic/FloatAdder/FloatAdder.qip
+set_global_assignment -name QIP_FILE Conversions/DoubleToFloat.qip
+set_global_assignment -name QIP_FILE Conversions/FloatToDouble.qip
+set_global_assignment -name QIP_FILE Conversions/DoubleToInt15Bit.qip
