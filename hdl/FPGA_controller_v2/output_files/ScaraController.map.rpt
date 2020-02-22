@@ -1,0 +1,427 @@
+Analysis & Synthesis report for ScaraController
+Sat Feb 22 15:49:26 2020
+Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Messages
+  6. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2019  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++---------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                              ;
++-----------------------------+---------------------------------------------+
+; Analysis & Synthesis Status ; Failed - Sat Feb 22 15:49:26 2020           ;
+; Quartus Prime Version       ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
+; Revision Name               ; ScaraController                             ;
+; Top-level Entity Name       ; ScaraController                             ;
+; Family                      ; Cyclone V                                   ;
+; Logic utilization (in ALMs) ; N/A until Partition Merge                   ;
+; Total registers             ; N/A until Partition Merge                   ;
+; Total pins                  ; N/A until Partition Merge                   ;
+; Total virtual pins          ; N/A until Partition Merge                   ;
+; Total block memory bits     ; N/A until Partition Merge                   ;
+; Total PLLs                  ; N/A until Partition Merge                   ;
+; Total DLLs                  ; N/A until Partition Merge                   ;
++-----------------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CEBA2F17A7        ;                    ;
+; Top-level entity name                                                           ; ScaraController    ; ScaraController    ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
+    Info: Processing started: Sat Feb 22 15:48:48 2020
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ScaraController -c ScaraController
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (12248): Elaborating Platform Designer system entity "Atan2.qsys"
+Info (12250): 2020.02.22.15:49:10 Progress: Loading FPGA_controller_v2/Atan2.qsys
+Info (12250): 2020.02.22.15:49:11 Progress: Reading input file
+Info (12250): 2020.02.22.15:49:11 Progress: Adding CORDIC_0 [altera_CORDIC 19.1]
+Info (12250): 2020.02.22.15:49:12 Progress: Parameterizing module CORDIC_0
+Info (12250): 2020.02.22.15:49:12 Progress: Building connections
+Info (12250): 2020.02.22.15:49:12 Progress: Parameterizing connections
+Info (12250): 2020.02.22.15:49:12 Progress: Validating
+Info (12250): 2020.02.22.15:49:13 Progress: Done reading input file
+Info (12250): Atan2: Generating Atan2 "Atan2" for QUARTUS_SYNTH
+Info (12250): CORDIC_0: /home/thomas/intelFPGA_lite/19.1/ip/altera/dsp/altera_CORDIC/source//cmdPolyEval.sh /home/thomas/intelFPGA_lite/19.1/quartus/dspba/backend/linux64 -target CycloneV -frequency 400 -name none -noChanValid -faithfulRounding -enable -printMachineReadable -noFileGenerate -speedgrade 7 FXPAtan2Expert 32 10 1 10 0 0
+Error (12252): CORDIC_0: Frequency Target is too low for this parameterization
+Error (12252): CORDIC_0: Cannot generate for specified latency
+Info (12250): CORDIC_0: "Atan2" instantiated altera_CORDIC "CORDIC_0"
+Info (12250): Atan2: Done "Atan2" with 2 modules, 1 files
+Info (12249): Finished elaborating Platform Designer system entity "Atan2.qsys"
+Info (12021): Found 10 design units, including 10 entities, in source file Conversions/Fixed13BitToDouble.v
+    Info (12023): Found entity 1: Fixed13BitToDouble_altbarrel_shift_dof File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Fixed13BitToDouble.v Line: 50
+    Info (12023): Found entity 2: Fixed13BitToDouble_altpriority_encoder_3v7 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Fixed13BitToDouble.v Line: 151
+    Info (12023): Found entity 3: Fixed13BitToDouble_altpriority_encoder_3e8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Fixed13BitToDouble.v Line: 171
+    Info (12023): Found entity 4: Fixed13BitToDouble_altpriority_encoder_6v7 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Fixed13BitToDouble.v Line: 190
+    Info (12023): Found entity 5: Fixed13BitToDouble_altpriority_encoder_6e8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Fixed13BitToDouble.v Line: 222
+    Info (12023): Found entity 6: Fixed13BitToDouble_altpriority_encoder_bv7 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Fixed13BitToDouble.v Line: 255
+    Info (12023): Found entity 7: Fixed13BitToDouble_altpriority_encoder_be8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Fixed13BitToDouble.v Line: 287
+    Info (12023): Found entity 8: Fixed13BitToDouble_altpriority_encoder_rb6 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Fixed13BitToDouble.v Line: 320
+    Info (12023): Found entity 9: Fixed13BitToDouble_altfp_convert_mkn File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Fixed13BitToDouble.v Line: 348
+    Info (12023): Found entity 10: Fixed13BitToDouble File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Fixed13BitToDouble.v Line: 626
+Info (12021): Found 1 design units, including 1 entities, in source file Functions/CosineTh2.sv
+    Info (12023): Found entity 1: CosineTh2 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/CosineTh2.sv Line: 20
+Info (12021): Found 3 design units, including 3 entities, in source file Conversions/DoubleToFixed42Bit.v
+    Info (12023): Found entity 1: DoubleToFixed42Bit_altbarrel_shift_p4h File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/DoubleToFixed42Bit.v Line: 50
+    Info (12023): Found entity 2: DoubleToFixed42Bit_altfp_convert_mtp File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/DoubleToFixed42Bit.v Line: 146
+    Info (12023): Found entity 3: DoubleToFixed42Bit File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/DoubleToFixed42Bit.v Line: 1035
+Info (12021): Found 3 design units, including 3 entities, in source file Conversions/DoubleTo32BitFixed.v
+    Info (12023): Found entity 1: DoubleTo32BitFixed_altbarrel_shift_j4h File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/DoubleTo32BitFixed.v Line: 50
+    Info (12023): Found entity 2: DoubleTo32BitFixed_altfp_convert_jtp File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/DoubleTo32BitFixed.v Line: 146
+    Info (12023): Found entity 3: DoubleTo32BitFixed File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/DoubleTo32BitFixed.v Line: 1035
+Info (12021): Found 1 design units, including 1 entities, in source file BasicBlocks/Counter/Counter.sv
+    Info (12023): Found entity 1: Counter File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/BasicBlocks/Counter/Counter.sv Line: 15
+Info (12021): Found 1 design units, including 1 entities, in source file BasicBlocks/Sync/Sync.sv
+    Info (12023): Found entity 1: Sync File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/BasicBlocks/Sync/Sync.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file BasicBlocks/SRLatch/SRLatch.sv
+    Info (12023): Found entity 1: SRLatch File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/BasicBlocks/SRLatch/SRLatch.sv Line: 13
+Info (12021): Found 1 design units, including 1 entities, in source file BasicBlocks/ClockTimer/ClockTimer.sv
+    Info (12023): Found entity 1: ClockTimer File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/BasicBlocks/ClockTimer/ClockTimer.sv Line: 15
+Info (12021): Found 1 design units, including 1 entities, in source file Arithmetic/DoubleMultiplier/DoubleMultiply.sv
+    Info (12023): Found entity 1: DoubleMultiply File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/DoubleMultiplier/DoubleMultiply.sv Line: 21
+Info (12021): Found 1 design units, including 1 entities, in source file Arithmetic/DoubleDivider/DoubleDivider.sv
+    Info (12023): Found entity 1: DoubleDivider File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/DoubleDivider/DoubleDivider.sv Line: 15
+Info (12021): Found 1 design units, including 1 entities, in source file Arithmetic/DoubleDivider/DoubleDiv.v
+    Info (12023): Found entity 1: DoubleDiv File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/DoubleDivider/DoubleDiv.v Line: 40
+Info (12021): Found 1 design units, including 1 entities, in source file Arithmetic/DoubleAdder/DoubleAdder.sv
+    Info (12023): Found entity 1: DoubleAdder File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/DoubleAdder/DoubleAdder.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file Arithmetic/Adder/Adder.v
+    Info (12023): Found entity 1: Adder File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/Adder/Adder.v Line: 40
+Info (12021): Found 1 design units, including 1 entities, in source file ScaraController.sv
+    Info (12023): Found entity 1: ScaraController File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file Functions/Arctan2.sv
+    Info (12023): Found entity 1: Arctan2 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/Arctan2.sv Line: 21
+Info (12021): Found 10 design units, including 10 entities, in source file Conversions/Int15BitToDouble.v
+    Info (12023): Found entity 1: Int15BitToDouble_altbarrel_shift_fof File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Int15BitToDouble.v Line: 50
+    Info (12023): Found entity 2: Int15BitToDouble_altpriority_encoder_3v7 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Int15BitToDouble.v Line: 151
+    Info (12023): Found entity 3: Int15BitToDouble_altpriority_encoder_3e8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Int15BitToDouble.v Line: 171
+    Info (12023): Found entity 4: Int15BitToDouble_altpriority_encoder_6v7 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Int15BitToDouble.v Line: 190
+    Info (12023): Found entity 5: Int15BitToDouble_altpriority_encoder_6e8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Int15BitToDouble.v Line: 222
+    Info (12023): Found entity 6: Int15BitToDouble_altpriority_encoder_bv7 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Int15BitToDouble.v Line: 255
+    Info (12023): Found entity 7: Int15BitToDouble_altpriority_encoder_be8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Int15BitToDouble.v Line: 287
+    Info (12023): Found entity 8: Int15BitToDouble_altpriority_encoder_rb6 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Int15BitToDouble.v Line: 320
+    Info (12023): Found entity 9: Int15BitToDouble_altfp_convert_6gn File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Int15BitToDouble.v Line: 348
+    Info (12023): Found entity 10: Int15BitToDouble File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Int15BitToDouble.v Line: 626
+Info (12021): Found 1 design units, including 1 entities, in source file Functions/SineTh2.sv
+    Info (12023): Found entity 1: SineTh2 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/SineTh2.sv Line: 21
+Info (12021): Found 1 design units, including 1 entities, in source file Arithmetic/SqRoot/SqRoot.v
+    Info (12023): Found entity 1: SqRoot File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SqRoot/SqRoot.v Line: 40
+Info (12021): Found 1 design units, including 1 entities, in source file Arithmetic/SqRoot/SquareRoot.sv
+    Info (12023): Found entity 1: SquareRoot File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SqRoot/SquareRoot.sv Line: 17
+Info (12021): Found 1 design units, including 1 entities, in source file Functions/K1.sv
+    Info (12023): Found entity 1: K1 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/K1.sv Line: 18
+Info (12021): Found 1 design units, including 1 entities, in source file Functions/CalculateAngles.sv
+    Info (12023): Found entity 1: CalculateAngles File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/CalculateAngles.sv Line: 24
+Info (12021): Found 11 design units, including 11 entities, in source file Arithmetic/Inverter/Inverter.v
+    Info (12023): Found entity 1: Inverter_altfp_inv_and_or_ekd File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/Inverter/Inverter.v Line: 50
+    Info (12023): Found entity 2: Inverter_altfp_inv_and_or_0nd File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/Inverter/Inverter.v Line: 125
+    Info (12023): Found entity 3: Inverter_altfp_inv_and_or_9kd File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/Inverter/Inverter.v Line: 200
+    Info (12023): Found entity 4: Inverter_altfp_inv_and_or_rmd File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/Inverter/Inverter.v Line: 270
+    Info (12023): Found entity 5: Inverter_altfp_inv_csa_tbi File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/Inverter/Inverter.v Line: 340
+    Info (12023): Found entity 6: Inverter_altfp_inv_csa_qbi File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/Inverter/Inverter.v Line: 467
+    Info (12023): Found entity 7: Inverter_altfp_inv_csa_vbi File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/Inverter/Inverter.v Line: 594
+    Info (12023): Found entity 8: Inverter_altfp_inv_csa_47i File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/Inverter/Inverter.v Line: 721
+    Info (12023): Found entity 9: Inverter_altfp_inv_csa_58i File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/Inverter/Inverter.v Line: 793
+    Info (12023): Found entity 10: Inverter_altfp_inv_flg File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/Inverter/Inverter.v Line: 861
+    Info (12023): Found entity 11: Inverter File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/Inverter/Inverter.v Line: 2060
+Info (12021): Found 1 design units, including 1 entities, in source file Functions/CalculateSteps.sv
+    Info (12023): Found entity 1: CalculateSteps File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/CalculateSteps.sv Line: 19
+Info (12021): Found 3 design units, including 3 entities, in source file Conversions/DoubleToInt9Bit.v
+    Info (12023): Found entity 1: DoubleToInt9Bit_altbarrel_shift_hof File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/DoubleToInt9Bit.v Line: 50
+    Info (12023): Found entity 2: DoubleToInt9Bit_altfp_convert_jkp File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/DoubleToInt9Bit.v Line: 143
+    Info (12023): Found entity 3: DoubleToInt9Bit File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/DoubleToInt9Bit.v Line: 936
+Info (12021): Found 1 design units, including 1 entities, in source file Functions/ForwardKinematics.sv
+    Info (12023): Found entity 1: ForwardKinematics File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/ForwardKinematics.sv Line: 23
+Info (12021): Found 32 design units, including 32 entities, in source file Arithmetic/SinCos/Sine.v
+    Info (12023): Found entity 1: Sine_altfp_sincos_cordic_atan_45b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 54
+    Info (12023): Found entity 2: Sine_altfp_sincos_cordic_atan_l6b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 85
+    Info (12023): Found entity 3: Sine_altfp_sincos_cordic_atan_m6b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 116
+    Info (12023): Found entity 4: Sine_altfp_sincos_cordic_atan_n6b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 147
+    Info (12023): Found entity 5: Sine_altfp_sincos_cordic_atan_o6b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 178
+    Info (12023): Found entity 6: Sine_altfp_sincos_cordic_atan_55b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 209
+    Info (12023): Found entity 7: Sine_altfp_sincos_cordic_atan_65b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 240
+    Info (12023): Found entity 8: Sine_altfp_sincos_cordic_atan_75b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 271
+    Info (12023): Found entity 9: Sine_altfp_sincos_cordic_atan_85b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 302
+    Info (12023): Found entity 10: Sine_altfp_sincos_cordic_atan_95b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 333
+    Info (12023): Found entity 11: Sine_altfp_sincos_cordic_atan_a5b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 364
+    Info (12023): Found entity 12: Sine_altfp_sincos_cordic_atan_b5b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 395
+    Info (12023): Found entity 13: Sine_altfp_sincos_cordic_atan_c5b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 426
+    Info (12023): Found entity 14: Sine_altfp_sincos_cordic_atan_d5b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 457
+    Info (12023): Found entity 15: Sine_altfp_sincos_cordic_start_709 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 488
+    Info (12023): Found entity 16: Sine_altfp_sincos_cordic_m_e5e File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 565
+    Info (12023): Found entity 17: Sine_altfp_sincos_srrt_koa File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 2705
+    Info (12023): Found entity 18: Sine_altpriority_encoder_3e8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 2784
+    Info (12023): Found entity 19: Sine_altpriority_encoder_3v7 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 2807
+    Info (12023): Found entity 20: Sine_altpriority_encoder_6v7 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 2823
+    Info (12023): Found entity 21: Sine_altpriority_encoder_6e8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 2855
+    Info (12023): Found entity 22: Sine_altpriority_encoder_bv7 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 2888
+    Info (12023): Found entity 23: Sine_altpriority_encoder_be8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 2920
+    Info (12023): Found entity 24: Sine_altpriority_encoder_r08 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 2953
+    Info (12023): Found entity 25: Sine_altpriority_encoder_rf8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 2985
+    Info (12023): Found entity 26: Sine_altpriority_encoder_qb6 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 3018
+    Info (12023): Found entity 27: Sine_altfp_sincos_range_b6c File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 3046
+    Info (12023): Found entity 28: Sine_altpriority_encoder_q08 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 3643
+    Info (12023): Found entity 29: Sine_altpriority_encoder_qf8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 3675
+    Info (12023): Found entity 30: Sine_altpriority_encoder_0c6 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 3708
+    Info (12023): Found entity 31: Sine_altfp_sincos_gre File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 3736
+    Info (12023): Found entity 32: Sine File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Sine.v Line: 4405
+Info (12021): Found 32 design units, including 32 entities, in source file Arithmetic/SinCos/Cosine.v
+    Info (12023): Found entity 1: Cosine_altfp_sincos_cordic_atan_35b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 54
+    Info (12023): Found entity 2: Cosine_altfp_sincos_cordic_atan_k6b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 85
+    Info (12023): Found entity 3: Cosine_altfp_sincos_cordic_atan_l6b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 116
+    Info (12023): Found entity 4: Cosine_altfp_sincos_cordic_atan_m6b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 147
+    Info (12023): Found entity 5: Cosine_altfp_sincos_cordic_atan_n6b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 178
+    Info (12023): Found entity 6: Cosine_altfp_sincos_cordic_atan_45b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 209
+    Info (12023): Found entity 7: Cosine_altfp_sincos_cordic_atan_55b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 240
+    Info (12023): Found entity 8: Cosine_altfp_sincos_cordic_atan_65b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 271
+    Info (12023): Found entity 9: Cosine_altfp_sincos_cordic_atan_75b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 302
+    Info (12023): Found entity 10: Cosine_altfp_sincos_cordic_atan_85b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 333
+    Info (12023): Found entity 11: Cosine_altfp_sincos_cordic_atan_95b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 364
+    Info (12023): Found entity 12: Cosine_altfp_sincos_cordic_atan_a5b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 395
+    Info (12023): Found entity 13: Cosine_altfp_sincos_cordic_atan_b5b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 426
+    Info (12023): Found entity 14: Cosine_altfp_sincos_cordic_atan_c5b File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 457
+    Info (12023): Found entity 15: Cosine_altfp_sincos_cordic_start_509 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 488
+    Info (12023): Found entity 16: Cosine_altfp_sincos_cordic_m_d5e File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 565
+    Info (12023): Found entity 17: Cosine_altfp_sincos_srrt_koa File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 2691
+    Info (12023): Found entity 18: Cosine_altpriority_encoder_3e8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 2770
+    Info (12023): Found entity 19: Cosine_altpriority_encoder_3v7 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 2793
+    Info (12023): Found entity 20: Cosine_altpriority_encoder_6v7 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 2809
+    Info (12023): Found entity 21: Cosine_altpriority_encoder_6e8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 2841
+    Info (12023): Found entity 22: Cosine_altpriority_encoder_bv7 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 2874
+    Info (12023): Found entity 23: Cosine_altpriority_encoder_be8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 2906
+    Info (12023): Found entity 24: Cosine_altpriority_encoder_r08 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 2939
+    Info (12023): Found entity 25: Cosine_altpriority_encoder_rf8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 2971
+    Info (12023): Found entity 26: Cosine_altpriority_encoder_qb6 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 3004
+    Info (12023): Found entity 27: Cosine_altfp_sincos_range_b6c File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 3032
+    Info (12023): Found entity 28: Cosine_altpriority_encoder_q08 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 3629
+    Info (12023): Found entity 29: Cosine_altpriority_encoder_qf8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 3661
+    Info (12023): Found entity 30: Cosine_altpriority_encoder_0c6 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 3694
+    Info (12023): Found entity 31: Cosine_altfp_sincos_are File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 3722
+    Info (12023): Found entity 32: Cosine File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SinCos/Cosine.v Line: 4037
+Info (12021): Found 10 design units, including 10 entities, in source file Conversions/Fixed13BitToFloat.v
+    Info (12023): Found entity 1: Fixed13BitToFloat_altbarrel_shift_dof File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Fixed13BitToFloat.v Line: 50
+    Info (12023): Found entity 2: Fixed13BitToFloat_altpriority_encoder_3v7 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Fixed13BitToFloat.v Line: 151
+    Info (12023): Found entity 3: Fixed13BitToFloat_altpriority_encoder_3e8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Fixed13BitToFloat.v Line: 171
+    Info (12023): Found entity 4: Fixed13BitToFloat_altpriority_encoder_6v7 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Fixed13BitToFloat.v Line: 190
+    Info (12023): Found entity 5: Fixed13BitToFloat_altpriority_encoder_6e8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Fixed13BitToFloat.v Line: 222
+    Info (12023): Found entity 6: Fixed13BitToFloat_altpriority_encoder_bv7 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Fixed13BitToFloat.v Line: 255
+    Info (12023): Found entity 7: Fixed13BitToFloat_altpriority_encoder_be8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Fixed13BitToFloat.v Line: 287
+    Info (12023): Found entity 8: Fixed13BitToFloat_altpriority_encoder_rb6 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Fixed13BitToFloat.v Line: 320
+    Info (12023): Found entity 9: Fixed13BitToFloat_altfp_convert_5jn File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Fixed13BitToFloat.v Line: 348
+    Info (12023): Found entity 10: Fixed13BitToFloat File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Fixed13BitToFloat.v Line: 626
+Info (12021): Found 22 design units, including 22 entities, in source file Arithmetic/FloatAdder/FloatAdder.v
+    Info (12023): Found entity 1: FloatAdder_altbarrel_shift_ltd File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/FloatAdder/FloatAdder.v Line: 50
+    Info (12023): Found entity 2: FloatAdder_altbarrel_shift_aeb File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/FloatAdder/FloatAdder.v Line: 115
+    Info (12023): Found entity 3: FloatAdder_altpriority_encoder_3e8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/FloatAdder/FloatAdder.v Line: 165
+    Info (12023): Found entity 4: FloatAdder_altpriority_encoder_6e8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/FloatAdder/FloatAdder.v Line: 184
+    Info (12023): Found entity 5: FloatAdder_altpriority_encoder_be8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/FloatAdder/FloatAdder.v Line: 217
+    Info (12023): Found entity 6: FloatAdder_altpriority_encoder_3v7 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/FloatAdder/FloatAdder.v Line: 262
+    Info (12023): Found entity 7: FloatAdder_altpriority_encoder_6v7 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/FloatAdder/FloatAdder.v Line: 278
+    Info (12023): Found entity 8: FloatAdder_altpriority_encoder_bv7 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/FloatAdder/FloatAdder.v Line: 306
+    Info (12023): Found entity 9: FloatAdder_altpriority_encoder_r08 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/FloatAdder/FloatAdder.v Line: 334
+    Info (12023): Found entity 10: FloatAdder_altpriority_encoder_rf8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/FloatAdder/FloatAdder.v Line: 366
+    Info (12023): Found entity 11: FloatAdder_altpriority_encoder_qb6 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/FloatAdder/FloatAdder.v Line: 399
+    Info (12023): Found entity 12: FloatAdder_altpriority_encoder_nh8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/FloatAdder/FloatAdder.v Line: 447
+    Info (12023): Found entity 13: FloatAdder_altpriority_encoder_qh8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/FloatAdder/FloatAdder.v Line: 466
+    Info (12023): Found entity 14: FloatAdder_altpriority_encoder_vh8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/FloatAdder/FloatAdder.v Line: 499
+    Info (12023): Found entity 15: FloatAdder_altpriority_encoder_fj8 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/FloatAdder/FloatAdder.v Line: 532
+    Info (12023): Found entity 16: FloatAdder_altpriority_encoder_n28 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/FloatAdder/FloatAdder.v Line: 581
+    Info (12023): Found entity 17: FloatAdder_altpriority_encoder_q28 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/FloatAdder/FloatAdder.v Line: 597
+    Info (12023): Found entity 18: FloatAdder_altpriority_encoder_v28 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/FloatAdder/FloatAdder.v Line: 625
+    Info (12023): Found entity 19: FloatAdder_altpriority_encoder_f48 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/FloatAdder/FloatAdder.v Line: 653
+    Info (12023): Found entity 20: FloatAdder_altpriority_encoder_e48 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/FloatAdder/FloatAdder.v Line: 681
+    Info (12023): Found entity 21: FloatAdder_altfp_add_sub_3ij File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/FloatAdder/FloatAdder.v Line: 709
+    Info (12023): Found entity 22: FloatAdder File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/FloatAdder/FloatAdder.v Line: 2622
+Info (12021): Found 2 design units, including 2 entities, in source file Conversions/DoubleToFloat.v
+    Info (12023): Found entity 1: DoubleToFloat_altfp_convert_fmn File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/DoubleToFloat.v Line: 46
+    Info (12023): Found entity 2: DoubleToFloat File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/DoubleToFloat.v Line: 442
+Info (12021): Found 2 design units, including 2 entities, in source file Conversions/FloatToDouble.v
+    Info (12023): Found entity 1: FloatToDouble_altfp_convert_fmn File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/FloatToDouble.v Line: 46
+    Info (12023): Found entity 2: FloatToDouble File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/FloatToDouble.v Line: 228
+Info (12021): Found 3 design units, including 3 entities, in source file Conversions/DoubleToInt15Bit.v
+    Info (12023): Found entity 1: DoubleToInt15Bit_altbarrel_shift_oof File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/DoubleToInt15Bit.v Line: 50
+    Info (12023): Found entity 2: DoubleToInt15Bit_altfp_convert_qco File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/DoubleToInt15Bit.v Line: 143
+    Info (12023): Found entity 3: DoubleToInt15Bit File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Conversions/DoubleToInt15Bit.v Line: 914
+Info (12021): Found 1 design units, including 1 entities, in source file db/ip/Atan2/Atan2.v
+    Info (12023): Found entity 1: Atan2 File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/db/ip/Atan2/Atan2.v Line: 6
+Warning (10236): Verilog HDL Implicit Net warning at CosineTh2.sv(181): created implicit net for "divEnable" File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/CosineTh2.sv Line: 181
+Warning (10236): Verilog HDL Implicit Net warning at SineTh2.sv(131): created implicit net for "RootReset" File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/SineTh2.sv Line: 131
+Info (12127): Elaborating entity "ScaraController" for the top level hierarchy
+Critical Warning (10237): Verilog HDL warning at ScaraController.sv(96): can't infer register for assignment in edge-triggered always construct because the clock isn't obvious. Generated combinational logic instead File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 96
+Warning (10240): Verilog HDL Always Construct warning at ScaraController.sv(35): inferring latch(es) for variable "th1Current", which holds its previous value in one or more paths through the always construct File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Warning (10240): Verilog HDL Always Construct warning at ScaraController.sv(35): inferring latch(es) for variable "th2Current", which holds its previous value in one or more paths through the always construct File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th2Current[0]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th2Current[1]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th2Current[2]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th2Current[3]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th2Current[4]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th2Current[5]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th2Current[6]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th2Current[7]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th2Current[8]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th2Current[9]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th2Current[10]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th2Current[11]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th2Current[12]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th1Current[0]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th1Current[1]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th1Current[2]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th1Current[3]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th1Current[4]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th1Current[5]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th1Current[6]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th1Current[7]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th1Current[8]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th1Current[9]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th1Current[10]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th1Current[11]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Info (10041): Inferred latch for "th1Current[12]" at ScaraController.sv(35) File: /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv Line: 35
+Error (12153): Can't elaborate top-level user hierarchy
+Info (144001): Generated suppressed messages file /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/output_files/ScaraController.map.smsg
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 3 errors, 6 warnings
+    Error: Peak virtual memory: 958 megabytes
+    Error: Processing ended: Sat Feb 22 15:49:26 2020
+    Error: Elapsed time: 00:00:38
+    Error: Total CPU time (on all processors): 00:01:23
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in /home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/output_files/ScaraController.map.smsg.
+
+

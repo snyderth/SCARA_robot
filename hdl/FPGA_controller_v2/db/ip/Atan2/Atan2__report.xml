@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2020.02.22.15:48:08"
- outputDirectory="/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/">
+ date="2020.02.22.15:49:24"
+ outputDirectory="/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/db/ip/Atan2/">
  <perimeter>
   <parameter
      name="AUTO_GENERATION_ID"
@@ -85,13 +85,13 @@
  </perimeter>
  <entity
    path=""
-   parameterizationKey="Atan2:1.0:AUTO_CLK_CLOCK_DOMAIN=-1,AUTO_CLK_CLOCK_RATE=-1,AUTO_CLK_RESET_DOMAIN=-1,AUTO_DEVICE=5CEBA2F17A7,AUTO_DEVICE_FAMILY=Cyclone V,AUTO_DEVICE_SPEEDGRADE=7,AUTO_GENERATION_ID=1582415239,AUTO_UNIQUE_ID=(altera_CORDIC:19.1:ALL_function=ATAN2,FUNCTION_FAMILY=ALL,LUTSize=6,RES_DSP_param=0,RES_LUT_param=0,RES_MBIT_param=0,RES_MBLOCK_param=0,SFCompensation=false,derivedfunction=ATAN2,force_elaborate=0,frequency_feedback=0,frequency_target=200,fxpt_in_2_fraction_derived=0,fxpt_in_2_sign_derived=1,fxpt_in_2_width_derived=32,fxpt_in_fraction=10,fxpt_in_fraction_derived=0,fxpt_in_sign=1,fxpt_in_sign_derived=1,fxpt_in_width=32,fxpt_in_width_derived=32,fxpt_out_2_fraction_derived=0,fxpt_out_2_sign_derived=1,fxpt_out_2_width_derived=32,fxpt_out_fraction=10,fxpt_out_fraction_derived=0,fxpt_out_sign=1,fxpt_out_sign_derived=1,fxpt_out_width=32,fxpt_out_width_derived=13,gen_enable=true,latency_feedback=0,latency_target=16,performance_goal=latency,report_resources_to_xml=false,selected_device_family=Cyclone V,selected_device_speedgrade=7,specifyLUTs=false,useLUTs=false,validation_failed=false)"
+   parameterizationKey="Atan2:1.0:AUTO_CLK_CLOCK_DOMAIN=-1,AUTO_CLK_CLOCK_RATE=-1,AUTO_CLK_RESET_DOMAIN=-1,AUTO_DEVICE=5CEBA2F17A7,AUTO_DEVICE_FAMILY=Cyclone V,AUTO_DEVICE_SPEEDGRADE=7,AUTO_GENERATION_ID=1582415353,AUTO_UNIQUE_ID=(altera_CORDIC:19.1:ALL_function=ATAN2,FUNCTION_FAMILY=ALL,LUTSize=6,RES_DSP_param=0,RES_LUT_param=0,RES_MBIT_param=0,RES_MBLOCK_param=0,SFCompensation=false,derivedfunction=ATAN2,force_elaborate=0,frequency_feedback=0,frequency_target=200,fxpt_in_2_fraction_derived=0,fxpt_in_2_sign_derived=1,fxpt_in_2_width_derived=32,fxpt_in_fraction=10,fxpt_in_fraction_derived=0,fxpt_in_sign=1,fxpt_in_sign_derived=1,fxpt_in_width=32,fxpt_in_width_derived=32,fxpt_out_2_fraction_derived=0,fxpt_out_2_sign_derived=1,fxpt_out_2_width_derived=32,fxpt_out_fraction=10,fxpt_out_fraction_derived=0,fxpt_out_sign=1,fxpt_out_sign_derived=1,fxpt_out_width=32,fxpt_out_width_derived=13,gen_enable=true,latency_feedback=0,latency_target=16,performance_goal=latency,report_resources_to_xml=false,selected_device_family=Cyclone V,selected_device_speedgrade=7,specifyLUTs=false,useLUTs=false,validation_failed=false)"
    instancePathKey="Atan2"
    kind="Atan2"
    version="1.0"
    name="Atan2">
   <parameter name="AUTO_CLK_CLOCK_RATE" value="-1" />
-  <parameter name="AUTO_GENERATION_ID" value="1582415239" />
+  <parameter name="AUTO_GENERATION_ID" value="1582415353" />
   <parameter name="AUTO_DEVICE" value="5CEBA2F17A7" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
   <parameter name="AUTO_CLK_RESET_DOMAIN" value="-1" />
@@ -100,23 +100,10 @@
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="7" />
   <generatedFiles>
    <file
-       path="/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/Atan2.v"
+       path="/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/db/ip/Atan2/Atan2.v"
        type="VERILOG" />
   </generatedFiles>
-  <childGeneratedFiles>
-   <file
-       path="/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library_package.vhd"
-       type="VHDL"
-       attributes="" />
-   <file
-       path="/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library.vhd"
-       type="VHDL"
-       attributes="" />
-   <file
-       path="/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/Atan2_CORDIC_0.vhd"
-       type="VHDL"
-       attributes="" />
-  </childGeneratedFiles>
+  <childGeneratedFiles/>
   <sourceFiles>
    <file
        path="/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2.qsys" />
@@ -142,16 +129,8 @@
    <message level="Debug" culprit="Atan2"><![CDATA["<b>Atan2</b>" reuses <b>altera_CORDIC</b> "<b>submodules/Atan2_CORDIC_0</b>"]]></message>
    <message level="Debug" culprit="Atan2">queue size: 0 starting:altera_CORDIC "submodules/Atan2_CORDIC_0"</message>
    <message level="Info" culprit="CORDIC_0">/home/thomas/intelFPGA_lite/19.1/ip/altera/dsp/altera_CORDIC/source//cmdPolyEval.sh /home/thomas/intelFPGA_lite/19.1/quartus/dspba/backend/linux64 -target CycloneV -frequency 400 -name none -noChanValid -faithfulRounding -enable -printMachineReadable -noFileGenerate -speedgrade 7 FXPAtan2Expert 32 10 1 10 0 0</message>
-   <message level="Warning" culprit="CORDIC_0">Frequency search for this target may take up to 10 seconds</message>
-   <message level="Info" culprit="CORDIC_0">/home/thomas/intelFPGA_lite/19.1/ip/altera/dsp/altera_CORDIC/source//cmdPolyEval.sh /home/thomas/intelFPGA_lite/19.1/quartus/dspba/backend/linux64 -target CycloneV -frequency 200 -name none -noChanValid -faithfulRounding -enable -printMachineReadable -noFileGenerate -speedgrade 7 FXPAtan2Expert 32 10 1 10 0 0</message>
-   <message level="Info" culprit="CORDIC_0">/home/thomas/intelFPGA_lite/19.1/ip/altera/dsp/altera_CORDIC/source//cmdPolyEval.sh /home/thomas/intelFPGA_lite/19.1/quartus/dspba/backend/linux64 -target CycloneV -frequency 300 -name none -noChanValid -faithfulRounding -enable -printMachineReadable -noFileGenerate -speedgrade 7 FXPAtan2Expert 32 10 1 10 0 0</message>
-   <message level="Info" culprit="CORDIC_0">/home/thomas/intelFPGA_lite/19.1/ip/altera/dsp/altera_CORDIC/source//cmdPolyEval.sh /home/thomas/intelFPGA_lite/19.1/quartus/dspba/backend/linux64 -target CycloneV -frequency 250 -name none -noChanValid -faithfulRounding -enable -printMachineReadable -noFileGenerate -speedgrade 7 FXPAtan2Expert 32 10 1 10 0 0</message>
-   <message level="Info" culprit="CORDIC_0">Could achieve 16 cycles latency maximum at Frequency 250 MHz, padding with registers to reach requested 16 cycles latency</message>
-   <message level="Info" culprit="CORDIC_0">/home/thomas/intelFPGA_lite/19.1/ip/altera/dsp/altera_CORDIC/source//cmdPolyEval.sh /home/thomas/intelFPGA_lite/19.1/quartus/dspba/backend/linux64 -target CycloneV -frequency 200 -name Atan2_CORDIC_0 -noChanValid -faithfulRounding -enable -printMachineReadable -lang VHDL -constrainLatency 16 -speedgrade 7 FXPAtan2Expert 32 10 1 10 0 0</message>
-   <message level="Info" culprit="CORDIC_0">DSP Blocks Used: 0</message>
-   <message level="Info" culprit="CORDIC_0">LUTs Used: 2306</message>
-   <message level="Info" culprit="CORDIC_0">Memory Bits Used: 0</message>
-   <message level="Info" culprit="CORDIC_0">Memory Blocks Used: 0</message>
+   <message level="Error" culprit="CORDIC_0">Frequency Target is too low for this parameterization</message>
+   <message level="Error" culprit="CORDIC_0">Cannot generate for specified latency</message>
    <message level="Info" culprit="CORDIC_0"><![CDATA["<b>Atan2</b>" instantiated <b>altera_CORDIC</b> "<b>CORDIC_0</b>"]]></message>
   </messages>
  </entity>
@@ -198,20 +177,7 @@
   <parameter name="fxpt_in_width_derived" value="32" />
   <parameter name="performance_goal" value="latency" />
   <parameter name="frequency_feedback" value="0" />
-  <generatedFiles>
-   <file
-       path="/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library_package.vhd"
-       type="VHDL"
-       attributes="" />
-   <file
-       path="/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library.vhd"
-       type="VHDL"
-       attributes="" />
-   <file
-       path="/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/Atan2_CORDIC_0.vhd"
-       type="VHDL"
-       attributes="" />
-  </generatedFiles>
+  <generatedFiles/>
   <childGeneratedFiles/>
   <sourceFiles>
    <file
@@ -222,16 +188,8 @@
   <messages>
    <message level="Debug" culprit="Atan2">queue size: 0 starting:altera_CORDIC "submodules/Atan2_CORDIC_0"</message>
    <message level="Info" culprit="CORDIC_0">/home/thomas/intelFPGA_lite/19.1/ip/altera/dsp/altera_CORDIC/source//cmdPolyEval.sh /home/thomas/intelFPGA_lite/19.1/quartus/dspba/backend/linux64 -target CycloneV -frequency 400 -name none -noChanValid -faithfulRounding -enable -printMachineReadable -noFileGenerate -speedgrade 7 FXPAtan2Expert 32 10 1 10 0 0</message>
-   <message level="Warning" culprit="CORDIC_0">Frequency search for this target may take up to 10 seconds</message>
-   <message level="Info" culprit="CORDIC_0">/home/thomas/intelFPGA_lite/19.1/ip/altera/dsp/altera_CORDIC/source//cmdPolyEval.sh /home/thomas/intelFPGA_lite/19.1/quartus/dspba/backend/linux64 -target CycloneV -frequency 200 -name none -noChanValid -faithfulRounding -enable -printMachineReadable -noFileGenerate -speedgrade 7 FXPAtan2Expert 32 10 1 10 0 0</message>
-   <message level="Info" culprit="CORDIC_0">/home/thomas/intelFPGA_lite/19.1/ip/altera/dsp/altera_CORDIC/source//cmdPolyEval.sh /home/thomas/intelFPGA_lite/19.1/quartus/dspba/backend/linux64 -target CycloneV -frequency 300 -name none -noChanValid -faithfulRounding -enable -printMachineReadable -noFileGenerate -speedgrade 7 FXPAtan2Expert 32 10 1 10 0 0</message>
-   <message level="Info" culprit="CORDIC_0">/home/thomas/intelFPGA_lite/19.1/ip/altera/dsp/altera_CORDIC/source//cmdPolyEval.sh /home/thomas/intelFPGA_lite/19.1/quartus/dspba/backend/linux64 -target CycloneV -frequency 250 -name none -noChanValid -faithfulRounding -enable -printMachineReadable -noFileGenerate -speedgrade 7 FXPAtan2Expert 32 10 1 10 0 0</message>
-   <message level="Info" culprit="CORDIC_0">Could achieve 16 cycles latency maximum at Frequency 250 MHz, padding with registers to reach requested 16 cycles latency</message>
-   <message level="Info" culprit="CORDIC_0">/home/thomas/intelFPGA_lite/19.1/ip/altera/dsp/altera_CORDIC/source//cmdPolyEval.sh /home/thomas/intelFPGA_lite/19.1/quartus/dspba/backend/linux64 -target CycloneV -frequency 200 -name Atan2_CORDIC_0 -noChanValid -faithfulRounding -enable -printMachineReadable -lang VHDL -constrainLatency 16 -speedgrade 7 FXPAtan2Expert 32 10 1 10 0 0</message>
-   <message level="Info" culprit="CORDIC_0">DSP Blocks Used: 0</message>
-   <message level="Info" culprit="CORDIC_0">LUTs Used: 2306</message>
-   <message level="Info" culprit="CORDIC_0">Memory Bits Used: 0</message>
-   <message level="Info" culprit="CORDIC_0">Memory Blocks Used: 0</message>
+   <message level="Error" culprit="CORDIC_0">Frequency Target is too low for this parameterization</message>
+   <message level="Error" culprit="CORDIC_0">Cannot generate for specified latency</message>
    <message level="Info" culprit="CORDIC_0"><![CDATA["<b>Atan2</b>" instantiated <b>altera_CORDIC</b> "<b>CORDIC_0</b>"]]></message>
   </messages>
  </entity>

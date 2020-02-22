@@ -76,7 +76,7 @@ module Arctan2(input logic [63:0] arg1,
 							
 					logic [3:0] cnt;		
 					
-					ClockTimer #(4, 13) atanTimer(
+					ClockTimer #(5, 16) atanTimer(
 															.clk(clk),
 															.count(cnt),
 															.en(atanStart),

@@ -1,11 +1,11 @@
 # # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
 # 
-preplace inst unsaved.CORDIC_0 -pg 1 -lvl 1 -y 30
-preplace inst unsaved -pg 1 -lvl 1 -y 40 -regy -20
-preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)unsaved.c,(SLAVE)CORDIC_0.c) 1 0 1 NJ
-preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)unsaved.areset,(SLAVE)CORDIC_0.areset) 1 0 1 NJ
-preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)unsaved.s,(SLAVE)CORDIC_0.s) 1 0 1 NJ
-preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)CORDIC_0.clk,(SLAVE)unsaved.clk) 1 0 1 NJ
-preplace netloc EXPORT<net_container>unsaved</net_container>(SLAVE)CORDIC_0.a,(SLAVE)unsaved.a) 1 0 1 NJ
+preplace inst Atan2.CORDIC_0 -pg 1 -lvl 1 -y 30
+preplace inst Atan2 -pg 1 -lvl 1 -y 40 -regy -20
+preplace netloc EXPORT<net_container>Atan2</net_container>(SLAVE)CORDIC_0.a,(SLAVE)Atan2.a) 1 0 1 NJ
+preplace netloc EXPORT<net_container>Atan2</net_container>(SLAVE)CORDIC_0.s,(SLAVE)Atan2.s) 1 0 1 NJ
+preplace netloc EXPORT<net_container>Atan2</net_container>(SLAVE)Atan2.c,(SLAVE)CORDIC_0.c) 1 0 1 NJ
+preplace netloc EXPORT<net_container>Atan2</net_container>(SLAVE)CORDIC_0.areset,(SLAVE)Atan2.areset) 1 0 1 NJ
+preplace netloc EXPORT<net_container>Atan2</net_container>(SLAVE)CORDIC_0.clk,(SLAVE)Atan2.clk) 1 0 1 NJ
 levelinfo -pg 1 0 50 180
-levelinfo -hier unsaved 60 90 170
+levelinfo -hier Atan2 60 90 170

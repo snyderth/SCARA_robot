@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="Atan2" kind="Atan2" version="1.0" fabric="QSYS">
- <!-- Format version 18.1 625 (Future versions may contain additional information.) -->
- <!-- 2020.02.18.09:51:21 -->
+ <!-- Format version 19.1 670 (Future versions may contain additional information.) -->
+ <!-- 2020.02.22.15:49:13 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1582048281</value>
+  <value>1582415353</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -95,7 +95,7 @@
   <visible>true</visible>
   <valid>true</valid>
  </parameter>
- <module name="CORDIC_0" kind="altera_CORDIC" version="18.1" path="CORDIC_0">
+ <module name="CORDIC_0" kind="altera_CORDIC" version="19.1" path="CORDIC_0">
   <!-- Describes a single module. Module parameters are
 the requested settings for a module instance. -->
   <parameter name="FUNCTION_FAMILY">
@@ -132,7 +132,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="latency_target">
    <type>int</type>
-   <value>13</value>
+   <value>16</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -172,7 +172,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="fxpt_in_fraction">
    <type>int</type>
-   <value>15</value>
+   <value>10</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -436,7 +436,7 @@ the requested settings for a module instance. -->
    <visible>true</visible>
    <valid>true</valid>
   </parameter>
-  <interface name="clk" kind="clock_sink" version="18.1">
+  <interface name="clk" kind="clock_sink" version="19.1">
    <!-- The connection points exposed by a module instance for the
 particular module parameters. Connection points and their
 parameters are a RESULT of the module parameters. -->
@@ -481,7 +481,7 @@ parameters are a RESULT of the module parameters. -->
     <role>clk</role>
    </port>
   </interface>
-  <interface name="areset" kind="reset_sink" version="18.1">
+  <interface name="areset" kind="reset_sink" version="19.1">
    <!-- The connection points exposed by a module instance for the
 particular module parameters. Connection points and their
 parameters are a RESULT of the module parameters. -->
@@ -526,7 +526,7 @@ parameters are a RESULT of the module parameters. -->
     <role>reset</role>
    </port>
   </interface>
-  <interface name="en" kind="conduit_end" version="18.1">
+  <interface name="en" kind="conduit_end" version="19.1">
    <!-- The connection points exposed by a module instance for the
 particular module parameters. Connection points and their
 parameters are a RESULT of the module parameters. -->
@@ -571,7 +571,7 @@ parameters are a RESULT of the module parameters. -->
     <role>en</role>
    </port>
   </interface>
-  <interface name="x" kind="conduit_end" version="18.1">
+  <interface name="x" kind="conduit_end" version="19.1">
    <!-- The connection points exposed by a module instance for the
 particular module parameters. Connection points and their
 parameters are a RESULT of the module parameters. -->
@@ -616,7 +616,7 @@ parameters are a RESULT of the module parameters. -->
     <role>x</role>
    </port>
   </interface>
-  <interface name="y" kind="conduit_end" version="18.1">
+  <interface name="y" kind="conduit_end" version="19.1">
    <!-- The connection points exposed by a module instance for the
 particular module parameters. Connection points and their
 parameters are a RESULT of the module parameters. -->
@@ -661,7 +661,7 @@ parameters are a RESULT of the module parameters. -->
     <role>y</role>
    </port>
   </interface>
-  <interface name="q" kind="conduit_end" version="18.1">
+  <interface name="q" kind="conduit_end" version="19.1">
    <!-- The connection points exposed by a module instance for the
 particular module parameters. Connection points and their
 parameters are a RESULT of the module parameters. -->
@@ -717,7 +717,7 @@ parameters are a RESULT of the module parameters. -->
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IModule</subtype>
   <displayName>ALTERA_CORDIC</displayName>
-  <version>18.1</version>
+  <version>19.1</version>
  </plugin>
  <plugin>
   <instanceCount>1</instanceCount>
@@ -725,7 +725,7 @@ parameters are a RESULT of the module parameters. -->
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
   <displayName>Clock Input</displayName>
-  <version>18.1</version>
+  <version>19.1</version>
  </plugin>
  <plugin>
   <instanceCount>1</instanceCount>
@@ -733,7 +733,7 @@ parameters are a RESULT of the module parameters. -->
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
   <displayName>Reset Input</displayName>
-  <version>18.1</version>
+  <version>19.1</version>
  </plugin>
  <plugin>
   <instanceCount>4</instanceCount>
@@ -741,8 +741,8 @@ parameters are a RESULT of the module parameters. -->
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
   <displayName>Conduit</displayName>
-  <version>18.1</version>
+  <version>19.1</version>
  </plugin>
- <reportVersion>18.1 625</reportVersion>
+ <reportVersion>19.1 670</reportVersion>
  <uniqueIdentifier></uniqueIdentifier>
 </EnsembleReport>

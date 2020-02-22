@@ -109,6 +109,9 @@ module CalculateSteps(input signed [12:0] th1,
 				
 				/*		Multiply by conversion 	*/
 				logic [63:0] steps1Double, steps2Double;
+				logic Mult1Done, Mult2Done;
+				
+				assign MultDone = Mult1Done & Mult2Done;
 				
 				DoubleMultiply steps1Converter(
 											.dataa(th1Double),
@@ -116,7 +119,7 @@ module CalculateSteps(input signed [12:0] th1,
 											.result(steps1Double),
 											.clk(clk),
 											.in_ready(MultEn),
-											.data_ready(MultDone),
+											.data_ready(Mult1Done),
 											.reset(~MultEn | reset)
 											);
 				DoubleMultiply steps2Converter(
@@ -125,7 +128,7 @@ module CalculateSteps(input signed [12:0] th1,
 											.result(steps2Double),
 											.clk(clk),
 											.in_ready(MultEn),
-											.data_ready(MultDone),
+											.data_ready(Mult2Done),
 											.reset(~MultEn | reset)
 											);			
 											

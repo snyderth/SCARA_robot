@@ -1,9 +1,9 @@
 	Atan2 u0 (
-		.clk    (<connected-to-clk>),    //    clk.clk
 		.areset (<connected-to-areset>), // areset.reset
-		.x      (<connected-to-x>),      //      x.x
-		.y      (<connected-to-y>),      //      y.y
+		.clk    (<connected-to-clk>),    //    clk.clk
+		.en     (<connected-to-en>),     //     en.en
 		.q      (<connected-to-q>),      //      q.q
-		.en     (<connected-to-en>)      //     en.en
+		.x      (<connected-to-x>),      //      x.x
+		.y      (<connected-to-y>)       //      y.y
 	);
 
