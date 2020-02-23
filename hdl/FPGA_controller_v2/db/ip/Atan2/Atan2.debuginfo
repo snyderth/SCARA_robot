@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="Atan2" kind="system" version="19.1" fabric="QSYS">
  <!-- Format version 19.1 670 (Future versions may contain additional information.) -->
- <!-- 2020.02.22.15:49:24 -->
+ <!-- 2020.02.22.16:08:22 -->
  <!-- A collection of modules and connections -->
  <parameter name="clockCrossingAdapter">
   <type>com.altera.sopcmodel.ensemble.EClockAdapter</type>
@@ -53,7 +53,7 @@
  </parameter>
  <parameter name="generationId">
   <type>int</type>
-  <value>1582415353</value>
+  <value>1582416480</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>true</visible>
@@ -176,15 +176,15 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="frequency_target">
    <type>int</type>
-   <value>200</value>
+   <value>400</value>
    <derived>false</derived>
    <enabled>true</enabled>
-   <visible>false</visible>
+   <visible>true</visible>
    <valid>true</valid>
   </parameter>
   <parameter name="latency_target">
    <type>int</type>
-   <value>16</value>
+   <value>97</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -192,7 +192,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="performance_goal">
    <type>java.lang.String</type>
-   <value>latency</value>
+   <value>combined</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -796,5 +796,5 @@ parameters are a RESULT of the module parameters. -->
   <version>19.1</version>
  </plugin>
  <reportVersion>19.1 670</reportVersion>
- <uniqueIdentifier>28B2BD97F298000001706F4E1AFF</uniqueIdentifier>
+ <uniqueIdentifier>28B2BD97F298000001706F5F4F84</uniqueIdentifier>
 </EnsembleReport>
