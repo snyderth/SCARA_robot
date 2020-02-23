@@ -39,10 +39,10 @@ add wave dataReady
 
 
 force clk 0 @ 0, 1 @ 5 -r 10
-force enable 0 @ 0, 1 @ 15
+force enable 0 @ 0, 1 @ 15, 0 @ 40, 1 @ 2900, 0 @ 3000
 force reset 1 @ 0, 0 @ 15
-force xTarget 14'd2797 @ 0
-force yTarget 14'd2797 @ 0
+force xTarget 14'd2797 @ 0, 14'd5000 @ 2600
+force yTarget 14'd2797 @ 0, 14'd6000 @ 2600
 force controlStateReg 5'b00001 @ 0
 
 run 10000

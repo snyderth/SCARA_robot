@@ -1,8 +1,8 @@
 -- ------------------------------------------------------------------------- 
--- High Level Design Compiler for Intel(R) FPGAs Version 18.1 (Release Build #625)
+-- High Level Design Compiler for Intel(R) FPGAs Version 19.1 (Release Build #670)
 -- Quartus Prime development tool and MATLAB/Simulink Interface
 -- 
--- Legal Notice: Copyright 2018 Intel Corporation.  All rights reserved.
+-- Legal Notice: Copyright 2019 Intel Corporation.  All rights reserved.
 -- Your use of  Intel Corporation's design tools,  logic functions and other
 -- software and  tools, and its AMPP partner logic functions, and any output
 -- files any  of the foregoing (including  device programming  or simulation
@@ -16,7 +16,7 @@
 -- ---------------------------------------------------------------------------
 
 -- VHDL created from Atan2_CORDIC_0
--- VHDL created on Sat Feb 22 23:32:16 2020
+-- VHDL created on Sun Feb 23 15:08:02 2020
 
 
 library IEEE;
@@ -35,10 +35,9 @@ USE lpm.lpm_components.all;
 
 entity Atan2_CORDIC_0 is
     port (
-        x : in std_logic_vector(31 downto 0);  -- sfix32_en10
-        y : in std_logic_vector(31 downto 0);  -- sfix32_en10
-        en : in std_logic_vector(0 downto 0);  -- ufix1
-        q : out std_logic_vector(12 downto 0);  -- sfix13_en10
+        a : in std_logic_vector(12 downto 0);  -- sfix13_en10
+        c : out std_logic_vector(9 downto 0);  -- sfix10_en8
+        s : out std_logic_vector(9 downto 0);  -- sfix10_en8
         clk : in std_logic;
         areset : in std_logic
     );
@@ -51,1659 +50,1444 @@ architecture normal of Atan2_CORDIC_0 is
     
     signal GND_q : STD_LOGIC_VECTOR (0 downto 0);
     signal VCC_q : STD_LOGIC_VECTOR (0 downto 0);
-    signal constantZero_uid6_atan2Test_q : STD_LOGIC_VECTOR (31 downto 0);
-    signal signX_uid7_atan2Test_b : STD_LOGIC_VECTOR (0 downto 0);
-    signal signY_uid8_atan2Test_b : STD_LOGIC_VECTOR (0 downto 0);
-    signal invSignX_uid9_atan2Test_q : STD_LOGIC_VECTOR (0 downto 0);
-    signal absXE_uid10_atan2Test_a : STD_LOGIC_VECTOR (33 downto 0);
-    signal absXE_uid10_atan2Test_b : STD_LOGIC_VECTOR (33 downto 0);
-    signal absXE_uid10_atan2Test_o : STD_LOGIC_VECTOR (33 downto 0);
-    signal absXE_uid10_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal absXE_uid10_atan2Test_q : STD_LOGIC_VECTOR (32 downto 0);
-    signal invSignY_uid11_atan2Test_q : STD_LOGIC_VECTOR (0 downto 0);
-    signal absYE_uid12_atan2Test_a : STD_LOGIC_VECTOR (33 downto 0);
-    signal absYE_uid12_atan2Test_b : STD_LOGIC_VECTOR (33 downto 0);
-    signal absYE_uid12_atan2Test_o : STD_LOGIC_VECTOR (33 downto 0);
-    signal absYE_uid12_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal absYE_uid12_atan2Test_q : STD_LOGIC_VECTOR (32 downto 0);
-    signal absX_uid13_atan2Test_in : STD_LOGIC_VECTOR (31 downto 0);
-    signal absX_uid13_atan2Test_b : STD_LOGIC_VECTOR (31 downto 0);
-    signal absY_uid14_atan2Test_in : STD_LOGIC_VECTOR (31 downto 0);
-    signal absY_uid14_atan2Test_b : STD_LOGIC_VECTOR (31 downto 0);
-    signal yNotZero_uid15_atan2Test_qi : STD_LOGIC_VECTOR (0 downto 0);
-    signal yNotZero_uid15_atan2Test_q : STD_LOGIC_VECTOR (0 downto 0);
-    signal yZero_uid16_atan2Test_q : STD_LOGIC_VECTOR (0 downto 0);
-    signal xNotZero_uid17_atan2Test_qi : STD_LOGIC_VECTOR (0 downto 0);
-    signal xNotZero_uid17_atan2Test_q : STD_LOGIC_VECTOR (0 downto 0);
-    signal xZero_uid18_atan2Test_q : STD_LOGIC_VECTOR (0 downto 0);
-    signal cstArcTan2Mi_0_uid22_atan2Test_q : STD_LOGIC_VECTOR (21 downto 0);
-    signal xip1E_1_uid23_atan2Test_a : STD_LOGIC_VECTOR (32 downto 0);
-    signal xip1E_1_uid23_atan2Test_b : STD_LOGIC_VECTOR (32 downto 0);
-    signal xip1E_1_uid23_atan2Test_o : STD_LOGIC_VECTOR (32 downto 0);
-    signal xip1E_1_uid23_atan2Test_q : STD_LOGIC_VECTOR (32 downto 0);
-    signal yip1E_1_uid24_atan2Test_a : STD_LOGIC_VECTOR (32 downto 0);
-    signal yip1E_1_uid24_atan2Test_b : STD_LOGIC_VECTOR (32 downto 0);
-    signal yip1E_1_uid24_atan2Test_o : STD_LOGIC_VECTOR (32 downto 0);
-    signal yip1E_1_uid24_atan2Test_q : STD_LOGIC_VECTOR (32 downto 0);
-    signal lowRangeB_uid25_atan2Test_in : STD_LOGIC_VECTOR (20 downto 0);
-    signal lowRangeB_uid25_atan2Test_b : STD_LOGIC_VECTOR (20 downto 0);
-    signal highBBits_uid26_atan2Test_b : STD_LOGIC_VECTOR (0 downto 0);
-    signal aip1E_1_uid28_atan2Test_q : STD_LOGIC_VECTOR (23 downto 0);
-    signal aip1E_uid31_atan2Test_in : STD_LOGIC_VECTOR (22 downto 0);
-    signal aip1E_uid31_atan2Test_b : STD_LOGIC_VECTOR (22 downto 0);
-    signal xMSB_uid32_atan2Test_b : STD_LOGIC_VECTOR (0 downto 0);
-    signal cstArcTan2Mi_1_uid36_atan2Test_q : STD_LOGIC_VECTOR (22 downto 0);
-    signal invSignOfSelectionSignal_uid37_atan2Test_q : STD_LOGIC_VECTOR (0 downto 0);
-    signal xip1E_2NA_uid39_atan2Test_q : STD_LOGIC_VECTOR (33 downto 0);
-    signal xip1E_2sumAHighB_uid40_atan2Test_a : STD_LOGIC_VECTOR (36 downto 0);
-    signal xip1E_2sumAHighB_uid40_atan2Test_b : STD_LOGIC_VECTOR (36 downto 0);
-    signal xip1E_2sumAHighB_uid40_atan2Test_o : STD_LOGIC_VECTOR (36 downto 0);
-    signal xip1E_2sumAHighB_uid40_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal xip1E_2sumAHighB_uid40_atan2Test_q : STD_LOGIC_VECTOR (35 downto 0);
-    signal yip1E_2NA_uid42_atan2Test_q : STD_LOGIC_VECTOR (33 downto 0);
-    signal yip1E_2sumAHighB_uid43_atan2Test_a : STD_LOGIC_VECTOR (35 downto 0);
-    signal yip1E_2sumAHighB_uid43_atan2Test_b : STD_LOGIC_VECTOR (35 downto 0);
-    signal yip1E_2sumAHighB_uid43_atan2Test_o : STD_LOGIC_VECTOR (35 downto 0);
-    signal yip1E_2sumAHighB_uid43_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal yip1E_2sumAHighB_uid43_atan2Test_q : STD_LOGIC_VECTOR (34 downto 0);
-    signal aip1E_2CostZeroPaddingA_uid45_atan2Test_q : STD_LOGIC_VECTOR (1 downto 0);
-    signal aip1E_2NA_uid46_atan2Test_q : STD_LOGIC_VECTOR (24 downto 0);
-    signal aip1E_2sumAHighB_uid47_atan2Test_a : STD_LOGIC_VECTOR (26 downto 0);
-    signal aip1E_2sumAHighB_uid47_atan2Test_b : STD_LOGIC_VECTOR (26 downto 0);
-    signal aip1E_2sumAHighB_uid47_atan2Test_o : STD_LOGIC_VECTOR (26 downto 0);
-    signal aip1E_2sumAHighB_uid47_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal aip1E_2sumAHighB_uid47_atan2Test_q : STD_LOGIC_VECTOR (25 downto 0);
-    signal xip1_2_uid48_atan2Test_in : STD_LOGIC_VECTOR (33 downto 0);
-    signal xip1_2_uid48_atan2Test_b : STD_LOGIC_VECTOR (33 downto 0);
-    signal yip1_2_uid49_atan2Test_in : STD_LOGIC_VECTOR (33 downto 0);
-    signal yip1_2_uid49_atan2Test_b : STD_LOGIC_VECTOR (33 downto 0);
-    signal aip1E_uid50_atan2Test_in : STD_LOGIC_VECTOR (24 downto 0);
-    signal aip1E_uid50_atan2Test_b : STD_LOGIC_VECTOR (24 downto 0);
-    signal xMSB_uid51_atan2Test_b : STD_LOGIC_VECTOR (0 downto 0);
-    signal cstArcTan2Mi_2_uid55_atan2Test_q : STD_LOGIC_VECTOR (23 downto 0);
-    signal invSignOfSelectionSignal_uid56_atan2Test_q : STD_LOGIC_VECTOR (0 downto 0);
-    signal xip1E_3NA_uid58_atan2Test_q : STD_LOGIC_VECTOR (35 downto 0);
-    signal xip1E_3sumAHighB_uid59_atan2Test_a : STD_LOGIC_VECTOR (38 downto 0);
-    signal xip1E_3sumAHighB_uid59_atan2Test_b : STD_LOGIC_VECTOR (38 downto 0);
-    signal xip1E_3sumAHighB_uid59_atan2Test_o : STD_LOGIC_VECTOR (38 downto 0);
-    signal xip1E_3sumAHighB_uid59_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal xip1E_3sumAHighB_uid59_atan2Test_q : STD_LOGIC_VECTOR (37 downto 0);
-    signal yip1E_3NA_uid61_atan2Test_q : STD_LOGIC_VECTOR (35 downto 0);
-    signal yip1E_3sumAHighB_uid62_atan2Test_a : STD_LOGIC_VECTOR (37 downto 0);
-    signal yip1E_3sumAHighB_uid62_atan2Test_b : STD_LOGIC_VECTOR (37 downto 0);
-    signal yip1E_3sumAHighB_uid62_atan2Test_o : STD_LOGIC_VECTOR (37 downto 0);
-    signal yip1E_3sumAHighB_uid62_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal yip1E_3sumAHighB_uid62_atan2Test_q : STD_LOGIC_VECTOR (36 downto 0);
-    signal aip1E_3NA_uid65_atan2Test_q : STD_LOGIC_VECTOR (26 downto 0);
-    signal aip1E_3sumAHighB_uid66_atan2Test_a : STD_LOGIC_VECTOR (28 downto 0);
-    signal aip1E_3sumAHighB_uid66_atan2Test_b : STD_LOGIC_VECTOR (28 downto 0);
-    signal aip1E_3sumAHighB_uid66_atan2Test_o : STD_LOGIC_VECTOR (28 downto 0);
-    signal aip1E_3sumAHighB_uid66_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal aip1E_3sumAHighB_uid66_atan2Test_q : STD_LOGIC_VECTOR (27 downto 0);
-    signal xip1_3_uid67_atan2Test_in : STD_LOGIC_VECTOR (35 downto 0);
-    signal xip1_3_uid67_atan2Test_b : STD_LOGIC_VECTOR (35 downto 0);
-    signal yip1_3_uid68_atan2Test_in : STD_LOGIC_VECTOR (34 downto 0);
-    signal yip1_3_uid68_atan2Test_b : STD_LOGIC_VECTOR (34 downto 0);
-    signal aip1E_uid69_atan2Test_in : STD_LOGIC_VECTOR (26 downto 0);
-    signal aip1E_uid69_atan2Test_b : STD_LOGIC_VECTOR (26 downto 0);
-    signal xMSB_uid70_atan2Test_b : STD_LOGIC_VECTOR (0 downto 0);
-    signal cstArcTan2Mi_3_uid74_atan2Test_q : STD_LOGIC_VECTOR (24 downto 0);
-    signal invSignOfSelectionSignal_uid75_atan2Test_q : STD_LOGIC_VECTOR (0 downto 0);
-    signal xip1E_4CostZeroPaddingA_uid76_atan2Test_q : STD_LOGIC_VECTOR (2 downto 0);
-    signal xip1E_4NA_uid77_atan2Test_q : STD_LOGIC_VECTOR (38 downto 0);
-    signal xip1E_4sumAHighB_uid78_atan2Test_a : STD_LOGIC_VECTOR (41 downto 0);
-    signal xip1E_4sumAHighB_uid78_atan2Test_b : STD_LOGIC_VECTOR (41 downto 0);
-    signal xip1E_4sumAHighB_uid78_atan2Test_o : STD_LOGIC_VECTOR (41 downto 0);
-    signal xip1E_4sumAHighB_uid78_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal xip1E_4sumAHighB_uid78_atan2Test_q : STD_LOGIC_VECTOR (40 downto 0);
-    signal yip1E_4NA_uid80_atan2Test_q : STD_LOGIC_VECTOR (37 downto 0);
-    signal yip1E_4sumAHighB_uid81_atan2Test_a : STD_LOGIC_VECTOR (39 downto 0);
-    signal yip1E_4sumAHighB_uid81_atan2Test_b : STD_LOGIC_VECTOR (39 downto 0);
-    signal yip1E_4sumAHighB_uid81_atan2Test_o : STD_LOGIC_VECTOR (39 downto 0);
-    signal yip1E_4sumAHighB_uid81_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal yip1E_4sumAHighB_uid81_atan2Test_q : STD_LOGIC_VECTOR (38 downto 0);
-    signal aip1E_4NA_uid84_atan2Test_q : STD_LOGIC_VECTOR (28 downto 0);
-    signal aip1E_4sumAHighB_uid85_atan2Test_a : STD_LOGIC_VECTOR (30 downto 0);
-    signal aip1E_4sumAHighB_uid85_atan2Test_b : STD_LOGIC_VECTOR (30 downto 0);
-    signal aip1E_4sumAHighB_uid85_atan2Test_o : STD_LOGIC_VECTOR (30 downto 0);
-    signal aip1E_4sumAHighB_uid85_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal aip1E_4sumAHighB_uid85_atan2Test_q : STD_LOGIC_VECTOR (29 downto 0);
-    signal xip1_4_uid86_atan2Test_in : STD_LOGIC_VECTOR (38 downto 0);
-    signal xip1_4_uid86_atan2Test_b : STD_LOGIC_VECTOR (38 downto 0);
-    signal yip1_4_uid87_atan2Test_in : STD_LOGIC_VECTOR (36 downto 0);
-    signal yip1_4_uid87_atan2Test_b : STD_LOGIC_VECTOR (36 downto 0);
-    signal aip1E_uid88_atan2Test_in : STD_LOGIC_VECTOR (28 downto 0);
-    signal aip1E_uid88_atan2Test_b : STD_LOGIC_VECTOR (28 downto 0);
-    signal xMSB_uid89_atan2Test_b : STD_LOGIC_VECTOR (0 downto 0);
-    signal cstArcTan2Mi_4_uid93_atan2Test_q : STD_LOGIC_VECTOR (25 downto 0);
-    signal invSignOfSelectionSignal_uid94_atan2Test_q : STD_LOGIC_VECTOR (0 downto 0);
-    signal xip1E_5CostZeroPaddingA_uid95_atan2Test_q : STD_LOGIC_VECTOR (3 downto 0);
-    signal xip1E_5NA_uid96_atan2Test_q : STD_LOGIC_VECTOR (42 downto 0);
-    signal xip1E_5sumAHighB_uid97_atan2Test_a : STD_LOGIC_VECTOR (45 downto 0);
-    signal xip1E_5sumAHighB_uid97_atan2Test_b : STD_LOGIC_VECTOR (45 downto 0);
-    signal xip1E_5sumAHighB_uid97_atan2Test_o : STD_LOGIC_VECTOR (45 downto 0);
-    signal xip1E_5sumAHighB_uid97_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal xip1E_5sumAHighB_uid97_atan2Test_q : STD_LOGIC_VECTOR (44 downto 0);
-    signal yip1E_5NA_uid99_atan2Test_q : STD_LOGIC_VECTOR (40 downto 0);
-    signal yip1E_5sumAHighB_uid100_atan2Test_a : STD_LOGIC_VECTOR (42 downto 0);
-    signal yip1E_5sumAHighB_uid100_atan2Test_b : STD_LOGIC_VECTOR (42 downto 0);
-    signal yip1E_5sumAHighB_uid100_atan2Test_o : STD_LOGIC_VECTOR (42 downto 0);
-    signal yip1E_5sumAHighB_uid100_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal yip1E_5sumAHighB_uid100_atan2Test_q : STD_LOGIC_VECTOR (41 downto 0);
-    signal aip1E_5NA_uid103_atan2Test_q : STD_LOGIC_VECTOR (30 downto 0);
-    signal aip1E_5sumAHighB_uid104_atan2Test_a : STD_LOGIC_VECTOR (32 downto 0);
-    signal aip1E_5sumAHighB_uid104_atan2Test_b : STD_LOGIC_VECTOR (32 downto 0);
-    signal aip1E_5sumAHighB_uid104_atan2Test_o : STD_LOGIC_VECTOR (32 downto 0);
-    signal aip1E_5sumAHighB_uid104_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal aip1E_5sumAHighB_uid104_atan2Test_q : STD_LOGIC_VECTOR (31 downto 0);
-    signal xip1_5_uid105_atan2Test_in : STD_LOGIC_VECTOR (42 downto 0);
-    signal xip1_5_uid105_atan2Test_b : STD_LOGIC_VECTOR (42 downto 0);
-    signal yip1_5_uid106_atan2Test_in : STD_LOGIC_VECTOR (39 downto 0);
-    signal yip1_5_uid106_atan2Test_b : STD_LOGIC_VECTOR (39 downto 0);
-    signal aip1E_uid107_atan2Test_in : STD_LOGIC_VECTOR (30 downto 0);
-    signal aip1E_uid107_atan2Test_b : STD_LOGIC_VECTOR (30 downto 0);
-    signal xMSB_uid108_atan2Test_b : STD_LOGIC_VECTOR (0 downto 0);
-    signal twoToMiSiXip_uid112_atan2Test_b : STD_LOGIC_VECTOR (40 downto 0);
-    signal twoToMiSiYip_uid113_atan2Test_b : STD_LOGIC_VECTOR (37 downto 0);
-    signal cstArcTan2Mi_5_uid114_atan2Test_q : STD_LOGIC_VECTOR (26 downto 0);
-    signal invSignOfSelectionSignal_uid115_atan2Test_q : STD_LOGIC_VECTOR (0 downto 0);
-    signal xip1E_6NA_uid117_atan2Test_q : STD_LOGIC_VECTOR (45 downto 0);
-    signal xip1E_6sumAHighB_uid118_atan2Test_a : STD_LOGIC_VECTOR (48 downto 0);
-    signal xip1E_6sumAHighB_uid118_atan2Test_b : STD_LOGIC_VECTOR (48 downto 0);
-    signal xip1E_6sumAHighB_uid118_atan2Test_o : STD_LOGIC_VECTOR (48 downto 0);
-    signal xip1E_6sumAHighB_uid118_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal xip1E_6sumAHighB_uid118_atan2Test_q : STD_LOGIC_VECTOR (47 downto 0);
-    signal yip1E_6NA_uid120_atan2Test_q : STD_LOGIC_VECTOR (42 downto 0);
-    signal yip1E_6sumAHighB_uid121_atan2Test_a : STD_LOGIC_VECTOR (44 downto 0);
-    signal yip1E_6sumAHighB_uid121_atan2Test_b : STD_LOGIC_VECTOR (44 downto 0);
-    signal yip1E_6sumAHighB_uid121_atan2Test_o : STD_LOGIC_VECTOR (44 downto 0);
-    signal yip1E_6sumAHighB_uid121_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal yip1E_6sumAHighB_uid121_atan2Test_q : STD_LOGIC_VECTOR (43 downto 0);
-    signal aip1E_6NA_uid124_atan2Test_q : STD_LOGIC_VECTOR (32 downto 0);
-    signal aip1E_6sumAHighB_uid125_atan2Test_a : STD_LOGIC_VECTOR (34 downto 0);
-    signal aip1E_6sumAHighB_uid125_atan2Test_b : STD_LOGIC_VECTOR (34 downto 0);
-    signal aip1E_6sumAHighB_uid125_atan2Test_o : STD_LOGIC_VECTOR (34 downto 0);
-    signal aip1E_6sumAHighB_uid125_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal aip1E_6sumAHighB_uid125_atan2Test_q : STD_LOGIC_VECTOR (33 downto 0);
-    signal xip1_6_uid126_atan2Test_in : STD_LOGIC_VECTOR (45 downto 0);
-    signal xip1_6_uid126_atan2Test_b : STD_LOGIC_VECTOR (45 downto 0);
-    signal yip1_6_uid127_atan2Test_in : STD_LOGIC_VECTOR (41 downto 0);
-    signal yip1_6_uid127_atan2Test_b : STD_LOGIC_VECTOR (41 downto 0);
-    signal aip1E_uid128_atan2Test_in : STD_LOGIC_VECTOR (32 downto 0);
-    signal aip1E_uid128_atan2Test_b : STD_LOGIC_VECTOR (32 downto 0);
-    signal xMSB_uid129_atan2Test_b : STD_LOGIC_VECTOR (0 downto 0);
-    signal twoToMiSiXip_uid133_atan2Test_b : STD_LOGIC_VECTOR (39 downto 0);
-    signal twoToMiSiYip_uid134_atan2Test_b : STD_LOGIC_VECTOR (35 downto 0);
-    signal cstArcTan2Mi_6_uid135_atan2Test_q : STD_LOGIC_VECTOR (27 downto 0);
-    signal invSignOfSelectionSignal_uid136_atan2Test_q : STD_LOGIC_VECTOR (0 downto 0);
-    signal xip1E_7_uid137_atan2Test_a : STD_LOGIC_VECTOR (48 downto 0);
-    signal xip1E_7_uid137_atan2Test_b : STD_LOGIC_VECTOR (48 downto 0);
-    signal xip1E_7_uid137_atan2Test_o : STD_LOGIC_VECTOR (48 downto 0);
-    signal xip1E_7_uid137_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal xip1E_7_uid137_atan2Test_q : STD_LOGIC_VECTOR (47 downto 0);
-    signal yip1E_7_uid138_atan2Test_a : STD_LOGIC_VECTOR (43 downto 0);
-    signal yip1E_7_uid138_atan2Test_b : STD_LOGIC_VECTOR (43 downto 0);
-    signal yip1E_7_uid138_atan2Test_o : STD_LOGIC_VECTOR (43 downto 0);
-    signal yip1E_7_uid138_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal yip1E_7_uid138_atan2Test_q : STD_LOGIC_VECTOR (42 downto 0);
-    signal aip1E_7NA_uid141_atan2Test_q : STD_LOGIC_VECTOR (34 downto 0);
-    signal aip1E_7sumAHighB_uid142_atan2Test_a : STD_LOGIC_VECTOR (36 downto 0);
-    signal aip1E_7sumAHighB_uid142_atan2Test_b : STD_LOGIC_VECTOR (36 downto 0);
-    signal aip1E_7sumAHighB_uid142_atan2Test_o : STD_LOGIC_VECTOR (36 downto 0);
-    signal aip1E_7sumAHighB_uid142_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal aip1E_7sumAHighB_uid142_atan2Test_q : STD_LOGIC_VECTOR (35 downto 0);
-    signal xip1_7_uid143_atan2Test_in : STD_LOGIC_VECTOR (45 downto 0);
-    signal xip1_7_uid143_atan2Test_b : STD_LOGIC_VECTOR (45 downto 0);
-    signal yip1_7_uid144_atan2Test_in : STD_LOGIC_VECTOR (40 downto 0);
-    signal yip1_7_uid144_atan2Test_b : STD_LOGIC_VECTOR (40 downto 0);
-    signal aip1E_uid145_atan2Test_in : STD_LOGIC_VECTOR (34 downto 0);
-    signal aip1E_uid145_atan2Test_b : STD_LOGIC_VECTOR (34 downto 0);
-    signal xMSB_uid146_atan2Test_b : STD_LOGIC_VECTOR (0 downto 0);
-    signal twoToMiSiXip_uid150_atan2Test_b : STD_LOGIC_VECTOR (38 downto 0);
-    signal twoToMiSiYip_uid151_atan2Test_b : STD_LOGIC_VECTOR (33 downto 0);
-    signal cstArcTan2Mi_7_uid152_atan2Test_q : STD_LOGIC_VECTOR (28 downto 0);
-    signal invSignOfSelectionSignal_uid153_atan2Test_q : STD_LOGIC_VECTOR (0 downto 0);
-    signal xip1E_8_uid154_atan2Test_a : STD_LOGIC_VECTOR (48 downto 0);
-    signal xip1E_8_uid154_atan2Test_b : STD_LOGIC_VECTOR (48 downto 0);
-    signal xip1E_8_uid154_atan2Test_o : STD_LOGIC_VECTOR (48 downto 0);
-    signal xip1E_8_uid154_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal xip1E_8_uid154_atan2Test_q : STD_LOGIC_VECTOR (47 downto 0);
-    signal yip1E_8_uid155_atan2Test_a : STD_LOGIC_VECTOR (42 downto 0);
-    signal yip1E_8_uid155_atan2Test_b : STD_LOGIC_VECTOR (42 downto 0);
-    signal yip1E_8_uid155_atan2Test_o : STD_LOGIC_VECTOR (42 downto 0);
-    signal yip1E_8_uid155_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal yip1E_8_uid155_atan2Test_q : STD_LOGIC_VECTOR (41 downto 0);
-    signal aip1E_8NA_uid158_atan2Test_q : STD_LOGIC_VECTOR (36 downto 0);
-    signal aip1E_8sumAHighB_uid159_atan2Test_a : STD_LOGIC_VECTOR (38 downto 0);
-    signal aip1E_8sumAHighB_uid159_atan2Test_b : STD_LOGIC_VECTOR (38 downto 0);
-    signal aip1E_8sumAHighB_uid159_atan2Test_o : STD_LOGIC_VECTOR (38 downto 0);
-    signal aip1E_8sumAHighB_uid159_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal aip1E_8sumAHighB_uid159_atan2Test_q : STD_LOGIC_VECTOR (37 downto 0);
-    signal xip1_8_uid160_atan2Test_in : STD_LOGIC_VECTOR (45 downto 0);
-    signal xip1_8_uid160_atan2Test_b : STD_LOGIC_VECTOR (45 downto 0);
-    signal yip1_8_uid161_atan2Test_in : STD_LOGIC_VECTOR (39 downto 0);
-    signal yip1_8_uid161_atan2Test_b : STD_LOGIC_VECTOR (39 downto 0);
-    signal aip1E_uid162_atan2Test_in : STD_LOGIC_VECTOR (36 downto 0);
-    signal aip1E_uid162_atan2Test_b : STD_LOGIC_VECTOR (36 downto 0);
-    signal xMSB_uid163_atan2Test_b : STD_LOGIC_VECTOR (0 downto 0);
-    signal twoToMiSiXip_uid167_atan2Test_b : STD_LOGIC_VECTOR (37 downto 0);
-    signal twoToMiSiYip_uid168_atan2Test_b : STD_LOGIC_VECTOR (31 downto 0);
-    signal cstArcTan2Mi_8_uid169_atan2Test_q : STD_LOGIC_VECTOR (29 downto 0);
-    signal invSignOfSelectionSignal_uid170_atan2Test_q : STD_LOGIC_VECTOR (0 downto 0);
-    signal xip1E_9_uid171_atan2Test_a : STD_LOGIC_VECTOR (48 downto 0);
-    signal xip1E_9_uid171_atan2Test_b : STD_LOGIC_VECTOR (48 downto 0);
-    signal xip1E_9_uid171_atan2Test_o : STD_LOGIC_VECTOR (48 downto 0);
-    signal xip1E_9_uid171_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal xip1E_9_uid171_atan2Test_q : STD_LOGIC_VECTOR (47 downto 0);
-    signal yip1E_9_uid172_atan2Test_a : STD_LOGIC_VECTOR (41 downto 0);
-    signal yip1E_9_uid172_atan2Test_b : STD_LOGIC_VECTOR (41 downto 0);
-    signal yip1E_9_uid172_atan2Test_o : STD_LOGIC_VECTOR (41 downto 0);
-    signal yip1E_9_uid172_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal yip1E_9_uid172_atan2Test_q : STD_LOGIC_VECTOR (40 downto 0);
-    signal aip1E_9NA_uid175_atan2Test_q : STD_LOGIC_VECTOR (38 downto 0);
-    signal aip1E_9sumAHighB_uid176_atan2Test_a : STD_LOGIC_VECTOR (40 downto 0);
-    signal aip1E_9sumAHighB_uid176_atan2Test_b : STD_LOGIC_VECTOR (40 downto 0);
-    signal aip1E_9sumAHighB_uid176_atan2Test_o : STD_LOGIC_VECTOR (40 downto 0);
-    signal aip1E_9sumAHighB_uid176_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal aip1E_9sumAHighB_uid176_atan2Test_q : STD_LOGIC_VECTOR (39 downto 0);
-    signal xip1_9_uid177_atan2Test_in : STD_LOGIC_VECTOR (45 downto 0);
-    signal xip1_9_uid177_atan2Test_b : STD_LOGIC_VECTOR (45 downto 0);
-    signal yip1_9_uid178_atan2Test_in : STD_LOGIC_VECTOR (38 downto 0);
-    signal yip1_9_uid178_atan2Test_b : STD_LOGIC_VECTOR (38 downto 0);
-    signal aip1E_uid179_atan2Test_in : STD_LOGIC_VECTOR (38 downto 0);
-    signal aip1E_uid179_atan2Test_b : STD_LOGIC_VECTOR (38 downto 0);
-    signal xMSB_uid180_atan2Test_b : STD_LOGIC_VECTOR (0 downto 0);
-    signal twoToMiSiXip_uid184_atan2Test_b : STD_LOGIC_VECTOR (36 downto 0);
-    signal twoToMiSiYip_uid185_atan2Test_b : STD_LOGIC_VECTOR (29 downto 0);
-    signal cstArcTan2Mi_9_uid186_atan2Test_q : STD_LOGIC_VECTOR (30 downto 0);
-    signal invSignOfSelectionSignal_uid187_atan2Test_q : STD_LOGIC_VECTOR (0 downto 0);
-    signal xip1E_10_uid188_atan2Test_a : STD_LOGIC_VECTOR (48 downto 0);
-    signal xip1E_10_uid188_atan2Test_b : STD_LOGIC_VECTOR (48 downto 0);
-    signal xip1E_10_uid188_atan2Test_o : STD_LOGIC_VECTOR (48 downto 0);
-    signal xip1E_10_uid188_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal xip1E_10_uid188_atan2Test_q : STD_LOGIC_VECTOR (47 downto 0);
-    signal yip1E_10_uid189_atan2Test_a : STD_LOGIC_VECTOR (40 downto 0);
-    signal yip1E_10_uid189_atan2Test_b : STD_LOGIC_VECTOR (40 downto 0);
-    signal yip1E_10_uid189_atan2Test_o : STD_LOGIC_VECTOR (40 downto 0);
-    signal yip1E_10_uid189_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal yip1E_10_uid189_atan2Test_q : STD_LOGIC_VECTOR (39 downto 0);
-    signal aip1E_10NA_uid192_atan2Test_q : STD_LOGIC_VECTOR (40 downto 0);
-    signal aip1E_10sumAHighB_uid193_atan2Test_a : STD_LOGIC_VECTOR (42 downto 0);
-    signal aip1E_10sumAHighB_uid193_atan2Test_b : STD_LOGIC_VECTOR (42 downto 0);
-    signal aip1E_10sumAHighB_uid193_atan2Test_o : STD_LOGIC_VECTOR (42 downto 0);
-    signal aip1E_10sumAHighB_uid193_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal aip1E_10sumAHighB_uid193_atan2Test_q : STD_LOGIC_VECTOR (41 downto 0);
-    signal xip1_10_uid194_atan2Test_in : STD_LOGIC_VECTOR (45 downto 0);
-    signal xip1_10_uid194_atan2Test_b : STD_LOGIC_VECTOR (45 downto 0);
-    signal yip1_10_uid195_atan2Test_in : STD_LOGIC_VECTOR (37 downto 0);
-    signal yip1_10_uid195_atan2Test_b : STD_LOGIC_VECTOR (37 downto 0);
-    signal aip1E_uid196_atan2Test_in : STD_LOGIC_VECTOR (40 downto 0);
-    signal aip1E_uid196_atan2Test_b : STD_LOGIC_VECTOR (40 downto 0);
-    signal xMSB_uid197_atan2Test_b : STD_LOGIC_VECTOR (0 downto 0);
-    signal twoToMiSiXip_uid201_atan2Test_b : STD_LOGIC_VECTOR (35 downto 0);
-    signal twoToMiSiYip_uid202_atan2Test_b : STD_LOGIC_VECTOR (27 downto 0);
-    signal cstArcTan2Mi_10_uid203_atan2Test_q : STD_LOGIC_VECTOR (31 downto 0);
-    signal invSignOfSelectionSignal_uid204_atan2Test_q : STD_LOGIC_VECTOR (0 downto 0);
-    signal xip1E_11_uid205_atan2Test_a : STD_LOGIC_VECTOR (48 downto 0);
-    signal xip1E_11_uid205_atan2Test_b : STD_LOGIC_VECTOR (48 downto 0);
-    signal xip1E_11_uid205_atan2Test_o : STD_LOGIC_VECTOR (48 downto 0);
-    signal xip1E_11_uid205_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal xip1E_11_uid205_atan2Test_q : STD_LOGIC_VECTOR (47 downto 0);
-    signal yip1E_11_uid206_atan2Test_a : STD_LOGIC_VECTOR (39 downto 0);
-    signal yip1E_11_uid206_atan2Test_b : STD_LOGIC_VECTOR (39 downto 0);
-    signal yip1E_11_uid206_atan2Test_o : STD_LOGIC_VECTOR (39 downto 0);
-    signal yip1E_11_uid206_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal yip1E_11_uid206_atan2Test_q : STD_LOGIC_VECTOR (38 downto 0);
-    signal aip1E_11NA_uid209_atan2Test_q : STD_LOGIC_VECTOR (42 downto 0);
-    signal aip1E_11sumAHighB_uid210_atan2Test_a : STD_LOGIC_VECTOR (44 downto 0);
-    signal aip1E_11sumAHighB_uid210_atan2Test_b : STD_LOGIC_VECTOR (44 downto 0);
-    signal aip1E_11sumAHighB_uid210_atan2Test_o : STD_LOGIC_VECTOR (44 downto 0);
-    signal aip1E_11sumAHighB_uid210_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal aip1E_11sumAHighB_uid210_atan2Test_q : STD_LOGIC_VECTOR (43 downto 0);
-    signal xip1_11_uid211_atan2Test_in : STD_LOGIC_VECTOR (45 downto 0);
-    signal xip1_11_uid211_atan2Test_b : STD_LOGIC_VECTOR (45 downto 0);
-    signal yip1_11_uid212_atan2Test_in : STD_LOGIC_VECTOR (36 downto 0);
-    signal yip1_11_uid212_atan2Test_b : STD_LOGIC_VECTOR (36 downto 0);
-    signal aip1E_uid213_atan2Test_in : STD_LOGIC_VECTOR (42 downto 0);
-    signal aip1E_uid213_atan2Test_b : STD_LOGIC_VECTOR (42 downto 0);
-    signal xMSB_uid214_atan2Test_b : STD_LOGIC_VECTOR (0 downto 0);
-    signal twoToMiSiXip_uid218_atan2Test_b : STD_LOGIC_VECTOR (34 downto 0);
-    signal cstArcTan2Mi_11_uid220_atan2Test_q : STD_LOGIC_VECTOR (32 downto 0);
-    signal yip1E_12_uid223_atan2Test_a : STD_LOGIC_VECTOR (38 downto 0);
-    signal yip1E_12_uid223_atan2Test_b : STD_LOGIC_VECTOR (38 downto 0);
-    signal yip1E_12_uid223_atan2Test_o : STD_LOGIC_VECTOR (38 downto 0);
-    signal yip1E_12_uid223_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal yip1E_12_uid223_atan2Test_q : STD_LOGIC_VECTOR (37 downto 0);
-    signal invSignOfSelectionSignal_uid224_atan2Test_q : STD_LOGIC_VECTOR (0 downto 0);
-    signal aip1E_12NA_uid226_atan2Test_q : STD_LOGIC_VECTOR (44 downto 0);
-    signal aip1E_12sumAHighB_uid227_atan2Test_a : STD_LOGIC_VECTOR (46 downto 0);
-    signal aip1E_12sumAHighB_uid227_atan2Test_b : STD_LOGIC_VECTOR (46 downto 0);
-    signal aip1E_12sumAHighB_uid227_atan2Test_o : STD_LOGIC_VECTOR (46 downto 0);
-    signal aip1E_12sumAHighB_uid227_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal aip1E_12sumAHighB_uid227_atan2Test_q : STD_LOGIC_VECTOR (45 downto 0);
-    signal yip1_12_uid229_atan2Test_in : STD_LOGIC_VECTOR (35 downto 0);
-    signal yip1_12_uid229_atan2Test_b : STD_LOGIC_VECTOR (35 downto 0);
-    signal aip1E_uid230_atan2Test_in : STD_LOGIC_VECTOR (44 downto 0);
-    signal aip1E_uid230_atan2Test_b : STD_LOGIC_VECTOR (44 downto 0);
-    signal xMSB_uid231_atan2Test_b : STD_LOGIC_VECTOR (0 downto 0);
-    signal cstArcTan2Mi_12_uid237_atan2Test_q : STD_LOGIC_VECTOR (33 downto 0);
-    signal invSignOfSelectionSignal_uid241_atan2Test_q : STD_LOGIC_VECTOR (0 downto 0);
-    signal aip1E_13NA_uid243_atan2Test_q : STD_LOGIC_VECTOR (46 downto 0);
-    signal aip1E_13sumAHighB_uid244_atan2Test_a : STD_LOGIC_VECTOR (48 downto 0);
-    signal aip1E_13sumAHighB_uid244_atan2Test_b : STD_LOGIC_VECTOR (48 downto 0);
-    signal aip1E_13sumAHighB_uid244_atan2Test_o : STD_LOGIC_VECTOR (48 downto 0);
-    signal aip1E_13sumAHighB_uid244_atan2Test_s : STD_LOGIC_VECTOR (0 downto 0);
-    signal aip1E_13sumAHighB_uid244_atan2Test_q : STD_LOGIC_VECTOR (47 downto 0);
-    signal aip1E_uid247_atan2Test_in : STD_LOGIC_VECTOR (46 downto 0);
-    signal aip1E_uid247_atan2Test_b : STD_LOGIC_VECTOR (46 downto 0);
-    signal alphaPreRnd_uid248_atan2Test_b : STD_LOGIC_VECTOR (13 downto 0);
-    signal alphaPostRndhigh_uid254_atan2Test_a : STD_LOGIC_VECTOR (13 downto 0);
-    signal alphaPostRndhigh_uid254_atan2Test_b : STD_LOGIC_VECTOR (13 downto 0);
-    signal alphaPostRndhigh_uid254_atan2Test_o : STD_LOGIC_VECTOR (13 downto 0);
-    signal alphaPostRndhigh_uid254_atan2Test_q : STD_LOGIC_VECTOR (13 downto 0);
-    signal alphaPostRnd_uid255_atan2Test_q : STD_LOGIC_VECTOR (14 downto 0);
-    signal atanRes_uid256_atan2Test_in : STD_LOGIC_VECTOR (13 downto 0);
-    signal atanRes_uid256_atan2Test_b : STD_LOGIC_VECTOR (13 downto 0);
-    signal cstZeroOutFormat_uid257_atan2Test_q : STD_LOGIC_VECTOR (13 downto 0);
-    signal constPiP2uE_uid258_atan2Test_q : STD_LOGIC_VECTOR (12 downto 0);
-    signal constPio2P2u_mergedSignalTM_uid261_atan2Test_q : STD_LOGIC_VECTOR (13 downto 0);
-    signal concXZeroYZero_uid263_atan2Test_q : STD_LOGIC_VECTOR (1 downto 0);
-    signal atanResPostExc_uid264_atan2Test_s : STD_LOGIC_VECTOR (1 downto 0);
-    signal atanResPostExc_uid264_atan2Test_q : STD_LOGIC_VECTOR (13 downto 0);
-    signal concSigns_uid265_atan2Test_q : STD_LOGIC_VECTOR (1 downto 0);
-    signal constPiP2u_uid266_atan2Test_q : STD_LOGIC_VECTOR (13 downto 0);
-    signal constPi_uid267_atan2Test_q : STD_LOGIC_VECTOR (13 downto 0);
-    signal constantZeroOutFormat_uid268_atan2Test_q : STD_LOGIC_VECTOR (13 downto 0);
-    signal constantZeroOutFormatP2u_uid269_atan2Test_q : STD_LOGIC_VECTOR (13 downto 0);
-    signal firstOperand_uid271_atan2Test_s : STD_LOGIC_VECTOR (1 downto 0);
-    signal firstOperand_uid271_atan2Test_q : STD_LOGIC_VECTOR (13 downto 0);
-    signal secondOperand_uid272_atan2Test_s : STD_LOGIC_VECTOR (1 downto 0);
-    signal secondOperand_uid272_atan2Test_q : STD_LOGIC_VECTOR (13 downto 0);
-    signal outResExtended_uid273_atan2Test_a : STD_LOGIC_VECTOR (14 downto 0);
-    signal outResExtended_uid273_atan2Test_b : STD_LOGIC_VECTOR (14 downto 0);
-    signal outResExtended_uid273_atan2Test_o : STD_LOGIC_VECTOR (14 downto 0);
-    signal outResExtended_uid273_atan2Test_q : STD_LOGIC_VECTOR (14 downto 0);
-    signal atanResPostRR_uid274_atan2Test_b : STD_LOGIC_VECTOR (12 downto 0);
-    signal lowRangeA_uid252_atan2Test_merged_bit_select_b : STD_LOGIC_VECTOR (0 downto 0);
-    signal lowRangeA_uid252_atan2Test_merged_bit_select_c : STD_LOGIC_VECTOR (12 downto 0);
-    signal redist0_alphaPreRnd_uid248_atan2Test_b_1_q : STD_LOGIC_VECTOR (13 downto 0);
-    signal redist1_xMSB_uid231_atan2Test_b_1_q : STD_LOGIC_VECTOR (0 downto 0);
-    signal redist2_aip1E_uid230_atan2Test_b_1_q : STD_LOGIC_VECTOR (44 downto 0);
-    signal redist3_twoToMiSiXip_uid218_atan2Test_b_1_q : STD_LOGIC_VECTOR (34 downto 0);
-    signal redist4_aip1E_uid213_atan2Test_b_1_q : STD_LOGIC_VECTOR (42 downto 0);
-    signal redist5_yip1_11_uid212_atan2Test_b_1_q : STD_LOGIC_VECTOR (36 downto 0);
-    signal redist6_aip1E_uid196_atan2Test_b_1_q : STD_LOGIC_VECTOR (40 downto 0);
-    signal redist7_yip1_10_uid195_atan2Test_b_1_q : STD_LOGIC_VECTOR (37 downto 0);
-    signal redist8_xip1_10_uid194_atan2Test_b_1_q : STD_LOGIC_VECTOR (45 downto 0);
-    signal redist9_aip1E_uid179_atan2Test_b_1_q : STD_LOGIC_VECTOR (38 downto 0);
-    signal redist10_yip1_9_uid178_atan2Test_b_1_q : STD_LOGIC_VECTOR (38 downto 0);
-    signal redist11_xip1_9_uid177_atan2Test_b_1_q : STD_LOGIC_VECTOR (45 downto 0);
-    signal redist12_aip1E_uid162_atan2Test_b_1_q : STD_LOGIC_VECTOR (36 downto 0);
-    signal redist13_yip1_8_uid161_atan2Test_b_1_q : STD_LOGIC_VECTOR (39 downto 0);
-    signal redist14_xip1_8_uid160_atan2Test_b_1_q : STD_LOGIC_VECTOR (45 downto 0);
-    signal redist15_aip1E_uid145_atan2Test_b_1_q : STD_LOGIC_VECTOR (34 downto 0);
-    signal redist16_yip1_7_uid144_atan2Test_b_1_q : STD_LOGIC_VECTOR (40 downto 0);
-    signal redist17_xip1_7_uid143_atan2Test_b_1_q : STD_LOGIC_VECTOR (45 downto 0);
-    signal redist18_aip1E_uid128_atan2Test_b_1_q : STD_LOGIC_VECTOR (32 downto 0);
-    signal redist19_yip1_6_uid127_atan2Test_b_1_q : STD_LOGIC_VECTOR (41 downto 0);
-    signal redist20_xip1_6_uid126_atan2Test_b_1_q : STD_LOGIC_VECTOR (45 downto 0);
-    signal redist21_aip1E_uid107_atan2Test_b_1_q : STD_LOGIC_VECTOR (30 downto 0);
-    signal redist22_yip1_5_uid106_atan2Test_b_1_q : STD_LOGIC_VECTOR (39 downto 0);
-    signal redist23_xip1_5_uid105_atan2Test_b_1_q : STD_LOGIC_VECTOR (42 downto 0);
-    signal redist24_aip1E_uid88_atan2Test_b_1_q : STD_LOGIC_VECTOR (28 downto 0);
-    signal redist25_yip1_4_uid87_atan2Test_b_1_q : STD_LOGIC_VECTOR (36 downto 0);
-    signal redist26_xip1_4_uid86_atan2Test_b_1_q : STD_LOGIC_VECTOR (38 downto 0);
-    signal redist27_aip1E_uid69_atan2Test_b_1_q : STD_LOGIC_VECTOR (26 downto 0);
-    signal redist28_yip1_3_uid68_atan2Test_b_1_q : STD_LOGIC_VECTOR (34 downto 0);
-    signal redist29_xip1_3_uid67_atan2Test_b_1_q : STD_LOGIC_VECTOR (35 downto 0);
-    signal redist30_aip1E_uid50_atan2Test_b_1_q : STD_LOGIC_VECTOR (24 downto 0);
-    signal redist31_yip1_2_uid49_atan2Test_b_1_q : STD_LOGIC_VECTOR (33 downto 0);
-    signal redist32_xip1_2_uid48_atan2Test_b_1_q : STD_LOGIC_VECTOR (33 downto 0);
-    signal redist33_xNotZero_uid17_atan2Test_q_14_q : STD_LOGIC_VECTOR (0 downto 0);
-    signal redist34_yNotZero_uid15_atan2Test_q_14_q : STD_LOGIC_VECTOR (0 downto 0);
-    signal redist35_absY_uid14_atan2Test_b_1_q : STD_LOGIC_VECTOR (31 downto 0);
-    signal redist36_absX_uid13_atan2Test_b_1_q : STD_LOGIC_VECTOR (31 downto 0);
-    signal redist37_signY_uid8_atan2Test_b_15_q : STD_LOGIC_VECTOR (0 downto 0);
-    signal redist38_signX_uid7_atan2Test_b_15_q : STD_LOGIC_VECTOR (0 downto 0);
+    signal constantZero_uid6_sincosTest_q : STD_LOGIC_VECTOR (12 downto 0);
+    signal signA_uid7_sincosTest_b : STD_LOGIC_VECTOR (0 downto 0);
+    signal invSignA_uid8_sincosTest_q : STD_LOGIC_VECTOR (0 downto 0);
+    signal absAE_uid9_sincosTest_a : STD_LOGIC_VECTOR (14 downto 0);
+    signal absAE_uid9_sincosTest_b : STD_LOGIC_VECTOR (14 downto 0);
+    signal absAE_uid9_sincosTest_o : STD_LOGIC_VECTOR (14 downto 0);
+    signal absAE_uid9_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal absAE_uid9_sincosTest_q : STD_LOGIC_VECTOR (13 downto 0);
+    signal absAR_uid10_sincosTest_in : STD_LOGIC_VECTOR (11 downto 0);
+    signal absAR_uid10_sincosTest_b : STD_LOGIC_VECTOR (11 downto 0);
+    signal cstPiO2_uid11_sincosTest_q : STD_LOGIC_VECTOR (12 downto 0);
+    signal padACst_uid12_sincosTest_q : STD_LOGIC_VECTOR (1 downto 0);
+    signal aPostPad_uid13_sincosTest_q : STD_LOGIC_VECTOR (13 downto 0);
+    signal argMPiO2_uid14_sincosTest_a : STD_LOGIC_VECTOR (14 downto 0);
+    signal argMPiO2_uid14_sincosTest_b : STD_LOGIC_VECTOR (14 downto 0);
+    signal argMPiO2_uid14_sincosTest_o : STD_LOGIC_VECTOR (14 downto 0);
+    signal argMPiO2_uid14_sincosTest_q : STD_LOGIC_VECTOR (14 downto 0);
+    signal firstQuadrant_uid15_sincosTest_b : STD_LOGIC_VECTOR (0 downto 0);
+    signal absARE_bottomRange_uid17_sincosTest_in : STD_LOGIC_VECTOR (10 downto 0);
+    signal absARE_bottomRange_uid17_sincosTest_b : STD_LOGIC_VECTOR (10 downto 0);
+    signal absARE_mergedSignalTM_uid18_sincosTest_q : STD_LOGIC_VECTOR (12 downto 0);
+    signal argMPiO2_uid20_sincosTest_in : STD_LOGIC_VECTOR (12 downto 0);
+    signal argMPiO2_uid20_sincosTest_b : STD_LOGIC_VECTOR (12 downto 0);
+    signal absA_uid21_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal absA_uid21_sincosTest_q : STD_LOGIC_VECTOR (12 downto 0);
+    signal cstOneOverK_uid22_sincosTest_q : STD_LOGIC_VECTOR (21 downto 0);
+    signal cstArcTan2Mi_0_uid26_sincosTest_q : STD_LOGIC_VECTOR (18 downto 0);
+    signal xip1E_1_uid32_sincosTest_q : STD_LOGIC_VECTOR (24 downto 0);
+    signal yip1E_1CostZeroPaddingA_uid33_sincosTest_q : STD_LOGIC_VECTOR (21 downto 0);
+    signal yip1E_1NA_uid34_sincosTest_q : STD_LOGIC_VECTOR (22 downto 0);
+    signal yip1E_1sumAHighB_uid35_sincosTest_a : STD_LOGIC_VECTOR (24 downto 0);
+    signal yip1E_1sumAHighB_uid35_sincosTest_b : STD_LOGIC_VECTOR (24 downto 0);
+    signal yip1E_1sumAHighB_uid35_sincosTest_o : STD_LOGIC_VECTOR (24 downto 0);
+    signal yip1E_1sumAHighB_uid35_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal yip1E_1sumAHighB_uid35_sincosTest_q : STD_LOGIC_VECTOR (23 downto 0);
+    signal invSignOfSelectionSignal_uid36_sincosTest_q : STD_LOGIC_VECTOR (0 downto 0);
+    signal aip1E_1CostZeroPaddingA_uid37_sincosTest_q : STD_LOGIC_VECTOR (5 downto 0);
+    signal aip1E_1NA_uid38_sincosTest_q : STD_LOGIC_VECTOR (18 downto 0);
+    signal aip1E_1sumAHighB_uid39_sincosTest_a : STD_LOGIC_VECTOR (21 downto 0);
+    signal aip1E_1sumAHighB_uid39_sincosTest_b : STD_LOGIC_VECTOR (21 downto 0);
+    signal aip1E_1sumAHighB_uid39_sincosTest_o : STD_LOGIC_VECTOR (21 downto 0);
+    signal aip1E_1sumAHighB_uid39_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal aip1E_1sumAHighB_uid39_sincosTest_q : STD_LOGIC_VECTOR (20 downto 0);
+    signal xip1_1_topRange_uid41_sincosTest_in : STD_LOGIC_VECTOR (23 downto 0);
+    signal xip1_1_topRange_uid41_sincosTest_b : STD_LOGIC_VECTOR (23 downto 0);
+    signal xip1_1_mergedSignalTM_uid42_sincosTest_q : STD_LOGIC_VECTOR (24 downto 0);
+    signal xMSB_uid44_sincosTest_b : STD_LOGIC_VECTOR (0 downto 0);
+    signal yip1_1_mergedSignalTM_uid48_sincosTest_q : STD_LOGIC_VECTOR (24 downto 0);
+    signal aip1E_uid50_sincosTest_in : STD_LOGIC_VECTOR (19 downto 0);
+    signal aip1E_uid50_sincosTest_b : STD_LOGIC_VECTOR (19 downto 0);
+    signal xMSB_uid51_sincosTest_b : STD_LOGIC_VECTOR (0 downto 0);
+    signal signOfSelectionSignal_uid53_sincosTest_q : STD_LOGIC_VECTOR (0 downto 0);
+    signal twoToMiSiXip_uid56_sincosTest_b : STD_LOGIC_VECTOR (23 downto 0);
+    signal twoToMiSiYip_uid57_sincosTest_b : STD_LOGIC_VECTOR (23 downto 0);
+    signal cstArcTan2Mi_1_uid58_sincosTest_q : STD_LOGIC_VECTOR (17 downto 0);
+    signal xip1E_2_uid60_sincosTest_a : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_2_uid60_sincosTest_b : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_2_uid60_sincosTest_o : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_2_uid60_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal xip1E_2_uid60_sincosTest_q : STD_LOGIC_VECTOR (25 downto 0);
+    signal yip1E_2_uid61_sincosTest_a : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_2_uid61_sincosTest_b : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_2_uid61_sincosTest_o : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_2_uid61_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal yip1E_2_uid61_sincosTest_q : STD_LOGIC_VECTOR (25 downto 0);
+    signal aip1E_2_uid63_sincosTest_a : STD_LOGIC_VECTOR (21 downto 0);
+    signal aip1E_2_uid63_sincosTest_b : STD_LOGIC_VECTOR (21 downto 0);
+    signal aip1E_2_uid63_sincosTest_o : STD_LOGIC_VECTOR (21 downto 0);
+    signal aip1E_2_uid63_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal aip1E_2_uid63_sincosTest_q : STD_LOGIC_VECTOR (20 downto 0);
+    signal xip1_2_uid64_sincosTest_in : STD_LOGIC_VECTOR (24 downto 0);
+    signal xip1_2_uid64_sincosTest_b : STD_LOGIC_VECTOR (24 downto 0);
+    signal yip1_2_uid65_sincosTest_in : STD_LOGIC_VECTOR (24 downto 0);
+    signal yip1_2_uid65_sincosTest_b : STD_LOGIC_VECTOR (24 downto 0);
+    signal aip1E_uid66_sincosTest_in : STD_LOGIC_VECTOR (18 downto 0);
+    signal aip1E_uid66_sincosTest_b : STD_LOGIC_VECTOR (18 downto 0);
+    signal xMSB_uid67_sincosTest_b : STD_LOGIC_VECTOR (0 downto 0);
+    signal signOfSelectionSignal_uid69_sincosTest_q : STD_LOGIC_VECTOR (0 downto 0);
+    signal twoToMiSiXip_uid72_sincosTest_b : STD_LOGIC_VECTOR (22 downto 0);
+    signal twoToMiSiYip_uid73_sincosTest_b : STD_LOGIC_VECTOR (22 downto 0);
+    signal cstArcTan2Mi_2_uid74_sincosTest_q : STD_LOGIC_VECTOR (16 downto 0);
+    signal xip1E_3_uid76_sincosTest_a : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_3_uid76_sincosTest_b : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_3_uid76_sincosTest_o : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_3_uid76_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal xip1E_3_uid76_sincosTest_q : STD_LOGIC_VECTOR (25 downto 0);
+    signal yip1E_3_uid77_sincosTest_a : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_3_uid77_sincosTest_b : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_3_uid77_sincosTest_o : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_3_uid77_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal yip1E_3_uid77_sincosTest_q : STD_LOGIC_VECTOR (25 downto 0);
+    signal aip1E_3_uid79_sincosTest_a : STD_LOGIC_VECTOR (20 downto 0);
+    signal aip1E_3_uid79_sincosTest_b : STD_LOGIC_VECTOR (20 downto 0);
+    signal aip1E_3_uid79_sincosTest_o : STD_LOGIC_VECTOR (20 downto 0);
+    signal aip1E_3_uid79_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal aip1E_3_uid79_sincosTest_q : STD_LOGIC_VECTOR (19 downto 0);
+    signal xip1_3_uid80_sincosTest_in : STD_LOGIC_VECTOR (24 downto 0);
+    signal xip1_3_uid80_sincosTest_b : STD_LOGIC_VECTOR (24 downto 0);
+    signal yip1_3_uid81_sincosTest_in : STD_LOGIC_VECTOR (24 downto 0);
+    signal yip1_3_uid81_sincosTest_b : STD_LOGIC_VECTOR (24 downto 0);
+    signal aip1E_uid82_sincosTest_in : STD_LOGIC_VECTOR (17 downto 0);
+    signal aip1E_uid82_sincosTest_b : STD_LOGIC_VECTOR (17 downto 0);
+    signal xMSB_uid83_sincosTest_b : STD_LOGIC_VECTOR (0 downto 0);
+    signal signOfSelectionSignal_uid85_sincosTest_q : STD_LOGIC_VECTOR (0 downto 0);
+    signal twoToMiSiXip_uid88_sincosTest_b : STD_LOGIC_VECTOR (21 downto 0);
+    signal twoToMiSiYip_uid89_sincosTest_b : STD_LOGIC_VECTOR (21 downto 0);
+    signal cstArcTan2Mi_3_uid90_sincosTest_q : STD_LOGIC_VECTOR (15 downto 0);
+    signal xip1E_4_uid92_sincosTest_a : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_4_uid92_sincosTest_b : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_4_uid92_sincosTest_o : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_4_uid92_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal xip1E_4_uid92_sincosTest_q : STD_LOGIC_VECTOR (25 downto 0);
+    signal yip1E_4_uid93_sincosTest_a : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_4_uid93_sincosTest_b : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_4_uid93_sincosTest_o : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_4_uid93_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal yip1E_4_uid93_sincosTest_q : STD_LOGIC_VECTOR (25 downto 0);
+    signal aip1E_4_uid95_sincosTest_a : STD_LOGIC_VECTOR (19 downto 0);
+    signal aip1E_4_uid95_sincosTest_b : STD_LOGIC_VECTOR (19 downto 0);
+    signal aip1E_4_uid95_sincosTest_o : STD_LOGIC_VECTOR (19 downto 0);
+    signal aip1E_4_uid95_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal aip1E_4_uid95_sincosTest_q : STD_LOGIC_VECTOR (18 downto 0);
+    signal xip1_4_uid96_sincosTest_in : STD_LOGIC_VECTOR (24 downto 0);
+    signal xip1_4_uid96_sincosTest_b : STD_LOGIC_VECTOR (24 downto 0);
+    signal yip1_4_uid97_sincosTest_in : STD_LOGIC_VECTOR (24 downto 0);
+    signal yip1_4_uid97_sincosTest_b : STD_LOGIC_VECTOR (24 downto 0);
+    signal aip1E_uid98_sincosTest_in : STD_LOGIC_VECTOR (16 downto 0);
+    signal aip1E_uid98_sincosTest_b : STD_LOGIC_VECTOR (16 downto 0);
+    signal xMSB_uid99_sincosTest_b : STD_LOGIC_VECTOR (0 downto 0);
+    signal signOfSelectionSignal_uid101_sincosTest_q : STD_LOGIC_VECTOR (0 downto 0);
+    signal twoToMiSiXip_uid104_sincosTest_b : STD_LOGIC_VECTOR (20 downto 0);
+    signal twoToMiSiYip_uid105_sincosTest_b : STD_LOGIC_VECTOR (20 downto 0);
+    signal cstArcTan2Mi_4_uid106_sincosTest_q : STD_LOGIC_VECTOR (14 downto 0);
+    signal xip1E_5_uid108_sincosTest_a : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_5_uid108_sincosTest_b : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_5_uid108_sincosTest_o : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_5_uid108_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal xip1E_5_uid108_sincosTest_q : STD_LOGIC_VECTOR (25 downto 0);
+    signal yip1E_5_uid109_sincosTest_a : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_5_uid109_sincosTest_b : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_5_uid109_sincosTest_o : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_5_uid109_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal yip1E_5_uid109_sincosTest_q : STD_LOGIC_VECTOR (25 downto 0);
+    signal aip1E_5_uid111_sincosTest_a : STD_LOGIC_VECTOR (18 downto 0);
+    signal aip1E_5_uid111_sincosTest_b : STD_LOGIC_VECTOR (18 downto 0);
+    signal aip1E_5_uid111_sincosTest_o : STD_LOGIC_VECTOR (18 downto 0);
+    signal aip1E_5_uid111_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal aip1E_5_uid111_sincosTest_q : STD_LOGIC_VECTOR (17 downto 0);
+    signal xip1_5_uid112_sincosTest_in : STD_LOGIC_VECTOR (24 downto 0);
+    signal xip1_5_uid112_sincosTest_b : STD_LOGIC_VECTOR (24 downto 0);
+    signal yip1_5_uid113_sincosTest_in : STD_LOGIC_VECTOR (24 downto 0);
+    signal yip1_5_uid113_sincosTest_b : STD_LOGIC_VECTOR (24 downto 0);
+    signal aip1E_uid114_sincosTest_in : STD_LOGIC_VECTOR (15 downto 0);
+    signal aip1E_uid114_sincosTest_b : STD_LOGIC_VECTOR (15 downto 0);
+    signal xMSB_uid115_sincosTest_b : STD_LOGIC_VECTOR (0 downto 0);
+    signal signOfSelectionSignal_uid117_sincosTest_q : STD_LOGIC_VECTOR (0 downto 0);
+    signal twoToMiSiXip_uid120_sincosTest_b : STD_LOGIC_VECTOR (19 downto 0);
+    signal twoToMiSiYip_uid121_sincosTest_b : STD_LOGIC_VECTOR (19 downto 0);
+    signal cstArcTan2Mi_5_uid122_sincosTest_q : STD_LOGIC_VECTOR (13 downto 0);
+    signal xip1E_6_uid124_sincosTest_a : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_6_uid124_sincosTest_b : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_6_uid124_sincosTest_o : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_6_uid124_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal xip1E_6_uid124_sincosTest_q : STD_LOGIC_VECTOR (25 downto 0);
+    signal yip1E_6_uid125_sincosTest_a : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_6_uid125_sincosTest_b : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_6_uid125_sincosTest_o : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_6_uid125_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal yip1E_6_uid125_sincosTest_q : STD_LOGIC_VECTOR (25 downto 0);
+    signal aip1E_6_uid127_sincosTest_a : STD_LOGIC_VECTOR (17 downto 0);
+    signal aip1E_6_uid127_sincosTest_b : STD_LOGIC_VECTOR (17 downto 0);
+    signal aip1E_6_uid127_sincosTest_o : STD_LOGIC_VECTOR (17 downto 0);
+    signal aip1E_6_uid127_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal aip1E_6_uid127_sincosTest_q : STD_LOGIC_VECTOR (16 downto 0);
+    signal xip1_6_uid128_sincosTest_in : STD_LOGIC_VECTOR (24 downto 0);
+    signal xip1_6_uid128_sincosTest_b : STD_LOGIC_VECTOR (24 downto 0);
+    signal yip1_6_uid129_sincosTest_in : STD_LOGIC_VECTOR (24 downto 0);
+    signal yip1_6_uid129_sincosTest_b : STD_LOGIC_VECTOR (24 downto 0);
+    signal aip1E_uid130_sincosTest_in : STD_LOGIC_VECTOR (14 downto 0);
+    signal aip1E_uid130_sincosTest_b : STD_LOGIC_VECTOR (14 downto 0);
+    signal xMSB_uid131_sincosTest_b : STD_LOGIC_VECTOR (0 downto 0);
+    signal signOfSelectionSignal_uid133_sincosTest_q : STD_LOGIC_VECTOR (0 downto 0);
+    signal twoToMiSiXip_uid136_sincosTest_b : STD_LOGIC_VECTOR (18 downto 0);
+    signal twoToMiSiYip_uid137_sincosTest_b : STD_LOGIC_VECTOR (18 downto 0);
+    signal cstArcTan2Mi_6_uid138_sincosTest_q : STD_LOGIC_VECTOR (12 downto 0);
+    signal xip1E_7_uid140_sincosTest_a : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_7_uid140_sincosTest_b : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_7_uid140_sincosTest_o : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_7_uid140_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal xip1E_7_uid140_sincosTest_q : STD_LOGIC_VECTOR (25 downto 0);
+    signal yip1E_7_uid141_sincosTest_a : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_7_uid141_sincosTest_b : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_7_uid141_sincosTest_o : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_7_uid141_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal yip1E_7_uid141_sincosTest_q : STD_LOGIC_VECTOR (25 downto 0);
+    signal lowRangeA_uid143_sincosTest_in : STD_LOGIC_VECTOR (0 downto 0);
+    signal lowRangeA_uid143_sincosTest_b : STD_LOGIC_VECTOR (0 downto 0);
+    signal highABits_uid144_sincosTest_b : STD_LOGIC_VECTOR (13 downto 0);
+    signal aip1E_7high_uid145_sincosTest_a : STD_LOGIC_VECTOR (15 downto 0);
+    signal aip1E_7high_uid145_sincosTest_b : STD_LOGIC_VECTOR (15 downto 0);
+    signal aip1E_7high_uid145_sincosTest_o : STD_LOGIC_VECTOR (15 downto 0);
+    signal aip1E_7high_uid145_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal aip1E_7high_uid145_sincosTest_q : STD_LOGIC_VECTOR (14 downto 0);
+    signal aip1E_7_uid146_sincosTest_q : STD_LOGIC_VECTOR (15 downto 0);
+    signal xip1_7_uid147_sincosTest_in : STD_LOGIC_VECTOR (24 downto 0);
+    signal xip1_7_uid147_sincosTest_b : STD_LOGIC_VECTOR (24 downto 0);
+    signal yip1_7_uid148_sincosTest_in : STD_LOGIC_VECTOR (24 downto 0);
+    signal yip1_7_uid148_sincosTest_b : STD_LOGIC_VECTOR (24 downto 0);
+    signal aip1E_uid149_sincosTest_in : STD_LOGIC_VECTOR (13 downto 0);
+    signal aip1E_uid149_sincosTest_b : STD_LOGIC_VECTOR (13 downto 0);
+    signal xMSB_uid150_sincosTest_b : STD_LOGIC_VECTOR (0 downto 0);
+    signal signOfSelectionSignal_uid152_sincosTest_q : STD_LOGIC_VECTOR (0 downto 0);
+    signal twoToMiSiXip_uid155_sincosTest_b : STD_LOGIC_VECTOR (17 downto 0);
+    signal twoToMiSiYip_uid156_sincosTest_b : STD_LOGIC_VECTOR (17 downto 0);
+    signal cstArcTan2Mi_7_uid157_sincosTest_q : STD_LOGIC_VECTOR (11 downto 0);
+    signal xip1E_8_uid159_sincosTest_a : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_8_uid159_sincosTest_b : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_8_uid159_sincosTest_o : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_8_uid159_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal xip1E_8_uid159_sincosTest_q : STD_LOGIC_VECTOR (25 downto 0);
+    signal yip1E_8_uid160_sincosTest_a : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_8_uid160_sincosTest_b : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_8_uid160_sincosTest_o : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_8_uid160_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal yip1E_8_uid160_sincosTest_q : STD_LOGIC_VECTOR (25 downto 0);
+    signal lowRangeA_uid162_sincosTest_in : STD_LOGIC_VECTOR (0 downto 0);
+    signal lowRangeA_uid162_sincosTest_b : STD_LOGIC_VECTOR (0 downto 0);
+    signal highABits_uid163_sincosTest_b : STD_LOGIC_VECTOR (12 downto 0);
+    signal aip1E_8high_uid164_sincosTest_a : STD_LOGIC_VECTOR (14 downto 0);
+    signal aip1E_8high_uid164_sincosTest_b : STD_LOGIC_VECTOR (14 downto 0);
+    signal aip1E_8high_uid164_sincosTest_o : STD_LOGIC_VECTOR (14 downto 0);
+    signal aip1E_8high_uid164_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal aip1E_8high_uid164_sincosTest_q : STD_LOGIC_VECTOR (13 downto 0);
+    signal aip1E_8_uid165_sincosTest_q : STD_LOGIC_VECTOR (14 downto 0);
+    signal xip1_8_uid166_sincosTest_in : STD_LOGIC_VECTOR (24 downto 0);
+    signal xip1_8_uid166_sincosTest_b : STD_LOGIC_VECTOR (24 downto 0);
+    signal yip1_8_uid167_sincosTest_in : STD_LOGIC_VECTOR (24 downto 0);
+    signal yip1_8_uid167_sincosTest_b : STD_LOGIC_VECTOR (24 downto 0);
+    signal aip1E_uid168_sincosTest_in : STD_LOGIC_VECTOR (12 downto 0);
+    signal aip1E_uid168_sincosTest_b : STD_LOGIC_VECTOR (12 downto 0);
+    signal xMSB_uid169_sincosTest_b : STD_LOGIC_VECTOR (0 downto 0);
+    signal signOfSelectionSignal_uid171_sincosTest_q : STD_LOGIC_VECTOR (0 downto 0);
+    signal twoToMiSiXip_uid174_sincosTest_b : STD_LOGIC_VECTOR (16 downto 0);
+    signal twoToMiSiYip_uid175_sincosTest_b : STD_LOGIC_VECTOR (16 downto 0);
+    signal cstArcTan2Mi_8_uid176_sincosTest_q : STD_LOGIC_VECTOR (10 downto 0);
+    signal xip1E_9_uid178_sincosTest_a : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_9_uid178_sincosTest_b : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_9_uid178_sincosTest_o : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_9_uid178_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal xip1E_9_uid178_sincosTest_q : STD_LOGIC_VECTOR (25 downto 0);
+    signal yip1E_9_uid179_sincosTest_a : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_9_uid179_sincosTest_b : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_9_uid179_sincosTest_o : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_9_uid179_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal yip1E_9_uid179_sincosTest_q : STD_LOGIC_VECTOR (25 downto 0);
+    signal lowRangeA_uid181_sincosTest_in : STD_LOGIC_VECTOR (0 downto 0);
+    signal lowRangeA_uid181_sincosTest_b : STD_LOGIC_VECTOR (0 downto 0);
+    signal highABits_uid182_sincosTest_b : STD_LOGIC_VECTOR (11 downto 0);
+    signal aip1E_9high_uid183_sincosTest_a : STD_LOGIC_VECTOR (13 downto 0);
+    signal aip1E_9high_uid183_sincosTest_b : STD_LOGIC_VECTOR (13 downto 0);
+    signal aip1E_9high_uid183_sincosTest_o : STD_LOGIC_VECTOR (13 downto 0);
+    signal aip1E_9high_uid183_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal aip1E_9high_uid183_sincosTest_q : STD_LOGIC_VECTOR (12 downto 0);
+    signal aip1E_9_uid184_sincosTest_q : STD_LOGIC_VECTOR (13 downto 0);
+    signal xip1_9_uid185_sincosTest_in : STD_LOGIC_VECTOR (24 downto 0);
+    signal xip1_9_uid185_sincosTest_b : STD_LOGIC_VECTOR (24 downto 0);
+    signal yip1_9_uid186_sincosTest_in : STD_LOGIC_VECTOR (24 downto 0);
+    signal yip1_9_uid186_sincosTest_b : STD_LOGIC_VECTOR (24 downto 0);
+    signal aip1E_uid187_sincosTest_in : STD_LOGIC_VECTOR (11 downto 0);
+    signal aip1E_uid187_sincosTest_b : STD_LOGIC_VECTOR (11 downto 0);
+    signal xMSB_uid188_sincosTest_b : STD_LOGIC_VECTOR (0 downto 0);
+    signal signOfSelectionSignal_uid190_sincosTest_q : STD_LOGIC_VECTOR (0 downto 0);
+    signal twoToMiSiXip_uid193_sincosTest_b : STD_LOGIC_VECTOR (15 downto 0);
+    signal twoToMiSiYip_uid194_sincosTest_b : STD_LOGIC_VECTOR (15 downto 0);
+    signal xip1E_10_uid197_sincosTest_a : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_10_uid197_sincosTest_b : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_10_uid197_sincosTest_o : STD_LOGIC_VECTOR (26 downto 0);
+    signal xip1E_10_uid197_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal xip1E_10_uid197_sincosTest_q : STD_LOGIC_VECTOR (25 downto 0);
+    signal yip1E_10_uid198_sincosTest_a : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_10_uid198_sincosTest_b : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_10_uid198_sincosTest_o : STD_LOGIC_VECTOR (26 downto 0);
+    signal yip1E_10_uid198_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal yip1E_10_uid198_sincosTest_q : STD_LOGIC_VECTOR (25 downto 0);
+    signal xip1_10_uid204_sincosTest_in : STD_LOGIC_VECTOR (24 downto 0);
+    signal xip1_10_uid204_sincosTest_b : STD_LOGIC_VECTOR (24 downto 0);
+    signal yip1_10_uid205_sincosTest_in : STD_LOGIC_VECTOR (24 downto 0);
+    signal yip1_10_uid205_sincosTest_b : STD_LOGIC_VECTOR (24 downto 0);
+    signal xSumPreRnd_uid207_sincosTest_in : STD_LOGIC_VECTOR (23 downto 0);
+    signal xSumPreRnd_uid207_sincosTest_b : STD_LOGIC_VECTOR (10 downto 0);
+    signal xSumPostRnd_uid210_sincosTest_a : STD_LOGIC_VECTOR (11 downto 0);
+    signal xSumPostRnd_uid210_sincosTest_b : STD_LOGIC_VECTOR (11 downto 0);
+    signal xSumPostRnd_uid210_sincosTest_o : STD_LOGIC_VECTOR (11 downto 0);
+    signal xSumPostRnd_uid210_sincosTest_q : STD_LOGIC_VECTOR (11 downto 0);
+    signal ySumPreRnd_uid211_sincosTest_in : STD_LOGIC_VECTOR (23 downto 0);
+    signal ySumPreRnd_uid211_sincosTest_b : STD_LOGIC_VECTOR (10 downto 0);
+    signal ySumPostRnd_uid214_sincosTest_a : STD_LOGIC_VECTOR (11 downto 0);
+    signal ySumPostRnd_uid214_sincosTest_b : STD_LOGIC_VECTOR (11 downto 0);
+    signal ySumPostRnd_uid214_sincosTest_o : STD_LOGIC_VECTOR (11 downto 0);
+    signal ySumPostRnd_uid214_sincosTest_q : STD_LOGIC_VECTOR (11 downto 0);
+    signal xPostExc_uid215_sincosTest_in : STD_LOGIC_VECTOR (10 downto 0);
+    signal xPostExc_uid215_sincosTest_b : STD_LOGIC_VECTOR (9 downto 0);
+    signal yPostExc_uid216_sincosTest_in : STD_LOGIC_VECTOR (10 downto 0);
+    signal yPostExc_uid216_sincosTest_b : STD_LOGIC_VECTOR (9 downto 0);
+    signal invFirstQuadrant_uid217_sincosTest_q : STD_LOGIC_VECTOR (0 downto 0);
+    signal sinNegCond2_uid218_sincosTest_q : STD_LOGIC_VECTOR (0 downto 0);
+    signal sinNegCond1_uid219_sincosTest_q : STD_LOGIC_VECTOR (0 downto 0);
+    signal sinNegCond0_uid221_sincosTest_q : STD_LOGIC_VECTOR (0 downto 0);
+    signal sinNegCond_uid222_sincosTest_qi : STD_LOGIC_VECTOR (0 downto 0);
+    signal sinNegCond_uid222_sincosTest_q : STD_LOGIC_VECTOR (0 downto 0);
+    signal cstZeroForAddSub_uid224_sincosTest_q : STD_LOGIC_VECTOR (9 downto 0);
+    signal invSinNegCond_uid225_sincosTest_q : STD_LOGIC_VECTOR (0 downto 0);
+    signal sinPostNeg_uid226_sincosTest_a : STD_LOGIC_VECTOR (11 downto 0);
+    signal sinPostNeg_uid226_sincosTest_b : STD_LOGIC_VECTOR (11 downto 0);
+    signal sinPostNeg_uid226_sincosTest_o : STD_LOGIC_VECTOR (11 downto 0);
+    signal sinPostNeg_uid226_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal sinPostNeg_uid226_sincosTest_q : STD_LOGIC_VECTOR (10 downto 0);
+    signal invCosNegCond_uid227_sincosTest_qi : STD_LOGIC_VECTOR (0 downto 0);
+    signal invCosNegCond_uid227_sincosTest_q : STD_LOGIC_VECTOR (0 downto 0);
+    signal cosPostNeg_uid228_sincosTest_a : STD_LOGIC_VECTOR (11 downto 0);
+    signal cosPostNeg_uid228_sincosTest_b : STD_LOGIC_VECTOR (11 downto 0);
+    signal cosPostNeg_uid228_sincosTest_o : STD_LOGIC_VECTOR (11 downto 0);
+    signal cosPostNeg_uid228_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal cosPostNeg_uid228_sincosTest_q : STD_LOGIC_VECTOR (10 downto 0);
+    signal xPostRR_uid229_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal xPostRR_uid229_sincosTest_q : STD_LOGIC_VECTOR (10 downto 0);
+    signal xPostRR_uid230_sincosTest_s : STD_LOGIC_VECTOR (0 downto 0);
+    signal xPostRR_uid230_sincosTest_q : STD_LOGIC_VECTOR (10 downto 0);
+    signal cos_uid231_sincosTest_in : STD_LOGIC_VECTOR (9 downto 0);
+    signal cos_uid231_sincosTest_b : STD_LOGIC_VECTOR (9 downto 0);
+    signal sin_uid232_sincosTest_in : STD_LOGIC_VECTOR (9 downto 0);
+    signal sin_uid232_sincosTest_b : STD_LOGIC_VECTOR (9 downto 0);
+    signal redist0_yPostExc_uid216_sincosTest_b_1_q : STD_LOGIC_VECTOR (9 downto 0);
+    signal redist1_xPostExc_uid215_sincosTest_b_1_q : STD_LOGIC_VECTOR (9 downto 0);
+    signal redist2_ySumPreRnd_uid211_sincosTest_b_1_q : STD_LOGIC_VECTOR (10 downto 0);
+    signal redist3_xSumPreRnd_uid207_sincosTest_b_1_q : STD_LOGIC_VECTOR (10 downto 0);
+    signal redist4_xMSB_uid188_sincosTest_b_1_q : STD_LOGIC_VECTOR (0 downto 0);
+    signal redist5_yip1_9_uid186_sincosTest_b_1_q : STD_LOGIC_VECTOR (24 downto 0);
+    signal redist6_xip1_9_uid185_sincosTest_b_1_q : STD_LOGIC_VECTOR (24 downto 0);
+    signal redist7_aip1E_uid168_sincosTest_b_1_q : STD_LOGIC_VECTOR (12 downto 0);
+    signal redist8_yip1_8_uid167_sincosTest_b_1_q : STD_LOGIC_VECTOR (24 downto 0);
+    signal redist9_xip1_8_uid166_sincosTest_b_1_q : STD_LOGIC_VECTOR (24 downto 0);
+    signal redist10_aip1E_uid149_sincosTest_b_1_q : STD_LOGIC_VECTOR (13 downto 0);
+    signal redist11_yip1_7_uid148_sincosTest_b_1_q : STD_LOGIC_VECTOR (24 downto 0);
+    signal redist12_xip1_7_uid147_sincosTest_b_1_q : STD_LOGIC_VECTOR (24 downto 0);
+    signal redist13_aip1E_uid130_sincosTest_b_1_q : STD_LOGIC_VECTOR (14 downto 0);
+    signal redist14_yip1_6_uid129_sincosTest_b_1_q : STD_LOGIC_VECTOR (24 downto 0);
+    signal redist15_xip1_6_uid128_sincosTest_b_1_q : STD_LOGIC_VECTOR (24 downto 0);
+    signal redist16_aip1E_uid114_sincosTest_b_1_q : STD_LOGIC_VECTOR (15 downto 0);
+    signal redist17_yip1_5_uid113_sincosTest_b_1_q : STD_LOGIC_VECTOR (24 downto 0);
+    signal redist18_xip1_5_uid112_sincosTest_b_1_q : STD_LOGIC_VECTOR (24 downto 0);
+    signal redist19_aip1E_uid98_sincosTest_b_1_q : STD_LOGIC_VECTOR (16 downto 0);
+    signal redist20_yip1_4_uid97_sincosTest_b_1_q : STD_LOGIC_VECTOR (24 downto 0);
+    signal redist21_xip1_4_uid96_sincosTest_b_1_q : STD_LOGIC_VECTOR (24 downto 0);
+    signal redist22_aip1E_uid82_sincosTest_b_1_q : STD_LOGIC_VECTOR (17 downto 0);
+    signal redist23_yip1_3_uid81_sincosTest_b_1_q : STD_LOGIC_VECTOR (24 downto 0);
+    signal redist24_xip1_3_uid80_sincosTest_b_1_q : STD_LOGIC_VECTOR (24 downto 0);
+    signal redist25_aip1E_uid66_sincosTest_b_1_q : STD_LOGIC_VECTOR (18 downto 0);
+    signal redist26_yip1_2_uid65_sincosTest_b_1_q : STD_LOGIC_VECTOR (24 downto 0);
+    signal redist27_xip1_2_uid64_sincosTest_b_1_q : STD_LOGIC_VECTOR (24 downto 0);
+    signal redist28_aip1E_uid50_sincosTest_b_1_q : STD_LOGIC_VECTOR (19 downto 0);
+    signal redist29_firstQuadrant_uid15_sincosTest_b_11_q : STD_LOGIC_VECTOR (0 downto 0);
+    signal redist30_firstQuadrant_uid15_sincosTest_b_12_q : STD_LOGIC_VECTOR (0 downto 0);
+    signal redist31_absAR_uid10_sincosTest_b_1_q : STD_LOGIC_VECTOR (11 downto 0);
+    signal redist32_invSignA_uid8_sincosTest_q_12_q : STD_LOGIC_VECTOR (0 downto 0);
+    signal redist33_signA_uid7_sincosTest_b_12_q : STD_LOGIC_VECTOR (0 downto 0);
 
 begin
 
 
-    -- constPi_uid267_atan2Test(CONSTANT,266)
-    constPi_uid267_atan2Test_q <= "11001001000100";
+    -- cstPiO2_uid11_sincosTest(CONSTANT,10)
+    cstPiO2_uid11_sincosTest_q <= "1100100100010";
+
+    -- signA_uid7_sincosTest(BITSELECT,6)@0
+    signA_uid7_sincosTest_b <= STD_LOGIC_VECTOR(a(12 downto 12));
+
+    -- invSignA_uid8_sincosTest(LOGICAL,7)@0
+    invSignA_uid8_sincosTest_q <= not (signA_uid7_sincosTest_b);
+
+    -- constantZero_uid6_sincosTest(CONSTANT,5)
+    constantZero_uid6_sincosTest_q <= "0000000000000";
+
+    -- absAE_uid9_sincosTest(ADDSUB,8)@0
+    absAE_uid9_sincosTest_s <= invSignA_uid8_sincosTest_q;
+    absAE_uid9_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((14 downto 13 => constantZero_uid6_sincosTest_q(12)) & constantZero_uid6_sincosTest_q));
+    absAE_uid9_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((14 downto 13 => a(12)) & a));
+    absAE_uid9_sincosTest_combproc: PROCESS (absAE_uid9_sincosTest_a, absAE_uid9_sincosTest_b, absAE_uid9_sincosTest_s)
+    BEGIN
+        IF (absAE_uid9_sincosTest_s = "1") THEN
+            absAE_uid9_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(absAE_uid9_sincosTest_a) + SIGNED(absAE_uid9_sincosTest_b));
+        ELSE
+            absAE_uid9_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(absAE_uid9_sincosTest_a) - SIGNED(absAE_uid9_sincosTest_b));
+        END IF;
+    END PROCESS;
+    absAE_uid9_sincosTest_q <= absAE_uid9_sincosTest_o(13 downto 0);
+
+    -- absAR_uid10_sincosTest(BITSELECT,9)@0
+    absAR_uid10_sincosTest_in <= absAE_uid9_sincosTest_q(11 downto 0);
+    absAR_uid10_sincosTest_b <= absAR_uid10_sincosTest_in(11 downto 0);
+
+    -- redist31_absAR_uid10_sincosTest_b_1(DELAY,263)
+    redist31_absAR_uid10_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 12, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => absAR_uid10_sincosTest_b, xout => redist31_absAR_uid10_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- padACst_uid12_sincosTest(CONSTANT,11)
+    padACst_uid12_sincosTest_q <= "00";
+
+    -- aPostPad_uid13_sincosTest(BITJOIN,12)@1
+    aPostPad_uid13_sincosTest_q <= redist31_absAR_uid10_sincosTest_b_1_q & padACst_uid12_sincosTest_q;
+
+    -- argMPiO2_uid14_sincosTest(SUB,13)@1
+    argMPiO2_uid14_sincosTest_a <= STD_LOGIC_VECTOR("0" & aPostPad_uid13_sincosTest_q);
+    argMPiO2_uid14_sincosTest_b <= STD_LOGIC_VECTOR("00" & cstPiO2_uid11_sincosTest_q);
+    argMPiO2_uid14_sincosTest_o <= STD_LOGIC_VECTOR(UNSIGNED(argMPiO2_uid14_sincosTest_a) - UNSIGNED(argMPiO2_uid14_sincosTest_b));
+    argMPiO2_uid14_sincosTest_q <= argMPiO2_uid14_sincosTest_o(14 downto 0);
+
+    -- firstQuadrant_uid15_sincosTest(BITSELECT,14)@1
+    firstQuadrant_uid15_sincosTest_b <= STD_LOGIC_VECTOR(argMPiO2_uid14_sincosTest_q(14 downto 14));
+
+    -- redist29_firstQuadrant_uid15_sincosTest_b_11(DELAY,261)
+    redist29_firstQuadrant_uid15_sincosTest_b_11 : dspba_delay
+    GENERIC MAP ( width => 1, depth => 11, reset_kind => "ASYNC" )
+    PORT MAP ( xin => firstQuadrant_uid15_sincosTest_b, xout => redist29_firstQuadrant_uid15_sincosTest_b_11_q, clk => clk, aclr => areset );
+
+    -- invFirstQuadrant_uid217_sincosTest(LOGICAL,216)@12
+    invFirstQuadrant_uid217_sincosTest_q <= not (redist29_firstQuadrant_uid15_sincosTest_b_11_q);
+
+    -- redist33_signA_uid7_sincosTest_b_12(DELAY,265)
+    redist33_signA_uid7_sincosTest_b_12 : dspba_delay
+    GENERIC MAP ( width => 1, depth => 12, reset_kind => "ASYNC" )
+    PORT MAP ( xin => signA_uid7_sincosTest_b, xout => redist33_signA_uid7_sincosTest_b_12_q, clk => clk, aclr => areset );
+
+    -- sinNegCond2_uid218_sincosTest(LOGICAL,217)@12
+    sinNegCond2_uid218_sincosTest_q <= redist33_signA_uid7_sincosTest_b_12_q and invFirstQuadrant_uid217_sincosTest_q;
+
+    -- sinNegCond1_uid219_sincosTest(LOGICAL,218)@12
+    sinNegCond1_uid219_sincosTest_q <= redist33_signA_uid7_sincosTest_b_12_q and redist29_firstQuadrant_uid15_sincosTest_b_11_q;
+
+    -- redist32_invSignA_uid8_sincosTest_q_12(DELAY,264)
+    redist32_invSignA_uid8_sincosTest_q_12 : dspba_delay
+    GENERIC MAP ( width => 1, depth => 12, reset_kind => "ASYNC" )
+    PORT MAP ( xin => invSignA_uid8_sincosTest_q, xout => redist32_invSignA_uid8_sincosTest_q_12_q, clk => clk, aclr => areset );
+
+    -- sinNegCond0_uid221_sincosTest(LOGICAL,220)@12
+    sinNegCond0_uid221_sincosTest_q <= redist32_invSignA_uid8_sincosTest_q_12_q and invFirstQuadrant_uid217_sincosTest_q;
+
+    -- sinNegCond_uid222_sincosTest(LOGICAL,221)@12 + 1
+    sinNegCond_uid222_sincosTest_qi <= sinNegCond0_uid221_sincosTest_q or sinNegCond1_uid219_sincosTest_q or sinNegCond2_uid218_sincosTest_q;
+    sinNegCond_uid222_sincosTest_delay : dspba_delay
+    GENERIC MAP ( width => 1, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => sinNegCond_uid222_sincosTest_qi, xout => sinNegCond_uid222_sincosTest_q, clk => clk, aclr => areset );
+
+    -- invSinNegCond_uid225_sincosTest(LOGICAL,224)@13
+    invSinNegCond_uid225_sincosTest_q <= not (sinNegCond_uid222_sincosTest_q);
 
     -- GND(CONSTANT,0)
     GND_q <= "0";
 
-    -- constPiP2uE_uid258_atan2Test(CONSTANT,257)
-    constPiP2uE_uid258_atan2Test_q <= "1100100100100";
+    -- xMSB_uid115_sincosTest(BITSELECT,114)@7
+    xMSB_uid115_sincosTest_b <= STD_LOGIC_VECTOR(redist16_aip1E_uid114_sincosTest_b_1_q(15 downto 15));
 
-    -- constPio2P2u_mergedSignalTM_uid261_atan2Test(BITJOIN,260)@14
-    constPio2P2u_mergedSignalTM_uid261_atan2Test_q <= GND_q & constPiP2uE_uid258_atan2Test_q;
+    -- cstArcTan2Mi_5_uid122_sincosTest(CONSTANT,121)
+    cstArcTan2Mi_5_uid122_sincosTest_q <= "01111111111101";
 
-    -- cstZeroOutFormat_uid257_atan2Test(CONSTANT,256)
-    cstZeroOutFormat_uid257_atan2Test_q <= "00000000000010";
+    -- xMSB_uid99_sincosTest(BITSELECT,98)@6
+    xMSB_uid99_sincosTest_b <= STD_LOGIC_VECTOR(redist19_aip1E_uid98_sincosTest_b_1_q(16 downto 16));
+
+    -- cstArcTan2Mi_4_uid106_sincosTest(CONSTANT,105)
+    cstArcTan2Mi_4_uid106_sincosTest_q <= "011111111101011";
+
+    -- xMSB_uid83_sincosTest(BITSELECT,82)@5
+    xMSB_uid83_sincosTest_b <= STD_LOGIC_VECTOR(redist22_aip1E_uid82_sincosTest_b_1_q(17 downto 17));
+
+    -- cstArcTan2Mi_3_uid90_sincosTest(CONSTANT,89)
+    cstArcTan2Mi_3_uid90_sincosTest_q <= "0111111101010111";
+
+    -- xMSB_uid67_sincosTest(BITSELECT,66)@4
+    xMSB_uid67_sincosTest_b <= STD_LOGIC_VECTOR(redist25_aip1E_uid66_sincosTest_b_1_q(18 downto 18));
+
+    -- cstArcTan2Mi_2_uid74_sincosTest(CONSTANT,73)
+    cstArcTan2Mi_2_uid74_sincosTest_q <= "01111101011011100";
+
+    -- xMSB_uid51_sincosTest(BITSELECT,50)@3
+    xMSB_uid51_sincosTest_b <= STD_LOGIC_VECTOR(redist28_aip1E_uid50_sincosTest_b_1_q(19 downto 19));
+
+    -- cstArcTan2Mi_1_uid58_sincosTest(CONSTANT,57)
+    cstArcTan2Mi_1_uid58_sincosTest_q <= "011101101011000110";
+
+    -- invSignOfSelectionSignal_uid36_sincosTest(LOGICAL,35)@2
+    invSignOfSelectionSignal_uid36_sincosTest_q <= not (VCC_q);
+
+    -- cstArcTan2Mi_0_uid26_sincosTest(CONSTANT,25)
+    cstArcTan2Mi_0_uid26_sincosTest_q <= "0110010010000111111";
+
+    -- absARE_bottomRange_uid17_sincosTest(BITSELECT,16)@1
+    absARE_bottomRange_uid17_sincosTest_in <= redist31_absAR_uid10_sincosTest_b_1_q(10 downto 0);
+    absARE_bottomRange_uid17_sincosTest_b <= absARE_bottomRange_uid17_sincosTest_in(10 downto 0);
+
+    -- absARE_mergedSignalTM_uid18_sincosTest(BITJOIN,17)@1
+    absARE_mergedSignalTM_uid18_sincosTest_q <= absARE_bottomRange_uid17_sincosTest_b & padACst_uid12_sincosTest_q;
+
+    -- argMPiO2_uid20_sincosTest(BITSELECT,19)@1
+    argMPiO2_uid20_sincosTest_in <= argMPiO2_uid14_sincosTest_q(12 downto 0);
+    argMPiO2_uid20_sincosTest_b <= argMPiO2_uid20_sincosTest_in(12 downto 0);
+
+    -- absA_uid21_sincosTest(MUX,20)@1 + 1
+    absA_uid21_sincosTest_s <= firstQuadrant_uid15_sincosTest_b;
+    absA_uid21_sincosTest_clkproc: PROCESS (clk, areset)
+    BEGIN
+        IF (areset = '1') THEN
+            absA_uid21_sincosTest_q <= (others => '0');
+        ELSIF (clk'EVENT AND clk = '1') THEN
+            CASE (absA_uid21_sincosTest_s) IS
+                WHEN "0" => absA_uid21_sincosTest_q <= argMPiO2_uid20_sincosTest_b;
+                WHEN "1" => absA_uid21_sincosTest_q <= absARE_mergedSignalTM_uid18_sincosTest_q;
+                WHEN OTHERS => absA_uid21_sincosTest_q <= (others => '0');
+            END CASE;
+        END IF;
+    END PROCESS;
+
+    -- aip1E_1CostZeroPaddingA_uid37_sincosTest(CONSTANT,36)
+    aip1E_1CostZeroPaddingA_uid37_sincosTest_q <= "000000";
+
+    -- aip1E_1NA_uid38_sincosTest(BITJOIN,37)@2
+    aip1E_1NA_uid38_sincosTest_q <= absA_uid21_sincosTest_q & aip1E_1CostZeroPaddingA_uid37_sincosTest_q;
+
+    -- aip1E_1sumAHighB_uid39_sincosTest(ADDSUB,38)@2
+    aip1E_1sumAHighB_uid39_sincosTest_s <= invSignOfSelectionSignal_uid36_sincosTest_q;
+    aip1E_1sumAHighB_uid39_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR("000" & aip1E_1NA_uid38_sincosTest_q));
+    aip1E_1sumAHighB_uid39_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((21 downto 19 => cstArcTan2Mi_0_uid26_sincosTest_q(18)) & cstArcTan2Mi_0_uid26_sincosTest_q));
+    aip1E_1sumAHighB_uid39_sincosTest_combproc: PROCESS (aip1E_1sumAHighB_uid39_sincosTest_a, aip1E_1sumAHighB_uid39_sincosTest_b, aip1E_1sumAHighB_uid39_sincosTest_s)
+    BEGIN
+        IF (aip1E_1sumAHighB_uid39_sincosTest_s = "1") THEN
+            aip1E_1sumAHighB_uid39_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_1sumAHighB_uid39_sincosTest_a) + SIGNED(aip1E_1sumAHighB_uid39_sincosTest_b));
+        ELSE
+            aip1E_1sumAHighB_uid39_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_1sumAHighB_uid39_sincosTest_a) - SIGNED(aip1E_1sumAHighB_uid39_sincosTest_b));
+        END IF;
+    END PROCESS;
+    aip1E_1sumAHighB_uid39_sincosTest_q <= aip1E_1sumAHighB_uid39_sincosTest_o(20 downto 0);
+
+    -- aip1E_uid50_sincosTest(BITSELECT,49)@2
+    aip1E_uid50_sincosTest_in <= STD_LOGIC_VECTOR(aip1E_1sumAHighB_uid39_sincosTest_q(19 downto 0));
+    aip1E_uid50_sincosTest_b <= STD_LOGIC_VECTOR(aip1E_uid50_sincosTest_in(19 downto 0));
+
+    -- redist28_aip1E_uid50_sincosTest_b_1(DELAY,260)
+    redist28_aip1E_uid50_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 20, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => aip1E_uid50_sincosTest_b, xout => redist28_aip1E_uid50_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- aip1E_2_uid63_sincosTest(ADDSUB,62)@3
+    aip1E_2_uid63_sincosTest_s <= xMSB_uid51_sincosTest_b;
+    aip1E_2_uid63_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((21 downto 20 => redist28_aip1E_uid50_sincosTest_b_1_q(19)) & redist28_aip1E_uid50_sincosTest_b_1_q));
+    aip1E_2_uid63_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((21 downto 18 => cstArcTan2Mi_1_uid58_sincosTest_q(17)) & cstArcTan2Mi_1_uid58_sincosTest_q));
+    aip1E_2_uid63_sincosTest_combproc: PROCESS (aip1E_2_uid63_sincosTest_a, aip1E_2_uid63_sincosTest_b, aip1E_2_uid63_sincosTest_s)
+    BEGIN
+        IF (aip1E_2_uid63_sincosTest_s = "1") THEN
+            aip1E_2_uid63_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_2_uid63_sincosTest_a) + SIGNED(aip1E_2_uid63_sincosTest_b));
+        ELSE
+            aip1E_2_uid63_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_2_uid63_sincosTest_a) - SIGNED(aip1E_2_uid63_sincosTest_b));
+        END IF;
+    END PROCESS;
+    aip1E_2_uid63_sincosTest_q <= aip1E_2_uid63_sincosTest_o(20 downto 0);
+
+    -- aip1E_uid66_sincosTest(BITSELECT,65)@3
+    aip1E_uid66_sincosTest_in <= STD_LOGIC_VECTOR(aip1E_2_uid63_sincosTest_q(18 downto 0));
+    aip1E_uid66_sincosTest_b <= STD_LOGIC_VECTOR(aip1E_uid66_sincosTest_in(18 downto 0));
+
+    -- redist25_aip1E_uid66_sincosTest_b_1(DELAY,257)
+    redist25_aip1E_uid66_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 19, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => aip1E_uid66_sincosTest_b, xout => redist25_aip1E_uid66_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- aip1E_3_uid79_sincosTest(ADDSUB,78)@4
+    aip1E_3_uid79_sincosTest_s <= xMSB_uid67_sincosTest_b;
+    aip1E_3_uid79_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((20 downto 19 => redist25_aip1E_uid66_sincosTest_b_1_q(18)) & redist25_aip1E_uid66_sincosTest_b_1_q));
+    aip1E_3_uid79_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((20 downto 17 => cstArcTan2Mi_2_uid74_sincosTest_q(16)) & cstArcTan2Mi_2_uid74_sincosTest_q));
+    aip1E_3_uid79_sincosTest_combproc: PROCESS (aip1E_3_uid79_sincosTest_a, aip1E_3_uid79_sincosTest_b, aip1E_3_uid79_sincosTest_s)
+    BEGIN
+        IF (aip1E_3_uid79_sincosTest_s = "1") THEN
+            aip1E_3_uid79_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_3_uid79_sincosTest_a) + SIGNED(aip1E_3_uid79_sincosTest_b));
+        ELSE
+            aip1E_3_uid79_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_3_uid79_sincosTest_a) - SIGNED(aip1E_3_uid79_sincosTest_b));
+        END IF;
+    END PROCESS;
+    aip1E_3_uid79_sincosTest_q <= aip1E_3_uid79_sincosTest_o(19 downto 0);
+
+    -- aip1E_uid82_sincosTest(BITSELECT,81)@4
+    aip1E_uid82_sincosTest_in <= STD_LOGIC_VECTOR(aip1E_3_uid79_sincosTest_q(17 downto 0));
+    aip1E_uid82_sincosTest_b <= STD_LOGIC_VECTOR(aip1E_uid82_sincosTest_in(17 downto 0));
+
+    -- redist22_aip1E_uid82_sincosTest_b_1(DELAY,254)
+    redist22_aip1E_uid82_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 18, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => aip1E_uid82_sincosTest_b, xout => redist22_aip1E_uid82_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- aip1E_4_uid95_sincosTest(ADDSUB,94)@5
+    aip1E_4_uid95_sincosTest_s <= xMSB_uid83_sincosTest_b;
+    aip1E_4_uid95_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((19 downto 18 => redist22_aip1E_uid82_sincosTest_b_1_q(17)) & redist22_aip1E_uid82_sincosTest_b_1_q));
+    aip1E_4_uid95_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((19 downto 16 => cstArcTan2Mi_3_uid90_sincosTest_q(15)) & cstArcTan2Mi_3_uid90_sincosTest_q));
+    aip1E_4_uid95_sincosTest_combproc: PROCESS (aip1E_4_uid95_sincosTest_a, aip1E_4_uid95_sincosTest_b, aip1E_4_uid95_sincosTest_s)
+    BEGIN
+        IF (aip1E_4_uid95_sincosTest_s = "1") THEN
+            aip1E_4_uid95_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_4_uid95_sincosTest_a) + SIGNED(aip1E_4_uid95_sincosTest_b));
+        ELSE
+            aip1E_4_uid95_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_4_uid95_sincosTest_a) - SIGNED(aip1E_4_uid95_sincosTest_b));
+        END IF;
+    END PROCESS;
+    aip1E_4_uid95_sincosTest_q <= aip1E_4_uid95_sincosTest_o(18 downto 0);
+
+    -- aip1E_uid98_sincosTest(BITSELECT,97)@5
+    aip1E_uid98_sincosTest_in <= STD_LOGIC_VECTOR(aip1E_4_uid95_sincosTest_q(16 downto 0));
+    aip1E_uid98_sincosTest_b <= STD_LOGIC_VECTOR(aip1E_uid98_sincosTest_in(16 downto 0));
+
+    -- redist19_aip1E_uid98_sincosTest_b_1(DELAY,251)
+    redist19_aip1E_uid98_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 17, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => aip1E_uid98_sincosTest_b, xout => redist19_aip1E_uid98_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- aip1E_5_uid111_sincosTest(ADDSUB,110)@6
+    aip1E_5_uid111_sincosTest_s <= xMSB_uid99_sincosTest_b;
+    aip1E_5_uid111_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((18 downto 17 => redist19_aip1E_uid98_sincosTest_b_1_q(16)) & redist19_aip1E_uid98_sincosTest_b_1_q));
+    aip1E_5_uid111_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((18 downto 15 => cstArcTan2Mi_4_uid106_sincosTest_q(14)) & cstArcTan2Mi_4_uid106_sincosTest_q));
+    aip1E_5_uid111_sincosTest_combproc: PROCESS (aip1E_5_uid111_sincosTest_a, aip1E_5_uid111_sincosTest_b, aip1E_5_uid111_sincosTest_s)
+    BEGIN
+        IF (aip1E_5_uid111_sincosTest_s = "1") THEN
+            aip1E_5_uid111_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_5_uid111_sincosTest_a) + SIGNED(aip1E_5_uid111_sincosTest_b));
+        ELSE
+            aip1E_5_uid111_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_5_uid111_sincosTest_a) - SIGNED(aip1E_5_uid111_sincosTest_b));
+        END IF;
+    END PROCESS;
+    aip1E_5_uid111_sincosTest_q <= aip1E_5_uid111_sincosTest_o(17 downto 0);
+
+    -- aip1E_uid114_sincosTest(BITSELECT,113)@6
+    aip1E_uid114_sincosTest_in <= STD_LOGIC_VECTOR(aip1E_5_uid111_sincosTest_q(15 downto 0));
+    aip1E_uid114_sincosTest_b <= STD_LOGIC_VECTOR(aip1E_uid114_sincosTest_in(15 downto 0));
+
+    -- redist16_aip1E_uid114_sincosTest_b_1(DELAY,248)
+    redist16_aip1E_uid114_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 16, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => aip1E_uid114_sincosTest_b, xout => redist16_aip1E_uid114_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- aip1E_6_uid127_sincosTest(ADDSUB,126)@7
+    aip1E_6_uid127_sincosTest_s <= xMSB_uid115_sincosTest_b;
+    aip1E_6_uid127_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((17 downto 16 => redist16_aip1E_uid114_sincosTest_b_1_q(15)) & redist16_aip1E_uid114_sincosTest_b_1_q));
+    aip1E_6_uid127_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((17 downto 14 => cstArcTan2Mi_5_uid122_sincosTest_q(13)) & cstArcTan2Mi_5_uid122_sincosTest_q));
+    aip1E_6_uid127_sincosTest_combproc: PROCESS (aip1E_6_uid127_sincosTest_a, aip1E_6_uid127_sincosTest_b, aip1E_6_uid127_sincosTest_s)
+    BEGIN
+        IF (aip1E_6_uid127_sincosTest_s = "1") THEN
+            aip1E_6_uid127_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_6_uid127_sincosTest_a) + SIGNED(aip1E_6_uid127_sincosTest_b));
+        ELSE
+            aip1E_6_uid127_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_6_uid127_sincosTest_a) - SIGNED(aip1E_6_uid127_sincosTest_b));
+        END IF;
+    END PROCESS;
+    aip1E_6_uid127_sincosTest_q <= aip1E_6_uid127_sincosTest_o(16 downto 0);
+
+    -- aip1E_uid130_sincosTest(BITSELECT,129)@7
+    aip1E_uid130_sincosTest_in <= STD_LOGIC_VECTOR(aip1E_6_uid127_sincosTest_q(14 downto 0));
+    aip1E_uid130_sincosTest_b <= STD_LOGIC_VECTOR(aip1E_uid130_sincosTest_in(14 downto 0));
+
+    -- redist13_aip1E_uid130_sincosTest_b_1(DELAY,245)
+    redist13_aip1E_uid130_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 15, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => aip1E_uid130_sincosTest_b, xout => redist13_aip1E_uid130_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- xMSB_uid131_sincosTest(BITSELECT,130)@8
+    xMSB_uid131_sincosTest_b <= STD_LOGIC_VECTOR(redist13_aip1E_uid130_sincosTest_b_1_q(14 downto 14));
+
+    -- cstArcTan2Mi_6_uid138_sincosTest(CONSTANT,137)
+    cstArcTan2Mi_6_uid138_sincosTest_q <= "0100000000000";
+
+    -- highABits_uid144_sincosTest(BITSELECT,143)@8
+    highABits_uid144_sincosTest_b <= STD_LOGIC_VECTOR(redist13_aip1E_uid130_sincosTest_b_1_q(14 downto 1));
+
+    -- aip1E_7high_uid145_sincosTest(ADDSUB,144)@8
+    aip1E_7high_uid145_sincosTest_s <= xMSB_uid131_sincosTest_b;
+    aip1E_7high_uid145_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((15 downto 14 => highABits_uid144_sincosTest_b(13)) & highABits_uid144_sincosTest_b));
+    aip1E_7high_uid145_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((15 downto 13 => cstArcTan2Mi_6_uid138_sincosTest_q(12)) & cstArcTan2Mi_6_uid138_sincosTest_q));
+    aip1E_7high_uid145_sincosTest_combproc: PROCESS (aip1E_7high_uid145_sincosTest_a, aip1E_7high_uid145_sincosTest_b, aip1E_7high_uid145_sincosTest_s)
+    BEGIN
+        IF (aip1E_7high_uid145_sincosTest_s = "1") THEN
+            aip1E_7high_uid145_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_7high_uid145_sincosTest_a) + SIGNED(aip1E_7high_uid145_sincosTest_b));
+        ELSE
+            aip1E_7high_uid145_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_7high_uid145_sincosTest_a) - SIGNED(aip1E_7high_uid145_sincosTest_b));
+        END IF;
+    END PROCESS;
+    aip1E_7high_uid145_sincosTest_q <= aip1E_7high_uid145_sincosTest_o(14 downto 0);
+
+    -- lowRangeA_uid143_sincosTest(BITSELECT,142)@8
+    lowRangeA_uid143_sincosTest_in <= redist13_aip1E_uid130_sincosTest_b_1_q(0 downto 0);
+    lowRangeA_uid143_sincosTest_b <= lowRangeA_uid143_sincosTest_in(0 downto 0);
+
+    -- aip1E_7_uid146_sincosTest(BITJOIN,145)@8
+    aip1E_7_uid146_sincosTest_q <= aip1E_7high_uid145_sincosTest_q & lowRangeA_uid143_sincosTest_b;
+
+    -- aip1E_uid149_sincosTest(BITSELECT,148)@8
+    aip1E_uid149_sincosTest_in <= STD_LOGIC_VECTOR(aip1E_7_uid146_sincosTest_q(13 downto 0));
+    aip1E_uid149_sincosTest_b <= STD_LOGIC_VECTOR(aip1E_uid149_sincosTest_in(13 downto 0));
+
+    -- redist10_aip1E_uid149_sincosTest_b_1(DELAY,242)
+    redist10_aip1E_uid149_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 14, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => aip1E_uid149_sincosTest_b, xout => redist10_aip1E_uid149_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- xMSB_uid150_sincosTest(BITSELECT,149)@9
+    xMSB_uid150_sincosTest_b <= STD_LOGIC_VECTOR(redist10_aip1E_uid149_sincosTest_b_1_q(13 downto 13));
+
+    -- cstArcTan2Mi_7_uid157_sincosTest(CONSTANT,156)
+    cstArcTan2Mi_7_uid157_sincosTest_q <= "010000000000";
+
+    -- highABits_uid163_sincosTest(BITSELECT,162)@9
+    highABits_uid163_sincosTest_b <= STD_LOGIC_VECTOR(redist10_aip1E_uid149_sincosTest_b_1_q(13 downto 1));
+
+    -- aip1E_8high_uid164_sincosTest(ADDSUB,163)@9
+    aip1E_8high_uid164_sincosTest_s <= xMSB_uid150_sincosTest_b;
+    aip1E_8high_uid164_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((14 downto 13 => highABits_uid163_sincosTest_b(12)) & highABits_uid163_sincosTest_b));
+    aip1E_8high_uid164_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((14 downto 12 => cstArcTan2Mi_7_uid157_sincosTest_q(11)) & cstArcTan2Mi_7_uid157_sincosTest_q));
+    aip1E_8high_uid164_sincosTest_combproc: PROCESS (aip1E_8high_uid164_sincosTest_a, aip1E_8high_uid164_sincosTest_b, aip1E_8high_uid164_sincosTest_s)
+    BEGIN
+        IF (aip1E_8high_uid164_sincosTest_s = "1") THEN
+            aip1E_8high_uid164_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_8high_uid164_sincosTest_a) + SIGNED(aip1E_8high_uid164_sincosTest_b));
+        ELSE
+            aip1E_8high_uid164_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_8high_uid164_sincosTest_a) - SIGNED(aip1E_8high_uid164_sincosTest_b));
+        END IF;
+    END PROCESS;
+    aip1E_8high_uid164_sincosTest_q <= aip1E_8high_uid164_sincosTest_o(13 downto 0);
+
+    -- lowRangeA_uid162_sincosTest(BITSELECT,161)@9
+    lowRangeA_uid162_sincosTest_in <= redist10_aip1E_uid149_sincosTest_b_1_q(0 downto 0);
+    lowRangeA_uid162_sincosTest_b <= lowRangeA_uid162_sincosTest_in(0 downto 0);
+
+    -- aip1E_8_uid165_sincosTest(BITJOIN,164)@9
+    aip1E_8_uid165_sincosTest_q <= aip1E_8high_uid164_sincosTest_q & lowRangeA_uid162_sincosTest_b;
+
+    -- aip1E_uid168_sincosTest(BITSELECT,167)@9
+    aip1E_uid168_sincosTest_in <= STD_LOGIC_VECTOR(aip1E_8_uid165_sincosTest_q(12 downto 0));
+    aip1E_uid168_sincosTest_b <= STD_LOGIC_VECTOR(aip1E_uid168_sincosTest_in(12 downto 0));
+
+    -- redist7_aip1E_uid168_sincosTest_b_1(DELAY,239)
+    redist7_aip1E_uid168_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 13, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => aip1E_uid168_sincosTest_b, xout => redist7_aip1E_uid168_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- xMSB_uid169_sincosTest(BITSELECT,168)@10
+    xMSB_uid169_sincosTest_b <= STD_LOGIC_VECTOR(redist7_aip1E_uid168_sincosTest_b_1_q(12 downto 12));
+
+    -- cstArcTan2Mi_8_uid176_sincosTest(CONSTANT,175)
+    cstArcTan2Mi_8_uid176_sincosTest_q <= "01000000000";
+
+    -- highABits_uid182_sincosTest(BITSELECT,181)@10
+    highABits_uid182_sincosTest_b <= STD_LOGIC_VECTOR(redist7_aip1E_uid168_sincosTest_b_1_q(12 downto 1));
+
+    -- aip1E_9high_uid183_sincosTest(ADDSUB,182)@10
+    aip1E_9high_uid183_sincosTest_s <= xMSB_uid169_sincosTest_b;
+    aip1E_9high_uid183_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((13 downto 12 => highABits_uid182_sincosTest_b(11)) & highABits_uid182_sincosTest_b));
+    aip1E_9high_uid183_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((13 downto 11 => cstArcTan2Mi_8_uid176_sincosTest_q(10)) & cstArcTan2Mi_8_uid176_sincosTest_q));
+    aip1E_9high_uid183_sincosTest_combproc: PROCESS (aip1E_9high_uid183_sincosTest_a, aip1E_9high_uid183_sincosTest_b, aip1E_9high_uid183_sincosTest_s)
+    BEGIN
+        IF (aip1E_9high_uid183_sincosTest_s = "1") THEN
+            aip1E_9high_uid183_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_9high_uid183_sincosTest_a) + SIGNED(aip1E_9high_uid183_sincosTest_b));
+        ELSE
+            aip1E_9high_uid183_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_9high_uid183_sincosTest_a) - SIGNED(aip1E_9high_uid183_sincosTest_b));
+        END IF;
+    END PROCESS;
+    aip1E_9high_uid183_sincosTest_q <= aip1E_9high_uid183_sincosTest_o(12 downto 0);
+
+    -- lowRangeA_uid181_sincosTest(BITSELECT,180)@10
+    lowRangeA_uid181_sincosTest_in <= redist7_aip1E_uid168_sincosTest_b_1_q(0 downto 0);
+    lowRangeA_uid181_sincosTest_b <= lowRangeA_uid181_sincosTest_in(0 downto 0);
+
+    -- aip1E_9_uid184_sincosTest(BITJOIN,183)@10
+    aip1E_9_uid184_sincosTest_q <= aip1E_9high_uid183_sincosTest_q & lowRangeA_uid181_sincosTest_b;
+
+    -- aip1E_uid187_sincosTest(BITSELECT,186)@10
+    aip1E_uid187_sincosTest_in <= STD_LOGIC_VECTOR(aip1E_9_uid184_sincosTest_q(11 downto 0));
+    aip1E_uid187_sincosTest_b <= STD_LOGIC_VECTOR(aip1E_uid187_sincosTest_in(11 downto 0));
+
+    -- xMSB_uid188_sincosTest(BITSELECT,187)@10
+    xMSB_uid188_sincosTest_b <= STD_LOGIC_VECTOR(aip1E_uid187_sincosTest_b(11 downto 11));
+
+    -- redist4_xMSB_uid188_sincosTest_b_1(DELAY,236)
+    redist4_xMSB_uid188_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 1, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => xMSB_uid188_sincosTest_b, xout => redist4_xMSB_uid188_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- signOfSelectionSignal_uid190_sincosTest(LOGICAL,189)@11
+    signOfSelectionSignal_uid190_sincosTest_q <= not (redist4_xMSB_uid188_sincosTest_b_1_q);
+
+    -- signOfSelectionSignal_uid152_sincosTest(LOGICAL,151)@9
+    signOfSelectionSignal_uid152_sincosTest_q <= not (xMSB_uid150_sincosTest_b);
+
+    -- signOfSelectionSignal_uid117_sincosTest(LOGICAL,116)@7
+    signOfSelectionSignal_uid117_sincosTest_q <= not (xMSB_uid115_sincosTest_b);
+
+    -- signOfSelectionSignal_uid85_sincosTest(LOGICAL,84)@5
+    signOfSelectionSignal_uid85_sincosTest_q <= not (xMSB_uid83_sincosTest_b);
+
+    -- signOfSelectionSignal_uid53_sincosTest(LOGICAL,52)@3
+    signOfSelectionSignal_uid53_sincosTest_q <= not (xMSB_uid51_sincosTest_b);
+
+    -- cstOneOverK_uid22_sincosTest(CONSTANT,21)
+    cstOneOverK_uid22_sincosTest_q <= "1001101101110100111011";
+
+    -- xip1E_1_uid32_sincosTest(BITJOIN,31)@3
+    xip1E_1_uid32_sincosTest_q <= STD_LOGIC_VECTOR((2 downto 1 => GND_q(0)) & GND_q) & cstOneOverK_uid22_sincosTest_q;
+
+    -- xip1_1_topRange_uid41_sincosTest(BITSELECT,40)@3
+    xip1_1_topRange_uid41_sincosTest_in <= xip1E_1_uid32_sincosTest_q(23 downto 0);
+    xip1_1_topRange_uid41_sincosTest_b <= xip1_1_topRange_uid41_sincosTest_in(23 downto 0);
+
+    -- xip1_1_mergedSignalTM_uid42_sincosTest(BITJOIN,41)@3
+    xip1_1_mergedSignalTM_uid42_sincosTest_q <= GND_q & xip1_1_topRange_uid41_sincosTest_b;
+
+    -- twoToMiSiXip_uid56_sincosTest(BITSELECT,55)@3
+    twoToMiSiXip_uid56_sincosTest_b <= STD_LOGIC_VECTOR(xip1_1_mergedSignalTM_uid42_sincosTest_q(24 downto 1));
+
+    -- xMSB_uid44_sincosTest(BITSELECT,43)@3
+    xMSB_uid44_sincosTest_b <= STD_LOGIC_VECTOR(yip1E_1sumAHighB_uid35_sincosTest_q(23 downto 23));
+
+    -- yip1E_1CostZeroPaddingA_uid33_sincosTest(CONSTANT,32)
+    yip1E_1CostZeroPaddingA_uid33_sincosTest_q <= "0000000000000000000000";
+
+    -- yip1E_1NA_uid34_sincosTest(BITJOIN,33)@2
+    yip1E_1NA_uid34_sincosTest_q <= GND_q & yip1E_1CostZeroPaddingA_uid33_sincosTest_q;
+
+    -- yip1E_1sumAHighB_uid35_sincosTest(ADDSUB,34)@2 + 1
+    yip1E_1sumAHighB_uid35_sincosTest_s <= VCC_q;
+    yip1E_1sumAHighB_uid35_sincosTest_a <= STD_LOGIC_VECTOR("00" & yip1E_1NA_uid34_sincosTest_q);
+    yip1E_1sumAHighB_uid35_sincosTest_b <= STD_LOGIC_VECTOR("000" & cstOneOverK_uid22_sincosTest_q);
+    yip1E_1sumAHighB_uid35_sincosTest_clkproc: PROCESS (clk, areset)
+    BEGIN
+        IF (areset = '1') THEN
+            yip1E_1sumAHighB_uid35_sincosTest_o <= (others => '0');
+        ELSIF (clk'EVENT AND clk = '1') THEN
+            IF (yip1E_1sumAHighB_uid35_sincosTest_s = "1") THEN
+                yip1E_1sumAHighB_uid35_sincosTest_o <= STD_LOGIC_VECTOR(UNSIGNED(yip1E_1sumAHighB_uid35_sincosTest_a) + UNSIGNED(yip1E_1sumAHighB_uid35_sincosTest_b));
+            ELSE
+                yip1E_1sumAHighB_uid35_sincosTest_o <= STD_LOGIC_VECTOR(UNSIGNED(yip1E_1sumAHighB_uid35_sincosTest_a) - UNSIGNED(yip1E_1sumAHighB_uid35_sincosTest_b));
+            END IF;
+        END IF;
+    END PROCESS;
+    yip1E_1sumAHighB_uid35_sincosTest_q <= yip1E_1sumAHighB_uid35_sincosTest_o(23 downto 0);
+
+    -- yip1_1_mergedSignalTM_uid48_sincosTest(BITJOIN,47)@3
+    yip1_1_mergedSignalTM_uid48_sincosTest_q <= xMSB_uid44_sincosTest_b & yip1E_1sumAHighB_uid35_sincosTest_q;
+
+    -- yip1E_2_uid61_sincosTest(ADDSUB,60)@3
+    yip1E_2_uid61_sincosTest_s <= signOfSelectionSignal_uid53_sincosTest_q;
+    yip1E_2_uid61_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 25 => yip1_1_mergedSignalTM_uid48_sincosTest_q(24)) & yip1_1_mergedSignalTM_uid48_sincosTest_q));
+    yip1E_2_uid61_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 24 => twoToMiSiXip_uid56_sincosTest_b(23)) & twoToMiSiXip_uid56_sincosTest_b));
+    yip1E_2_uid61_sincosTest_combproc: PROCESS (yip1E_2_uid61_sincosTest_a, yip1E_2_uid61_sincosTest_b, yip1E_2_uid61_sincosTest_s)
+    BEGIN
+        IF (yip1E_2_uid61_sincosTest_s = "1") THEN
+            yip1E_2_uid61_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_2_uid61_sincosTest_a) + SIGNED(yip1E_2_uid61_sincosTest_b));
+        ELSE
+            yip1E_2_uid61_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_2_uid61_sincosTest_a) - SIGNED(yip1E_2_uid61_sincosTest_b));
+        END IF;
+    END PROCESS;
+    yip1E_2_uid61_sincosTest_q <= yip1E_2_uid61_sincosTest_o(25 downto 0);
+
+    -- yip1_2_uid65_sincosTest(BITSELECT,64)@3
+    yip1_2_uid65_sincosTest_in <= STD_LOGIC_VECTOR(yip1E_2_uid61_sincosTest_q(24 downto 0));
+    yip1_2_uid65_sincosTest_b <= STD_LOGIC_VECTOR(yip1_2_uid65_sincosTest_in(24 downto 0));
+
+    -- redist26_yip1_2_uid65_sincosTest_b_1(DELAY,258)
+    redist26_yip1_2_uid65_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 25, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => yip1_2_uid65_sincosTest_b, xout => redist26_yip1_2_uid65_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- twoToMiSiYip_uid73_sincosTest(BITSELECT,72)@4
+    twoToMiSiYip_uid73_sincosTest_b <= STD_LOGIC_VECTOR(redist26_yip1_2_uid65_sincosTest_b_1_q(24 downto 2));
+
+    -- twoToMiSiYip_uid57_sincosTest(BITSELECT,56)@3
+    twoToMiSiYip_uid57_sincosTest_b <= STD_LOGIC_VECTOR(yip1_1_mergedSignalTM_uid48_sincosTest_q(24 downto 1));
+
+    -- xip1E_2_uid60_sincosTest(ADDSUB,59)@3
+    xip1E_2_uid60_sincosTest_s <= xMSB_uid51_sincosTest_b;
+    xip1E_2_uid60_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 25 => xip1_1_mergedSignalTM_uid42_sincosTest_q(24)) & xip1_1_mergedSignalTM_uid42_sincosTest_q));
+    xip1E_2_uid60_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 24 => twoToMiSiYip_uid57_sincosTest_b(23)) & twoToMiSiYip_uid57_sincosTest_b));
+    xip1E_2_uid60_sincosTest_combproc: PROCESS (xip1E_2_uid60_sincosTest_a, xip1E_2_uid60_sincosTest_b, xip1E_2_uid60_sincosTest_s)
+    BEGIN
+        IF (xip1E_2_uid60_sincosTest_s = "1") THEN
+            xip1E_2_uid60_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_2_uid60_sincosTest_a) + SIGNED(xip1E_2_uid60_sincosTest_b));
+        ELSE
+            xip1E_2_uid60_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_2_uid60_sincosTest_a) - SIGNED(xip1E_2_uid60_sincosTest_b));
+        END IF;
+    END PROCESS;
+    xip1E_2_uid60_sincosTest_q <= xip1E_2_uid60_sincosTest_o(25 downto 0);
+
+    -- xip1_2_uid64_sincosTest(BITSELECT,63)@3
+    xip1_2_uid64_sincosTest_in <= STD_LOGIC_VECTOR(xip1E_2_uid60_sincosTest_q(24 downto 0));
+    xip1_2_uid64_sincosTest_b <= STD_LOGIC_VECTOR(xip1_2_uid64_sincosTest_in(24 downto 0));
+
+    -- redist27_xip1_2_uid64_sincosTest_b_1(DELAY,259)
+    redist27_xip1_2_uid64_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 25, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => xip1_2_uid64_sincosTest_b, xout => redist27_xip1_2_uid64_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- xip1E_3_uid76_sincosTest(ADDSUB,75)@4
+    xip1E_3_uid76_sincosTest_s <= xMSB_uid67_sincosTest_b;
+    xip1E_3_uid76_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 25 => redist27_xip1_2_uid64_sincosTest_b_1_q(24)) & redist27_xip1_2_uid64_sincosTest_b_1_q));
+    xip1E_3_uid76_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 23 => twoToMiSiYip_uid73_sincosTest_b(22)) & twoToMiSiYip_uid73_sincosTest_b));
+    xip1E_3_uid76_sincosTest_combproc: PROCESS (xip1E_3_uid76_sincosTest_a, xip1E_3_uid76_sincosTest_b, xip1E_3_uid76_sincosTest_s)
+    BEGIN
+        IF (xip1E_3_uid76_sincosTest_s = "1") THEN
+            xip1E_3_uid76_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_3_uid76_sincosTest_a) + SIGNED(xip1E_3_uid76_sincosTest_b));
+        ELSE
+            xip1E_3_uid76_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_3_uid76_sincosTest_a) - SIGNED(xip1E_3_uid76_sincosTest_b));
+        END IF;
+    END PROCESS;
+    xip1E_3_uid76_sincosTest_q <= xip1E_3_uid76_sincosTest_o(25 downto 0);
+
+    -- xip1_3_uid80_sincosTest(BITSELECT,79)@4
+    xip1_3_uid80_sincosTest_in <= STD_LOGIC_VECTOR(xip1E_3_uid76_sincosTest_q(24 downto 0));
+    xip1_3_uid80_sincosTest_b <= STD_LOGIC_VECTOR(xip1_3_uid80_sincosTest_in(24 downto 0));
+
+    -- redist24_xip1_3_uid80_sincosTest_b_1(DELAY,256)
+    redist24_xip1_3_uid80_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 25, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => xip1_3_uid80_sincosTest_b, xout => redist24_xip1_3_uid80_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- twoToMiSiXip_uid88_sincosTest(BITSELECT,87)@5
+    twoToMiSiXip_uid88_sincosTest_b <= STD_LOGIC_VECTOR(redist24_xip1_3_uid80_sincosTest_b_1_q(24 downto 3));
+
+    -- signOfSelectionSignal_uid69_sincosTest(LOGICAL,68)@4
+    signOfSelectionSignal_uid69_sincosTest_q <= not (xMSB_uid67_sincosTest_b);
+
+    -- twoToMiSiXip_uid72_sincosTest(BITSELECT,71)@4
+    twoToMiSiXip_uid72_sincosTest_b <= STD_LOGIC_VECTOR(redist27_xip1_2_uid64_sincosTest_b_1_q(24 downto 2));
+
+    -- yip1E_3_uid77_sincosTest(ADDSUB,76)@4
+    yip1E_3_uid77_sincosTest_s <= signOfSelectionSignal_uid69_sincosTest_q;
+    yip1E_3_uid77_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 25 => redist26_yip1_2_uid65_sincosTest_b_1_q(24)) & redist26_yip1_2_uid65_sincosTest_b_1_q));
+    yip1E_3_uid77_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 23 => twoToMiSiXip_uid72_sincosTest_b(22)) & twoToMiSiXip_uid72_sincosTest_b));
+    yip1E_3_uid77_sincosTest_combproc: PROCESS (yip1E_3_uid77_sincosTest_a, yip1E_3_uid77_sincosTest_b, yip1E_3_uid77_sincosTest_s)
+    BEGIN
+        IF (yip1E_3_uid77_sincosTest_s = "1") THEN
+            yip1E_3_uid77_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_3_uid77_sincosTest_a) + SIGNED(yip1E_3_uid77_sincosTest_b));
+        ELSE
+            yip1E_3_uid77_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_3_uid77_sincosTest_a) - SIGNED(yip1E_3_uid77_sincosTest_b));
+        END IF;
+    END PROCESS;
+    yip1E_3_uid77_sincosTest_q <= yip1E_3_uid77_sincosTest_o(25 downto 0);
+
+    -- yip1_3_uid81_sincosTest(BITSELECT,80)@4
+    yip1_3_uid81_sincosTest_in <= STD_LOGIC_VECTOR(yip1E_3_uid77_sincosTest_q(24 downto 0));
+    yip1_3_uid81_sincosTest_b <= STD_LOGIC_VECTOR(yip1_3_uid81_sincosTest_in(24 downto 0));
+
+    -- redist23_yip1_3_uid81_sincosTest_b_1(DELAY,255)
+    redist23_yip1_3_uid81_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 25, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => yip1_3_uid81_sincosTest_b, xout => redist23_yip1_3_uid81_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- yip1E_4_uid93_sincosTest(ADDSUB,92)@5
+    yip1E_4_uid93_sincosTest_s <= signOfSelectionSignal_uid85_sincosTest_q;
+    yip1E_4_uid93_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 25 => redist23_yip1_3_uid81_sincosTest_b_1_q(24)) & redist23_yip1_3_uid81_sincosTest_b_1_q));
+    yip1E_4_uid93_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 22 => twoToMiSiXip_uid88_sincosTest_b(21)) & twoToMiSiXip_uid88_sincosTest_b));
+    yip1E_4_uid93_sincosTest_combproc: PROCESS (yip1E_4_uid93_sincosTest_a, yip1E_4_uid93_sincosTest_b, yip1E_4_uid93_sincosTest_s)
+    BEGIN
+        IF (yip1E_4_uid93_sincosTest_s = "1") THEN
+            yip1E_4_uid93_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_4_uid93_sincosTest_a) + SIGNED(yip1E_4_uid93_sincosTest_b));
+        ELSE
+            yip1E_4_uid93_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_4_uid93_sincosTest_a) - SIGNED(yip1E_4_uid93_sincosTest_b));
+        END IF;
+    END PROCESS;
+    yip1E_4_uid93_sincosTest_q <= yip1E_4_uid93_sincosTest_o(25 downto 0);
+
+    -- yip1_4_uid97_sincosTest(BITSELECT,96)@5
+    yip1_4_uid97_sincosTest_in <= STD_LOGIC_VECTOR(yip1E_4_uid93_sincosTest_q(24 downto 0));
+    yip1_4_uid97_sincosTest_b <= STD_LOGIC_VECTOR(yip1_4_uid97_sincosTest_in(24 downto 0));
+
+    -- redist20_yip1_4_uid97_sincosTest_b_1(DELAY,252)
+    redist20_yip1_4_uid97_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 25, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => yip1_4_uid97_sincosTest_b, xout => redist20_yip1_4_uid97_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- twoToMiSiYip_uid105_sincosTest(BITSELECT,104)@6
+    twoToMiSiYip_uid105_sincosTest_b <= STD_LOGIC_VECTOR(redist20_yip1_4_uid97_sincosTest_b_1_q(24 downto 4));
+
+    -- twoToMiSiYip_uid89_sincosTest(BITSELECT,88)@5
+    twoToMiSiYip_uid89_sincosTest_b <= STD_LOGIC_VECTOR(redist23_yip1_3_uid81_sincosTest_b_1_q(24 downto 3));
+
+    -- xip1E_4_uid92_sincosTest(ADDSUB,91)@5
+    xip1E_4_uid92_sincosTest_s <= xMSB_uid83_sincosTest_b;
+    xip1E_4_uid92_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 25 => redist24_xip1_3_uid80_sincosTest_b_1_q(24)) & redist24_xip1_3_uid80_sincosTest_b_1_q));
+    xip1E_4_uid92_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 22 => twoToMiSiYip_uid89_sincosTest_b(21)) & twoToMiSiYip_uid89_sincosTest_b));
+    xip1E_4_uid92_sincosTest_combproc: PROCESS (xip1E_4_uid92_sincosTest_a, xip1E_4_uid92_sincosTest_b, xip1E_4_uid92_sincosTest_s)
+    BEGIN
+        IF (xip1E_4_uid92_sincosTest_s = "1") THEN
+            xip1E_4_uid92_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_4_uid92_sincosTest_a) + SIGNED(xip1E_4_uid92_sincosTest_b));
+        ELSE
+            xip1E_4_uid92_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_4_uid92_sincosTest_a) - SIGNED(xip1E_4_uid92_sincosTest_b));
+        END IF;
+    END PROCESS;
+    xip1E_4_uid92_sincosTest_q <= xip1E_4_uid92_sincosTest_o(25 downto 0);
+
+    -- xip1_4_uid96_sincosTest(BITSELECT,95)@5
+    xip1_4_uid96_sincosTest_in <= STD_LOGIC_VECTOR(xip1E_4_uid92_sincosTest_q(24 downto 0));
+    xip1_4_uid96_sincosTest_b <= STD_LOGIC_VECTOR(xip1_4_uid96_sincosTest_in(24 downto 0));
+
+    -- redist21_xip1_4_uid96_sincosTest_b_1(DELAY,253)
+    redist21_xip1_4_uid96_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 25, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => xip1_4_uid96_sincosTest_b, xout => redist21_xip1_4_uid96_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- xip1E_5_uid108_sincosTest(ADDSUB,107)@6
+    xip1E_5_uid108_sincosTest_s <= xMSB_uid99_sincosTest_b;
+    xip1E_5_uid108_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 25 => redist21_xip1_4_uid96_sincosTest_b_1_q(24)) & redist21_xip1_4_uid96_sincosTest_b_1_q));
+    xip1E_5_uid108_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 21 => twoToMiSiYip_uid105_sincosTest_b(20)) & twoToMiSiYip_uid105_sincosTest_b));
+    xip1E_5_uid108_sincosTest_combproc: PROCESS (xip1E_5_uid108_sincosTest_a, xip1E_5_uid108_sincosTest_b, xip1E_5_uid108_sincosTest_s)
+    BEGIN
+        IF (xip1E_5_uid108_sincosTest_s = "1") THEN
+            xip1E_5_uid108_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_5_uid108_sincosTest_a) + SIGNED(xip1E_5_uid108_sincosTest_b));
+        ELSE
+            xip1E_5_uid108_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_5_uid108_sincosTest_a) - SIGNED(xip1E_5_uid108_sincosTest_b));
+        END IF;
+    END PROCESS;
+    xip1E_5_uid108_sincosTest_q <= xip1E_5_uid108_sincosTest_o(25 downto 0);
+
+    -- xip1_5_uid112_sincosTest(BITSELECT,111)@6
+    xip1_5_uid112_sincosTest_in <= STD_LOGIC_VECTOR(xip1E_5_uid108_sincosTest_q(24 downto 0));
+    xip1_5_uid112_sincosTest_b <= STD_LOGIC_VECTOR(xip1_5_uid112_sincosTest_in(24 downto 0));
+
+    -- redist18_xip1_5_uid112_sincosTest_b_1(DELAY,250)
+    redist18_xip1_5_uid112_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 25, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => xip1_5_uid112_sincosTest_b, xout => redist18_xip1_5_uid112_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- twoToMiSiXip_uid120_sincosTest(BITSELECT,119)@7
+    twoToMiSiXip_uid120_sincosTest_b <= STD_LOGIC_VECTOR(redist18_xip1_5_uid112_sincosTest_b_1_q(24 downto 5));
+
+    -- signOfSelectionSignal_uid101_sincosTest(LOGICAL,100)@6
+    signOfSelectionSignal_uid101_sincosTest_q <= not (xMSB_uid99_sincosTest_b);
+
+    -- twoToMiSiXip_uid104_sincosTest(BITSELECT,103)@6
+    twoToMiSiXip_uid104_sincosTest_b <= STD_LOGIC_VECTOR(redist21_xip1_4_uid96_sincosTest_b_1_q(24 downto 4));
+
+    -- yip1E_5_uid109_sincosTest(ADDSUB,108)@6
+    yip1E_5_uid109_sincosTest_s <= signOfSelectionSignal_uid101_sincosTest_q;
+    yip1E_5_uid109_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 25 => redist20_yip1_4_uid97_sincosTest_b_1_q(24)) & redist20_yip1_4_uid97_sincosTest_b_1_q));
+    yip1E_5_uid109_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 21 => twoToMiSiXip_uid104_sincosTest_b(20)) & twoToMiSiXip_uid104_sincosTest_b));
+    yip1E_5_uid109_sincosTest_combproc: PROCESS (yip1E_5_uid109_sincosTest_a, yip1E_5_uid109_sincosTest_b, yip1E_5_uid109_sincosTest_s)
+    BEGIN
+        IF (yip1E_5_uid109_sincosTest_s = "1") THEN
+            yip1E_5_uid109_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_5_uid109_sincosTest_a) + SIGNED(yip1E_5_uid109_sincosTest_b));
+        ELSE
+            yip1E_5_uid109_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_5_uid109_sincosTest_a) - SIGNED(yip1E_5_uid109_sincosTest_b));
+        END IF;
+    END PROCESS;
+    yip1E_5_uid109_sincosTest_q <= yip1E_5_uid109_sincosTest_o(25 downto 0);
+
+    -- yip1_5_uid113_sincosTest(BITSELECT,112)@6
+    yip1_5_uid113_sincosTest_in <= STD_LOGIC_VECTOR(yip1E_5_uid109_sincosTest_q(24 downto 0));
+    yip1_5_uid113_sincosTest_b <= STD_LOGIC_VECTOR(yip1_5_uid113_sincosTest_in(24 downto 0));
+
+    -- redist17_yip1_5_uid113_sincosTest_b_1(DELAY,249)
+    redist17_yip1_5_uid113_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 25, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => yip1_5_uid113_sincosTest_b, xout => redist17_yip1_5_uid113_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- yip1E_6_uid125_sincosTest(ADDSUB,124)@7
+    yip1E_6_uid125_sincosTest_s <= signOfSelectionSignal_uid117_sincosTest_q;
+    yip1E_6_uid125_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 25 => redist17_yip1_5_uid113_sincosTest_b_1_q(24)) & redist17_yip1_5_uid113_sincosTest_b_1_q));
+    yip1E_6_uid125_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 20 => twoToMiSiXip_uid120_sincosTest_b(19)) & twoToMiSiXip_uid120_sincosTest_b));
+    yip1E_6_uid125_sincosTest_combproc: PROCESS (yip1E_6_uid125_sincosTest_a, yip1E_6_uid125_sincosTest_b, yip1E_6_uid125_sincosTest_s)
+    BEGIN
+        IF (yip1E_6_uid125_sincosTest_s = "1") THEN
+            yip1E_6_uid125_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_6_uid125_sincosTest_a) + SIGNED(yip1E_6_uid125_sincosTest_b));
+        ELSE
+            yip1E_6_uid125_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_6_uid125_sincosTest_a) - SIGNED(yip1E_6_uid125_sincosTest_b));
+        END IF;
+    END PROCESS;
+    yip1E_6_uid125_sincosTest_q <= yip1E_6_uid125_sincosTest_o(25 downto 0);
+
+    -- yip1_6_uid129_sincosTest(BITSELECT,128)@7
+    yip1_6_uid129_sincosTest_in <= STD_LOGIC_VECTOR(yip1E_6_uid125_sincosTest_q(24 downto 0));
+    yip1_6_uid129_sincosTest_b <= STD_LOGIC_VECTOR(yip1_6_uid129_sincosTest_in(24 downto 0));
+
+    -- redist14_yip1_6_uid129_sincosTest_b_1(DELAY,246)
+    redist14_yip1_6_uid129_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 25, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => yip1_6_uid129_sincosTest_b, xout => redist14_yip1_6_uid129_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- twoToMiSiYip_uid137_sincosTest(BITSELECT,136)@8
+    twoToMiSiYip_uid137_sincosTest_b <= STD_LOGIC_VECTOR(redist14_yip1_6_uid129_sincosTest_b_1_q(24 downto 6));
+
+    -- twoToMiSiYip_uid121_sincosTest(BITSELECT,120)@7
+    twoToMiSiYip_uid121_sincosTest_b <= STD_LOGIC_VECTOR(redist17_yip1_5_uid113_sincosTest_b_1_q(24 downto 5));
+
+    -- xip1E_6_uid124_sincosTest(ADDSUB,123)@7
+    xip1E_6_uid124_sincosTest_s <= xMSB_uid115_sincosTest_b;
+    xip1E_6_uid124_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 25 => redist18_xip1_5_uid112_sincosTest_b_1_q(24)) & redist18_xip1_5_uid112_sincosTest_b_1_q));
+    xip1E_6_uid124_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 20 => twoToMiSiYip_uid121_sincosTest_b(19)) & twoToMiSiYip_uid121_sincosTest_b));
+    xip1E_6_uid124_sincosTest_combproc: PROCESS (xip1E_6_uid124_sincosTest_a, xip1E_6_uid124_sincosTest_b, xip1E_6_uid124_sincosTest_s)
+    BEGIN
+        IF (xip1E_6_uid124_sincosTest_s = "1") THEN
+            xip1E_6_uid124_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_6_uid124_sincosTest_a) + SIGNED(xip1E_6_uid124_sincosTest_b));
+        ELSE
+            xip1E_6_uid124_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_6_uid124_sincosTest_a) - SIGNED(xip1E_6_uid124_sincosTest_b));
+        END IF;
+    END PROCESS;
+    xip1E_6_uid124_sincosTest_q <= xip1E_6_uid124_sincosTest_o(25 downto 0);
+
+    -- xip1_6_uid128_sincosTest(BITSELECT,127)@7
+    xip1_6_uid128_sincosTest_in <= STD_LOGIC_VECTOR(xip1E_6_uid124_sincosTest_q(24 downto 0));
+    xip1_6_uid128_sincosTest_b <= STD_LOGIC_VECTOR(xip1_6_uid128_sincosTest_in(24 downto 0));
+
+    -- redist15_xip1_6_uid128_sincosTest_b_1(DELAY,247)
+    redist15_xip1_6_uid128_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 25, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => xip1_6_uid128_sincosTest_b, xout => redist15_xip1_6_uid128_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- xip1E_7_uid140_sincosTest(ADDSUB,139)@8
+    xip1E_7_uid140_sincosTest_s <= xMSB_uid131_sincosTest_b;
+    xip1E_7_uid140_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 25 => redist15_xip1_6_uid128_sincosTest_b_1_q(24)) & redist15_xip1_6_uid128_sincosTest_b_1_q));
+    xip1E_7_uid140_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 19 => twoToMiSiYip_uid137_sincosTest_b(18)) & twoToMiSiYip_uid137_sincosTest_b));
+    xip1E_7_uid140_sincosTest_combproc: PROCESS (xip1E_7_uid140_sincosTest_a, xip1E_7_uid140_sincosTest_b, xip1E_7_uid140_sincosTest_s)
+    BEGIN
+        IF (xip1E_7_uid140_sincosTest_s = "1") THEN
+            xip1E_7_uid140_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_7_uid140_sincosTest_a) + SIGNED(xip1E_7_uid140_sincosTest_b));
+        ELSE
+            xip1E_7_uid140_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_7_uid140_sincosTest_a) - SIGNED(xip1E_7_uid140_sincosTest_b));
+        END IF;
+    END PROCESS;
+    xip1E_7_uid140_sincosTest_q <= xip1E_7_uid140_sincosTest_o(25 downto 0);
+
+    -- xip1_7_uid147_sincosTest(BITSELECT,146)@8
+    xip1_7_uid147_sincosTest_in <= STD_LOGIC_VECTOR(xip1E_7_uid140_sincosTest_q(24 downto 0));
+    xip1_7_uid147_sincosTest_b <= STD_LOGIC_VECTOR(xip1_7_uid147_sincosTest_in(24 downto 0));
+
+    -- redist12_xip1_7_uid147_sincosTest_b_1(DELAY,244)
+    redist12_xip1_7_uid147_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 25, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => xip1_7_uid147_sincosTest_b, xout => redist12_xip1_7_uid147_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- twoToMiSiXip_uid155_sincosTest(BITSELECT,154)@9
+    twoToMiSiXip_uid155_sincosTest_b <= STD_LOGIC_VECTOR(redist12_xip1_7_uid147_sincosTest_b_1_q(24 downto 7));
+
+    -- signOfSelectionSignal_uid133_sincosTest(LOGICAL,132)@8
+    signOfSelectionSignal_uid133_sincosTest_q <= not (xMSB_uid131_sincosTest_b);
+
+    -- twoToMiSiXip_uid136_sincosTest(BITSELECT,135)@8
+    twoToMiSiXip_uid136_sincosTest_b <= STD_LOGIC_VECTOR(redist15_xip1_6_uid128_sincosTest_b_1_q(24 downto 6));
+
+    -- yip1E_7_uid141_sincosTest(ADDSUB,140)@8
+    yip1E_7_uid141_sincosTest_s <= signOfSelectionSignal_uid133_sincosTest_q;
+    yip1E_7_uid141_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 25 => redist14_yip1_6_uid129_sincosTest_b_1_q(24)) & redist14_yip1_6_uid129_sincosTest_b_1_q));
+    yip1E_7_uid141_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 19 => twoToMiSiXip_uid136_sincosTest_b(18)) & twoToMiSiXip_uid136_sincosTest_b));
+    yip1E_7_uid141_sincosTest_combproc: PROCESS (yip1E_7_uid141_sincosTest_a, yip1E_7_uid141_sincosTest_b, yip1E_7_uid141_sincosTest_s)
+    BEGIN
+        IF (yip1E_7_uid141_sincosTest_s = "1") THEN
+            yip1E_7_uid141_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_7_uid141_sincosTest_a) + SIGNED(yip1E_7_uid141_sincosTest_b));
+        ELSE
+            yip1E_7_uid141_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_7_uid141_sincosTest_a) - SIGNED(yip1E_7_uid141_sincosTest_b));
+        END IF;
+    END PROCESS;
+    yip1E_7_uid141_sincosTest_q <= yip1E_7_uid141_sincosTest_o(25 downto 0);
+
+    -- yip1_7_uid148_sincosTest(BITSELECT,147)@8
+    yip1_7_uid148_sincosTest_in <= STD_LOGIC_VECTOR(yip1E_7_uid141_sincosTest_q(24 downto 0));
+    yip1_7_uid148_sincosTest_b <= STD_LOGIC_VECTOR(yip1_7_uid148_sincosTest_in(24 downto 0));
+
+    -- redist11_yip1_7_uid148_sincosTest_b_1(DELAY,243)
+    redist11_yip1_7_uid148_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 25, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => yip1_7_uid148_sincosTest_b, xout => redist11_yip1_7_uid148_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- yip1E_8_uid160_sincosTest(ADDSUB,159)@9
+    yip1E_8_uid160_sincosTest_s <= signOfSelectionSignal_uid152_sincosTest_q;
+    yip1E_8_uid160_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 25 => redist11_yip1_7_uid148_sincosTest_b_1_q(24)) & redist11_yip1_7_uid148_sincosTest_b_1_q));
+    yip1E_8_uid160_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 18 => twoToMiSiXip_uid155_sincosTest_b(17)) & twoToMiSiXip_uid155_sincosTest_b));
+    yip1E_8_uid160_sincosTest_combproc: PROCESS (yip1E_8_uid160_sincosTest_a, yip1E_8_uid160_sincosTest_b, yip1E_8_uid160_sincosTest_s)
+    BEGIN
+        IF (yip1E_8_uid160_sincosTest_s = "1") THEN
+            yip1E_8_uid160_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_8_uid160_sincosTest_a) + SIGNED(yip1E_8_uid160_sincosTest_b));
+        ELSE
+            yip1E_8_uid160_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_8_uid160_sincosTest_a) - SIGNED(yip1E_8_uid160_sincosTest_b));
+        END IF;
+    END PROCESS;
+    yip1E_8_uid160_sincosTest_q <= yip1E_8_uid160_sincosTest_o(25 downto 0);
+
+    -- yip1_8_uid167_sincosTest(BITSELECT,166)@9
+    yip1_8_uid167_sincosTest_in <= STD_LOGIC_VECTOR(yip1E_8_uid160_sincosTest_q(24 downto 0));
+    yip1_8_uid167_sincosTest_b <= STD_LOGIC_VECTOR(yip1_8_uid167_sincosTest_in(24 downto 0));
+
+    -- redist8_yip1_8_uid167_sincosTest_b_1(DELAY,240)
+    redist8_yip1_8_uid167_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 25, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => yip1_8_uid167_sincosTest_b, xout => redist8_yip1_8_uid167_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- twoToMiSiYip_uid175_sincosTest(BITSELECT,174)@10
+    twoToMiSiYip_uid175_sincosTest_b <= STD_LOGIC_VECTOR(redist8_yip1_8_uid167_sincosTest_b_1_q(24 downto 8));
+
+    -- twoToMiSiYip_uid156_sincosTest(BITSELECT,155)@9
+    twoToMiSiYip_uid156_sincosTest_b <= STD_LOGIC_VECTOR(redist11_yip1_7_uid148_sincosTest_b_1_q(24 downto 7));
+
+    -- xip1E_8_uid159_sincosTest(ADDSUB,158)@9
+    xip1E_8_uid159_sincosTest_s <= xMSB_uid150_sincosTest_b;
+    xip1E_8_uid159_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 25 => redist12_xip1_7_uid147_sincosTest_b_1_q(24)) & redist12_xip1_7_uid147_sincosTest_b_1_q));
+    xip1E_8_uid159_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 18 => twoToMiSiYip_uid156_sincosTest_b(17)) & twoToMiSiYip_uid156_sincosTest_b));
+    xip1E_8_uid159_sincosTest_combproc: PROCESS (xip1E_8_uid159_sincosTest_a, xip1E_8_uid159_sincosTest_b, xip1E_8_uid159_sincosTest_s)
+    BEGIN
+        IF (xip1E_8_uid159_sincosTest_s = "1") THEN
+            xip1E_8_uid159_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_8_uid159_sincosTest_a) + SIGNED(xip1E_8_uid159_sincosTest_b));
+        ELSE
+            xip1E_8_uid159_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_8_uid159_sincosTest_a) - SIGNED(xip1E_8_uid159_sincosTest_b));
+        END IF;
+    END PROCESS;
+    xip1E_8_uid159_sincosTest_q <= xip1E_8_uid159_sincosTest_o(25 downto 0);
+
+    -- xip1_8_uid166_sincosTest(BITSELECT,165)@9
+    xip1_8_uid166_sincosTest_in <= STD_LOGIC_VECTOR(xip1E_8_uid159_sincosTest_q(24 downto 0));
+    xip1_8_uid166_sincosTest_b <= STD_LOGIC_VECTOR(xip1_8_uid166_sincosTest_in(24 downto 0));
+
+    -- redist9_xip1_8_uid166_sincosTest_b_1(DELAY,241)
+    redist9_xip1_8_uid166_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 25, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => xip1_8_uid166_sincosTest_b, xout => redist9_xip1_8_uid166_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- xip1E_9_uid178_sincosTest(ADDSUB,177)@10
+    xip1E_9_uid178_sincosTest_s <= xMSB_uid169_sincosTest_b;
+    xip1E_9_uid178_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 25 => redist9_xip1_8_uid166_sincosTest_b_1_q(24)) & redist9_xip1_8_uid166_sincosTest_b_1_q));
+    xip1E_9_uid178_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 17 => twoToMiSiYip_uid175_sincosTest_b(16)) & twoToMiSiYip_uid175_sincosTest_b));
+    xip1E_9_uid178_sincosTest_combproc: PROCESS (xip1E_9_uid178_sincosTest_a, xip1E_9_uid178_sincosTest_b, xip1E_9_uid178_sincosTest_s)
+    BEGIN
+        IF (xip1E_9_uid178_sincosTest_s = "1") THEN
+            xip1E_9_uid178_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_9_uid178_sincosTest_a) + SIGNED(xip1E_9_uid178_sincosTest_b));
+        ELSE
+            xip1E_9_uid178_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_9_uid178_sincosTest_a) - SIGNED(xip1E_9_uid178_sincosTest_b));
+        END IF;
+    END PROCESS;
+    xip1E_9_uid178_sincosTest_q <= xip1E_9_uid178_sincosTest_o(25 downto 0);
+
+    -- xip1_9_uid185_sincosTest(BITSELECT,184)@10
+    xip1_9_uid185_sincosTest_in <= STD_LOGIC_VECTOR(xip1E_9_uid178_sincosTest_q(24 downto 0));
+    xip1_9_uid185_sincosTest_b <= STD_LOGIC_VECTOR(xip1_9_uid185_sincosTest_in(24 downto 0));
+
+    -- redist6_xip1_9_uid185_sincosTest_b_1(DELAY,238)
+    redist6_xip1_9_uid185_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 25, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => xip1_9_uid185_sincosTest_b, xout => redist6_xip1_9_uid185_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- twoToMiSiXip_uid193_sincosTest(BITSELECT,192)@11
+    twoToMiSiXip_uid193_sincosTest_b <= STD_LOGIC_VECTOR(redist6_xip1_9_uid185_sincosTest_b_1_q(24 downto 9));
+
+    -- signOfSelectionSignal_uid171_sincosTest(LOGICAL,170)@10
+    signOfSelectionSignal_uid171_sincosTest_q <= not (xMSB_uid169_sincosTest_b);
+
+    -- twoToMiSiXip_uid174_sincosTest(BITSELECT,173)@10
+    twoToMiSiXip_uid174_sincosTest_b <= STD_LOGIC_VECTOR(redist9_xip1_8_uid166_sincosTest_b_1_q(24 downto 8));
+
+    -- yip1E_9_uid179_sincosTest(ADDSUB,178)@10
+    yip1E_9_uid179_sincosTest_s <= signOfSelectionSignal_uid171_sincosTest_q;
+    yip1E_9_uid179_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 25 => redist8_yip1_8_uid167_sincosTest_b_1_q(24)) & redist8_yip1_8_uid167_sincosTest_b_1_q));
+    yip1E_9_uid179_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 17 => twoToMiSiXip_uid174_sincosTest_b(16)) & twoToMiSiXip_uid174_sincosTest_b));
+    yip1E_9_uid179_sincosTest_combproc: PROCESS (yip1E_9_uid179_sincosTest_a, yip1E_9_uid179_sincosTest_b, yip1E_9_uid179_sincosTest_s)
+    BEGIN
+        IF (yip1E_9_uid179_sincosTest_s = "1") THEN
+            yip1E_9_uid179_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_9_uid179_sincosTest_a) + SIGNED(yip1E_9_uid179_sincosTest_b));
+        ELSE
+            yip1E_9_uid179_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_9_uid179_sincosTest_a) - SIGNED(yip1E_9_uid179_sincosTest_b));
+        END IF;
+    END PROCESS;
+    yip1E_9_uid179_sincosTest_q <= yip1E_9_uid179_sincosTest_o(25 downto 0);
+
+    -- yip1_9_uid186_sincosTest(BITSELECT,185)@10
+    yip1_9_uid186_sincosTest_in <= STD_LOGIC_VECTOR(yip1E_9_uid179_sincosTest_q(24 downto 0));
+    yip1_9_uid186_sincosTest_b <= STD_LOGIC_VECTOR(yip1_9_uid186_sincosTest_in(24 downto 0));
+
+    -- redist5_yip1_9_uid186_sincosTest_b_1(DELAY,237)
+    redist5_yip1_9_uid186_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 25, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => yip1_9_uid186_sincosTest_b, xout => redist5_yip1_9_uid186_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- yip1E_10_uid198_sincosTest(ADDSUB,197)@11
+    yip1E_10_uid198_sincosTest_s <= signOfSelectionSignal_uid190_sincosTest_q;
+    yip1E_10_uid198_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 25 => redist5_yip1_9_uid186_sincosTest_b_1_q(24)) & redist5_yip1_9_uid186_sincosTest_b_1_q));
+    yip1E_10_uid198_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 16 => twoToMiSiXip_uid193_sincosTest_b(15)) & twoToMiSiXip_uid193_sincosTest_b));
+    yip1E_10_uid198_sincosTest_combproc: PROCESS (yip1E_10_uid198_sincosTest_a, yip1E_10_uid198_sincosTest_b, yip1E_10_uid198_sincosTest_s)
+    BEGIN
+        IF (yip1E_10_uid198_sincosTest_s = "1") THEN
+            yip1E_10_uid198_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_10_uid198_sincosTest_a) + SIGNED(yip1E_10_uid198_sincosTest_b));
+        ELSE
+            yip1E_10_uid198_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_10_uid198_sincosTest_a) - SIGNED(yip1E_10_uid198_sincosTest_b));
+        END IF;
+    END PROCESS;
+    yip1E_10_uid198_sincosTest_q <= yip1E_10_uid198_sincosTest_o(25 downto 0);
+
+    -- yip1_10_uid205_sincosTest(BITSELECT,204)@11
+    yip1_10_uid205_sincosTest_in <= STD_LOGIC_VECTOR(yip1E_10_uid198_sincosTest_q(24 downto 0));
+    yip1_10_uid205_sincosTest_b <= STD_LOGIC_VECTOR(yip1_10_uid205_sincosTest_in(24 downto 0));
+
+    -- ySumPreRnd_uid211_sincosTest(BITSELECT,210)@11
+    ySumPreRnd_uid211_sincosTest_in <= yip1_10_uid205_sincosTest_b(23 downto 0);
+    ySumPreRnd_uid211_sincosTest_b <= ySumPreRnd_uid211_sincosTest_in(23 downto 13);
+
+    -- redist2_ySumPreRnd_uid211_sincosTest_b_1(DELAY,234)
+    redist2_ySumPreRnd_uid211_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 11, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => ySumPreRnd_uid211_sincosTest_b, xout => redist2_ySumPreRnd_uid211_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- ySumPostRnd_uid214_sincosTest(ADD,213)@12
+    ySumPostRnd_uid214_sincosTest_a <= STD_LOGIC_VECTOR("0" & redist2_ySumPreRnd_uid211_sincosTest_b_1_q);
+    ySumPostRnd_uid214_sincosTest_b <= STD_LOGIC_VECTOR("00000000000" & VCC_q);
+    ySumPostRnd_uid214_sincosTest_o <= STD_LOGIC_VECTOR(UNSIGNED(ySumPostRnd_uid214_sincosTest_a) + UNSIGNED(ySumPostRnd_uid214_sincosTest_b));
+    ySumPostRnd_uid214_sincosTest_q <= ySumPostRnd_uid214_sincosTest_o(11 downto 0);
+
+    -- yPostExc_uid216_sincosTest(BITSELECT,215)@12
+    yPostExc_uid216_sincosTest_in <= STD_LOGIC_VECTOR(ySumPostRnd_uid214_sincosTest_q(10 downto 0));
+    yPostExc_uid216_sincosTest_b <= STD_LOGIC_VECTOR(yPostExc_uid216_sincosTest_in(10 downto 1));
+
+    -- redist0_yPostExc_uid216_sincosTest_b_1(DELAY,232)
+    redist0_yPostExc_uid216_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 10, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => yPostExc_uid216_sincosTest_b, xout => redist0_yPostExc_uid216_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- cstZeroForAddSub_uid224_sincosTest(CONSTANT,223)
+    cstZeroForAddSub_uid224_sincosTest_q <= "0000000000";
+
+    -- sinPostNeg_uid226_sincosTest(ADDSUB,225)@13
+    sinPostNeg_uid226_sincosTest_s <= invSinNegCond_uid225_sincosTest_q;
+    sinPostNeg_uid226_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((11 downto 10 => cstZeroForAddSub_uid224_sincosTest_q(9)) & cstZeroForAddSub_uid224_sincosTest_q));
+    sinPostNeg_uid226_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((11 downto 10 => redist0_yPostExc_uid216_sincosTest_b_1_q(9)) & redist0_yPostExc_uid216_sincosTest_b_1_q));
+    sinPostNeg_uid226_sincosTest_combproc: PROCESS (sinPostNeg_uid226_sincosTest_a, sinPostNeg_uid226_sincosTest_b, sinPostNeg_uid226_sincosTest_s)
+    BEGIN
+        IF (sinPostNeg_uid226_sincosTest_s = "1") THEN
+            sinPostNeg_uid226_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(sinPostNeg_uid226_sincosTest_a) + SIGNED(sinPostNeg_uid226_sincosTest_b));
+        ELSE
+            sinPostNeg_uid226_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(sinPostNeg_uid226_sincosTest_a) - SIGNED(sinPostNeg_uid226_sincosTest_b));
+        END IF;
+    END PROCESS;
+    sinPostNeg_uid226_sincosTest_q <= sinPostNeg_uid226_sincosTest_o(10 downto 0);
+
+    -- invCosNegCond_uid227_sincosTest(LOGICAL,226)@12 + 1
+    invCosNegCond_uid227_sincosTest_qi <= not (sinNegCond2_uid218_sincosTest_q);
+    invCosNegCond_uid227_sincosTest_delay : dspba_delay
+    GENERIC MAP ( width => 1, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => invCosNegCond_uid227_sincosTest_qi, xout => invCosNegCond_uid227_sincosTest_q, clk => clk, aclr => areset );
+
+    -- twoToMiSiYip_uid194_sincosTest(BITSELECT,193)@11
+    twoToMiSiYip_uid194_sincosTest_b <= STD_LOGIC_VECTOR(redist5_yip1_9_uid186_sincosTest_b_1_q(24 downto 9));
+
+    -- xip1E_10_uid197_sincosTest(ADDSUB,196)@11
+    xip1E_10_uid197_sincosTest_s <= redist4_xMSB_uid188_sincosTest_b_1_q;
+    xip1E_10_uid197_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 25 => redist6_xip1_9_uid185_sincosTest_b_1_q(24)) & redist6_xip1_9_uid185_sincosTest_b_1_q));
+    xip1E_10_uid197_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 16 => twoToMiSiYip_uid194_sincosTest_b(15)) & twoToMiSiYip_uid194_sincosTest_b));
+    xip1E_10_uid197_sincosTest_combproc: PROCESS (xip1E_10_uid197_sincosTest_a, xip1E_10_uid197_sincosTest_b, xip1E_10_uid197_sincosTest_s)
+    BEGIN
+        IF (xip1E_10_uid197_sincosTest_s = "1") THEN
+            xip1E_10_uid197_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_10_uid197_sincosTest_a) + SIGNED(xip1E_10_uid197_sincosTest_b));
+        ELSE
+            xip1E_10_uid197_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_10_uid197_sincosTest_a) - SIGNED(xip1E_10_uid197_sincosTest_b));
+        END IF;
+    END PROCESS;
+    xip1E_10_uid197_sincosTest_q <= xip1E_10_uid197_sincosTest_o(25 downto 0);
+
+    -- xip1_10_uid204_sincosTest(BITSELECT,203)@11
+    xip1_10_uid204_sincosTest_in <= STD_LOGIC_VECTOR(xip1E_10_uid197_sincosTest_q(24 downto 0));
+    xip1_10_uid204_sincosTest_b <= STD_LOGIC_VECTOR(xip1_10_uid204_sincosTest_in(24 downto 0));
+
+    -- xSumPreRnd_uid207_sincosTest(BITSELECT,206)@11
+    xSumPreRnd_uid207_sincosTest_in <= xip1_10_uid204_sincosTest_b(23 downto 0);
+    xSumPreRnd_uid207_sincosTest_b <= xSumPreRnd_uid207_sincosTest_in(23 downto 13);
+
+    -- redist3_xSumPreRnd_uid207_sincosTest_b_1(DELAY,235)
+    redist3_xSumPreRnd_uid207_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 11, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => xSumPreRnd_uid207_sincosTest_b, xout => redist3_xSumPreRnd_uid207_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- xSumPostRnd_uid210_sincosTest(ADD,209)@12
+    xSumPostRnd_uid210_sincosTest_a <= STD_LOGIC_VECTOR("0" & redist3_xSumPreRnd_uid207_sincosTest_b_1_q);
+    xSumPostRnd_uid210_sincosTest_b <= STD_LOGIC_VECTOR("00000000000" & VCC_q);
+    xSumPostRnd_uid210_sincosTest_o <= STD_LOGIC_VECTOR(UNSIGNED(xSumPostRnd_uid210_sincosTest_a) + UNSIGNED(xSumPostRnd_uid210_sincosTest_b));
+    xSumPostRnd_uid210_sincosTest_q <= xSumPostRnd_uid210_sincosTest_o(11 downto 0);
+
+    -- xPostExc_uid215_sincosTest(BITSELECT,214)@12
+    xPostExc_uid215_sincosTest_in <= STD_LOGIC_VECTOR(xSumPostRnd_uid210_sincosTest_q(10 downto 0));
+    xPostExc_uid215_sincosTest_b <= STD_LOGIC_VECTOR(xPostExc_uid215_sincosTest_in(10 downto 1));
+
+    -- redist1_xPostExc_uid215_sincosTest_b_1(DELAY,233)
+    redist1_xPostExc_uid215_sincosTest_b_1 : dspba_delay
+    GENERIC MAP ( width => 10, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => xPostExc_uid215_sincosTest_b, xout => redist1_xPostExc_uid215_sincosTest_b_1_q, clk => clk, aclr => areset );
+
+    -- cosPostNeg_uid228_sincosTest(ADDSUB,227)@13
+    cosPostNeg_uid228_sincosTest_s <= invCosNegCond_uid227_sincosTest_q;
+    cosPostNeg_uid228_sincosTest_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((11 downto 10 => cstZeroForAddSub_uid224_sincosTest_q(9)) & cstZeroForAddSub_uid224_sincosTest_q));
+    cosPostNeg_uid228_sincosTest_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((11 downto 10 => redist1_xPostExc_uid215_sincosTest_b_1_q(9)) & redist1_xPostExc_uid215_sincosTest_b_1_q));
+    cosPostNeg_uid228_sincosTest_combproc: PROCESS (cosPostNeg_uid228_sincosTest_a, cosPostNeg_uid228_sincosTest_b, cosPostNeg_uid228_sincosTest_s)
+    BEGIN
+        IF (cosPostNeg_uid228_sincosTest_s = "1") THEN
+            cosPostNeg_uid228_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(cosPostNeg_uid228_sincosTest_a) + SIGNED(cosPostNeg_uid228_sincosTest_b));
+        ELSE
+            cosPostNeg_uid228_sincosTest_o <= STD_LOGIC_VECTOR(SIGNED(cosPostNeg_uid228_sincosTest_a) - SIGNED(cosPostNeg_uid228_sincosTest_b));
+        END IF;
+    END PROCESS;
+    cosPostNeg_uid228_sincosTest_q <= cosPostNeg_uid228_sincosTest_o(10 downto 0);
+
+    -- redist30_firstQuadrant_uid15_sincosTest_b_12(DELAY,262)
+    redist30_firstQuadrant_uid15_sincosTest_b_12 : dspba_delay
+    GENERIC MAP ( width => 1, depth => 1, reset_kind => "ASYNC" )
+    PORT MAP ( xin => redist29_firstQuadrant_uid15_sincosTest_b_11_q, xout => redist30_firstQuadrant_uid15_sincosTest_b_12_q, clk => clk, aclr => areset );
 
     -- VCC(CONSTANT,1)
     VCC_q <= "1";
 
-    -- alphaPostRndhigh_uid254_atan2Test(ADD,253)@14
-    alphaPostRndhigh_uid254_atan2Test_a <= STD_LOGIC_VECTOR("0" & lowRangeA_uid252_atan2Test_merged_bit_select_c);
-    alphaPostRndhigh_uid254_atan2Test_b <= STD_LOGIC_VECTOR("0000000000000" & VCC_q);
-    alphaPostRndhigh_uid254_atan2Test_o <= STD_LOGIC_VECTOR(UNSIGNED(alphaPostRndhigh_uid254_atan2Test_a) + UNSIGNED(alphaPostRndhigh_uid254_atan2Test_b));
-    alphaPostRndhigh_uid254_atan2Test_q <= alphaPostRndhigh_uid254_atan2Test_o(13 downto 0);
-
-    -- xMSB_uid214_atan2Test(BITSELECT,213)@12
-    xMSB_uid214_atan2Test_b <= STD_LOGIC_VECTOR(redist5_yip1_11_uid212_atan2Test_b_1_q(36 downto 36));
-
-    -- xMSB_uid180_atan2Test(BITSELECT,179)@10
-    xMSB_uid180_atan2Test_b <= STD_LOGIC_VECTOR(redist10_yip1_9_uid178_atan2Test_b_1_q(38 downto 38));
-
-    -- xMSB_uid146_atan2Test(BITSELECT,145)@8
-    xMSB_uid146_atan2Test_b <= STD_LOGIC_VECTOR(redist16_yip1_7_uid144_atan2Test_b_1_q(40 downto 40));
-
-    -- signX_uid7_atan2Test(BITSELECT,6)@0
-    signX_uid7_atan2Test_b <= STD_LOGIC_VECTOR(x(31 downto 31));
-
-    -- invSignX_uid9_atan2Test(LOGICAL,8)@0
-    invSignX_uid9_atan2Test_q <= not (signX_uid7_atan2Test_b);
-
-    -- constantZero_uid6_atan2Test(CONSTANT,5)
-    constantZero_uid6_atan2Test_q <= "00000000000000000000000000000000";
-
-    -- absXE_uid10_atan2Test(ADDSUB,9)@0
-    absXE_uid10_atan2Test_s <= invSignX_uid9_atan2Test_q;
-    absXE_uid10_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((33 downto 32 => constantZero_uid6_atan2Test_q(31)) & constantZero_uid6_atan2Test_q));
-    absXE_uid10_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((33 downto 32 => x(31)) & x));
-    absXE_uid10_atan2Test_combproc: PROCESS (absXE_uid10_atan2Test_a, absXE_uid10_atan2Test_b, absXE_uid10_atan2Test_s)
+    -- xPostRR_uid230_sincosTest(MUX,229)@13
+    xPostRR_uid230_sincosTest_s <= redist30_firstQuadrant_uid15_sincosTest_b_12_q;
+    xPostRR_uid230_sincosTest_combproc: PROCESS (xPostRR_uid230_sincosTest_s, cosPostNeg_uid228_sincosTest_q, sinPostNeg_uid226_sincosTest_q)
     BEGIN
-        IF (absXE_uid10_atan2Test_s = "1") THEN
-            absXE_uid10_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(absXE_uid10_atan2Test_a) + SIGNED(absXE_uid10_atan2Test_b));
-        ELSE
-            absXE_uid10_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(absXE_uid10_atan2Test_a) - SIGNED(absXE_uid10_atan2Test_b));
-        END IF;
-    END PROCESS;
-    absXE_uid10_atan2Test_q <= absXE_uid10_atan2Test_o(32 downto 0);
-
-    -- absX_uid13_atan2Test(BITSELECT,12)@0
-    absX_uid13_atan2Test_in <= absXE_uid10_atan2Test_q(31 downto 0);
-    absX_uid13_atan2Test_b <= absX_uid13_atan2Test_in(31 downto 0);
-
-    -- redist36_absX_uid13_atan2Test_b_1(DELAY,312)
-    redist36_absX_uid13_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 32, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => absX_uid13_atan2Test_b, xout => redist36_absX_uid13_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- signY_uid8_atan2Test(BITSELECT,7)@0
-    signY_uid8_atan2Test_b <= STD_LOGIC_VECTOR(y(31 downto 31));
-
-    -- invSignY_uid11_atan2Test(LOGICAL,10)@0
-    invSignY_uid11_atan2Test_q <= not (signY_uid8_atan2Test_b);
-
-    -- absYE_uid12_atan2Test(ADDSUB,11)@0
-    absYE_uid12_atan2Test_s <= invSignY_uid11_atan2Test_q;
-    absYE_uid12_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((33 downto 32 => constantZero_uid6_atan2Test_q(31)) & constantZero_uid6_atan2Test_q));
-    absYE_uid12_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((33 downto 32 => y(31)) & y));
-    absYE_uid12_atan2Test_combproc: PROCESS (absYE_uid12_atan2Test_a, absYE_uid12_atan2Test_b, absYE_uid12_atan2Test_s)
-    BEGIN
-        IF (absYE_uid12_atan2Test_s = "1") THEN
-            absYE_uid12_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(absYE_uid12_atan2Test_a) + SIGNED(absYE_uid12_atan2Test_b));
-        ELSE
-            absYE_uid12_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(absYE_uid12_atan2Test_a) - SIGNED(absYE_uid12_atan2Test_b));
-        END IF;
-    END PROCESS;
-    absYE_uid12_atan2Test_q <= absYE_uid12_atan2Test_o(32 downto 0);
-
-    -- absY_uid14_atan2Test(BITSELECT,13)@0
-    absY_uid14_atan2Test_in <= absYE_uid12_atan2Test_q(31 downto 0);
-    absY_uid14_atan2Test_b <= absY_uid14_atan2Test_in(31 downto 0);
-
-    -- redist35_absY_uid14_atan2Test_b_1(DELAY,311)
-    redist35_absY_uid14_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 32, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => absY_uid14_atan2Test_b, xout => redist35_absY_uid14_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- yip1E_1_uid24_atan2Test(SUB,23)@1 + 1
-    yip1E_1_uid24_atan2Test_a <= STD_LOGIC_VECTOR("0" & redist35_absY_uid14_atan2Test_b_1_q);
-    yip1E_1_uid24_atan2Test_b <= STD_LOGIC_VECTOR("0" & redist36_absX_uid13_atan2Test_b_1_q);
-    yip1E_1_uid24_atan2Test_clkproc: PROCESS (clk, areset)
-    BEGIN
-        IF (areset = '1') THEN
-            yip1E_1_uid24_atan2Test_o <= (others => '0');
-        ELSIF (clk'EVENT AND clk = '1') THEN
-            IF (en = "1") THEN
-                yip1E_1_uid24_atan2Test_o <= STD_LOGIC_VECTOR(UNSIGNED(yip1E_1_uid24_atan2Test_a) - UNSIGNED(yip1E_1_uid24_atan2Test_b));
-            END IF;
-        END IF;
-    END PROCESS;
-    yip1E_1_uid24_atan2Test_q <= yip1E_1_uid24_atan2Test_o(32 downto 0);
-
-    -- xMSB_uid32_atan2Test(BITSELECT,31)@2
-    xMSB_uid32_atan2Test_b <= STD_LOGIC_VECTOR(yip1E_1_uid24_atan2Test_q(32 downto 32));
-
-    -- xip1E_1_uid23_atan2Test(ADD,22)@1 + 1
-    xip1E_1_uid23_atan2Test_a <= STD_LOGIC_VECTOR("0" & redist36_absX_uid13_atan2Test_b_1_q);
-    xip1E_1_uid23_atan2Test_b <= STD_LOGIC_VECTOR("0" & redist35_absY_uid14_atan2Test_b_1_q);
-    xip1E_1_uid23_atan2Test_clkproc: PROCESS (clk, areset)
-    BEGIN
-        IF (areset = '1') THEN
-            xip1E_1_uid23_atan2Test_o <= (others => '0');
-        ELSIF (clk'EVENT AND clk = '1') THEN
-            IF (en = "1") THEN
-                xip1E_1_uid23_atan2Test_o <= STD_LOGIC_VECTOR(UNSIGNED(xip1E_1_uid23_atan2Test_a) + UNSIGNED(xip1E_1_uid23_atan2Test_b));
-            END IF;
-        END IF;
-    END PROCESS;
-    xip1E_1_uid23_atan2Test_q <= xip1E_1_uid23_atan2Test_o(32 downto 0);
-
-    -- yip1E_2NA_uid42_atan2Test(BITJOIN,41)@2
-    yip1E_2NA_uid42_atan2Test_q <= yip1E_1_uid24_atan2Test_q & GND_q;
-
-    -- yip1E_2sumAHighB_uid43_atan2Test(ADDSUB,42)@2
-    yip1E_2sumAHighB_uid43_atan2Test_s <= xMSB_uid32_atan2Test_b;
-    yip1E_2sumAHighB_uid43_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((35 downto 34 => yip1E_2NA_uid42_atan2Test_q(33)) & yip1E_2NA_uid42_atan2Test_q));
-    yip1E_2sumAHighB_uid43_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR("000" & xip1E_1_uid23_atan2Test_q));
-    yip1E_2sumAHighB_uid43_atan2Test_combproc: PROCESS (yip1E_2sumAHighB_uid43_atan2Test_a, yip1E_2sumAHighB_uid43_atan2Test_b, yip1E_2sumAHighB_uid43_atan2Test_s)
-    BEGIN
-        IF (yip1E_2sumAHighB_uid43_atan2Test_s = "1") THEN
-            yip1E_2sumAHighB_uid43_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_2sumAHighB_uid43_atan2Test_a) + SIGNED(yip1E_2sumAHighB_uid43_atan2Test_b));
-        ELSE
-            yip1E_2sumAHighB_uid43_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_2sumAHighB_uid43_atan2Test_a) - SIGNED(yip1E_2sumAHighB_uid43_atan2Test_b));
-        END IF;
-    END PROCESS;
-    yip1E_2sumAHighB_uid43_atan2Test_q <= yip1E_2sumAHighB_uid43_atan2Test_o(34 downto 0);
-
-    -- yip1_2_uid49_atan2Test(BITSELECT,48)@2
-    yip1_2_uid49_atan2Test_in <= STD_LOGIC_VECTOR(yip1E_2sumAHighB_uid43_atan2Test_q(33 downto 0));
-    yip1_2_uid49_atan2Test_b <= STD_LOGIC_VECTOR(yip1_2_uid49_atan2Test_in(33 downto 0));
-
-    -- redist31_yip1_2_uid49_atan2Test_b_1(DELAY,307)
-    redist31_yip1_2_uid49_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 34, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yip1_2_uid49_atan2Test_b, xout => redist31_yip1_2_uid49_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- xMSB_uid51_atan2Test(BITSELECT,50)@3
-    xMSB_uid51_atan2Test_b <= STD_LOGIC_VECTOR(redist31_yip1_2_uid49_atan2Test_b_1_q(33 downto 33));
-
-    -- invSignOfSelectionSignal_uid37_atan2Test(LOGICAL,36)@2
-    invSignOfSelectionSignal_uid37_atan2Test_q <= not (xMSB_uid32_atan2Test_b);
-
-    -- xip1E_2NA_uid39_atan2Test(BITJOIN,38)@2
-    xip1E_2NA_uid39_atan2Test_q <= xip1E_1_uid23_atan2Test_q & GND_q;
-
-    -- xip1E_2sumAHighB_uid40_atan2Test(ADDSUB,39)@2
-    xip1E_2sumAHighB_uid40_atan2Test_s <= invSignOfSelectionSignal_uid37_atan2Test_q;
-    xip1E_2sumAHighB_uid40_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR("000" & xip1E_2NA_uid39_atan2Test_q));
-    xip1E_2sumAHighB_uid40_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((36 downto 33 => yip1E_1_uid24_atan2Test_q(32)) & yip1E_1_uid24_atan2Test_q));
-    xip1E_2sumAHighB_uid40_atan2Test_combproc: PROCESS (xip1E_2sumAHighB_uid40_atan2Test_a, xip1E_2sumAHighB_uid40_atan2Test_b, xip1E_2sumAHighB_uid40_atan2Test_s)
-    BEGIN
-        IF (xip1E_2sumAHighB_uid40_atan2Test_s = "1") THEN
-            xip1E_2sumAHighB_uid40_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_2sumAHighB_uid40_atan2Test_a) + SIGNED(xip1E_2sumAHighB_uid40_atan2Test_b));
-        ELSE
-            xip1E_2sumAHighB_uid40_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_2sumAHighB_uid40_atan2Test_a) - SIGNED(xip1E_2sumAHighB_uid40_atan2Test_b));
-        END IF;
-    END PROCESS;
-    xip1E_2sumAHighB_uid40_atan2Test_q <= xip1E_2sumAHighB_uid40_atan2Test_o(35 downto 0);
-
-    -- xip1_2_uid48_atan2Test(BITSELECT,47)@2
-    xip1_2_uid48_atan2Test_in <= xip1E_2sumAHighB_uid40_atan2Test_q(33 downto 0);
-    xip1_2_uid48_atan2Test_b <= xip1_2_uid48_atan2Test_in(33 downto 0);
-
-    -- redist32_xip1_2_uid48_atan2Test_b_1(DELAY,308)
-    redist32_xip1_2_uid48_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 34, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xip1_2_uid48_atan2Test_b, xout => redist32_xip1_2_uid48_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- aip1E_2CostZeroPaddingA_uid45_atan2Test(CONSTANT,44)
-    aip1E_2CostZeroPaddingA_uid45_atan2Test_q <= "00";
-
-    -- yip1E_3NA_uid61_atan2Test(BITJOIN,60)@3
-    yip1E_3NA_uid61_atan2Test_q <= redist31_yip1_2_uid49_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
-
-    -- yip1E_3sumAHighB_uid62_atan2Test(ADDSUB,61)@3
-    yip1E_3sumAHighB_uid62_atan2Test_s <= xMSB_uid51_atan2Test_b;
-    yip1E_3sumAHighB_uid62_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((37 downto 36 => yip1E_3NA_uid61_atan2Test_q(35)) & yip1E_3NA_uid61_atan2Test_q));
-    yip1E_3sumAHighB_uid62_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR("0000" & redist32_xip1_2_uid48_atan2Test_b_1_q));
-    yip1E_3sumAHighB_uid62_atan2Test_combproc: PROCESS (yip1E_3sumAHighB_uid62_atan2Test_a, yip1E_3sumAHighB_uid62_atan2Test_b, yip1E_3sumAHighB_uid62_atan2Test_s)
-    BEGIN
-        IF (yip1E_3sumAHighB_uid62_atan2Test_s = "1") THEN
-            yip1E_3sumAHighB_uid62_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_3sumAHighB_uid62_atan2Test_a) + SIGNED(yip1E_3sumAHighB_uid62_atan2Test_b));
-        ELSE
-            yip1E_3sumAHighB_uid62_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_3sumAHighB_uid62_atan2Test_a) - SIGNED(yip1E_3sumAHighB_uid62_atan2Test_b));
-        END IF;
-    END PROCESS;
-    yip1E_3sumAHighB_uid62_atan2Test_q <= yip1E_3sumAHighB_uid62_atan2Test_o(36 downto 0);
-
-    -- yip1_3_uid68_atan2Test(BITSELECT,67)@3
-    yip1_3_uid68_atan2Test_in <= STD_LOGIC_VECTOR(yip1E_3sumAHighB_uid62_atan2Test_q(34 downto 0));
-    yip1_3_uid68_atan2Test_b <= STD_LOGIC_VECTOR(yip1_3_uid68_atan2Test_in(34 downto 0));
-
-    -- redist28_yip1_3_uid68_atan2Test_b_1(DELAY,304)
-    redist28_yip1_3_uid68_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 35, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yip1_3_uid68_atan2Test_b, xout => redist28_yip1_3_uid68_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- xMSB_uid70_atan2Test(BITSELECT,69)@4
-    xMSB_uid70_atan2Test_b <= STD_LOGIC_VECTOR(redist28_yip1_3_uid68_atan2Test_b_1_q(34 downto 34));
-
-    -- invSignOfSelectionSignal_uid56_atan2Test(LOGICAL,55)@3
-    invSignOfSelectionSignal_uid56_atan2Test_q <= not (xMSB_uid51_atan2Test_b);
-
-    -- xip1E_3NA_uid58_atan2Test(BITJOIN,57)@3
-    xip1E_3NA_uid58_atan2Test_q <= redist32_xip1_2_uid48_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
-
-    -- xip1E_3sumAHighB_uid59_atan2Test(ADDSUB,58)@3
-    xip1E_3sumAHighB_uid59_atan2Test_s <= invSignOfSelectionSignal_uid56_atan2Test_q;
-    xip1E_3sumAHighB_uid59_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR("000" & xip1E_3NA_uid58_atan2Test_q));
-    xip1E_3sumAHighB_uid59_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((38 downto 34 => redist31_yip1_2_uid49_atan2Test_b_1_q(33)) & redist31_yip1_2_uid49_atan2Test_b_1_q));
-    xip1E_3sumAHighB_uid59_atan2Test_combproc: PROCESS (xip1E_3sumAHighB_uid59_atan2Test_a, xip1E_3sumAHighB_uid59_atan2Test_b, xip1E_3sumAHighB_uid59_atan2Test_s)
-    BEGIN
-        IF (xip1E_3sumAHighB_uid59_atan2Test_s = "1") THEN
-            xip1E_3sumAHighB_uid59_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_3sumAHighB_uid59_atan2Test_a) + SIGNED(xip1E_3sumAHighB_uid59_atan2Test_b));
-        ELSE
-            xip1E_3sumAHighB_uid59_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_3sumAHighB_uid59_atan2Test_a) - SIGNED(xip1E_3sumAHighB_uid59_atan2Test_b));
-        END IF;
-    END PROCESS;
-    xip1E_3sumAHighB_uid59_atan2Test_q <= xip1E_3sumAHighB_uid59_atan2Test_o(37 downto 0);
-
-    -- xip1_3_uid67_atan2Test(BITSELECT,66)@3
-    xip1_3_uid67_atan2Test_in <= xip1E_3sumAHighB_uid59_atan2Test_q(35 downto 0);
-    xip1_3_uid67_atan2Test_b <= xip1_3_uid67_atan2Test_in(35 downto 0);
-
-    -- redist29_xip1_3_uid67_atan2Test_b_1(DELAY,305)
-    redist29_xip1_3_uid67_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 36, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xip1_3_uid67_atan2Test_b, xout => redist29_xip1_3_uid67_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- xip1E_4CostZeroPaddingA_uid76_atan2Test(CONSTANT,75)
-    xip1E_4CostZeroPaddingA_uid76_atan2Test_q <= "000";
-
-    -- yip1E_4NA_uid80_atan2Test(BITJOIN,79)@4
-    yip1E_4NA_uid80_atan2Test_q <= redist28_yip1_3_uid68_atan2Test_b_1_q & xip1E_4CostZeroPaddingA_uid76_atan2Test_q;
-
-    -- yip1E_4sumAHighB_uid81_atan2Test(ADDSUB,80)@4
-    yip1E_4sumAHighB_uid81_atan2Test_s <= xMSB_uid70_atan2Test_b;
-    yip1E_4sumAHighB_uid81_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((39 downto 38 => yip1E_4NA_uid80_atan2Test_q(37)) & yip1E_4NA_uid80_atan2Test_q));
-    yip1E_4sumAHighB_uid81_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR("0000" & redist29_xip1_3_uid67_atan2Test_b_1_q));
-    yip1E_4sumAHighB_uid81_atan2Test_combproc: PROCESS (yip1E_4sumAHighB_uid81_atan2Test_a, yip1E_4sumAHighB_uid81_atan2Test_b, yip1E_4sumAHighB_uid81_atan2Test_s)
-    BEGIN
-        IF (yip1E_4sumAHighB_uid81_atan2Test_s = "1") THEN
-            yip1E_4sumAHighB_uid81_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_4sumAHighB_uid81_atan2Test_a) + SIGNED(yip1E_4sumAHighB_uid81_atan2Test_b));
-        ELSE
-            yip1E_4sumAHighB_uid81_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_4sumAHighB_uid81_atan2Test_a) - SIGNED(yip1E_4sumAHighB_uid81_atan2Test_b));
-        END IF;
-    END PROCESS;
-    yip1E_4sumAHighB_uid81_atan2Test_q <= yip1E_4sumAHighB_uid81_atan2Test_o(38 downto 0);
-
-    -- yip1_4_uid87_atan2Test(BITSELECT,86)@4
-    yip1_4_uid87_atan2Test_in <= STD_LOGIC_VECTOR(yip1E_4sumAHighB_uid81_atan2Test_q(36 downto 0));
-    yip1_4_uid87_atan2Test_b <= STD_LOGIC_VECTOR(yip1_4_uid87_atan2Test_in(36 downto 0));
-
-    -- redist25_yip1_4_uid87_atan2Test_b_1(DELAY,301)
-    redist25_yip1_4_uid87_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 37, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yip1_4_uid87_atan2Test_b, xout => redist25_yip1_4_uid87_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- xMSB_uid89_atan2Test(BITSELECT,88)@5
-    xMSB_uid89_atan2Test_b <= STD_LOGIC_VECTOR(redist25_yip1_4_uid87_atan2Test_b_1_q(36 downto 36));
-
-    -- invSignOfSelectionSignal_uid75_atan2Test(LOGICAL,74)@4
-    invSignOfSelectionSignal_uid75_atan2Test_q <= not (xMSB_uid70_atan2Test_b);
-
-    -- xip1E_4NA_uid77_atan2Test(BITJOIN,76)@4
-    xip1E_4NA_uid77_atan2Test_q <= redist29_xip1_3_uid67_atan2Test_b_1_q & xip1E_4CostZeroPaddingA_uid76_atan2Test_q;
-
-    -- xip1E_4sumAHighB_uid78_atan2Test(ADDSUB,77)@4
-    xip1E_4sumAHighB_uid78_atan2Test_s <= invSignOfSelectionSignal_uid75_atan2Test_q;
-    xip1E_4sumAHighB_uid78_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR("000" & xip1E_4NA_uid77_atan2Test_q));
-    xip1E_4sumAHighB_uid78_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((41 downto 35 => redist28_yip1_3_uid68_atan2Test_b_1_q(34)) & redist28_yip1_3_uid68_atan2Test_b_1_q));
-    xip1E_4sumAHighB_uid78_atan2Test_combproc: PROCESS (xip1E_4sumAHighB_uid78_atan2Test_a, xip1E_4sumAHighB_uid78_atan2Test_b, xip1E_4sumAHighB_uid78_atan2Test_s)
-    BEGIN
-        IF (xip1E_4sumAHighB_uid78_atan2Test_s = "1") THEN
-            xip1E_4sumAHighB_uid78_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_4sumAHighB_uid78_atan2Test_a) + SIGNED(xip1E_4sumAHighB_uid78_atan2Test_b));
-        ELSE
-            xip1E_4sumAHighB_uid78_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_4sumAHighB_uid78_atan2Test_a) - SIGNED(xip1E_4sumAHighB_uid78_atan2Test_b));
-        END IF;
-    END PROCESS;
-    xip1E_4sumAHighB_uid78_atan2Test_q <= xip1E_4sumAHighB_uid78_atan2Test_o(40 downto 0);
-
-    -- xip1_4_uid86_atan2Test(BITSELECT,85)@4
-    xip1_4_uid86_atan2Test_in <= xip1E_4sumAHighB_uid78_atan2Test_q(38 downto 0);
-    xip1_4_uid86_atan2Test_b <= xip1_4_uid86_atan2Test_in(38 downto 0);
-
-    -- redist26_xip1_4_uid86_atan2Test_b_1(DELAY,302)
-    redist26_xip1_4_uid86_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 39, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xip1_4_uid86_atan2Test_b, xout => redist26_xip1_4_uid86_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- xip1E_5CostZeroPaddingA_uid95_atan2Test(CONSTANT,94)
-    xip1E_5CostZeroPaddingA_uid95_atan2Test_q <= "0000";
-
-    -- yip1E_5NA_uid99_atan2Test(BITJOIN,98)@5
-    yip1E_5NA_uid99_atan2Test_q <= redist25_yip1_4_uid87_atan2Test_b_1_q & xip1E_5CostZeroPaddingA_uid95_atan2Test_q;
-
-    -- yip1E_5sumAHighB_uid100_atan2Test(ADDSUB,99)@5
-    yip1E_5sumAHighB_uid100_atan2Test_s <= xMSB_uid89_atan2Test_b;
-    yip1E_5sumAHighB_uid100_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((42 downto 41 => yip1E_5NA_uid99_atan2Test_q(40)) & yip1E_5NA_uid99_atan2Test_q));
-    yip1E_5sumAHighB_uid100_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR("0000" & redist26_xip1_4_uid86_atan2Test_b_1_q));
-    yip1E_5sumAHighB_uid100_atan2Test_combproc: PROCESS (yip1E_5sumAHighB_uid100_atan2Test_a, yip1E_5sumAHighB_uid100_atan2Test_b, yip1E_5sumAHighB_uid100_atan2Test_s)
-    BEGIN
-        IF (yip1E_5sumAHighB_uid100_atan2Test_s = "1") THEN
-            yip1E_5sumAHighB_uid100_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_5sumAHighB_uid100_atan2Test_a) + SIGNED(yip1E_5sumAHighB_uid100_atan2Test_b));
-        ELSE
-            yip1E_5sumAHighB_uid100_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_5sumAHighB_uid100_atan2Test_a) - SIGNED(yip1E_5sumAHighB_uid100_atan2Test_b));
-        END IF;
-    END PROCESS;
-    yip1E_5sumAHighB_uid100_atan2Test_q <= yip1E_5sumAHighB_uid100_atan2Test_o(41 downto 0);
-
-    -- yip1_5_uid106_atan2Test(BITSELECT,105)@5
-    yip1_5_uid106_atan2Test_in <= STD_LOGIC_VECTOR(yip1E_5sumAHighB_uid100_atan2Test_q(39 downto 0));
-    yip1_5_uid106_atan2Test_b <= STD_LOGIC_VECTOR(yip1_5_uid106_atan2Test_in(39 downto 0));
-
-    -- redist22_yip1_5_uid106_atan2Test_b_1(DELAY,298)
-    redist22_yip1_5_uid106_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 40, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yip1_5_uid106_atan2Test_b, xout => redist22_yip1_5_uid106_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- xMSB_uid108_atan2Test(BITSELECT,107)@6
-    xMSB_uid108_atan2Test_b <= STD_LOGIC_VECTOR(redist22_yip1_5_uid106_atan2Test_b_1_q(39 downto 39));
-
-    -- invSignOfSelectionSignal_uid94_atan2Test(LOGICAL,93)@5
-    invSignOfSelectionSignal_uid94_atan2Test_q <= not (xMSB_uid89_atan2Test_b);
-
-    -- xip1E_5NA_uid96_atan2Test(BITJOIN,95)@5
-    xip1E_5NA_uid96_atan2Test_q <= redist26_xip1_4_uid86_atan2Test_b_1_q & xip1E_5CostZeroPaddingA_uid95_atan2Test_q;
-
-    -- xip1E_5sumAHighB_uid97_atan2Test(ADDSUB,96)@5
-    xip1E_5sumAHighB_uid97_atan2Test_s <= invSignOfSelectionSignal_uid94_atan2Test_q;
-    xip1E_5sumAHighB_uid97_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR("000" & xip1E_5NA_uid96_atan2Test_q));
-    xip1E_5sumAHighB_uid97_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((45 downto 37 => redist25_yip1_4_uid87_atan2Test_b_1_q(36)) & redist25_yip1_4_uid87_atan2Test_b_1_q));
-    xip1E_5sumAHighB_uid97_atan2Test_combproc: PROCESS (xip1E_5sumAHighB_uid97_atan2Test_a, xip1E_5sumAHighB_uid97_atan2Test_b, xip1E_5sumAHighB_uid97_atan2Test_s)
-    BEGIN
-        IF (xip1E_5sumAHighB_uid97_atan2Test_s = "1") THEN
-            xip1E_5sumAHighB_uid97_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_5sumAHighB_uid97_atan2Test_a) + SIGNED(xip1E_5sumAHighB_uid97_atan2Test_b));
-        ELSE
-            xip1E_5sumAHighB_uid97_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_5sumAHighB_uid97_atan2Test_a) - SIGNED(xip1E_5sumAHighB_uid97_atan2Test_b));
-        END IF;
-    END PROCESS;
-    xip1E_5sumAHighB_uid97_atan2Test_q <= xip1E_5sumAHighB_uid97_atan2Test_o(44 downto 0);
-
-    -- xip1_5_uid105_atan2Test(BITSELECT,104)@5
-    xip1_5_uid105_atan2Test_in <= xip1E_5sumAHighB_uid97_atan2Test_q(42 downto 0);
-    xip1_5_uid105_atan2Test_b <= xip1_5_uid105_atan2Test_in(42 downto 0);
-
-    -- redist23_xip1_5_uid105_atan2Test_b_1(DELAY,299)
-    redist23_xip1_5_uid105_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 43, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xip1_5_uid105_atan2Test_b, xout => redist23_xip1_5_uid105_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- twoToMiSiXip_uid112_atan2Test(BITSELECT,111)@6
-    twoToMiSiXip_uid112_atan2Test_b <= redist23_xip1_5_uid105_atan2Test_b_1_q(42 downto 2);
-
-    -- yip1E_6NA_uid120_atan2Test(BITJOIN,119)@6
-    yip1E_6NA_uid120_atan2Test_q <= redist22_yip1_5_uid106_atan2Test_b_1_q & xip1E_4CostZeroPaddingA_uid76_atan2Test_q;
-
-    -- yip1E_6sumAHighB_uid121_atan2Test(ADDSUB,120)@6
-    yip1E_6sumAHighB_uid121_atan2Test_s <= xMSB_uid108_atan2Test_b;
-    yip1E_6sumAHighB_uid121_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((44 downto 43 => yip1E_6NA_uid120_atan2Test_q(42)) & yip1E_6NA_uid120_atan2Test_q));
-    yip1E_6sumAHighB_uid121_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR("0000" & twoToMiSiXip_uid112_atan2Test_b));
-    yip1E_6sumAHighB_uid121_atan2Test_combproc: PROCESS (yip1E_6sumAHighB_uid121_atan2Test_a, yip1E_6sumAHighB_uid121_atan2Test_b, yip1E_6sumAHighB_uid121_atan2Test_s)
-    BEGIN
-        IF (yip1E_6sumAHighB_uid121_atan2Test_s = "1") THEN
-            yip1E_6sumAHighB_uid121_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_6sumAHighB_uid121_atan2Test_a) + SIGNED(yip1E_6sumAHighB_uid121_atan2Test_b));
-        ELSE
-            yip1E_6sumAHighB_uid121_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_6sumAHighB_uid121_atan2Test_a) - SIGNED(yip1E_6sumAHighB_uid121_atan2Test_b));
-        END IF;
-    END PROCESS;
-    yip1E_6sumAHighB_uid121_atan2Test_q <= yip1E_6sumAHighB_uid121_atan2Test_o(43 downto 0);
-
-    -- yip1_6_uid127_atan2Test(BITSELECT,126)@6
-    yip1_6_uid127_atan2Test_in <= STD_LOGIC_VECTOR(yip1E_6sumAHighB_uid121_atan2Test_q(41 downto 0));
-    yip1_6_uid127_atan2Test_b <= STD_LOGIC_VECTOR(yip1_6_uid127_atan2Test_in(41 downto 0));
-
-    -- redist19_yip1_6_uid127_atan2Test_b_1(DELAY,295)
-    redist19_yip1_6_uid127_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 42, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yip1_6_uid127_atan2Test_b, xout => redist19_yip1_6_uid127_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- xMSB_uid129_atan2Test(BITSELECT,128)@7
-    xMSB_uid129_atan2Test_b <= STD_LOGIC_VECTOR(redist19_yip1_6_uid127_atan2Test_b_1_q(41 downto 41));
-
-    -- invSignOfSelectionSignal_uid136_atan2Test(LOGICAL,135)@7
-    invSignOfSelectionSignal_uid136_atan2Test_q <= not (xMSB_uid129_atan2Test_b);
-
-    -- twoToMiSiYip_uid134_atan2Test(BITSELECT,133)@7
-    twoToMiSiYip_uid134_atan2Test_b <= STD_LOGIC_VECTOR(redist19_yip1_6_uid127_atan2Test_b_1_q(41 downto 6));
-
-    -- invSignOfSelectionSignal_uid115_atan2Test(LOGICAL,114)@6
-    invSignOfSelectionSignal_uid115_atan2Test_q <= not (xMSB_uid108_atan2Test_b);
-
-    -- twoToMiSiYip_uid113_atan2Test(BITSELECT,112)@6
-    twoToMiSiYip_uid113_atan2Test_b <= STD_LOGIC_VECTOR(redist22_yip1_5_uid106_atan2Test_b_1_q(39 downto 2));
-
-    -- xip1E_6NA_uid117_atan2Test(BITJOIN,116)@6
-    xip1E_6NA_uid117_atan2Test_q <= redist23_xip1_5_uid105_atan2Test_b_1_q & xip1E_4CostZeroPaddingA_uid76_atan2Test_q;
-
-    -- xip1E_6sumAHighB_uid118_atan2Test(ADDSUB,117)@6
-    xip1E_6sumAHighB_uid118_atan2Test_s <= invSignOfSelectionSignal_uid115_atan2Test_q;
-    xip1E_6sumAHighB_uid118_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR("000" & xip1E_6NA_uid117_atan2Test_q));
-    xip1E_6sumAHighB_uid118_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((48 downto 38 => twoToMiSiYip_uid113_atan2Test_b(37)) & twoToMiSiYip_uid113_atan2Test_b));
-    xip1E_6sumAHighB_uid118_atan2Test_combproc: PROCESS (xip1E_6sumAHighB_uid118_atan2Test_a, xip1E_6sumAHighB_uid118_atan2Test_b, xip1E_6sumAHighB_uid118_atan2Test_s)
-    BEGIN
-        IF (xip1E_6sumAHighB_uid118_atan2Test_s = "1") THEN
-            xip1E_6sumAHighB_uid118_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_6sumAHighB_uid118_atan2Test_a) + SIGNED(xip1E_6sumAHighB_uid118_atan2Test_b));
-        ELSE
-            xip1E_6sumAHighB_uid118_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_6sumAHighB_uid118_atan2Test_a) - SIGNED(xip1E_6sumAHighB_uid118_atan2Test_b));
-        END IF;
-    END PROCESS;
-    xip1E_6sumAHighB_uid118_atan2Test_q <= xip1E_6sumAHighB_uid118_atan2Test_o(47 downto 0);
-
-    -- xip1_6_uid126_atan2Test(BITSELECT,125)@6
-    xip1_6_uid126_atan2Test_in <= xip1E_6sumAHighB_uid118_atan2Test_q(45 downto 0);
-    xip1_6_uid126_atan2Test_b <= xip1_6_uid126_atan2Test_in(45 downto 0);
-
-    -- redist20_xip1_6_uid126_atan2Test_b_1(DELAY,296)
-    redist20_xip1_6_uid126_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 46, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xip1_6_uid126_atan2Test_b, xout => redist20_xip1_6_uid126_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- xip1E_7_uid137_atan2Test(ADDSUB,136)@7
-    xip1E_7_uid137_atan2Test_s <= invSignOfSelectionSignal_uid136_atan2Test_q;
-    xip1E_7_uid137_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR("000" & redist20_xip1_6_uid126_atan2Test_b_1_q));
-    xip1E_7_uid137_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((48 downto 36 => twoToMiSiYip_uid134_atan2Test_b(35)) & twoToMiSiYip_uid134_atan2Test_b));
-    xip1E_7_uid137_atan2Test_combproc: PROCESS (xip1E_7_uid137_atan2Test_a, xip1E_7_uid137_atan2Test_b, xip1E_7_uid137_atan2Test_s)
-    BEGIN
-        IF (xip1E_7_uid137_atan2Test_s = "1") THEN
-            xip1E_7_uid137_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_7_uid137_atan2Test_a) + SIGNED(xip1E_7_uid137_atan2Test_b));
-        ELSE
-            xip1E_7_uid137_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_7_uid137_atan2Test_a) - SIGNED(xip1E_7_uid137_atan2Test_b));
-        END IF;
-    END PROCESS;
-    xip1E_7_uid137_atan2Test_q <= xip1E_7_uid137_atan2Test_o(47 downto 0);
-
-    -- xip1_7_uid143_atan2Test(BITSELECT,142)@7
-    xip1_7_uid143_atan2Test_in <= xip1E_7_uid137_atan2Test_q(45 downto 0);
-    xip1_7_uid143_atan2Test_b <= xip1_7_uid143_atan2Test_in(45 downto 0);
-
-    -- redist17_xip1_7_uid143_atan2Test_b_1(DELAY,293)
-    redist17_xip1_7_uid143_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 46, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xip1_7_uid143_atan2Test_b, xout => redist17_xip1_7_uid143_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- twoToMiSiXip_uid150_atan2Test(BITSELECT,149)@8
-    twoToMiSiXip_uid150_atan2Test_b <= redist17_xip1_7_uid143_atan2Test_b_1_q(45 downto 7);
-
-    -- twoToMiSiXip_uid133_atan2Test(BITSELECT,132)@7
-    twoToMiSiXip_uid133_atan2Test_b <= redist20_xip1_6_uid126_atan2Test_b_1_q(45 downto 6);
-
-    -- yip1E_7_uid138_atan2Test(ADDSUB,137)@7
-    yip1E_7_uid138_atan2Test_s <= xMSB_uid129_atan2Test_b;
-    yip1E_7_uid138_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((43 downto 42 => redist19_yip1_6_uid127_atan2Test_b_1_q(41)) & redist19_yip1_6_uid127_atan2Test_b_1_q));
-    yip1E_7_uid138_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR("0000" & twoToMiSiXip_uid133_atan2Test_b));
-    yip1E_7_uid138_atan2Test_combproc: PROCESS (yip1E_7_uid138_atan2Test_a, yip1E_7_uid138_atan2Test_b, yip1E_7_uid138_atan2Test_s)
-    BEGIN
-        IF (yip1E_7_uid138_atan2Test_s = "1") THEN
-            yip1E_7_uid138_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_7_uid138_atan2Test_a) + SIGNED(yip1E_7_uid138_atan2Test_b));
-        ELSE
-            yip1E_7_uid138_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_7_uid138_atan2Test_a) - SIGNED(yip1E_7_uid138_atan2Test_b));
-        END IF;
-    END PROCESS;
-    yip1E_7_uid138_atan2Test_q <= yip1E_7_uid138_atan2Test_o(42 downto 0);
-
-    -- yip1_7_uid144_atan2Test(BITSELECT,143)@7
-    yip1_7_uid144_atan2Test_in <= STD_LOGIC_VECTOR(yip1E_7_uid138_atan2Test_q(40 downto 0));
-    yip1_7_uid144_atan2Test_b <= STD_LOGIC_VECTOR(yip1_7_uid144_atan2Test_in(40 downto 0));
-
-    -- redist16_yip1_7_uid144_atan2Test_b_1(DELAY,292)
-    redist16_yip1_7_uid144_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 41, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yip1_7_uid144_atan2Test_b, xout => redist16_yip1_7_uid144_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- yip1E_8_uid155_atan2Test(ADDSUB,154)@8
-    yip1E_8_uid155_atan2Test_s <= xMSB_uid146_atan2Test_b;
-    yip1E_8_uid155_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((42 downto 41 => redist16_yip1_7_uid144_atan2Test_b_1_q(40)) & redist16_yip1_7_uid144_atan2Test_b_1_q));
-    yip1E_8_uid155_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR("0000" & twoToMiSiXip_uid150_atan2Test_b));
-    yip1E_8_uid155_atan2Test_combproc: PROCESS (yip1E_8_uid155_atan2Test_a, yip1E_8_uid155_atan2Test_b, yip1E_8_uid155_atan2Test_s)
-    BEGIN
-        IF (yip1E_8_uid155_atan2Test_s = "1") THEN
-            yip1E_8_uid155_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_8_uid155_atan2Test_a) + SIGNED(yip1E_8_uid155_atan2Test_b));
-        ELSE
-            yip1E_8_uid155_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_8_uid155_atan2Test_a) - SIGNED(yip1E_8_uid155_atan2Test_b));
-        END IF;
-    END PROCESS;
-    yip1E_8_uid155_atan2Test_q <= yip1E_8_uid155_atan2Test_o(41 downto 0);
-
-    -- yip1_8_uid161_atan2Test(BITSELECT,160)@8
-    yip1_8_uid161_atan2Test_in <= STD_LOGIC_VECTOR(yip1E_8_uid155_atan2Test_q(39 downto 0));
-    yip1_8_uid161_atan2Test_b <= STD_LOGIC_VECTOR(yip1_8_uid161_atan2Test_in(39 downto 0));
-
-    -- redist13_yip1_8_uid161_atan2Test_b_1(DELAY,289)
-    redist13_yip1_8_uid161_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 40, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yip1_8_uid161_atan2Test_b, xout => redist13_yip1_8_uid161_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- xMSB_uid163_atan2Test(BITSELECT,162)@9
-    xMSB_uid163_atan2Test_b <= STD_LOGIC_VECTOR(redist13_yip1_8_uid161_atan2Test_b_1_q(39 downto 39));
-
-    -- invSignOfSelectionSignal_uid170_atan2Test(LOGICAL,169)@9
-    invSignOfSelectionSignal_uid170_atan2Test_q <= not (xMSB_uid163_atan2Test_b);
-
-    -- twoToMiSiYip_uid168_atan2Test(BITSELECT,167)@9
-    twoToMiSiYip_uid168_atan2Test_b <= STD_LOGIC_VECTOR(redist13_yip1_8_uid161_atan2Test_b_1_q(39 downto 8));
-
-    -- invSignOfSelectionSignal_uid153_atan2Test(LOGICAL,152)@8
-    invSignOfSelectionSignal_uid153_atan2Test_q <= not (xMSB_uid146_atan2Test_b);
-
-    -- twoToMiSiYip_uid151_atan2Test(BITSELECT,150)@8
-    twoToMiSiYip_uid151_atan2Test_b <= STD_LOGIC_VECTOR(redist16_yip1_7_uid144_atan2Test_b_1_q(40 downto 7));
-
-    -- xip1E_8_uid154_atan2Test(ADDSUB,153)@8
-    xip1E_8_uid154_atan2Test_s <= invSignOfSelectionSignal_uid153_atan2Test_q;
-    xip1E_8_uid154_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR("000" & redist17_xip1_7_uid143_atan2Test_b_1_q));
-    xip1E_8_uid154_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((48 downto 34 => twoToMiSiYip_uid151_atan2Test_b(33)) & twoToMiSiYip_uid151_atan2Test_b));
-    xip1E_8_uid154_atan2Test_combproc: PROCESS (xip1E_8_uid154_atan2Test_a, xip1E_8_uid154_atan2Test_b, xip1E_8_uid154_atan2Test_s)
-    BEGIN
-        IF (xip1E_8_uid154_atan2Test_s = "1") THEN
-            xip1E_8_uid154_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_8_uid154_atan2Test_a) + SIGNED(xip1E_8_uid154_atan2Test_b));
-        ELSE
-            xip1E_8_uid154_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_8_uid154_atan2Test_a) - SIGNED(xip1E_8_uid154_atan2Test_b));
-        END IF;
-    END PROCESS;
-    xip1E_8_uid154_atan2Test_q <= xip1E_8_uid154_atan2Test_o(47 downto 0);
-
-    -- xip1_8_uid160_atan2Test(BITSELECT,159)@8
-    xip1_8_uid160_atan2Test_in <= xip1E_8_uid154_atan2Test_q(45 downto 0);
-    xip1_8_uid160_atan2Test_b <= xip1_8_uid160_atan2Test_in(45 downto 0);
-
-    -- redist14_xip1_8_uid160_atan2Test_b_1(DELAY,290)
-    redist14_xip1_8_uid160_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 46, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xip1_8_uid160_atan2Test_b, xout => redist14_xip1_8_uid160_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- xip1E_9_uid171_atan2Test(ADDSUB,170)@9
-    xip1E_9_uid171_atan2Test_s <= invSignOfSelectionSignal_uid170_atan2Test_q;
-    xip1E_9_uid171_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR("000" & redist14_xip1_8_uid160_atan2Test_b_1_q));
-    xip1E_9_uid171_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((48 downto 32 => twoToMiSiYip_uid168_atan2Test_b(31)) & twoToMiSiYip_uid168_atan2Test_b));
-    xip1E_9_uid171_atan2Test_combproc: PROCESS (xip1E_9_uid171_atan2Test_a, xip1E_9_uid171_atan2Test_b, xip1E_9_uid171_atan2Test_s)
-    BEGIN
-        IF (xip1E_9_uid171_atan2Test_s = "1") THEN
-            xip1E_9_uid171_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_9_uid171_atan2Test_a) + SIGNED(xip1E_9_uid171_atan2Test_b));
-        ELSE
-            xip1E_9_uid171_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_9_uid171_atan2Test_a) - SIGNED(xip1E_9_uid171_atan2Test_b));
-        END IF;
-    END PROCESS;
-    xip1E_9_uid171_atan2Test_q <= xip1E_9_uid171_atan2Test_o(47 downto 0);
-
-    -- xip1_9_uid177_atan2Test(BITSELECT,176)@9
-    xip1_9_uid177_atan2Test_in <= xip1E_9_uid171_atan2Test_q(45 downto 0);
-    xip1_9_uid177_atan2Test_b <= xip1_9_uid177_atan2Test_in(45 downto 0);
-
-    -- redist11_xip1_9_uid177_atan2Test_b_1(DELAY,287)
-    redist11_xip1_9_uid177_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 46, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xip1_9_uid177_atan2Test_b, xout => redist11_xip1_9_uid177_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- twoToMiSiXip_uid184_atan2Test(BITSELECT,183)@10
-    twoToMiSiXip_uid184_atan2Test_b <= redist11_xip1_9_uid177_atan2Test_b_1_q(45 downto 9);
-
-    -- twoToMiSiXip_uid167_atan2Test(BITSELECT,166)@9
-    twoToMiSiXip_uid167_atan2Test_b <= redist14_xip1_8_uid160_atan2Test_b_1_q(45 downto 8);
-
-    -- yip1E_9_uid172_atan2Test(ADDSUB,171)@9
-    yip1E_9_uid172_atan2Test_s <= xMSB_uid163_atan2Test_b;
-    yip1E_9_uid172_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((41 downto 40 => redist13_yip1_8_uid161_atan2Test_b_1_q(39)) & redist13_yip1_8_uid161_atan2Test_b_1_q));
-    yip1E_9_uid172_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR("0000" & twoToMiSiXip_uid167_atan2Test_b));
-    yip1E_9_uid172_atan2Test_combproc: PROCESS (yip1E_9_uid172_atan2Test_a, yip1E_9_uid172_atan2Test_b, yip1E_9_uid172_atan2Test_s)
-    BEGIN
-        IF (yip1E_9_uid172_atan2Test_s = "1") THEN
-            yip1E_9_uid172_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_9_uid172_atan2Test_a) + SIGNED(yip1E_9_uid172_atan2Test_b));
-        ELSE
-            yip1E_9_uid172_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_9_uid172_atan2Test_a) - SIGNED(yip1E_9_uid172_atan2Test_b));
-        END IF;
-    END PROCESS;
-    yip1E_9_uid172_atan2Test_q <= yip1E_9_uid172_atan2Test_o(40 downto 0);
-
-    -- yip1_9_uid178_atan2Test(BITSELECT,177)@9
-    yip1_9_uid178_atan2Test_in <= STD_LOGIC_VECTOR(yip1E_9_uid172_atan2Test_q(38 downto 0));
-    yip1_9_uid178_atan2Test_b <= STD_LOGIC_VECTOR(yip1_9_uid178_atan2Test_in(38 downto 0));
-
-    -- redist10_yip1_9_uid178_atan2Test_b_1(DELAY,286)
-    redist10_yip1_9_uid178_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 39, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yip1_9_uid178_atan2Test_b, xout => redist10_yip1_9_uid178_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- yip1E_10_uid189_atan2Test(ADDSUB,188)@10
-    yip1E_10_uid189_atan2Test_s <= xMSB_uid180_atan2Test_b;
-    yip1E_10_uid189_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((40 downto 39 => redist10_yip1_9_uid178_atan2Test_b_1_q(38)) & redist10_yip1_9_uid178_atan2Test_b_1_q));
-    yip1E_10_uid189_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR("0000" & twoToMiSiXip_uid184_atan2Test_b));
-    yip1E_10_uid189_atan2Test_combproc: PROCESS (yip1E_10_uid189_atan2Test_a, yip1E_10_uid189_atan2Test_b, yip1E_10_uid189_atan2Test_s)
-    BEGIN
-        IF (yip1E_10_uid189_atan2Test_s = "1") THEN
-            yip1E_10_uid189_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_10_uid189_atan2Test_a) + SIGNED(yip1E_10_uid189_atan2Test_b));
-        ELSE
-            yip1E_10_uid189_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_10_uid189_atan2Test_a) - SIGNED(yip1E_10_uid189_atan2Test_b));
-        END IF;
-    END PROCESS;
-    yip1E_10_uid189_atan2Test_q <= yip1E_10_uid189_atan2Test_o(39 downto 0);
-
-    -- yip1_10_uid195_atan2Test(BITSELECT,194)@10
-    yip1_10_uid195_atan2Test_in <= STD_LOGIC_VECTOR(yip1E_10_uid189_atan2Test_q(37 downto 0));
-    yip1_10_uid195_atan2Test_b <= STD_LOGIC_VECTOR(yip1_10_uid195_atan2Test_in(37 downto 0));
-
-    -- redist7_yip1_10_uid195_atan2Test_b_1(DELAY,283)
-    redist7_yip1_10_uid195_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 38, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yip1_10_uid195_atan2Test_b, xout => redist7_yip1_10_uid195_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- xMSB_uid197_atan2Test(BITSELECT,196)@11
-    xMSB_uid197_atan2Test_b <= STD_LOGIC_VECTOR(redist7_yip1_10_uid195_atan2Test_b_1_q(37 downto 37));
-
-    -- invSignOfSelectionSignal_uid204_atan2Test(LOGICAL,203)@11
-    invSignOfSelectionSignal_uid204_atan2Test_q <= not (xMSB_uid197_atan2Test_b);
-
-    -- twoToMiSiYip_uid202_atan2Test(BITSELECT,201)@11
-    twoToMiSiYip_uid202_atan2Test_b <= STD_LOGIC_VECTOR(redist7_yip1_10_uid195_atan2Test_b_1_q(37 downto 10));
-
-    -- invSignOfSelectionSignal_uid187_atan2Test(LOGICAL,186)@10
-    invSignOfSelectionSignal_uid187_atan2Test_q <= not (xMSB_uid180_atan2Test_b);
-
-    -- twoToMiSiYip_uid185_atan2Test(BITSELECT,184)@10
-    twoToMiSiYip_uid185_atan2Test_b <= STD_LOGIC_VECTOR(redist10_yip1_9_uid178_atan2Test_b_1_q(38 downto 9));
-
-    -- xip1E_10_uid188_atan2Test(ADDSUB,187)@10
-    xip1E_10_uid188_atan2Test_s <= invSignOfSelectionSignal_uid187_atan2Test_q;
-    xip1E_10_uid188_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR("000" & redist11_xip1_9_uid177_atan2Test_b_1_q));
-    xip1E_10_uid188_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((48 downto 30 => twoToMiSiYip_uid185_atan2Test_b(29)) & twoToMiSiYip_uid185_atan2Test_b));
-    xip1E_10_uid188_atan2Test_combproc: PROCESS (xip1E_10_uid188_atan2Test_a, xip1E_10_uid188_atan2Test_b, xip1E_10_uid188_atan2Test_s)
-    BEGIN
-        IF (xip1E_10_uid188_atan2Test_s = "1") THEN
-            xip1E_10_uid188_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_10_uid188_atan2Test_a) + SIGNED(xip1E_10_uid188_atan2Test_b));
-        ELSE
-            xip1E_10_uid188_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_10_uid188_atan2Test_a) - SIGNED(xip1E_10_uid188_atan2Test_b));
-        END IF;
-    END PROCESS;
-    xip1E_10_uid188_atan2Test_q <= xip1E_10_uid188_atan2Test_o(47 downto 0);
-
-    -- xip1_10_uid194_atan2Test(BITSELECT,193)@10
-    xip1_10_uid194_atan2Test_in <= xip1E_10_uid188_atan2Test_q(45 downto 0);
-    xip1_10_uid194_atan2Test_b <= xip1_10_uid194_atan2Test_in(45 downto 0);
-
-    -- redist8_xip1_10_uid194_atan2Test_b_1(DELAY,284)
-    redist8_xip1_10_uid194_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 46, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xip1_10_uid194_atan2Test_b, xout => redist8_xip1_10_uid194_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- xip1E_11_uid205_atan2Test(ADDSUB,204)@11
-    xip1E_11_uid205_atan2Test_s <= invSignOfSelectionSignal_uid204_atan2Test_q;
-    xip1E_11_uid205_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR("000" & redist8_xip1_10_uid194_atan2Test_b_1_q));
-    xip1E_11_uid205_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((48 downto 28 => twoToMiSiYip_uid202_atan2Test_b(27)) & twoToMiSiYip_uid202_atan2Test_b));
-    xip1E_11_uid205_atan2Test_combproc: PROCESS (xip1E_11_uid205_atan2Test_a, xip1E_11_uid205_atan2Test_b, xip1E_11_uid205_atan2Test_s)
-    BEGIN
-        IF (xip1E_11_uid205_atan2Test_s = "1") THEN
-            xip1E_11_uid205_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_11_uid205_atan2Test_a) + SIGNED(xip1E_11_uid205_atan2Test_b));
-        ELSE
-            xip1E_11_uid205_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(xip1E_11_uid205_atan2Test_a) - SIGNED(xip1E_11_uid205_atan2Test_b));
-        END IF;
-    END PROCESS;
-    xip1E_11_uid205_atan2Test_q <= xip1E_11_uid205_atan2Test_o(47 downto 0);
-
-    -- xip1_11_uid211_atan2Test(BITSELECT,210)@11
-    xip1_11_uid211_atan2Test_in <= xip1E_11_uid205_atan2Test_q(45 downto 0);
-    xip1_11_uid211_atan2Test_b <= xip1_11_uid211_atan2Test_in(45 downto 0);
-
-    -- twoToMiSiXip_uid218_atan2Test(BITSELECT,217)@11
-    twoToMiSiXip_uid218_atan2Test_b <= xip1_11_uid211_atan2Test_b(45 downto 11);
-
-    -- redist3_twoToMiSiXip_uid218_atan2Test_b_1(DELAY,279)
-    redist3_twoToMiSiXip_uid218_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 35, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => twoToMiSiXip_uid218_atan2Test_b, xout => redist3_twoToMiSiXip_uid218_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- twoToMiSiXip_uid201_atan2Test(BITSELECT,200)@11
-    twoToMiSiXip_uid201_atan2Test_b <= redist8_xip1_10_uid194_atan2Test_b_1_q(45 downto 10);
-
-    -- yip1E_11_uid206_atan2Test(ADDSUB,205)@11
-    yip1E_11_uid206_atan2Test_s <= xMSB_uid197_atan2Test_b;
-    yip1E_11_uid206_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((39 downto 38 => redist7_yip1_10_uid195_atan2Test_b_1_q(37)) & redist7_yip1_10_uid195_atan2Test_b_1_q));
-    yip1E_11_uid206_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR("0000" & twoToMiSiXip_uid201_atan2Test_b));
-    yip1E_11_uid206_atan2Test_combproc: PROCESS (yip1E_11_uid206_atan2Test_a, yip1E_11_uid206_atan2Test_b, yip1E_11_uid206_atan2Test_s)
-    BEGIN
-        IF (yip1E_11_uid206_atan2Test_s = "1") THEN
-            yip1E_11_uid206_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_11_uid206_atan2Test_a) + SIGNED(yip1E_11_uid206_atan2Test_b));
-        ELSE
-            yip1E_11_uid206_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_11_uid206_atan2Test_a) - SIGNED(yip1E_11_uid206_atan2Test_b));
-        END IF;
-    END PROCESS;
-    yip1E_11_uid206_atan2Test_q <= yip1E_11_uid206_atan2Test_o(38 downto 0);
-
-    -- yip1_11_uid212_atan2Test(BITSELECT,211)@11
-    yip1_11_uid212_atan2Test_in <= STD_LOGIC_VECTOR(yip1E_11_uid206_atan2Test_q(36 downto 0));
-    yip1_11_uid212_atan2Test_b <= STD_LOGIC_VECTOR(yip1_11_uid212_atan2Test_in(36 downto 0));
-
-    -- redist5_yip1_11_uid212_atan2Test_b_1(DELAY,281)
-    redist5_yip1_11_uid212_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 37, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yip1_11_uid212_atan2Test_b, xout => redist5_yip1_11_uid212_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- yip1E_12_uid223_atan2Test(ADDSUB,222)@12
-    yip1E_12_uid223_atan2Test_s <= xMSB_uid214_atan2Test_b;
-    yip1E_12_uid223_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((38 downto 37 => redist5_yip1_11_uid212_atan2Test_b_1_q(36)) & redist5_yip1_11_uid212_atan2Test_b_1_q));
-    yip1E_12_uid223_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR("0000" & redist3_twoToMiSiXip_uid218_atan2Test_b_1_q));
-    yip1E_12_uid223_atan2Test_combproc: PROCESS (yip1E_12_uid223_atan2Test_a, yip1E_12_uid223_atan2Test_b, yip1E_12_uid223_atan2Test_s)
-    BEGIN
-        IF (yip1E_12_uid223_atan2Test_s = "1") THEN
-            yip1E_12_uid223_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_12_uid223_atan2Test_a) + SIGNED(yip1E_12_uid223_atan2Test_b));
-        ELSE
-            yip1E_12_uid223_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(yip1E_12_uid223_atan2Test_a) - SIGNED(yip1E_12_uid223_atan2Test_b));
-        END IF;
-    END PROCESS;
-    yip1E_12_uid223_atan2Test_q <= yip1E_12_uid223_atan2Test_o(37 downto 0);
-
-    -- yip1_12_uid229_atan2Test(BITSELECT,228)@12
-    yip1_12_uid229_atan2Test_in <= STD_LOGIC_VECTOR(yip1E_12_uid223_atan2Test_q(35 downto 0));
-    yip1_12_uid229_atan2Test_b <= STD_LOGIC_VECTOR(yip1_12_uid229_atan2Test_in(35 downto 0));
-
-    -- xMSB_uid231_atan2Test(BITSELECT,230)@12
-    xMSB_uid231_atan2Test_b <= STD_LOGIC_VECTOR(yip1_12_uid229_atan2Test_b(35 downto 35));
-
-    -- redist1_xMSB_uid231_atan2Test_b_1(DELAY,277)
-    redist1_xMSB_uid231_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 1, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xMSB_uid231_atan2Test_b, xout => redist1_xMSB_uid231_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- invSignOfSelectionSignal_uid241_atan2Test(LOGICAL,240)@13
-    invSignOfSelectionSignal_uid241_atan2Test_q <= not (redist1_xMSB_uid231_atan2Test_b_1_q);
-
-    -- cstArcTan2Mi_12_uid237_atan2Test(CONSTANT,236)
-    cstArcTan2Mi_12_uid237_atan2Test_q <= "0111111111111111111111111101010101";
-
-    -- invSignOfSelectionSignal_uid224_atan2Test(LOGICAL,223)@12
-    invSignOfSelectionSignal_uid224_atan2Test_q <= not (xMSB_uid214_atan2Test_b);
-
-    -- cstArcTan2Mi_11_uid220_atan2Test(CONSTANT,219)
-    cstArcTan2Mi_11_uid220_atan2Test_q <= "011111111111111111111111010101011";
-
-    -- cstArcTan2Mi_10_uid203_atan2Test(CONSTANT,202)
-    cstArcTan2Mi_10_uid203_atan2Test_q <= "01111111111111111111110101010101";
-
-    -- cstArcTan2Mi_9_uid186_atan2Test(CONSTANT,185)
-    cstArcTan2Mi_9_uid186_atan2Test_q <= "0111111111111111111101010101011";
-
-    -- cstArcTan2Mi_8_uid169_atan2Test(CONSTANT,168)
-    cstArcTan2Mi_8_uid169_atan2Test_q <= "011111111111111111010101010101";
-
-    -- cstArcTan2Mi_7_uid152_atan2Test(CONSTANT,151)
-    cstArcTan2Mi_7_uid152_atan2Test_q <= "01111111111111110101010101011";
-
-    -- cstArcTan2Mi_6_uid135_atan2Test(CONSTANT,134)
-    cstArcTan2Mi_6_uid135_atan2Test_q <= "0111111111111101010101010111";
-
-    -- cstArcTan2Mi_5_uid114_atan2Test(CONSTANT,113)
-    cstArcTan2Mi_5_uid114_atan2Test_q <= "011111111111010101010110111";
-
-    -- cstArcTan2Mi_4_uid93_atan2Test(CONSTANT,92)
-    cstArcTan2Mi_4_uid93_atan2Test_q <= "01111111110101010110111011";
-
-    -- cstArcTan2Mi_3_uid74_atan2Test(CONSTANT,73)
-    cstArcTan2Mi_3_uid74_atan2Test_q <= "0111111101010110111010101";
-
-    -- cstArcTan2Mi_2_uid55_atan2Test(CONSTANT,54)
-    cstArcTan2Mi_2_uid55_atan2Test_q <= "011111010110110111011000";
-
-    -- cstArcTan2Mi_1_uid36_atan2Test(CONSTANT,35)
-    cstArcTan2Mi_1_uid36_atan2Test_q <= "01110110101100011001110";
-
-    -- cstArcTan2Mi_0_uid22_atan2Test(CONSTANT,21)
-    cstArcTan2Mi_0_uid22_atan2Test_q <= "0110010010000111111011";
-
-    -- highBBits_uid26_atan2Test(BITSELECT,25)@2
-    highBBits_uid26_atan2Test_b <= STD_LOGIC_VECTOR(cstArcTan2Mi_0_uid22_atan2Test_q(21 downto 21));
-
-    -- lowRangeB_uid25_atan2Test(BITSELECT,24)@2
-    lowRangeB_uid25_atan2Test_in <= cstArcTan2Mi_0_uid22_atan2Test_q(20 downto 0);
-    lowRangeB_uid25_atan2Test_b <= lowRangeB_uid25_atan2Test_in(20 downto 0);
-
-    -- aip1E_1_uid28_atan2Test(BITJOIN,27)@2
-    aip1E_1_uid28_atan2Test_q <= STD_LOGIC_VECTOR((2 downto 1 => highBBits_uid26_atan2Test_b(0)) & highBBits_uid26_atan2Test_b) & lowRangeB_uid25_atan2Test_b;
-
-    -- aip1E_uid31_atan2Test(BITSELECT,30)@2
-    aip1E_uid31_atan2Test_in <= STD_LOGIC_VECTOR(aip1E_1_uid28_atan2Test_q(22 downto 0));
-    aip1E_uid31_atan2Test_b <= STD_LOGIC_VECTOR(aip1E_uid31_atan2Test_in(22 downto 0));
-
-    -- aip1E_2NA_uid46_atan2Test(BITJOIN,45)@2
-    aip1E_2NA_uid46_atan2Test_q <= aip1E_uid31_atan2Test_b & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
-
-    -- aip1E_2sumAHighB_uid47_atan2Test(ADDSUB,46)@2
-    aip1E_2sumAHighB_uid47_atan2Test_s <= invSignOfSelectionSignal_uid37_atan2Test_q;
-    aip1E_2sumAHighB_uid47_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 25 => aip1E_2NA_uid46_atan2Test_q(24)) & aip1E_2NA_uid46_atan2Test_q));
-    aip1E_2sumAHighB_uid47_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((26 downto 23 => cstArcTan2Mi_1_uid36_atan2Test_q(22)) & cstArcTan2Mi_1_uid36_atan2Test_q));
-    aip1E_2sumAHighB_uid47_atan2Test_combproc: PROCESS (aip1E_2sumAHighB_uid47_atan2Test_a, aip1E_2sumAHighB_uid47_atan2Test_b, aip1E_2sumAHighB_uid47_atan2Test_s)
-    BEGIN
-        IF (aip1E_2sumAHighB_uid47_atan2Test_s = "1") THEN
-            aip1E_2sumAHighB_uid47_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_2sumAHighB_uid47_atan2Test_a) + SIGNED(aip1E_2sumAHighB_uid47_atan2Test_b));
-        ELSE
-            aip1E_2sumAHighB_uid47_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_2sumAHighB_uid47_atan2Test_a) - SIGNED(aip1E_2sumAHighB_uid47_atan2Test_b));
-        END IF;
-    END PROCESS;
-    aip1E_2sumAHighB_uid47_atan2Test_q <= aip1E_2sumAHighB_uid47_atan2Test_o(25 downto 0);
-
-    -- aip1E_uid50_atan2Test(BITSELECT,49)@2
-    aip1E_uid50_atan2Test_in <= STD_LOGIC_VECTOR(aip1E_2sumAHighB_uid47_atan2Test_q(24 downto 0));
-    aip1E_uid50_atan2Test_b <= STD_LOGIC_VECTOR(aip1E_uid50_atan2Test_in(24 downto 0));
-
-    -- redist30_aip1E_uid50_atan2Test_b_1(DELAY,306)
-    redist30_aip1E_uid50_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 25, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => aip1E_uid50_atan2Test_b, xout => redist30_aip1E_uid50_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- aip1E_3NA_uid65_atan2Test(BITJOIN,64)@3
-    aip1E_3NA_uid65_atan2Test_q <= redist30_aip1E_uid50_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
-
-    -- aip1E_3sumAHighB_uid66_atan2Test(ADDSUB,65)@3
-    aip1E_3sumAHighB_uid66_atan2Test_s <= invSignOfSelectionSignal_uid56_atan2Test_q;
-    aip1E_3sumAHighB_uid66_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((28 downto 27 => aip1E_3NA_uid65_atan2Test_q(26)) & aip1E_3NA_uid65_atan2Test_q));
-    aip1E_3sumAHighB_uid66_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((28 downto 24 => cstArcTan2Mi_2_uid55_atan2Test_q(23)) & cstArcTan2Mi_2_uid55_atan2Test_q));
-    aip1E_3sumAHighB_uid66_atan2Test_combproc: PROCESS (aip1E_3sumAHighB_uid66_atan2Test_a, aip1E_3sumAHighB_uid66_atan2Test_b, aip1E_3sumAHighB_uid66_atan2Test_s)
-    BEGIN
-        IF (aip1E_3sumAHighB_uid66_atan2Test_s = "1") THEN
-            aip1E_3sumAHighB_uid66_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_3sumAHighB_uid66_atan2Test_a) + SIGNED(aip1E_3sumAHighB_uid66_atan2Test_b));
-        ELSE
-            aip1E_3sumAHighB_uid66_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_3sumAHighB_uid66_atan2Test_a) - SIGNED(aip1E_3sumAHighB_uid66_atan2Test_b));
-        END IF;
-    END PROCESS;
-    aip1E_3sumAHighB_uid66_atan2Test_q <= aip1E_3sumAHighB_uid66_atan2Test_o(27 downto 0);
-
-    -- aip1E_uid69_atan2Test(BITSELECT,68)@3
-    aip1E_uid69_atan2Test_in <= STD_LOGIC_VECTOR(aip1E_3sumAHighB_uid66_atan2Test_q(26 downto 0));
-    aip1E_uid69_atan2Test_b <= STD_LOGIC_VECTOR(aip1E_uid69_atan2Test_in(26 downto 0));
-
-    -- redist27_aip1E_uid69_atan2Test_b_1(DELAY,303)
-    redist27_aip1E_uid69_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 27, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => aip1E_uid69_atan2Test_b, xout => redist27_aip1E_uid69_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- aip1E_4NA_uid84_atan2Test(BITJOIN,83)@4
-    aip1E_4NA_uid84_atan2Test_q <= redist27_aip1E_uid69_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
-
-    -- aip1E_4sumAHighB_uid85_atan2Test(ADDSUB,84)@4
-    aip1E_4sumAHighB_uid85_atan2Test_s <= invSignOfSelectionSignal_uid75_atan2Test_q;
-    aip1E_4sumAHighB_uid85_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((30 downto 29 => aip1E_4NA_uid84_atan2Test_q(28)) & aip1E_4NA_uid84_atan2Test_q));
-    aip1E_4sumAHighB_uid85_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((30 downto 25 => cstArcTan2Mi_3_uid74_atan2Test_q(24)) & cstArcTan2Mi_3_uid74_atan2Test_q));
-    aip1E_4sumAHighB_uid85_atan2Test_combproc: PROCESS (aip1E_4sumAHighB_uid85_atan2Test_a, aip1E_4sumAHighB_uid85_atan2Test_b, aip1E_4sumAHighB_uid85_atan2Test_s)
-    BEGIN
-        IF (aip1E_4sumAHighB_uid85_atan2Test_s = "1") THEN
-            aip1E_4sumAHighB_uid85_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_4sumAHighB_uid85_atan2Test_a) + SIGNED(aip1E_4sumAHighB_uid85_atan2Test_b));
-        ELSE
-            aip1E_4sumAHighB_uid85_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_4sumAHighB_uid85_atan2Test_a) - SIGNED(aip1E_4sumAHighB_uid85_atan2Test_b));
-        END IF;
-    END PROCESS;
-    aip1E_4sumAHighB_uid85_atan2Test_q <= aip1E_4sumAHighB_uid85_atan2Test_o(29 downto 0);
-
-    -- aip1E_uid88_atan2Test(BITSELECT,87)@4
-    aip1E_uid88_atan2Test_in <= STD_LOGIC_VECTOR(aip1E_4sumAHighB_uid85_atan2Test_q(28 downto 0));
-    aip1E_uid88_atan2Test_b <= STD_LOGIC_VECTOR(aip1E_uid88_atan2Test_in(28 downto 0));
-
-    -- redist24_aip1E_uid88_atan2Test_b_1(DELAY,300)
-    redist24_aip1E_uid88_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 29, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => aip1E_uid88_atan2Test_b, xout => redist24_aip1E_uid88_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- aip1E_5NA_uid103_atan2Test(BITJOIN,102)@5
-    aip1E_5NA_uid103_atan2Test_q <= redist24_aip1E_uid88_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
-
-    -- aip1E_5sumAHighB_uid104_atan2Test(ADDSUB,103)@5
-    aip1E_5sumAHighB_uid104_atan2Test_s <= invSignOfSelectionSignal_uid94_atan2Test_q;
-    aip1E_5sumAHighB_uid104_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((32 downto 31 => aip1E_5NA_uid103_atan2Test_q(30)) & aip1E_5NA_uid103_atan2Test_q));
-    aip1E_5sumAHighB_uid104_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((32 downto 26 => cstArcTan2Mi_4_uid93_atan2Test_q(25)) & cstArcTan2Mi_4_uid93_atan2Test_q));
-    aip1E_5sumAHighB_uid104_atan2Test_combproc: PROCESS (aip1E_5sumAHighB_uid104_atan2Test_a, aip1E_5sumAHighB_uid104_atan2Test_b, aip1E_5sumAHighB_uid104_atan2Test_s)
-    BEGIN
-        IF (aip1E_5sumAHighB_uid104_atan2Test_s = "1") THEN
-            aip1E_5sumAHighB_uid104_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_5sumAHighB_uid104_atan2Test_a) + SIGNED(aip1E_5sumAHighB_uid104_atan2Test_b));
-        ELSE
-            aip1E_5sumAHighB_uid104_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_5sumAHighB_uid104_atan2Test_a) - SIGNED(aip1E_5sumAHighB_uid104_atan2Test_b));
-        END IF;
-    END PROCESS;
-    aip1E_5sumAHighB_uid104_atan2Test_q <= aip1E_5sumAHighB_uid104_atan2Test_o(31 downto 0);
-
-    -- aip1E_uid107_atan2Test(BITSELECT,106)@5
-    aip1E_uid107_atan2Test_in <= STD_LOGIC_VECTOR(aip1E_5sumAHighB_uid104_atan2Test_q(30 downto 0));
-    aip1E_uid107_atan2Test_b <= STD_LOGIC_VECTOR(aip1E_uid107_atan2Test_in(30 downto 0));
-
-    -- redist21_aip1E_uid107_atan2Test_b_1(DELAY,297)
-    redist21_aip1E_uid107_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 31, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => aip1E_uid107_atan2Test_b, xout => redist21_aip1E_uid107_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- aip1E_6NA_uid124_atan2Test(BITJOIN,123)@6
-    aip1E_6NA_uid124_atan2Test_q <= redist21_aip1E_uid107_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
-
-    -- aip1E_6sumAHighB_uid125_atan2Test(ADDSUB,124)@6
-    aip1E_6sumAHighB_uid125_atan2Test_s <= invSignOfSelectionSignal_uid115_atan2Test_q;
-    aip1E_6sumAHighB_uid125_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((34 downto 33 => aip1E_6NA_uid124_atan2Test_q(32)) & aip1E_6NA_uid124_atan2Test_q));
-    aip1E_6sumAHighB_uid125_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((34 downto 27 => cstArcTan2Mi_5_uid114_atan2Test_q(26)) & cstArcTan2Mi_5_uid114_atan2Test_q));
-    aip1E_6sumAHighB_uid125_atan2Test_combproc: PROCESS (aip1E_6sumAHighB_uid125_atan2Test_a, aip1E_6sumAHighB_uid125_atan2Test_b, aip1E_6sumAHighB_uid125_atan2Test_s)
-    BEGIN
-        IF (aip1E_6sumAHighB_uid125_atan2Test_s = "1") THEN
-            aip1E_6sumAHighB_uid125_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_6sumAHighB_uid125_atan2Test_a) + SIGNED(aip1E_6sumAHighB_uid125_atan2Test_b));
-        ELSE
-            aip1E_6sumAHighB_uid125_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_6sumAHighB_uid125_atan2Test_a) - SIGNED(aip1E_6sumAHighB_uid125_atan2Test_b));
-        END IF;
-    END PROCESS;
-    aip1E_6sumAHighB_uid125_atan2Test_q <= aip1E_6sumAHighB_uid125_atan2Test_o(33 downto 0);
-
-    -- aip1E_uid128_atan2Test(BITSELECT,127)@6
-    aip1E_uid128_atan2Test_in <= STD_LOGIC_VECTOR(aip1E_6sumAHighB_uid125_atan2Test_q(32 downto 0));
-    aip1E_uid128_atan2Test_b <= STD_LOGIC_VECTOR(aip1E_uid128_atan2Test_in(32 downto 0));
-
-    -- redist18_aip1E_uid128_atan2Test_b_1(DELAY,294)
-    redist18_aip1E_uid128_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 33, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => aip1E_uid128_atan2Test_b, xout => redist18_aip1E_uid128_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- aip1E_7NA_uid141_atan2Test(BITJOIN,140)@7
-    aip1E_7NA_uid141_atan2Test_q <= redist18_aip1E_uid128_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
-
-    -- aip1E_7sumAHighB_uid142_atan2Test(ADDSUB,141)@7
-    aip1E_7sumAHighB_uid142_atan2Test_s <= invSignOfSelectionSignal_uid136_atan2Test_q;
-    aip1E_7sumAHighB_uid142_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((36 downto 35 => aip1E_7NA_uid141_atan2Test_q(34)) & aip1E_7NA_uid141_atan2Test_q));
-    aip1E_7sumAHighB_uid142_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((36 downto 28 => cstArcTan2Mi_6_uid135_atan2Test_q(27)) & cstArcTan2Mi_6_uid135_atan2Test_q));
-    aip1E_7sumAHighB_uid142_atan2Test_combproc: PROCESS (aip1E_7sumAHighB_uid142_atan2Test_a, aip1E_7sumAHighB_uid142_atan2Test_b, aip1E_7sumAHighB_uid142_atan2Test_s)
-    BEGIN
-        IF (aip1E_7sumAHighB_uid142_atan2Test_s = "1") THEN
-            aip1E_7sumAHighB_uid142_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_7sumAHighB_uid142_atan2Test_a) + SIGNED(aip1E_7sumAHighB_uid142_atan2Test_b));
-        ELSE
-            aip1E_7sumAHighB_uid142_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_7sumAHighB_uid142_atan2Test_a) - SIGNED(aip1E_7sumAHighB_uid142_atan2Test_b));
-        END IF;
-    END PROCESS;
-    aip1E_7sumAHighB_uid142_atan2Test_q <= aip1E_7sumAHighB_uid142_atan2Test_o(35 downto 0);
-
-    -- aip1E_uid145_atan2Test(BITSELECT,144)@7
-    aip1E_uid145_atan2Test_in <= STD_LOGIC_VECTOR(aip1E_7sumAHighB_uid142_atan2Test_q(34 downto 0));
-    aip1E_uid145_atan2Test_b <= STD_LOGIC_VECTOR(aip1E_uid145_atan2Test_in(34 downto 0));
-
-    -- redist15_aip1E_uid145_atan2Test_b_1(DELAY,291)
-    redist15_aip1E_uid145_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 35, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => aip1E_uid145_atan2Test_b, xout => redist15_aip1E_uid145_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- aip1E_8NA_uid158_atan2Test(BITJOIN,157)@8
-    aip1E_8NA_uid158_atan2Test_q <= redist15_aip1E_uid145_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
-
-    -- aip1E_8sumAHighB_uid159_atan2Test(ADDSUB,158)@8
-    aip1E_8sumAHighB_uid159_atan2Test_s <= invSignOfSelectionSignal_uid153_atan2Test_q;
-    aip1E_8sumAHighB_uid159_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((38 downto 37 => aip1E_8NA_uid158_atan2Test_q(36)) & aip1E_8NA_uid158_atan2Test_q));
-    aip1E_8sumAHighB_uid159_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((38 downto 29 => cstArcTan2Mi_7_uid152_atan2Test_q(28)) & cstArcTan2Mi_7_uid152_atan2Test_q));
-    aip1E_8sumAHighB_uid159_atan2Test_combproc: PROCESS (aip1E_8sumAHighB_uid159_atan2Test_a, aip1E_8sumAHighB_uid159_atan2Test_b, aip1E_8sumAHighB_uid159_atan2Test_s)
-    BEGIN
-        IF (aip1E_8sumAHighB_uid159_atan2Test_s = "1") THEN
-            aip1E_8sumAHighB_uid159_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_8sumAHighB_uid159_atan2Test_a) + SIGNED(aip1E_8sumAHighB_uid159_atan2Test_b));
-        ELSE
-            aip1E_8sumAHighB_uid159_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_8sumAHighB_uid159_atan2Test_a) - SIGNED(aip1E_8sumAHighB_uid159_atan2Test_b));
-        END IF;
-    END PROCESS;
-    aip1E_8sumAHighB_uid159_atan2Test_q <= aip1E_8sumAHighB_uid159_atan2Test_o(37 downto 0);
-
-    -- aip1E_uid162_atan2Test(BITSELECT,161)@8
-    aip1E_uid162_atan2Test_in <= STD_LOGIC_VECTOR(aip1E_8sumAHighB_uid159_atan2Test_q(36 downto 0));
-    aip1E_uid162_atan2Test_b <= STD_LOGIC_VECTOR(aip1E_uid162_atan2Test_in(36 downto 0));
-
-    -- redist12_aip1E_uid162_atan2Test_b_1(DELAY,288)
-    redist12_aip1E_uid162_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 37, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => aip1E_uid162_atan2Test_b, xout => redist12_aip1E_uid162_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- aip1E_9NA_uid175_atan2Test(BITJOIN,174)@9
-    aip1E_9NA_uid175_atan2Test_q <= redist12_aip1E_uid162_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
-
-    -- aip1E_9sumAHighB_uid176_atan2Test(ADDSUB,175)@9
-    aip1E_9sumAHighB_uid176_atan2Test_s <= invSignOfSelectionSignal_uid170_atan2Test_q;
-    aip1E_9sumAHighB_uid176_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((40 downto 39 => aip1E_9NA_uid175_atan2Test_q(38)) & aip1E_9NA_uid175_atan2Test_q));
-    aip1E_9sumAHighB_uid176_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((40 downto 30 => cstArcTan2Mi_8_uid169_atan2Test_q(29)) & cstArcTan2Mi_8_uid169_atan2Test_q));
-    aip1E_9sumAHighB_uid176_atan2Test_combproc: PROCESS (aip1E_9sumAHighB_uid176_atan2Test_a, aip1E_9sumAHighB_uid176_atan2Test_b, aip1E_9sumAHighB_uid176_atan2Test_s)
-    BEGIN
-        IF (aip1E_9sumAHighB_uid176_atan2Test_s = "1") THEN
-            aip1E_9sumAHighB_uid176_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_9sumAHighB_uid176_atan2Test_a) + SIGNED(aip1E_9sumAHighB_uid176_atan2Test_b));
-        ELSE
-            aip1E_9sumAHighB_uid176_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_9sumAHighB_uid176_atan2Test_a) - SIGNED(aip1E_9sumAHighB_uid176_atan2Test_b));
-        END IF;
-    END PROCESS;
-    aip1E_9sumAHighB_uid176_atan2Test_q <= aip1E_9sumAHighB_uid176_atan2Test_o(39 downto 0);
-
-    -- aip1E_uid179_atan2Test(BITSELECT,178)@9
-    aip1E_uid179_atan2Test_in <= STD_LOGIC_VECTOR(aip1E_9sumAHighB_uid176_atan2Test_q(38 downto 0));
-    aip1E_uid179_atan2Test_b <= STD_LOGIC_VECTOR(aip1E_uid179_atan2Test_in(38 downto 0));
-
-    -- redist9_aip1E_uid179_atan2Test_b_1(DELAY,285)
-    redist9_aip1E_uid179_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 39, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => aip1E_uid179_atan2Test_b, xout => redist9_aip1E_uid179_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- aip1E_10NA_uid192_atan2Test(BITJOIN,191)@10
-    aip1E_10NA_uid192_atan2Test_q <= redist9_aip1E_uid179_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
-
-    -- aip1E_10sumAHighB_uid193_atan2Test(ADDSUB,192)@10
-    aip1E_10sumAHighB_uid193_atan2Test_s <= invSignOfSelectionSignal_uid187_atan2Test_q;
-    aip1E_10sumAHighB_uid193_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((42 downto 41 => aip1E_10NA_uid192_atan2Test_q(40)) & aip1E_10NA_uid192_atan2Test_q));
-    aip1E_10sumAHighB_uid193_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((42 downto 31 => cstArcTan2Mi_9_uid186_atan2Test_q(30)) & cstArcTan2Mi_9_uid186_atan2Test_q));
-    aip1E_10sumAHighB_uid193_atan2Test_combproc: PROCESS (aip1E_10sumAHighB_uid193_atan2Test_a, aip1E_10sumAHighB_uid193_atan2Test_b, aip1E_10sumAHighB_uid193_atan2Test_s)
-    BEGIN
-        IF (aip1E_10sumAHighB_uid193_atan2Test_s = "1") THEN
-            aip1E_10sumAHighB_uid193_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_10sumAHighB_uid193_atan2Test_a) + SIGNED(aip1E_10sumAHighB_uid193_atan2Test_b));
-        ELSE
-            aip1E_10sumAHighB_uid193_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_10sumAHighB_uid193_atan2Test_a) - SIGNED(aip1E_10sumAHighB_uid193_atan2Test_b));
-        END IF;
-    END PROCESS;
-    aip1E_10sumAHighB_uid193_atan2Test_q <= aip1E_10sumAHighB_uid193_atan2Test_o(41 downto 0);
-
-    -- aip1E_uid196_atan2Test(BITSELECT,195)@10
-    aip1E_uid196_atan2Test_in <= STD_LOGIC_VECTOR(aip1E_10sumAHighB_uid193_atan2Test_q(40 downto 0));
-    aip1E_uid196_atan2Test_b <= STD_LOGIC_VECTOR(aip1E_uid196_atan2Test_in(40 downto 0));
-
-    -- redist6_aip1E_uid196_atan2Test_b_1(DELAY,282)
-    redist6_aip1E_uid196_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 41, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => aip1E_uid196_atan2Test_b, xout => redist6_aip1E_uid196_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- aip1E_11NA_uid209_atan2Test(BITJOIN,208)@11
-    aip1E_11NA_uid209_atan2Test_q <= redist6_aip1E_uid196_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
-
-    -- aip1E_11sumAHighB_uid210_atan2Test(ADDSUB,209)@11
-    aip1E_11sumAHighB_uid210_atan2Test_s <= invSignOfSelectionSignal_uid204_atan2Test_q;
-    aip1E_11sumAHighB_uid210_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((44 downto 43 => aip1E_11NA_uid209_atan2Test_q(42)) & aip1E_11NA_uid209_atan2Test_q));
-    aip1E_11sumAHighB_uid210_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((44 downto 32 => cstArcTan2Mi_10_uid203_atan2Test_q(31)) & cstArcTan2Mi_10_uid203_atan2Test_q));
-    aip1E_11sumAHighB_uid210_atan2Test_combproc: PROCESS (aip1E_11sumAHighB_uid210_atan2Test_a, aip1E_11sumAHighB_uid210_atan2Test_b, aip1E_11sumAHighB_uid210_atan2Test_s)
-    BEGIN
-        IF (aip1E_11sumAHighB_uid210_atan2Test_s = "1") THEN
-            aip1E_11sumAHighB_uid210_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_11sumAHighB_uid210_atan2Test_a) + SIGNED(aip1E_11sumAHighB_uid210_atan2Test_b));
-        ELSE
-            aip1E_11sumAHighB_uid210_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_11sumAHighB_uid210_atan2Test_a) - SIGNED(aip1E_11sumAHighB_uid210_atan2Test_b));
-        END IF;
-    END PROCESS;
-    aip1E_11sumAHighB_uid210_atan2Test_q <= aip1E_11sumAHighB_uid210_atan2Test_o(43 downto 0);
-
-    -- aip1E_uid213_atan2Test(BITSELECT,212)@11
-    aip1E_uid213_atan2Test_in <= STD_LOGIC_VECTOR(aip1E_11sumAHighB_uid210_atan2Test_q(42 downto 0));
-    aip1E_uid213_atan2Test_b <= STD_LOGIC_VECTOR(aip1E_uid213_atan2Test_in(42 downto 0));
-
-    -- redist4_aip1E_uid213_atan2Test_b_1(DELAY,280)
-    redist4_aip1E_uid213_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 43, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => aip1E_uid213_atan2Test_b, xout => redist4_aip1E_uid213_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- aip1E_12NA_uid226_atan2Test(BITJOIN,225)@12
-    aip1E_12NA_uid226_atan2Test_q <= redist4_aip1E_uid213_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
-
-    -- aip1E_12sumAHighB_uid227_atan2Test(ADDSUB,226)@12
-    aip1E_12sumAHighB_uid227_atan2Test_s <= invSignOfSelectionSignal_uid224_atan2Test_q;
-    aip1E_12sumAHighB_uid227_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((46 downto 45 => aip1E_12NA_uid226_atan2Test_q(44)) & aip1E_12NA_uid226_atan2Test_q));
-    aip1E_12sumAHighB_uid227_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((46 downto 33 => cstArcTan2Mi_11_uid220_atan2Test_q(32)) & cstArcTan2Mi_11_uid220_atan2Test_q));
-    aip1E_12sumAHighB_uid227_atan2Test_combproc: PROCESS (aip1E_12sumAHighB_uid227_atan2Test_a, aip1E_12sumAHighB_uid227_atan2Test_b, aip1E_12sumAHighB_uid227_atan2Test_s)
-    BEGIN
-        IF (aip1E_12sumAHighB_uid227_atan2Test_s = "1") THEN
-            aip1E_12sumAHighB_uid227_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_12sumAHighB_uid227_atan2Test_a) + SIGNED(aip1E_12sumAHighB_uid227_atan2Test_b));
-        ELSE
-            aip1E_12sumAHighB_uid227_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_12sumAHighB_uid227_atan2Test_a) - SIGNED(aip1E_12sumAHighB_uid227_atan2Test_b));
-        END IF;
-    END PROCESS;
-    aip1E_12sumAHighB_uid227_atan2Test_q <= aip1E_12sumAHighB_uid227_atan2Test_o(45 downto 0);
-
-    -- aip1E_uid230_atan2Test(BITSELECT,229)@12
-    aip1E_uid230_atan2Test_in <= STD_LOGIC_VECTOR(aip1E_12sumAHighB_uid227_atan2Test_q(44 downto 0));
-    aip1E_uid230_atan2Test_b <= STD_LOGIC_VECTOR(aip1E_uid230_atan2Test_in(44 downto 0));
-
-    -- redist2_aip1E_uid230_atan2Test_b_1(DELAY,278)
-    redist2_aip1E_uid230_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 45, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => aip1E_uid230_atan2Test_b, xout => redist2_aip1E_uid230_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- aip1E_13NA_uid243_atan2Test(BITJOIN,242)@13
-    aip1E_13NA_uid243_atan2Test_q <= redist2_aip1E_uid230_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
-
-    -- aip1E_13sumAHighB_uid244_atan2Test(ADDSUB,243)@13
-    aip1E_13sumAHighB_uid244_atan2Test_s <= invSignOfSelectionSignal_uid241_atan2Test_q;
-    aip1E_13sumAHighB_uid244_atan2Test_a <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((48 downto 47 => aip1E_13NA_uid243_atan2Test_q(46)) & aip1E_13NA_uid243_atan2Test_q));
-    aip1E_13sumAHighB_uid244_atan2Test_b <= STD_LOGIC_VECTOR(STD_LOGIC_VECTOR((48 downto 34 => cstArcTan2Mi_12_uid237_atan2Test_q(33)) & cstArcTan2Mi_12_uid237_atan2Test_q));
-    aip1E_13sumAHighB_uid244_atan2Test_combproc: PROCESS (aip1E_13sumAHighB_uid244_atan2Test_a, aip1E_13sumAHighB_uid244_atan2Test_b, aip1E_13sumAHighB_uid244_atan2Test_s)
-    BEGIN
-        IF (aip1E_13sumAHighB_uid244_atan2Test_s = "1") THEN
-            aip1E_13sumAHighB_uid244_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_13sumAHighB_uid244_atan2Test_a) + SIGNED(aip1E_13sumAHighB_uid244_atan2Test_b));
-        ELSE
-            aip1E_13sumAHighB_uid244_atan2Test_o <= STD_LOGIC_VECTOR(SIGNED(aip1E_13sumAHighB_uid244_atan2Test_a) - SIGNED(aip1E_13sumAHighB_uid244_atan2Test_b));
-        END IF;
-    END PROCESS;
-    aip1E_13sumAHighB_uid244_atan2Test_q <= aip1E_13sumAHighB_uid244_atan2Test_o(47 downto 0);
-
-    -- aip1E_uid247_atan2Test(BITSELECT,246)@13
-    aip1E_uid247_atan2Test_in <= STD_LOGIC_VECTOR(aip1E_13sumAHighB_uid244_atan2Test_q(46 downto 0));
-    aip1E_uid247_atan2Test_b <= STD_LOGIC_VECTOR(aip1E_uid247_atan2Test_in(46 downto 0));
-
-    -- alphaPreRnd_uid248_atan2Test(BITSELECT,247)@13
-    alphaPreRnd_uid248_atan2Test_b <= aip1E_uid247_atan2Test_b(46 downto 33);
-
-    -- redist0_alphaPreRnd_uid248_atan2Test_b_1(DELAY,276)
-    redist0_alphaPreRnd_uid248_atan2Test_b_1 : dspba_delay
-    GENERIC MAP ( width => 14, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => alphaPreRnd_uid248_atan2Test_b, xout => redist0_alphaPreRnd_uid248_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- lowRangeA_uid252_atan2Test_merged_bit_select(BITSELECT,275)@14
-    lowRangeA_uid252_atan2Test_merged_bit_select_b <= redist0_alphaPreRnd_uid248_atan2Test_b_1_q(0 downto 0);
-    lowRangeA_uid252_atan2Test_merged_bit_select_c <= redist0_alphaPreRnd_uid248_atan2Test_b_1_q(13 downto 1);
-
-    -- alphaPostRnd_uid255_atan2Test(BITJOIN,254)@14
-    alphaPostRnd_uid255_atan2Test_q <= alphaPostRndhigh_uid254_atan2Test_q & lowRangeA_uid252_atan2Test_merged_bit_select_b;
-
-    -- atanRes_uid256_atan2Test(BITSELECT,255)@14
-    atanRes_uid256_atan2Test_in <= alphaPostRnd_uid255_atan2Test_q(13 downto 0);
-    atanRes_uid256_atan2Test_b <= atanRes_uid256_atan2Test_in(13 downto 0);
-
-    -- xNotZero_uid17_atan2Test(LOGICAL,16)@0 + 1
-    xNotZero_uid17_atan2Test_qi <= "1" WHEN x /= "00000000000000000000000000000000" ELSE "0";
-    xNotZero_uid17_atan2Test_delay : dspba_delay
-    GENERIC MAP ( width => 1, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xNotZero_uid17_atan2Test_qi, xout => xNotZero_uid17_atan2Test_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- redist33_xNotZero_uid17_atan2Test_q_14(DELAY,309)
-    redist33_xNotZero_uid17_atan2Test_q_14 : dspba_delay
-    GENERIC MAP ( width => 1, depth => 13, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xNotZero_uid17_atan2Test_q, xout => redist33_xNotZero_uid17_atan2Test_q_14_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- xZero_uid18_atan2Test(LOGICAL,17)@14
-    xZero_uid18_atan2Test_q <= not (redist33_xNotZero_uid17_atan2Test_q_14_q);
-
-    -- yNotZero_uid15_atan2Test(LOGICAL,14)@0 + 1
-    yNotZero_uid15_atan2Test_qi <= "1" WHEN y /= "00000000000000000000000000000000" ELSE "0";
-    yNotZero_uid15_atan2Test_delay : dspba_delay
-    GENERIC MAP ( width => 1, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yNotZero_uid15_atan2Test_qi, xout => yNotZero_uid15_atan2Test_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- redist34_yNotZero_uid15_atan2Test_q_14(DELAY,310)
-    redist34_yNotZero_uid15_atan2Test_q_14 : dspba_delay
-    GENERIC MAP ( width => 1, depth => 13, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yNotZero_uid15_atan2Test_q, xout => redist34_yNotZero_uid15_atan2Test_q_14_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- yZero_uid16_atan2Test(LOGICAL,15)@14
-    yZero_uid16_atan2Test_q <= not (redist34_yNotZero_uid15_atan2Test_q_14_q);
-
-    -- concXZeroYZero_uid263_atan2Test(BITJOIN,262)@14
-    concXZeroYZero_uid263_atan2Test_q <= xZero_uid18_atan2Test_q & yZero_uid16_atan2Test_q;
-
-    -- atanResPostExc_uid264_atan2Test(MUX,263)@14 + 1
-    atanResPostExc_uid264_atan2Test_s <= concXZeroYZero_uid263_atan2Test_q;
-    atanResPostExc_uid264_atan2Test_clkproc: PROCESS (clk, areset)
-    BEGIN
-        IF (areset = '1') THEN
-            atanResPostExc_uid264_atan2Test_q <= (others => '0');
-        ELSIF (clk'EVENT AND clk = '1') THEN
-            IF (en = "1") THEN
-                CASE (atanResPostExc_uid264_atan2Test_s) IS
-                    WHEN "00" => atanResPostExc_uid264_atan2Test_q <= atanRes_uid256_atan2Test_b;
-                    WHEN "01" => atanResPostExc_uid264_atan2Test_q <= cstZeroOutFormat_uid257_atan2Test_q;
-                    WHEN "10" => atanResPostExc_uid264_atan2Test_q <= constPio2P2u_mergedSignalTM_uid261_atan2Test_q;
-                    WHEN "11" => atanResPostExc_uid264_atan2Test_q <= cstZeroOutFormat_uid257_atan2Test_q;
-                    WHEN OTHERS => atanResPostExc_uid264_atan2Test_q <= (others => '0');
-                END CASE;
-            END IF;
-        END IF;
-    END PROCESS;
-
-    -- constantZeroOutFormat_uid268_atan2Test(CONSTANT,267)
-    constantZeroOutFormat_uid268_atan2Test_q <= "00000000000000";
-
-    -- redist38_signX_uid7_atan2Test_b_15(DELAY,314)
-    redist38_signX_uid7_atan2Test_b_15 : dspba_delay
-    GENERIC MAP ( width => 1, depth => 15, reset_kind => "ASYNC" )
-    PORT MAP ( xin => signX_uid7_atan2Test_b, xout => redist38_signX_uid7_atan2Test_b_15_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- redist37_signY_uid8_atan2Test_b_15(DELAY,313)
-    redist37_signY_uid8_atan2Test_b_15 : dspba_delay
-    GENERIC MAP ( width => 1, depth => 15, reset_kind => "ASYNC" )
-    PORT MAP ( xin => signY_uid8_atan2Test_b, xout => redist37_signY_uid8_atan2Test_b_15_q, ena => en(0), clk => clk, aclr => areset );
-
-    -- concSigns_uid265_atan2Test(BITJOIN,264)@15
-    concSigns_uid265_atan2Test_q <= redist38_signX_uid7_atan2Test_b_15_q & redist37_signY_uid8_atan2Test_b_15_q;
-
-    -- secondOperand_uid272_atan2Test(MUX,271)@15
-    secondOperand_uid272_atan2Test_s <= concSigns_uid265_atan2Test_q;
-    secondOperand_uid272_atan2Test_combproc: PROCESS (secondOperand_uid272_atan2Test_s, en, constantZeroOutFormat_uid268_atan2Test_q, atanResPostExc_uid264_atan2Test_q, constPi_uid267_atan2Test_q)
-    BEGIN
-        CASE (secondOperand_uid272_atan2Test_s) IS
-            WHEN "00" => secondOperand_uid272_atan2Test_q <= constantZeroOutFormat_uid268_atan2Test_q;
-            WHEN "01" => secondOperand_uid272_atan2Test_q <= atanResPostExc_uid264_atan2Test_q;
-            WHEN "10" => secondOperand_uid272_atan2Test_q <= atanResPostExc_uid264_atan2Test_q;
-            WHEN "11" => secondOperand_uid272_atan2Test_q <= constPi_uid267_atan2Test_q;
-            WHEN OTHERS => secondOperand_uid272_atan2Test_q <= (others => '0');
+        CASE (xPostRR_uid230_sincosTest_s) IS
+            WHEN "0" => xPostRR_uid230_sincosTest_q <= cosPostNeg_uid228_sincosTest_q;
+            WHEN "1" => xPostRR_uid230_sincosTest_q <= sinPostNeg_uid226_sincosTest_q;
+            WHEN OTHERS => xPostRR_uid230_sincosTest_q <= (others => '0');
         END CASE;
     END PROCESS;
 
-    -- constPiP2u_uid266_atan2Test(CONSTANT,265)
-    constPiP2u_uid266_atan2Test_q <= "11001001000111";
+    -- sin_uid232_sincosTest(BITSELECT,231)@13
+    sin_uid232_sincosTest_in <= STD_LOGIC_VECTOR(xPostRR_uid230_sincosTest_q(9 downto 0));
+    sin_uid232_sincosTest_b <= STD_LOGIC_VECTOR(sin_uid232_sincosTest_in(9 downto 0));
 
-    -- constantZeroOutFormatP2u_uid269_atan2Test(CONSTANT,268)
-    constantZeroOutFormatP2u_uid269_atan2Test_q <= "00000000000100";
-
-    -- firstOperand_uid271_atan2Test(MUX,270)@15
-    firstOperand_uid271_atan2Test_s <= concSigns_uid265_atan2Test_q;
-    firstOperand_uid271_atan2Test_combproc: PROCESS (firstOperand_uid271_atan2Test_s, en, atanResPostExc_uid264_atan2Test_q, constantZeroOutFormatP2u_uid269_atan2Test_q, constPiP2u_uid266_atan2Test_q)
+    -- xPostRR_uid229_sincosTest(MUX,228)@13
+    xPostRR_uid229_sincosTest_s <= redist30_firstQuadrant_uid15_sincosTest_b_12_q;
+    xPostRR_uid229_sincosTest_combproc: PROCESS (xPostRR_uid229_sincosTest_s, sinPostNeg_uid226_sincosTest_q, cosPostNeg_uid228_sincosTest_q)
     BEGIN
-        CASE (firstOperand_uid271_atan2Test_s) IS
-            WHEN "00" => firstOperand_uid271_atan2Test_q <= atanResPostExc_uid264_atan2Test_q;
-            WHEN "01" => firstOperand_uid271_atan2Test_q <= constantZeroOutFormatP2u_uid269_atan2Test_q;
-            WHEN "10" => firstOperand_uid271_atan2Test_q <= constPiP2u_uid266_atan2Test_q;
-            WHEN "11" => firstOperand_uid271_atan2Test_q <= atanResPostExc_uid264_atan2Test_q;
-            WHEN OTHERS => firstOperand_uid271_atan2Test_q <= (others => '0');
+        CASE (xPostRR_uid229_sincosTest_s) IS
+            WHEN "0" => xPostRR_uid229_sincosTest_q <= sinPostNeg_uid226_sincosTest_q;
+            WHEN "1" => xPostRR_uid229_sincosTest_q <= cosPostNeg_uid228_sincosTest_q;
+            WHEN OTHERS => xPostRR_uid229_sincosTest_q <= (others => '0');
         END CASE;
     END PROCESS;
 
-    -- outResExtended_uid273_atan2Test(SUB,272)@15
-    outResExtended_uid273_atan2Test_a <= STD_LOGIC_VECTOR("0" & firstOperand_uid271_atan2Test_q);
-    outResExtended_uid273_atan2Test_b <= STD_LOGIC_VECTOR("0" & secondOperand_uid272_atan2Test_q);
-    outResExtended_uid273_atan2Test_o <= STD_LOGIC_VECTOR(UNSIGNED(outResExtended_uid273_atan2Test_a) - UNSIGNED(outResExtended_uid273_atan2Test_b));
-    outResExtended_uid273_atan2Test_q <= outResExtended_uid273_atan2Test_o(14 downto 0);
+    -- cos_uid231_sincosTest(BITSELECT,230)@13
+    cos_uid231_sincosTest_in <= STD_LOGIC_VECTOR(xPostRR_uid229_sincosTest_q(9 downto 0));
+    cos_uid231_sincosTest_b <= STD_LOGIC_VECTOR(cos_uid231_sincosTest_in(9 downto 0));
 
-    -- atanResPostRR_uid274_atan2Test(BITSELECT,273)@15
-    atanResPostRR_uid274_atan2Test_b <= STD_LOGIC_VECTOR(outResExtended_uid273_atan2Test_q(14 downto 2));
-
-    -- xOut(GPOUT,4)@15
-    q <= atanResPostRR_uid274_atan2Test_b;
+    -- xOut(GPOUT,4)@13
+    c <= cos_uid231_sincosTest_b;
+    s <= sin_uid232_sincosTest_b;
 
 END normal;
