@@ -1,5 +1,5 @@
 Assembler report for stepper_motor
-Thu Jan 23 02:03:32 2020
+Sat Feb 22 17:19:25 2020
 Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
 
 
@@ -10,7 +10,7 @@ Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
   2. Assembler Summary
   3. Assembler Settings
   4. Assembler Generated Files
-  5. Assembler Device Options: C:/intelFPGA_lite/18.0/projects/Junior_Design/stepper_motor/output_files/stepper_motor.sof
+  5. Assembler Device Options: C:/Users/kylen/projects/ece342/SCARA_robot/hdl/StepperMotor/StepperFPGA/stepper_motor/output_files/stepper_motor.sof
   6. Assembler Messages
 
 
@@ -37,7 +37,7 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Thu Jan 23 02:03:32 2020 ;
+; Assembler Status      ; Successful - Sat Feb 22 17:19:25 2020 ;
 ; Revision Name         ; stepper_motor                         ;
 ; Top-level Entity Name ; stepper_motor                         ;
 ; Family                ; Cyclone V                             ;
@@ -52,23 +52,23 @@ refer to the applicable agreement for further details.
 +--------+---------+---------------+
 
 
-+--------------------------------------------------------------------------------------------+
-; Assembler Generated Files                                                                  ;
-+--------------------------------------------------------------------------------------------+
-; File Name                                                                                  ;
-+--------------------------------------------------------------------------------------------+
-; C:/intelFPGA_lite/18.0/projects/Junior_Design/stepper_motor/output_files/stepper_motor.sof ;
-+--------------------------------------------------------------------------------------------+
-
-
 +----------------------------------------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/intelFPGA_lite/18.0/projects/Junior_Design/stepper_motor/output_files/stepper_motor.sof ;
-+----------------+-----------------------------------------------------------------------------------------------------+
-; Option         ; Setting                                                                                             ;
-+----------------+-----------------------------------------------------------------------------------------------------+
-; JTAG usercode  ; 0x00B01E0D                                                                                          ;
-; Checksum       ; 0x00B01E0D                                                                                          ;
-+----------------+-----------------------------------------------------------------------------------------------------+
+; Assembler Generated Files                                                                                            ;
++----------------------------------------------------------------------------------------------------------------------+
+; File Name                                                                                                            ;
++----------------------------------------------------------------------------------------------------------------------+
+; C:/Users/kylen/projects/ece342/SCARA_robot/hdl/StepperMotor/StepperFPGA/stepper_motor/output_files/stepper_motor.sof ;
++----------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/kylen/projects/ece342/SCARA_robot/hdl/StepperMotor/StepperFPGA/stepper_motor/output_files/stepper_motor.sof ;
++----------------+-------------------------------------------------------------------------------------------------------------------------------+
+; Option         ; Setting                                                                                                                       ;
++----------------+-------------------------------------------------------------------------------------------------------------------------------+
+; JTAG usercode  ; 0x00B3371E                                                                                                                    ;
+; Checksum       ; 0x00B3371E                                                                                                                    ;
++----------------+-------------------------------------------------------------------------------------------------------------------------------+
 
 
 +--------------------+
@@ -77,14 +77,14 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
-    Info: Processing started: Thu Jan 23 02:03:20 2020
+    Info: Processing started: Sat Feb 22 17:19:17 2020
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off stepper_motor -c stepper_motor
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4835 megabytes
-    Info: Processing ended: Thu Jan 23 02:03:32 2020
-    Info: Elapsed time: 00:00:12
-    Info: Total CPU time (on all processors): 00:00:09
+    Info: Peak virtual memory: 4833 megabytes
+    Info: Processing ended: Sat Feb 22 17:19:25 2020
+    Info: Elapsed time: 00:00:08
+    Info: Total CPU time (on all processors): 00:00:08
 
 

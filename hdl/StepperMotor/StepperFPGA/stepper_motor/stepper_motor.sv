@@ -2,6 +2,7 @@ module stepper_motor(input  logic clk_50,
 							input  logic reset_n,
 							input	 logic new_in,
 							input  logic [7:0] num_steps,
+							input  logic fast,
 							input  logic direction,
 							input  logic enable,
 							
@@ -10,14 +11,19 @@ module stepper_motor(input  logic clk_50,
 							output logic dir,
 							output logic finished);
 							
-							logic [15:0] count;
+							logic [31:0] count;
 							logic [7:0] step_count;
 							
 							logic [7:0] set_steps;
 							logic 		set_dir;
+							logic			set_fast;
 							
 							logic reset_time_n;
 							logic reset_step_n;
+							
+							logic [31:0]	step_length;
+							logic [31:0]	longest_step;
+							logic [31:0]	adjustment;
 							
 		initial
 			begin
@@ -31,20 +37,26 @@ module stepper_motor(input  logic clk_50,
 		//setup time (=hold time) after stepsize, reset, or dir input change
 		//				200 ns
 		
-		assign reset_time_n = (count != 50000) | !new_in;
+		//50 Mhz clock
+		//Want 
+		assign adjustment = set_fast ? 500 : 5000; //MUST NOT RECEIVE MORE THAN 99 STEPS
+		assign longest_step = set_fast ? 50000 : 500000;
+		assign step_length  = step_count < set_steps/2 ? longest_step - adjustment * step_count : longest_step -  adjustment * (set_steps - step_count);
+		
+		assign reset_time_n = (count < step_length) & !new_in;
 		assign reset_step_n = !new_in;
-		assign step 		  = (count > 25000);
+		assign step 		  = (count > step_length/2);
 		
 		assign dir 			  = set_dir;
 		assign finished 	  = (step_count == set_steps);
 		
-		counter #(16) step_time(.clk(clk_50),
+		stp_counter #(32) step_time(.clk(clk_50),
 										.reset_n(reset_n),
 										.reset1_n(reset_time_n),
 										.en(enable & (!finished)),
 										.q(count));
 		
-		counter #(8) step_counter(.clk(!step),
+		stp_counter #(8) step_counter(.clk(!step),
 										.reset_n(reset_n),
 										.reset1_n(reset_step_n),
 										.en(enable),
@@ -57,11 +69,13 @@ module stepper_motor(input  logic clk_50,
 					begin
 						set_steps	<= 0;
 						set_dir		<= 0;
+						set_fast		<= 0;
 					end
 				else
 					begin
 						set_steps	<= num_steps;
 						set_dir		<= direction;
+						set_fast		<= fast;
 					end
 			end
 			

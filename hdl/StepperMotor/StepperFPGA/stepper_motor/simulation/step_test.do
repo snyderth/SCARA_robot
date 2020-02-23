@@ -8,6 +8,7 @@ force /stepper_motor/new_in 0 @ 0, 1 @ 140, 0 @ 200
 force /stepper_motor/num_steps 0 @ 0, 8 @ 60
 force /stepper_motor/direction 1
 force /stepper_motor/enable 1
+force /stepper_motor/fast 0
 
 run 10 ms
 
