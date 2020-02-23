@@ -1,5 +1,5 @@
 Fitter report for DE1_SoC_Computer
-Sat Feb 22 15:32:48 2020
+Sat Feb 22 18:07:36 2020
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -68,7 +68,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Fitter Summary                                                                ;
 +---------------------------------+---------------------------------------------+
-; Fitter Status                   ; Successful - Sat Feb 22 15:32:48 2020       ;
+; Fitter Status                   ; Successful - Sat Feb 22 18:07:35 2020       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; DE1_SoC_Computer                            ;
 ; Top-level Entity Name           ; DE1_SoC_Computer                            ;
@@ -164,9 +164,9 @@ refer to the applicable agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   4.1%      ;
-;     Processor 3            ;   4.0%      ;
-;     Processor 4            ;   3.8%      ;
+;     Processor 2            ;   4.3%      ;
+;     Processor 3            ;   4.1%      ;
+;     Processor 4            ;   4.0%      ;
 +----------------------------+-------------+
 
 
@@ -4612,7 +4612,7 @@ Warning (15705): Ignored locations or region assignments to the following nodes
     Warning (15706): Node "USB_SCL" is assigned to location or region, but does not exist in design
     Warning (15706): Node "USB_SDA" is assigned to location or region, but does not exist in design
     Warning (15706): Node "USB_WR_N" is assigned to location or region, but does not exist in design
-Info (11798): Fitter preparation operations ending: elapsed time is 00:00:37
+Info (11798): Fitter preparation operations ending: elapsed time is 00:00:30
 Info (170189): Fitter placement preparation operations beginning
 Info (14951): The Fitter is using Advanced Physical Optimization.
 Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:13
@@ -4625,13 +4625,13 @@ Info (170195): Router estimated average interconnect usage is 1% of the availabl
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
     Info (170200): Optimizations that may affect the design's timing were skipped
-Info (170194): Fitter routing operations ending: elapsed time is 00:00:08
-Info (11888): Total time spent on timing analysis during the Fitter is 10.74 seconds.
+Info (170194): Fitter routing operations ending: elapsed time is 00:00:09
+Info (11888): Total time spent on timing analysis during the Fitter is 11.24 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (11801): Fitter post-fit operations ending: elapsed time is 00:00:25
+Info (11801): Fitter post-fit operations ending: elapsed time is 00:00:23
 Warning (171167): Found invalid Fitter assignments. See the Ignored Assignments panel in the Fitter Compilation Report for more information.
 Warning (169064): Following 98 pins have no output enable or a GND or VCC output enable - later changes to this connectivity may change fitting results
     Info (169065): Pin ADC_CS_N has a permanently disabled output enable File: C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA/verilog/DE1_SoC_Computer.sv Line: 206
@@ -4815,9 +4815,9 @@ Info (169186): Following groups of pins have the same dynamic on-chip terminatio
         Info (169066): Type bi-directional pin HPS_DDR3_DQS_P[3] uses the Differential 1.5-V SSTL Class I I/O standard File: C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA/verilog/DE1_SoC_Computer.sv Line: 302
 Info (144001): Generated suppressed messages file C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA/verilog/DE1_SoC_Computer.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 185 warnings
-    Info: Peak virtual memory: 7734 megabytes
-    Info: Processing ended: Sat Feb 22 15:32:51 2020
-    Info: Elapsed time: 00:02:24
+    Info: Peak virtual memory: 7639 megabytes
+    Info: Processing ended: Sat Feb 22 18:07:38 2020
+    Info: Elapsed time: 00:02:12
     Info: Total CPU time (on all processors): 00:04:47
 
 

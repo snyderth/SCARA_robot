@@ -1,10 +1,12 @@
 //Code manipulated from https://github.com/Jambie82/CycloneV_HPS_FIFO
 
-typedef struct packed {
-	reg [3:0] cmd;                  // command number
-	reg [13:0] x_value;               // x or t argument
-	reg [13:0] y_value;               // y argument
-} command;
+interface command;
+	logic [3:0] cmd;                  // command number
+	logic [13:0] x_value;               // x or t argument
+	logic [13:0] y_value;               // y argument
+	modport to_set(input cmd, input x_value, input y_value);
+	modport to_read(output cmd, output x_value, output y_value);
+endinterface : command
 
 module DE1_SoC_Computer (
 	////////////////////////////////////
@@ -364,6 +366,13 @@ input						HPS_USB_DIR;
 input						HPS_USB_NXT;
 output					HPS_USB_STP;
 
+wire [13:0] ci2c_x_value;
+wire [13:0] ci2c_y_value;
+wire [4:0] ci2c_controller_state_reg;
+wire c2ci_controller_ready;
+wire controller_interface_out_ready;
+wire controller_interface_in_ready;
+reg memory_ready;
 
 //=======================================================
 //  REG/WIRE declarations
@@ -443,7 +452,7 @@ reg fpga_to_hps_in_csr_read ; // status regs read cmd
 reg [7:0] FPGA_to_HPS_state ;
 
 
-command commandIn;   // from HPS
+command commandIn();   // from HPS
 reg [7:0]  commandCount = 8'b0;
 wire fastclock;  // this is the clock to drive the timing
 reg start_digcount = 1'b0;
@@ -565,13 +574,6 @@ end // always @(posedge state_clock)
 //=======================================================
 // From Qsys
 
-wire [13:0] ci2c_x_value;
-wire [13:0] ci2c_y_value;
-wire [4:0] ci2c_controller_state_reg;
-wire c2ci_controller_ready;
-wire controller_interface_out_ready;
-wire controller_interface_in_ready;
-wire memory_ready;
 
 Fake_Controller fake_controller(
 	.reset(~initEnable),
@@ -595,7 +597,9 @@ Fake_Controller fake_controller(
 Controller_Interface controller_interface (
 	.clk(CLOCK_50),
 	.block(~initEnable),
-	.command_in(commandIn),
+	.cmd(commandIn.cmd),
+	.x_value_in(commandIn.x_value),
+	.y_value_in(commandIn.y_value),
 	.memory_ready(memory_ready),
 	.controller_ready(c2ci_controller_ready),
 	.controller_interface_in_ready(controller_interface_in_ready),
