@@ -1,17 +1,17 @@
-Fitter Status : Successful - Thu Jan 23 02:03:18 2020
+Fitter Status : Successful - Sat Feb 22 17:19:15 2020
 Quartus Prime Version : 18.0.0 Build 614 04/24/2018 SJ Lite Edition
 Revision Name : stepper_motor
 Top-level Entity Name : stepper_motor
 Family : Cyclone V
 Device : 5CSEMA5F31C6
 Timing Models : Final
-Logic utilization (in ALMs) : 25 / 32,070 ( < 1 % )
-Total registers : 33
-Total pins : 16 / 457 ( 4 % )
+Logic utilization (in ALMs) : 96 / 32,070 ( < 1 % )
+Total registers : 34
+Total pins : 17 / 457 ( 4 % )
 Total virtual pins : 0
 Total block memory bits : 0 / 4,065,280 ( 0 % )
 Total RAM Blocks : 0 / 397 ( 0 % )
-Total DSP Blocks : 0 / 87 ( 0 % )
+Total DSP Blocks : 5 / 87 ( 6 % )
 Total HSSI RX PCSs : 0
 Total HSSI PMA RX Deserializers : 0
 Total HSSI TX PCSs : 0

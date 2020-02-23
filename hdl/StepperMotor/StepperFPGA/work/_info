@@ -17,12 +17,12 @@ IhnBLIn:A=MJ@<BDI?ljB63
 Z1 VDg1SIo80bB@j0V0VzS_@n1
 !s105 counter_sv_unit
 S1
-Z2 dC:/intelFPGA_lite/18.0/projects/Junior_Design
+dC:/intelFPGA_lite/18.0/projects/Junior_Design
 w1579781300
 8C:/intelFPGA_lite/18.0/projects/Junior_Design/stepper_motor/counter.sv
 FC:/intelFPGA_lite/18.0/projects/Junior_Design/stepper_motor/counter.sv
 L0 1
-Z3 OP;L;10.4a;61
+Z2 OP;L;10.4a;61
 r1
 !s85 0
 31
@@ -31,28 +31,52 @@ r1
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/intelFPGA_lite/18.0/projects/Junior_Design/stepper_motor/counter.sv|
 !s101 -O0
 !i113 1
-Z4 o-work work -sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact -O0
+Z3 o-work work -sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact -O0
 vstepper_motor
 R0
-!s110 1579782614
+!s110 1582425843
 !i10b 1
-!s100 ^Rj@m]knH^3;PZ[n?nknA0
-I]<TS>WFnUOVO1^<LhTMGV3
+!s100 j8SgBO=a=Injai8d2Hh9>3
+I<?iNAP6JoDIL9l3]?7XF^1
 R1
 !s105 stepper_motor_sv_unit
 S1
-R2
-w1579782608
-8C:/intelFPGA_lite/18.0/projects/Junior_Design/stepper_motor/stepper_motor.sv
-FC:/intelFPGA_lite/18.0/projects/Junior_Design/stepper_motor/stepper_motor.sv
+Z4 dC:/Users/kylen/projects/ece342/SCARA_robot/hdl/StepperMotor/StepperFPGA
+w1582425836
+8C:/Users/kylen/projects/ece342/SCARA_robot/hdl/StepperMotor/StepperFPGA/stepper_motor/stepper_motor.sv
+FC:/Users/kylen/projects/ece342/SCARA_robot/hdl/StepperMotor/StepperFPGA/stepper_motor/stepper_motor.sv
 L0 1
-R3
+R2
 r1
 !s85 0
 31
-!s108 1579782614.000000
-!s107 C:/intelFPGA_lite/18.0/projects/Junior_Design/stepper_motor/stepper_motor.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/intelFPGA_lite/18.0/projects/Junior_Design/stepper_motor/stepper_motor.sv|
+!s108 1582425843.000000
+!s107 C:/Users/kylen/projects/ece342/SCARA_robot/hdl/StepperMotor/StepperFPGA/stepper_motor/stepper_motor.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/kylen/projects/ece342/SCARA_robot/hdl/StepperMotor/StepperFPGA/stepper_motor/stepper_motor.sv|
 !s101 -O0
 !i113 1
+R3
+vstp_counter
+R0
+!s110 1582420868
+!i10b 1
+!s100 =O:Y7MGbb_1OeRi_JcmSU2
+I1GU1E`cX]6V<bgT2Rm:Di0
+R1
+!s105 stp_counter_sv_unit
+S1
 R4
+w1582414683
+8C:/Users/kylen/projects/ece342/SCARA_robot/hdl/StepperMotor/StepperFPGA/stepper_motor/stp_counter.sv
+FC:/Users/kylen/projects/ece342/SCARA_robot/hdl/StepperMotor/StepperFPGA/stepper_motor/stp_counter.sv
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1582420868.000000
+!s107 C:/Users/kylen/projects/ece342/SCARA_robot/hdl/StepperMotor/StepperFPGA/stepper_motor/stp_counter.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/kylen/projects/ece342/SCARA_robot/hdl/StepperMotor/StepperFPGA/stepper_motor/stp_counter.sv|
+!s101 -O0
+!i113 1
+R3

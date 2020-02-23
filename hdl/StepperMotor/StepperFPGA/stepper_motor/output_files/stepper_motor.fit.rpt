@@ -1,5 +1,5 @@
 Fitter report for stepper_motor
-Thu Jan 23 02:03:18 2020
+Sat Feb 22 17:19:15 2020
 Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
 
 
@@ -27,16 +27,18 @@ Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
  19. Pad To Core Delay Chain Fanout
  20. Control Signals
  21. Global & Other Fast Signals
- 22. Routing Usage Summary
- 23. I/O Rules Summary
- 24. I/O Rules Details
- 25. I/O Rules Matrix
- 26. Fitter Device Options
- 27. Operating Settings and Conditions
- 28. Estimated Delay Added for Hold Timing Summary
- 29. Estimated Delay Added for Hold Timing Details
- 30. Fitter Messages
- 31. Fitter Suppressed Messages
+ 22. Fitter DSP Block Usage Summary
+ 23. DSP Block Details
+ 24. Routing Usage Summary
+ 25. I/O Rules Summary
+ 26. I/O Rules Details
+ 27. I/O Rules Matrix
+ 28. Fitter Device Options
+ 29. Operating Settings and Conditions
+ 30. Estimated Delay Added for Hold Timing Summary
+ 31. Estimated Delay Added for Hold Timing Details
+ 32. Fitter Messages
+ 33. Fitter Suppressed Messages
 
 
 
@@ -62,20 +64,20 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Fitter Summary                                                                ;
 +---------------------------------+---------------------------------------------+
-; Fitter Status                   ; Successful - Thu Jan 23 02:03:18 2020       ;
+; Fitter Status                   ; Successful - Sat Feb 22 17:19:15 2020       ;
 ; Quartus Prime Version           ; 18.0.0 Build 614 04/24/2018 SJ Lite Edition ;
 ; Revision Name                   ; stepper_motor                               ;
 ; Top-level Entity Name           ; stepper_motor                               ;
 ; Family                          ; Cyclone V                                   ;
 ; Device                          ; 5CSEMA5F31C6                                ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 25 / 32,070 ( < 1 % )                       ;
-; Total registers                 ; 33                                          ;
-; Total pins                      ; 16 / 457 ( 4 % )                            ;
+; Logic utilization (in ALMs)     ; 96 / 32,070 ( < 1 % )                       ;
+; Total registers                 ; 34                                          ;
+; Total pins                      ; 17 / 457 ( 4 % )                            ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0 / 4,065,280 ( 0 % )                       ;
 ; Total RAM Blocks                ; 0 / 397 ( 0 % )                             ;
-; Total DSP Blocks                ; 0 / 87 ( 0 % )                              ;
+; Total DSP Blocks                ; 5 / 87 ( 6 % )                              ;
 ; Total HSSI RX PCSs              ; 0                                           ;
 ; Total HSSI PMA RX Deserializers ; 0                                           ;
 ; Total HSSI TX PCSs              ; 0                                           ;
@@ -152,14 +154,14 @@ refer to the applicable agreement for further details.
 ; Number detected on machine ; 8           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 1.01        ;
+; Average used               ; 1.04        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.3%      ;
-;     Processor 3            ;   0.3%      ;
-;     Processor 4            ;   0.3%      ;
+;     Processor 2            ;   1.4%      ;
+;     Processor 3            ;   1.2%      ;
+;     Processor 4            ;   1.2%      ;
 +----------------------------+-------------+
 
 
@@ -179,8 +181,8 @@ refer to the applicable agreement for further details.
 ; Type                ; Total [A + B]      ; From Design Partitions [A] ; From Rapid Recompile [B] ;
 +---------------------+--------------------+----------------------------+--------------------------+
 ; Placement (by node) ;                    ;                            ;                          ;
-;     -- Requested    ; 0.00 % ( 0 / 111 ) ; 0.00 % ( 0 / 111 )         ; 0.00 % ( 0 / 111 )       ;
-;     -- Achieved     ; 0.00 % ( 0 / 111 ) ; 0.00 % ( 0 / 111 )         ; 0.00 % ( 0 / 111 )       ;
+;     -- Requested    ; 0.00 % ( 0 / 249 ) ; 0.00 % ( 0 / 249 )         ; 0.00 % ( 0 / 249 )       ;
+;     -- Achieved     ; 0.00 % ( 0 / 249 ) ; 0.00 % ( 0 / 249 )         ; 0.00 % ( 0 / 249 )       ;
 ;                     ;                    ;                            ;                          ;
 ; Routing (by net)    ;                    ;                            ;                          ;
 ;     -- Requested    ; 0.00 % ( 0 / 0 )   ; 0.00 % ( 0 / 0 )           ; 0.00 % ( 0 / 0 )         ;
@@ -203,7 +205,7 @@ refer to the applicable agreement for further details.
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 ; Partition Name                 ; Preservation Achieved ; Preservation Level Used ; Netlist Type Used ; Preservation Method ; Notes ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
-; Top                            ; 0.00 % ( 0 / 111 )    ; N/A                     ; Source File       ; N/A                 ;       ;
+; Top                            ; 0.00 % ( 0 / 249 )    ; N/A                     ; Source File       ; N/A                 ;       ;
 ; hard_block:auto_generated_inst ; 0.00 % ( 0 / 0 )      ; N/A                     ; Source File       ; N/A                 ;       ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 
@@ -211,7 +213,7 @@ refer to the applicable agreement for further details.
 +--------------+
 ; Pin-Out File ;
 +--------------+
-The pin-out file can be found in C:/intelFPGA_lite/18.0/projects/Junior_Design/stepper_motor/output_files/stepper_motor.pin.
+The pin-out file can be found in C:/Users/kylen/projects/ece342/SCARA_robot/hdl/StepperMotor/StepperFPGA/stepper_motor/output_files/stepper_motor.pin.
 
 
 +------------------------------------------------------------------------------------------+
@@ -219,14 +221,14 @@ The pin-out file can be found in C:/intelFPGA_lite/18.0/projects/Junior_Design/s
 +-------------------------------------------------------------+--------------------+-------+
 ; Resource                                                    ; Usage              ; %     ;
 +-------------------------------------------------------------+--------------------+-------+
-; Logic utilization (ALMs needed / total ALMs on device)      ; 25 / 32,070        ; < 1 % ;
-; ALMs needed [=A-B+C]                                        ; 25                 ;       ;
-;     [A] ALMs used in final placement [=a+b+c+d]             ; 29 / 32,070        ; < 1 % ;
-;         [a] ALMs used for LUT logic and registers           ; 13                 ;       ;
-;         [b] ALMs used for LUT logic                         ; 12                 ;       ;
-;         [c] ALMs used for registers                         ; 4                  ;       ;
+; Logic utilization (ALMs needed / total ALMs on device)      ; 96 / 32,070        ; < 1 % ;
+; ALMs needed [=A-B+C]                                        ; 96                 ;       ;
+;     [A] ALMs used in final placement [=a+b+c+d]             ; 99 / 32,070        ; < 1 % ;
+;         [a] ALMs used for LUT logic and registers           ; 16                 ;       ;
+;         [b] ALMs used for LUT logic                         ; 81                 ;       ;
+;         [c] ALMs used for registers                         ; 2                  ;       ;
 ;         [d] ALMs used for memory (up to half of total ALMs) ; 0                  ;       ;
-;     [B] Estimate of ALMs recoverable by dense packing       ; 4 / 32,070         ; < 1 % ;
+;     [B] Estimate of ALMs recoverable by dense packing       ; 3 / 32,070         ; < 1 % ;
 ;     [C] Estimate of ALMs unavailable [=a+b+c+d]             ; 0 / 32,070         ; 0 %   ;
 ;         [a] Due to location constrained logic               ; 0                  ;       ;
 ;         [b] Due to LAB-wide signal conflicts                ; 0                  ;       ;
@@ -235,28 +237,28 @@ The pin-out file can be found in C:/intelFPGA_lite/18.0/projects/Junior_Design/s
 ;                                                             ;                    ;       ;
 ; Difficulty packing design                                   ; Low                ;       ;
 ;                                                             ;                    ;       ;
-; Total LABs:  partially or completely used                   ; 5 / 3,207          ; < 1 % ;
-;     -- Logic LABs                                           ; 5                  ;       ;
+; Total LABs:  partially or completely used                   ; 15 / 3,207         ; < 1 % ;
+;     -- Logic LABs                                           ; 15                 ;       ;
 ;     -- Memory LABs (up to half of total LABs)               ; 0                  ;       ;
 ;                                                             ;                    ;       ;
-; Combinational ALUT usage for logic                          ; 44                 ;       ;
+; Combinational ALUT usage for logic                          ; 174                ;       ;
 ;     -- 7 input functions                                    ; 0                  ;       ;
-;     -- 6 input functions                                    ; 6                  ;       ;
-;     -- 5 input functions                                    ; 6                  ;       ;
+;     -- 6 input functions                                    ; 17                 ;       ;
+;     -- 5 input functions                                    ; 9                  ;       ;
 ;     -- 4 input functions                                    ; 6                  ;       ;
-;     -- <=3 input functions                                  ; 26                 ;       ;
-; Combinational ALUT usage for route-throughs                 ; 1                  ;       ;
+;     -- <=3 input functions                                  ; 142                ;       ;
+; Combinational ALUT usage for route-throughs                 ; 0                  ;       ;
 ;                                                             ;                    ;       ;
-; Dedicated logic registers                                   ; 33                 ;       ;
+; Dedicated logic registers                                   ; 34                 ;       ;
 ;     -- By type:                                             ;                    ;       ;
-;         -- Primary logic registers                          ; 33 / 64,140        ; < 1 % ;
+;         -- Primary logic registers                          ; 34 / 64,140        ; < 1 % ;
 ;         -- Secondary logic registers                        ; 0 / 64,140         ; 0 %   ;
 ;     -- By function:                                         ;                    ;       ;
-;         -- Design implementation registers                  ; 33                 ;       ;
+;         -- Design implementation registers                  ; 34                 ;       ;
 ;         -- Routing optimization registers                   ; 0                  ;       ;
 ;                                                             ;                    ;       ;
 ; Virtual pins                                                ; 0                  ;       ;
-; I/O pins                                                    ; 16 / 457           ; 4 %   ;
+; I/O pins                                                    ; 17 / 457           ; 4 %   ;
 ;     -- Clock pins                                           ; 2 / 8              ; 25 %  ;
 ;     -- Dedicated input pins                                 ; 0 / 21             ; 0 %   ;
 ;                                                             ;                    ;       ;
@@ -292,7 +294,7 @@ The pin-out file can be found in C:/intelFPGA_lite/18.0/projects/Junior_Design/s
 ; Total block memory bits                                     ; 0 / 4,065,280      ; 0 %   ;
 ; Total block memory implementation bits                      ; 0 / 4,065,280      ; 0 %   ;
 ;                                                             ;                    ;       ;
-; Total DSP Blocks                                            ; 0 / 87             ; 0 %   ;
+; Total DSP Blocks                                            ; 5 / 87             ; 6 %   ;
 ;                                                             ;                    ;       ;
 ; Fractional PLLs                                             ; 0 / 6              ; 0 %   ;
 ; Global signals                                              ; 2                  ;       ;
@@ -308,12 +310,12 @@ The pin-out file can be found in C:/intelFPGA_lite/18.0/projects/Junior_Design/s
 ; Oscillator blocks                                           ; 0 / 1              ; 0 %   ;
 ; Impedance control blocks                                    ; 0 / 4              ; 0 %   ;
 ; Hard Memory Controllers                                     ; 0 / 2              ; 0 %   ;
-; Average interconnect usage (total/H/V)                      ; 0.0% / 0.0% / 0.0% ;       ;
-; Peak interconnect usage (total/H/V)                         ; 0.9% / 1.0% / 0.6% ;       ;
-; Maximum fan-out                                             ; 18                 ;       ;
-; Highest non-global fan-out                                  ; 18                 ;       ;
-; Total fan-out                                               ; 284                ;       ;
-; Average fan-out                                             ; 2.54               ;       ;
+; Average interconnect usage (total/H/V)                      ; 0.2% / 0.2% / 0.2% ;       ;
+; Peak interconnect usage (total/H/V)                         ; 4.9% / 4.5% / 6.4% ;       ;
+; Maximum fan-out                                             ; 39                 ;       ;
+; Highest non-global fan-out                                  ; 39                 ;       ;
+; Total fan-out                                               ; 711                ;       ;
+; Average fan-out                                             ; 2.86               ;       ;
 +-------------------------------------------------------------+--------------------+-------+
 
 
@@ -322,14 +324,14 @@ The pin-out file can be found in C:/intelFPGA_lite/18.0/projects/Junior_Design/s
 +-------------------------------------------------------------+----------------------+--------------------------------+
 ; Statistic                                                   ; Top                  ; hard_block:auto_generated_inst ;
 +-------------------------------------------------------------+----------------------+--------------------------------+
-; Logic utilization (ALMs needed / total ALMs on device)      ; 25 / 32070 ( < 1 % ) ; 0 / 32070 ( 0 % )              ;
-; ALMs needed [=A-B+C]                                        ; 25                   ; 0                              ;
-;     [A] ALMs used in final placement [=a+b+c+d]             ; 29 / 32070 ( < 1 % ) ; 0 / 32070 ( 0 % )              ;
-;         [a] ALMs used for LUT logic and registers           ; 13                   ; 0                              ;
-;         [b] ALMs used for LUT logic                         ; 12                   ; 0                              ;
-;         [c] ALMs used for registers                         ; 4                    ; 0                              ;
+; Logic utilization (ALMs needed / total ALMs on device)      ; 96 / 32070 ( < 1 % ) ; 0 / 32070 ( 0 % )              ;
+; ALMs needed [=A-B+C]                                        ; 96                   ; 0                              ;
+;     [A] ALMs used in final placement [=a+b+c+d]             ; 99 / 32070 ( < 1 % ) ; 0 / 32070 ( 0 % )              ;
+;         [a] ALMs used for LUT logic and registers           ; 16                   ; 0                              ;
+;         [b] ALMs used for LUT logic                         ; 81                   ; 0                              ;
+;         [c] ALMs used for registers                         ; 2                    ; 0                              ;
 ;         [d] ALMs used for memory (up to half of total ALMs) ; 0                    ; 0                              ;
-;     [B] Estimate of ALMs recoverable by dense packing       ; 4 / 32070 ( < 1 % )  ; 0 / 32070 ( 0 % )              ;
+;     [B] Estimate of ALMs recoverable by dense packing       ; 3 / 32070 ( < 1 % )  ; 0 / 32070 ( 0 % )              ;
 ;     [C] Estimate of ALMs unavailable [=a+b+c+d]             ; 0 / 32070 ( 0 % )    ; 0 / 32070 ( 0 % )              ;
 ;         [a] Due to location constrained logic               ; 0                    ; 0                              ;
 ;         [b] Due to LAB-wide signal conflicts                ; 0                    ; 0                              ;
@@ -338,35 +340,36 @@ The pin-out file can be found in C:/intelFPGA_lite/18.0/projects/Junior_Design/s
 ;                                                             ;                      ;                                ;
 ; Difficulty packing design                                   ; Low                  ; Low                            ;
 ;                                                             ;                      ;                                ;
-; Total LABs:  partially or completely used                   ; 5 / 3207 ( < 1 % )   ; 0 / 3207 ( 0 % )               ;
-;     -- Logic LABs                                           ; 5                    ; 0                              ;
+; Total LABs:  partially or completely used                   ; 15 / 3207 ( < 1 % )  ; 0 / 3207 ( 0 % )               ;
+;     -- Logic LABs                                           ; 15                   ; 0                              ;
 ;     -- Memory LABs (up to half of total LABs)               ; 0                    ; 0                              ;
 ;                                                             ;                      ;                                ;
-; Combinational ALUT usage for logic                          ; 44                   ; 0                              ;
+; Combinational ALUT usage for logic                          ; 174                  ; 0                              ;
 ;     -- 7 input functions                                    ; 0                    ; 0                              ;
-;     -- 6 input functions                                    ; 6                    ; 0                              ;
-;     -- 5 input functions                                    ; 6                    ; 0                              ;
+;     -- 6 input functions                                    ; 17                   ; 0                              ;
+;     -- 5 input functions                                    ; 9                    ; 0                              ;
 ;     -- 4 input functions                                    ; 6                    ; 0                              ;
-;     -- <=3 input functions                                  ; 26                   ; 0                              ;
-; Combinational ALUT usage for route-throughs                 ; 1                    ; 0                              ;
+;     -- <=3 input functions                                  ; 142                  ; 0                              ;
+; Combinational ALUT usage for route-throughs                 ; 0                    ; 0                              ;
 ; Memory ALUT usage                                           ; 0                    ; 0                              ;
 ;     -- 64-address deep                                      ; 0                    ; 0                              ;
 ;     -- 32-address deep                                      ; 0                    ; 0                              ;
 ;                                                             ;                      ;                                ;
 ; Dedicated logic registers                                   ; 0                    ; 0                              ;
 ;     -- By type:                                             ;                      ;                                ;
-;         -- Primary logic registers                          ; 33 / 64140 ( < 1 % ) ; 0 / 64140 ( 0 % )              ;
+;         -- Primary logic registers                          ; 34 / 64140 ( < 1 % ) ; 0 / 64140 ( 0 % )              ;
 ;         -- Secondary logic registers                        ; 0 / 64140 ( 0 % )    ; 0 / 64140 ( 0 % )              ;
 ;     -- By function:                                         ;                      ;                                ;
-;         -- Design implementation registers                  ; 33                   ; 0                              ;
+;         -- Design implementation registers                  ; 34                   ; 0                              ;
 ;         -- Routing optimization registers                   ; 0                    ; 0                              ;
 ;                                                             ;                      ;                                ;
 ;                                                             ;                      ;                                ;
 ; Virtual pins                                                ; 0                    ; 0                              ;
-; I/O pins                                                    ; 16                   ; 0                              ;
+; I/O pins                                                    ; 17                   ; 0                              ;
 ; I/O registers                                               ; 0                    ; 0                              ;
 ; Total block memory bits                                     ; 0                    ; 0                              ;
 ; Total block memory implementation bits                      ; 0                    ; 0                              ;
+; DSP block                                                   ; 5 / 87 ( 5 % )       ; 0 / 87 ( 0 % )                 ;
 ; Clock enable block                                          ; 2 / 116 ( 1 % )      ; 0 / 116 ( 0 % )                ;
 ;                                                             ;                      ;                                ;
 ; Connections                                                 ;                      ;                                ;
@@ -376,15 +379,15 @@ The pin-out file can be found in C:/intelFPGA_lite/18.0/projects/Junior_Design/s
 ;     -- Registered Output Connections                        ; 0                    ; 0                              ;
 ;                                                             ;                      ;                                ;
 ; Internal Connections                                        ;                      ;                                ;
-;     -- Total Connections                                    ; 284                  ; 0                              ;
-;     -- Registered Connections                               ; 94                   ; 0                              ;
+;     -- Total Connections                                    ; 863                  ; 0                              ;
+;     -- Registered Connections                               ; 179                  ; 0                              ;
 ;                                                             ;                      ;                                ;
 ; External Connections                                        ;                      ;                                ;
 ;     -- Top                                                  ; 0                    ; 0                              ;
 ;     -- hard_block:auto_generated_inst                       ; 0                    ; 0                              ;
 ;                                                             ;                      ;                                ;
 ; Partition Interface                                         ;                      ;                                ;
-;     -- Input Ports                                          ; 13                   ; 0                              ;
+;     -- Input Ports                                          ; 14                   ; 0                              ;
 ;     -- Output Ports                                         ; 3                    ; 0                              ;
 ;     -- Bidir Ports                                          ; 0                    ; 0                              ;
 ;                                                             ;                      ;                                ;
@@ -410,18 +413,19 @@ The pin-out file can be found in C:/intelFPGA_lite/18.0/projects/Junior_Design/s
 ; Name         ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Z coordinate ; Combinational Fan-Out ; Registered Fan-Out ; Global ; Input Register ; PCI I/O Enabled ; Bus Hold ; Weak Pull Up ; I/O Standard ; Termination ; Termination Control Block ; Location assigned by ; Slew Rate ;
 +--------------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+-----------------+----------+--------------+--------------+-------------+---------------------------+----------------------+-----------+
 ; clk_50       ; Y27   ; 5B       ; 89           ; 25           ; 20           ; 16                    ; 0                  ; yes    ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
-; direction    ; AG28  ; 5A       ; 89           ; 13           ; 37           ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
-; enable       ; AH30  ; 5A       ; 89           ; 16           ; 37           ; 18                    ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
-; new_in       ; AA26  ; 5B       ; 89           ; 23           ; 3            ; 9                     ; 0                  ; yes    ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
-; num_steps[0] ; AC27  ; 5A       ; 89           ; 16           ; 20           ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
-; num_steps[1] ; AF29  ; 5A       ; 89           ; 15           ; 37           ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
-; num_steps[2] ; AA30  ; 5B       ; 89           ; 21           ; 20           ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
-; num_steps[3] ; W24   ; 5A       ; 89           ; 15           ; 20           ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
-; num_steps[4] ; AF30  ; 5A       ; 89           ; 15           ; 54           ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
-; num_steps[5] ; V23   ; 5A       ; 89           ; 15           ; 3            ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
-; num_steps[6] ; AB30  ; 5B       ; 89           ; 21           ; 3            ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
-; num_steps[7] ; AG30  ; 5A       ; 89           ; 16           ; 54           ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
-; reset_n      ; Y24   ; 5A       ; 89           ; 13           ; 20           ; 11                    ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
+; direction    ; AC29  ; 5B       ; 89           ; 20           ; 94           ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
+; enable       ; AG30  ; 5A       ; 89           ; 16           ; 54           ; 9                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
+; fast         ; W24   ; 5A       ; 89           ; 15           ; 20           ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
+; new_in       ; AA26  ; 5B       ; 89           ; 23           ; 3            ; 12                    ; 0                  ; yes    ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
+; num_steps[0] ; AF29  ; 5A       ; 89           ; 15           ; 37           ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
+; num_steps[1] ; AF30  ; 5A       ; 89           ; 15           ; 54           ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
+; num_steps[2] ; Y23   ; 5A       ; 89           ; 13           ; 3            ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
+; num_steps[3] ; AF28  ; 5A       ; 89           ; 13           ; 54           ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
+; num_steps[4] ; AD26  ; 5A       ; 89           ; 16           ; 3            ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
+; num_steps[5] ; AG28  ; 5A       ; 89           ; 13           ; 37           ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
+; num_steps[6] ; V23   ; 5A       ; 89           ; 15           ; 3            ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
+; num_steps[7] ; AC27  ; 5A       ; 89           ; 16           ; 20           ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
+; reset_n      ; AA30  ; 5B       ; 89           ; 21           ; 20           ; 12                    ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 2.5 V        ; Off         ; --                        ; Fitter               ; no        ;
 +--------------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+-----------------+----------+--------------+--------------+-------------+---------------------------+----------------------+-----------+
 
 
@@ -430,9 +434,9 @@ The pin-out file can be found in C:/intelFPGA_lite/18.0/projects/Junior_Design/s
 +----------+-------+----------+--------------+--------------+--------------+-----------------+------------------------+-----------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-----------------------------------+---------------------------+----------------------------+-----------------------------+---------------------+-----------------------------+----------------------+----------------------+---------------------+
 ; Name     ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Z coordinate ; Output Register ; Output Enable Register ; Slew Rate ; PCI I/O Enabled ; Open Drain ; TRI Primitive ; Bus Hold ; Weak Pull Up ; I/O Standard ; Current Strength ; Termination                       ; Termination Control Block ; Output Buffer Pre-emphasis ; Voltage Output Differential ; Output Buffer Delay ; Output Buffer Delay Control ; Location assigned by ; Output Enable Source ; Output Enable Group ;
 +----------+-------+----------+--------------+--------------+--------------+-----------------+------------------------+-----------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-----------------------------------+---------------------------+----------------------------+-----------------------------+---------------------+-----------------------------+----------------------+----------------------+---------------------+
-; dir      ; Y23   ; 5A       ; 89           ; 13           ; 3            ; no              ; no                     ; 1         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; 0                   ; Off                         ; Fitter               ; -                    ; -                   ;
-; finished ; AF28  ; 5A       ; 89           ; 13           ; 54           ; no              ; no                     ; 1         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; 0                   ; Off                         ; Fitter               ; -                    ; -                   ;
-; step     ; AD26  ; 5A       ; 89           ; 16           ; 3            ; no              ; no                     ; 1         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; 0                   ; Off                         ; Fitter               ; -                    ; -                   ;
+; dir      ; W25   ; 5B       ; 89           ; 20           ; 43           ; no              ; no                     ; 1         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; 0                   ; Off                         ; Fitter               ; -                    ; -                   ;
+; finished ; Y24   ; 5A       ; 89           ; 13           ; 20           ; no              ; no                     ; 1         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; 0                   ; Off                         ; Fitter               ; -                    ; -                   ;
+; step     ; AH30  ; 5A       ; 89           ; 16           ; 37           ; no              ; no                     ; 1         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; 0                   ; Off                         ; Fitter               ; -                    ; -                   ;
 +----------+-------+----------+--------------+--------------+--------------+-----------------+------------------------+-----------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-----------------------------------+---------------------------+----------------------------+-----------------------------+---------------------+-----------------------------+----------------------+----------------------+---------------------+
 
 
@@ -447,7 +451,7 @@ The pin-out file can be found in C:/intelFPGA_lite/18.0/projects/Junior_Design/s
 ; 3B       ; 0 / 48 ( 0 % )   ; 2.5V          ; --           ; 2.5V          ;
 ; 4A       ; 0 / 80 ( 0 % )   ; 2.5V          ; --           ; 2.5V          ;
 ; 5A       ; 12 / 32 ( 38 % ) ; 2.5V          ; --           ; 2.5V          ;
-; 5B       ; 4 / 16 ( 25 % )  ; 2.5V          ; --           ; 2.5V          ;
+; 5B       ; 5 / 16 ( 31 % )  ; 2.5V          ; --           ; 2.5V          ;
 ; 6B       ; 0 / 44 ( 0 % )   ; 2.5V          ; --           ; 2.5V          ;
 ; 6A       ; 0 / 56 ( 0 % )   ; 2.5V          ; --           ; 2.5V          ;
 ; 7A       ; 0 / 19 ( 0 % )   ; 2.5V          ; --           ; 2.5V          ;
@@ -520,7 +524,7 @@ The pin-out file can be found in C:/intelFPGA_lite/18.0/projects/Junior_Design/s
 ; AA27     ;            ; 5B             ; VCCIO5B                         ; power  ;              ; 2.5V                ; --           ;                 ; --       ; --           ;
 ; AA28     ; 251        ; 5B             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
 ; AA29     ;            ; 5B             ; VREFB5BN0                       ; power  ;              ;                     ; --           ;                 ; --       ; --           ;
-; AA30     ; 250        ; 5B             ; num_steps[2]                    ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
+; AA30     ; 250        ; 5B             ; reset_n                         ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
 ; AB1      ;            ;                ; GND                             ; gnd    ;              ;                     ; --           ;                 ; --       ; --           ;
 ; AB2      ;            ;                ; GND                             ; gnd    ;              ;                     ; --           ;                 ; --       ; --           ;
 ; AB3      ;            ;                ; DNU                             ;        ;              ;                     ; --           ;                 ; --       ; --           ;
@@ -550,7 +554,7 @@ The pin-out file can be found in C:/intelFPGA_lite/18.0/projects/Junior_Design/s
 ; AB27     ; 254        ; 5B             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
 ; AB28     ; 249        ; 5B             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
 ; AB29     ;            ;                ; GND                             ; gnd    ;              ;                     ; --           ;                 ; --       ; --           ;
-; AB30     ; 248        ; 5B             ; num_steps[6]                    ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
+; AB30     ; 248        ; 5B             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
 ; AC1      ;            ;                ; GND                             ; gnd    ;              ;                     ; --           ;                 ; --       ; --           ;
 ; AC2      ;            ;                ; GND                             ; gnd    ;              ;                     ; --           ;                 ; --       ; --           ;
 ; AC3      ;            ;                ; GND                             ; gnd    ;              ;                     ; --           ;                 ; --       ; --           ;
@@ -577,9 +581,9 @@ The pin-out file can be found in C:/intelFPGA_lite/18.0/projects/Junior_Design/s
 ; AC24     ;            ; 5A             ; VREFB5AN0                       ; power  ;              ;                     ; --           ;                 ; --       ; --           ;
 ; AC25     ; 215        ; 5A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
 ; AC26     ;            ;                ; GND                             ; gnd    ;              ;                     ; --           ;                 ; --       ; --           ;
-; AC27     ; 242        ; 5A             ; num_steps[0]                    ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
+; AC27     ; 242        ; 5A             ; num_steps[7]                    ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
 ; AC28     ; 245        ; 5B             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
-; AC29     ; 247        ; 5B             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
+; AC29     ; 247        ; 5B             ; direction                       ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
 ; AC30     ; 259        ; 5B             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
 ; AD1      ;            ;                ; GND                             ; gnd    ;              ;                     ; --           ;                 ; --       ; --           ;
 ; AD2      ;            ;                ; GND                             ; gnd    ;              ;                     ; --           ;                 ; --       ; --           ;
@@ -606,7 +610,7 @@ The pin-out file can be found in C:/intelFPGA_lite/18.0/projects/Junior_Design/s
 ; AD23     ;            ;                ; GND                             ; gnd    ;              ;                     ; --           ;                 ; --       ; --           ;
 ; AD24     ; 211        ; 4A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Column I/O   ;                 ; no       ; On           ;
 ; AD25     ; 213        ; 5A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
-; AD26     ; 240        ; 5A             ; step                            ; output ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
+; AD26     ; 240        ; 5A             ; num_steps[4]                    ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
 ; AD27     ; 222        ; 5A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
 ; AD28     ;            ; 5A             ; VCCIO5A                         ; power  ;              ; 2.5V                ; --           ;                 ; --       ; --           ;
 ; AD29     ; 255        ; 5B             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
@@ -668,9 +672,9 @@ The pin-out file can be found in C:/intelFPGA_lite/18.0/projects/Junior_Design/s
 ; AF25     ; 206        ; 4A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Column I/O   ;                 ; no       ; On           ;
 ; AF26     ; 204        ; 4A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Column I/O   ;                 ; no       ; On           ;
 ; AF27     ;            ;                ; GND                             ; gnd    ;              ;                     ; --           ;                 ; --       ; --           ;
-; AF28     ; 235        ; 5A             ; finished                        ; output ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
-; AF29     ; 237        ; 5A             ; num_steps[1]                    ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
-; AF30     ; 239        ; 5A             ; num_steps[4]                    ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
+; AF28     ; 235        ; 5A             ; num_steps[3]                    ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
+; AF29     ; 237        ; 5A             ; num_steps[0]                    ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
+; AF30     ; 239        ; 5A             ; num_steps[1]                    ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
 ; AG1      ; 71         ; 3A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Column I/O   ;                 ; no       ; On           ;
 ; AG2      ; 83         ; 3A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Column I/O   ;                 ; no       ; On           ;
 ; AG3      ; 63         ; 3A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Column I/O   ;                 ; no       ; On           ;
@@ -698,9 +702,9 @@ The pin-out file can be found in C:/intelFPGA_lite/18.0/projects/Junior_Design/s
 ; AG25     ; 190        ; 4A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Column I/O   ;                 ; no       ; On           ;
 ; AG26     ; 203        ; 4A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Column I/O   ;                 ; no       ; On           ;
 ; AG27     ; 212        ; 5A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
-; AG28     ; 233        ; 5A             ; direction                       ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
+; AG28     ; 233        ; 5A             ; num_steps[5]                    ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
 ; AG29     ;            ; 5A             ; VCCIO5A                         ; power  ;              ; 2.5V                ; --           ;                 ; --       ; --           ;
-; AG30     ; 243        ; 5A             ; num_steps[7]                    ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
+; AG30     ; 243        ; 5A             ; enable                          ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
 ; AH1      ;            ;                ; GND                             ; gnd    ;              ;                     ; --           ;                 ; --       ; --           ;
 ; AH2      ; 69         ; 3A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Column I/O   ;                 ; no       ; On           ;
 ; AH3      ; 81         ; 3A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Column I/O   ;                 ; no       ; On           ;
@@ -730,7 +734,7 @@ The pin-out file can be found in C:/intelFPGA_lite/18.0/projects/Junior_Design/s
 ; AH27     ; 201        ; 4A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Column I/O   ;                 ; no       ; On           ;
 ; AH28     ; 214        ; 5A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
 ; AH29     ; 218        ; 5A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
-; AH30     ; 241        ; 5A             ; enable                          ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
+; AH30     ; 241        ; 5A             ; step                            ; output ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
 ; AJ1      ; 79         ; 3A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Column I/O   ;                 ; no       ; On           ;
 ; AJ2      ; 77         ; 3A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Column I/O   ;                 ; no       ; On           ;
 ; AJ3      ;            ;                ; GND                             ; gnd    ;              ;                     ; --           ;                 ; --       ; --           ;
@@ -1291,7 +1295,7 @@ The pin-out file can be found in C:/intelFPGA_lite/18.0/projects/Junior_Design/s
 ; V20      ; 292        ; 6B             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
 ; V21      ;            ;                ; GND                             ; gnd    ;              ;                     ; --           ;                 ; --       ; --           ;
 ; V22      ;            ; 5A             ; VCCPD5A                         ; power  ;              ; 2.5V                ; --           ;                 ; --       ; --           ;
-; V23      ; 236        ; 5A             ; num_steps[5]                    ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
+; V23      ; 236        ; 5A             ; num_steps[6]                    ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
 ; V24      ;            ; 5A             ; VCCPD5A                         ; power  ;              ; 2.5V                ; --           ;                 ; --       ; --           ;
 ; V25      ; 246        ; 5B             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
 ; V26      ;            ; 6B             ; VCCIO6B_HPS                     ; power  ;              ; 2.5V                ; --           ;                 ; --       ; --           ;
@@ -1322,8 +1326,8 @@ The pin-out file can be found in C:/intelFPGA_lite/18.0/projects/Junior_Design/s
 ; W21      ; 221        ; 5A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
 ; W22      ; 223        ; 5A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
 ; W23      ;            ; 5A             ; VCCIO5A                         ; power  ;              ; 2.5V                ; --           ;                 ; --       ; --           ;
-; W24      ; 238        ; 5A             ; num_steps[3]                    ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
-; W25      ; 244        ; 5B             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
+; W24      ; 238        ; 5A             ; fast                            ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
+; W25      ; 244        ; 5B             ; dir                             ; output ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
 ; W26      ; 274        ; 6B             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
 ; W27      ; 261        ; 6B             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
 ; W28      ;            ;                ; GND                             ; gnd    ;              ;                     ; --           ;                 ; --       ; --           ;
@@ -1351,8 +1355,8 @@ The pin-out file can be found in C:/intelFPGA_lite/18.0/projects/Junior_Design/s
 ; Y20      ;            ;                ; GND                             ; gnd    ;              ;                     ; --           ;                 ; --       ; --           ;
 ; Y21      ; 219        ; 5A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
 ; Y22      ;            ; --             ; VCCA_FPLL                       ; power  ;              ; 2.5V                ; --           ;                 ; --       ; --           ;
-; Y23      ; 232        ; 5A             ; dir                             ; output ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
-; Y24      ; 234        ; 5A             ; reset_n                         ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
+; Y23      ; 232        ; 5A             ; num_steps[2]                    ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
+; Y24      ; 234        ; 5A             ; finished                        ; output ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
 ; Y25      ;            ;                ; GND                             ; gnd    ;              ;                     ; --           ;                 ; --       ; --           ;
 ; Y26      ; 256        ; 5B             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Row I/O      ;                 ; no       ; On           ;
 ; Y27      ; 258        ; 5B             ; clk_50                          ; input  ; 2.5 V        ;                     ; Row I/O      ; N               ; no       ; Off          ;
@@ -1374,44 +1378,46 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 ; direction    ; Incomplete set of assignments ;
 ; new_in       ; Incomplete set of assignments ;
 ; reset_n      ; Incomplete set of assignments ;
-; num_steps[2] ; Incomplete set of assignments ;
-; enable       ; Incomplete set of assignments ;
-; num_steps[3] ; Incomplete set of assignments ;
-; num_steps[4] ; Incomplete set of assignments ;
 ; num_steps[5] ; Incomplete set of assignments ;
+; enable       ; Incomplete set of assignments ;
 ; num_steps[6] ; Incomplete set of assignments ;
 ; num_steps[7] ; Incomplete set of assignments ;
-; num_steps[0] ; Incomplete set of assignments ;
+; num_steps[2] ; Incomplete set of assignments ;
 ; num_steps[1] ; Incomplete set of assignments ;
+; num_steps[0] ; Incomplete set of assignments ;
+; num_steps[3] ; Incomplete set of assignments ;
+; num_steps[4] ; Incomplete set of assignments ;
 ; clk_50       ; Incomplete set of assignments ;
+; fast         ; Incomplete set of assignments ;
 ; step         ; Missing location assignment   ;
 ; dir          ; Missing location assignment   ;
 ; finished     ; Missing location assignment   ;
 ; direction    ; Missing location assignment   ;
 ; new_in       ; Missing location assignment   ;
 ; reset_n      ; Missing location assignment   ;
-; num_steps[2] ; Missing location assignment   ;
-; enable       ; Missing location assignment   ;
-; num_steps[3] ; Missing location assignment   ;
-; num_steps[4] ; Missing location assignment   ;
 ; num_steps[5] ; Missing location assignment   ;
+; enable       ; Missing location assignment   ;
 ; num_steps[6] ; Missing location assignment   ;
 ; num_steps[7] ; Missing location assignment   ;
-; num_steps[0] ; Missing location assignment   ;
+; num_steps[2] ; Missing location assignment   ;
 ; num_steps[1] ; Missing location assignment   ;
+; num_steps[0] ; Missing location assignment   ;
+; num_steps[3] ; Missing location assignment   ;
+; num_steps[4] ; Missing location assignment   ;
 ; clk_50       ; Missing location assignment   ;
+; fast         ; Missing location assignment   ;
 +--------------+-------------------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Fitter Resource Utilization by Entity                                                                                                                                                                                                                                                                                                                                                                    ;
-+----------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+-------------------------------------+---------------+--------------+
-; Compilation Hierarchy Node ; ALMs needed [=A-B+C] ; [A] ALMs used in final placement ; [B] Estimate of ALMs recoverable by dense packing ; [C] Estimate of ALMs unavailable ; ALMs used for memory ; Combinational ALUTs ; Dedicated Logic Registers ; I/O Registers ; Block Memory Bits ; M10Ks ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                 ; Entity Name   ; Library Name ;
-+----------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+-------------------------------------+---------------+--------------+
-; |stepper_motor             ; 25.0 (11.5)          ; 28.5 (15.1)                      ; 3.5 (3.6)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 44 (20)             ; 33 (9)                    ; 0 (0)         ; 0                 ; 0     ; 0          ; 16   ; 0            ; |stepper_motor                      ; stepper_motor ; work         ;
-;    |counter:step_counter|  ; 5.7 (5.7)            ; 5.7 (5.7)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 8 (8)               ; 8 (8)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |stepper_motor|counter:step_counter ; counter       ; work         ;
-;    |counter:step_time|     ; 7.8 (7.8)            ; 7.8 (7.8)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 16 (16)             ; 16 (16)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |stepper_motor|counter:step_time    ; counter       ; work         ;
-+----------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+-------------------------------------+---------------+--------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fitter Resource Utilization by Entity                                                                                                                                                                                                                                                                                                                                                                           ;
++-------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+-----------------------------------------+---------------+--------------+
+; Compilation Hierarchy Node    ; ALMs needed [=A-B+C] ; [A] ALMs used in final placement ; [B] Estimate of ALMs recoverable by dense packing ; [C] Estimate of ALMs unavailable ; ALMs used for memory ; Combinational ALUTs ; Dedicated Logic Registers ; I/O Registers ; Block Memory Bits ; M10Ks ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                     ; Entity Name   ; Library Name ;
++-------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+-----------------------------------------+---------------+--------------+
+; |stepper_motor                ; 95.5 (81.3)          ; 98.0 (83.2)                      ; 2.5 (1.8)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 174 (148)           ; 34 (10)                   ; 0 (0)         ; 0                 ; 0     ; 5          ; 17   ; 0            ; |stepper_motor                          ; stepper_motor ; work         ;
+;    |stp_counter:step_counter| ; 5.7 (5.7)            ; 6.0 (6.0)                        ; 0.3 (0.3)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 9 (9)               ; 8 (8)                     ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |stepper_motor|stp_counter:step_counter ; stp_counter   ; work         ;
+;    |stp_counter:step_time|    ; 8.5 (8.5)            ; 8.8 (8.8)                        ; 0.3 (0.3)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 17 (17)             ; 16 (16)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |stepper_motor|stp_counter:step_time    ; stp_counter   ; work         ;
++-------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+-----------------------------------------+---------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
@@ -1424,94 +1430,91 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; dir          ; Output   ; -- ; --   ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
 ; finished     ; Output   ; -- ; --   ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
 ; direction    ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
-; new_in       ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
+; new_in       ; Input    ; -- ; (0)  ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; reset_n      ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
-; num_steps[2] ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
-; enable       ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
-; num_steps[3] ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
-; num_steps[4] ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; num_steps[5] ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
-; num_steps[6] ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
+; enable       ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
+; num_steps[6] ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; num_steps[7] ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
-; num_steps[0] ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
+; num_steps[2] ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; num_steps[1] ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
+; num_steps[0] ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
+; num_steps[3] ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
+; num_steps[4] ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; clk_50       ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
+; fast         ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 +--------------+----------+----+------+------+----+------+-------+--------+------------------------+--------------------------+
 
 
-+------------------------------------------------------------------+
-; Pad To Core Delay Chain Fanout                                   ;
-+------------------------------------+-------------------+---------+
-; Source Pin / Fanout                ; Pad To Core Index ; Setting ;
-+------------------------------------+-------------------+---------+
-; direction                          ;                   ;         ;
-;      - set_dir~feeder              ; 1                 ; 0       ;
-; new_in                             ;                   ;         ;
-; reset_n                            ;                   ;         ;
-;      - set_dir                     ; 0                 ; 0       ;
-;      - set_steps[0]                ; 0                 ; 0       ;
-;      - set_steps[1]                ; 0                 ; 0       ;
-;      - set_steps[2]                ; 0                 ; 0       ;
-;      - set_steps[3]                ; 0                 ; 0       ;
-;      - set_steps[4]                ; 0                 ; 0       ;
-;      - set_steps[5]                ; 0                 ; 0       ;
-;      - set_steps[6]                ; 0                 ; 0       ;
-;      - set_steps[7]                ; 0                 ; 0       ;
-;      - reset_step_n                ; 0                 ; 0       ;
-;      - reset_time_n                ; 0                 ; 0       ;
-; num_steps[2]                       ;                   ;         ;
-;      - set_steps[2]                ; 0                 ; 0       ;
-; enable                             ;                   ;         ;
-;      - counter:step_time|q[15]     ; 1                 ; 0       ;
-;      - counter:step_time|q[14]     ; 1                 ; 0       ;
-;      - counter:step_time|q[13]     ; 1                 ; 0       ;
-;      - counter:step_time|q[12]     ; 1                 ; 0       ;
-;      - counter:step_time|q[11]     ; 1                 ; 0       ;
-;      - counter:step_time|q[10]     ; 1                 ; 0       ;
-;      - counter:step_time|q[9]      ; 1                 ; 0       ;
-;      - counter:step_time|q[8]      ; 1                 ; 0       ;
-;      - counter:step_time|q[7]      ; 1                 ; 0       ;
-;      - counter:step_time|q[6]      ; 1                 ; 0       ;
-;      - counter:step_time|q[5]      ; 1                 ; 0       ;
-;      - counter:step_time|q[4]      ; 1                 ; 0       ;
-;      - counter:step_time|q[3]      ; 1                 ; 0       ;
-;      - counter:step_time|q[2]      ; 1                 ; 0       ;
-;      - counter:step_time|q[1]      ; 1                 ; 0       ;
-;      - counter:step_time|q[0]      ; 1                 ; 0       ;
-;      - comb~0                      ; 1                 ; 0       ;
-;      - counter:step_counter|q[0]~0 ; 1                 ; 0       ;
-; num_steps[3]                       ;                   ;         ;
-;      - set_steps[3]                ; 0                 ; 0       ;
-; num_steps[4]                       ;                   ;         ;
-;      - set_steps[4]                ; 1                 ; 0       ;
-; num_steps[5]                       ;                   ;         ;
-;      - set_steps[5]                ; 1                 ; 0       ;
-; num_steps[6]                       ;                   ;         ;
-;      - set_steps[6]                ; 0                 ; 0       ;
-; num_steps[7]                       ;                   ;         ;
-;      - set_steps[7]                ; 1                 ; 0       ;
-; num_steps[0]                       ;                   ;         ;
-;      - set_steps[0]                ; 0                 ; 0       ;
-; num_steps[1]                       ;                   ;         ;
-;      - set_steps[1]                ; 1                 ; 0       ;
-; clk_50                             ;                   ;         ;
-+------------------------------------+-------------------+---------+
++-------------------------------------------------------------------------+
+; Pad To Core Delay Chain Fanout                                          ;
++-------------------------------------------+-------------------+---------+
+; Source Pin / Fanout                       ; Pad To Core Index ; Setting ;
++-------------------------------------------+-------------------+---------+
+; direction                                 ;                   ;         ;
+;      - set_dir                            ; 1                 ; 0       ;
+; new_in                                    ;                   ;         ;
+;      - stp_counter:step_counter|always0~0 ; 1                 ; 0       ;
+;      - reset_time_n~3                     ; 1                 ; 0       ;
+; reset_n                                   ;                   ;         ;
+;      - set_dir                            ; 0                 ; 0       ;
+;      - set_steps[0]                       ; 0                 ; 0       ;
+;      - set_steps[1]                       ; 0                 ; 0       ;
+;      - set_steps[2]                       ; 0                 ; 0       ;
+;      - set_steps[3]                       ; 0                 ; 0       ;
+;      - set_steps[4]                       ; 0                 ; 0       ;
+;      - set_steps[5]                       ; 0                 ; 0       ;
+;      - set_steps[6]                       ; 0                 ; 0       ;
+;      - set_steps[7]                       ; 0                 ; 0       ;
+;      - stp_counter:step_counter|always0~0 ; 0                 ; 0       ;
+;      - stp_counter:step_time|always0~0    ; 0                 ; 0       ;
+;      - set_fast                           ; 0                 ; 0       ;
+; num_steps[5]                              ;                   ;         ;
+;      - set_steps[5]                       ; 1                 ; 0       ;
+; enable                                    ;                   ;         ;
+;      - stp_counter:step_counter|q[7]      ; 1                 ; 0       ;
+;      - stp_counter:step_counter|q[6]      ; 1                 ; 0       ;
+;      - stp_counter:step_counter|q[5]      ; 1                 ; 0       ;
+;      - stp_counter:step_counter|q[4]      ; 1                 ; 0       ;
+;      - stp_counter:step_counter|q[3]      ; 1                 ; 0       ;
+;      - stp_counter:step_counter|q[2]      ; 1                 ; 0       ;
+;      - stp_counter:step_counter|q[1]      ; 1                 ; 0       ;
+;      - stp_counter:step_counter|q[0]      ; 1                 ; 0       ;
+;      - comb~0                             ; 1                 ; 0       ;
+; num_steps[6]                              ;                   ;         ;
+;      - set_steps[6]                       ; 1                 ; 0       ;
+; num_steps[7]                              ;                   ;         ;
+;      - set_steps[7]                       ; 1                 ; 0       ;
+; num_steps[2]                              ;                   ;         ;
+;      - set_steps[2]                       ; 1                 ; 0       ;
+; num_steps[1]                              ;                   ;         ;
+;      - set_steps[1]                       ; 1                 ; 0       ;
+; num_steps[0]                              ;                   ;         ;
+;      - set_steps[0]                       ; 1                 ; 0       ;
+; num_steps[3]                              ;                   ;         ;
+;      - set_steps[3]                       ; 1                 ; 0       ;
+; num_steps[4]                              ;                   ;         ;
+;      - set_steps[4]                       ; 1                 ; 0       ;
+; clk_50                                    ;                   ;         ;
+; fast                                      ;                   ;         ;
+;      - set_fast                           ; 1                 ; 0       ;
++-------------------------------------------+-------------------+---------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------+
-; Control Signals                                                                                                                             ;
-+--------------+----------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
-; Name         ; Location             ; Fan-Out ; Usage        ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
-+--------------+----------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
-; clk_50       ; PIN_Y27              ; 16      ; Clock        ; yes    ; Global Clock         ; GCLK10           ; --                        ;
-; comb~0       ; LABCELL_X83_Y17_N21  ; 7       ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; enable       ; PIN_AH30             ; 18      ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; new_in       ; PIN_AA26             ; 9       ; Clock        ; yes    ; Global Clock         ; GCLK8            ; --                        ;
-; reset_n      ; PIN_Y24              ; 11      ; Async. clear ; no     ; --                   ; --               ; --                        ;
-; reset_step_n ; LABCELL_X83_Y17_N15  ; 8       ; Async. clear ; no     ; --                   ; --               ; --                        ;
-; reset_time_n ; MLABCELL_X82_Y17_N54 ; 16      ; Async. clear ; no     ; --                   ; --               ; --                        ;
-; rtl~0        ; MLABCELL_X82_Y17_N21 ; 9       ; Clock        ; no     ; --                   ; --               ; --                        ;
-+--------------+----------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Control Signals                                                                                                                                                   ;
++------------------------------------+----------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
+; Name                               ; Location             ; Fan-Out ; Usage        ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
++------------------------------------+----------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
+; clk_50                             ; PIN_Y27              ; 16      ; Clock        ; yes    ; Global Clock         ; GCLK10           ; --                        ;
+; comb~0                             ; MLABCELL_X84_Y16_N9  ; 16      ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; enable                             ; PIN_AG30             ; 9       ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; new_in                             ; PIN_AA26             ; 10      ; Clock        ; yes    ; Global Clock         ; GCLK8            ; --                        ;
+; reset_n                            ; PIN_AA30             ; 12      ; Async. clear ; no     ; --                   ; --               ; --                        ;
+; rtl~0                              ; MLABCELL_X84_Y16_N51 ; 9       ; Clock        ; no     ; --                   ; --               ; --                        ;
+; stp_counter:step_counter|always0~0 ; LABCELL_X88_Y23_N15  ; 8       ; Async. clear ; no     ; --                   ; --               ; --                        ;
+; stp_counter:step_time|always0~0    ; MLABCELL_X84_Y17_N12 ; 16      ; Async. clear ; no     ; --                   ; --               ; --                        ;
++------------------------------------+----------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
 
 
 +---------------------------------------------------------------------------------------------------+
@@ -1520,87 +1523,113 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Name   ; Location ; Fan-Out ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
 +--------+----------+---------+----------------------+------------------+---------------------------+
 ; clk_50 ; PIN_Y27  ; 16      ; Global Clock         ; GCLK10           ; --                        ;
-; new_in ; PIN_AA26 ; 9       ; Global Clock         ; GCLK8            ; --                        ;
+; new_in ; PIN_AA26 ; 10      ; Global Clock         ; GCLK8            ; --                        ;
 +--------+----------+---------+----------------------+------------------+---------------------------+
 
 
-+----------------------------------------------------------------------+
-; Routing Usage Summary                                                ;
-+---------------------------------------------+------------------------+
-; Routing Resource Type                       ; Usage                  ;
-+---------------------------------------------+------------------------+
-; Block interconnects                         ; 79 / 289,320 ( < 1 % ) ;
-; C12 interconnects                           ; 4 / 13,420 ( < 1 % )   ;
-; C2 interconnects                            ; 24 / 119,108 ( < 1 % ) ;
-; C4 interconnects                            ; 10 / 56,300 ( < 1 % )  ;
-; DQS bus muxes                               ; 0 / 25 ( 0 % )         ;
-; DQS-18 I/O buses                            ; 0 / 25 ( 0 % )         ;
-; DQS-9 I/O buses                             ; 0 / 25 ( 0 % )         ;
-; Direct links                                ; 18 / 289,320 ( < 1 % ) ;
-; Global clocks                               ; 2 / 16 ( 13 % )        ;
-; HPS SDRAM PLL inputs                        ; 0 / 1 ( 0 % )          ;
-; HPS SDRAM PLL outputs                       ; 0 / 1 ( 0 % )          ;
-; HPS_INTERFACE_BOOT_FROM_FPGA_INPUTs         ; 0 / 9 ( 0 % )          ;
-; HPS_INTERFACE_CLOCKS_RESETS_INPUTs          ; 0 / 7 ( 0 % )          ;
-; HPS_INTERFACE_CLOCKS_RESETS_OUTPUTs         ; 0 / 6 ( 0 % )          ;
-; HPS_INTERFACE_CROSS_TRIGGER_INPUTs          ; 0 / 18 ( 0 % )         ;
-; HPS_INTERFACE_CROSS_TRIGGER_OUTPUTs         ; 0 / 24 ( 0 % )         ;
-; HPS_INTERFACE_DBG_APB_INPUTs                ; 0 / 37 ( 0 % )         ;
-; HPS_INTERFACE_DBG_APB_OUTPUTs               ; 0 / 55 ( 0 % )         ;
-; HPS_INTERFACE_DMA_INPUTs                    ; 0 / 16 ( 0 % )         ;
-; HPS_INTERFACE_DMA_OUTPUTs                   ; 0 / 8 ( 0 % )          ;
-; HPS_INTERFACE_FPGA2HPS_INPUTs               ; 0 / 287 ( 0 % )        ;
-; HPS_INTERFACE_FPGA2HPS_OUTPUTs              ; 0 / 154 ( 0 % )        ;
-; HPS_INTERFACE_FPGA2SDRAM_INPUTs             ; 0 / 852 ( 0 % )        ;
-; HPS_INTERFACE_FPGA2SDRAM_OUTPUTs            ; 0 / 408 ( 0 % )        ;
-; HPS_INTERFACE_HPS2FPGA_INPUTs               ; 0 / 165 ( 0 % )        ;
-; HPS_INTERFACE_HPS2FPGA_LIGHT_WEIGHT_INPUTs  ; 0 / 67 ( 0 % )         ;
-; HPS_INTERFACE_HPS2FPGA_LIGHT_WEIGHT_OUTPUTs ; 0 / 156 ( 0 % )        ;
-; HPS_INTERFACE_HPS2FPGA_OUTPUTs              ; 0 / 282 ( 0 % )        ;
-; HPS_INTERFACE_INTERRUPTS_INPUTs             ; 0 / 64 ( 0 % )         ;
-; HPS_INTERFACE_INTERRUPTS_OUTPUTs            ; 0 / 42 ( 0 % )         ;
-; HPS_INTERFACE_JTAG_OUTPUTs                  ; 0 / 5 ( 0 % )          ;
-; HPS_INTERFACE_LOAN_IO_INPUTs                ; 0 / 142 ( 0 % )        ;
-; HPS_INTERFACE_LOAN_IO_OUTPUTs               ; 0 / 85 ( 0 % )         ;
-; HPS_INTERFACE_MPU_EVENT_STANDBY_INPUTs      ; 0 / 1 ( 0 % )          ;
-; HPS_INTERFACE_MPU_EVENT_STANDBY_OUTPUTs     ; 0 / 5 ( 0 % )          ;
-; HPS_INTERFACE_MPU_GENERAL_PURPOSE_INPUTs    ; 0 / 32 ( 0 % )         ;
-; HPS_INTERFACE_MPU_GENERAL_PURPOSE_OUTPUTs   ; 0 / 32 ( 0 % )         ;
-; HPS_INTERFACE_PERIPHERAL_CAN_INPUTs         ; 0 / 2 ( 0 % )          ;
-; HPS_INTERFACE_PERIPHERAL_CAN_OUTPUTs        ; 0 / 2 ( 0 % )          ;
-; HPS_INTERFACE_PERIPHERAL_EMAC_INPUTs        ; 0 / 32 ( 0 % )         ;
-; HPS_INTERFACE_PERIPHERAL_EMAC_OUTPUTs       ; 0 / 34 ( 0 % )         ;
-; HPS_INTERFACE_PERIPHERAL_I2C_INPUTs         ; 0 / 8 ( 0 % )          ;
-; HPS_INTERFACE_PERIPHERAL_I2C_OUTPUTs        ; 0 / 8 ( 0 % )          ;
-; HPS_INTERFACE_PERIPHERAL_NAND_INPUTs        ; 0 / 12 ( 0 % )         ;
-; HPS_INTERFACE_PERIPHERAL_NAND_OUTPUTs       ; 0 / 18 ( 0 % )         ;
-; HPS_INTERFACE_PERIPHERAL_QSPI_INPUTs        ; 0 / 4 ( 0 % )          ;
-; HPS_INTERFACE_PERIPHERAL_QSPI_OUTPUTs       ; 0 / 13 ( 0 % )         ;
-; HPS_INTERFACE_PERIPHERAL_SDMMC_INPUTs       ; 0 / 13 ( 0 % )         ;
-; HPS_INTERFACE_PERIPHERAL_SDMMC_OUTPUTs      ; 0 / 22 ( 0 % )         ;
-; HPS_INTERFACE_PERIPHERAL_SPI_MASTER_INPUTs  ; 0 / 4 ( 0 % )          ;
-; HPS_INTERFACE_PERIPHERAL_SPI_MASTER_OUTPUTs ; 0 / 14 ( 0 % )         ;
-; HPS_INTERFACE_PERIPHERAL_SPI_SLAVE_INPUTs   ; 0 / 6 ( 0 % )          ;
-; HPS_INTERFACE_PERIPHERAL_SPI_SLAVE_OUTPUTs  ; 0 / 4 ( 0 % )          ;
-; HPS_INTERFACE_PERIPHERAL_UART_INPUTs        ; 0 / 10 ( 0 % )         ;
-; HPS_INTERFACE_PERIPHERAL_UART_OUTPUTs       ; 0 / 10 ( 0 % )         ;
-; HPS_INTERFACE_PERIPHERAL_USB_INPUTs         ; 0 / 22 ( 0 % )         ;
-; HPS_INTERFACE_PERIPHERAL_USB_OUTPUTs        ; 0 / 34 ( 0 % )         ;
-; HPS_INTERFACE_STM_EVENT_INPUTs              ; 0 / 28 ( 0 % )         ;
-; HPS_INTERFACE_TEST_INPUTs                   ; 0 / 610 ( 0 % )        ;
-; HPS_INTERFACE_TEST_OUTPUTs                  ; 0 / 513 ( 0 % )        ;
-; HPS_INTERFACE_TPIU_TRACE_INPUTs             ; 0 / 2 ( 0 % )          ;
-; HPS_INTERFACE_TPIU_TRACE_OUTPUTs            ; 0 / 33 ( 0 % )         ;
-; Horizontal periphery clocks                 ; 0 / 72 ( 0 % )         ;
-; Local interconnects                         ; 37 / 84,580 ( < 1 % )  ;
-; Quadrant clocks                             ; 0 / 66 ( 0 % )         ;
-; R14 interconnects                           ; 20 / 12,676 ( < 1 % )  ;
-; R14/C12 interconnect drivers                ; 18 / 20,720 ( < 1 % )  ;
-; R3 interconnects                            ; 38 / 130,992 ( < 1 % ) ;
-; R6 interconnects                            ; 57 / 266,960 ( < 1 % ) ;
-; Spine clocks                                ; 2 / 360 ( < 1 % )      ;
-; Wire stub REs                               ; 0 / 15,858 ( 0 % )     ;
-+---------------------------------------------+------------------------+
++-----------------------------------------------+
+; Fitter DSP Block Usage Summary                ;
++---------------------------------+-------------+
+; Statistic                       ; Number Used ;
++---------------------------------+-------------+
+; Two Independent 18x18           ; 4           ;
+; Independent 18x18 plus 36       ; 1           ;
+; Total number of DSP blocks      ; 5           ;
+;                                 ;             ;
+; Fixed Point Unsigned Multiplier ; 5           ;
++---------------------------------+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; DSP Block Details                                                                                                                                                                                                                                                                                                                                                                                                ;
++------------------+---------------------------+----------------+---------------------+------------------------+------------------------+------------------------+------------------------+------------------------+------------------------+-----------------+--------------------------------+---------------------+-------------------------------+------------------------------+------------------------------+
+; Name             ; Mode                      ; Location       ; Sign Representation ; Data AX Input Register ; Data AY Input Register ; Data AZ Input Register ; Data BX Input Register ; Data BY Input Register ; Data BZ Input Register ; Output Register ; Dedicated Shift Register Chain ; Dedicated Pre-Adder ; Dedicated Coefficient Storage ; Dedicated Output Adder Chain ; Dedicated Output Accumulator ;
++------------------+---------------------------+----------------+---------------------+------------------------+------------------------+------------------------+------------------------+------------------------+------------------------+-----------------+--------------------------------+---------------------+-------------------------------+------------------------------+------------------------------+
+; Mult1~8          ; Two Independent 18x18     ; DSP_X86_Y20_N0 ; Unsigned            ; no                     ; no                     ; --                     ; --                     ; --                     ; --                     ; no              ; no                             ; no                  ; no                            ; no                           ; no                           ;
+; Mult0~8          ; Two Independent 18x18     ; DSP_X86_Y14_N0 ; Unsigned            ; no                     ; no                     ; --                     ; --                     ; --                     ; --                     ; no              ; no                             ; no                  ; no                            ; no                           ; no                           ;
+; Mult1~mult_hlmac ; Independent 18x18 plus 36 ; DSP_X86_Y18_N0 ; Unsigned            ; no                     ; no                     ; --                     ; no                     ; no                     ; --                     ; no              ; no                             ; no                  ; no                            ; no                           ; no                           ;
+; Mult0~349        ; Two Independent 18x18     ; DSP_X86_Y12_N0 ; Unsigned            ; no                     ; no                     ; --                     ; --                     ; --                     ; --                     ; no              ; no                             ; no                  ; no                            ; no                           ; no                           ;
+; Mult1~657        ; Two Independent 18x18     ; DSP_X86_Y16_N0 ; Unsigned            ; no                     ; no                     ; --                     ; --                     ; --                     ; --                     ; no              ; no                             ; no                  ; no                            ; no                           ; no                           ;
++------------------+---------------------------+----------------+---------------------+------------------------+------------------------+------------------------+------------------------+------------------------+------------------------+-----------------+--------------------------------+---------------------+-------------------------------+------------------------------+------------------------------+
+
+
++-----------------------------------------------------------------------+
+; Routing Usage Summary                                                 ;
++---------------------------------------------+-------------------------+
+; Routing Resource Type                       ; Usage                   ;
++---------------------------------------------+-------------------------+
+; Block interconnects                         ; 390 / 289,320 ( < 1 % ) ;
+; C12 interconnects                           ; 15 / 13,420 ( < 1 % )   ;
+; C2 interconnects                            ; 251 / 119,108 ( < 1 % ) ;
+; C4 interconnects                            ; 133 / 56,300 ( < 1 % )  ;
+; DQS bus muxes                               ; 0 / 25 ( 0 % )          ;
+; DQS-18 I/O buses                            ; 0 / 25 ( 0 % )          ;
+; DQS-9 I/O buses                             ; 0 / 25 ( 0 % )          ;
+; Direct links                                ; 36 / 289,320 ( < 1 % )  ;
+; Global clocks                               ; 2 / 16 ( 13 % )         ;
+; HPS SDRAM PLL inputs                        ; 0 / 1 ( 0 % )           ;
+; HPS SDRAM PLL outputs                       ; 0 / 1 ( 0 % )           ;
+; HPS_INTERFACE_BOOT_FROM_FPGA_INPUTs         ; 0 / 9 ( 0 % )           ;
+; HPS_INTERFACE_CLOCKS_RESETS_INPUTs          ; 0 / 7 ( 0 % )           ;
+; HPS_INTERFACE_CLOCKS_RESETS_OUTPUTs         ; 0 / 6 ( 0 % )           ;
+; HPS_INTERFACE_CROSS_TRIGGER_INPUTs          ; 0 / 18 ( 0 % )          ;
+; HPS_INTERFACE_CROSS_TRIGGER_OUTPUTs         ; 0 / 24 ( 0 % )          ;
+; HPS_INTERFACE_DBG_APB_INPUTs                ; 0 / 37 ( 0 % )          ;
+; HPS_INTERFACE_DBG_APB_OUTPUTs               ; 0 / 55 ( 0 % )          ;
+; HPS_INTERFACE_DMA_INPUTs                    ; 0 / 16 ( 0 % )          ;
+; HPS_INTERFACE_DMA_OUTPUTs                   ; 0 / 8 ( 0 % )           ;
+; HPS_INTERFACE_FPGA2HPS_INPUTs               ; 0 / 287 ( 0 % )         ;
+; HPS_INTERFACE_FPGA2HPS_OUTPUTs              ; 0 / 154 ( 0 % )         ;
+; HPS_INTERFACE_FPGA2SDRAM_INPUTs             ; 0 / 852 ( 0 % )         ;
+; HPS_INTERFACE_FPGA2SDRAM_OUTPUTs            ; 0 / 408 ( 0 % )         ;
+; HPS_INTERFACE_HPS2FPGA_INPUTs               ; 0 / 165 ( 0 % )         ;
+; HPS_INTERFACE_HPS2FPGA_LIGHT_WEIGHT_INPUTs  ; 0 / 67 ( 0 % )          ;
+; HPS_INTERFACE_HPS2FPGA_LIGHT_WEIGHT_OUTPUTs ; 0 / 156 ( 0 % )         ;
+; HPS_INTERFACE_HPS2FPGA_OUTPUTs              ; 0 / 282 ( 0 % )         ;
+; HPS_INTERFACE_INTERRUPTS_INPUTs             ; 0 / 64 ( 0 % )          ;
+; HPS_INTERFACE_INTERRUPTS_OUTPUTs            ; 0 / 42 ( 0 % )          ;
+; HPS_INTERFACE_JTAG_OUTPUTs                  ; 0 / 5 ( 0 % )           ;
+; HPS_INTERFACE_LOAN_IO_INPUTs                ; 0 / 142 ( 0 % )         ;
+; HPS_INTERFACE_LOAN_IO_OUTPUTs               ; 0 / 85 ( 0 % )          ;
+; HPS_INTERFACE_MPU_EVENT_STANDBY_INPUTs      ; 0 / 1 ( 0 % )           ;
+; HPS_INTERFACE_MPU_EVENT_STANDBY_OUTPUTs     ; 0 / 5 ( 0 % )           ;
+; HPS_INTERFACE_MPU_GENERAL_PURPOSE_INPUTs    ; 0 / 32 ( 0 % )          ;
+; HPS_INTERFACE_MPU_GENERAL_PURPOSE_OUTPUTs   ; 0 / 32 ( 0 % )          ;
+; HPS_INTERFACE_PERIPHERAL_CAN_INPUTs         ; 0 / 2 ( 0 % )           ;
+; HPS_INTERFACE_PERIPHERAL_CAN_OUTPUTs        ; 0 / 2 ( 0 % )           ;
+; HPS_INTERFACE_PERIPHERAL_EMAC_INPUTs        ; 0 / 32 ( 0 % )          ;
+; HPS_INTERFACE_PERIPHERAL_EMAC_OUTPUTs       ; 0 / 34 ( 0 % )          ;
+; HPS_INTERFACE_PERIPHERAL_I2C_INPUTs         ; 0 / 8 ( 0 % )           ;
+; HPS_INTERFACE_PERIPHERAL_I2C_OUTPUTs        ; 0 / 8 ( 0 % )           ;
+; HPS_INTERFACE_PERIPHERAL_NAND_INPUTs        ; 0 / 12 ( 0 % )          ;
+; HPS_INTERFACE_PERIPHERAL_NAND_OUTPUTs       ; 0 / 18 ( 0 % )          ;
+; HPS_INTERFACE_PERIPHERAL_QSPI_INPUTs        ; 0 / 4 ( 0 % )           ;
+; HPS_INTERFACE_PERIPHERAL_QSPI_OUTPUTs       ; 0 / 13 ( 0 % )          ;
+; HPS_INTERFACE_PERIPHERAL_SDMMC_INPUTs       ; 0 / 13 ( 0 % )          ;
+; HPS_INTERFACE_PERIPHERAL_SDMMC_OUTPUTs      ; 0 / 22 ( 0 % )          ;
+; HPS_INTERFACE_PERIPHERAL_SPI_MASTER_INPUTs  ; 0 / 4 ( 0 % )           ;
+; HPS_INTERFACE_PERIPHERAL_SPI_MASTER_OUTPUTs ; 0 / 14 ( 0 % )          ;
+; HPS_INTERFACE_PERIPHERAL_SPI_SLAVE_INPUTs   ; 0 / 6 ( 0 % )           ;
+; HPS_INTERFACE_PERIPHERAL_SPI_SLAVE_OUTPUTs  ; 0 / 4 ( 0 % )           ;
+; HPS_INTERFACE_PERIPHERAL_UART_INPUTs        ; 0 / 10 ( 0 % )          ;
+; HPS_INTERFACE_PERIPHERAL_UART_OUTPUTs       ; 0 / 10 ( 0 % )          ;
+; HPS_INTERFACE_PERIPHERAL_USB_INPUTs         ; 0 / 22 ( 0 % )          ;
+; HPS_INTERFACE_PERIPHERAL_USB_OUTPUTs        ; 0 / 34 ( 0 % )          ;
+; HPS_INTERFACE_STM_EVENT_INPUTs              ; 0 / 28 ( 0 % )          ;
+; HPS_INTERFACE_TEST_INPUTs                   ; 0 / 610 ( 0 % )         ;
+; HPS_INTERFACE_TEST_OUTPUTs                  ; 0 / 513 ( 0 % )         ;
+; HPS_INTERFACE_TPIU_TRACE_INPUTs             ; 0 / 2 ( 0 % )           ;
+; HPS_INTERFACE_TPIU_TRACE_OUTPUTs            ; 0 / 33 ( 0 % )          ;
+; Horizontal periphery clocks                 ; 0 / 72 ( 0 % )          ;
+; Local interconnects                         ; 64 / 84,580 ( < 1 % )   ;
+; Quadrant clocks                             ; 0 / 66 ( 0 % )          ;
+; R14 interconnects                           ; 81 / 12,676 ( < 1 % )   ;
+; R14/C12 interconnect drivers                ; 93 / 20,720 ( < 1 % )   ;
+; R3 interconnects                            ; 259 / 130,992 ( < 1 % ) ;
+; R6 interconnects                            ; 302 / 266,960 ( < 1 % ) ;
+; Spine clocks                                ; 3 / 360 ( < 1 % )       ;
+; Wire stub REs                               ; 0 / 15,858 ( 0 % )      ;
++---------------------------------------------+-------------------------+
 
 
 +------------------------------------------+
@@ -1658,9 +1687,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+-----------+-----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+
 ; Pin/Rules          ; IO_000001    ; IO_000002    ; IO_000003    ; IO_000004    ; IO_000005    ; IO_000006 ; IO_000007    ; IO_000008    ; IO_000009 ; IO_000010 ; IO_000011    ; IO_000012    ; IO_000013    ; IO_000014    ; IO_000015    ; IO_000018    ; IO_000019    ; IO_000020    ; IO_000021    ; IO_000022    ; IO_000023    ; IO_000024    ; IO_000026    ; IO_000027    ; IO_000045    ; IO_000046    ; IO_000047    ; IO_000034    ;
 +--------------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+-----------+-----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+
-; Total Pass         ; 0            ; 0            ; 0            ; 0            ; 0            ; 16        ; 0            ; 0            ; 16        ; 16        ; 0            ; 3            ; 0            ; 0            ; 0            ; 0            ; 3            ; 0            ; 0            ; 0            ; 0            ; 3            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ;
+; Total Pass         ; 0            ; 0            ; 0            ; 0            ; 0            ; 17        ; 0            ; 0            ; 17        ; 17        ; 0            ; 3            ; 0            ; 0            ; 0            ; 0            ; 3            ; 0            ; 0            ; 0            ; 0            ; 3            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ;
 ; Total Unchecked    ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ; 0         ; 0         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ;
-; Total Inapplicable ; 16           ; 16           ; 16           ; 16           ; 16           ; 0         ; 16           ; 16           ; 0         ; 0         ; 16           ; 13           ; 16           ; 16           ; 16           ; 16           ; 13           ; 16           ; 16           ; 16           ; 16           ; 13           ; 16           ; 16           ; 16           ; 16           ; 16           ; 16           ;
+; Total Inapplicable ; 17           ; 17           ; 17           ; 17           ; 17           ; 0         ; 17           ; 17           ; 0         ; 0         ; 17           ; 14           ; 17           ; 17           ; 17           ; 17           ; 14           ; 17           ; 17           ; 17           ; 17           ; 14           ; 17           ; 17           ; 17           ; 17           ; 17           ; 17           ;
 ; Total Fail         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ; 0         ; 0         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ;
 ; step               ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
 ; dir                ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
@@ -1668,16 +1697,17 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; direction          ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
 ; new_in             ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
 ; reset_n            ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
-; num_steps[2]       ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
-; enable             ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
-; num_steps[3]       ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
-; num_steps[4]       ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
 ; num_steps[5]       ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
+; enable             ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
 ; num_steps[6]       ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
 ; num_steps[7]       ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
-; num_steps[0]       ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
+; num_steps[2]       ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
 ; num_steps[1]       ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
+; num_steps[0]       ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
+; num_steps[3]       ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
+; num_steps[4]       ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
 ; clk_50             ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
+; fast               ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
 +--------------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+-----------+-----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+
 
 
@@ -1724,62 +1754,64 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------------+--------+
 
 
-+--------------------------------------------------------------------------------+
-; Estimated Delay Added for Hold Timing Summary                                  ;
-+-------------------------------+----------------------------+-------------------+
-; Source Clock(s)               ; Destination Clock(s)       ; Delay Added in ns ;
-+-------------------------------+----------------------------+-------------------+
-; clk_50                        ; clk_50                     ; 14.7              ;
-; counter:step_time|q[0]        ; counter:step_time|q[0]     ; 3.2               ;
-; clk_50,I/O                    ; clk_50                     ; 2.0               ;
-; counter:step_time|q[0]        ; counter:step_time|q[0],I/O ; 1.3               ;
-; counter:step_time|q[0],new_in ; counter:step_time|q[0]     ; 1.1               ;
-+-------------------------------+----------------------------+-------------------+
++------------------------------------------------------------+
+; Estimated Delay Added for Hold Timing Summary              ;
++-----------------+----------------------+-------------------+
+; Source Clock(s) ; Destination Clock(s) ; Delay Added in ns ;
++-----------------+----------------------+-------------------+
+; set_fast        ; set_fast             ; 94.9              ;
+; new_in,set_fast ; clk_50               ; 24.6              ;
+; I/O             ; set_fast             ; 10.9              ;
+; set_fast        ; clk_50,I/O           ; 4.7               ;
+; set_fast        ; set_fast,clk_50,I/O  ; 2.7               ;
++-----------------+----------------------+-------------------+
 Note: For more information on problematic transfers, consider running the Fitter again with the Optimize hold timing option (Settings Menu) turned off.
 This will disable optimization of problematic paths and expose them for further analysis using the Timing Analyzer.
 
 
-+---------------------------------------------------------------------------+
-; Estimated Delay Added for Hold Timing Details                             ;
-+---------------------------+---------------------------+-------------------+
-; Source Register           ; Destination Register      ; Delay Added in ns ;
-+---------------------------+---------------------------+-------------------+
-; counter:step_time|q[0]    ; counter:step_time|q[5]    ; 5.702             ;
-; counter:step_time|q[1]    ; counter:step_time|q[0]    ; 2.208             ;
-; counter:step_time|q[2]    ; counter:step_time|q[0]    ; 2.208             ;
-; counter:step_time|q[10]   ; counter:step_time|q[0]    ; 2.208             ;
-; counter:step_time|q[12]   ; counter:step_time|q[0]    ; 2.208             ;
-; counter:step_time|q[11]   ; counter:step_time|q[0]    ; 2.208             ;
-; counter:step_time|q[5]    ; counter:step_time|q[0]    ; 1.101             ;
-; counter:step_time|q[4]    ; counter:step_time|q[0]    ; 1.101             ;
-; counter:step_time|q[8]    ; counter:step_time|q[0]    ; 1.101             ;
-; counter:step_time|q[3]    ; counter:step_time|q[0]    ; 1.101             ;
-; counter:step_time|q[6]    ; counter:step_time|q[0]    ; 1.101             ;
-; counter:step_time|q[7]    ; counter:step_time|q[0]    ; 1.101             ;
-; counter:step_time|q[14]   ; counter:step_time|q[0]    ; 1.101             ;
-; counter:step_time|q[13]   ; counter:step_time|q[0]    ; 1.101             ;
-; counter:step_time|q[15]   ; counter:step_time|q[0]    ; 1.101             ;
-; counter:step_time|q[9]    ; counter:step_time|q[0]    ; 1.101             ;
-; reset_n                   ; counter:step_time|q[0]    ; 1.101             ;
-; counter:step_counter|q[0] ; counter:step_counter|q[1] ; 0.846             ;
-; counter:step_counter|q[1] ; counter:step_counter|q[1] ; 0.816             ;
-; counter:step_counter|q[5] ; counter:step_counter|q[0] ; 0.656             ;
-; counter:step_counter|q[4] ; counter:step_counter|q[2] ; 0.615             ;
-; counter:step_counter|q[3] ; counter:step_counter|q[0] ; 0.520             ;
-; counter:step_counter|q[7] ; counter:step_counter|q[0] ; 0.503             ;
-; set_steps[5]              ; counter:step_counter|q[0] ; 0.413             ;
-; set_steps[6]              ; counter:step_counter|q[0] ; 0.413             ;
-; counter:step_counter|q[6] ; counter:step_counter|q[0] ; 0.413             ;
-; set_steps[7]              ; counter:step_counter|q[0] ; 0.413             ;
-; counter:step_counter|q[2] ; counter:step_counter|q[2] ; 0.330             ;
-; set_steps[2]              ; counter:step_counter|q[0] ; 0.271             ;
-; set_steps[3]              ; counter:step_counter|q[0] ; 0.271             ;
-; set_steps[4]              ; counter:step_counter|q[0] ; 0.164             ;
-; set_steps[0]              ; counter:step_counter|q[0] ; 0.137             ;
-; set_steps[1]              ; counter:step_counter|q[0] ; 0.137             ;
-; enable                    ; counter:step_counter|q[0] ; 0.137             ;
-+---------------------------+---------------------------+-------------------+
-Note: This table only shows the top 34 path(s) that have the largest delay added for hold.
++-----------------------------------------------------------------------------------+
+; Estimated Delay Added for Hold Timing Details                                     ;
++-------------------------------+-------------------------------+-------------------+
+; Source Register               ; Destination Register          ; Delay Added in ns ;
++-------------------------------+-------------------------------+-------------------+
+; stp_counter:step_counter|q[0] ; stp_counter:step_counter|q[1] ; 11.910            ;
+; stp_counter:step_counter|q[1] ; stp_counter:step_counter|q[1] ; 11.630            ;
+; stp_counter:step_counter|q[4] ; stp_counter:step_counter|q[4] ; 11.135            ;
+; stp_counter:step_counter|q[5] ; stp_counter:step_counter|q[5] ; 11.135            ;
+; stp_counter:step_counter|q[3] ; stp_counter:step_counter|q[3] ; 11.132            ;
+; stp_counter:step_counter|q[2] ; stp_counter:step_counter|q[2] ; 11.128            ;
+; stp_counter:step_counter|q[6] ; stp_counter:step_counter|q[6] ; 11.120            ;
+; new_in                        ; stp_counter:step_counter|q[0] ; 10.852            ;
+; stp_counter:step_counter|q[7] ; stp_counter:step_counter|q[7] ; 10.771            ;
+; reset_n                       ; stp_counter:step_counter|q[0] ; 5.426             ;
+; set_steps[0]                  ; stp_counter:step_time|q[5]    ; 3.355             ;
+; set_steps[2]                  ; stp_counter:step_time|q[5]    ; 3.355             ;
+; set_steps[1]                  ; stp_counter:step_time|q[5]    ; 3.355             ;
+; set_steps[3]                  ; stp_counter:step_time|q[5]    ; 3.355             ;
+; set_steps[4]                  ; stp_counter:step_time|q[5]    ; 3.355             ;
+; set_steps[5]                  ; stp_counter:step_time|q[5]    ; 3.355             ;
+; set_steps[6]                  ; stp_counter:step_time|q[5]    ; 3.355             ;
+; set_steps[7]                  ; stp_counter:step_time|q[5]    ; 3.355             ;
+; set_fast                      ; stp_counter:step_time|q[5]    ; 3.355             ;
+; stp_counter:step_time|q[10]   ; stp_counter:step_time|q[5]    ; 1.664             ;
+; stp_counter:step_time|q[9]    ; stp_counter:step_time|q[5]    ; 1.664             ;
+; stp_counter:step_time|q[11]   ; stp_counter:step_time|q[5]    ; 1.664             ;
+; stp_counter:step_time|q[6]    ; stp_counter:step_time|q[5]    ; 1.594             ;
+; stp_counter:step_time|q[7]    ; stp_counter:step_time|q[5]    ; 1.594             ;
+; stp_counter:step_time|q[8]    ; stp_counter:step_time|q[5]    ; 1.594             ;
+; stp_counter:step_time|q[15]   ; stp_counter:step_time|q[5]    ; 1.299             ;
+; stp_counter:step_time|q[13]   ; stp_counter:step_time|q[5]    ; 1.299             ;
+; stp_counter:step_time|q[12]   ; stp_counter:step_time|q[5]    ; 1.299             ;
+; stp_counter:step_time|q[14]   ; stp_counter:step_time|q[5]    ; 1.299             ;
+; stp_counter:step_time|q[1]    ; stp_counter:step_time|q[5]    ; 1.299             ;
+; stp_counter:step_time|q[2]    ; stp_counter:step_time|q[5]    ; 1.299             ;
+; stp_counter:step_time|q[3]    ; stp_counter:step_time|q[5]    ; 1.299             ;
+; stp_counter:step_time|q[4]    ; stp_counter:step_time|q[5]    ; 1.299             ;
+; stp_counter:step_time|q[5]    ; stp_counter:step_time|q[5]    ; 1.299             ;
+; stp_counter:step_time|q[0]    ; stp_counter:step_time|q[5]    ; 1.299             ;
+; enable                        ; stp_counter:step_time|q[0]    ; 0.820             ;
++-------------------------------+-------------------------------+-------------------+
+Note: This table only shows the top 36 path(s) that have the largest delay added for hold.
 
 
 +-----------------+
@@ -1793,21 +1825,259 @@ Info (21077): High junction temperature is 85 degrees C
 Info (171003): Fitter is performing an Auto Fit compilation, which may decrease Fitter effort to reduce compilation time
 Warning (292013): Feature LogicLock is only available with a valid subscription license. You can purchase a software subscription to gain full access to this feature.
 Warning (15714): Some pins have incomplete I/O assignments. Refer to the I/O Assignment Warnings report for details
-Critical Warning (169085): No exact pin location assignment(s) for 16 pins of 16 total pins. For the list of pins please refer to the I/O Assignment Warnings table in the fitter report.
+Critical Warning (169085): No exact pin location assignment(s) for 17 pins of 17 total pins. For the list of pins please refer to the I/O Assignment Warnings table in the fitter report.
 Info (184020): Starting Fitter periphery placement operations
 Info (11191): Automatically promoted 2 clocks (2 global)
     Info (11162): clk_50~inputCLKENA0 with 16 fanout uses global clock CLKCTRL_G10
-    Info (11162): new_in~inputCLKENA0 with 9 fanout uses global clock CLKCTRL_G8
+    Info (11162): new_in~inputCLKENA0 with 10 fanout uses global clock CLKCTRL_G8
 Info (184021): Fitter periphery placement operations ending: elapsed time is 00:00:00
 Info (176233): Starting register packing
 Critical Warning (332012): Synopsys Design Constraints File file not found: 'stepper_motor.sdc'. A Synopsys Design Constraints File is required by the Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
 Info (332144): No user constrained base clocks found in the design
+Info (332097): The following timing edges are non-unate.  The Timing Analyzer will assume pos-unate behavior for these edges in the clock network.
+    Info (332098): Cell: Add0~101  from: cin  to: sumout
+    Info (332098): Cell: Add0~101  from: datab  to: sumout
+    Info (332098): Cell: Add0~101  from: sharein  to: sumout
+    Info (332098): Cell: Add0~105  from: cin  to: sumout
+    Info (332098): Cell: Add0~105  from: datab  to: sumout
+    Info (332098): Cell: Add0~105  from: sharein  to: sumout
+    Info (332098): Cell: Add0~109  from: cin  to: sumout
+    Info (332098): Cell: Add0~109  from: datab  to: sumout
+    Info (332098): Cell: Add0~109  from: datad  to: sumout
+    Info (332098): Cell: Add0~109  from: sharein  to: sumout
+    Info (332098): Cell: Add0~113  from: cin  to: sumout
+    Info (332098): Cell: Add0~113  from: datab  to: sumout
+    Info (332098): Cell: Add0~113  from: datad  to: sumout
+    Info (332098): Cell: Add0~113  from: sharein  to: sumout
+    Info (332098): Cell: Add0~117  from: cin  to: sumout
+    Info (332098): Cell: Add0~121  from: cin  to: sumout
+    Info (332098): Cell: Add0~125  from: datab  to: sumout
+    Info (332098): Cell: Add0~13  from: cin  to: sumout
+    Info (332098): Cell: Add0~13  from: datab  to: sumout
+    Info (332098): Cell: Add0~13  from: sharein  to: sumout
+    Info (332098): Cell: Add0~17  from: cin  to: sumout
+    Info (332098): Cell: Add0~17  from: datab  to: sumout
+    Info (332098): Cell: Add0~17  from: datad  to: sumout
+    Info (332098): Cell: Add0~17  from: sharein  to: sumout
+    Info (332098): Cell: Add0~1  from: cin  to: sumout
+    Info (332098): Cell: Add0~1  from: datab  to: sumout
+    Info (332098): Cell: Add0~1  from: datad  to: sumout
+    Info (332098): Cell: Add0~21  from: cin  to: sumout
+    Info (332098): Cell: Add0~21  from: datab  to: sumout
+    Info (332098): Cell: Add0~21  from: datad  to: sumout
+    Info (332098): Cell: Add0~21  from: sharein  to: sumout
+    Info (332098): Cell: Add0~25  from: cin  to: sumout
+    Info (332098): Cell: Add0~25  from: datab  to: sumout
+    Info (332098): Cell: Add0~25  from: datad  to: sumout
+    Info (332098): Cell: Add0~25  from: sharein  to: sumout
+    Info (332098): Cell: Add0~29  from: cin  to: sumout
+    Info (332098): Cell: Add0~29  from: datab  to: sumout
+    Info (332098): Cell: Add0~29  from: sharein  to: sumout
+    Info (332098): Cell: Add0~33  from: cin  to: sumout
+    Info (332098): Cell: Add0~33  from: datab  to: sumout
+    Info (332098): Cell: Add0~33  from: sharein  to: sumout
+    Info (332098): Cell: Add0~37  from: cin  to: sumout
+    Info (332098): Cell: Add0~37  from: datab  to: sumout
+    Info (332098): Cell: Add0~37  from: datad  to: sumout
+    Info (332098): Cell: Add0~41  from: cin  to: sumout
+    Info (332098): Cell: Add0~41  from: datab  to: sumout
+    Info (332098): Cell: Add0~41  from: sharein  to: sumout
+    Info (332098): Cell: Add0~45  from: cin  to: sumout
+    Info (332098): Cell: Add0~45  from: datab  to: sumout
+    Info (332098): Cell: Add0~45  from: sharein  to: sumout
+    Info (332098): Cell: Add0~49  from: cin  to: sumout
+    Info (332098): Cell: Add0~49  from: datab  to: sumout
+    Info (332098): Cell: Add0~49  from: sharein  to: sumout
+    Info (332098): Cell: Add0~53  from: cin  to: sumout
+    Info (332098): Cell: Add0~53  from: datab  to: sumout
+    Info (332098): Cell: Add0~53  from: datad  to: sumout
+    Info (332098): Cell: Add0~53  from: sharein  to: sumout
+    Info (332098): Cell: Add0~57  from: cin  to: sumout
+    Info (332098): Cell: Add0~57  from: datab  to: sumout
+    Info (332098): Cell: Add0~57  from: datad  to: sumout
+    Info (332098): Cell: Add0~57  from: sharein  to: sumout
+    Info (332098): Cell: Add0~5  from: cin  to: sumout
+    Info (332098): Cell: Add0~5  from: datab  to: sumout
+    Info (332098): Cell: Add0~5  from: sharein  to: sumout
+    Info (332098): Cell: Add0~61  from: cin  to: sumout
+    Info (332098): Cell: Add0~61  from: datab  to: sumout
+    Info (332098): Cell: Add0~61  from: sharein  to: sumout
+    Info (332098): Cell: Add0~65  from: cin  to: sumout
+    Info (332098): Cell: Add0~69  from: cin  to: sumout
+    Info (332098): Cell: Add0~73  from: cin  to: sumout
+    Info (332098): Cell: Add0~73  from: sharein  to: sumout
+    Info (332098): Cell: Add0~77  from: cin  to: sumout
+    Info (332098): Cell: Add0~77  from: datab  to: sumout
+    Info (332098): Cell: Add0~77  from: sharein  to: sumout
+    Info (332098): Cell: Add0~81  from: cin  to: sumout
+    Info (332098): Cell: Add0~81  from: datab  to: sumout
+    Info (332098): Cell: Add0~81  from: sharein  to: sumout
+    Info (332098): Cell: Add0~85  from: cin  to: sumout
+    Info (332098): Cell: Add0~85  from: datab  to: sumout
+    Info (332098): Cell: Add0~85  from: sharein  to: sumout
+    Info (332098): Cell: Add0~89  from: cin  to: sumout
+    Info (332098): Cell: Add0~93  from: cin  to: sumout
+    Info (332098): Cell: Add0~93  from: datab  to: sumout
+    Info (332098): Cell: Add0~93  from: sharein  to: sumout
+    Info (332098): Cell: Add0~97  from: cin  to: sumout
+    Info (332098): Cell: Add0~97  from: datab  to: sumout
+    Info (332098): Cell: Add0~97  from: sharein  to: sumout
+    Info (332098): Cell: Add0~9  from: cin  to: sumout
+    Info (332098): Cell: Add0~9  from: datab  to: sumout
+    Info (332098): Cell: Add2~101  from: cin  to: sumout
+    Info (332098): Cell: Add2~101  from: datab  to: sumout
+    Info (332098): Cell: Add2~101  from: datac  to: sumout
+    Info (332098): Cell: Add2~101  from: sharein  to: sumout
+    Info (332098): Cell: Add2~105  from: cin  to: sumout
+    Info (332098): Cell: Add2~105  from: datab  to: sumout
+    Info (332098): Cell: Add2~105  from: datac  to: sumout
+    Info (332098): Cell: Add2~105  from: sharein  to: sumout
+    Info (332098): Cell: Add2~109  from: cin  to: sumout
+    Info (332098): Cell: Add2~109  from: datab  to: sumout
+    Info (332098): Cell: Add2~109  from: datad  to: sumout
+    Info (332098): Cell: Add2~109  from: sharein  to: sumout
+    Info (332098): Cell: Add2~113  from: cin  to: sumout
+    Info (332098): Cell: Add2~113  from: datab  to: sumout
+    Info (332098): Cell: Add2~113  from: datac  to: sumout
+    Info (332098): Cell: Add2~113  from: datad  to: sumout
+    Info (332098): Cell: Add2~113  from: sharein  to: sumout
+    Info (332098): Cell: Add2~117  from: cin  to: sumout
+    Info (332098): Cell: Add2~117  from: datab  to: sumout
+    Info (332098): Cell: Add2~117  from: datac  to: sumout
+    Info (332098): Cell: Add2~117  from: sharein  to: sumout
+    Info (332098): Cell: Add2~121  from: cin  to: sumout
+    Info (332098): Cell: Add2~121  from: datab  to: cout
+    Info (332098): Cell: Add2~121  from: datac  to: cout
+    Info (332098): Cell: Add2~121  from: sharein  to: sumout
+    Info (332098): Cell: Add2~125  from: datab  to: sumout
+    Info (332098): Cell: Add2~13  from: cin  to: sumout
+    Info (332098): Cell: Add2~13  from: datab  to: sumout
+    Info (332098): Cell: Add2~13  from: sharein  to: sumout
+    Info (332098): Cell: Add2~17  from: cin  to: sumout
+    Info (332098): Cell: Add2~17  from: datab  to: sumout
+    Info (332098): Cell: Add2~17  from: datad  to: sumout
+    Info (332098): Cell: Add2~17  from: sharein  to: sumout
+    Info (332098): Cell: Add2~1  from: cin  to: sumout
+    Info (332098): Cell: Add2~1  from: datab  to: sumout
+    Info (332098): Cell: Add2~1  from: datad  to: sumout
+    Info (332098): Cell: Add2~21  from: cin  to: sumout
+    Info (332098): Cell: Add2~21  from: datab  to: sumout
+    Info (332098): Cell: Add2~21  from: datad  to: sumout
+    Info (332098): Cell: Add2~21  from: sharein  to: sumout
+    Info (332098): Cell: Add2~25  from: cin  to: sumout
+    Info (332098): Cell: Add2~25  from: datab  to: sumout
+    Info (332098): Cell: Add2~25  from: datad  to: sumout
+    Info (332098): Cell: Add2~25  from: sharein  to: sumout
+    Info (332098): Cell: Add2~29  from: cin  to: sumout
+    Info (332098): Cell: Add2~29  from: datab  to: sumout
+    Info (332098): Cell: Add2~29  from: sharein  to: sumout
+    Info (332098): Cell: Add2~33  from: cin  to: sumout
+    Info (332098): Cell: Add2~33  from: datab  to: sumout
+    Info (332098): Cell: Add2~33  from: sharein  to: sumout
+    Info (332098): Cell: Add2~37  from: cin  to: sumout
+    Info (332098): Cell: Add2~37  from: datab  to: cout
+    Info (332098): Cell: Add2~37  from: datad  to: cout
+    Info (332098): Cell: Add2~41  from: cin  to: sumout
+    Info (332098): Cell: Add2~41  from: datab  to: sumout
+    Info (332098): Cell: Add2~41  from: sharein  to: sumout
+    Info (332098): Cell: Add2~45  from: cin  to: sumout
+    Info (332098): Cell: Add2~45  from: datab  to: sumout
+    Info (332098): Cell: Add2~45  from: sharein  to: sumout
+    Info (332098): Cell: Add2~49  from: cin  to: sumout
+    Info (332098): Cell: Add2~49  from: datab  to: sumout
+    Info (332098): Cell: Add2~49  from: sharein  to: sumout
+    Info (332098): Cell: Add2~53  from: cin  to: sumout
+    Info (332098): Cell: Add2~53  from: datab  to: sumout
+    Info (332098): Cell: Add2~53  from: datad  to: sumout
+    Info (332098): Cell: Add2~53  from: sharein  to: sumout
+    Info (332098): Cell: Add2~57  from: cin  to: sumout
+    Info (332098): Cell: Add2~57  from: datab  to: cout
+    Info (332098): Cell: Add2~57  from: datad  to: cout
+    Info (332098): Cell: Add2~57  from: sharein  to: sumout
+    Info (332098): Cell: Add2~5  from: cin  to: sumout
+    Info (332098): Cell: Add2~5  from: datab  to: sumout
+    Info (332098): Cell: Add2~5  from: sharein  to: sumout
+    Info (332098): Cell: Add2~61  from: cin  to: sumout
+    Info (332098): Cell: Add2~61  from: datab  to: sumout
+    Info (332098): Cell: Add2~61  from: sharein  to: sumout
+    Info (332098): Cell: Add2~65  from: cin  to: sumout
+    Info (332098): Cell: Add2~65  from: datab  to: sumout
+    Info (332098): Cell: Add2~65  from: datac  to: sumout
+    Info (332098): Cell: Add2~65  from: sharein  to: sumout
+    Info (332098): Cell: Add2~69  from: cin  to: sumout
+    Info (332098): Cell: Add2~69  from: datab  to: sumout
+    Info (332098): Cell: Add2~69  from: datac  to: sumout
+    Info (332098): Cell: Add2~69  from: sharein  to: sumout
+    Info (332098): Cell: Add2~73  from: cin  to: sumout
+    Info (332098): Cell: Add2~73  from: datab  to: sumout
+    Info (332098): Cell: Add2~73  from: datac  to: sumout
+    Info (332098): Cell: Add2~73  from: sharein  to: sumout
+    Info (332098): Cell: Add2~77  from: cin  to: sumout
+    Info (332098): Cell: Add2~77  from: datab  to: sumout
+    Info (332098): Cell: Add2~77  from: datac  to: sumout
+    Info (332098): Cell: Add2~77  from: sharein  to: sumout
+    Info (332098): Cell: Add2~81  from: cin  to: sumout
+    Info (332098): Cell: Add2~81  from: datab  to: sumout
+    Info (332098): Cell: Add2~81  from: datac  to: sumout
+    Info (332098): Cell: Add2~81  from: sharein  to: sumout
+    Info (332098): Cell: Add2~85  from: cin  to: sumout
+    Info (332098): Cell: Add2~85  from: datab  to: sumout
+    Info (332098): Cell: Add2~85  from: datac  to: sumout
+    Info (332098): Cell: Add2~85  from: sharein  to: sumout
+    Info (332098): Cell: Add2~89  from: cin  to: sumout
+    Info (332098): Cell: Add2~89  from: datab  to: sumout
+    Info (332098): Cell: Add2~89  from: datac  to: sumout
+    Info (332098): Cell: Add2~89  from: sharein  to: sumout
+    Info (332098): Cell: Add2~93  from: cin  to: sumout
+    Info (332098): Cell: Add2~93  from: datab  to: sumout
+    Info (332098): Cell: Add2~93  from: datac  to: sumout
+    Info (332098): Cell: Add2~93  from: sharein  to: sumout
+    Info (332098): Cell: Add2~97  from: cin  to: sumout
+    Info (332098): Cell: Add2~97  from: datab  to: sumout
+    Info (332098): Cell: Add2~97  from: datac  to: sumout
+    Info (332098): Cell: Add2~97  from: sharein  to: sumout
+    Info (332098): Cell: Add2~9  from: cin  to: sumout
+    Info (332098): Cell: Add2~9  from: datab  to: sumout
+    Info (332098): Cell: LessThan1~10  from: datab  to: combout
+    Info (332098): Cell: LessThan1~11  from: datab  to: combout
+    Info (332098): Cell: LessThan1~11  from: datad  to: combout
+    Info (332098): Cell: LessThan1~11  from: dataf  to: combout
+    Info (332098): Cell: LessThan1~12  from: datac  to: combout
+    Info (332098): Cell: LessThan1~2  from: datab  to: combout
+    Info (332098): Cell: LessThan1~3  from: datab  to: combout
+    Info (332098): Cell: LessThan1~4  from: datad  to: combout
+    Info (332098): Cell: LessThan1~4  from: dataf  to: combout
+    Info (332098): Cell: LessThan1~5  from: datab  to: combout
+    Info (332098): Cell: LessThan1~5  from: datad  to: combout
+    Info (332098): Cell: LessThan1~8  from: datab  to: combout
+    Info (332098): Cell: LessThan1~9  from: datab  to: combout
+    Info (332098): Cell: Mult0~8  from: ay[11]  to: resulta[0]
+    Info (332098): Cell: Mult0~8  from: ay[1]  to: resulta[0]
+    Info (332098): Cell: Mult0~8  from: ay[2]  to: resulta[0]
+    Info (332098): Cell: Mult0~8  from: ay[3]  to: resulta[0]
+    Info (332098): Cell: Mult0~8  from: ay[4]  to: resulta[0]
+    Info (332098): Cell: Mult0~8  from: ay[5]  to: resulta[0]
+    Info (332098): Cell: Mult0~8  from: ay[8]  to: resulta[0]
+    Info (332098): Cell: Mult1~8  from: ax[11]  to: resulta[0]
+    Info (332098): Cell: Mult1~8  from: ax[1]  to: resulta[0]
+    Info (332098): Cell: Mult1~8  from: ax[2]  to: resulta[0]
+    Info (332098): Cell: Mult1~8  from: ax[3]  to: resulta[0]
+    Info (332098): Cell: Mult1~8  from: ax[4]  to: resulta[0]
+    Info (332098): Cell: Mult1~8  from: ax[5]  to: resulta[0]
+    Info (332098): Cell: Mult1~8  from: ax[8]  to: resulta[0]
+    Info (332098): Cell: Mult1~mult_hlmac  from: ay[11]  to: resulta[0]
+    Info (332098): Cell: Mult1~mult_hlmac  from: ay[1]  to: resulta[0]
+    Info (332098): Cell: Mult1~mult_hlmac  from: ay[2]  to: resulta[0]
+    Info (332098): Cell: Mult1~mult_hlmac  from: ay[3]  to: resulta[0]
+    Info (332098): Cell: Mult1~mult_hlmac  from: ay[4]  to: resulta[0]
+    Info (332098): Cell: Mult1~mult_hlmac  from: ay[5]  to: resulta[0]
+    Info (332098): Cell: Mult1~mult_hlmac  from: ay[8]  to: resulta[0]
 Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Info (332130): Timing requirements not specified -- quality metrics such as performance may be sacrificed to reduce compilation time.
 Info (176235): Finished register packing
     Extra Info (176219): No registers were packed into other blocks
-Info (11798): Fitter preparation operations ending: elapsed time is 00:00:15
+Info (11798): Fitter preparation operations ending: elapsed time is 00:00:14
 Info (170189): Fitter placement preparation operations beginning
 Info (14951): The Fitter is using Advanced Physical Optimization.
 Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:03
@@ -1816,27 +2086,28 @@ Info (170137): Fitter placement was successful
 Info (170192): Fitter placement operations ending: elapsed time is 00:00:03
 Info (170193): Fitter routing operations beginning
 Info (170195): Router estimated average interconnect usage is 0% of the available device resources
-    Info (170196): Router estimated peak interconnect usage is 0% of the available device resources in the region that extends from location X78_Y11 to location X89_Y22
+    Info (170196): Router estimated peak interconnect usage is 4% of the available device resources in the region that extends from location X78_Y11 to location X89_Y22
+Info (188005): Design requires adding a large amount of routing delay for some signals to meet hold time requirements, and there is an excessive demand for the available routing resources. The Fitter is reducing the routing delays of some signals to help the routing algorithm converge, but doing so may cause hold time failures. For more information, refer to the "Estimated Delay Added for Hold Timing" section in the Fitter report.
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
-Info (170194): Fitter routing operations ending: elapsed time is 00:00:02
-Info (11888): Total time spent on timing analysis during the Fitter is 0.55 seconds.
+Info (170194): Fitter routing operations ending: elapsed time is 00:00:09
+Info (11888): Total time spent on timing analysis during the Fitter is 2.74 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (11801): Fitter post-fit operations ending: elapsed time is 00:00:03
-Info (144001): Generated suppressed messages file C:/intelFPGA_lite/18.0/projects/Junior_Design/stepper_motor/output_files/stepper_motor.fit.smsg
+Info (11801): Fitter post-fit operations ending: elapsed time is 00:00:05
+Info (144001): Generated suppressed messages file C:/Users/kylen/projects/ece342/SCARA_robot/hdl/StepperMotor/StepperFPGA/stepper_motor/output_files/stepper_motor.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 5 warnings
-    Info: Peak virtual memory: 6615 megabytes
-    Info: Processing ended: Thu Jan 23 02:03:18 2020
-    Info: Elapsed time: 00:00:46
-    Info: Total CPU time (on all processors): 00:01:17
+    Info: Peak virtual memory: 6630 megabytes
+    Info: Processing ended: Sat Feb 22 17:19:16 2020
+    Info: Elapsed time: 00:00:54
+    Info: Total CPU time (on all processors): 00:01:48
 
 
 +----------------------------+
 ; Fitter Suppressed Messages ;
 +----------------------------+
-The suppressed messages can be found in C:/intelFPGA_lite/18.0/projects/Junior_Design/stepper_motor/output_files/stepper_motor.fit.smsg.
+The suppressed messages can be found in C:/Users/kylen/projects/ece342/SCARA_robot/hdl/StepperMotor/StepperFPGA/stepper_motor/output_files/stepper_motor.fit.smsg.
 
 
