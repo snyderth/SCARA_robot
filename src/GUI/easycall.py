@@ -27,6 +27,14 @@ def reportSendWhenCommand(handler, command):
     '''
     return partial(__whenCommand, handler, command)
 
+def giveCommand(handler):
+    return partial(__asCommand, handler)
+
+def __asCommand(handler, code):
+    gcode = commandToGcode(code, 1)
+    handler(gcode)
+
+
 def __whenCommand(handler, command, code):
     code = commandCode(code)
     gcodeCommand = COMMAND_MAP[code]

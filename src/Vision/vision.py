@@ -4,8 +4,11 @@
 import cv2 as cv
 import numpy as np
 import operator
-from ..GCode.gcodeFormatter import *
+from GCode.gcodeFormatter import *
 from functools import reduce, partial
+
+X_BIAS = 124.02
+Y_BIAS = 124.02
 
 def asGCode(img, colorPalette: [(int, int, int)], granularity: float, maxLines: int, paperSize: (int, int)):
     '''
@@ -24,7 +27,7 @@ def asGCode(img, colorPalette: [(int, int, int)], granularity: float, maxLines: 
 
 
     # get maxLines biggest contours
-    majorContours = contours[len(contours) - maxLines:]
+    majorContours = contours[len(contours) - maxLines:] if maxLines > 0 else contours
 
     contoursColors = contourColors(img, majorContours)
 
@@ -88,13 +91,13 @@ def linesAsGCode(contoursAsLines, palette, imageSize, paperSize):
 
         # Send pen to first point
         gcode.append(m72)
-        gcode.append(g01.format(x=segments[0][0][0] * mmPerPxX, y=segments[0][0][1] * mmPerPxY))
+        gcode.append(g01.format(x=segments[0][0][0] * mmPerPxX + X_BIAS, y=segments[0][0][1] * mmPerPxY + Y_BIAS))
         gcode.append(m72)
 
         if (len(segments) > 1):
             for s in range(1, len(segments)):
                 # Draw to subsequent points
-                gcode.append(g01.format(x=segments[s][0][0] * mmPerPxX, y=segments[s][0][1] * mmPerPxY))
+                gcode.append(g01.format(x=segments[s][0][0] * mmPerPxX + X_BIAS, y=segments[s][0][1] * mmPerPxY + Y_BIAS))
     # End of program
     gcode.append(m2)
 
