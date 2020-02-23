@@ -287,8 +287,8 @@ module CalculateAngles (
 				arg2Atan <= CosTh2;
 			end
 			else begin
-				arg1Atan <= 1'b0;
-				arg2Atan <= 1'b0;
+				arg1Atan <= 0;
+				arg2Atan <= 0;
 			end
 		end
 		

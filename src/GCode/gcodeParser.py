@@ -22,15 +22,17 @@ CODE_OFFSET = 0
 ARGX_OFFSET = CODE_OFFSET + CODE_BITS
 ARGY_OFFSET = ARGX_OFFSET + ARG_BITS
 
+
 #Conversion
-MAX_IN = 15 #in
-MAX_MM = 381 #mm
+IN_TO_MM = 25.4
+MAX_IN = 20 #in
+MAX_MM = MAX_IN * IN_TO_MM #mm
 IN_TO_BITS = 2**(ARG_BITS)/MAX_IN #bits/in
 MM_TO_BITS = 2**(ARG_BITS)/MAX_MM #bits/mm
 
 #Arm parameters
-JOINT_1_LENGTH = 5 * IN_TO_BITS
-JOINT_2_LENGTH = 4 * IN_TO_BITS
+JOINT_1_LENGTH = 5.55 * IN_TO_BITS
+JOINT_2_LENGTH = 11 * IN_TO_BITS
 
 #Maximum line length
 INTERPOLATION_LENGTH = MAX_IN * IN_TO_BITS# (1 / 16) * IN_TO_BITS
@@ -350,7 +352,7 @@ if __name__ == '__main__':
 
     gcode = gcodeFile.read()
 
-    commands = gcodeToCommands("G01 X10.0 Y-10.0")
+    commands = gcodeToCommands("G01 X-7.0 Y-10.0")
 
     reverseGcode = commandsToGcode(commands)
 

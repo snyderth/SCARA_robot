@@ -1,6 +1,15 @@
 Flow report for ScaraController
+<<<<<<< HEAD
 Sun Feb 23 15:08:05 2020
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
+=======
+<<<<<<< HEAD
+Sat Feb 22 20:13:31 2020
+=======
+Sat Feb 22 23:42:45 2020
+>>>>>>> 5b4bb27c7569a958769bc50307ed7899d9ce12f0
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+>>>>>>> 5e6a06d1efc8bddbeb603031f4a1b9bea35d7d65
 
 
 ---------------------
@@ -33,6 +42,7 @@ the Intel FPGA IP License Agreement, or other applicable license
 agreement, including, without limitation, that your use is for
 the sole purpose of programming logic devices manufactured by
 Intel and sold by Intel or its authorized distributors.  Please
+<<<<<<< HEAD
 refer to the applicable agreement for further details, at
 https://fpgasoftware.intel.com/eula.
 
@@ -56,6 +66,45 @@ https://fpgasoftware.intel.com/eula.
 ; Total PLLs                  ; N/A until Partition Merge                   ;
 ; Total DLLs                  ; N/A until Partition Merge                   ;
 +-----------------------------+---------------------------------------------+
+=======
+refer to the applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------------+
+; Flow Summary                                                                  ;
++---------------------------------+---------------------------------------------+
+<<<<<<< HEAD
+; Flow Status                     ; Flow Failed - Sat Feb 22 20:13:31 2020      ;
+=======
+; Flow Status                     ; Successful - Sat Feb 22 23:42:45 2020       ;
+>>>>>>> 5b4bb27c7569a958769bc50307ed7899d9ce12f0
+; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
+; Revision Name                   ; ScaraController                             ;
+; Top-level Entity Name           ; ScaraController                             ;
+; Family                          ; Cyclone V                                   ;
+; Device                          ; 5CSXFC6D6F31C6                              ;
+; Timing Models                   ; Final                                       ;
+<<<<<<< HEAD
+; Logic utilization (in ALMs)     ; 17,422 / 9,430 ( 185 % )                    ;
+; Total registers                 ; 26819                                       ;
+; Total pins                      ; 57 / 128 ( 45 % )                           ;
+=======
+; Logic utilization (in ALMs)     ; 12,589 / 41,910 ( 30 % )                    ;
+; Total registers                 ; 24392                                       ;
+; Total pins                      ; 57 / 499 ( 11 % )                           ;
+>>>>>>> 5b4bb27c7569a958769bc50307ed7899d9ce12f0
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 2,292 / 5,662,720 ( < 1 % )                 ;
+; Total DSP Blocks                ; 68 / 112 ( 61 % )                           ;
+; Total HSSI RX PCSs              ; 0 / 9 ( 0 % )                               ;
+; Total HSSI PMA RX Deserializers ; 0 / 9 ( 0 % )                               ;
+; Total HSSI TX PCSs              ; 0 / 9 ( 0 % )                               ;
+; Total HSSI PMA TX Serializers   ; 0 / 9 ( 0 % )                               ;
+; Total PLLs                      ; 0 / 15 ( 0 % )                              ;
+; Total DLLs                      ; 0 / 4 ( 0 % )                               ;
++---------------------------------+---------------------------------------------+
+>>>>>>> 5e6a06d1efc8bddbeb603031f4a1b9bea35d7d65
 
 
 +-----------------------------------------+
@@ -63,7 +112,15 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
+<<<<<<< HEAD
 ; Start date & time ; 02/23/2020 15:07:30 ;
+=======
+<<<<<<< HEAD
+; Start date & time ; 02/22/2020 20:09:04 ;
+=======
+; Start date & time ; 02/22/2020 23:31:48 ;
+>>>>>>> 5b4bb27c7569a958769bc50307ed7899d9ce12f0
+>>>>>>> 5e6a06d1efc8bddbeb603031f4a1b9bea35d7d65
 ; Main task         ; Compilation         ;
 ; Revision Name     ; ScaraController     ;
 +-------------------+---------------------+
@@ -74,9 +131,19 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+-------------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                     ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+-------------------------------------------+---------------+-------------+------------+
+<<<<<<< HEAD
 ; COMPILER_SIGNATURE_ID               ; 44748150141592.158249925005643            ; --            ; --          ; --         ;
+=======
+<<<<<<< HEAD
+; COMPILER_SIGNATURE_ID               ; 79349036723727.158243094400264            ; --            ; --          ; --         ;
+; MAX_CORE_JUNCTION_TEMP              ; 125                                       ; --            ; --          ; --         ;
+; MIN_CORE_JUNCTION_TEMP              ; -40                                       ; --            ; --          ; --         ;
+=======
+; COMPILER_SIGNATURE_ID               ; 30902508563092.158244310824508            ; --            ; --          ; --         ;
+>>>>>>> 5e6a06d1efc8bddbeb603031f4a1b9bea35d7d65
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                        ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                         ; --            ; --          ; --         ;
+>>>>>>> 5b4bb27c7569a958769bc50307ed7899d9ce12f0
 ; MISC_FILE                           ; Conversions/Fixed13BitToDouble_inst.v     ; --            ; --          ; --         ;
 ; MISC_FILE                           ; Conversions/Fixed13BitToDouble_bb.v       ; --            ; --          ; --         ;
 ; MISC_FILE                           ; Conversions/DoubleToFixed42Bit_inst.v     ; --            ; --          ; --         ;
@@ -112,8 +179,20 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
+<<<<<<< HEAD
 ; Analysis & Synthesis ; 00:00:35     ; 1.0                     ; 1038 MB             ; 00:01:23                           ;
 ; Total                ; 00:00:35     ; --                      ; --                  ; 00:01:23                           ;
+=======
+<<<<<<< HEAD
+; Analysis & Synthesis ; 00:02:56     ; 1.3                     ; 5893 MB             ; 00:03:52                           ;
+; Fitter               ; 00:01:17     ; 1.0                     ; 6291 MB             ; 00:01:18                           ;
+; Total                ; 00:04:13     ; --                      ; --                  ; 00:05:10                           ;
+=======
+; Analysis & Synthesis ; 00:02:18     ; 1.5                     ; 5662 MB             ; 00:03:25                           ;
+; Fitter               ; 00:08:22     ; 1.3                     ; 7456 MB             ; 00:20:01                           ;
+; Total                ; 00:10:40     ; --                      ; --                  ; 00:23:26                           ;
+>>>>>>> 5b4bb27c7569a958769bc50307ed7899d9ce12f0
+>>>>>>> 5e6a06d1efc8bddbeb603031f4a1b9bea35d7d65
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
