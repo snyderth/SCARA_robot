@@ -23,17 +23,17 @@ ARGX_OFFSET = CODE_OFFSET + CODE_BITS
 ARGY_OFFSET = ARGX_OFFSET + ARG_BITS
 
 #Conversion
-MAX_IN = 11 #in
-MAX_MM = 279.4 #mm
-IN_TO_BITS = 2**(ARG_BITS - 1)/MAX_IN #bits/in
-MM_TO_BITS = 2**(ARG_BITS - 1)/MAX_MM #bits/mm
+MAX_IN = 15 #in
+MAX_MM = 381 #mm
+IN_TO_BITS = 2**(ARG_BITS)/MAX_IN #bits/in
+MM_TO_BITS = 2**(ARG_BITS)/MAX_MM #bits/mm
 
 #Arm parameters
 JOINT_1_LENGTH = 5 * IN_TO_BITS
 JOINT_2_LENGTH = 4 * IN_TO_BITS
 
 #Maximum line length
-INTERPOLATION_LENGTH = 11 * IN_TO_BITS# (1 / 16) * IN_TO_BITS
+INTERPOLATION_LENGTH = MAX_IN * IN_TO_BITS# (1 / 16) * IN_TO_BITS
 
 #Set arm to be at 45 degree angles initially
 INIT_X = JOINT_1_LENGTH * math.cos(math.pi/4) + JOINT_2_LENGTH * math.cos(math.pi / 2)

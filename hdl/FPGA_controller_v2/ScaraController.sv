@@ -121,20 +121,20 @@ module ScaraController(input logic [4:0] controlStateReg,
 		end
 		
 		
-		CalculateAngles anglesCalc(
-							.yTarget(yTarg),
-							.xTarget(xTarg),
-							.l1(l1),
-							.l2(l2),
-							.l1Squared(l1Squared),
-							.l2Squared(l2Squared),
-							.clk(clk),
-							.enable(AnglesEn),
-							.reset(~AnglesEn | reset),
-							.dataReady(AnglesDone),
-							.th1(th1Target),
-							.th2(th2Target)
-							);
+//		CalculateAngles anglesCalc(
+//							.yTarget(yTarg),
+//							.xTarget(xTarg),
+//							.l1(l1),
+//							.l2(l2),
+//							.l1Squared(l1Squared),
+//							.l2Squared(l2Squared),
+//							.clk(clk),
+//							.enable(AnglesEn),
+//							.reset(~AnglesEn | reset),
+//							.dataReady(AnglesDone),
+//							.th1(th1Target),
+//							.th2(th2Target)
+//							);
 							
 		logic [12:0] theta1Diff, theta2Diff;
 		always_comb begin

@@ -1,5 +1,5 @@
 Flow report for ScaraController
-Sat Feb 22 16:29:59 2020
+Sat Feb 22 18:01:09 2020
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,19 +40,19 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Flow Failed - Sat Feb 22 16:29:59 2020      ;
+; Flow Status                     ; Successful - Sat Feb 22 18:01:00 2020       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; ScaraController                             ;
 ; Top-level Entity Name           ; ScaraController                             ;
 ; Family                          ; Cyclone V                                   ;
 ; Device                          ; 5CEBA2F17A7                                 ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 20,383 / 9,430 ( 216 % )                    ;
-; Total registers                 ; 30529                                       ;
+; Logic utilization (in ALMs)     ; 53 / 9,430 ( < 1 % )                        ;
+; Total registers                 ; 101                                         ;
 ; Total pins                      ; 57 / 128 ( 45 % )                           ;
 ; Total virtual pins              ; 0                                           ;
-; Total block memory bits         ; 2,663 / 1,802,240 ( < 1 % )                 ;
-; Total DSP Blocks                ; 25 / 25 ( 100 % )                           ;
+; Total block memory bits         ; 0 / 1,802,240 ( 0 % )                       ;
+; Total DSP Blocks                ; 0 / 25 ( 0 % )                              ;
 ; Total HSSI RX PCSs              ; 0                                           ;
 ; Total HSSI PMA RX Deserializers ; 0                                           ;
 ; Total HSSI TX PCSs              ; 0                                           ;
@@ -67,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 02/22/2020 16:24:23 ;
+; Start date & time ; 02/22/2020 17:59:06 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; ScaraController     ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+-------------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                     ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+-------------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 79349036723727.158241746310416            ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 79349036723727.158242314617220            ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 125                                       ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; -40                                       ; --            ; --          ; --         ;
 ; MISC_FILE                           ; Conversions/Fixed13BitToDouble_inst.v     ; --            ; --          ; --         ;
@@ -116,9 +116,11 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:04:00     ; 1.3                     ; 5842 MB             ; 00:05:04                           ;
-; Fitter               ; 00:01:20     ; 1.0                     ; 6330 MB             ; 00:01:24                           ;
-; Total                ; 00:05:20     ; --                      ; --                  ; 00:06:28                           ;
+; Analysis & Synthesis ; 00:01:14     ; 1.0                     ; 5686 MB             ; 00:01:27                           ;
+; Fitter               ; 00:00:25     ; 1.0                     ; 6266 MB             ; 00:00:44                           ;
+; Assembler            ; 00:00:06     ; 1.0                     ; 4823 MB             ; 00:00:04                           ;
+; Timing Analyzer      ; 00:00:08     ; 1.1                     ; 5109 MB             ; 00:00:07                           ;
+; Total                ; 00:01:53     ; --                      ; --                  ; 00:02:22                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -129,6 +131,8 @@ refer to the applicable agreement for further details.
 +----------------------+------------------+------------+------------+----------------+
 ; Analysis & Synthesis ; LAPTOP-BADUBN8B  ; Windows 10 ; 10.0       ; x86_64         ;
 ; Fitter               ; LAPTOP-BADUBN8B  ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; LAPTOP-BADUBN8B  ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; LAPTOP-BADUBN8B  ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
@@ -137,6 +141,8 @@ refer to the applicable agreement for further details.
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off ScaraController -c ScaraController
 quartus_fit --read_settings_files=off --write_settings_files=off ScaraController -c ScaraController
+quartus_asm --read_settings_files=off --write_settings_files=off ScaraController -c ScaraController
+quartus_sta ScaraController -c ScaraController
 
 
 
