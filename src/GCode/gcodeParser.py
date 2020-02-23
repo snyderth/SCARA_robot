@@ -1,6 +1,5 @@
 import math
 from enum import Enum
-from gcodeFormatter import *
 import pygcode as pygc
 #Commands are formatted like so:
 #|code|argX|argY|
