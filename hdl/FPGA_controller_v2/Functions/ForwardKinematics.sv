@@ -195,56 +195,59 @@ module ForwardKinematics(
 			logic Theta1TrigEn, TrigFunctionDone;
 			logic SummedTrigEn;
 			// Both states use the same done wire
-			always_ff@(posedge clk, posedge reset) begin
-				if(reset | ~TrigFuncEn) begin
+			always_ff@(posedge clk) begin
+			
+				if(reset | (state != TrigCalcs)) begin
 					TrigFuncDone <= 0;
 					TrigNextState <= InitTrig;
 					Theta1TrigEn <= 0;
 					SummedTrigEn <= 0;
 					TrigFuncDone <= 0;
 				end
-				if(TrigFuncEn) begin // Make sure we're in the trig state
-					if(TrigState == InitTrig) begin
+				else if((TrigState == InitTrig) & (state == TrigCalcs)) begin
 //						TrigFuncDone <= 0;
-						TrigNextState <= Theta1Trig;
-						Theta1TrigEn <= 0;
-						SummedTrigEn <= 0;
+					TrigNextState <= Theta1Trig;
+					Theta1TrigEn <= 0;
+					SummedTrigEn <= 0;
 //						CosInput <= Th1Float;
 //						SinInput <= Th1Float;
-					end
-					// Trig for theta 1 state.
-					else if (TrigState == Theta1Trig) begin
-						if(TrigFunctionDone) begin
-							TrigNextState <= SummedTrig;
-							Theta1TrigEn <= 0;
-							sinth1 <= SinResult;
-							costh1 <= CosResult; // save the outputs
-							
-						end
-						else begin
-							Theta1TrigEn <= 1;
-							SinInput <= Th1Float;
-							CosInput <= Th1Float;
-						end
-					end
-					// Trig for Summed thetas
-					else if(TrigState == SummedTrig) begin
-						if(TrigFunctionDone) begin
-							TrigNextState <= InitTrig;
-							sinSum <= SinResult;
-							cosineSum <= CosResult;// Save the outputs
-							SummedTrigEn <= 0;
-							TrigFuncDone <= 1; // Inidicate to higher machine it is done
-						end
-						else begin
-							SinInput <= SummedThetas;
-							CosInput <= SummedThetas;
-							SummedTrigEn <= 1;
-						end
-					end
-					
-					TrigState <= TrigNextState;
 				end
+				// Trig for theta 1 state.
+				else if (TrigState == Theta1Trig) begin
+					if(TrigFunctionDone) begin
+						TrigNextState <= SummedTrig;
+						Theta1TrigEn <= 0;
+						sinth1 <= SinResult;
+						costh1 <= CosResult; // save the outputs
+						
+					end
+					else begin
+						Theta1TrigEn <= 1;
+						SinInput <= Th1Float;
+						CosInput <= Th1Float;
+					end
+				end
+				// Trig for Summed thetas
+				else if(TrigState == SummedTrig) begin
+					if(TrigFunctionDone) begin
+						TrigNextState <= InitTrig;
+						sinSum <= SinResult;
+						cosineSum <= CosResult;// Save the outputs
+						SummedTrigEn <= 0;
+						TrigFuncDone <= 1; // Inidicate to higher machine it is done
+					end
+					else begin
+						SinInput <= SummedThetas;
+						CosInput <= SummedThetas;
+						SummedTrigEn <= 1;
+					end
+				end
+				else begin
+					Theta1TrigEn <= 0;
+					SummedTrigEn <= 0;
+				
+				end
+				TrigState <= TrigNextState;
 
 				
 			end

@@ -46,9 +46,7 @@
  <interface name="clk" internal="CORDIC_0.clk" type="clock" dir="end">
   <port name="clk" internal="clk" />
  </interface>
- <interface name="en" internal="CORDIC_0.en" type="conduit" dir="end">
-  <port name="en" internal="en" />
- </interface>
+ <interface name="en" internal="CORDIC_0.en" />
  <interface name="q" internal="CORDIC_0.q" type="conduit" dir="end">
   <port name="q" internal="q" />
  </interface>
@@ -62,7 +60,7 @@
  <module
    name="CORDIC_0"
    kind="altera_CORDIC"
-   version="18.1"
+   version="19.1"
    enabled="1"
    autoexport="1">
   <parameter name="ALL_function" value="ATAN2" />
@@ -75,7 +73,7 @@
   <parameter name="fxpt_in_width" value="32" />
   <parameter name="fxpt_out_fraction" value="10" />
   <parameter name="fxpt_out_width" value="32" />
-  <parameter name="gen_enable" value="true" />
+  <parameter name="gen_enable" value="false" />
   <parameter name="latency_target" value="2" />
   <parameter name="performance_goal" value="frequency" />
   <parameter name="report_resources_to_xml" value="false" />

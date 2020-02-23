@@ -67,13 +67,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	Adder
 
-} {} {}} C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/ClockTimer.sv {1 {vlog -work work -sv -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/ClockTimer.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module ClockTimer
-
-Top level modules:
-	ClockTimer
-
 } {} {}} C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library_package.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library_package.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD

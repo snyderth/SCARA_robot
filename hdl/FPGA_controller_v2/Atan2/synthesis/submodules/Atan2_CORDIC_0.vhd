@@ -1,8 +1,8 @@
 -- ------------------------------------------------------------------------- 
--- High Level Design Compiler for Intel(R) FPGAs Version 18.1 (Release Build #625)
+-- High Level Design Compiler for Intel(R) FPGAs Version 19.1 (Release Build #670)
 -- Quartus Prime development tool and MATLAB/Simulink Interface
 -- 
--- Legal Notice: Copyright 2018 Intel Corporation.  All rights reserved.
+-- Legal Notice: Copyright 2019 Intel Corporation.  All rights reserved.
 -- Your use of  Intel Corporation's design tools,  logic functions and other
 -- software and  tools, and its AMPP partner logic functions, and any output
 -- files any  of the foregoing (including  device programming  or simulation
@@ -16,7 +16,7 @@
 -- ---------------------------------------------------------------------------
 
 -- VHDL created from Atan2_CORDIC_0
--- VHDL created on Sat Feb 22 16:23:45 2020
+-- VHDL created on Sat Feb 22 22:07:28 2020
 
 
 library IEEE;
@@ -37,7 +37,6 @@ entity Atan2_CORDIC_0 is
     port (
         x : in std_logic_vector(31 downto 0);  -- sfix32_en10
         y : in std_logic_vector(31 downto 0);  -- sfix32_en10
-        en : in std_logic_vector(0 downto 0);  -- ufix1
         q : out std_logic_vector(12 downto 0);  -- sfix13_en10
         clk : in std_logic;
         areset : in std_logic
@@ -470,6 +469,9 @@ architecture normal of Atan2_CORDIC_0 is
 begin
 
 
+    -- VCC(CONSTANT,1)
+    VCC_q <= "1";
+
     -- constPi_uid267_atan2Test(CONSTANT,266)
     constPi_uid267_atan2Test_q <= "11001001000100";
 
@@ -484,9 +486,6 @@ begin
 
     -- cstZeroOutFormat_uid257_atan2Test(CONSTANT,256)
     cstZeroOutFormat_uid257_atan2Test_q <= "00000000000010";
-
-    -- VCC(CONSTANT,1)
-    VCC_q <= "1";
 
     -- alphaPostRndhigh_uid254_atan2Test(ADD,253)@14
     alphaPostRndhigh_uid254_atan2Test_a <= STD_LOGIC_VECTOR("0" & lowRangeA_uid252_atan2Test_merged_bit_select_c);
@@ -533,7 +532,7 @@ begin
     -- redist37_absX_uid13_atan2Test_b_1(DELAY,313)
     redist37_absX_uid13_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 32, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => absX_uid13_atan2Test_b, xout => redist37_absX_uid13_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => absX_uid13_atan2Test_b, xout => redist37_absX_uid13_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- signY_uid8_atan2Test(BITSELECT,7)@0
     signY_uid8_atan2Test_b <= STD_LOGIC_VECTOR(y(31 downto 31));
@@ -562,7 +561,7 @@ begin
     -- redist36_absY_uid14_atan2Test_b_1(DELAY,312)
     redist36_absY_uid14_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 32, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => absY_uid14_atan2Test_b, xout => redist36_absY_uid14_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => absY_uid14_atan2Test_b, xout => redist36_absY_uid14_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- yip1E_1_uid24_atan2Test(SUB,23)@1 + 1
     yip1E_1_uid24_atan2Test_a <= STD_LOGIC_VECTOR("0" & redist36_absY_uid14_atan2Test_b_1_q);
@@ -572,9 +571,7 @@ begin
         IF (areset = '1') THEN
             yip1E_1_uid24_atan2Test_o <= (others => '0');
         ELSIF (clk'EVENT AND clk = '1') THEN
-            IF (en = "1") THEN
-                yip1E_1_uid24_atan2Test_o <= STD_LOGIC_VECTOR(UNSIGNED(yip1E_1_uid24_atan2Test_a) - UNSIGNED(yip1E_1_uid24_atan2Test_b));
-            END IF;
+            yip1E_1_uid24_atan2Test_o <= STD_LOGIC_VECTOR(UNSIGNED(yip1E_1_uid24_atan2Test_a) - UNSIGNED(yip1E_1_uid24_atan2Test_b));
         END IF;
     END PROCESS;
     yip1E_1_uid24_atan2Test_q <= yip1E_1_uid24_atan2Test_o(32 downto 0);
@@ -590,9 +587,7 @@ begin
         IF (areset = '1') THEN
             xip1E_1_uid23_atan2Test_o <= (others => '0');
         ELSIF (clk'EVENT AND clk = '1') THEN
-            IF (en = "1") THEN
-                xip1E_1_uid23_atan2Test_o <= STD_LOGIC_VECTOR(UNSIGNED(xip1E_1_uid23_atan2Test_a) + UNSIGNED(xip1E_1_uid23_atan2Test_b));
-            END IF;
+            xip1E_1_uid23_atan2Test_o <= STD_LOGIC_VECTOR(UNSIGNED(xip1E_1_uid23_atan2Test_a) + UNSIGNED(xip1E_1_uid23_atan2Test_b));
         END IF;
     END PROCESS;
     xip1E_1_uid23_atan2Test_q <= xip1E_1_uid23_atan2Test_o(32 downto 0);
@@ -621,7 +616,7 @@ begin
     -- redist32_yip1_2_uid49_atan2Test_b_1(DELAY,308)
     redist32_yip1_2_uid49_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 34, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yip1_2_uid49_atan2Test_b, xout => redist32_yip1_2_uid49_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => yip1_2_uid49_atan2Test_b, xout => redist32_yip1_2_uid49_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- xMSB_uid51_atan2Test(BITSELECT,50)@3
     xMSB_uid51_atan2Test_b <= STD_LOGIC_VECTOR(redist32_yip1_2_uid49_atan2Test_b_1_q(33 downto 33));
@@ -653,7 +648,7 @@ begin
     -- redist33_xip1_2_uid48_atan2Test_b_1(DELAY,309)
     redist33_xip1_2_uid48_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 34, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xip1_2_uid48_atan2Test_b, xout => redist33_xip1_2_uid48_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => xip1_2_uid48_atan2Test_b, xout => redist33_xip1_2_uid48_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- aip1E_2CostZeroPaddingA_uid45_atan2Test(CONSTANT,44)
     aip1E_2CostZeroPaddingA_uid45_atan2Test_q <= "00";
@@ -682,7 +677,7 @@ begin
     -- redist29_yip1_3_uid68_atan2Test_b_1(DELAY,305)
     redist29_yip1_3_uid68_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 35, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yip1_3_uid68_atan2Test_b, xout => redist29_yip1_3_uid68_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => yip1_3_uid68_atan2Test_b, xout => redist29_yip1_3_uid68_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- xMSB_uid70_atan2Test(BITSELECT,69)@4
     xMSB_uid70_atan2Test_b <= STD_LOGIC_VECTOR(redist29_yip1_3_uid68_atan2Test_b_1_q(34 downto 34));
@@ -714,7 +709,7 @@ begin
     -- redist30_xip1_3_uid67_atan2Test_b_1(DELAY,306)
     redist30_xip1_3_uid67_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 36, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xip1_3_uid67_atan2Test_b, xout => redist30_xip1_3_uid67_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => xip1_3_uid67_atan2Test_b, xout => redist30_xip1_3_uid67_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- xip1E_4CostZeroPaddingA_uid76_atan2Test(CONSTANT,75)
     xip1E_4CostZeroPaddingA_uid76_atan2Test_q <= "000";
@@ -743,7 +738,7 @@ begin
     -- redist26_yip1_4_uid87_atan2Test_b_1(DELAY,302)
     redist26_yip1_4_uid87_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 37, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yip1_4_uid87_atan2Test_b, xout => redist26_yip1_4_uid87_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => yip1_4_uid87_atan2Test_b, xout => redist26_yip1_4_uid87_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- xMSB_uid89_atan2Test(BITSELECT,88)@5
     xMSB_uid89_atan2Test_b <= STD_LOGIC_VECTOR(redist26_yip1_4_uid87_atan2Test_b_1_q(36 downto 36));
@@ -775,7 +770,7 @@ begin
     -- redist27_xip1_4_uid86_atan2Test_b_1(DELAY,303)
     redist27_xip1_4_uid86_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 39, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xip1_4_uid86_atan2Test_b, xout => redist27_xip1_4_uid86_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => xip1_4_uid86_atan2Test_b, xout => redist27_xip1_4_uid86_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- xip1E_5CostZeroPaddingA_uid95_atan2Test(CONSTANT,94)
     xip1E_5CostZeroPaddingA_uid95_atan2Test_q <= "0000";
@@ -804,7 +799,7 @@ begin
     -- redist23_yip1_5_uid106_atan2Test_b_1(DELAY,299)
     redist23_yip1_5_uid106_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 40, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yip1_5_uid106_atan2Test_b, xout => redist23_yip1_5_uid106_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => yip1_5_uid106_atan2Test_b, xout => redist23_yip1_5_uid106_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- xMSB_uid108_atan2Test(BITSELECT,107)@6
     xMSB_uid108_atan2Test_b <= STD_LOGIC_VECTOR(redist23_yip1_5_uid106_atan2Test_b_1_q(39 downto 39));
@@ -836,7 +831,7 @@ begin
     -- redist24_xip1_5_uid105_atan2Test_b_1(DELAY,300)
     redist24_xip1_5_uid105_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 43, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xip1_5_uid105_atan2Test_b, xout => redist24_xip1_5_uid105_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => xip1_5_uid105_atan2Test_b, xout => redist24_xip1_5_uid105_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- twoToMiSiXip_uid112_atan2Test(BITSELECT,111)@6
     twoToMiSiXip_uid112_atan2Test_b <= redist24_xip1_5_uid105_atan2Test_b_1_q(42 downto 2);
@@ -865,7 +860,7 @@ begin
     -- redist20_yip1_6_uid127_atan2Test_b_1(DELAY,296)
     redist20_yip1_6_uid127_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 42, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yip1_6_uid127_atan2Test_b, xout => redist20_yip1_6_uid127_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => yip1_6_uid127_atan2Test_b, xout => redist20_yip1_6_uid127_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- xMSB_uid129_atan2Test(BITSELECT,128)@7
     xMSB_uid129_atan2Test_b <= STD_LOGIC_VECTOR(redist20_yip1_6_uid127_atan2Test_b_1_q(41 downto 41));
@@ -906,7 +901,7 @@ begin
     -- redist21_xip1_6_uid126_atan2Test_b_1(DELAY,297)
     redist21_xip1_6_uid126_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 46, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xip1_6_uid126_atan2Test_b, xout => redist21_xip1_6_uid126_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => xip1_6_uid126_atan2Test_b, xout => redist21_xip1_6_uid126_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- xip1E_7_uid137_atan2Test(ADDSUB,136)@7
     xip1E_7_uid137_atan2Test_s <= invSignOfSelectionSignal_uid136_atan2Test_q;
@@ -929,7 +924,7 @@ begin
     -- redist18_xip1_7_uid143_atan2Test_b_1(DELAY,294)
     redist18_xip1_7_uid143_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 46, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xip1_7_uid143_atan2Test_b, xout => redist18_xip1_7_uid143_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => xip1_7_uid143_atan2Test_b, xout => redist18_xip1_7_uid143_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- twoToMiSiXip_uid150_atan2Test(BITSELECT,149)@8
     twoToMiSiXip_uid150_atan2Test_b <= redist18_xip1_7_uid143_atan2Test_b_1_q(45 downto 7);
@@ -958,7 +953,7 @@ begin
     -- redist17_yip1_7_uid144_atan2Test_b_1(DELAY,293)
     redist17_yip1_7_uid144_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 41, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yip1_7_uid144_atan2Test_b, xout => redist17_yip1_7_uid144_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => yip1_7_uid144_atan2Test_b, xout => redist17_yip1_7_uid144_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- yip1E_8_uid155_atan2Test(ADDSUB,154)@8
     yip1E_8_uid155_atan2Test_s <= xMSB_uid146_atan2Test_b;
@@ -981,7 +976,7 @@ begin
     -- redist14_yip1_8_uid161_atan2Test_b_1(DELAY,290)
     redist14_yip1_8_uid161_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 40, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yip1_8_uid161_atan2Test_b, xout => redist14_yip1_8_uid161_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => yip1_8_uid161_atan2Test_b, xout => redist14_yip1_8_uid161_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- xMSB_uid163_atan2Test(BITSELECT,162)@9
     xMSB_uid163_atan2Test_b <= STD_LOGIC_VECTOR(redist14_yip1_8_uid161_atan2Test_b_1_q(39 downto 39));
@@ -1019,7 +1014,7 @@ begin
     -- redist15_xip1_8_uid160_atan2Test_b_1(DELAY,291)
     redist15_xip1_8_uid160_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 46, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xip1_8_uid160_atan2Test_b, xout => redist15_xip1_8_uid160_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => xip1_8_uid160_atan2Test_b, xout => redist15_xip1_8_uid160_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- xip1E_9_uid171_atan2Test(ADDSUB,170)@9
     xip1E_9_uid171_atan2Test_s <= invSignOfSelectionSignal_uid170_atan2Test_q;
@@ -1042,7 +1037,7 @@ begin
     -- redist12_xip1_9_uid177_atan2Test_b_1(DELAY,288)
     redist12_xip1_9_uid177_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 46, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xip1_9_uid177_atan2Test_b, xout => redist12_xip1_9_uid177_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => xip1_9_uid177_atan2Test_b, xout => redist12_xip1_9_uid177_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- twoToMiSiXip_uid184_atan2Test(BITSELECT,183)@10
     twoToMiSiXip_uid184_atan2Test_b <= redist12_xip1_9_uid177_atan2Test_b_1_q(45 downto 9);
@@ -1071,7 +1066,7 @@ begin
     -- redist11_yip1_9_uid178_atan2Test_b_1(DELAY,287)
     redist11_yip1_9_uid178_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 39, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yip1_9_uid178_atan2Test_b, xout => redist11_yip1_9_uid178_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => yip1_9_uid178_atan2Test_b, xout => redist11_yip1_9_uid178_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- yip1E_10_uid189_atan2Test(ADDSUB,188)@10
     yip1E_10_uid189_atan2Test_s <= xMSB_uid180_atan2Test_b;
@@ -1094,7 +1089,7 @@ begin
     -- redist8_yip1_10_uid195_atan2Test_b_1(DELAY,284)
     redist8_yip1_10_uid195_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 38, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yip1_10_uid195_atan2Test_b, xout => redist8_yip1_10_uid195_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => yip1_10_uid195_atan2Test_b, xout => redist8_yip1_10_uid195_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- xMSB_uid197_atan2Test(BITSELECT,196)@11
     xMSB_uid197_atan2Test_b <= STD_LOGIC_VECTOR(redist8_yip1_10_uid195_atan2Test_b_1_q(37 downto 37));
@@ -1132,7 +1127,7 @@ begin
     -- redist9_xip1_10_uid194_atan2Test_b_1(DELAY,285)
     redist9_xip1_10_uid194_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 46, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xip1_10_uid194_atan2Test_b, xout => redist9_xip1_10_uid194_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => xip1_10_uid194_atan2Test_b, xout => redist9_xip1_10_uid194_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- xip1E_11_uid205_atan2Test(ADDSUB,204)@11
     xip1E_11_uid205_atan2Test_s <= invSignOfSelectionSignal_uid204_atan2Test_q;
@@ -1158,7 +1153,7 @@ begin
     -- redist4_twoToMiSiXip_uid218_atan2Test_b_1(DELAY,280)
     redist4_twoToMiSiXip_uid218_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 35, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => twoToMiSiXip_uid218_atan2Test_b, xout => redist4_twoToMiSiXip_uid218_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => twoToMiSiXip_uid218_atan2Test_b, xout => redist4_twoToMiSiXip_uid218_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- twoToMiSiXip_uid201_atan2Test(BITSELECT,200)@11
     twoToMiSiXip_uid201_atan2Test_b <= redist9_xip1_10_uid194_atan2Test_b_1_q(45 downto 10);
@@ -1184,7 +1179,7 @@ begin
     -- redist6_yip1_11_uid212_atan2Test_b_1(DELAY,282)
     redist6_yip1_11_uid212_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 37, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yip1_11_uid212_atan2Test_b, xout => redist6_yip1_11_uid212_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => yip1_11_uid212_atan2Test_b, xout => redist6_yip1_11_uid212_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- yip1E_12_uid223_atan2Test(ADDSUB,222)@12
     yip1E_12_uid223_atan2Test_s <= xMSB_uid214_atan2Test_b;
@@ -1210,7 +1205,7 @@ begin
     -- redist2_xMSB_uid231_atan2Test_b_1(DELAY,278)
     redist2_xMSB_uid231_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 1, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xMSB_uid231_atan2Test_b, xout => redist2_xMSB_uid231_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => xMSB_uid231_atan2Test_b, xout => redist2_xMSB_uid231_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- invSignOfSelectionSignal_uid241_atan2Test(LOGICAL,240)@13
     invSignOfSelectionSignal_uid241_atan2Test_q <= not (redist2_xMSB_uid231_atan2Test_b_1_q);
@@ -1295,7 +1290,7 @@ begin
     -- redist31_aip1E_uid50_atan2Test_b_1(DELAY,307)
     redist31_aip1E_uid50_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 25, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => aip1E_uid50_atan2Test_b, xout => redist31_aip1E_uid50_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => aip1E_uid50_atan2Test_b, xout => redist31_aip1E_uid50_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- aip1E_3NA_uid65_atan2Test(BITJOIN,64)@3
     aip1E_3NA_uid65_atan2Test_q <= redist31_aip1E_uid50_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
@@ -1321,7 +1316,7 @@ begin
     -- redist28_aip1E_uid69_atan2Test_b_1(DELAY,304)
     redist28_aip1E_uid69_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 27, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => aip1E_uid69_atan2Test_b, xout => redist28_aip1E_uid69_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => aip1E_uid69_atan2Test_b, xout => redist28_aip1E_uid69_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- aip1E_4NA_uid84_atan2Test(BITJOIN,83)@4
     aip1E_4NA_uid84_atan2Test_q <= redist28_aip1E_uid69_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
@@ -1347,7 +1342,7 @@ begin
     -- redist25_aip1E_uid88_atan2Test_b_1(DELAY,301)
     redist25_aip1E_uid88_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 29, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => aip1E_uid88_atan2Test_b, xout => redist25_aip1E_uid88_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => aip1E_uid88_atan2Test_b, xout => redist25_aip1E_uid88_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- aip1E_5NA_uid103_atan2Test(BITJOIN,102)@5
     aip1E_5NA_uid103_atan2Test_q <= redist25_aip1E_uid88_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
@@ -1373,7 +1368,7 @@ begin
     -- redist22_aip1E_uid107_atan2Test_b_1(DELAY,298)
     redist22_aip1E_uid107_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 31, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => aip1E_uid107_atan2Test_b, xout => redist22_aip1E_uid107_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => aip1E_uid107_atan2Test_b, xout => redist22_aip1E_uid107_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- aip1E_6NA_uid124_atan2Test(BITJOIN,123)@6
     aip1E_6NA_uid124_atan2Test_q <= redist22_aip1E_uid107_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
@@ -1399,7 +1394,7 @@ begin
     -- redist19_aip1E_uid128_atan2Test_b_1(DELAY,295)
     redist19_aip1E_uid128_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 33, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => aip1E_uid128_atan2Test_b, xout => redist19_aip1E_uid128_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => aip1E_uid128_atan2Test_b, xout => redist19_aip1E_uid128_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- aip1E_7NA_uid141_atan2Test(BITJOIN,140)@7
     aip1E_7NA_uid141_atan2Test_q <= redist19_aip1E_uid128_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
@@ -1425,7 +1420,7 @@ begin
     -- redist16_aip1E_uid145_atan2Test_b_1(DELAY,292)
     redist16_aip1E_uid145_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 35, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => aip1E_uid145_atan2Test_b, xout => redist16_aip1E_uid145_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => aip1E_uid145_atan2Test_b, xout => redist16_aip1E_uid145_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- aip1E_8NA_uid158_atan2Test(BITJOIN,157)@8
     aip1E_8NA_uid158_atan2Test_q <= redist16_aip1E_uid145_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
@@ -1451,7 +1446,7 @@ begin
     -- redist13_aip1E_uid162_atan2Test_b_1(DELAY,289)
     redist13_aip1E_uid162_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 37, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => aip1E_uid162_atan2Test_b, xout => redist13_aip1E_uid162_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => aip1E_uid162_atan2Test_b, xout => redist13_aip1E_uid162_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- aip1E_9NA_uid175_atan2Test(BITJOIN,174)@9
     aip1E_9NA_uid175_atan2Test_q <= redist13_aip1E_uid162_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
@@ -1477,7 +1472,7 @@ begin
     -- redist10_aip1E_uid179_atan2Test_b_1(DELAY,286)
     redist10_aip1E_uid179_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 39, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => aip1E_uid179_atan2Test_b, xout => redist10_aip1E_uid179_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => aip1E_uid179_atan2Test_b, xout => redist10_aip1E_uid179_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- aip1E_10NA_uid192_atan2Test(BITJOIN,191)@10
     aip1E_10NA_uid192_atan2Test_q <= redist10_aip1E_uid179_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
@@ -1503,7 +1498,7 @@ begin
     -- redist7_aip1E_uid196_atan2Test_b_1(DELAY,283)
     redist7_aip1E_uid196_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 41, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => aip1E_uid196_atan2Test_b, xout => redist7_aip1E_uid196_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => aip1E_uid196_atan2Test_b, xout => redist7_aip1E_uid196_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- aip1E_11NA_uid209_atan2Test(BITJOIN,208)@11
     aip1E_11NA_uid209_atan2Test_q <= redist7_aip1E_uid196_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
@@ -1529,7 +1524,7 @@ begin
     -- redist5_aip1E_uid213_atan2Test_b_1(DELAY,281)
     redist5_aip1E_uid213_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 43, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => aip1E_uid213_atan2Test_b, xout => redist5_aip1E_uid213_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => aip1E_uid213_atan2Test_b, xout => redist5_aip1E_uid213_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- aip1E_12NA_uid226_atan2Test(BITJOIN,225)@12
     aip1E_12NA_uid226_atan2Test_q <= redist5_aip1E_uid213_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
@@ -1555,7 +1550,7 @@ begin
     -- redist3_aip1E_uid230_atan2Test_b_1(DELAY,279)
     redist3_aip1E_uid230_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 45, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => aip1E_uid230_atan2Test_b, xout => redist3_aip1E_uid230_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => aip1E_uid230_atan2Test_b, xout => redist3_aip1E_uid230_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- aip1E_13NA_uid243_atan2Test(BITJOIN,242)@13
     aip1E_13NA_uid243_atan2Test_q <= redist3_aip1E_uid230_atan2Test_b_1_q & aip1E_2CostZeroPaddingA_uid45_atan2Test_q;
@@ -1584,7 +1579,7 @@ begin
     -- redist1_alphaPreRnd_uid248_atan2Test_b_1(DELAY,277)
     redist1_alphaPreRnd_uid248_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 14, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => alphaPreRnd_uid248_atan2Test_b, xout => redist1_alphaPreRnd_uid248_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => alphaPreRnd_uid248_atan2Test_b, xout => redist1_alphaPreRnd_uid248_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- lowRangeA_uid252_atan2Test_merged_bit_select(BITSELECT,275)@14
     lowRangeA_uid252_atan2Test_merged_bit_select_b <= redist1_alphaPreRnd_uid248_atan2Test_b_1_q(0 downto 0);
@@ -1600,18 +1595,18 @@ begin
     -- redist0_atanRes_uid256_atan2Test_b_1(DELAY,276)
     redist0_atanRes_uid256_atan2Test_b_1 : dspba_delay
     GENERIC MAP ( width => 14, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => atanRes_uid256_atan2Test_b, xout => redist0_atanRes_uid256_atan2Test_b_1_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => atanRes_uid256_atan2Test_b, xout => redist0_atanRes_uid256_atan2Test_b_1_q, clk => clk, aclr => areset );
 
     -- xNotZero_uid17_atan2Test(LOGICAL,16)@0 + 1
     xNotZero_uid17_atan2Test_qi <= "1" WHEN x /= "00000000000000000000000000000000" ELSE "0";
     xNotZero_uid17_atan2Test_delay : dspba_delay
     GENERIC MAP ( width => 1, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xNotZero_uid17_atan2Test_qi, xout => xNotZero_uid17_atan2Test_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => xNotZero_uid17_atan2Test_qi, xout => xNotZero_uid17_atan2Test_q, clk => clk, aclr => areset );
 
     -- redist34_xNotZero_uid17_atan2Test_q_15(DELAY,310)
     redist34_xNotZero_uid17_atan2Test_q_15 : dspba_delay
     GENERIC MAP ( width => 1, depth => 14, reset_kind => "ASYNC" )
-    PORT MAP ( xin => xNotZero_uid17_atan2Test_q, xout => redist34_xNotZero_uid17_atan2Test_q_15_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => xNotZero_uid17_atan2Test_q, xout => redist34_xNotZero_uid17_atan2Test_q_15_q, clk => clk, aclr => areset );
 
     -- xZero_uid18_atan2Test(LOGICAL,17)@15
     xZero_uid18_atan2Test_q <= not (redist34_xNotZero_uid17_atan2Test_q_15_q);
@@ -1620,12 +1615,12 @@ begin
     yNotZero_uid15_atan2Test_qi <= "1" WHEN y /= "00000000000000000000000000000000" ELSE "0";
     yNotZero_uid15_atan2Test_delay : dspba_delay
     GENERIC MAP ( width => 1, depth => 1, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yNotZero_uid15_atan2Test_qi, xout => yNotZero_uid15_atan2Test_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => yNotZero_uid15_atan2Test_qi, xout => yNotZero_uid15_atan2Test_q, clk => clk, aclr => areset );
 
     -- redist35_yNotZero_uid15_atan2Test_q_15(DELAY,311)
     redist35_yNotZero_uid15_atan2Test_q_15 : dspba_delay
     GENERIC MAP ( width => 1, depth => 14, reset_kind => "ASYNC" )
-    PORT MAP ( xin => yNotZero_uid15_atan2Test_q, xout => redist35_yNotZero_uid15_atan2Test_q_15_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => yNotZero_uid15_atan2Test_q, xout => redist35_yNotZero_uid15_atan2Test_q_15_q, clk => clk, aclr => areset );
 
     -- yZero_uid16_atan2Test(LOGICAL,15)@15
     yZero_uid16_atan2Test_q <= not (redist35_yNotZero_uid15_atan2Test_q_15_q);
@@ -1635,7 +1630,7 @@ begin
 
     -- atanResPostExc_uid264_atan2Test(MUX,263)@15
     atanResPostExc_uid264_atan2Test_s <= concXZeroYZero_uid263_atan2Test_q;
-    atanResPostExc_uid264_atan2Test_combproc: PROCESS (atanResPostExc_uid264_atan2Test_s, en, redist0_atanRes_uid256_atan2Test_b_1_q, cstZeroOutFormat_uid257_atan2Test_q, constPio2P2u_mergedSignalTM_uid261_atan2Test_q)
+    atanResPostExc_uid264_atan2Test_combproc: PROCESS (atanResPostExc_uid264_atan2Test_s, redist0_atanRes_uid256_atan2Test_b_1_q, cstZeroOutFormat_uid257_atan2Test_q, constPio2P2u_mergedSignalTM_uid261_atan2Test_q)
     BEGIN
         CASE (atanResPostExc_uid264_atan2Test_s) IS
             WHEN "00" => atanResPostExc_uid264_atan2Test_q <= redist0_atanRes_uid256_atan2Test_b_1_q;
@@ -1652,12 +1647,12 @@ begin
     -- redist39_signX_uid7_atan2Test_b_15(DELAY,315)
     redist39_signX_uid7_atan2Test_b_15 : dspba_delay
     GENERIC MAP ( width => 1, depth => 15, reset_kind => "ASYNC" )
-    PORT MAP ( xin => signX_uid7_atan2Test_b, xout => redist39_signX_uid7_atan2Test_b_15_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => signX_uid7_atan2Test_b, xout => redist39_signX_uid7_atan2Test_b_15_q, clk => clk, aclr => areset );
 
     -- redist38_signY_uid8_atan2Test_b_15(DELAY,314)
     redist38_signY_uid8_atan2Test_b_15 : dspba_delay
     GENERIC MAP ( width => 1, depth => 15, reset_kind => "ASYNC" )
-    PORT MAP ( xin => signY_uid8_atan2Test_b, xout => redist38_signY_uid8_atan2Test_b_15_q, ena => en(0), clk => clk, aclr => areset );
+    PORT MAP ( xin => signY_uid8_atan2Test_b, xout => redist38_signY_uid8_atan2Test_b_15_q, clk => clk, aclr => areset );
 
     -- concSigns_uid265_atan2Test(BITJOIN,264)@15
     concSigns_uid265_atan2Test_q <= redist39_signX_uid7_atan2Test_b_15_q & redist38_signY_uid8_atan2Test_b_15_q;
@@ -1669,15 +1664,13 @@ begin
         IF (areset = '1') THEN
             secondOperand_uid272_atan2Test_q <= (others => '0');
         ELSIF (clk'EVENT AND clk = '1') THEN
-            IF (en = "1") THEN
-                CASE (secondOperand_uid272_atan2Test_s) IS
-                    WHEN "00" => secondOperand_uid272_atan2Test_q <= constantZeroOutFormat_uid268_atan2Test_q;
-                    WHEN "01" => secondOperand_uid272_atan2Test_q <= atanResPostExc_uid264_atan2Test_q;
-                    WHEN "10" => secondOperand_uid272_atan2Test_q <= atanResPostExc_uid264_atan2Test_q;
-                    WHEN "11" => secondOperand_uid272_atan2Test_q <= constPi_uid267_atan2Test_q;
-                    WHEN OTHERS => secondOperand_uid272_atan2Test_q <= (others => '0');
-                END CASE;
-            END IF;
+            CASE (secondOperand_uid272_atan2Test_s) IS
+                WHEN "00" => secondOperand_uid272_atan2Test_q <= constantZeroOutFormat_uid268_atan2Test_q;
+                WHEN "01" => secondOperand_uid272_atan2Test_q <= atanResPostExc_uid264_atan2Test_q;
+                WHEN "10" => secondOperand_uid272_atan2Test_q <= atanResPostExc_uid264_atan2Test_q;
+                WHEN "11" => secondOperand_uid272_atan2Test_q <= constPi_uid267_atan2Test_q;
+                WHEN OTHERS => secondOperand_uid272_atan2Test_q <= (others => '0');
+            END CASE;
         END IF;
     END PROCESS;
 
@@ -1694,15 +1687,13 @@ begin
         IF (areset = '1') THEN
             firstOperand_uid271_atan2Test_q <= (others => '0');
         ELSIF (clk'EVENT AND clk = '1') THEN
-            IF (en = "1") THEN
-                CASE (firstOperand_uid271_atan2Test_s) IS
-                    WHEN "00" => firstOperand_uid271_atan2Test_q <= atanResPostExc_uid264_atan2Test_q;
-                    WHEN "01" => firstOperand_uid271_atan2Test_q <= constantZeroOutFormatP2u_uid269_atan2Test_q;
-                    WHEN "10" => firstOperand_uid271_atan2Test_q <= constPiP2u_uid266_atan2Test_q;
-                    WHEN "11" => firstOperand_uid271_atan2Test_q <= atanResPostExc_uid264_atan2Test_q;
-                    WHEN OTHERS => firstOperand_uid271_atan2Test_q <= (others => '0');
-                END CASE;
-            END IF;
+            CASE (firstOperand_uid271_atan2Test_s) IS
+                WHEN "00" => firstOperand_uid271_atan2Test_q <= atanResPostExc_uid264_atan2Test_q;
+                WHEN "01" => firstOperand_uid271_atan2Test_q <= constantZeroOutFormatP2u_uid269_atan2Test_q;
+                WHEN "10" => firstOperand_uid271_atan2Test_q <= constPiP2u_uid266_atan2Test_q;
+                WHEN "11" => firstOperand_uid271_atan2Test_q <= atanResPostExc_uid264_atan2Test_q;
+                WHEN OTHERS => firstOperand_uid271_atan2Test_q <= (others => '0');
+            END CASE;
         END IF;
     END PROCESS;
 

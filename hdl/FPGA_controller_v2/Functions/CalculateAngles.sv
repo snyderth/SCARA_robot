@@ -275,16 +275,20 @@ module CalculateAngles (
 		// Selecting the inputs to go into the Arctan function
 		always_comb begin
 			if (GammaEn) begin
-				arg1Atan = k2;
-				arg2Atan = k1;
+				arg1Atan <= k2;
+				arg2Atan <= k1;
 			end
 			else if(AtanXYEn) begin
-				arg1Atan = yTarget_d;
-				arg2Atan = xTarget_d;
+				arg1Atan <= yTarget_d;
+				arg2Atan <= xTarget_d;
 			end
 			else if(ThetaEn) begin
-				arg1Atan = SinTh2;
-				arg2Atan = CosTh2;
+				arg1Atan <= SinTh2;
+				arg2Atan <= CosTh2;
+			end
+			else begin
+				arg1Atan <= 1'b0;
+				arg2Atan <= 1'b0;
 			end
 		end
 		
@@ -319,10 +323,7 @@ module CalculateAngles (
 				AtanXYDone <= 1'b0;
 				th2res <= resultAtan;
 			end
-			else begin
-				arg1Atan <= 1'b0;
-				arg2Atan <= 1'b0;
-			end
+
 		end
 										
 										

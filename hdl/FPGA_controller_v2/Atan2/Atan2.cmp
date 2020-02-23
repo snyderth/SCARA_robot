@@ -2,7 +2,6 @@
 		port (
 			areset : in  std_logic                     := 'X';             -- reset
 			clk    : in  std_logic                     := 'X';             -- clk
-			en     : in  std_logic_vector(0 downto 0)  := (others => 'X'); -- en
 			q      : out std_logic_vector(12 downto 0);                    -- q
 			x      : in  std_logic_vector(31 downto 0) := (others => 'X'); -- x
 			y      : in  std_logic_vector(31 downto 0) := (others => 'X')  -- y
