@@ -4,9 +4,9 @@ editor if you plan to continue editing the block that represents it in
 the Block Editor! File corruption is VERY likely to occur.
 */
 /*
-Copyright (C) 2019  Intel Corporation. All rights reserved.
+Copyright (C) 2018  Intel Corporation. All rights reserved.
 Your use of Intel Corporation's design tools, logic functions 
-and other software and tools, and any partner logic 
+and other software and tools, and its AMPP partner logic 
 functions, and any output files from any of the foregoing 
 (including device programming or simulation files), and any 
 associated documentation or information are expressly subject 
@@ -16,63 +16,62 @@ the Intel FPGA IP License Agreement, or other applicable license
 agreement, including, without limitation, that your use is for
 the sole purpose of programming logic devices manufactured by
 Intel and sold by Intel or its authorized distributors.  Please
-refer to the applicable agreement for further details, at
-https://fpgasoftware.intel.com/eula.
+refer to the applicable agreement for further details.
 */
 (header "symbol" (version "1.2"))
 (symbol
 	(rect 0 0 184 248)
-	(text "Adder" (rect 75 0 119 16)(font "Arial" (font_size 10)))
-	(text "inst" (rect 8 233 26 244)(font "Arial" ))
+	(text "Adder" (rect 76 0 116 16)(font "Arial" (font_size 10)))
+	(text "inst" (rect 8 232 25 244)(font "Arial" ))
 	(port
 		(pt 0 40)
 		(input)
-		(text "dataa[63..0]" (rect 0 0 68 13)(font "Arial" (font_size 8)))
-		(text "dataa[63..0]" (rect 20 34 78 46)(font "Arial" (font_size 8)))
+		(text "dataa[63..0]" (rect 0 0 67 14)(font "Arial" (font_size 8)))
+		(text "dataa[63..0]" (rect 20 33 75 46)(font "Arial" (font_size 8)))
 		(line (pt 0 40)(pt 16 40)(line_width 3))
 	)
 	(port
 		(pt 0 56)
 		(input)
-		(text "datab[63..0]" (rect 0 0 68 13)(font "Arial" (font_size 8)))
-		(text "datab[63..0]" (rect 20 50 78 62)(font "Arial" (font_size 8)))
+		(text "datab[63..0]" (rect 0 0 67 14)(font "Arial" (font_size 8)))
+		(text "datab[63..0]" (rect 20 49 75 62)(font "Arial" (font_size 8)))
 		(line (pt 0 56)(pt 16 56)(line_width 3))
 	)
 	(port
 		(pt 0 88)
 		(input)
-		(text "clock" (rect 0 0 31 13)(font "Arial" (font_size 8)))
-		(text "clock" (rect 20 82 45 94)(font "Arial" (font_size 8)))
+		(text "clock" (rect 0 0 29 14)(font "Arial" (font_size 8)))
+		(text "clock" (rect 20 81 43 94)(font "Arial" (font_size 8)))
 		(line (pt 0 88)(pt 16 88))
 	)
 	(port
 		(pt 0 104)
 		(input)
-		(text "clk_en" (rect 0 0 37 13)(font "Arial" (font_size 8)))
-		(text "clk_en" (rect 20 98 51 110)(font "Arial" (font_size 8)))
+		(text "clk_en" (rect 0 0 36 14)(font "Arial" (font_size 8)))
+		(text "clk_en" (rect 20 97 49 110)(font "Arial" (font_size 8)))
 		(line (pt 0 104)(pt 16 104))
 	)
 	(port
 		(pt 184 40)
 		(output)
-		(text "result[63..0]" (rect 0 0 67 13)(font "Arial" (font_size 8)))
-		(text "result[63..0]" (rect 109 34 166 46)(font "Arial" (font_size 8)))
+		(text "result[63..0]" (rect 0 0 67 14)(font "Arial" (font_size 8)))
+		(text "result[63..0]" (rect 108 33 163 46)(font "Arial" (font_size 8)))
 		(line (pt 184 40)(pt 168 40)(line_width 3))
 	)
 	(port
 		(pt 184 56)
 		(output)
-		(text "overflow" (rect 0 0 48 13)(font "Arial" (font_size 8)))
-		(text "overflow" (rect 125 50 166 62)(font "Arial" (font_size 8)))
+		(text "overflow" (rect 0 0 51 14)(font "Arial" (font_size 8)))
+		(text "overflow" (rect 121 49 163 62)(font "Arial" (font_size 8)))
 		(line (pt 184 56)(pt 168 56))
 	)
 	(drawing
-		(text "Clock Cycles: 14" (rect 20 115 113 240)(font "Arial" ))
-		(text "Double Precision" (rect 20 131 111 272)(font "Arial" ))
-		(text "Exponent Width: 11" (rect 20 147 123 304)(font "Arial" ))
-		(text "Mantissa Width: 52" (rect 20 163 122 336)(font "Arial" ))
-		(text "Direction: Add" (rect 20 179 100 368)(font "Arial" ))
-		(text "Optimization: Speed" (rect 20 195 125 400)(font "Arial" ))
+		(text "Clock Cycles: 14" (rect 20 114 112 239)(font "Arial" ))
+		(text "Double Precision" (rect 20 130 108 271)(font "Arial" ))
+		(text "Exponent Width: 11" (rect 20 146 118 303)(font "Arial" ))
+		(text "Mantissa Width: 52" (rect 20 162 118 335)(font "Arial" ))
+		(text "Direction: Add" (rect 20 178 97 367)(font "Arial" ))
+		(text "Optimization: Area" (rect 20 194 114 399)(font "Arial" ))
 		(line (pt 0 0)(pt 186 0))
 		(line (pt 186 0)(pt 186 250))
 		(line (pt 0 250)(pt 186 250))

@@ -1,0 +1,193 @@
+--lpm_add_sub CARRY_CHAIN="MANUAL" CARRY_CHAIN_LENGTH=48 CBX_DECLARE_ALL_CONNECTED_PORTS="OFF" DEVICE_FAMILY="Cyclone V" LPM_PIPELINE=1 LPM_REPRESENTATION="SIGNED" LPM_WIDTH=28 aclr add_sub cin clken clock dataa datab result
+--VERSION_BEGIN 18.1 cbx_cycloneii 2018:09:12:13:04:24:SJ cbx_lpm_add_sub 2018:09:12:13:04:24:SJ cbx_mgl 2018:09:12:13:10:36:SJ cbx_nadder 2018:09:12:13:04:24:SJ cbx_stratix 2018:09:12:13:04:24:SJ cbx_stratixii 2018:09:12:13:04:24:SJ  VERSION_END
+
+
+-- Copyright (C) 2018  Intel Corporation. All rights reserved.
+--  Your use of Intel Corporation's design tools, logic functions 
+--  and other software and tools, and its AMPP partner logic 
+--  functions, and any output files from any of the foregoing 
+--  (including device programming or simulation files), and any 
+--  associated documentation or information are expressly subject 
+--  to the terms and conditions of the Intel Program License 
+--  Subscription Agreement, the Intel Quartus Prime License Agreement,
+--  the Intel FPGA IP License Agreement, or other applicable license
+--  agreement, including, without limitation, that your use is for
+--  the sole purpose of programming logic devices manufactured by
+--  Intel and sold by Intel or its authorized distributors.  Please
+--  refer to the applicable agreement for further details.
+
+
+FUNCTION cyclonev_lcell_comb (cin, dataa, datab, datac, datad, datae, dataf, datag, sharein)
+WITH ( DONT_TOUCH, EXTENDED_LUT, LUT_MASK, SHARED_ARITH)
+RETURNS ( combout, cout, shareout, sumout);
+
+--synthesis_resources = lut 28 reg 28 
+SUBDESIGN add_sub_ljk
+( 
+	aclr	:	input;
+	add_sub	:	input;
+	cin	:	input;
+	clken	:	input;
+	clock	:	input;
+	dataa[27..0]	:	input;
+	datab[27..0]	:	input;
+	result[27..0]	:	output;
+) 
+VARIABLE 
+	dffe100 : dffe;
+	dffe73 : dffe;
+	dffe74 : dffe;
+	dffe75 : dffe;
+	dffe76 : dffe;
+	dffe77 : dffe;
+	dffe78 : dffe;
+	dffe79 : dffe;
+	dffe80 : dffe;
+	dffe81 : dffe;
+	dffe82 : dffe;
+	dffe83 : dffe;
+	dffe84 : dffe;
+	dffe85 : dffe;
+	dffe86 : dffe;
+	dffe87 : dffe;
+	dffe88 : dffe;
+	dffe89 : dffe;
+	dffe90 : dffe;
+	dffe91 : dffe;
+	dffe92 : dffe;
+	dffe93 : dffe;
+	dffe94 : dffe;
+	dffe95 : dffe;
+	dffe96 : dffe;
+	dffe97 : dffe;
+	dffe98 : dffe;
+	dffe99 : dffe;
+	add_sub_cella[27..0] : cyclonev_lcell_comb
+		WITH (
+			EXTENDED_LUT = "off",
+			LUT_MASK = "00000FF00000FF00",
+			SHARED_ARITH = "off"
+		);
+	lsb_cin_wire[0..0]	: WIRE;
+
+BEGIN 
+	dffe100.clk = clock;
+	dffe100.clrn = (! aclr);
+	dffe100.d = add_sub_cella[27].sumout;
+	dffe100.ena = clken;
+	dffe73.clk = clock;
+	dffe73.clrn = (! aclr);
+	dffe73.d = add_sub_cella[0].sumout;
+	dffe73.ena = clken;
+	dffe74.clk = clock;
+	dffe74.clrn = (! aclr);
+	dffe74.d = add_sub_cella[1].sumout;
+	dffe74.ena = clken;
+	dffe75.clk = clock;
+	dffe75.clrn = (! aclr);
+	dffe75.d = add_sub_cella[2].sumout;
+	dffe75.ena = clken;
+	dffe76.clk = clock;
+	dffe76.clrn = (! aclr);
+	dffe76.d = add_sub_cella[3].sumout;
+	dffe76.ena = clken;
+	dffe77.clk = clock;
+	dffe77.clrn = (! aclr);
+	dffe77.d = add_sub_cella[4].sumout;
+	dffe77.ena = clken;
+	dffe78.clk = clock;
+	dffe78.clrn = (! aclr);
+	dffe78.d = add_sub_cella[5].sumout;
+	dffe78.ena = clken;
+	dffe79.clk = clock;
+	dffe79.clrn = (! aclr);
+	dffe79.d = add_sub_cella[6].sumout;
+	dffe79.ena = clken;
+	dffe80.clk = clock;
+	dffe80.clrn = (! aclr);
+	dffe80.d = add_sub_cella[7].sumout;
+	dffe80.ena = clken;
+	dffe81.clk = clock;
+	dffe81.clrn = (! aclr);
+	dffe81.d = add_sub_cella[8].sumout;
+	dffe81.ena = clken;
+	dffe82.clk = clock;
+	dffe82.clrn = (! aclr);
+	dffe82.d = add_sub_cella[9].sumout;
+	dffe82.ena = clken;
+	dffe83.clk = clock;
+	dffe83.clrn = (! aclr);
+	dffe83.d = add_sub_cella[10].sumout;
+	dffe83.ena = clken;
+	dffe84.clk = clock;
+	dffe84.clrn = (! aclr);
+	dffe84.d = add_sub_cella[11].sumout;
+	dffe84.ena = clken;
+	dffe85.clk = clock;
+	dffe85.clrn = (! aclr);
+	dffe85.d = add_sub_cella[12].sumout;
+	dffe85.ena = clken;
+	dffe86.clk = clock;
+	dffe86.clrn = (! aclr);
+	dffe86.d = add_sub_cella[13].sumout;
+	dffe86.ena = clken;
+	dffe87.clk = clock;
+	dffe87.clrn = (! aclr);
+	dffe87.d = add_sub_cella[14].sumout;
+	dffe87.ena = clken;
+	dffe88.clk = clock;
+	dffe88.clrn = (! aclr);
+	dffe88.d = add_sub_cella[15].sumout;
+	dffe88.ena = clken;
+	dffe89.clk = clock;
+	dffe89.clrn = (! aclr);
+	dffe89.d = add_sub_cella[16].sumout;
+	dffe89.ena = clken;
+	dffe90.clk = clock;
+	dffe90.clrn = (! aclr);
+	dffe90.d = add_sub_cella[17].sumout;
+	dffe90.ena = clken;
+	dffe91.clk = clock;
+	dffe91.clrn = (! aclr);
+	dffe91.d = add_sub_cella[18].sumout;
+	dffe91.ena = clken;
+	dffe92.clk = clock;
+	dffe92.clrn = (! aclr);
+	dffe92.d = add_sub_cella[19].sumout;
+	dffe92.ena = clken;
+	dffe93.clk = clock;
+	dffe93.clrn = (! aclr);
+	dffe93.d = add_sub_cella[20].sumout;
+	dffe93.ena = clken;
+	dffe94.clk = clock;
+	dffe94.clrn = (! aclr);
+	dffe94.d = add_sub_cella[21].sumout;
+	dffe94.ena = clken;
+	dffe95.clk = clock;
+	dffe95.clrn = (! aclr);
+	dffe95.d = add_sub_cella[22].sumout;
+	dffe95.ena = clken;
+	dffe96.clk = clock;
+	dffe96.clrn = (! aclr);
+	dffe96.d = add_sub_cella[23].sumout;
+	dffe96.ena = clken;
+	dffe97.clk = clock;
+	dffe97.clrn = (! aclr);
+	dffe97.d = add_sub_cella[24].sumout;
+	dffe97.ena = clken;
+	dffe98.clk = clock;
+	dffe98.clrn = (! aclr);
+	dffe98.d = add_sub_cella[25].sumout;
+	dffe98.ena = clken;
+	dffe99.clk = clock;
+	dffe99.clrn = (! aclr);
+	dffe99.d = add_sub_cella[26].sumout;
+	dffe99.ena = clken;
+	add_sub_cella[].cin = ( add_sub_cella[26..0].cout, lsb_cin_wire[]);
+	add_sub_cella[].datac = add_sub;
+	add_sub_cella[].datad = dataa[];
+	add_sub_cella[].dataf = datab[];
+	lsb_cin_wire[] = cin;
+	result[] = ( dffe100.q, dffe99.q, dffe98.q, dffe97.q, dffe96.q, dffe95.q, dffe94.q, dffe93.q, dffe92.q, dffe91.q, dffe90.q, dffe89.q, dffe88.q, dffe87.q, dffe86.q, dffe85.q, dffe84.q, dffe83.q, dffe82.q, dffe81.q, dffe80.q, dffe79.q, dffe78.q, dffe77.q, dffe76.q, dffe75.q, dffe74.q, dffe73.q);
+END;
+--VALID FILE

@@ -1,0 +1,229 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "dir1",
+					"strict" : false
+				},
+				{
+					"name" : "dir2",
+					"strict" : false
+				},
+				{
+					"name" : "steps2[0]",
+					"strict" : false
+				},
+				{
+					"name" : "steps2[1]",
+					"strict" : false
+				},
+				{
+					"name" : "steps2[2]",
+					"strict" : false
+				},
+				{
+					"name" : "steps2[3]",
+					"strict" : false
+				},
+				{
+					"name" : "steps2[4]",
+					"strict" : false
+				},
+				{
+					"name" : "steps2[5]",
+					"strict" : false
+				},
+				{
+					"name" : "steps2[6]",
+					"strict" : false
+				},
+				{
+					"name" : "steps2[7]",
+					"strict" : false
+				},
+				{
+					"name" : "steps1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "steps1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "steps1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "steps1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "steps1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "steps1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "steps1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "steps1[7]",
+					"strict" : false
+				},
+				{
+					"name" : "dataReady",
+					"strict" : false
+				},
+				{
+					"name" : "endEffectorState",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
+					"strict" : false
+				},
+				{
+					"name" : "reset",
+					"strict" : false
+				},
+				{
+					"name" : "enable",
+					"strict" : false
+				},
+				{
+					"name" : "controlStateReg[3]",
+					"strict" : false
+				},
+				{
+					"name" : "controlStateReg[0]",
+					"strict" : false
+				},
+				{
+					"name" : "controlStateReg[4]",
+					"strict" : false
+				},
+				{
+					"name" : "controlStateReg[2]",
+					"strict" : false
+				},
+				{
+					"name" : "xTarget[13]",
+					"strict" : false
+				},
+				{
+					"name" : "xTarget[12]",
+					"strict" : false
+				},
+				{
+					"name" : "xTarget[1]",
+					"strict" : false
+				},
+				{
+					"name" : "xTarget[0]",
+					"strict" : false
+				},
+				{
+					"name" : "xTarget[3]",
+					"strict" : false
+				},
+				{
+					"name" : "xTarget[2]",
+					"strict" : false
+				},
+				{
+					"name" : "xTarget[5]",
+					"strict" : false
+				},
+				{
+					"name" : "xTarget[4]",
+					"strict" : false
+				},
+				{
+					"name" : "xTarget[11]",
+					"strict" : false
+				},
+				{
+					"name" : "xTarget[10]",
+					"strict" : false
+				},
+				{
+					"name" : "xTarget[9]",
+					"strict" : false
+				},
+				{
+					"name" : "xTarget[8]",
+					"strict" : false
+				},
+				{
+					"name" : "xTarget[6]",
+					"strict" : false
+				},
+				{
+					"name" : "xTarget[7]",
+					"strict" : false
+				},
+				{
+					"name" : "yTarget[13]",
+					"strict" : false
+				},
+				{
+					"name" : "yTarget[12]",
+					"strict" : false
+				},
+				{
+					"name" : "yTarget[1]",
+					"strict" : false
+				},
+				{
+					"name" : "yTarget[0]",
+					"strict" : false
+				},
+				{
+					"name" : "yTarget[3]",
+					"strict" : false
+				},
+				{
+					"name" : "yTarget[2]",
+					"strict" : false
+				},
+				{
+					"name" : "yTarget[5]",
+					"strict" : false
+				},
+				{
+					"name" : "yTarget[4]",
+					"strict" : false
+				},
+				{
+					"name" : "yTarget[11]",
+					"strict" : false
+				},
+				{
+					"name" : "yTarget[10]",
+					"strict" : false
+				},
+				{
+					"name" : "yTarget[9]",
+					"strict" : false
+				},
+				{
+					"name" : "yTarget[8]",
+					"strict" : false
+				},
+				{
+					"name" : "yTarget[6]",
+					"strict" : false
+				},
+				{
+					"name" : "yTarget[7]",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

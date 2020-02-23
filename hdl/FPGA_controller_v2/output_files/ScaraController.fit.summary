@@ -1,0 +1,20 @@
+Fitter Status : Successful - Sat Feb 22 23:42:45 2020
+Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Revision Name : ScaraController
+Top-level Entity Name : ScaraController
+Family : Cyclone V
+Device : 5CSXFC6D6F31C6
+Timing Models : Final
+Logic utilization (in ALMs) : 12,589 / 41,910 ( 30 % )
+Total registers : 24392
+Total pins : 57 / 499 ( 11 % )
+Total virtual pins : 0
+Total block memory bits : 2,292 / 5,662,720 ( < 1 % )
+Total RAM Blocks : 11 / 553 ( 2 % )
+Total DSP Blocks : 68 / 112 ( 61 % )
+Total HSSI RX PCSs : 0 / 9 ( 0 % )
+Total HSSI PMA RX Deserializers : 0 / 9 ( 0 % )
+Total HSSI TX PCSs : 0 / 9 ( 0 % )
+Total HSSI PMA TX Serializers : 0 / 9 ( 0 % )
+Total PLLs : 0 / 15 ( 0 % )
+Total DLLs : 0 / 4 ( 0 % )

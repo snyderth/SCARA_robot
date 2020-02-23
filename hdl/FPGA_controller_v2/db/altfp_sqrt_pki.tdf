@@ -1,0 +1,279 @@
+--altfp_sqrt CBX_DECLARE_ALL_CONNECTED_PORTS="OFF" DEVICE_FAMILY="Cyclone V" PIPELINE=30 ROUNDING="TO_NEAREST" WIDTH_EXP=11 WIDTH_MAN=52 clk_en clock data result CARRY_CHAIN="MANUAL" CARRY_CHAIN_LENGTH=48
+--VERSION_BEGIN 18.1 cbx_altfp_sqrt 2018:09:12:13:04:24:SJ cbx_cycloneii 2018:09:12:13:04:24:SJ cbx_lpm_add_sub 2018:09:12:13:04:24:SJ cbx_mgl 2018:09:12:13:10:36:SJ cbx_nadder 2018:09:12:13:04:24:SJ cbx_stratix 2018:09:12:13:04:24:SJ cbx_stratixii 2018:09:12:13:04:24:SJ  VERSION_END
+
+
+-- Copyright (C) 2018  Intel Corporation. All rights reserved.
+--  Your use of Intel Corporation's design tools, logic functions 
+--  and other software and tools, and its AMPP partner logic 
+--  functions, and any output files from any of the foregoing 
+--  (including device programming or simulation files), and any 
+--  associated documentation or information are expressly subject 
+--  to the terms and conditions of the Intel Program License 
+--  Subscription Agreement, the Intel Quartus Prime License Agreement,
+--  the Intel FPGA IP License Agreement, or other applicable license
+--  agreement, including, without limitation, that your use is for
+--  the sole purpose of programming logic devices manufactured by
+--  Intel and sold by Intel or its authorized distributors.  Please
+--  refer to the applicable agreement for further details.
+
+
+FUNCTION alt_sqrt_block_bqc (aclr, clken, clock, rad[54..0])
+RETURNS ( root_result[53..0]);
+
+--synthesis_resources = lut 1577 reg 2983 
+SUBDESIGN altfp_sqrt_pki
+( 
+	clk_en	:	input;
+	clock	:	input;
+	data[63..0]	:	input;
+	result[63..0]	:	output;
+) 
+VARIABLE 
+	alt_sqrt_block2 : alt_sqrt_block_bqc;
+	exp_all_one_ff : dffe;
+	exp_ff1a[10..0] : dffe;
+	exp_ff20c[10..0] : dffe;
+	exp_ff210c[10..0] : dffe;
+	exp_ff211c[10..0] : dffe;
+	exp_ff212c[10..0] : dffe;
+	exp_ff213c[10..0] : dffe;
+	exp_ff214c[10..0] : dffe;
+	exp_ff215c[10..0] : dffe;
+	exp_ff216c[10..0] : dffe;
+	exp_ff217c[10..0] : dffe;
+	exp_ff218c[10..0] : dffe;
+	exp_ff219c[10..0] : dffe;
+	exp_ff21c[10..0] : dffe;
+	exp_ff220c[10..0] : dffe;
+	exp_ff221c[10..0] : dffe;
+	exp_ff222c[10..0] : dffe;
+	exp_ff223c[10..0] : dffe;
+	exp_ff224c[10..0] : dffe;
+	exp_ff225c[10..0] : dffe;
+	exp_ff226c[10..0] : dffe;
+	exp_ff22c[10..0] : dffe;
+	exp_ff23c[10..0] : dffe;
+	exp_ff24c[10..0] : dffe;
+	exp_ff25c[10..0] : dffe;
+	exp_ff26c[10..0] : dffe;
+	exp_ff27c[10..0] : dffe;
+	exp_ff28c[10..0] : dffe;
+	exp_ff29c[10..0] : dffe;
+	exp_in_ff[10..0] : dffe;
+	exp_not_zero_ff : dffe;
+	exp_result_ff[10..0] : dffe;
+	infinity_ff[26..0] : dffe;
+	man_in_ff[51..0] : dffe;
+	man_not_zero_ff : dffe;
+	man_result_ff[51..0] : dffe;
+	man_rounding_ff[51..0] : dffe;
+	nan_man_ff[26..0] : dffe;
+	sign_node_ff[29..0] : dffe;
+	zero_exp_ff[26..0] : dffe;
+	add_sub1_dataa[11..0]	:	WIRE;
+	add_sub1_datab[11..0]	:	WIRE;
+	add_sub1_result[11..0]	:	WIRE;
+	add_sub3_dataa[51..0]	:	WIRE;
+	add_sub3_datab[51..0]	:	WIRE;
+	add_sub3_result[51..0]	:	WIRE;
+	aclr	: NODE;
+	bias[10..0]	: WIRE;
+	exp_all_one_w[10..0]	: WIRE;
+	exp_div_w[10..0]	: WIRE;
+	exp_ff2_w[10..0]	: WIRE;
+	exp_not_zero_w[10..0]	: WIRE;
+	infinitycondition_w	: WIRE;
+	man_not_zero_w[51..0]	: WIRE;
+	man_root_result_w[53..0]	: WIRE;
+	nancondition_w	: WIRE;
+	preadjust_w	: WIRE;
+	radicand_w[54..0]	: WIRE;
+	roundbit_w	: WIRE;
+
+BEGIN 
+	alt_sqrt_block2.aclr = aclr;
+	alt_sqrt_block2.clken = clk_en;
+	alt_sqrt_block2.clock = clock;
+	alt_sqrt_block2.rad[] = radicand_w[];
+	exp_all_one_ff.clk = clock;
+	exp_all_one_ff.clrn = (! aclr);
+	exp_all_one_ff.d = exp_all_one_w[10..10];
+	exp_all_one_ff.ena = clk_en;
+	exp_ff1a[].clk = clock;
+	exp_ff1a[].clrn = (! aclr);
+	exp_ff1a[].d = exp_div_w[];
+	exp_ff1a[].ena = clk_en;
+	exp_ff20c[].clk = clock;
+	exp_ff20c[].clrn = (! aclr);
+	exp_ff20c[].d = exp_ff1a[].q;
+	exp_ff20c[].ena = clk_en;
+	exp_ff210c[].clk = clock;
+	exp_ff210c[].clrn = (! aclr);
+	exp_ff210c[].d = exp_ff29c[].q;
+	exp_ff210c[].ena = clk_en;
+	exp_ff211c[].clk = clock;
+	exp_ff211c[].clrn = (! aclr);
+	exp_ff211c[].d = exp_ff210c[].q;
+	exp_ff211c[].ena = clk_en;
+	exp_ff212c[].clk = clock;
+	exp_ff212c[].clrn = (! aclr);
+	exp_ff212c[].d = exp_ff211c[].q;
+	exp_ff212c[].ena = clk_en;
+	exp_ff213c[].clk = clock;
+	exp_ff213c[].clrn = (! aclr);
+	exp_ff213c[].d = exp_ff212c[].q;
+	exp_ff213c[].ena = clk_en;
+	exp_ff214c[].clk = clock;
+	exp_ff214c[].clrn = (! aclr);
+	exp_ff214c[].d = exp_ff213c[].q;
+	exp_ff214c[].ena = clk_en;
+	exp_ff215c[].clk = clock;
+	exp_ff215c[].clrn = (! aclr);
+	exp_ff215c[].d = exp_ff214c[].q;
+	exp_ff215c[].ena = clk_en;
+	exp_ff216c[].clk = clock;
+	exp_ff216c[].clrn = (! aclr);
+	exp_ff216c[].d = exp_ff215c[].q;
+	exp_ff216c[].ena = clk_en;
+	exp_ff217c[].clk = clock;
+	exp_ff217c[].clrn = (! aclr);
+	exp_ff217c[].d = exp_ff216c[].q;
+	exp_ff217c[].ena = clk_en;
+	exp_ff218c[].clk = clock;
+	exp_ff218c[].clrn = (! aclr);
+	exp_ff218c[].d = exp_ff217c[].q;
+	exp_ff218c[].ena = clk_en;
+	exp_ff219c[].clk = clock;
+	exp_ff219c[].clrn = (! aclr);
+	exp_ff219c[].d = exp_ff218c[].q;
+	exp_ff219c[].ena = clk_en;
+	exp_ff21c[].clk = clock;
+	exp_ff21c[].clrn = (! aclr);
+	exp_ff21c[].d = exp_ff20c[].q;
+	exp_ff21c[].ena = clk_en;
+	exp_ff220c[].clk = clock;
+	exp_ff220c[].clrn = (! aclr);
+	exp_ff220c[].d = exp_ff219c[].q;
+	exp_ff220c[].ena = clk_en;
+	exp_ff221c[].clk = clock;
+	exp_ff221c[].clrn = (! aclr);
+	exp_ff221c[].d = exp_ff220c[].q;
+	exp_ff221c[].ena = clk_en;
+	exp_ff222c[].clk = clock;
+	exp_ff222c[].clrn = (! aclr);
+	exp_ff222c[].d = exp_ff221c[].q;
+	exp_ff222c[].ena = clk_en;
+	exp_ff223c[].clk = clock;
+	exp_ff223c[].clrn = (! aclr);
+	exp_ff223c[].d = exp_ff222c[].q;
+	exp_ff223c[].ena = clk_en;
+	exp_ff224c[].clk = clock;
+	exp_ff224c[].clrn = (! aclr);
+	exp_ff224c[].d = exp_ff223c[].q;
+	exp_ff224c[].ena = clk_en;
+	exp_ff225c[].clk = clock;
+	exp_ff225c[].clrn = (! aclr);
+	exp_ff225c[].d = exp_ff224c[].q;
+	exp_ff225c[].ena = clk_en;
+	exp_ff226c[].clk = clock;
+	exp_ff226c[].clrn = (! aclr);
+	exp_ff226c[].d = exp_ff225c[].q;
+	exp_ff226c[].ena = clk_en;
+	exp_ff22c[].clk = clock;
+	exp_ff22c[].clrn = (! aclr);
+	exp_ff22c[].d = exp_ff21c[].q;
+	exp_ff22c[].ena = clk_en;
+	exp_ff23c[].clk = clock;
+	exp_ff23c[].clrn = (! aclr);
+	exp_ff23c[].d = exp_ff22c[].q;
+	exp_ff23c[].ena = clk_en;
+	exp_ff24c[].clk = clock;
+	exp_ff24c[].clrn = (! aclr);
+	exp_ff24c[].d = exp_ff23c[].q;
+	exp_ff24c[].ena = clk_en;
+	exp_ff25c[].clk = clock;
+	exp_ff25c[].clrn = (! aclr);
+	exp_ff25c[].d = exp_ff24c[].q;
+	exp_ff25c[].ena = clk_en;
+	exp_ff26c[].clk = clock;
+	exp_ff26c[].clrn = (! aclr);
+	exp_ff26c[].d = exp_ff25c[].q;
+	exp_ff26c[].ena = clk_en;
+	exp_ff27c[].clk = clock;
+	exp_ff27c[].clrn = (! aclr);
+	exp_ff27c[].d = exp_ff26c[].q;
+	exp_ff27c[].ena = clk_en;
+	exp_ff28c[].clk = clock;
+	exp_ff28c[].clrn = (! aclr);
+	exp_ff28c[].d = exp_ff27c[].q;
+	exp_ff28c[].ena = clk_en;
+	exp_ff29c[].clk = clock;
+	exp_ff29c[].clrn = (! aclr);
+	exp_ff29c[].d = exp_ff28c[].q;
+	exp_ff29c[].ena = clk_en;
+	exp_in_ff[].clk = clock;
+	exp_in_ff[].clrn = (! aclr);
+	exp_in_ff[].d = data[62..52];
+	exp_in_ff[].ena = clk_en;
+	exp_not_zero_ff.clk = clock;
+	exp_not_zero_ff.clrn = (! aclr);
+	exp_not_zero_ff.d = exp_not_zero_w[10..10];
+	exp_not_zero_ff.ena = clk_en;
+	exp_result_ff[].clk = clock;
+	exp_result_ff[].clrn = (! aclr);
+	exp_result_ff[].d = (((exp_ff2_w[] & zero_exp_ff[26].q) # nan_man_ff[26].q) # infinity_ff[26].q);
+	exp_result_ff[].ena = clk_en;
+	infinity_ff[].clk = clock;
+	infinity_ff[].clrn = (! aclr);
+	infinity_ff[].d = ( infinity_ff[25..0].q, (infinitycondition_w & (! sign_node_ff[1].q)));
+	infinity_ff[].ena = clk_en;
+	man_in_ff[].clk = clock;
+	man_in_ff[].clrn = (! aclr);
+	man_in_ff[].d = data[51..0];
+	man_in_ff[].ena = clk_en;
+	man_not_zero_ff.clk = clock;
+	man_not_zero_ff.clrn = (! aclr);
+	man_not_zero_ff.d = man_not_zero_w[51..51];
+	man_not_zero_ff.ena = clk_en;
+	man_result_ff[].clk = clock;
+	man_result_ff[].clrn = (! aclr);
+	man_result_ff[].d = ((man_rounding_ff[].q & zero_exp_ff[26].q) # nan_man_ff[26].q);
+	man_result_ff[].ena = clk_en;
+	man_rounding_ff[].clk = clock;
+	man_rounding_ff[].clrn = (! aclr);
+	man_rounding_ff[].d = add_sub3_result[];
+	man_rounding_ff[].ena = clk_en;
+	nan_man_ff[].clk = clock;
+	nan_man_ff[].clrn = (! aclr);
+	nan_man_ff[].d = ( nan_man_ff[25..0].q, nancondition_w);
+	nan_man_ff[].ena = clk_en;
+	sign_node_ff[].clk = clock;
+	sign_node_ff[].clrn = (! aclr);
+	sign_node_ff[].d = ( sign_node_ff[28..0].q, data[63..63]);
+	sign_node_ff[].ena = clk_en;
+	zero_exp_ff[].clk = clock;
+	zero_exp_ff[].clrn = (! aclr);
+	zero_exp_ff[].d = ( zero_exp_ff[25..0].q, exp_not_zero_ff.q);
+	zero_exp_ff[].ena = clk_en;
+	add_sub1_result[] = add_sub1_dataa[] + add_sub1_datab[];
+	add_sub1_dataa[] = ( B"0", exp_in_ff[].q);
+	add_sub1_datab[] = ( B"0", bias[]);
+	add_sub3_result[] = add_sub3_dataa[] + add_sub3_datab[];
+	add_sub3_dataa[] = man_root_result_w[52..1];
+	add_sub3_datab[] = ( B"000000000000000000000000000000000000000000000000000", roundbit_w);
+	aclr = GND;
+	bias[] = ( B"0", B"1", B"1", B"1", B"1", B"1", B"1", B"1", B"1", B"1", B"1");
+	exp_all_one_w[] = ( (exp_in_ff[10..10].q & exp_all_one_w[9..9]), (exp_in_ff[9..9].q & exp_all_one_w[8..8]), (exp_in_ff[8..8].q & exp_all_one_w[7..7]), (exp_in_ff[7..7].q & exp_all_one_w[6..6]), (exp_in_ff[6..6].q & exp_all_one_w[5..5]), (exp_in_ff[5..5].q & exp_all_one_w[4..4]), (exp_in_ff[4..4].q & exp_all_one_w[3..3]), (exp_in_ff[3..3].q & exp_all_one_w[2..2]), (exp_in_ff[2..2].q & exp_all_one_w[1..1]), (exp_in_ff[1..1].q & exp_all_one_w[0..0]), exp_in_ff[0..0].q);
+	exp_div_w[] = ( add_sub1_result[11..1]);
+	exp_ff2_w[] = exp_ff226c[].q;
+	exp_not_zero_w[] = ( (exp_in_ff[10..10].q # exp_not_zero_w[9..9]), (exp_in_ff[9..9].q # exp_not_zero_w[8..8]), (exp_in_ff[8..8].q # exp_not_zero_w[7..7]), (exp_in_ff[7..7].q # exp_not_zero_w[6..6]), (exp_in_ff[6..6].q # exp_not_zero_w[5..5]), (exp_in_ff[5..5].q # exp_not_zero_w[4..4]), (exp_in_ff[4..4].q # exp_not_zero_w[3..3]), (exp_in_ff[3..3].q # exp_not_zero_w[2..2]), (exp_in_ff[2..2].q # exp_not_zero_w[1..1]), (exp_in_ff[1..1].q # exp_not_zero_w[0..0]), exp_in_ff[0..0].q);
+	infinitycondition_w = ((! man_not_zero_ff.q) & exp_all_one_ff.q);
+	man_not_zero_w[] = ( (man_in_ff[51..51].q # man_not_zero_w[50..50]), (man_in_ff[50..50].q # man_not_zero_w[49..49]), (man_in_ff[49..49].q # man_not_zero_w[48..48]), (man_in_ff[48..48].q # man_not_zero_w[47..47]), (man_in_ff[47..47].q # man_not_zero_w[46..46]), (man_in_ff[46..46].q # man_not_zero_w[45..45]), (man_in_ff[45..45].q # man_not_zero_w[44..44]), (man_in_ff[44..44].q # man_not_zero_w[43..43]), (man_in_ff[43..43].q # man_not_zero_w[42..42]), (man_in_ff[42..42].q # man_not_zero_w[41..41]), (man_in_ff[41..41].q # man_not_zero_w[40..40]), (man_in_ff[40..40].q # man_not_zero_w[39..39]), (man_in_ff[39..39].q # man_not_zero_w[38..38]), (man_in_ff[38..38].q # man_not_zero_w[37..37]), (man_in_ff[37..37].q # man_not_zero_w[36..36]), (man_in_ff[36..36].q # man_not_zero_w[35..35]), (man_in_ff[35..35].q # man_not_zero_w[34..34]), (man_in_ff[34..34].q # man_not_zero_w[33..33]), (man_in_ff[33..33].q # man_not_zero_w[32..32]), (man_in_ff[32..32].q # man_not_zero_w[31..31]), (man_in_ff[31..31].q # man_not_zero_w[30..30]), (man_in_ff[30..30].q # man_not_zero_w[29..29]), (man_in_ff[29..29].q # man_not_zero_w[28..28]), (man_in_ff[28..28].q # man_not_zero_w[27..27]), (man_in_ff[27..27].q # man_not_zero_w[26..26]), (man_in_ff[26..26].q # man_not_zero_w[25..25]), (man_in_ff[25..25].q # man_not_zero_w[24..24]), (man_in_ff[24..24].q # man_not_zero_w[23..23]), (man_in_ff[23..23].q # man_not_zero_w[22..22]), (man_in_ff[22..22].q # man_not_zero_w[21..21]), (man_in_ff[21..21].q # man_not_zero_w[20..20]), (man_in_ff[20..20].q # man_not_zero_w[19..19]), (man_in_ff[19..19].q # man_not_zero_w[18..18]), (man_in_ff[18..18].q # man_not_zero_w[17..17]), (man_in_ff[17..17].q # man_not_zero_w[16..16]), (man_in_ff[16..16].q # man_not_zero_w[15..15]), (man_in_ff[15..15].q # man_not_zero_w[14..14]), (man_in_ff[14..14].q # man_not_zero_w[13..13]), (man_in_ff[13..13].q # man_not_zero_w[12..12]), (man_in_ff[12..12].q # man_not_zero_w[11..11]), (man_in_ff[11..11].q # man_not_zero_w[10..10]), (man_in_ff[10..10].q # man_not_zero_w[9..9]), (man_in_ff[9..9].q # man_not_zero_w[8..8]), (man_in_ff[8..8].q # man_not_zero_w[7..7]), (man_in_ff[7..7].q # man_not_zero_w[6..6]), (man_in_ff[6..6].q # man_not_zero_w[5..5]), (man_in_ff[5..5].q # man_not_zero_w[4..4]), (man_in_ff[4..4].q # man_not_zero_w[3..3]), (man_in_ff[3..3].q # man_not_zero_w[2..2]), (man_in_ff[2..2].q # man_not_zero_w[1..1]), (man_in_ff[1..1].q # man_not_zero_w[0..0]), man_in_ff[0..0].q);
+	man_root_result_w[] = alt_sqrt_block2.root_result[];
+	nancondition_w = ((sign_node_ff[1].q & exp_not_zero_ff.q) # (exp_all_one_ff.q & man_not_zero_ff.q));
+	preadjust_w = exp_in_ff[0..0].q;
+	radicand_w[] = ( (! preadjust_w), (preadjust_w # (man_in_ff[51..51].q & (! preadjust_w))), ((man_in_ff[51..1].q & preadjust_w) # (man_in_ff[50..0].q & (! preadjust_w))), (man_in_ff[0..0].q & preadjust_w), B"0");
+	result[] = ( sign_node_ff[29].q, exp_result_ff[].q, man_result_ff[].q);
+	roundbit_w = alt_sqrt_block2.root_result[0..0];
+END;
+--VALID FILE
