@@ -28,27 +28,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "clk_50",
+					"name" : "num_steps[5]",
 					"strict" : false
 				},
 				{
 					"name" : "enable",
-					"strict" : false
-				},
-				{
-					"name" : "num_steps[2]",
-					"strict" : false
-				},
-				{
-					"name" : "num_steps[3]",
-					"strict" : false
-				},
-				{
-					"name" : "num_steps[4]",
-					"strict" : false
-				},
-				{
-					"name" : "num_steps[5]",
 					"strict" : false
 				},
 				{
@@ -60,11 +44,31 @@
 					"strict" : false
 				},
 				{
-					"name" : "num_steps[0]",
+					"name" : "num_steps[2]",
 					"strict" : false
 				},
 				{
 					"name" : "num_steps[1]",
+					"strict" : false
+				},
+				{
+					"name" : "num_steps[0]",
+					"strict" : false
+				},
+				{
+					"name" : "num_steps[3]",
+					"strict" : false
+				},
+				{
+					"name" : "num_steps[4]",
+					"strict" : false
+				},
+				{
+					"name" : "clk_50",
+					"strict" : false
+				},
+				{
+					"name" : "fast",
 					"strict" : false
 				}
 			]

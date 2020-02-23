@@ -10,6 +10,8 @@ class methodIK(Enum):
     JACOBIAN_INV = 2
     GEOMETRIC = 3
 
+LOGFILE = open("./ThetasForPositions.csv", "w")
+LOGFILE.write("x,y,th1,th2\n")
 
 METHOD = methodIK.GEOMETRIC
 
@@ -119,9 +121,9 @@ class SCARA_IK:
 
 
     def set_target(self, x, y):
-        if INCHES == False:
-            x = x * CONVERSION
-            y = y * CONVERSION
+        # if INCHES == False:
+        #     x = x * CONVERSION
+        #     y = y * CONVERSION
 
         if np.sqrt(x**2 + y**2) > self.max_len():
             raise Exception("Target out of reach")
@@ -190,6 +192,7 @@ class SCARA_IK:
         self.joint_ang[0] = th1
         self.joint_ang[1] = th2
         print("Joint Angles: {}, {}".format(th1, th2))
+        LOGFILE.write("{},{},{},{}\n".format(self.target[0], self.target[1], th1, th2))
         self.calc_joint_pos()
         
 
@@ -508,7 +511,7 @@ def animate(data):
     return line, 
 
 if __name__ == '__main__':
-    robot = SCARA_IK([5.75, 8])
+    robot = SCARA_IK([5.55, 8.75])
 
     print("Maximum stretch: {}".format(robot.max_len()))
     print("Current joint angles: {}".format(robot.angles()))
@@ -516,7 +519,7 @@ if __name__ == '__main__':
 
     try:
         print("Setting target")
-        robot.set_target(2, 2)
+        robot.set_target(4000, 3000)
         print("Running math")
         robot.run()
         print("Joint Angles:")

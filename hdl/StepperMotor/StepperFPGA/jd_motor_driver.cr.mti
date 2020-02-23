@@ -1,15 +1,8 @@
-C:/intelFPGA_lite/18.0/projects/Junior_Design/stepper_motor/stepper_motor.sv {1 {vlog -work work -sv -stats=none C:/intelFPGA_lite/18.0/projects/Junior_Design/stepper_motor/stepper_motor.sv
+C:/Users/kylen/projects/ece342/SCARA_robot/hdl/StepperMotor/StepperFPGA/stepper_motor/stp_counter.sv {1 {vlog -work work -sv -stats=none C:/Users/kylen/projects/ece342/SCARA_robot/hdl/StepperMotor/StepperFPGA/stepper_motor/stp_counter.sv
 Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module stepper_motor
+-- Compiling module stp_counter
 
 Top level modules:
-	stepper_motor
-
-} {} {}} C:/intelFPGA_lite/18.0/projects/Junior_Design/stepper_motor/counter.sv {1 {vlog -work work -sv -stats=none C:/intelFPGA_lite/18.0/projects/Junior_Design/stepper_motor/counter.sv
-Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
--- Compiling module counter
-
-Top level modules:
-	counter
+	stp_counter
 
 } {} {}}

@@ -20,11 +20,15 @@ add wave -radix fixed13 th1
 add wave -radix fixed13 th2
 add wave -radix unsigned yTarget
 add wave -radix unsigned xTarget
+
+add wave -radix float64 arg1Atan
+add wave -radix float64 arg2Atan
+
 add wave state
 add wave nextstate
 
-add wave -radix fixed32 CalculateAngles/Theta2Calc/arg1FixedPoint
-add wave -radix fixed32 CalculateAngles/Theta2Calc/arg2FixedPoint
+#add wave -radix fixed32 CalculateAngles/Theta2Calc/arg1FixedPoint
+#add wave -radix fixed32 CalculateAngles/Theta2Calc/arg2FixedPoint
 
 add wave -radix float64 CosTh2
 add wave -radix float64 SinTh2
