@@ -14,7 +14,7 @@ module Fake_Controller(
 	output logic [3:0] y_value_word_1,
 	output logic [3:0] y_value_word_2
 );
-	wire set_ready_prev;
+	reg set_ready_prev;
 	always_ff@(posedge clk or posedge reset)
 	begin
 		if(reset)
