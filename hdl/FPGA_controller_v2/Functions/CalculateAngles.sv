@@ -286,6 +286,10 @@ module CalculateAngles (
 				arg1Atan <= SinTh2;
 				arg2Atan <= CosTh2;
 			end
+			else begin
+				arg1Atan <= 0;
+				arg2Atan <= 0;
+			end
 		end
 		
 		
