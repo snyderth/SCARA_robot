@@ -25,15 +25,15 @@ ARGY_OFFSET = ARGX_OFFSET + ARG_BITS
 #Conversion
 MAX_IN = 11 #in
 MAX_MM = 279.4 #mm
-IN_TO_BITS = 2**(ARG_BITS)/MAX_IN #bits/in
-MM_TO_BITS = 2**(ARG_BITS)/MAX_MM #bits/mm
+IN_TO_BITS = 2**(ARG_BITS - 1)/MAX_IN #bits/in
+MM_TO_BITS = 2**(ARG_BITS - 1)/MAX_MM #bits/mm
 
 #Arm parameters
 JOINT_1_LENGTH = 5 * IN_TO_BITS
 JOINT_2_LENGTH = 4 * IN_TO_BITS
 
 #Maximum line length
-INTERPOLATION_LENGTH = (1 / 16) * IN_TO_BITS
+INTERPOLATION_LENGTH = 11 * IN_TO_BITS# (1 / 16) * IN_TO_BITS
 
 #Set arm to be at 45 degree angles initially
 INIT_X = JOINT_1_LENGTH * math.cos(math.pi/4) + JOINT_2_LENGTH * math.cos(math.pi / 2)
@@ -236,7 +236,7 @@ def interpolate(code, xStart, yStart, xEnd, yEnd, segLength, mode):
     if mode == Mode.ABSOLUTE:
         xCurrent = xStart
         yCurrent = yStart
-        for i in range(0, int(hypotenuse // segLength)):
+        for i in range(0, int(hypotenuse // segLength) + 1):
             #Make the length of the line segment be the segment length or the remainder of the hypotenuse smaller than the segment length
             segHypotenuse = min(segLength, hypotenuse - (segLength * i + 1))
             xInc = segHypotenuse * math.cos(angle)
@@ -247,7 +247,7 @@ def interpolate(code, xStart, yStart, xEnd, yEnd, segLength, mode):
 
             commands.append(createCommand(code, int(xCurrent), int(yCurrent)))
     else:
-        for i in range(0, int(hypotenuse // segLength)):
+        for i in range(0, int(hypotenuse // segLength) + 1):
             # Make the length of the line segment be the segment length or the remainder of the hypotenuse smaller than the segment length
             segHypotenuse = min(segLength, hypotenuse - (segLength * i + 1))
             xInc = segHypotenuse * math.cos(angle)
@@ -314,7 +314,7 @@ def paramToArg(value, conversion, max):
     decimal *= conversion
 
     # Constrain integer to be within the bit space
-    integer = int(decimal) & (2 ** ARG_BITS - 1)
+    integer = int(decimal) & ((2 ** ARG_BITS) - 1)
     return integer
 
 def extractArg(value, conversion, max, offset):
@@ -350,7 +350,7 @@ if __name__ == '__main__':
 
     gcode = gcodeFile.read()
 
-    commands = gcodeToCommands("G01 X4.0 Y8.0")
+    commands = gcodeToCommands("G01 X10.0 Y-10.0")
 
     reverseGcode = commandsToGcode(commands)
 

@@ -489,7 +489,7 @@ always @(posedge CLOCK_50) begin
 	// Is there data in HPS_to_FPGA FIFO
 	// and the last transfer is complete
 	// data_buffer_valid is only used by the FPGA to HPS FIFO !!
-	if (HPS_to_FPGA_state == AWAIT_DATA && !(hps_to_fpga_out_csr_readdata[1]) && !data_buffer_valid)  begin
+	if (HPS_to_FPGA_state == AWAIT_DATA && !(hps_to_fpga_out_csr_readdata[1]))  begin
 		hps_to_fpga_read <= 1'b1 ;
 		HPS_to_FPGA_state <= DELAY_READ_DATA ; //
 	end
