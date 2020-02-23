@@ -29,7 +29,7 @@ module CosineTh2(input logic [63:0] xTarget_d,
 						output logic [63:0] CosTh2,
 						output logic dataReady);
 						
-						
+				
 
 
 				/*	Square x and y once conversions are finished */

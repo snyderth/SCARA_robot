@@ -247,63 +247,114 @@ module CalculateAngles (
 		/* Calculate Gamma */
 		
 		reg signed [12:0] gammaResult, gammaIntermediate;
+//		
+//		Arctan2 gammaCalculation(.arg1(k2),
+//											.arg2(k1),
+//											.clk(clk),
+//											.enable(GammaEn),
+//											.reset(~GammaEn),
+//											.angle(gammaIntermediate),
+//											.DataReady(GammaDone)
+//										);
+//		
 		
-		Arctan2 gammaCalculation(.arg1(k2),
-											.arg2(k1),
-											.clk(clk),
-											.enable(GammaEn),
-											.reset(~GammaEn),
-											.angle(gammaIntermediate),
-											.DataReady(GammaDone)
-										);
-		
-		always_ff@(posedge GammaDone)
-			gammaResult <= gammaIntermediate;
 										
 		/**********************************************/
 		
 		
 		/* Calculate AtanXY */
-		
+		logic [63:0] arg1Atan, arg2Atan;
+		reg signed [12:0] resultAtan;
+		logic atanDone;
 		reg signed [12:0] arctanXY, arctanXYRes;
 		
-		Arctan2 atanXYCalculation(
-										.arg1(yTarget_d),
-										.arg2(xTarget_d),
-										.clk(clk),
-										.enable(AtanXYEn),
-										.reset(~AtanXYEn),
-										.angle(arctanXYRes),
-										.DataReady(AtanXYDone)
-										);
-		always_ff@(posedge AtanXYDone)
-			arctanXY <= arctanXYRes;
-		
-		/*********************************************/
 		
 		reg signed [12:0] th1res;
 		reg signed [12:0] th2res, th2hold;
+		//Streamlining to cut down on resource usage
+		// Selecting the inputs to go into the Arctan function
+		always_comb begin
+			if (GammaEn) begin
+				arg1Atan <= k2;
+				arg2Atan <= k1;
+			end
+			else if(AtanXYEn) begin
+				arg1Atan <= yTarget_d;
+				arg2Atan <= xTarget_d;
+			end
+			else if(ThetaEn) begin
+				arg1Atan <= SinTh2;
+				arg2Atan <= CosTh2;
+			end
+		end
 		
-		/*	Calculate Thetas */
+		
+		
+		Arctan2 atanXYCalculation(
+										.arg1(arg1Atan),
+										.arg2(arg2Atan),
+										.clk(clk),
+										.enable(AtanXYEn | GammaEn | ThetaEn),
+										.reset(~AtanXYEn & ~GammaEn & ~ThetaEn),
+										.angle(resultAtan),
+										.DataReady(atanDone)
+										);
+										
+										
+		// Selecting where the output to the arctan
+		// function should go.
+		always_ff@(posedge atanDone) begin
+			if(state == Gamma) begin
+				gammaIntermediate <= resultAtan;
+				GammaDone <= 1'b1;
+				ThetaDone <= 1'b0;
+			end
+			else if (state == AtanXY) begin
+				GammaDone <= 1'b0;
+				arctanXYRes <= resultAtan;
+				AtanXYDone <= 1'b1;
+			end
+			else if (state == Thetas) begin
+				ThetaDone <= 1'b1;
+				AtanXYDone <= 1'b0;
+				th2res <= resultAtan;
+			end
+		end
+										
+										
+		
+		// Latch onto the result		
+		always_ff@(posedge AtanXYDone)
+			arctanXY <= arctanXYRes;
+			
+		// Latch onto the result
+		always_ff@(posedge GammaDone)
+			gammaResult <= gammaIntermediate;
+			
+					/*	Calculate Thetas */
 		always_ff@(posedge ThetaDone) begin
 			th1res <= arctanXY - gammaResult;			
 			th2hold <= th2res;
-
 		end
+			
+		/*********************************************/
+		
+		
+
 		
 		assign th1 = th1res;
 		
 		assign th2 = th2hold;
 		
-		Arctan2 Theta2Calc(
-								.arg1(SinTh2),
-								.arg2(CosTh2),
-								.clk(clk),
-								.enable(ThetaEn),
-								.reset(~ThetaEn),
-								.angle(th2res),
-								.DataReady(ThetaDone)
-								);
+//		Arctan2 Theta2Calc(
+//								.arg1(SinTh2),
+//								.arg2(CosTh2),
+//								.clk(clk),
+//								.enable(ThetaEn),
+//								.reset(~ThetaEn),
+//								.angle(th2res),
+//								.DataReady(ThetaDone)
+//								);
 	
 			
 			
