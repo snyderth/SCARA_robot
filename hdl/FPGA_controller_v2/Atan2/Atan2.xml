@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2020.02.22.16:23:46"
- outputDirectory="C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Atan2/">
+ date="2020.02.22.22:58:52"
+ outputDirectory="C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/">
  <perimeter>
   <parameter
      name="AUTO_GENERATION_ID"
@@ -85,13 +85,13 @@
  </perimeter>
  <entity
    path=""
-   parameterizationKey="Atan2:1.0:AUTO_CLK_CLOCK_DOMAIN=-1,AUTO_CLK_CLOCK_RATE=-1,AUTO_CLK_RESET_DOMAIN=-1,AUTO_DEVICE=5CEBA2F17A7,AUTO_DEVICE_FAMILY=Cyclone V,AUTO_DEVICE_SPEEDGRADE=7,AUTO_GENERATION_ID=1582417418,AUTO_UNIQUE_ID=(altera_CORDIC:18.1:ALL_function=ATAN2,FUNCTION_FAMILY=ALL,LUTSize=6,RES_DSP_param=0,RES_LUT_param=0,RES_MBIT_param=0,RES_MBLOCK_param=0,SFCompensation=false,derivedfunction=ATAN2,force_elaborate=0,frequency_feedback=0,frequency_target=200,fxpt_in_2_fraction_derived=0,fxpt_in_2_sign_derived=1,fxpt_in_2_width_derived=32,fxpt_in_fraction=10,fxpt_in_fraction_derived=0,fxpt_in_sign=1,fxpt_in_sign_derived=1,fxpt_in_width=32,fxpt_in_width_derived=32,fxpt_out_2_fraction_derived=0,fxpt_out_2_sign_derived=1,fxpt_out_2_width_derived=32,fxpt_out_fraction=10,fxpt_out_fraction_derived=0,fxpt_out_sign=1,fxpt_out_sign_derived=1,fxpt_out_width=32,fxpt_out_width_derived=13,gen_enable=true,latency_feedback=0,latency_target=2,performance_goal=frequency,report_resources_to_xml=false,selected_device_family=Cyclone V,selected_device_speedgrade=7,specifyLUTs=false,useLUTs=false,validation_failed=false)"
+   parameterizationKey="Atan2:1.0:AUTO_CLK_CLOCK_DOMAIN=-1,AUTO_CLK_CLOCK_RATE=-1,AUTO_CLK_RESET_DOMAIN=-1,AUTO_DEVICE=5CEBA2F17A7,AUTO_DEVICE_FAMILY=Cyclone V,AUTO_DEVICE_SPEEDGRADE=7,AUTO_GENERATION_ID=1582441122,AUTO_UNIQUE_ID=(altera_CORDIC:18.1:ALL_function=ATAN2,FUNCTION_FAMILY=ALL,LUTSize=6,RES_DSP_param=0,RES_LUT_param=0,RES_MBIT_param=0,RES_MBLOCK_param=0,SFCompensation=false,derivedfunction=ATAN2,force_elaborate=0,frequency_feedback=0,frequency_target=200,fxpt_in_2_fraction_derived=0,fxpt_in_2_sign_derived=1,fxpt_in_2_width_derived=32,fxpt_in_fraction=10,fxpt_in_fraction_derived=0,fxpt_in_sign=1,fxpt_in_sign_derived=1,fxpt_in_width=32,fxpt_in_width_derived=32,fxpt_out_2_fraction_derived=0,fxpt_out_2_sign_derived=1,fxpt_out_2_width_derived=32,fxpt_out_fraction=10,fxpt_out_fraction_derived=0,fxpt_out_sign=1,fxpt_out_sign_derived=1,fxpt_out_width=32,fxpt_out_width_derived=13,gen_enable=true,latency_feedback=0,latency_target=2,performance_goal=frequency,report_resources_to_xml=false,selected_device_family=Cyclone V,selected_device_speedgrade=7,specifyLUTs=false,useLUTs=false,validation_failed=false)"
    instancePathKey="Atan2"
    kind="Atan2"
    version="1.0"
    name="Atan2">
   <parameter name="AUTO_CLK_CLOCK_RATE" value="-1" />
-  <parameter name="AUTO_GENERATION_ID" value="1582417418" />
+  <parameter name="AUTO_GENERATION_ID" value="1582441122" />
   <parameter name="AUTO_DEVICE" value="5CEBA2F17A7" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
   <parameter name="AUTO_CLK_RESET_DOMAIN" value="-1" />
@@ -100,26 +100,26 @@
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="7" />
   <generatedFiles>
    <file
-       path="C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/Atan2.v"
+       path="C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/Atan2.v"
        type="VERILOG" />
   </generatedFiles>
   <childGeneratedFiles>
    <file
-       path="C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library_package.vhd"
+       path="C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library_package.vhd"
        type="VHDL"
        attributes="" />
    <file
-       path="C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library.vhd"
+       path="C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library.vhd"
        type="VHDL"
        attributes="" />
    <file
-       path="C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/Atan2_CORDIC_0.vhd"
+       path="C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/Atan2_CORDIC_0.vhd"
        type="VHDL"
        attributes="" />
   </childGeneratedFiles>
   <sourceFiles>
    <file
-       path="C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Atan2.qsys" />
+       path="C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2.qsys" />
   </sourceFiles>
   <childSourceFiles>
    <file
@@ -195,15 +195,15 @@
   <parameter name="frequency_feedback" value="0" />
   <generatedFiles>
    <file
-       path="C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library_package.vhd"
+       path="C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library_package.vhd"
        type="VHDL"
        attributes="" />
    <file
-       path="C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library.vhd"
+       path="C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/dspba_library.vhd"
        type="VHDL"
        attributes="" />
    <file
-       path="C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/Atan2_CORDIC_0.vhd"
+       path="C:/Users/Thomas/Documents/Classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/submodules/Atan2_CORDIC_0.vhd"
        type="VHDL"
        attributes="" />
   </generatedFiles>

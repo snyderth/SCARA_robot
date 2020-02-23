@@ -50,6 +50,21 @@ add wave addyDone
 add wave -radix float64 xDouble
 add wave -radix float64 yDouble
 
+add wave TrigFuncDone
+add wave TrigFuncEn
+add wave TrigState
+add wave TrigFunctionDone
+add wave -radix unsigned count
+add wave -radix float32 CosInput
+add wave -radix float32 SinInput
+add wave -radix float32 SinResult
+add wave -radix float32 CosResult
+
+add wave Theta1TrigEn
+add wave SummedTrigEn
+
+
+
 force clk 0 @ 0, 1 @ 5 -r 10
 force enable 0 @ 0, 1 @ 15
 force reset 1 @ 0, 0 @ 15

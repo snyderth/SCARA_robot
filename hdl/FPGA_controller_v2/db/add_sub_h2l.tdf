@@ -1,0 +1,205 @@
+--lpm_add_sub CARRY_CHAIN="MANUAL" CARRY_CHAIN_LENGTH=48 CBX_DECLARE_ALL_CONNECTED_PORTS="OFF" DEVICE_FAMILY="Cyclone V" LPM_PIPELINE=1 LPM_REPRESENTATION="SIGNED" LPM_WIDTH=29 aclr add_sub cin clken clock cout dataa datab result
+--VERSION_BEGIN 18.1 cbx_cycloneii 2018:09:12:13:04:24:SJ cbx_lpm_add_sub 2018:09:12:13:04:24:SJ cbx_mgl 2018:09:12:13:10:36:SJ cbx_nadder 2018:09:12:13:04:24:SJ cbx_stratix 2018:09:12:13:04:24:SJ cbx_stratixii 2018:09:12:13:04:24:SJ  VERSION_END
+
+
+-- Copyright (C) 2018  Intel Corporation. All rights reserved.
+--  Your use of Intel Corporation's design tools, logic functions 
+--  and other software and tools, and its AMPP partner logic 
+--  functions, and any output files from any of the foregoing 
+--  (including device programming or simulation files), and any 
+--  associated documentation or information are expressly subject 
+--  to the terms and conditions of the Intel Program License 
+--  Subscription Agreement, the Intel Quartus Prime License Agreement,
+--  the Intel FPGA IP License Agreement, or other applicable license
+--  agreement, including, without limitation, that your use is for
+--  the sole purpose of programming logic devices manufactured by
+--  Intel and sold by Intel or its authorized distributors.  Please
+--  refer to the applicable agreement for further details.
+
+
+FUNCTION cyclonev_lcell_comb (cin, dataa, datab, datac, datad, datae, dataf, datag, sharein)
+WITH ( DONT_TOUCH, EXTENDED_LUT, LUT_MASK, SHARED_ARITH)
+RETURNS ( combout, cout, shareout, sumout);
+
+--synthesis_resources = lut 29 reg 30 
+SUBDESIGN add_sub_h2l
+( 
+	aclr	:	input;
+	add_sub	:	input;
+	cin	:	input;
+	clken	:	input;
+	clock	:	input;
+	cout	:	output;
+	dataa[28..0]	:	input;
+	datab[28..0]	:	input;
+	result[28..0]	:	output;
+) 
+VARIABLE 
+	dffe43 : dffe;
+	dffe44 : dffe;
+	dffe45 : dffe;
+	dffe46 : dffe;
+	dffe47 : dffe;
+	dffe48 : dffe;
+	dffe49 : dffe;
+	dffe50 : dffe;
+	dffe51 : dffe;
+	dffe52 : dffe;
+	dffe53 : dffe;
+	dffe54 : dffe;
+	dffe55 : dffe;
+	dffe56 : dffe;
+	dffe57 : dffe;
+	dffe58 : dffe;
+	dffe59 : dffe;
+	dffe60 : dffe;
+	dffe61 : dffe;
+	dffe62 : dffe;
+	dffe63 : dffe;
+	dffe64 : dffe;
+	dffe65 : dffe;
+	dffe66 : dffe;
+	dffe67 : dffe;
+	dffe68 : dffe;
+	dffe69 : dffe;
+	dffe70 : dffe;
+	dffe71 : dffe;
+	dffe72a[0..0] : dffe;
+	add_sub_cella[28..0] : cyclonev_lcell_comb
+		WITH (
+			EXTENDED_LUT = "off",
+			LUT_MASK = "00000FF00000FF00",
+			SHARED_ARITH = "off"
+		);
+	lsb_cin_wire[0..0]	: WIRE;
+
+BEGIN 
+	dffe43.clk = clock;
+	dffe43.clrn = (! aclr);
+	dffe43.d = add_sub_cella[0].sumout;
+	dffe43.ena = clken;
+	dffe44.clk = clock;
+	dffe44.clrn = (! aclr);
+	dffe44.d = add_sub_cella[1].sumout;
+	dffe44.ena = clken;
+	dffe45.clk = clock;
+	dffe45.clrn = (! aclr);
+	dffe45.d = add_sub_cella[2].sumout;
+	dffe45.ena = clken;
+	dffe46.clk = clock;
+	dffe46.clrn = (! aclr);
+	dffe46.d = add_sub_cella[3].sumout;
+	dffe46.ena = clken;
+	dffe47.clk = clock;
+	dffe47.clrn = (! aclr);
+	dffe47.d = add_sub_cella[4].sumout;
+	dffe47.ena = clken;
+	dffe48.clk = clock;
+	dffe48.clrn = (! aclr);
+	dffe48.d = add_sub_cella[5].sumout;
+	dffe48.ena = clken;
+	dffe49.clk = clock;
+	dffe49.clrn = (! aclr);
+	dffe49.d = add_sub_cella[6].sumout;
+	dffe49.ena = clken;
+	dffe50.clk = clock;
+	dffe50.clrn = (! aclr);
+	dffe50.d = add_sub_cella[7].sumout;
+	dffe50.ena = clken;
+	dffe51.clk = clock;
+	dffe51.clrn = (! aclr);
+	dffe51.d = add_sub_cella[8].sumout;
+	dffe51.ena = clken;
+	dffe52.clk = clock;
+	dffe52.clrn = (! aclr);
+	dffe52.d = add_sub_cella[9].sumout;
+	dffe52.ena = clken;
+	dffe53.clk = clock;
+	dffe53.clrn = (! aclr);
+	dffe53.d = add_sub_cella[10].sumout;
+	dffe53.ena = clken;
+	dffe54.clk = clock;
+	dffe54.clrn = (! aclr);
+	dffe54.d = add_sub_cella[11].sumout;
+	dffe54.ena = clken;
+	dffe55.clk = clock;
+	dffe55.clrn = (! aclr);
+	dffe55.d = add_sub_cella[12].sumout;
+	dffe55.ena = clken;
+	dffe56.clk = clock;
+	dffe56.clrn = (! aclr);
+	dffe56.d = add_sub_cella[13].sumout;
+	dffe56.ena = clken;
+	dffe57.clk = clock;
+	dffe57.clrn = (! aclr);
+	dffe57.d = add_sub_cella[14].sumout;
+	dffe57.ena = clken;
+	dffe58.clk = clock;
+	dffe58.clrn = (! aclr);
+	dffe58.d = add_sub_cella[15].sumout;
+	dffe58.ena = clken;
+	dffe59.clk = clock;
+	dffe59.clrn = (! aclr);
+	dffe59.d = add_sub_cella[16].sumout;
+	dffe59.ena = clken;
+	dffe60.clk = clock;
+	dffe60.clrn = (! aclr);
+	dffe60.d = add_sub_cella[17].sumout;
+	dffe60.ena = clken;
+	dffe61.clk = clock;
+	dffe61.clrn = (! aclr);
+	dffe61.d = add_sub_cella[18].sumout;
+	dffe61.ena = clken;
+	dffe62.clk = clock;
+	dffe62.clrn = (! aclr);
+	dffe62.d = add_sub_cella[19].sumout;
+	dffe62.ena = clken;
+	dffe63.clk = clock;
+	dffe63.clrn = (! aclr);
+	dffe63.d = add_sub_cella[20].sumout;
+	dffe63.ena = clken;
+	dffe64.clk = clock;
+	dffe64.clrn = (! aclr);
+	dffe64.d = add_sub_cella[21].sumout;
+	dffe64.ena = clken;
+	dffe65.clk = clock;
+	dffe65.clrn = (! aclr);
+	dffe65.d = add_sub_cella[22].sumout;
+	dffe65.ena = clken;
+	dffe66.clk = clock;
+	dffe66.clrn = (! aclr);
+	dffe66.d = add_sub_cella[23].sumout;
+	dffe66.ena = clken;
+	dffe67.clk = clock;
+	dffe67.clrn = (! aclr);
+	dffe67.d = add_sub_cella[24].sumout;
+	dffe67.ena = clken;
+	dffe68.clk = clock;
+	dffe68.clrn = (! aclr);
+	dffe68.d = add_sub_cella[25].sumout;
+	dffe68.ena = clken;
+	dffe69.clk = clock;
+	dffe69.clrn = (! aclr);
+	dffe69.d = add_sub_cella[26].sumout;
+	dffe69.ena = clken;
+	dffe70.clk = clock;
+	dffe70.clrn = (! aclr);
+	dffe70.d = add_sub_cella[27].sumout;
+	dffe70.ena = clken;
+	dffe71.clk = clock;
+	dffe71.clrn = (! aclr);
+	dffe71.d = add_sub_cella[28].sumout;
+	dffe71.ena = clken;
+	dffe72a[].clk = clock;
+	dffe72a[].clrn = (! aclr);
+	dffe72a[].d = add_sub_cella[28].cout;
+	dffe72a[].ena = clken;
+	add_sub_cella[].cin = ( add_sub_cella[27..0].cout, lsb_cin_wire[]);
+	add_sub_cella[].datac = add_sub;
+	add_sub_cella[].datad = dataa[];
+	add_sub_cella[].dataf = datab[];
+	cout = dffe72a[].q;
+	lsb_cin_wire[] = cin;
+	result[] = ( dffe71.q, dffe70.q, dffe69.q, dffe68.q, dffe67.q, dffe66.q, dffe65.q, dffe64.q, dffe63.q, dffe62.q, dffe61.q, dffe60.q, dffe59.q, dffe58.q, dffe57.q, dffe56.q, dffe55.q, dffe54.q, dffe53.q, dffe52.q, dffe51.q, dffe50.q, dffe49.q, dffe48.q, dffe47.q, dffe46.q, dffe45.q, dffe44.q, dffe43.q);
+END;
+--VALID FILE

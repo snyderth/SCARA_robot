@@ -16,7 +16,7 @@
 -- ---------------------------------------------------------------------------
 
 -- VHDL created from Atan2_CORDIC_0
--- VHDL created on Sat Feb 22 16:23:45 2020
+-- VHDL created on Sat Feb 22 22:58:52 2020
 
 
 library IEEE;

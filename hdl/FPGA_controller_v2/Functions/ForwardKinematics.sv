@@ -182,43 +182,122 @@ module ForwardKinematics(
 				
 			/*****************************************/
 			
-			/*** Trigonometry Functions **/
+			/*** Trigonometry Functions (state machine for
+					Switching arguments in sine and cosine for
+					space optimization) **/
 			logic [31:0] sinSum, cosineSum, sinth1, costh1;
+			logic [31:0] SinInput, CosInput;
+			logic [31:0] SinResult, CosResult;
+			typedef enum logic [1:0] {InitTrig, Theta1Trig, SummedTrig} TrigStateType;
+			logic [6:0] count;
+			TrigStateType TrigState, TrigNextState;
 			
-			Sine sineOfSummedThetas(
-											.data(SummedThetas),
-											.clock(clk),
-											.clk_en(TrigFuncEn),
-											.result(sinSum)
-											);
-											
-			Sine sinOfTh1(
-							.data(Th1Float),
-							.clock(clk),
-							.clk_en(TrigFuncEn),
-							.result(sinth1)
-							);
-							
-			Cosine cosineOfTh1(
-							.data(Th1Float),
-							.clock(clk),
-							.clk_en(TrigFuncEn),
-							.result(costh1)
-							);
+			logic Theta1TrigEn, TrigFunctionDone;
+			logic SummedTrigEn;
+			// Both states use the same done wire
+			always_ff@(posedge clk) begin
 			
+				if(reset | (state != TrigCalcs)) begin
+					TrigFuncDone <= 0;
+					TrigNextState <= InitTrig;
+					Theta1TrigEn <= 0;
+					SummedTrigEn <= 0;
+					TrigFuncDone <= 0;
+				end
+				else if((TrigState == InitTrig) & (state == TrigCalcs)) begin
+//						TrigFuncDone <= 0;
+					TrigNextState <= Theta1Trig;
+					Theta1TrigEn <= 0;
+					SummedTrigEn <= 0;
+//						CosInput <= Th1Float;
+//						SinInput <= Th1Float;
+				end
+				// Trig for theta 1 state.
+				else if (TrigState == Theta1Trig) begin
+					if(TrigFunctionDone) begin
+						TrigNextState <= SummedTrig;
+						Theta1TrigEn <= 0;
+						sinth1 <= SinResult;
+						costh1 <= CosResult; // save the outputs
+						
+					end
+					else begin
+						Theta1TrigEn <= 1;
+						SinInput <= Th1Float;
+						CosInput <= Th1Float;
+					end
+				end
+				// Trig for Summed thetas
+				else if(TrigState == SummedTrig) begin
+					if(TrigFunctionDone) begin
+						TrigNextState <= InitTrig;
+						sinSum <= SinResult;
+						cosineSum <= CosResult;// Save the outputs
+						SummedTrigEn <= 0;
+						TrigFuncDone <= 1; // Inidicate to higher machine it is done
+					end
+					else begin
+						SinInput <= SummedThetas;
+						CosInput <= SummedThetas;
+						SummedTrigEn <= 1;
+					end
+				end
+				else begin
+					Theta1TrigEn <= 0;
+					SummedTrigEn <= 0;
+				
+				end
+				TrigState <= TrigNextState;
+
+				
+			end
 			
-			Cosine cosineOfSummedThetas(
+			Sine sineFunction(.data(SinInput),
+									.clock(clk),
+									.clk_en(Theta1TrigEn | SummedTrigEn),
+									.result(SinResult));
+									
+			Cosine cosineFunction(.data(CosInput),
+										.clock(clk),
+										.clk_en(Theta1TrigEn | SummedTrigEn),
+										.result(CosResult));
 			
-											.data(SummedThetas),
-											.clock(clk),
-											.clk_en(TrigFuncEn),
-											.result(cosineSum)
-											);
 											
 			ClockTimer #(7, 35) TrigFunctionTimer(.clk(clk),
-																.en(TrigFuncEn),
-																.reset(~TrigFuncEn | reset),
-																.expire(TrigFuncDone));
+																.en(Theta1TrigEn | SummedTrigEn),
+																.reset((~Theta1TrigEn & ~SummedTrigEn) | reset),
+																.expire(TrigFunctionDone),
+																.count(count));
+			
+//			Sine sineOfSummedThetas(
+//											.data(SummedThetas),
+//											.clock(clk),
+//											.clk_en(TrigFuncEn),
+//											.result(sinSum)
+//											);
+//											
+//			Sine sinOfTh1(
+//							.data(Th1Float),
+//							.clock(clk),
+//							.clk_en(TrigFuncEn),
+//							.result(sinth1)
+//							);
+//							
+//			Cosine cosineOfTh1(
+//							.data(Th1Float),
+//							.clock(clk),
+//							.clk_en(TrigFuncEn),
+//							.result(costh1)
+//							);
+//			
+//			
+//			Cosine cosineOfSummedThetas(
+//			
+//											.data(SummedThetas),
+//											.clock(clk),
+//											.clk_en(TrigFuncEn),
+//											.result(cosineSum)
+//											);
 																
 			/**********************************************/
 			/* Convert trig to double state */

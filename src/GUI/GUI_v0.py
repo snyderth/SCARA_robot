@@ -27,6 +27,7 @@
 
 import PySimpleGUI as sg
 import cv2
+import easycall as easy
 import numpy as np
 def test_func(colorPalette, granularity, maxlines, papersize):
     print("Color: ",colorPalette, "Granularity: ", granularity, "maxlines: ", maxlines, "papersize: ", papersize)
@@ -172,8 +173,7 @@ while True:
         # final_img is image to be sent
         cv2.imwrite("final_image.png", img=final_img)
         # Call CV function here
-        test_func(colorPalette, granularity, maxLines, paperSize)
-
+        #test_func(colorPalette, granularity, maxLines, paperSize)
         window['cv_set'].update(visible=False)
         window['parser_feed'].update(visible=True)
 

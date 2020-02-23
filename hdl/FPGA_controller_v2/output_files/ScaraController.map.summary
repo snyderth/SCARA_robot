@@ -1,14 +1,22 @@
+<<<<<<< HEAD
 Analysis & Synthesis Status : Successful - Sat Feb 22 20:12:11 2020
+=======
+Analysis & Synthesis Status : Successful - Sat Feb 22 23:34:21 2020
+>>>>>>> 5b4bb27c7569a958769bc50307ed7899d9ce12f0
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : ScaraController
 Top-level Entity Name : ScaraController
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
+<<<<<<< HEAD
 Total registers : 27667
+=======
+Total registers : 26112
+>>>>>>> 5b4bb27c7569a958769bc50307ed7899d9ce12f0
 Total pins : 57
 Total virtual pins : 0
-Total block memory bits : 2,663
-Total DSP Blocks : 25
+Total block memory bits : 2,292
+Total DSP Blocks : 68
 Total HSSI RX PCSs : 0
 Total HSSI PMA RX Deserializers : 0
 Total HSSI TX PCSs : 0
