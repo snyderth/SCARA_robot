@@ -1,4 +1,18 @@
 <<<<<<< HEAD
+Analysis & Synthesis Status : Failed - Sun Feb 23 15:08:05 2020
+Quartus Prime Version : 19.1.0 Build 670 09/22/2019 SJ Lite Edition
+Revision Name : ScaraController
+Top-level Entity Name : ScaraController
+Family : Cyclone V
+Logic utilization (in ALMs) : N/A until Partition Merge
+Total registers : N/A until Partition Merge
+Total pins : N/A until Partition Merge
+Total virtual pins : N/A until Partition Merge
+Total block memory bits : N/A until Partition Merge
+Total PLLs : N/A until Partition Merge
+Total DLLs : N/A until Partition Merge
+=======
+<<<<<<< HEAD
 Analysis & Synthesis Status : Successful - Sat Feb 22 20:12:11 2020
 =======
 Analysis & Synthesis Status : Successful - Sat Feb 22 23:34:21 2020
@@ -23,3 +37,4 @@ Total HSSI TX PCSs : 0
 Total HSSI PMA TX Serializers : 0
 Total PLLs : 0
 Total DLLs : 0
+>>>>>>> 5e6a06d1efc8bddbeb603031f4a1b9bea35d7d65

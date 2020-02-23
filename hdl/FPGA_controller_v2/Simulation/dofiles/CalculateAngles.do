@@ -3,8 +3,12 @@ vlog -work work ../Functions/Arctan2.sv
 vlog -work work ../Functions/CosineTh2.sv
 vlog -work work ../Functions/SineTh2.sv
 vlog -work work ../Functions/CalculateAngles.sv
+vlog -work work ../Arithmetic/Inverter/Inverter.v
+vlog -work work ../Arithmetic/SqRoot/SqRoot.v
+vlog -work work ../Arithmetic/SqRoot/SquareRoot.sv
+vlog -work work ../Atan2/simulation/Atan2.v
 
-vsim -L lpm_ver -L altera_mf_ver work.CalculateAngles
+vsim -L lpm_ver -L altera_mf_ver -L CORDIC_0 work.CalculateAngles
 
 
 radix define fixed13 -fixed -signed -fraction 10
@@ -44,7 +48,7 @@ add wave -radix float64 k1
 add wave -radix float64 k2
 
 force clk 0 @ 0, 1 @ 5 -r 10
-force enable 0 @ 0, 1 @ 15
+force enable 0 @ 0, 1 @ 15, 0 @ 40, 1 @ 2700
 force reset 1 @ 0, 0 @ 15
 
 force l2 64'b0100000011000111010001011101000101110100010111001100100100101110 @ 0
@@ -53,7 +57,7 @@ force l1 64'b0100000011000000101110100010111010001011101000101110000011101011 @ 
 force l1Squared 64'b0100000110010001011111001101001110010001111110111100110100110101 @ 0
 force l2Squared 64'b0100000110100000111011001111010101101011111001100110011001100110 @ 0
 
-force xTarget 14'd2979 @ 0
-force yTarget 14'd2979 @ 0
+force xTarget 14'd2979 @ 0, 14'd4000 @ 2600
+force yTarget 14'd2979 @ 0, 14'd5000 @ 2600
 
-run 3000
+run 6000
