@@ -319,6 +319,10 @@ module CalculateAngles (
 				AtanXYDone <= 1'b0;
 				th2res <= resultAtan;
 			end
+			else begin
+				arg1Atan <= 1'b0;
+				arg2Atan <= 1'b0;
+			end
 		end
 										
 										
