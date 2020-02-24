@@ -43,7 +43,7 @@ module ScaraController(input logic [4:0] controlStateReg,
 		
 		
 		/* Separate logic for end effector */
-		always_ff@(posedge clk, posedge reset) begin
+		always_ff@(posedge clk) begin
 			if(reset) begin
 				endEffectorState <= 0;
 			end
@@ -53,7 +53,7 @@ module ScaraController(input logic [4:0] controlStateReg,
 		end
 		
 		/* Main state machine transition logic */
-		always_ff@(posedge clk, posedge reset) begin
+		always_ff@(posedge clk) begin
 			if(reset) begin
 				th1Current <= 13'b000_0110010010;
 				th2Current <= 13'b000_0110010010; //pi/4 start

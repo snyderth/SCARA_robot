@@ -37,12 +37,13 @@ module CalculateSteps(input signed [12:0] th1,
 				statetype state, nextstate;
 				
 				
-				always_ff@(posedge clk, posedge reset) begin
+				always_ff@(posedge clk) begin
 					if(reset) begin
 						nextstate <= Init;
 						ConvThEn <= 0;
 						MultEn <= 0;
 						ConvStepEn <= 0;
+						
 					end
 					else if(state == Init) begin
 						ConvThEn <= 0;

@@ -33,7 +33,7 @@ module SineTh2(input logic [63:0] CosTh2,
 				logic RootEn,	RootRes,	RootDone;
 				
 				/*			State Transition Logic 			 */
-				always_ff@(posedge clk, posedge reset) begin
+				always_ff@(posedge clk) begin
 					if(reset) begin
 						nextstate 		<= Init;
 						

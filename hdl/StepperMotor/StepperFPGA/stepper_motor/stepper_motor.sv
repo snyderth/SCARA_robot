@@ -70,6 +70,7 @@ module stepper_motor(input  logic clk_50,
 						set_steps	<= 0;
 						set_dir		<= 0;
 						set_fast		<= 0;
+						
 					end
 				else
 					begin

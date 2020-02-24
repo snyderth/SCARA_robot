@@ -48,7 +48,7 @@ module CalculateAngles (
 							
 				statetype state, nextstate;
 				
-				always_ff@(posedge clk, posedge reset) begin
+				always_ff@(posedge clk) begin
 					if(reset) begin
 					
 						nextstate <= Init;

@@ -32,7 +32,7 @@ module K1(input logic [63:0] l1,
 			logic MultEn, MultDone;
 			
 			
-			always_ff@(posedge clk, posedge reset) begin
+			always_ff@(posedge clk) begin
 				if(reset) begin
 					AddEn 	<= 0;
 					MultEn	<= 0;

@@ -7,7 +7,7 @@ def streamFromImage(img, colorPalette, granularity, maxLines, paperSize, reportD
     '''
     Send gcode to the fpga derived from an image
     @param reportSend: Function in the format (int)->None that reports when a value is about to be sent
-    @param reportSent: Function in the format (bool, int)->None that reports when a value has been sent, and if it was successful or not.
+    @param reportSent: Function in the format (bool, int)->None that reports when a value has been sent, and if it was succe,ssful or not.
     @param reportDone: Function in the format ()->None that reports when the FPGA is done executing
     '''
     gcode = asGCode(img, colorPalette, granularity, maxLines, paperSize)

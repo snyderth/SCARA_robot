@@ -45,7 +45,7 @@ module ForwardKinematics(
 			typedef enum logic [4:0] {ConvThToFloat, AddThetas, TrigCalcs, ConvTrigToDouble, MultTrig, AddTrig, ConvertToInt, Init} statetype;
 			statetype state, nextstate;
 			
-			always_ff@(posedge clk, posedge reset) begin
+			always_ff@(posedge clk) begin
 				if(reset) begin
 					nextstate <= Init;
 					ConvThToFloatEn <= 0;

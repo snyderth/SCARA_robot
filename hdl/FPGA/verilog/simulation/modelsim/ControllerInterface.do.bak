@@ -1,0 +1,31 @@
+vlog -work work ../verilog/*.?v
+
+vsim work.Controller_Interface
+
+add wave clk
+add wave block
+add wave cmd
+add wave -radix signed x_value_in
+add wave -radix signed y_value_in
+add wave memory_ready
+add wave controller_ready
+add wave controller_interface_in_ready
+add wave controller_interface_out_ready
+add wave controller_state_reg
+add wave -radix signed x_value
+add wave -radix signed y_value
+
+force clk 0 @ 0, 1 @ 5 -r 10
+force block 1 @ 0, 0 @ 20
+
+#force command_in 138412065 @ 40, 406914081 @ 60, 536870912 @ 80, 805306368 @ 100, 1073741824 @ 120, 1342177280 @ 140, 1879097344 @ 160, -2147483648 @ 180
+
+force cmd 4'd0 @ 40, 4'd1 @ 60, 4'd2 @ 80, 4'd3 @ 100, 4'd4 @ 120, 4'd5 @ 140, 4'd7 @ 160, 4'd8 @ 180  
+force x_value_in 14'd3838 @ 40, 14'd5913 @ 60, 14'd3 @ 160
+force y_value_in 14'd4567 @ 40, 14'd1235 @ 60, 14'd0 @ 160
+
+
+force memory_ready 1 @ 0, 0 @ 5 -r 10
+force controller_ready 1 @ 0, 0 @ 5 -r 10
+
+run 200
