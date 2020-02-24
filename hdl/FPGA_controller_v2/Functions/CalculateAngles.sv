@@ -60,12 +60,16 @@ module CalculateAngles (
 						GammaEn <= 0;
 						AtanXYEn <= 0;
 						ThetaEn <= 0;
+						dataReady <= 0;
 					
 					end
 					else if (state == Init) begin
-						if(enable)
+						if(enable) begin
 							nextstate <= TargetToDouble;
-					
+						end
+							
+						dataReady <= 0;
+
 					end
 					else if (state == TargetToDouble) begin
 						if(T2DDone) begin
@@ -74,8 +78,6 @@ module CalculateAngles (
 						end
 						else begin
 							T2DEn <= 1;
-							dataReady <= 0;
-							
 						end
 
 						

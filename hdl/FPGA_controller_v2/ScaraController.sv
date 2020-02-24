@@ -10,8 +10,18 @@ module ScaraController(input logic [4:0] controlStateReg,
 								output logic dir1,
 								output logic dir2,
 								output logic endEffectorState,
-								output logic dataReady);
+								output logic dataReady,
+								output logic readyForNewData);
 								
+		/* For receiving new data and moving data through from stepper motors */
+		logic newDataReceived;
+		
+		SRLatch newDataLatch(.set(stepperReady),
+									.reset(newDataReceived),
+									.q(readyForNewData));
+		
+		/**********************************************************************/
+		
 		logic [63:0] l2 = 64'b0100000011000111010001011101000101110100010111001100100100101110;
 		logic [63:0] l1 = 64'b0100000011000000101110100010111010001011101000101110000011101011;
 		logic [63:0] l1Squared = 64'b0100000110010001011111001101001110010001111110111100110100110101;
@@ -32,10 +42,21 @@ module ScaraController(input logic [4:0] controlStateReg,
 		statetype state, nextstate;
 		
 		
+		/* Separate logic for end effector */
+		always_ff@(posedge clk, posedge reset) begin
+			if(reset) begin
+				endEffectorState <= 0;
+			end
+			else if(controlStateReg[3] | controlStateReg[4]) endEffectorState <= 1;
+			else endEffectorState <= 0;
+			
+		end
+		
+		/* Main state machine transition logic */
 		always_ff@(posedge clk, posedge reset) begin
 			if(reset) begin
 				th1Current <= 13'b000_0110010010;
-				th2Current <= 13'b000_0110010010; //pi/4
+				th2Current <= 13'b000_0110010010; //pi/4 start
 				nextstate <= Init;
 				FKEn <= 0;
 				AnglesEn <= 0;
@@ -43,19 +64,18 @@ module ScaraController(input logic [4:0] controlStateReg,
 				WaitEn <= 0;
 			end
 			else if(state == Init) begin
-				
+				newDataReceived <= 0;
 				FKEn <= 0;
 				AnglesEn <= 0;
 				StepsEn <= 0;
 				WaitEn <= 0;
 				if(enable) begin
-				// Hold or pulse on register??
-					if(controlStateReg[3]) endEffectorState <= 1;
-					else endEffectorState <= 0;
 					
 					if(controlStateReg[4]) nextstate <= Wait;
 					else if(controlStateReg[2] & controlStateReg[0]) nextstate <= FK;
 					else if(controlStateReg[0]) nextstate <= Angles;
+					
+					newDataReceived <= 1;
 				end
 			
 			end

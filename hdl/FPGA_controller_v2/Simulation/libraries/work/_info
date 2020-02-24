@@ -582,7 +582,7 @@ R11
 n@adder_altpriority_encoder_vh8
 vArctan2
 Z14 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z15 !s110 1582500196
+Z15 !s110 1582501764
 !i10b 1
 !s100 LPQ7NGz^OK?ZnAzzK=2U93
 IZ>zb<XKgD<0Vc[aM]zF]Q1
@@ -598,7 +598,7 @@ R6
 r1
 !s85 0
 31
-Z17 !s108 1582500196.000000
+Z17 !s108 1582501764.000000
 !s107 ../Functions/Arctan2.sv|
 !s90 -reportprogress|300|-work|work|../Functions/Arctan2.sv|
 !i113 1
@@ -606,13 +606,13 @@ R10
 R11
 n@arctan2
 vAtan2
-!s110 1582500200
+Z18 !s110 1582501767
 !i10b 1
 !s100 O6CYiT0N3;]I0@68T[gMB0
 IAjI19kM[C0Q?4?IoC=>;<0
 R2
 R0
-Z18 w1582499046
+Z19 w1582499046
 8../Atan2/simulation/Atan2.v
 F../Atan2/simulation/Atan2.v
 L0 6
@@ -620,7 +620,7 @@ R6
 r1
 !s85 0
 31
-!s108 1582500200.000000
+Z20 !s108 1582501767.000000
 !s107 ../Atan2/simulation/Atan2.v|
 !s90 -reportprogress|300|-work|work|../Atan2/simulation/Atan2.v|
 !i113 1
@@ -628,67 +628,67 @@ R10
 R11
 n@atan2
 Eatan2_cordic_0
-R18
-Z19 DPx3 lpm 14 lpm_components 0 22 BZZBj]8LhndN7CkCjD@L`2
-Z20 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 QZo1Vh6en2ZO3=hNmAfQ>0
-Z21 DPx9 altera_mf 20 altera_mf_components 0 22 gV:l9C^?PSb6]b5V?_jR@3
-Z22 DPx4 work 21 dspba_library_package 0 22 g5ge0<PbUA3NecLg[8;Cj3
-Z23 DPx4 ieee 9 math_real 0 22 Sk6CSihbPL<f[^Shm]=KX0
-Z24 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
-Z25 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
-Z26 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R19
+Z21 DPx3 lpm 14 lpm_components 0 22 BZZBj]8LhndN7CkCjD@L`2
+Z22 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 QZo1Vh6en2ZO3=hNmAfQ>0
+Z23 DPx9 altera_mf 20 altera_mf_components 0 22 gV:l9C^?PSb6]b5V?_jR@3
+Z24 DPx4 work 21 dspba_library_package 0 22 g5ge0<PbUA3NecLg[8;Cj3
+Z25 DPx4 ieee 9 math_real 0 22 Sk6CSihbPL<f[^Shm]=KX0
+Z26 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z27 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z28 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
 R0
-Z27 8Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/Atan2_CORDIC_0.vhd
-Z28 FZ:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/Atan2_CORDIC_0.vhd
+Z29 8Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/Atan2_CORDIC_0.vhd
+Z30 FZ:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/Atan2_CORDIC_0.vhd
 l0
 L36
 V;YeoP_T?Y^_oR3S=kQILU3
 !s100 eKfQ;Tlk@mNOF;?o93:BE0
-Z29 OV;C;10.5b;63
+Z31 OV;C;10.5b;63
 32
-Z30 !s110 1582499915
+Z32 !s110 1582499915
 !i10b 1
-Z31 !s108 1582499915.000000
-Z32 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/Atan2_CORDIC_0.vhd|
-Z33 !s107 Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/Atan2_CORDIC_0.vhd|
+Z33 !s108 1582499915.000000
+Z34 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/Atan2_CORDIC_0.vhd|
+Z35 !s107 Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/Atan2_CORDIC_0.vhd|
 !i113 1
-Z34 o-work work -2002 -explicit
-Z35 tExplicit 1 CvgOpt 0
+Z36 o-work work -2002 -explicit
+Z37 tExplicit 1 CvgOpt 0
 Anormal
-R19
-R20
 R21
 R22
 R23
 R24
 R25
 R26
+R27
+R28
 DEx4 work 14 atan2_cordic_0 0 22 ;YeoP_T?Y^_oR3S=kQILU3
 l470
 L47
 V2=meoH1>b`hgjTG?XWD;<0
 !s100 NQejKSK]ONnOLaaQ`QESH0
-R29
-32
-R30
-!i10b 1
 R31
+32
 R32
+!i10b 1
 R33
-!i113 1
 R34
 R35
+!i113 1
+R36
+R37
 vCalculateAngles
 R14
-Z36 !s110 1582500905
+Z38 !s110 1582505165
 !i10b 1
-!s100 ^_o09i>hCofdJAY52?VgW0
-I9<i7GOT]GhlKV4X^Ubd:H3
+!s100 odA:Wd[2on@cA?]SeFSnY3
+IAUPWI0II5mO`X>T_4;b3J1
 R2
 !s105 CalculateAngles_sv_unit
 S1
 R0
-w1582439241
+w1582502829
 8../Functions/CalculateAngles.sv
 F../Functions/CalculateAngles.sv
 L0 24
@@ -696,7 +696,7 @@ R6
 r1
 !s85 0
 31
-Z37 !s108 1582500905.000000
+Z39 !s108 1582505165.000000
 !s107 ../Functions/CalculateAngles.sv|
 !s90 -reportprogress|300|-work|work|../Functions/CalculateAngles.sv|
 !i113 1
@@ -705,7 +705,7 @@ R11
 n@calculate@angles
 vCalculateSteps
 R14
-R36
+Z40 !s110 1582505166
 !i10b 1
 !s100 [XbO>SCYB:U0XbfWTS4JS2
 IBGBEbgcSj4@VVQ_Mg`K6a1
@@ -721,7 +721,7 @@ R6
 r1
 !s85 0
 31
-R37
+R39
 !s107 ../Functions/CalculateSteps.sv|
 !s90 -reportprogress|300|-work|work|../Functions/CalculateSteps.sv|
 !i113 1
@@ -741,7 +741,7 @@ R0
 R3
 8Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/ClockTimer.sv
 FZ:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/ClockTimer.sv
-Z38 L0 15
+Z41 L0 15
 R6
 r1
 !s85 0
@@ -750,716 +750,716 @@ r1
 !s107 Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/ClockTimer.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/ClockTimer.sv|
 !i113 1
-Z39 o-work work -sv
+Z42 o-work work -sv
 R11
 n@clock@timer
 vCosine
-Z40 !s110 1582437595
+Z43 !s110 1582437595
 !i10b 1
 !s100 MBoCJcXQl?E=Tf[?7GRen1
 IG[zdIeNgRV=e5aH@WdDOO2
 R2
 R0
-Z41 w1582414298
-Z42 8../Arithmetic/SinCos/Cosine.v
-Z43 F../Arithmetic/SinCos/Cosine.v
+Z44 w1582414298
+Z45 8../Arithmetic/SinCos/Cosine.v
+Z46 F../Arithmetic/SinCos/Cosine.v
 L0 4037
 R6
 r1
 !s85 0
 31
-Z44 !s108 1582437595.000000
-Z45 !s107 ../Arithmetic/SinCos/Cosine.v|
-Z46 !s90 -reportprogress|300|-work|work|../Arithmetic/SinCos/Cosine.v|
+Z47 !s108 1582437595.000000
+Z48 !s107 ../Arithmetic/SinCos/Cosine.v|
+Z49 !s90 -reportprogress|300|-work|work|../Arithmetic/SinCos/Cosine.v|
 !i113 1
 R10
 R11
 n@cosine
 vCosine_altfp_sincos_are
-R40
+R43
 !i10b 1
 !s100 g3PBCBU3OSlA22dll>LQ42
 I4ADc[QH`m:blk5:OhZPNY2
 R2
 R0
-R41
-R42
-R43
+R44
+R45
+R46
 L0 3722
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altfp_sincos_are
 vCosine_altfp_sincos_cordic_atan_35b
-R40
+R43
 !i10b 1
 !s100 8?EoF10`g_[EbgCHVASIV3
 ITFIc>j_Yf=b`NgJ9_WGb82
 R2
 R0
-R41
-R42
-R43
-Z47 L0 54
+R44
+R45
+R46
+Z50 L0 54
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altfp_sincos_cordic_atan_35b
 vCosine_altfp_sincos_cordic_atan_45b
-R40
+R43
 !i10b 1
 !s100 m0=mC2PU]`_d2]o_8nnKo1
 I2JN5HLj<YgoQ>Ib=8WRO[2
 R2
 R0
-R41
-R42
-R43
-Z48 L0 209
+R44
+R45
+R46
+Z51 L0 209
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altfp_sincos_cordic_atan_45b
 vCosine_altfp_sincos_cordic_atan_55b
-R40
+R43
 !i10b 1
 !s100 hUX1A09zY9<nbKzn`^n5I0
 IlW3MNVAd@e=oGKPRUdncV3
 R2
 R0
-R41
-R42
-R43
-Z49 L0 240
+R44
+R45
+R46
+Z52 L0 240
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altfp_sincos_cordic_atan_55b
 vCosine_altfp_sincos_cordic_atan_65b
-R40
+R43
 !i10b 1
 !s100 =@FL`W:?]d4ZhlVBS>o1h2
 IP_eJ4K92@R6Tl66U64mEm3
 R2
 R0
-R41
-R42
-R43
-Z50 L0 271
+R44
+R45
+R46
+Z53 L0 271
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altfp_sincos_cordic_atan_65b
 vCosine_altfp_sincos_cordic_atan_75b
-R40
+R43
 !i10b 1
 !s100 _QVVAMD6df2>37Z2ShW8L1
 I]c7e<6T;WJ[G8:U79bfS23
 R2
 R0
-R41
-R42
-R43
-Z51 L0 302
+R44
+R45
+R46
+Z54 L0 302
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altfp_sincos_cordic_atan_75b
 vCosine_altfp_sincos_cordic_atan_85b
-R40
+R43
 !i10b 1
 !s100 T@G@knXfQY_z4c>?8;`Zc3
 IJ:;fXz3]>^KTK`lHOkO211
 R2
 R0
-R41
-R42
-R43
-Z52 L0 333
+R44
+R45
+R46
+Z55 L0 333
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altfp_sincos_cordic_atan_85b
 vCosine_altfp_sincos_cordic_atan_95b
-R40
+R43
 !i10b 1
 !s100 Rc=fjZ1lz?Jzf91dnj:UA0
 I6z<<iAfU3AMKW<`[:Yh?J1
 R2
 R0
-R41
-R42
-R43
-Z53 L0 364
+R44
+R45
+R46
+Z56 L0 364
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altfp_sincos_cordic_atan_95b
 vCosine_altfp_sincos_cordic_atan_a5b
-R40
+R43
 !i10b 1
 !s100 TTVAkjgS482<AmRbN50oZ1
 IHI[7_2]YAg?AEWX2a3UBa3
 R2
 R0
-R41
-R42
-R43
-Z54 L0 395
+R44
+R45
+R46
+Z57 L0 395
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altfp_sincos_cordic_atan_a5b
 vCosine_altfp_sincos_cordic_atan_b5b
-R40
+R43
 !i10b 1
 !s100 WY2_eD]GjTJlGVTOWbdjh3
 I[<LCoz?:2V`o7oM=@M;8D0
 R2
 R0
-R41
-R42
-R43
-Z55 L0 426
+R44
+R45
+R46
+Z58 L0 426
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altfp_sincos_cordic_atan_b5b
 vCosine_altfp_sincos_cordic_atan_c5b
-R40
+R43
 !i10b 1
 !s100 7;Od^]0@[UU[d?_MB<OnO3
 I40P_U;mDAAF=EYTlz2Zb`3
 R2
 R0
-R41
-R42
-R43
-Z56 L0 457
+R44
+R45
+R46
+Z59 L0 457
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altfp_sincos_cordic_atan_c5b
 vCosine_altfp_sincos_cordic_atan_k6b
-R40
+R43
 !i10b 1
 !s100 dYd_T_c1bJ3@:MzzcdKho0
 I=jZ@Yk998h_Xd>>[:<dOB3
 R2
 R0
-R41
-R42
-R43
-Z57 L0 85
+R44
+R45
+R46
+Z60 L0 85
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altfp_sincos_cordic_atan_k6b
 vCosine_altfp_sincos_cordic_atan_l6b
-R40
+R43
 !i10b 1
 !s100 3Qe2dJ2`oa6o2eOn6<2Kz1
 IoVH];T783W3oz>ihglZbN2
 R2
 R0
-R41
-R42
-R43
-Z58 L0 116
+R44
+R45
+R46
+Z61 L0 116
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altfp_sincos_cordic_atan_l6b
 vCosine_altfp_sincos_cordic_atan_m6b
-R40
+R43
 !i10b 1
 !s100 l01@hEO5;F`TS[G6iDo<D3
 I9<AVD9XmTZj5iV[Z:UznM1
 R2
 R0
-R41
-R42
-R43
-Z59 L0 147
+R44
+R45
+R46
+Z62 L0 147
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altfp_sincos_cordic_atan_m6b
 vCosine_altfp_sincos_cordic_atan_n6b
-R40
+R43
 !i10b 1
 !s100 THl9KE;;gjRMJ8j9Qzgz92
 IVdd6_]h4X952KSc83;NQJ3
 R2
 R0
-R41
-R42
-R43
-Z60 L0 178
+R44
+R45
+R46
+Z63 L0 178
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altfp_sincos_cordic_atan_n6b
 vCosine_altfp_sincos_cordic_m_d5e
-R40
+R43
 !i10b 1
 !s100 8Uj0VFIJOLkEYR;PNAM2E3
 IfVRJcn;F3]SEDdd?7o3nZ1
 R2
 R0
-R41
-R42
-R43
-Z61 L0 565
+R44
+R45
+R46
+Z64 L0 565
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altfp_sincos_cordic_m_d5e
 vCosine_altfp_sincos_cordic_start_509
-R40
+R43
 !i10b 1
 !s100 i3;0Q`K9f:[c^j_8NkBoZ1
 IjB>W`K5mWD4TAGD@a@I2T3
 R2
 R0
-R41
-R42
-R43
-Z62 L0 488
+R44
+R45
+R46
+Z65 L0 488
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altfp_sincos_cordic_start_509
 vCosine_altfp_sincos_range_b6c
-R40
+R43
 !i10b 1
 !s100 AfgHc^Z^WUeTPJFDLiOCO1
 IS29z;[IIa6gLbDi[XMV=Q1
 R2
 R0
-R41
-R42
-R43
+R44
+R45
+R46
 L0 3032
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altfp_sincos_range_b6c
 vCosine_altfp_sincos_srrt_koa
-R40
+R43
 !i10b 1
 !s100 ?im_TYakf^J<4V4Vm>7R22
 IEA=?M=J>5lXF>Li9NFCV@1
 R2
 R0
-R41
-R42
-R43
+R44
+R45
+R46
 L0 2691
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altfp_sincos_srrt_koa
 vCosine_altpriority_encoder_0c6
-R40
+R43
 !i10b 1
 !s100 7E9N]mFn9zbJ6A6g6S^GD1
 I06IOJ6ZZE89iXRE4:jZn33
 R2
 R0
-R41
-R42
-R43
+R44
+R45
+R46
 L0 3694
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altpriority_encoder_0c6
 vCosine_altpriority_encoder_3e8
-R40
+R43
 !i10b 1
 !s100 18]Iz]YXIZS`c4ha9R6XO2
 I>8;CMP[^l[fb2Sn>Bb^Rh1
 R2
 R0
-R41
-R42
-R43
+R44
+R45
+R46
 L0 2770
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altpriority_encoder_3e8
 vCosine_altpriority_encoder_3v7
-R40
+R43
 !i10b 1
 !s100 lMhCFH9WTfA4OD2jZULV[2
 IOl`K[fdg9e_eVWbV@7Gjf2
 R2
 R0
-R41
-R42
-R43
+R44
+R45
+R46
 L0 2793
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altpriority_encoder_3v7
 vCosine_altpriority_encoder_6e8
-R40
+R43
 !i10b 1
 !s100 d`36YKC4CGTNSQ9HFfjlz3
 IHM_K`FVU4;kQJd@1O]Q^13
 R2
 R0
-R41
-R42
-R43
+R44
+R45
+R46
 L0 2841
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altpriority_encoder_6e8
 vCosine_altpriority_encoder_6v7
-R40
+R43
 !i10b 1
 !s100 7<2dee5=X?XFg`FfiA3ba0
 IZMlB<3Em_JXTD<W]A1@LU0
 R2
 R0
-R41
-R42
-R43
+R44
+R45
+R46
 L0 2809
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altpriority_encoder_6v7
 vCosine_altpriority_encoder_be8
-R40
+R43
 !i10b 1
 !s100 X9=l;]^]HznKnV;I;F1UR0
 IoFbTGKh=5k3^>G8j0YHCG1
 R2
 R0
-R41
-R42
-R43
+R44
+R45
+R46
 L0 2906
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altpriority_encoder_be8
 vCosine_altpriority_encoder_bv7
-R40
+R43
 !i10b 1
 !s100 @i[lHbnKVeXEdF2>8P2GV2
 ICfbSP?1^n`kfhdXNC^aYZ3
 R2
 R0
-R41
-R42
-R43
+R44
+R45
+R46
 L0 2874
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altpriority_encoder_bv7
 vCosine_altpriority_encoder_q08
-R40
+R43
 !i10b 1
 !s100 RYU9zP?E34mUDlQhORF4R1
 IbN?NbF:iNgE?A3eDWF3gS3
 R2
 R0
-R41
-R42
-R43
+R44
+R45
+R46
 L0 3629
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altpriority_encoder_q08
 vCosine_altpriority_encoder_qb6
-R40
+R43
 !i10b 1
 !s100 <oW@j6aBJoJ3<z0U4hXO02
 I_a1FIJ^0l81Iz8=LlICiE3
 R2
 R0
-R41
-R42
-R43
+R44
+R45
+R46
 L0 3004
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altpriority_encoder_qb6
 vCosine_altpriority_encoder_qf8
-R40
+R43
 !i10b 1
 !s100 4EV@OjB_lCZ5]NMc[;<I^0
 I[BN?NAz6[RgM=nfedY[bm2
 R2
 R0
-R41
-R42
-R43
+R44
+R45
+R46
 L0 3661
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altpriority_encoder_qf8
 vCosine_altpriority_encoder_r08
-R40
+R43
 !i10b 1
 !s100 QSQ?2^[DKgbVN][04lII;2
 IRGhVM`K^iVCSkGC=L?Qa;3
 R2
 R0
-R41
-R42
-R43
+R44
+R45
+R46
 L0 2939
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altpriority_encoder_r08
 vCosine_altpriority_encoder_rf8
-R40
+R43
 !i10b 1
 !s100 dT9B1=3o[X?FjJGm>KH5G1
 I<<A`dJde7z1B]O`cG@^U13
 R2
 R0
-R41
-R42
-R43
+R44
+R45
+R46
 L0 2971
 R6
 r1
 !s85 0
 31
-R44
-R45
-R46
+R47
+R48
+R49
 !i113 1
 R10
 R11
 n@cosine_altpriority_encoder_rf8
 vCosineTh2
 R14
-Z63 !s110 1582500197
+R15
 !i10b 1
 !s100 XJQ<G_A0nnhAkWA;`G0`z2
 I>Z_1fCZ8O=B4H_7]z88lC3
@@ -1475,7 +1475,7 @@ R6
 r1
 !s85 0
 31
-Z64 !s108 1582500197.000000
+R17
 !s107 ../Functions/CosineTh2.sv|
 !s90 -reportprogress|300|-work|work|../Functions/CosineTh2.sv|
 !i113 1
@@ -1484,7 +1484,7 @@ R11
 n@cosine@th2
 vCounter
 R14
-Z65 !s110 1582499737
+Z66 !s110 1582499737
 !i10b 1
 !s100 <=D0OFV`gW?mNnVJNj>0K1
 I;;89NTIKe^jiHn>5SR>H[1
@@ -1495,21 +1495,21 @@ R0
 R3
 8Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/Counter.sv
 FZ:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/Counter.sv
-R38
+R41
 R6
 r1
 !s85 0
 31
-Z66 !s108 1582499737.000000
+Z67 !s108 1582499737.000000
 !s107 Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/Counter.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/Counter.sv|
 !i113 1
-R39
+R42
 R11
 n@counter
 vDoubleAdder
 R14
-R65
+R66
 !i10b 1
 !s100 6^1`5^fI7KfHUnDnKA^K03
 IL<_YWbBgBbI;N`Ic?Fhfc1
@@ -1525,82 +1525,82 @@ R6
 r1
 !s85 0
 31
-R66
+R67
 !s107 Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleAdder.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleAdder.sv|
 !i113 1
-R39
+R42
 R11
 n@double@adder
 vDoubleDiv
-Z67 !s110 1582499738
+Z68 !s110 1582499738
 !i10b 1
 !s100 j`@7OSWX7He:^=mLJ>3:g3
 IbUX@dDZfUOeB8C`UfWDJ^0
 R2
 R0
 R3
-Z68 8Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDiv.v
-Z69 FZ:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDiv.v
+Z69 8Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDiv.v
+Z70 FZ:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDiv.v
 L0 1748
 R6
 r1
 !s85 0
 31
-R66
-Z70 !s107 Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDiv.v|
-Z71 !s90 -reportprogress|300|-work|work|-stats=none|Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDiv.v|
+R67
+Z71 !s107 Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDiv.v|
+Z72 !s90 -reportprogress|300|-work|work|-stats=none|Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDiv.v|
 !i113 1
 R10
 R11
 n@double@div
 vDoubleDiv_altfp_div_49m
-R67
+R68
 !i10b 1
 !s100 l]Rdnf<ZJ0XRW9`lEeG0A0
 ID@UJn<XgV:_STj3OnNLQc0
 R2
 R0
 R3
-R68
 R69
+R70
 L0 1682
 R6
 r1
 !s85 0
 31
-R66
-R70
+R67
 R71
+R72
 !i113 1
 R10
 R11
 n@double@div_altfp_div_49m
 vDoubleDiv_altfp_div_pst_99j
-R67
+R68
 !i10b 1
 !s100 QPgEM4>ojg4n1K^]o:AFQ2
 IYi2DfN9Xf<g=IU::BgPmB2
 R2
 R0
 R3
-R68
 R69
+R70
 R12
 R6
 r1
 !s85 0
 31
-R66
-R70
+R67
 R71
+R72
 !i113 1
 R10
 R11
 n@double@div_altfp_div_pst_99j
 vDoubleDivider
 R14
-R67
+R68
 !i10b 1
 !s100 Wi:]?jjC_4i;NngJbihI<3
 IQ9RzdMmZA@Zh`cddM;K8e3
@@ -1611,7 +1611,7 @@ R0
 R3
 8Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDivider.sv
 FZ:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDivider.sv
-R38
+R41
 R6
 r1
 !s85 0
@@ -1620,12 +1620,12 @@ r1
 !s107 Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDivider.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDivider.sv|
 !i113 1
-R39
+R42
 R11
 n@double@divider
 vDoubleMultiply
 R14
-Z72 !s110 1582499739
+Z73 !s110 1582499739
 !i10b 1
 !s100 UR6Cm4@zXI[[CMG2<`27U0
 Ic>nHTSQjEjYCMD:0T@F:k3
@@ -1641,365 +1641,365 @@ R6
 r1
 !s85 0
 31
-Z73 !s108 1582499739.000000
+Z74 !s108 1582499739.000000
 !s107 Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleMultiply.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleMultiply.sv|
 !i113 1
-R39
+R42
 R11
 n@double@multiply
 vDoubleTo32BitFixed
-R72
+R73
 !i10b 1
 !s100 [a0^Z`QEn?WLTcS9D;5<o2
 If>lE`K;5RljbY3=HojR>@3
 R2
 R0
 R3
-Z74 8Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleTo32BitFixed.v
-Z75 FZ:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleTo32BitFixed.v
-Z76 L0 1035
+Z75 8Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleTo32BitFixed.v
+Z76 FZ:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleTo32BitFixed.v
+Z77 L0 1035
 R6
 r1
 !s85 0
 31
-R73
-Z77 !s107 Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleTo32BitFixed.v|
-Z78 !s90 -reportprogress|300|-work|work|-stats=none|Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleTo32BitFixed.v|
+R74
+Z78 !s107 Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleTo32BitFixed.v|
+Z79 !s90 -reportprogress|300|-work|work|-stats=none|Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleTo32BitFixed.v|
 !i113 1
 R10
 R11
 n@double@to32@bit@fixed
 vDoubleTo32BitFixed_altbarrel_shift_j4h
-R72
+R73
 !i10b 1
 !s100 M_EBYH@RUFC?AVX5me7Af1
 I?hT`RBHF10N8Tk2A[^ZP31
 R2
 R0
 R3
-R74
 R75
+R76
 R12
 R6
 r1
 !s85 0
 31
-R73
-R77
+R74
 R78
+R79
 !i113 1
 R10
 R11
 n@double@to32@bit@fixed_altbarrel_shift_j4h
 vDoubleTo32BitFixed_altfp_convert_jtp
-R72
+R73
 !i10b 1
 !s100 V`TZ;Ye^[@F6Z2iChRWHz1
 IRM@WObKN]ol=z[SUebV9I3
 R2
 R0
 R3
-R74
 R75
-Z79 L0 146
+R76
+Z80 L0 146
 R6
 r1
 !s85 0
 31
-R73
-R77
+R74
 R78
+R79
 !i113 1
 R10
 R11
 n@double@to32@bit@fixed_altfp_convert_jtp
 vDoubleToFixed42Bit
-Z80 !s110 1582499743
+Z81 !s110 1582499743
 !i10b 1
 !s100 778jHkBb@6UMYJFGScnA>2
 IPnQdW`X=``2R<6400NRdP2
 R2
 R0
 R3
-Z81 8Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleToFixed42Bit.v
-Z82 FZ:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleToFixed42Bit.v
-R76
+Z82 8Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleToFixed42Bit.v
+Z83 FZ:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleToFixed42Bit.v
+R77
 R6
 r1
 !s85 0
 31
-Z83 !s108 1582499743.000000
-Z84 !s107 Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleToFixed42Bit.v|
-Z85 !s90 -reportprogress|300|-work|work|-stats=none|Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleToFixed42Bit.v|
+Z84 !s108 1582499743.000000
+Z85 !s107 Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleToFixed42Bit.v|
+Z86 !s90 -reportprogress|300|-work|work|-stats=none|Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleToFixed42Bit.v|
 !i113 1
 R10
 R11
 n@double@to@fixed42@bit
 vDoubleToFixed42Bit_altbarrel_shift_p4h
-R80
+R81
 !i10b 1
 !s100 H6bb;dE<k6YYOZEd0]3Mj0
 IB19?]z_BMB[GY@cnMHGMR3
 R2
 R0
 R3
-R81
 R82
+R83
 R12
 R6
 r1
 !s85 0
 31
-R83
 R84
 R85
+R86
 !i113 1
 R10
 R11
 n@double@to@fixed42@bit_altbarrel_shift_p4h
 vDoubleToFixed42Bit_altfp_convert_mtp
-R80
+R81
 !i10b 1
 !s100 ]_ka^ZBUi=k7ZJnhhOm5i2
 IVVhZc0Qb6M^P9FW<`LKAi0
 R2
 R0
 R3
-R81
 R82
-R79
+R83
+R80
 R6
 r1
 !s85 0
 31
-R83
 R84
 R85
+R86
 !i113 1
 R10
 R11
 n@double@to@fixed42@bit_altfp_convert_mtp
 vDoubleToFloat
-Z86 !s110 1582437592
+Z87 !s110 1582437592
 !i10b 1
 !s100 h:K8G^iROfh?1IQR_N:0i0
 Ibje1nlLBUoWHfE8lT7_AP3
 R2
 R0
-R41
-Z87 8../Conversions/DoubleToFloat.v
-Z88 F../Conversions/DoubleToFloat.v
+R44
+Z88 8../Conversions/DoubleToFloat.v
+Z89 F../Conversions/DoubleToFloat.v
 L0 442
 R6
 r1
 !s85 0
 31
-Z89 !s108 1582437592.000000
-Z90 !s107 ../Conversions/Int15BitToDouble.v|../Conversions/Int15BitToDouble.BAK.v|../Conversions/FloatToDouble.v|../Conversions/Fixed13BitToFloat.v|../Conversions/Fixed13BitToDouble.v|../Conversions/DoubleToInt9Bit.v|../Conversions/DoubleToInt15Bit.v|../Conversions/DoubleToFloat.v|../Conversions/DoubleToFixed42Bit.v|../Conversions/DoubleToFixed42Bit.BAK.v|../Conversions/DoubleTo32BitFixed.v|
-Z91 !s90 -reportprogress|300|-work|work|../Conversions/DoubleTo32BitFixed.v|../Conversions/DoubleToFixed42Bit.BAK.v|../Conversions/DoubleToFixed42Bit.v|../Conversions/DoubleToFloat.v|../Conversions/DoubleToInt15Bit.v|../Conversions/DoubleToInt9Bit.v|../Conversions/Fixed13BitToDouble.v|../Conversions/Fixed13BitToFloat.v|../Conversions/FloatToDouble.v|../Conversions/Int15BitToDouble.BAK.v|../Conversions/Int15BitToDouble.v|
+Z90 !s108 1582437592.000000
+Z91 !s107 ../Conversions/Int15BitToDouble.v|../Conversions/Int15BitToDouble.BAK.v|../Conversions/FloatToDouble.v|../Conversions/Fixed13BitToFloat.v|../Conversions/Fixed13BitToDouble.v|../Conversions/DoubleToInt9Bit.v|../Conversions/DoubleToInt15Bit.v|../Conversions/DoubleToFloat.v|../Conversions/DoubleToFixed42Bit.v|../Conversions/DoubleToFixed42Bit.BAK.v|../Conversions/DoubleTo32BitFixed.v|
+Z92 !s90 -reportprogress|300|-work|work|../Conversions/DoubleTo32BitFixed.v|../Conversions/DoubleToFixed42Bit.BAK.v|../Conversions/DoubleToFixed42Bit.v|../Conversions/DoubleToFloat.v|../Conversions/DoubleToInt15Bit.v|../Conversions/DoubleToInt9Bit.v|../Conversions/Fixed13BitToDouble.v|../Conversions/Fixed13BitToFloat.v|../Conversions/FloatToDouble.v|../Conversions/Int15BitToDouble.BAK.v|../Conversions/Int15BitToDouble.v|
 !i113 1
 R10
 R11
 n@double@to@float
 vDoubleToFloat_altfp_convert_fmn
-R86
+R87
 !i10b 1
 !s100 Mmc4Qcg_@AzLQ@EI0b;6k3
 I0Rc_GTL]^dQ7cMS:aPVf91
 R2
 R0
-R41
-R87
+R44
 R88
-Z92 L0 46
+R89
+Z93 L0 46
 R6
 r1
 !s85 0
 31
-R89
 R90
 R91
+R92
 !i113 1
 R10
 R11
 n@double@to@float_altfp_convert_fmn
 vDoubleToInt15Bit
-Z93 !s110 1582437593
+Z94 !s110 1582437593
 !i10b 1
 !s100 5?ZK_Ez<<e3HaPU`YLiCZ2
 IKSm>A4MKeH=J2N]=4V]Em0
 R2
 R0
-R41
-Z94 8../Conversions/DoubleToInt15Bit.v
-Z95 F../Conversions/DoubleToInt15Bit.v
+R44
+Z95 8../Conversions/DoubleToInt15Bit.v
+Z96 F../Conversions/DoubleToInt15Bit.v
 L0 914
 R6
 r1
 !s85 0
 31
-R89
 R90
 R91
+R92
 !i113 1
 R10
 R11
 n@double@to@int15@bit
 vDoubleToInt15Bit_altbarrel_shift_oof
-R86
+R87
 !i10b 1
 !s100 G<702LZGKDa2IDSW?W09n0
 I;GHOkFe^6@iOOBH3iOfTz0
 R2
 R0
-R41
-R94
+R44
 R95
+R96
 R12
 R6
 r1
 !s85 0
 31
-R89
 R90
 R91
+R92
 !i113 1
 R10
 R11
 n@double@to@int15@bit_altbarrel_shift_oof
 vDoubleToInt15Bit_altfp_convert_qco
-R93
+R94
 !i10b 1
 !s100 2B=6kWaGXkmz0ZeTe18_z1
 IgDf^jaO0W^0X6@C;PFNe53
 R2
 R0
-R41
-R94
+R44
 R95
-Z96 L0 143
+R96
+Z97 L0 143
 R6
 r1
 !s85 0
 31
-R89
 R90
 R91
+R92
 !i113 1
 R10
 R11
 n@double@to@int15@bit_altfp_convert_qco
 vDoubleToInt9Bit
-R93
+R94
 !i10b 1
 !s100 0^:dzQVc8`?>AH?iZBGKQ3
 IL5KM=2B7ZbOaMaQJdgR2N1
 R2
 R0
-R41
-Z97 8../Conversions/DoubleToInt9Bit.v
-Z98 F../Conversions/DoubleToInt9Bit.v
+R44
+Z98 8../Conversions/DoubleToInt9Bit.v
+Z99 F../Conversions/DoubleToInt9Bit.v
 L0 936
 R6
 r1
 !s85 0
 31
-R89
 R90
 R91
+R92
 !i113 1
 R10
 R11
 n@double@to@int9@bit
 vDoubleToInt9Bit_altbarrel_shift_hof
-R93
+R94
 !i10b 1
 !s100 CzA3La3bdKVo^_i4bk7YJ3
 I=H5FCFZU`C^cT8:[`g2JK2
 R2
 R0
-R41
-R97
+R44
 R98
+R99
 R12
 R6
 r1
 !s85 0
 31
-R89
 R90
 R91
+R92
 !i113 1
 R10
 R11
 n@double@to@int9@bit_altbarrel_shift_hof
 vDoubleToInt9Bit_altfp_convert_jkp
-R93
+R94
 !i10b 1
 !s100 ::S<[i>LmG_KY]lWEVh]Z2
 IKBIB?ERUoKaTnOGFSP6^N0
 R2
 R0
-R41
-R97
+R44
 R98
-R96
+R99
+R97
 R6
 r1
 !s85 0
 31
-R89
 R90
 R91
+R92
 !i113 1
 R10
 R11
 n@double@to@int9@bit_altfp_convert_jkp
 Edspba_delay
-R18
-R22
-R25
-R26
+R19
+R24
+R27
+R28
 R0
-Z99 8Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/dspba_library.vhd
-Z100 FZ:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/dspba_library.vhd
+Z100 8Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/dspba_library.vhd
+Z101 FZ:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/dspba_library.vhd
 l0
 L18
 VJZ>XXZi]3nAML><T1OJmD2
 !s100 >TY9@l4a>2O5Wd_6jF4:g0
-R29
+R31
 32
-Z101 !s110 1582499907
+Z102 !s110 1582499907
 !i10b 1
-Z102 !s108 1582499907.000000
-Z103 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/dspba_library.vhd|
-Z104 !s107 Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/dspba_library.vhd|
+Z103 !s108 1582499907.000000
+Z104 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/dspba_library.vhd|
+Z105 !s107 Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/dspba_library.vhd|
 !i113 1
-R34
-R35
+R36
+R37
 Adelay
-R22
-R25
-R26
+R24
+R27
+R28
 DEx4 work 11 dspba_delay 0 22 JZ>XXZi]3nAML><T1OJmD2
 l37
 L34
 VH[ibU<H]FT4<DCgHmIjFa0
 !s100 DAfPXKZhR<Ac>Wg8zYj1H3
-R29
+R31
 32
-R101
-!i10b 1
 R102
+!i10b 1
 R103
 R104
+R105
 !i113 1
-R34
-R35
+R36
+R37
 Pdspba_library_package
-R25
-R26
+R27
+R28
 w1582438035
 R0
 8Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/dspba_library_package.vhd
@@ -2008,7 +2008,7 @@ l0
 L17
 Vg5ge0<PbUA3NecLg[8;Cj3
 !s100 @e;XE0e^oAdIdzY=Rc];H3
-R29
+R31
 32
 !s110 1582499911
 !i10b 1
@@ -2016,1063 +2016,1063 @@ R29
 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/dspba_library_package.vhd|
 !s107 Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/dspba_library_package.vhd|
 !i113 1
-R34
-R35
+R36
+R37
 Edspba_pipe
-R18
-R24
-R25
+R19
 R26
+R27
+R28
 R0
-R99
 R100
+R101
 l0
 L343
 VhX_ehDHUhEGT`<4CLHDEW1
 !s100 ko3XcgZgdPgSD;SDR?Wmi2
-R29
+R31
 32
-R101
-!i10b 1
 R102
+!i10b 1
 R103
 R104
+R105
 !i113 1
-R34
-R35
+R36
+R37
 Artl
-R24
-R25
 R26
+R27
+R28
 DEx4 work 10 dspba_pipe 0 22 hX_ehDHUhEGT`<4CLHDEW1
 l362
 L356
 VF>oh8b`LjePmYI9jU_S=k2
 !s100 =]hA3YBJaaU9dNBMla?I?2
-R29
+R31
 32
-R101
-!i10b 1
 R102
+!i10b 1
 R103
 R104
+R105
 !i113 1
-R34
-R35
+R36
+R37
 Edspba_sync_reg
-R18
-R22
+R19
 R24
-R25
 R26
+R27
+R28
 R0
-R99
 R100
+R101
 l0
 L93
 V[2:MQ1fH@k]9VCDY^FzcN0
 !s100 G`[2Ci2RQWoL`zK>2h>oj2
-R29
+R31
 32
-R101
-!i10b 1
 R102
+!i10b 1
 R103
 R104
+R105
 !i113 1
-R34
-R35
+R36
+R37
 Async_reg
-R22
 R24
-R25
 R26
+R27
+R28
 DEx4 work 14 dspba_sync_reg 0 22 [2:MQ1fH@k]9VCDY^FzcN0
 l136
 L117
 VXjK]3?6G<i`:[Y@3Y=3Bo1
 !s100 D5ba3Bk5_`1nL6?j<JkK81
-R29
+R31
 32
-R101
-!i10b 1
 R102
+!i10b 1
 R103
 R104
+R105
 !i113 1
-R34
-R35
+R36
+R37
 vFixed13BitToDouble
-R93
+R94
 !i10b 1
 !s100 Hh4a;PN^zBgWiBR7jYI<M1
 I>N;6`8^Vl_TJ:BK9gJkWU1
 R2
 R0
-Z105 w1582392642
-Z106 8../Conversions/Fixed13BitToDouble.v
-Z107 F../Conversions/Fixed13BitToDouble.v
-Z108 L0 626
+Z106 w1582392642
+Z107 8../Conversions/Fixed13BitToDouble.v
+Z108 F../Conversions/Fixed13BitToDouble.v
+Z109 L0 626
 R6
 r1
 !s85 0
 31
-R89
 R90
 R91
+R92
 !i113 1
 R10
 R11
 n@fixed13@bit@to@double
 vFixed13BitToDouble_altbarrel_shift_dof
-R93
+R94
 !i10b 1
 !s100 M`RdPThA91oOB:EbjF;kK2
 IVf;H=VjN2TgTN_NaWjKN=3
 R2
 R0
-R105
 R106
 R107
+R108
 R12
 R6
 r1
 !s85 0
 31
-R89
 R90
 R91
+R92
 !i113 1
 R10
 R11
 n@fixed13@bit@to@double_altbarrel_shift_dof
 vFixed13BitToDouble_altfp_convert_mkn
-R93
+R94
 !i10b 1
 !s100 _aECmCV=LYNZlTJcPTUWg1
 IUoeV9:XQD3YOB`:[3AaGQ2
 R2
 R0
-R105
 R106
 R107
-Z109 L0 348
+R108
+Z110 L0 348
 R6
 r1
 !s85 0
 31
-R89
 R90
 R91
+R92
 !i113 1
 R10
 R11
 n@fixed13@bit@to@double_altfp_convert_mkn
 vFixed13BitToDouble_altpriority_encoder_3e8
-R93
+R94
 !i10b 1
 !s100 TUj37A@V8d^Bm2CcE`oza0
 I>AYW2fB?0ejLG<0FEAg`R3
 R2
 R0
-R105
 R106
 R107
-Z110 L0 171
+R108
+Z111 L0 171
 R6
 r1
 !s85 0
 31
-R89
 R90
 R91
+R92
 !i113 1
 R10
 R11
 n@fixed13@bit@to@double_altpriority_encoder_3e8
 vFixed13BitToDouble_altpriority_encoder_3v7
-R93
+R94
 !i10b 1
 !s100 hUL5W5]7j9PHRX=BGW:lP1
 Ibba8KnPcIln=66JDDLNDE1
 R2
 R0
-R105
 R106
 R107
-Z111 L0 151
+R108
+Z112 L0 151
 R6
 r1
 !s85 0
 31
-R89
 R90
 R91
+R92
 !i113 1
 R10
 R11
 n@fixed13@bit@to@double_altpriority_encoder_3v7
 vFixed13BitToDouble_altpriority_encoder_6e8
-R93
+R94
 !i10b 1
 !s100 >>FNgljdMZiS=3[Y4DAAS0
 I6Ne^9h45eYi=cg[Eh2F4g2
 R2
 R0
-R105
 R106
 R107
-Z112 L0 222
+R108
+Z113 L0 222
 R6
 r1
 !s85 0
 31
-R89
 R90
 R91
+R92
 !i113 1
 R10
 R11
 n@fixed13@bit@to@double_altpriority_encoder_6e8
 vFixed13BitToDouble_altpriority_encoder_6v7
-R93
+R94
 !i10b 1
 !s100 V3cjgcA9i::bY60NNCS[h3
 I7XH3h32Wd74>?bQYEILXo2
 R2
 R0
-R105
 R106
 R107
-Z113 L0 190
+R108
+Z114 L0 190
 R6
 r1
 !s85 0
 31
-R89
 R90
 R91
+R92
 !i113 1
 R10
 R11
 n@fixed13@bit@to@double_altpriority_encoder_6v7
 vFixed13BitToDouble_altpriority_encoder_be8
-R93
+R94
 !i10b 1
 !s100 J69[Xo:zz9m_Vchjg43JS3
 I4mAf`h7JGVKm1:lI9aMn11
 R2
 R0
-R105
 R106
 R107
-Z114 L0 287
+R108
+Z115 L0 287
 R6
 r1
 !s85 0
 31
-R89
 R90
 R91
+R92
 !i113 1
 R10
 R11
 n@fixed13@bit@to@double_altpriority_encoder_be8
 vFixed13BitToDouble_altpriority_encoder_bv7
-R93
+R94
 !i10b 1
 !s100 WA=f0nb7abcoJE>8fW<Ho1
 IJ`KmfbgD7GgYUDe80fzQm3
 R2
 R0
-R105
 R106
 R107
-Z115 L0 255
+R108
+Z116 L0 255
 R6
 r1
 !s85 0
 31
-R89
 R90
 R91
+R92
 !i113 1
 R10
 R11
 n@fixed13@bit@to@double_altpriority_encoder_bv7
 vFixed13BitToDouble_altpriority_encoder_rb6
-R93
+R94
 !i10b 1
 !s100 o1M3Mch?h?jzYz<ac4IK]0
 IkzTzN=jZV?5VfDiK:FIe;3
 R2
 R0
-R105
 R106
 R107
-Z116 L0 320
+R108
+Z117 L0 320
 R6
 r1
 !s85 0
 31
-R89
 R90
 R91
+R92
 !i113 1
 R10
 R11
 n@fixed13@bit@to@double_altpriority_encoder_rb6
 vFixed13BitToFloat
-R93
+R94
 !i10b 1
 !s100 0lmJT[ez:;O0N?7z;6PK81
 I?Q@IB=bz=1fRGfl84CMIP0
 R2
 R0
-R41
-Z117 8../Conversions/Fixed13BitToFloat.v
-Z118 F../Conversions/Fixed13BitToFloat.v
-R108
-R6
-r1
-!s85 0
-31
-R89
-R90
-R91
-!i113 1
-R10
-R11
-n@fixed13@bit@to@float
-vFixed13BitToFloat_altbarrel_shift_dof
-R93
-!i10b 1
-!s100 L1=[WDHiOc7K]D8WZE_gO1
-II`C7AQ]d3zg;G?@Bk23`?3
-R2
-R0
-R41
-R117
-R118
-R12
-R6
-r1
-!s85 0
-31
-R89
-R90
-R91
-!i113 1
-R10
-R11
-n@fixed13@bit@to@float_altbarrel_shift_dof
-vFixed13BitToFloat_altfp_convert_5jn
-R93
-!i10b 1
-!s100 D]hDTlJ7NJASGJ]2B0YMH2
-I7DLV^EmNbKJOZb4[lTZQ`1
-R2
-R0
-R41
-R117
-R118
+R44
+Z118 8../Conversions/Fixed13BitToFloat.v
+Z119 F../Conversions/Fixed13BitToFloat.v
 R109
 R6
 r1
 !s85 0
 31
-R89
 R90
 R91
+R92
 !i113 1
 R10
 R11
-n@fixed13@bit@to@float_altfp_convert_5jn
-vFixed13BitToFloat_altpriority_encoder_3e8
-R93
+n@fixed13@bit@to@float
+vFixed13BitToFloat_altbarrel_shift_dof
+R94
 !i10b 1
-!s100 =ibh^Z@ad;`;gNXCnhf8[2
-I>Gf7E3iD`LU]AbTK5lXe?2
+!s100 L1=[WDHiOc7K]D8WZE_gO1
+II`C7AQ]d3zg;G?@Bk23`?3
 R2
 R0
-R41
-R117
+R44
 R118
-R110
-R6
-r1
-!s85 0
-31
-R89
-R90
-R91
-!i113 1
-R10
-R11
-n@fixed13@bit@to@float_altpriority_encoder_3e8
-vFixed13BitToFloat_altpriority_encoder_3v7
-R93
-!i10b 1
-!s100 3QHM@?djTV:_:zFo^4ai51
-I?S4_A@Ch`;H4DI4JU6^Ga1
-R2
-R0
-R41
-R117
-R118
-R111
-R6
-r1
-!s85 0
-31
-R89
-R90
-R91
-!i113 1
-R10
-R11
-n@fixed13@bit@to@float_altpriority_encoder_3v7
-vFixed13BitToFloat_altpriority_encoder_6e8
-R93
-!i10b 1
-!s100 _YMndKBmYCYgY7_^2N`PQ2
-IBB[Jgk@8Skh27Vdh<Nlaj1
-R2
-R0
-R41
-R117
-R118
-R112
-R6
-r1
-!s85 0
-31
-R89
-R90
-R91
-!i113 1
-R10
-R11
-n@fixed13@bit@to@float_altpriority_encoder_6e8
-vFixed13BitToFloat_altpriority_encoder_6v7
-R93
-!i10b 1
-!s100 H=>AUonRX0Mo;l7_7`B?_1
-IVR_VJfQ0`bj==K>8[9L6d1
-R2
-R0
-R41
-R117
-R118
-R113
-R6
-r1
-!s85 0
-31
-R89
-R90
-R91
-!i113 1
-R10
-R11
-n@fixed13@bit@to@float_altpriority_encoder_6v7
-vFixed13BitToFloat_altpriority_encoder_be8
-R93
-!i10b 1
-!s100 ^hMYnA<bUdDMneBdlmkf32
-IT2NKiFnFl<;QSP;0ACn0Q1
-R2
-R0
-R41
-R117
-R118
-R114
-R6
-r1
-!s85 0
-31
-R89
-R90
-R91
-!i113 1
-R10
-R11
-n@fixed13@bit@to@float_altpriority_encoder_be8
-vFixed13BitToFloat_altpriority_encoder_bv7
-R93
-!i10b 1
-!s100 3e38z>m8;E3jG0<_n9T3o3
-IAGM4[_[QnRff?<?JYz5nD0
-R2
-R0
-R41
-R117
-R118
-R115
-R6
-r1
-!s85 0
-31
-R89
-R90
-R91
-!i113 1
-R10
-R11
-n@fixed13@bit@to@float_altpriority_encoder_bv7
-vFixed13BitToFloat_altpriority_encoder_rb6
-R93
-!i10b 1
-!s100 4]b_fL]Reem<I_BC5^]O91
-IMTzl3RMe=KIUUI`@>25U21
-R2
-R0
-R41
-R117
-R118
-R116
-R6
-r1
-!s85 0
-31
-R89
-R90
-R91
-!i113 1
-R10
-R11
-n@fixed13@bit@to@float_altpriority_encoder_rb6
-vFloatAdder
-Z119 !s110 1582437597
-!i10b 1
-!s100 SY3oNeEM1BQGz^P:iOQAX0
-IP=7kljaN8`zTge4i>g>GS0
-R2
-R0
-R41
-Z120 8../Arithmetic/FloatAdder/FloatAdder.v
-Z121 F../Arithmetic/FloatAdder/FloatAdder.v
-L0 2622
-R6
-r1
-!s85 0
-31
-Z122 !s108 1582437597.000000
-Z123 !s107 ../Arithmetic/FloatAdder/FloatAdder.v|
-Z124 !s90 -reportprogress|300|-work|work|../Arithmetic/FloatAdder/FloatAdder.v|
-!i113 1
-R10
-R11
-n@float@adder
-vFloatAdder_altbarrel_shift_aeb
 R119
-!i10b 1
-!s100 dacnRBHDWkdE:kOeOaDf13
-I31>ZTS>4lSYPoXEgdU36j1
-R2
-R0
-R41
-R120
-R121
-R13
-R6
-r1
-!s85 0
-31
-R122
-R123
-R124
-!i113 1
-R10
-R11
-n@float@adder_altbarrel_shift_aeb
-vFloatAdder_altbarrel_shift_ltd
-R119
-!i10b 1
-!s100 7SBdFfRQUjD<]IHzcg_jz2
-I46RWhH_B`b37G0JD@K3^k2
-R2
-R0
-R41
-R120
-R121
 R12
 R6
 r1
 !s85 0
 31
+R90
+R91
+R92
+!i113 1
+R10
+R11
+n@fixed13@bit@to@float_altbarrel_shift_dof
+vFixed13BitToFloat_altfp_convert_5jn
+R94
+!i10b 1
+!s100 D]hDTlJ7NJASGJ]2B0YMH2
+I7DLV^EmNbKJOZb4[lTZQ`1
+R2
+R0
+R44
+R118
+R119
+R110
+R6
+r1
+!s85 0
+31
+R90
+R91
+R92
+!i113 1
+R10
+R11
+n@fixed13@bit@to@float_altfp_convert_5jn
+vFixed13BitToFloat_altpriority_encoder_3e8
+R94
+!i10b 1
+!s100 =ibh^Z@ad;`;gNXCnhf8[2
+I>Gf7E3iD`LU]AbTK5lXe?2
+R2
+R0
+R44
+R118
+R119
+R111
+R6
+r1
+!s85 0
+31
+R90
+R91
+R92
+!i113 1
+R10
+R11
+n@fixed13@bit@to@float_altpriority_encoder_3e8
+vFixed13BitToFloat_altpriority_encoder_3v7
+R94
+!i10b 1
+!s100 3QHM@?djTV:_:zFo^4ai51
+I?S4_A@Ch`;H4DI4JU6^Ga1
+R2
+R0
+R44
+R118
+R119
+R112
+R6
+r1
+!s85 0
+31
+R90
+R91
+R92
+!i113 1
+R10
+R11
+n@fixed13@bit@to@float_altpriority_encoder_3v7
+vFixed13BitToFloat_altpriority_encoder_6e8
+R94
+!i10b 1
+!s100 _YMndKBmYCYgY7_^2N`PQ2
+IBB[Jgk@8Skh27Vdh<Nlaj1
+R2
+R0
+R44
+R118
+R119
+R113
+R6
+r1
+!s85 0
+31
+R90
+R91
+R92
+!i113 1
+R10
+R11
+n@fixed13@bit@to@float_altpriority_encoder_6e8
+vFixed13BitToFloat_altpriority_encoder_6v7
+R94
+!i10b 1
+!s100 H=>AUonRX0Mo;l7_7`B?_1
+IVR_VJfQ0`bj==K>8[9L6d1
+R2
+R0
+R44
+R118
+R119
+R114
+R6
+r1
+!s85 0
+31
+R90
+R91
+R92
+!i113 1
+R10
+R11
+n@fixed13@bit@to@float_altpriority_encoder_6v7
+vFixed13BitToFloat_altpriority_encoder_be8
+R94
+!i10b 1
+!s100 ^hMYnA<bUdDMneBdlmkf32
+IT2NKiFnFl<;QSP;0ACn0Q1
+R2
+R0
+R44
+R118
+R119
+R115
+R6
+r1
+!s85 0
+31
+R90
+R91
+R92
+!i113 1
+R10
+R11
+n@fixed13@bit@to@float_altpriority_encoder_be8
+vFixed13BitToFloat_altpriority_encoder_bv7
+R94
+!i10b 1
+!s100 3e38z>m8;E3jG0<_n9T3o3
+IAGM4[_[QnRff?<?JYz5nD0
+R2
+R0
+R44
+R118
+R119
+R116
+R6
+r1
+!s85 0
+31
+R90
+R91
+R92
+!i113 1
+R10
+R11
+n@fixed13@bit@to@float_altpriority_encoder_bv7
+vFixed13BitToFloat_altpriority_encoder_rb6
+R94
+!i10b 1
+!s100 4]b_fL]Reem<I_BC5^]O91
+IMTzl3RMe=KIUUI`@>25U21
+R2
+R0
+R44
+R118
+R119
+R117
+R6
+r1
+!s85 0
+31
+R90
+R91
+R92
+!i113 1
+R10
+R11
+n@fixed13@bit@to@float_altpriority_encoder_rb6
+vFloatAdder
+Z120 !s110 1582437597
+!i10b 1
+!s100 SY3oNeEM1BQGz^P:iOQAX0
+IP=7kljaN8`zTge4i>g>GS0
+R2
+R0
+R44
+Z121 8../Arithmetic/FloatAdder/FloatAdder.v
+Z122 F../Arithmetic/FloatAdder/FloatAdder.v
+L0 2622
+R6
+r1
+!s85 0
+31
+Z123 !s108 1582437597.000000
+Z124 !s107 ../Arithmetic/FloatAdder/FloatAdder.v|
+Z125 !s90 -reportprogress|300|-work|work|../Arithmetic/FloatAdder/FloatAdder.v|
+!i113 1
+R10
+R11
+n@float@adder
+vFloatAdder_altbarrel_shift_aeb
+R120
+!i10b 1
+!s100 dacnRBHDWkdE:kOeOaDf13
+I31>ZTS>4lSYPoXEgdU36j1
+R2
+R0
+R44
+R121
 R122
+R13
+R6
+r1
+!s85 0
+31
 R123
 R124
+R125
+!i113 1
+R10
+R11
+n@float@adder_altbarrel_shift_aeb
+vFloatAdder_altbarrel_shift_ltd
+R120
+!i10b 1
+!s100 7SBdFfRQUjD<]IHzcg_jz2
+I46RWhH_B`b37G0JD@K3^k2
+R2
+R0
+R44
+R121
+R122
+R12
+R6
+r1
+!s85 0
+31
+R123
+R124
+R125
 !i113 1
 R10
 R11
 n@float@adder_altbarrel_shift_ltd
 vFloatAdder_altfp_add_sub_3ij
-R119
+R120
 !i10b 1
 !s100 4ZUoN0YZW7JhdzDY@3@403
 I1j60Zi9RUZE_kOeKC?=AF0
 R2
 R0
-R41
-R120
+R44
 R121
+R122
 L0 709
 R6
 r1
 !s85 0
 31
-R122
 R123
 R124
+R125
 !i113 1
 R10
 R11
 n@float@adder_altfp_add_sub_3ij
 vFloatAdder_altpriority_encoder_3e8
-R119
+R120
 !i10b 1
 !s100 Q=o0Z2T^c=C4BYf]FH1cF2
 IbJN]<:La6O<]<P5lnAH_G1
 R2
 R0
-R41
-R120
+R44
 R121
+R122
 L0 165
 R6
 r1
 !s85 0
 31
-R122
 R123
 R124
+R125
 !i113 1
 R10
 R11
 n@float@adder_altpriority_encoder_3e8
 vFloatAdder_altpriority_encoder_3v7
-R119
+R120
 !i10b 1
 !s100 j5>gM<;;=m239zT_k7Kh03
 ITh6PmYf=l=MIQUQ[d`Zan2
 R2
 R0
-R41
-R120
+R44
 R121
+R122
 L0 262
 R6
 r1
 !s85 0
 31
-R122
 R123
 R124
+R125
 !i113 1
 R10
 R11
 n@float@adder_altpriority_encoder_3v7
 vFloatAdder_altpriority_encoder_6e8
-R119
+R120
 !i10b 1
 !s100 43<I[IhQP0^JWEBMC2YmC3
 IYh19`g3:>a>]<fgPKCC<C1
 R2
 R0
-R41
-R120
+R44
 R121
+R122
 L0 184
 R6
 r1
 !s85 0
 31
-R122
 R123
 R124
+R125
 !i113 1
 R10
 R11
 n@float@adder_altpriority_encoder_6e8
 vFloatAdder_altpriority_encoder_6v7
-R119
+R120
 !i10b 1
 !s100 9MZ^_nRWIWRBI?nK5BLC31
 I_VVSmgHCXNa9Qb?zO22^l3
 R2
 R0
-R41
-R120
+R44
 R121
+R122
 L0 278
 R6
 r1
 !s85 0
 31
-R122
 R123
 R124
+R125
 !i113 1
 R10
 R11
 n@float@adder_altpriority_encoder_6v7
 vFloatAdder_altpriority_encoder_be8
-R119
+R120
 !i10b 1
 !s100 DiIXBY[9@8Ya`]fT]7@cB1
 IXLW><2fnf@_AFiS7c<dPb1
 R2
 R0
-R41
-R120
+R44
 R121
+R122
 L0 217
 R6
 r1
 !s85 0
 31
-R122
 R123
 R124
+R125
 !i113 1
 R10
 R11
 n@float@adder_altpriority_encoder_be8
 vFloatAdder_altpriority_encoder_bv7
-R119
+R120
 !i10b 1
 !s100 6kPm@:W5EIWGHd_f@@lX13
 IUR=oOIBBcDf`=QgHVO6Xi0
 R2
 R0
-R41
-R120
+R44
 R121
+R122
 L0 306
 R6
 r1
 !s85 0
 31
-R122
 R123
 R124
+R125
 !i113 1
 R10
 R11
 n@float@adder_altpriority_encoder_bv7
 vFloatAdder_altpriority_encoder_e48
-R119
+R120
 !i10b 1
 !s100 =FeTYnZWb>b6C`gcG0Q[K0
 ICPMo9Wk?9ZZ=NXl3Z`GEc2
 R2
 R0
-R41
-R120
+R44
 R121
+R122
 L0 681
 R6
 r1
 !s85 0
 31
-R122
 R123
 R124
+R125
 !i113 1
 R10
 R11
 n@float@adder_altpriority_encoder_e48
 vFloatAdder_altpriority_encoder_f48
-R119
+R120
 !i10b 1
 !s100 2Yl?Lc>eAJL7_CRYNh?l20
 ITH9m6XJ>3nCV;YNMjQ5hO2
 R2
 R0
-R41
-R120
+R44
 R121
+R122
 L0 653
 R6
 r1
 !s85 0
 31
-R122
 R123
 R124
+R125
 !i113 1
 R10
 R11
 n@float@adder_altpriority_encoder_f48
 vFloatAdder_altpriority_encoder_fj8
-R119
+R120
 !i10b 1
 !s100 AN7458N=3mZPd7c?Nji^:3
 IEOAek;DkR3n>0C6N_XCV03
 R2
 R0
-R41
-R120
+R44
 R121
+R122
 L0 532
 R6
 r1
 !s85 0
 31
-R122
 R123
 R124
+R125
 !i113 1
 R10
 R11
 n@float@adder_altpriority_encoder_fj8
 vFloatAdder_altpriority_encoder_n28
-R119
+R120
 !i10b 1
 !s100 2znUf25UjAzMb]z]N`j7D1
 IA0li0;BDRNnmz0KhcdXF@2
 R2
 R0
-R41
-R120
+R44
 R121
+R122
 L0 581
 R6
 r1
 !s85 0
 31
-R122
 R123
 R124
+R125
 !i113 1
 R10
 R11
 n@float@adder_altpriority_encoder_n28
 vFloatAdder_altpriority_encoder_nh8
-R119
+R120
 !i10b 1
 !s100 N=G968EPc4FlYkjH3P<:N1
 IJ3Nca<GEJ[h4K[H`1J=J@3
 R2
 R0
-R41
-R120
+R44
 R121
+R122
 L0 447
 R6
 r1
 !s85 0
 31
-R122
 R123
 R124
+R125
 !i113 1
 R10
 R11
 n@float@adder_altpriority_encoder_nh8
 vFloatAdder_altpriority_encoder_q28
-R119
+R120
 !i10b 1
 !s100 ]T90c=OY4k>?Cmc<AAHK[2
 IhY232HPCeZ@ao>ZllSMGU1
 R2
 R0
-R41
-R120
+R44
 R121
+R122
 L0 597
 R6
 r1
 !s85 0
 31
-R122
 R123
 R124
+R125
 !i113 1
 R10
 R11
 n@float@adder_altpriority_encoder_q28
 vFloatAdder_altpriority_encoder_qb6
-R119
+R120
 !i10b 1
 !s100 _`IfE8jl;F>?Dd;o@;PB01
 IzfJNNPo[5YkefbMo@9o<d3
 R2
 R0
-R41
-R120
+R44
 R121
+R122
 L0 399
 R6
 r1
 !s85 0
 31
-R122
 R123
 R124
+R125
 !i113 1
 R10
 R11
 n@float@adder_altpriority_encoder_qb6
 vFloatAdder_altpriority_encoder_qh8
-R119
+R120
 !i10b 1
 !s100 9JWmR@mM`7k__Y3gml44f0
 IIG^BK0DAWE20I4Z85N@dS3
 R2
 R0
-R41
-R120
+R44
 R121
+R122
 L0 466
 R6
 r1
 !s85 0
 31
-R122
 R123
 R124
+R125
 !i113 1
 R10
 R11
 n@float@adder_altpriority_encoder_qh8
 vFloatAdder_altpriority_encoder_r08
-R119
+R120
 !i10b 1
 !s100 [6RTlol`Y9TTK5lBmP[bJ2
 I]0ocN`@aXUl;joETokVMa1
 R2
 R0
-R41
-R120
+R44
 R121
+R122
 L0 334
 R6
 r1
 !s85 0
 31
-R122
 R123
 R124
+R125
 !i113 1
 R10
 R11
 n@float@adder_altpriority_encoder_r08
 vFloatAdder_altpriority_encoder_rf8
-R119
+R120
 !i10b 1
 !s100 TmKcY4mPjBX0f8elCN1?O1
 I2kjABf1=jV2VjFf?MAcT?2
 R2
 R0
-R41
-R120
+R44
 R121
+R122
 L0 366
 R6
 r1
 !s85 0
 31
-R122
 R123
 R124
+R125
 !i113 1
 R10
 R11
 n@float@adder_altpriority_encoder_rf8
 vFloatAdder_altpriority_encoder_v28
-R119
+R120
 !i10b 1
 !s100 4CODDlPfJlm8FFOHdUl2:1
 I_BA]NJY2A<US:0TJa=GAZ2
 R2
 R0
-R41
-R120
+R44
 R121
+R122
 L0 625
 R6
 r1
 !s85 0
 31
-R122
 R123
 R124
+R125
 !i113 1
 R10
 R11
 n@float@adder_altpriority_encoder_v28
 vFloatAdder_altpriority_encoder_vh8
-R119
+R120
 !i10b 1
 !s100 7YTQIG_]fQfO8l9Z@JWNP0
 I960n_ehm>HdfYe@Do70:b1
 R2
 R0
-R41
-R120
+R44
 R121
+R122
 L0 499
 R6
 r1
 !s85 0
 31
-R122
 R123
 R124
+R125
 !i113 1
 R10
 R11
 n@float@adder_altpriority_encoder_vh8
 vFloatToDouble
-R93
+R94
 !i10b 1
 !s100 A2BQ@;L?;o:X^:aL>gRSS2
 IZOFAdNE`26XA:kB4i@AfU2
 R2
 R0
-R41
-Z125 8../Conversions/FloatToDouble.v
-Z126 F../Conversions/FloatToDouble.v
+R44
+Z126 8../Conversions/FloatToDouble.v
+Z127 F../Conversions/FloatToDouble.v
 L0 228
 R6
 r1
 !s85 0
 31
-R89
 R90
 R91
+R92
 !i113 1
 R10
 R11
 n@float@to@double
 vFloatToDouble_altfp_convert_fmn
-R93
+R94
 !i10b 1
 !s100 Kd=?bnUO:5M=iSh@?^mA_1
 I]g[J3z1`;1mAR];L2`M6a1
 R2
 R0
-R41
-R125
+R44
 R126
-R92
+R127
+R93
 R6
 r1
 !s85 0
 31
-R89
 R90
 R91
+R92
 !i113 1
 R10
 R11
 n@float@to@double_altfp_convert_fmn
 vForwardKinematics
 R14
-!s110 1582500904
+R38
 !i10b 1
 !s100 ;9VPTYRi5docVNKS8JzXQ0
 ILgGOcCcN:Gec28QKGN68c3
@@ -3088,7 +3088,7 @@ R6
 r1
 !s85 0
 31
-!s108 1582500904.000000
+!s108 1582505164.000000
 !s107 ../Functions/ForwardKinematics.sv|
 !s90 -reportprogress|300|-work|work|../Functions/ForwardKinematics.sv|
 !i113 1
@@ -3096,463 +3096,463 @@ R10
 R11
 n@forward@kinematics
 vInt15BitToDouble
-R93
+R94
 !i10b 1
 !s100 2a77RA7LfHc=hh16CeYL53
 IcEKY1::SL6j4F]fa2HgKo0
 R2
 R0
-Z127 w1582392663
-Z128 8../Conversions/Int15BitToDouble.v
-Z129 F../Conversions/Int15BitToDouble.v
-R108
-R6
-r1
-!s85 0
-31
-R89
-R90
-R91
-!i113 1
-R10
-R11
-n@int15@bit@to@double
-vInt15BitToDouble_altbarrel_shift_fof
-R93
-!i10b 1
-!s100 STdR<m3nESlA;X5fOm3782
-IS_:YXHZDO;iR6k4:>gZ>c1
-R2
-R0
-R127
-R128
-R129
-R12
-R6
-r1
-!s85 0
-31
-R89
-R90
-R91
-!i113 1
-R10
-R11
-n@int15@bit@to@double_altbarrel_shift_fof
-vInt15BitToDouble_altfp_convert_6gn
-R93
-!i10b 1
-!s100 >anoLz86n>z93BjnKoRfP2
-I:GAYAIEghVIaDijAO`bf21
-R2
-R0
-R127
-R128
-R129
+Z128 w1582392663
+Z129 8../Conversions/Int15BitToDouble.v
+Z130 F../Conversions/Int15BitToDouble.v
 R109
 R6
 r1
 !s85 0
 31
-R89
 R90
 R91
+R92
 !i113 1
 R10
 R11
-n@int15@bit@to@double_altfp_convert_6gn
-vInt15BitToDouble_altpriority_encoder_3e8
-R93
+n@int15@bit@to@double
+vInt15BitToDouble_altbarrel_shift_fof
+R94
 !i10b 1
-!s100 35d05jD;haT`j[94fZiE?0
-I80YF>>K]JzF4QUa:IPbPn0
+!s100 STdR<m3nESlA;X5fOm3782
+IS_:YXHZDO;iR6k4:>gZ>c1
 R2
 R0
-R127
 R128
 R129
-R110
-R6
-r1
-!s85 0
-31
-R89
-R90
-R91
-!i113 1
-R10
-R11
-n@int15@bit@to@double_altpriority_encoder_3e8
-vInt15BitToDouble_altpriority_encoder_3v7
-R93
-!i10b 1
-!s100 `2;EdeXAM@zWaAR:amK`S1
-IS>Z:?GDzF9b@=manIGib>3
-R2
-R0
-R127
-R128
-R129
-R111
-R6
-r1
-!s85 0
-31
-R89
-R90
-R91
-!i113 1
-R10
-R11
-n@int15@bit@to@double_altpriority_encoder_3v7
-vInt15BitToDouble_altpriority_encoder_6e8
-R93
-!i10b 1
-!s100 ]WA;JICa`@DWeM^m<e1U33
-IFlbc]0eXO1VaHQNh2[G4i0
-R2
-R0
-R127
-R128
-R129
-R112
-R6
-r1
-!s85 0
-31
-R89
-R90
-R91
-!i113 1
-R10
-R11
-n@int15@bit@to@double_altpriority_encoder_6e8
-vInt15BitToDouble_altpriority_encoder_6v7
-R93
-!i10b 1
-!s100 gW7Hb2?FV[NC4jUiF=GlR1
-I8V=z:T3BHWR[^1AKicz0`1
-R2
-R0
-R127
-R128
-R129
-R113
-R6
-r1
-!s85 0
-31
-R89
-R90
-R91
-!i113 1
-R10
-R11
-n@int15@bit@to@double_altpriority_encoder_6v7
-vInt15BitToDouble_altpriority_encoder_be8
-R93
-!i10b 1
-!s100 HSMeYfDM:5DLj@jJQA<ae0
-IPfP;VQRd;C]3DFITDUK_]1
-R2
-R0
-R127
-R128
-R129
-R114
-R6
-r1
-!s85 0
-31
-R89
-R90
-R91
-!i113 1
-R10
-R11
-n@int15@bit@to@double_altpriority_encoder_be8
-vInt15BitToDouble_altpriority_encoder_bv7
-R93
-!i10b 1
-!s100 zQo@QEZo9:5YMH4TV6j7[3
-IhTW:ITbnDQE1C;omA09oJ0
-R2
-R0
-R127
-R128
-R129
-R115
-R6
-r1
-!s85 0
-31
-R89
-R90
-R91
-!i113 1
-R10
-R11
-n@int15@bit@to@double_altpriority_encoder_bv7
-vInt15BitToDouble_altpriority_encoder_rb6
-R93
-!i10b 1
-!s100 ^C;GA<`R2>ZDecY4[<Wfa3
-IMc?eV@d63A<aF5GOWUS2M1
-R2
-R0
-R127
-R128
-R129
-R116
-R6
-r1
-!s85 0
-31
-R89
-R90
-R91
-!i113 1
-R10
-R11
-n@int15@bit@to@double_altpriority_encoder_rb6
-vInverter
-Z130 !s110 1582500198
-!i10b 1
-!s100 Ye[XK:HmgRQ^jl7zkB5XT0
-I5=N]@;GKMVbm`CiCaPl:<3
-R2
-R0
-Z131 w1582392670
-Z132 8../Arithmetic/Inverter/Inverter.v
-Z133 F../Arithmetic/Inverter/Inverter.v
-L0 2060
-R6
-r1
-!s85 0
-31
-Z134 !s108 1582500198.000000
-Z135 !s107 ../Arithmetic/Inverter/Inverter.v|
-Z136 !s90 -reportprogress|300|-work|work|../Arithmetic/Inverter/Inverter.v|
-!i113 1
-R10
-R11
-n@inverter
-vInverter_altfp_inv_and_or_0nd
 R130
-!i10b 1
-!s100 <]LG9YRM1bQPBXn]ZiQAW1
-IJFnjN`UW9AEALb2HHzKA`3
-R2
-R0
-R131
-R132
-R133
-L0 125
-R6
-r1
-!s85 0
-31
-R134
-R135
-R136
-!i113 1
-R10
-R11
-n@inverter_altfp_inv_and_or_0nd
-vInverter_altfp_inv_and_or_9kd
-R130
-!i10b 1
-!s100 n8OHFCo_<SezdOmT3dGh[3
-I?6_P60`10e:doGi9>^>0A3
-R2
-R0
-R131
-R132
-R133
-L0 200
-R6
-r1
-!s85 0
-31
-R134
-R135
-R136
-!i113 1
-R10
-R11
-n@inverter_altfp_inv_and_or_9kd
-vInverter_altfp_inv_and_or_ekd
-R130
-!i10b 1
-!s100 09b9Io3z9]7_>GV0NX`?j0
-I4G1lc9Wcd^HCalPT@ReUO1
-R2
-R0
-R131
-R132
-R133
 R12
 R6
 r1
 !s85 0
 31
+R90
+R91
+R92
+!i113 1
+R10
+R11
+n@int15@bit@to@double_altbarrel_shift_fof
+vInt15BitToDouble_altfp_convert_6gn
+R94
+!i10b 1
+!s100 >anoLz86n>z93BjnKoRfP2
+I:GAYAIEghVIaDijAO`bf21
+R2
+R0
+R128
+R129
+R130
+R110
+R6
+r1
+!s85 0
+31
+R90
+R91
+R92
+!i113 1
+R10
+R11
+n@int15@bit@to@double_altfp_convert_6gn
+vInt15BitToDouble_altpriority_encoder_3e8
+R94
+!i10b 1
+!s100 35d05jD;haT`j[94fZiE?0
+I80YF>>K]JzF4QUa:IPbPn0
+R2
+R0
+R128
+R129
+R130
+R111
+R6
+r1
+!s85 0
+31
+R90
+R91
+R92
+!i113 1
+R10
+R11
+n@int15@bit@to@double_altpriority_encoder_3e8
+vInt15BitToDouble_altpriority_encoder_3v7
+R94
+!i10b 1
+!s100 `2;EdeXAM@zWaAR:amK`S1
+IS>Z:?GDzF9b@=manIGib>3
+R2
+R0
+R128
+R129
+R130
+R112
+R6
+r1
+!s85 0
+31
+R90
+R91
+R92
+!i113 1
+R10
+R11
+n@int15@bit@to@double_altpriority_encoder_3v7
+vInt15BitToDouble_altpriority_encoder_6e8
+R94
+!i10b 1
+!s100 ]WA;JICa`@DWeM^m<e1U33
+IFlbc]0eXO1VaHQNh2[G4i0
+R2
+R0
+R128
+R129
+R130
+R113
+R6
+r1
+!s85 0
+31
+R90
+R91
+R92
+!i113 1
+R10
+R11
+n@int15@bit@to@double_altpriority_encoder_6e8
+vInt15BitToDouble_altpriority_encoder_6v7
+R94
+!i10b 1
+!s100 gW7Hb2?FV[NC4jUiF=GlR1
+I8V=z:T3BHWR[^1AKicz0`1
+R2
+R0
+R128
+R129
+R130
+R114
+R6
+r1
+!s85 0
+31
+R90
+R91
+R92
+!i113 1
+R10
+R11
+n@int15@bit@to@double_altpriority_encoder_6v7
+vInt15BitToDouble_altpriority_encoder_be8
+R94
+!i10b 1
+!s100 HSMeYfDM:5DLj@jJQA<ae0
+IPfP;VQRd;C]3DFITDUK_]1
+R2
+R0
+R128
+R129
+R130
+R115
+R6
+r1
+!s85 0
+31
+R90
+R91
+R92
+!i113 1
+R10
+R11
+n@int15@bit@to@double_altpriority_encoder_be8
+vInt15BitToDouble_altpriority_encoder_bv7
+R94
+!i10b 1
+!s100 zQo@QEZo9:5YMH4TV6j7[3
+IhTW:ITbnDQE1C;omA09oJ0
+R2
+R0
+R128
+R129
+R130
+R116
+R6
+r1
+!s85 0
+31
+R90
+R91
+R92
+!i113 1
+R10
+R11
+n@int15@bit@to@double_altpriority_encoder_bv7
+vInt15BitToDouble_altpriority_encoder_rb6
+R94
+!i10b 1
+!s100 ^C;GA<`R2>ZDecY4[<Wfa3
+IMc?eV@d63A<aF5GOWUS2M1
+R2
+R0
+R128
+R129
+R130
+R117
+R6
+r1
+!s85 0
+31
+R90
+R91
+R92
+!i113 1
+R10
+R11
+n@int15@bit@to@double_altpriority_encoder_rb6
+vInverter
+Z131 !s110 1582501766
+!i10b 1
+!s100 Ye[XK:HmgRQ^jl7zkB5XT0
+I5=N]@;GKMVbm`CiCaPl:<3
+R2
+R0
+Z132 w1582392670
+Z133 8../Arithmetic/Inverter/Inverter.v
+Z134 F../Arithmetic/Inverter/Inverter.v
+L0 2060
+R6
+r1
+!s85 0
+31
+Z135 !s108 1582501766.000000
+Z136 !s107 ../Arithmetic/Inverter/Inverter.v|
+Z137 !s90 -reportprogress|300|-work|work|../Arithmetic/Inverter/Inverter.v|
+!i113 1
+R10
+R11
+n@inverter
+vInverter_altfp_inv_and_or_0nd
+R131
+!i10b 1
+!s100 <]LG9YRM1bQPBXn]ZiQAW1
+IJFnjN`UW9AEALb2HHzKA`3
+R2
+R0
+R132
+R133
 R134
+L0 125
+R6
+r1
+!s85 0
+31
 R135
 R136
+R137
+!i113 1
+R10
+R11
+n@inverter_altfp_inv_and_or_0nd
+vInverter_altfp_inv_and_or_9kd
+R131
+!i10b 1
+!s100 n8OHFCo_<SezdOmT3dGh[3
+I?6_P60`10e:doGi9>^>0A3
+R2
+R0
+R132
+R133
+R134
+L0 200
+R6
+r1
+!s85 0
+31
+R135
+R136
+R137
+!i113 1
+R10
+R11
+n@inverter_altfp_inv_and_or_9kd
+vInverter_altfp_inv_and_or_ekd
+R131
+!i10b 1
+!s100 09b9Io3z9]7_>GV0NX`?j0
+I4G1lc9Wcd^HCalPT@ReUO1
+R2
+R0
+R132
+R133
+R134
+R12
+R6
+r1
+!s85 0
+31
+R135
+R136
+R137
 !i113 1
 R10
 R11
 n@inverter_altfp_inv_and_or_ekd
 vInverter_altfp_inv_and_or_rmd
-R130
+R131
 !i10b 1
 !s100 g@Y6AHm2^_Sb>cEKPO4To2
 In^dngDl`WlbRM:XZALbhi2
 R2
 R0
-R131
 R132
 R133
+R134
 L0 270
 R6
 r1
 !s85 0
 31
-R134
 R135
 R136
+R137
 !i113 1
 R10
 R11
 n@inverter_altfp_inv_and_or_rmd
 vInverter_altfp_inv_csa_47i
-R130
+R131
 !i10b 1
 !s100 JW;3A0BbNL@c@a<b_k3E10
 I73mK8DN`Q`g=;kP:>MbCd1
 R2
 R0
-R131
 R132
 R133
+R134
 L0 721
 R6
 r1
 !s85 0
 31
-R134
 R135
 R136
+R137
 !i113 1
 R10
 R11
 n@inverter_altfp_inv_csa_47i
 vInverter_altfp_inv_csa_58i
-R130
+R131
 !i10b 1
 !s100 jXV[^bgnFJ<k3JUdD8E8c1
 I:J:1MTJWjb0CfilRHbm9F3
 R2
 R0
-R131
 R132
 R133
+R134
 L0 793
 R6
 r1
 !s85 0
 31
-R134
 R135
 R136
+R137
 !i113 1
 R10
 R11
 n@inverter_altfp_inv_csa_58i
 vInverter_altfp_inv_csa_qbi
-R130
+R131
 !i10b 1
 !s100 oCgSJC2=GF04;[Q09ic5X3
 IJhmZ@;1YeT?eVKF<RO?d=3
 R2
 R0
-R131
 R132
 R133
+R134
 L0 467
 R6
 r1
 !s85 0
 31
-R134
 R135
 R136
+R137
 !i113 1
 R10
 R11
 n@inverter_altfp_inv_csa_qbi
 vInverter_altfp_inv_csa_tbi
-R130
+R131
 !i10b 1
 !s100 7A>@4F?aVd^nLJKSV4?6?2
 IkmgFA<?oYD;JY6UYB4PN93
 R2
 R0
-R131
 R132
 R133
+R134
 L0 340
 R6
 r1
 !s85 0
 31
-R134
 R135
 R136
+R137
 !i113 1
 R10
 R11
 n@inverter_altfp_inv_csa_tbi
 vInverter_altfp_inv_csa_vbi
-R130
+R131
 !i10b 1
 !s100 HFi2M^BD7gmHT5;5]EQ@l1
 IQ>LG0D2D?nlLV8CYR2>Y@2
 R2
 R0
-R131
 R132
 R133
+R134
 L0 594
 R6
 r1
 !s85 0
 31
-R134
 R135
 R136
+R137
 !i113 1
 R10
 R11
 n@inverter_altfp_inv_csa_vbi
 vInverter_altfp_inv_flg
-R130
+R131
 !i10b 1
 !s100 cD8zP]FH2R@:S15I8R]Gh3
 IamKS4SA7dPTdP=;gK9NIo0
 R2
 R0
-R131
 R132
 R133
+R134
 L0 861
 R6
 r1
 !s85 0
 31
-R134
 R135
 R136
+R137
 !i113 1
 R10
 R11
@@ -3575,7 +3575,7 @@ R6
 r1
 !s85 0
 31
-R17
+!s108 1582501763.000000
 !s107 ../Functions/K1.sv|
 !s90 -reportprogress|300|-work|work|../Functions/K1.sv|
 !i113 1
@@ -3583,60 +3583,60 @@ R10
 R11
 n@k1
 vMultiplierFP
-Z137 !s110 1582499747
+Z138 !s110 1582499747
 !i10b 1
 !s100 8oRG1IJ3^b^d^hz1ojmh20
 IM?];UX0F]4]Zd`fjeSf4T3
 R2
 R0
 R3
-Z138 8Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/MultiplierFP.v
-Z139 FZ:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/MultiplierFP.v
+Z139 8Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/MultiplierFP.v
+Z140 FZ:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/MultiplierFP.v
 L0 562
 R6
 r1
 !s85 0
 31
-Z140 !s108 1582499747.000000
-Z141 !s107 Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/MultiplierFP.v|
-Z142 !s90 -reportprogress|300|-work|work|-stats=none|Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/MultiplierFP.v|
+Z141 !s108 1582499747.000000
+Z142 !s107 Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/MultiplierFP.v|
+Z143 !s90 -reportprogress|300|-work|work|-stats=none|Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/MultiplierFP.v|
 !i113 1
 R10
 R11
 n@multiplier@f@p
 vMultiplierFP_altfp_mult_e0r
-R137
+R138
 !i10b 1
 !s100 8AcTiE_U?SRMM8:nf8o633
 I<GC1dXi>do_>BRIF:Mc`Q3
 R2
 R0
 R3
-R138
 R139
-R92
+R140
+R93
 R6
 r1
 !s85 0
 31
-R140
 R141
 R142
+R143
 !i113 1
 R10
 R11
 n@multiplier@f@p_altfp_mult_e0r
 vScaraController
 R14
-!s110 1582500906
+R40
 !i10b 1
-!s100 a[R89VJL4;SV0gYdZ<nZV3
-I<eQ^<R0K[eAbn1AYOaQGi2
+!s100 TA7;fRUl4N?Q=794bc2@c3
+I]541Uo_kRX4@LdC634HH32
 R2
 !s105 ScaraController_sv_unit
 S1
 R0
-w1582435454
+w1582505089
 8../ScaraController.sv
 F../ScaraController.sv
 L0 1
@@ -3644,7 +3644,7 @@ R6
 r1
 !s85 0
 31
-!s108 1582500906.000000
+!s108 1582505166.000000
 !s107 ../ScaraController.sv|
 !s90 -reportprogress|300|-work|work|../ScaraController.sv|
 !i113 1
@@ -3652,712 +3652,712 @@ R10
 R11
 n@scara@controller
 vSine
-Z143 !s110 1582437596
+Z144 !s110 1582437596
 !i10b 1
 !s100 cDIKW]7@69hS8]KBZ40HS2
 IEeIeJR?:ZJendG@Ezh2dB3
 R2
 R0
-R41
-Z144 8../Arithmetic/SinCos/Sine.v
-Z145 F../Arithmetic/SinCos/Sine.v
+R44
+Z145 8../Arithmetic/SinCos/Sine.v
+Z146 F../Arithmetic/SinCos/Sine.v
 L0 4405
 R6
 r1
 !s85 0
 31
-Z146 !s108 1582437596.000000
-Z147 !s107 ../Arithmetic/SinCos/Sine.v|
-Z148 !s90 -reportprogress|300|-work|work|../Arithmetic/SinCos/Sine.v|
+Z147 !s108 1582437596.000000
+Z148 !s107 ../Arithmetic/SinCos/Sine.v|
+Z149 !s90 -reportprogress|300|-work|work|../Arithmetic/SinCos/Sine.v|
 !i113 1
 R10
 R11
 n@sine
 vSine_altfp_sincos_cordic_atan_45b
-R143
+R144
 !i10b 1
 !s100 ?^YYUonlkfl:<K4C5mW4S2
 IFk1`WjaMfAXS7ANzYA?RD1
 R2
 R0
-R41
-R144
+R44
 R145
-R47
-R6
-r1
-!s85 0
-31
 R146
-R147
-R148
-!i113 1
-R10
-R11
-n@sine_altfp_sincos_cordic_atan_45b
-vSine_altfp_sincos_cordic_atan_55b
-R143
-!i10b 1
-!s100 Y5Qi6^WTdzgH4>cY_87nX1
-I39UD[dM0:4XO0WIkI`SN`0
-R2
-R0
-R41
-R144
-R145
-R48
-R6
-r1
-!s85 0
-31
-R146
-R147
-R148
-!i113 1
-R10
-R11
-n@sine_altfp_sincos_cordic_atan_55b
-vSine_altfp_sincos_cordic_atan_65b
-R143
-!i10b 1
-!s100 `j8<^IA4CAim>IiHW>LnF1
-IMV;8Y2?k2<R8XSMi9;QFi3
-R2
-R0
-R41
-R144
-R145
-R49
-R6
-r1
-!s85 0
-31
-R146
-R147
-R148
-!i113 1
-R10
-R11
-n@sine_altfp_sincos_cordic_atan_65b
-vSine_altfp_sincos_cordic_atan_75b
-R143
-!i10b 1
-!s100 WeiFSc]:f<Al:m[_kSgDM1
-I5SP0NNcB@kLlQ`0Q2gLog0
-R2
-R0
-R41
-R144
-R145
 R50
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
-n@sine_altfp_sincos_cordic_atan_75b
-vSine_altfp_sincos_cordic_atan_85b
-R143
+n@sine_altfp_sincos_cordic_atan_45b
+vSine_altfp_sincos_cordic_atan_55b
+R144
 !i10b 1
-!s100 YV3kWI7biEM]X]g0eKUN<2
-Il^IF^h4e@0=dk]GfTzGJ:3
+!s100 Y5Qi6^WTdzgH4>cY_87nX1
+I39UD[dM0:4XO0WIkI`SN`0
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 R51
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
-n@sine_altfp_sincos_cordic_atan_85b
-vSine_altfp_sincos_cordic_atan_95b
-R143
+n@sine_altfp_sincos_cordic_atan_55b
+vSine_altfp_sincos_cordic_atan_65b
+R144
 !i10b 1
-!s100 i3FX0@<J6J8Je:IQHUbg22
-IVzQQB8_Dc664hKzjbfD?]0
+!s100 `j8<^IA4CAim>IiHW>LnF1
+IMV;8Y2?k2<R8XSMi9;QFi3
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 R52
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
-n@sine_altfp_sincos_cordic_atan_95b
-vSine_altfp_sincos_cordic_atan_a5b
-R143
+n@sine_altfp_sincos_cordic_atan_65b
+vSine_altfp_sincos_cordic_atan_75b
+R144
 !i10b 1
-!s100 klHXJRYZz_ez36Kk[637F0
-IRclL@ZRm`[AjY]7X3TIeP0
+!s100 WeiFSc]:f<Al:m[_kSgDM1
+I5SP0NNcB@kLlQ`0Q2gLog0
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 R53
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
-n@sine_altfp_sincos_cordic_atan_a5b
-vSine_altfp_sincos_cordic_atan_b5b
-R143
+n@sine_altfp_sincos_cordic_atan_75b
+vSine_altfp_sincos_cordic_atan_85b
+R144
 !i10b 1
-!s100 <4Yf1ni>FgFmii2BgW`_h0
-I57NZ@zXmeoa9omF8O5Eio1
+!s100 YV3kWI7biEM]X]g0eKUN<2
+Il^IF^h4e@0=dk]GfTzGJ:3
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 R54
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
-n@sine_altfp_sincos_cordic_atan_b5b
-vSine_altfp_sincos_cordic_atan_c5b
-R143
+n@sine_altfp_sincos_cordic_atan_85b
+vSine_altfp_sincos_cordic_atan_95b
+R144
 !i10b 1
-!s100 `n`JW70MbihLTV@?4Koa93
-Ikh475_[<RZ9Qm:cJZCE4h2
+!s100 i3FX0@<J6J8Je:IQHUbg22
+IVzQQB8_Dc664hKzjbfD?]0
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 R55
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
-n@sine_altfp_sincos_cordic_atan_c5b
-vSine_altfp_sincos_cordic_atan_d5b
-R143
+n@sine_altfp_sincos_cordic_atan_95b
+vSine_altfp_sincos_cordic_atan_a5b
+R144
 !i10b 1
-!s100 mi6=Q3CN3m>mN4RRbb68Y1
-ISgnD87HhM5TP[NYbfn@0Y1
+!s100 klHXJRYZz_ez36Kk[637F0
+IRclL@ZRm`[AjY]7X3TIeP0
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 R56
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
-n@sine_altfp_sincos_cordic_atan_d5b
-vSine_altfp_sincos_cordic_atan_l6b
-R143
+n@sine_altfp_sincos_cordic_atan_a5b
+vSine_altfp_sincos_cordic_atan_b5b
+R144
 !i10b 1
-!s100 HePjFMln=8G>OU4IoQF]11
-IKLAnhIXKNmZ5QlTBiXniY1
+!s100 <4Yf1ni>FgFmii2BgW`_h0
+I57NZ@zXmeoa9omF8O5Eio1
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 R57
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
-n@sine_altfp_sincos_cordic_atan_l6b
-vSine_altfp_sincos_cordic_atan_m6b
-R143
+n@sine_altfp_sincos_cordic_atan_b5b
+vSine_altfp_sincos_cordic_atan_c5b
+R144
 !i10b 1
-!s100 9?]oh52n6?Ka8dO:_4=@C1
-II9D8_ig@S<6;0[DGnC0OU2
+!s100 `n`JW70MbihLTV@?4Koa93
+Ikh475_[<RZ9Qm:cJZCE4h2
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 R58
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
-n@sine_altfp_sincos_cordic_atan_m6b
-vSine_altfp_sincos_cordic_atan_n6b
-R143
+n@sine_altfp_sincos_cordic_atan_c5b
+vSine_altfp_sincos_cordic_atan_d5b
+R144
 !i10b 1
-!s100 cZEcBVV?:cgod?0jYiX4O3
-IO0L[@B?a[CMnUacMNIMc`0
+!s100 mi6=Q3CN3m>mN4RRbb68Y1
+ISgnD87HhM5TP[NYbfn@0Y1
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 R59
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
-n@sine_altfp_sincos_cordic_atan_n6b
-vSine_altfp_sincos_cordic_atan_o6b
-R143
+n@sine_altfp_sincos_cordic_atan_d5b
+vSine_altfp_sincos_cordic_atan_l6b
+R144
 !i10b 1
-!s100 a`mBD4O`8R@aX_2dgS6mh3
-IlNB>`LaMe:an_<cLI@2:a1
+!s100 HePjFMln=8G>OU4IoQF]11
+IKLAnhIXKNmZ5QlTBiXniY1
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 R60
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
-n@sine_altfp_sincos_cordic_atan_o6b
-vSine_altfp_sincos_cordic_m_e5e
-R143
+n@sine_altfp_sincos_cordic_atan_l6b
+vSine_altfp_sincos_cordic_atan_m6b
+R144
 !i10b 1
-!s100 h=Ucz5CNg@6;5g56dEb3I3
-Ib@022Jnl]6:h_HQ=^eJNd2
+!s100 9?]oh52n6?Ka8dO:_4=@C1
+II9D8_ig@S<6;0[DGnC0OU2
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 R61
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
-n@sine_altfp_sincos_cordic_m_e5e
-vSine_altfp_sincos_cordic_start_709
-R143
+n@sine_altfp_sincos_cordic_atan_m6b
+vSine_altfp_sincos_cordic_atan_n6b
+R144
 !i10b 1
-!s100 4a7]>HPdUPeo9LzNFNH^73
-I7TERRbM;B>Eb01a[;6QOF2
+!s100 cZEcBVV?:cgod?0jYiX4O3
+IO0L[@B?a[CMnUacMNIMc`0
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 R62
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
+!i113 1
+R10
+R11
+n@sine_altfp_sincos_cordic_atan_n6b
+vSine_altfp_sincos_cordic_atan_o6b
+R144
+!i10b 1
+!s100 a`mBD4O`8R@aX_2dgS6mh3
+IlNB>`LaMe:an_<cLI@2:a1
+R2
+R0
+R44
+R145
+R146
+R63
+R6
+r1
+!s85 0
+31
+R147
+R148
+R149
+!i113 1
+R10
+R11
+n@sine_altfp_sincos_cordic_atan_o6b
+vSine_altfp_sincos_cordic_m_e5e
+R144
+!i10b 1
+!s100 h=Ucz5CNg@6;5g56dEb3I3
+Ib@022Jnl]6:h_HQ=^eJNd2
+R2
+R0
+R44
+R145
+R146
+R64
+R6
+r1
+!s85 0
+31
+R147
+R148
+R149
+!i113 1
+R10
+R11
+n@sine_altfp_sincos_cordic_m_e5e
+vSine_altfp_sincos_cordic_start_709
+R144
+!i10b 1
+!s100 4a7]>HPdUPeo9LzNFNH^73
+I7TERRbM;B>Eb01a[;6QOF2
+R2
+R0
+R44
+R145
+R146
+R65
+R6
+r1
+!s85 0
+31
+R147
+R148
+R149
 !i113 1
 R10
 R11
 n@sine_altfp_sincos_cordic_start_709
 vSine_altfp_sincos_gre
-R143
+R144
 !i10b 1
 !s100 dGlQVIdzMR6cod5Sa70PO0
 Inzf?bYEW`[LmAM78<I5^P0
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 L0 3736
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
 n@sine_altfp_sincos_gre
 vSine_altfp_sincos_range_b6c
-R143
+R144
 !i10b 1
 !s100 X8n@3g<FheV_FSAnGmgaB2
 IY;>iCM71>AbRGaNoPXGOA2
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 L0 3046
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
 n@sine_altfp_sincos_range_b6c
 vSine_altfp_sincos_srrt_koa
-R143
+R144
 !i10b 1
 !s100 N4`>8GT]YzD;kQ_DR^6JB3
 I4X@Ymn2La;<F_>Le_E:FS0
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 L0 2705
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
 n@sine_altfp_sincos_srrt_koa
 vSine_altpriority_encoder_0c6
-R143
+R144
 !i10b 1
 !s100 ?cGWR`VLA9dH9CeXk9ne_1
 IgbTzc]@B=@_G67OUaDEka3
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 L0 3708
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
 n@sine_altpriority_encoder_0c6
 vSine_altpriority_encoder_3e8
-R143
+R144
 !i10b 1
 !s100 OLW>OIQ4bWdZ]@S;3a9c>1
 IBB]lPN:Ug[>DjoMnYRI1B3
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 L0 2784
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
 n@sine_altpriority_encoder_3e8
 vSine_altpriority_encoder_3v7
-R143
+R144
 !i10b 1
 !s100 nS@L6]LG:ZjYgzYYhN>EE0
 Ij]lbVBO@ERSX5QDX?ad9l1
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 L0 2807
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
 n@sine_altpriority_encoder_3v7
 vSine_altpriority_encoder_6e8
-R143
+R144
 !i10b 1
 !s100 K[IT:GHDYUfe9A7=TU=042
 IQB>T9Ul?H2n]8fD]7jdAS3
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 L0 2855
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
 n@sine_altpriority_encoder_6e8
 vSine_altpriority_encoder_6v7
-R143
+R144
 !i10b 1
 !s100 WP7TECkbM4kOWe^haMFXC2
 IZokSh^oHChXdeXWikVGW33
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 L0 2823
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
 n@sine_altpriority_encoder_6v7
 vSine_altpriority_encoder_be8
-R143
+R144
 !i10b 1
 !s100 5cG:jlRCzFGK9C9FC8l?a2
 IK^]efCLfG?Q2W45`[dlEl0
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 L0 2920
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
 n@sine_altpriority_encoder_be8
 vSine_altpriority_encoder_bv7
-R143
+R144
 !i10b 1
 !s100 ;V:65?ak`n6o[]96U<ILc3
 I?YFZ2AcKYDMlQc7BY27C=0
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 L0 2888
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
 n@sine_altpriority_encoder_bv7
 vSine_altpriority_encoder_q08
-R143
+R144
 !i10b 1
 !s100 P:zD><J2J5NPLGN^7^m4L1
 I]<fSEjKhQ;hh9LT^H7;UQ0
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 L0 3643
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
 n@sine_altpriority_encoder_q08
 vSine_altpriority_encoder_qb6
-R143
+R144
 !i10b 1
 !s100 C_<EKeDO2gz2OGWGZ_kg?1
 IkobWB?T_1Z1WbDUHde_Ll2
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 L0 3018
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
 n@sine_altpriority_encoder_qb6
 vSine_altpriority_encoder_qf8
-R143
+R144
 !i10b 1
 !s100 M;DF`e?^_`SJZN[[AXSNc2
 IizJR`3JMfJoA6Oianc4kI1
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 L0 3675
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
 n@sine_altpriority_encoder_qf8
 vSine_altpriority_encoder_r08
-R143
+R144
 !i10b 1
 !s100 KLA@iWLg;BVjkk6F52LF53
 Ih_kdl`hQ1H5?JHcOTb]Vn3
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 L0 2953
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
 n@sine_altpriority_encoder_r08
 vSine_altpriority_encoder_rf8
-R143
+R144
 !i10b 1
 !s100 Jc`RYc?eBS:bk:hL0Shmo3
 I;8JN1QaEkjYJ]NCCloFMM1
 R2
 R0
-R41
-R144
+R44
 R145
+R146
 L0 2985
 R6
 r1
 !s85 0
 31
-R146
 R147
 R148
+R149
 !i113 1
 R10
 R11
 n@sine_altpriority_encoder_rf8
 vSineTh2
 R14
-R63
+!s110 1582501765
 !i10b 1
 !s100 ZPgVfiOPL3DY?0?nbbY<62
 INCOaJolTb0zBTnDce7mZk0
@@ -4373,7 +4373,7 @@ R6
 r1
 !s85 0
 31
-R64
+!s108 1582501765.000000
 !s107 ../Functions/SineTh2.sv|
 !s90 -reportprogress|300|-work|work|../Functions/SineTh2.sv|
 !i113 1
@@ -4381,13 +4381,13 @@ R10
 R11
 n@sine@th2
 vSqRoot
-Z149 !s110 1582500199
+R18
 !i10b 1
 !s100 _QMzl:Q@LR`HFgTicjEn[1
 I4AcOhJSbQ>A9?M0[Mi2;M3
 R2
 R0
-R18
+R19
 Z150 8../Arithmetic/SqRoot/SqRoot.v
 Z151 F../Arithmetic/SqRoot/SqRoot.v
 L0 3523
@@ -4395,21 +4395,21 @@ R6
 r1
 !s85 0
 31
-Z152 !s108 1582500199.000000
-Z153 !s107 ../Arithmetic/SqRoot/SqRoot.v|
-Z154 !s90 -reportprogress|300|-work|work|../Arithmetic/SqRoot/SqRoot.v|
+R135
+Z152 !s107 ../Arithmetic/SqRoot/SqRoot.v|
+Z153 !s90 -reportprogress|300|-work|work|../Arithmetic/SqRoot/SqRoot.v|
 !i113 1
 R10
 R11
 n@sq@root
 vSqRoot_alt_sqrt_block_mcb
-R149
+R131
 !i10b 1
 !s100 @7Bh@KM>4>:Bd6CL>VGPa3
 Ioid07]I;^I_K^dI3On:3F2
 R2
 R0
-R18
+R19
 R150
 R151
 R12
@@ -4417,21 +4417,21 @@ R6
 r1
 !s85 0
 31
+R135
 R152
 R153
-R154
 !i113 1
 R10
 R11
 n@sq@root_alt_sqrt_block_mcb
 vSqRoot_altfp_sqrt_l8d
-R149
+R18
 !i10b 1
 !s100 IWPL:C2<z0e7QoL_Aacbo0
 I_8cOQhbgYg5_43i<`YK[X3
 R2
 R0
-R18
+R19
 R150
 R151
 L0 2233
@@ -4439,16 +4439,16 @@ R6
 r1
 !s85 0
 31
+R135
 R152
 R153
-R154
 !i113 1
 R10
 R11
 n@sq@root_altfp_sqrt_l8d
 vSquareRoot
 R14
-R149
+R18
 !i10b 1
 !s100 FW53ho4SV<mX_MV0UFFRI2
 I0_F4[P:LcD2IZ[^l=e3De0
@@ -4464,7 +4464,7 @@ R6
 r1
 !s85 0
 31
-R152
+R20
 !s107 ../Arithmetic/SqRoot/SquareRoot.sv|
 !s90 -reportprogress|300|-work|work|../Arithmetic/SqRoot/SquareRoot.sv|
 !i113 1
@@ -4473,7 +4473,7 @@ R11
 n@square@root
 vSRLatch
 R14
-R137
+R138
 !i10b 1
 !s100 HZE4aW]@8^kaz=TbdRL>41
 I3DOYoQMVe:VGinCzVB?C?0
@@ -4489,11 +4489,11 @@ R6
 r1
 !s85 0
 31
-R140
+R141
 !s107 Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/SRLatch.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/SRLatch.sv|
 !i113 1
-R39
+R42
 R11
 n@s@r@latch
 vSync
@@ -4518,6 +4518,6 @@ r1
 !s107 Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/Sync.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/Sync.sv|
 !i113 1
-R39
+R42
 R11
 n@sync
