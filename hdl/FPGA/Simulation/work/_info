@@ -1,0 +1,1128 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Simulation
+vAdder
+!i10b 1
+Z0 VDg1SIo80bB@j0V0VzS_@n1
+r1
+!s85 0
+31
+!s100 TL9;`Tb9UliIBhPEGIEA>1
+IZUHKM`4DU1i??RA?i77X>2
+Z1 dC:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA/Simulation
+Z2 w1582500540
+Z3 8../../FPGA_controller_v2/Arithmetic/Adder/Adder.v
+Z4 F../../FPGA_controller_v2/Arithmetic/Adder/Adder.v
+L0 3423
+Z5 OV;L;10.5b;63
+Z6 !s108 1582513047.000000
+Z7 !s107 ../../FPGA_controller_v2/Arithmetic/Adder/Adder.v|
+Z8 !s90 -reportprogress|300|-work|work|../../FPGA_controller_v2/Arithmetic/Adder/Adder.v|
+!i113 1
+Z9 o-work work
+Z10 tCvgOpt 0
+n@adder
+vAdder_altbarrel_shift_ptd
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 Ca2OfWn1hMQ@WZ5Rl7UCg2
+Ib10jZVSQAUah3H5lkjH3:2
+R1
+R2
+R3
+R4
+L0 50
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altbarrel_shift_ptd
+vAdder_altbarrel_shift_u0g
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 >X[oaUo31@:Sk`ZHziA8A1
+IbgI8W:4JY>PdcDOOc42Ed3
+R1
+R2
+R3
+R4
+L0 147
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altbarrel_shift_u0g
+vAdder_altfp_add_sub_pdk
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 jP=^7bkWA?7;6J;a?fb6k2
+I]XF;DBf?6SW>R[JW20Ugz0
+R1
+R2
+R3
+R4
+L0 984
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altfp_add_sub_pdk
+vAdder_altpriority_encoder_3e8
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 :GHegf4jhXGS6MICUj3f^3
+Ii:3kP;`EEW0k9gK]R7R3z0
+R1
+R2
+R3
+R4
+L0 276
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altpriority_encoder_3e8
+vAdder_altpriority_encoder_3v7
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 mf]2?M;MB>cDM;N8A8^>e1
+ImQ=iV8cQ_JaF`PKz^_kcI1
+R1
+R2
+R3
+R4
+L0 256
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altpriority_encoder_3v7
+vAdder_altpriority_encoder_6e8
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 R`mC^EL@?@hn29;QgSSFF3
+I7iak@gjI51RBgE?Qk6Q<M2
+R1
+R2
+R3
+R4
+L0 327
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altpriority_encoder_6e8
+vAdder_altpriority_encoder_6v7
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 SHV:jB1UXEY2@`hQJihoN0
+I:39[=L_bzlJ;omKcY5<cQ3
+R1
+R2
+R3
+R4
+L0 295
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altpriority_encoder_6v7
+vAdder_altpriority_encoder_be8
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 h`khS_eM`GL1jc6R1@zKc1
+I2]jJEJNkODBXhW]eFbY0T0
+R1
+R2
+R3
+R4
+L0 392
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altpriority_encoder_be8
+vAdder_altpriority_encoder_bv7
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 j3];`a^ZT[WFUaJ?@n`S=0
+IRm1QPg3f]Ycjl^=MGn_;e3
+R1
+R2
+R3
+R4
+L0 360
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altpriority_encoder_bv7
+vAdder_altpriority_encoder_f48
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 :N6TY][3j3TYYX7HB[<m72
+Ih1jN[AEC^JZzg_kPTdc]Q2
+R1
+R2
+R3
+R4
+L0 875
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altpriority_encoder_f48
+vAdder_altpriority_encoder_fj8
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 fddZ6OUDXBnE=]CP0RN7L0
+IF[?IkO2W]_0B8DXR]06aA3
+R1
+R2
+R3
+R4
+L0 717
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altpriority_encoder_fj8
+vAdder_altpriority_encoder_h39
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 7F[RP9=D>P98^Q`ANenOV3
+IQ]mb]5Q;2FKz`3K_7FdVz3
+R1
+R2
+R3
+R4
+L0 903
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altpriority_encoder_h39
+vAdder_altpriority_encoder_hi9
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 OVRXWaWOLOFFO6J=@49gl1
+Iig3KIM3<Pmeh?_V8?]o8b0
+R1
+R2
+R3
+R4
+L0 750
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altpriority_encoder_hi9
+vAdder_altpriority_encoder_ina
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 MbAQVboG[lIDZ@l_4h]``2
+IDTH9VCZCYO6aUR=nMaD4=3
+R1
+R2
+R3
+R4
+L0 931
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altpriority_encoder_ina
+vAdder_altpriority_encoder_n28
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 KZ:HTIF=4ECIf3XFB@1b_0
+ICeZ]Jl@n;cR8SocJ<AKUR1
+R1
+R2
+R3
+R4
+L0 803
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altpriority_encoder_n28
+vAdder_altpriority_encoder_nh8
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 gK7agDYkmY`YE=17>MT5Z3
+I_RTa`nh?5]FbcD3V;Ve;>2
+R1
+R2
+R3
+R4
+L0 632
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altpriority_encoder_nh8
+vAdder_altpriority_encoder_q28
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 2H<QJNBA?KNRQjW?@JTam3
+Il6i0oCfBF;KW]@VGnRBjQ0
+R1
+R2
+R3
+R4
+L0 819
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altpriority_encoder_q28
+vAdder_altpriority_encoder_qh8
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 CAAN?N>fh5@PTNLk<aF]k0
+IC6@jB:39RS9TB<UYMM8an3
+R1
+R2
+R3
+R4
+L0 651
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altpriority_encoder_qh8
+vAdder_altpriority_encoder_r08
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 H_;HZoTVe=QiB8L]SA25b2
+ICfn[eZk_OC[8=>ACQCZ]K3
+R1
+R2
+R3
+R4
+L0 425
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altpriority_encoder_r08
+vAdder_altpriority_encoder_rf8
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 kJDWoY?XQFTChUGZQS^R03
+Il_IFLi=1`lJa2:iGl2Kb32
+R1
+R2
+R3
+R4
+L0 457
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altpriority_encoder_rf8
+vAdder_altpriority_encoder_te9
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 jnoCXMgm1;GN_WkVKW0i13
+I26aoLB7SSXVgdgiYNEGXz2
+R1
+R2
+R3
+R4
+L0 522
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altpriority_encoder_te9
+vAdder_altpriority_encoder_tv8
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 gKEZkT;HX]0:K_k`CizdI3
+IoXLk@?o6_^?`9CfShIEl70
+R1
+R2
+R3
+R4
+L0 490
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altpriority_encoder_tv8
+vAdder_altpriority_encoder_uu8
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 @n9Tlm^9YgROHSZf>g7aC1
+ID;VIIBWQoaDMZo7H1ITfo0
+R1
+R2
+R3
+R4
+L0 555
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altpriority_encoder_uu8
+vAdder_altpriority_encoder_v28
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 Z4]ACmDUiB872A8mzGJbI1
+I3YQl]746>NQ;gWRREKQQd1
+R1
+R2
+R3
+R4
+L0 847
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altpriority_encoder_v28
+vAdder_altpriority_encoder_vh8
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 W_ENG1=Y_hdj9^bf<;_BH2
+IFoCQIVjH7o0hPMV3mi>Y<2
+R1
+R2
+R3
+R4
+L0 684
+R5
+R6
+R7
+R8
+!i113 1
+R9
+R10
+n@adder_altpriority_encoder_vh8
+vArctan2
+Z11 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 LPQ7NGz^OK?ZnAzzK=2U93
+IHhD:?S[VAf7^k]cWW]oFE0
+!s105 Arctan2_sv_unit
+S1
+R1
+w1582417459
+8../../FPGA_controller_v2/Functions/Arctan2.sv
+F../../FPGA_controller_v2/Functions/Arctan2.sv
+Z12 L0 21
+R5
+Z13 !s108 1582513129.000000
+Z14 !s107 ../../FPGA_controller_v2/Simulation/Sync.sv|../../FPGA_controller_v2/Simulation/SRLatch.sv|../../FPGA_controller_v2/Simulation/DoubleMultiply.sv|../../FPGA_controller_v2/Simulation/DoubleDivider.sv|../../FPGA_controller_v2/Simulation/DoubleAdder.sv|../../FPGA_controller_v2/Simulation/Counter.sv|../../FPGA_controller_v2/Simulation/ClockTimer.sv|../../FPGA_controller_v2/Functions/SineTh2.sv|../../FPGA_controller_v2/Functions/K1.sv|../../FPGA_controller_v2/Functions/ForwardKinematics.sv|../../FPGA_controller_v2/Functions/CosineTh2.sv|../../FPGA_controller_v2/Functions/CalculateSteps.sv|../../FPGA_controller_v2/Functions/CalculateAngles.sv|../../FPGA_controller_v2/Functions/Arctan2.sv|
+Z15 !s90 -reportprogress|300|-work|work|../../FPGA_controller_v2/Functions/Arctan2.sv|../../FPGA_controller_v2/Functions/CalculateAngles.sv|../../FPGA_controller_v2/Functions/CalculateSteps.sv|../../FPGA_controller_v2/Functions/CosineTh2.sv|../../FPGA_controller_v2/Functions/ForwardKinematics.sv|../../FPGA_controller_v2/Functions/K1.sv|../../FPGA_controller_v2/Functions/SineTh2.sv|../../FPGA_controller_v2/Simulation/ClockTimer.sv|../../FPGA_controller_v2/Simulation/Counter.sv|../../FPGA_controller_v2/Simulation/DoubleAdder.sv|../../FPGA_controller_v2/Simulation/DoubleDivider.sv|../../FPGA_controller_v2/Simulation/DoubleMultiply.sv|../../FPGA_controller_v2/Simulation/SRLatch.sv|../../FPGA_controller_v2/Simulation/Sync.sv|
+!i113 1
+R9
+R10
+n@arctan2
+vCalculateAngles
+R11
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 odA:Wd[2on@cA?]SeFSnY3
+I06V>lP?aK29U3jCM^?II]2
+!s105 CalculateAngles_sv_unit
+S1
+R1
+w1582505586
+8../../FPGA_controller_v2/Functions/CalculateAngles.sv
+F../../FPGA_controller_v2/Functions/CalculateAngles.sv
+L0 24
+R5
+R13
+R14
+R15
+!i113 1
+R9
+R10
+n@calculate@angles
+vCalculateSteps
+R11
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 [XbO>SCYB:U0XbfWTS4JS2
+IcAUZ]nZOINBXAPc9<VD6G0
+!s105 CalculateSteps_sv_unit
+S1
+R1
+w1582415892
+8../../FPGA_controller_v2/Functions/CalculateSteps.sv
+F../../FPGA_controller_v2/Functions/CalculateSteps.sv
+L0 19
+R5
+R13
+R14
+R15
+!i113 1
+R9
+R10
+n@calculate@steps
+vClockTimer
+R11
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 O1@A02JGlQbgCTEUOON@61
+IlM:GG9Y3nXlX^2FekD>0n3
+!s105 ClockTimer_sv_unit
+S1
+R1
+Z16 w1582243033
+8../../FPGA_controller_v2/Simulation/ClockTimer.sv
+F../../FPGA_controller_v2/Simulation/ClockTimer.sv
+Z17 L0 15
+R5
+R13
+R14
+R15
+!i113 1
+R9
+R10
+n@clock@timer
+Ycommand
+R11
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 jfg788X0YBI6eB`@B5I4_0
+I7f9oZCMPcP1YMdjXjRIDF2
+Z18 !s105 DE1_SoC_Computer_sv_unit
+S1
+R1
+Z19 w1582510851
+Z20 8../verilog/DE1_SoC_Computer.sv
+Z21 F../verilog/DE1_SoC_Computer.sv
+L0 3
+R5
+R13
+Z22 !s107 ../verilog/State_Interface.sv|../verilog/Fake_Controller.sv|../verilog/DE1_SoC_Computer.sv|
+Z23 !s90 -reportprogress|300|-work|work|../verilog/DE1_SoC_Computer.sv|../verilog/Fake_Controller.sv|../verilog/State_Interface.sv|
+!i113 1
+R9
+R10
+vController_Interface
+R11
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 <BA=HcKlPbEl86BPjbBZ30
+IBLT0V`e8NY^nU6W;::mV53
+!s105 State_Interface_sv_unit
+S1
+R1
+w1582429903
+8../verilog/State_Interface.sv
+F../verilog/State_Interface.sv
+L0 3
+R5
+R13
+R22
+R23
+!i113 1
+R9
+R10
+n@controller_@interface
+vCosDeg
+R11
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 NgP8Rn1Ma0kK_oK`oh1lN1
+IbPeNje;3:z_kaX04EoJ9R3
+!s105 CosDeg20copy_sv_unit
+S1
+R1
+Z24 w1581966049
+8../../FPGA_controller/scripts/CosDeg copy.sv
+F../../FPGA_controller/scripts/CosDeg copy.sv
+Z25 L0 14
+R5
+Z26 !s108 1582511692.000000
+Z27 !s107 ../../FPGA_controller_v2/Simulation/Sync.sv|../../FPGA_controller_v2/Simulation/SRLatch.sv|../../FPGA_controller_v2/Simulation/DoubleMultiply.sv|../../FPGA_controller_v2/Simulation/DoubleDivider.sv|../../FPGA_controller_v2/Simulation/DoubleAdder.sv|../../FPGA_controller_v2/Simulation/Counter.sv|../../FPGA_controller_v2/Simulation/ClockTimer.sv|../../FPGA_controller_v2/Functions/SineTh2.sv|../../FPGA_controller_v2/Functions/K1.sv|../../FPGA_controller_v2/Functions/ForwardKinematics.sv|../../FPGA_controller_v2/Functions/CosineTh2.sv|../../FPGA_controller_v2/Functions/CalculateSteps.sv|../../FPGA_controller_v2/Functions/CalculateAngles.sv|../../FPGA_controller_v2/Functions/Arctan2.sv|../../FPGA_controller/scripts/SinDeg copy.sv|../../FPGA_controller/scripts/CosDeg copy.sv|../../FPGA/verilog/State_Interface.sv|../../FPGA/verilog/Fake_Controller.sv|../../FPGA/verilog/DE1_SoC_Computer.sv|
+Z28 !s90 -reportprogress|300|-work|work|../../FPGA/verilog/DE1_SoC_Computer.sv|../../FPGA/verilog/Fake_Controller.sv|../../FPGA/verilog/State_Interface.sv|../../FPGA_controller/scripts/CosDeg copy.sv|../../FPGA_controller/scripts/SinDeg copy.sv|../../FPGA_controller_v2/Functions/Arctan2.sv|../../FPGA_controller_v2/Functions/CalculateAngles.sv|../../FPGA_controller_v2/Functions/CalculateSteps.sv|../../FPGA_controller_v2/Functions/CosineTh2.sv|../../FPGA_controller_v2/Functions/ForwardKinematics.sv|../../FPGA_controller_v2/Functions/K1.sv|../../FPGA_controller_v2/Functions/SineTh2.sv|../../FPGA_controller_v2/Simulation/ClockTimer.sv|../../FPGA_controller_v2/Simulation/Counter.sv|../../FPGA_controller_v2/Simulation/DoubleAdder.sv|../../FPGA_controller_v2/Simulation/DoubleDivider.sv|../../FPGA_controller_v2/Simulation/DoubleMultiply.sv|../../FPGA_controller_v2/Simulation/SRLatch.sv|../../FPGA_controller_v2/Simulation/Sync.sv|
+!i113 1
+R9
+R10
+n@cos@deg
+vCosineTh2
+R11
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 XJQ<G_A0nnhAkWA;`G0`z2
+I=fWPb9=[;46B>bA=T>OL40
+!s105 CosineTh2_sv_unit
+S1
+R1
+w1582430343
+8../../FPGA_controller_v2/Functions/CosineTh2.sv
+F../../FPGA_controller_v2/Functions/CosineTh2.sv
+L0 20
+R5
+R13
+R14
+R15
+!i113 1
+R9
+R10
+n@cosine@th2
+vCounter
+R11
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 <=D0OFV`gW?mNnVJNj>0K1
+Im7MdPV>jh>hXR1;>E>eMb3
+!s105 Counter_sv_unit
+S1
+R1
+R16
+8../../FPGA_controller_v2/Simulation/Counter.sv
+F../../FPGA_controller_v2/Simulation/Counter.sv
+R17
+R5
+R13
+R14
+R15
+!i113 1
+R9
+R10
+n@counter
+vDE1_SoC_Computer
+R11
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 LPo8eYkiDWU7FZEPz7aF`0
+IePH`;cZ?A>`FKNVckCh8E0
+R18
+S1
+R1
+R19
+R20
+R21
+L0 11
+R5
+R13
+R22
+R23
+!i113 1
+R9
+R10
+n@d@e1_@so@c_@computer
+XDE1_SoC_Computer_sv_unit
+R11
+!i10b 1
+V:V9Df?LoeS@gnnHAW<^9R0
+r1
+!s85 0
+31
+!s100 9:JUXb6zGQ8ahIlDV7i861
+I:V9Df?LoeS@gnnHAW<^9R0
+!i103 1
+S1
+R1
+w1582427932
+R20
+R21
+L0 3
+R5
+!s108 1582428196.000000
+R22
+R23
+!i113 1
+R9
+R10
+n@d@e1_@so@c_@computer_sv_unit
+vDoubleAdder
+R11
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 6^1`5^fI7KfHUnDnKA^K03
+Igz4^P_gMnHbP_fBhek4X<2
+!s105 DoubleAdder_sv_unit
+S1
+R1
+R16
+8../../FPGA_controller_v2/Simulation/DoubleAdder.sv
+F../../FPGA_controller_v2/Simulation/DoubleAdder.sv
+L0 1
+R5
+R13
+R14
+R15
+!i113 1
+R9
+R10
+n@double@adder
+vDoubleDivider
+R11
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 Wi:]?jjC_4i;NngJbihI<3
+Id?O=:9F9FYNBM5L:jn7123
+!s105 DoubleDivider_sv_unit
+S1
+R1
+R16
+8../../FPGA_controller_v2/Simulation/DoubleDivider.sv
+F../../FPGA_controller_v2/Simulation/DoubleDivider.sv
+R17
+R5
+R13
+R14
+R15
+!i113 1
+R9
+R10
+n@double@divider
+vDoubleMultiply
+R11
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 UR6Cm4@zXI[[CMG2<`27U0
+ILA7jn<0iD1H_<8ll1aA=N0
+!s105 DoubleMultiply_sv_unit
+S1
+R1
+R16
+8../../FPGA_controller_v2/Simulation/DoubleMultiply.sv
+F../../FPGA_controller_v2/Simulation/DoubleMultiply.sv
+R12
+R5
+R13
+R14
+R15
+!i113 1
+R9
+R10
+n@double@multiply
+vFake_Controller
+R11
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 67S4=bUBAjXgk@1`=amV=1
+Ihi8VH0SmQ9R3NJQ>zaQLa1
+!s105 Fake_Controller_sv_unit
+S1
+R1
+w1582427948
+8../verilog/Fake_Controller.sv
+F../verilog/Fake_Controller.sv
+L0 1
+R5
+R13
+R22
+R23
+!i113 1
+R9
+R10
+n@fake_@controller
+vForwardKinematics
+R11
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 ;9VPTYRi5docVNKS8JzXQ0
+IZjZ@WT2[Ak`]lH`G4nUl?0
+!s105 ForwardKinematics_sv_unit
+S1
+R1
+R2
+8../../FPGA_controller_v2/Functions/ForwardKinematics.sv
+F../../FPGA_controller_v2/Functions/ForwardKinematics.sv
+L0 23
+R5
+R13
+R14
+R15
+!i113 1
+R9
+R10
+n@forward@kinematics
+vK1
+R11
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 @J<0OaYbJm[6S]de7EZDO2
+I>RTebzOP:C<E:bzJ1^OX>1
+!s105 K1_sv_unit
+S1
+R1
+R16
+8../../FPGA_controller_v2/Functions/K1.sv
+F../../FPGA_controller_v2/Functions/K1.sv
+L0 18
+R5
+R13
+R14
+R15
+!i113 1
+R9
+R10
+n@k1
+vScaraController
+R11
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 4I1jI4UXQbG1M1Scj86KP3
+I^3_0Q79>S6:<:JaOA<4jX2
+!s105 ScaraController_sv_unit
+S1
+R1
+w1582506493
+8../../FPGA_Controller_v2/ScaraController.sv
+F../../FPGA_Controller_v2/ScaraController.sv
+L0 1
+R5
+!s108 1582512576.000000
+!s107 ../../FPGA_Controller_v2/ScaraController.sv|
+!s90 -reportprogress|300|-work|work|../../FPGA_Controller_v2/ScaraController.sv|
+!i113 1
+R9
+R10
+n@scara@controller
+vSinDeg
+R11
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 aYKSglDQ7T12_]7YMYXAC2
+IkTWGQOT0aFC;1]iRAd1Qm3
+!s105 SinDeg20copy_sv_unit
+S1
+R1
+R24
+8../../FPGA_controller/scripts/SinDeg copy.sv
+F../../FPGA_controller/scripts/SinDeg copy.sv
+R25
+R5
+R26
+R27
+R28
+!i113 1
+R9
+R10
+n@sin@deg
+vSineTh2
+R11
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 ZPgVfiOPL3DY?0?nbbY<62
+IkNkf0E^;M;:NY3m0jOl852
+!s105 SineTh2_sv_unit
+S1
+R1
+R16
+8../../FPGA_controller_v2/Functions/SineTh2.sv
+F../../FPGA_controller_v2/Functions/SineTh2.sv
+R12
+R5
+R13
+R14
+R15
+!i113 1
+R9
+R10
+n@sine@th2
+vSquareRoot
+R11
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 FW53ho4SV<mX_MV0UFFRI2
+IaNV5VbKVZKP][Qa^eTBAg3
+!s105 SquareRoot_sv_unit
+S1
+R1
+R16
+8../../FPGA_controller_v2/Arithmetic/SqRoot/SquareRoot.sv
+F../../FPGA_controller_v2/Arithmetic/SqRoot/SquareRoot.sv
+L0 17
+R5
+R13
+!s107 ../../FPGA_controller_v2/Arithmetic/SqRoot/SquareRoot.sv|../../FPGA_controller_v2/Arithmetic/DoubleMultiplier/DoubleMultiply.sv|../../FPGA_controller_v2/Arithmetic/DoubleDivider/DoubleDivider.sv|../../FPGA_controller_v2/Arithmetic/DoubleAdder/DoubleAdder.sv|
+!s90 -reportprogress|300|-work|work|../../FPGA_controller_v2/Arithmetic/DoubleAdder/DoubleAdder.sv|../../FPGA_controller_v2/Arithmetic/DoubleDivider/DoubleDivider.sv|../../FPGA_controller_v2/Arithmetic/DoubleMultiplier/DoubleMultiply.sv|../../FPGA_controller_v2/Arithmetic/SqRoot/SquareRoot.sv|
+!i113 1
+R9
+R10
+n@square@root
+vSRLatch
+R11
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 HZE4aW]@8^kaz=TbdRL>41
+IcjIILAgTSP]VbYgbj<OJ]2
+!s105 SRLatch_sv_unit
+S1
+R1
+R16
+8../../FPGA_controller_v2/Simulation/SRLatch.sv
+F../../FPGA_controller_v2/Simulation/SRLatch.sv
+L0 13
+R5
+R13
+R14
+R15
+!i113 1
+R9
+R10
+n@s@r@latch
+vSync
+R11
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 ?mFSXV1TRjVZR07WnjcG70
+I8B`mJd<?IX1gX`Mb0;WFW3
+!s105 Sync_sv_unit
+S1
+R1
+R16
+8../../FPGA_controller_v2/Simulation/Sync.sv
+F../../FPGA_controller_v2/Simulation/Sync.sv
+L0 1
+R5
+R13
+R14
+R15
+!i113 1
+R9
+R10
+n@sync
+vTestbench
+!i10b 1
+R0
+r1
+!s85 0
+31
+!s100 XANUMAj:Zg1eNGh4WPTZl2
+I3o<F@J1:zMR7R^UWV8=oo2
+R1
+w1582511196
+8ControllerInterfaceToControllerTestbench
+FControllerInterfaceToControllerTestbench
+L0 1
+R5
+!s108 1582513130.000000
+!s107 ControllerInterfaceToControllerTestbench|
+!s90 -reportprogress|300|-work|work|ControllerInterfaceToControllerTestbench|
+!i113 1
+R9
+R10
+n@testbench

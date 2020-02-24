@@ -104,12 +104,12 @@ module ScaraController(input logic [4:0] controlStateReg,
 			else if(state == Wait) begin
 				if(WaitDone) begin
 					WaitEn <= 0;
-					endEffectorState <= 0;
+					//endEffectorState <= 0;
 					nextstate <= Init;
 				end
 				else begin
 					WaitEn <= 1;
-					endEffectorState <= 1;
+					//endEffectorState <= 1;
 				end
 		
 			end

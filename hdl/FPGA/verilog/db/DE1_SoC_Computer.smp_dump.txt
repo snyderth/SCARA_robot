@@ -1,0 +1,111 @@
+
+State Machine - |DE1_SoC_Computer|FPGA_to_HPS_state
+Name FPGA_to_HPS_state.00000000 FPGA_to_HPS_state.00001000 FPGA_to_HPS_state.00000100 
+FPGA_to_HPS_state.00000000 0 0 0 
+FPGA_to_HPS_state.00000100 1 0 1 
+FPGA_to_HPS_state.00001000 1 1 0 
+
+State Machine - |DE1_SoC_Computer|HPS_to_FPGA_state
+Name HPS_to_FPGA_state.READ_DATA HPS_to_FPGA_state.DELAY_READ_DATA HPS_to_FPGA_state.AWAIT_DATA HPS_to_FPGA_state.DELAY_AWAIT_DATA 
+HPS_to_FPGA_state.DELAY_AWAIT_DATA 0 0 0 0 
+HPS_to_FPGA_state.AWAIT_DATA 0 0 1 1 
+HPS_to_FPGA_state.DELAY_READ_DATA 0 1 0 1 
+HPS_to_FPGA_state.READ_DATA 1 0 0 1 
+
+State Machine - |DE1_SoC_Computer|ScaraController:controller|nextstate
+Name nextstate.FK nextstate.Wait nextstate.Steps nextstate.Angles nextstate.Init 
+nextstate.Init 0 0 0 0 0 
+nextstate.Angles 0 0 0 1 1 
+nextstate.Steps 0 0 1 0 1 
+nextstate.Wait 0 1 0 0 1 
+nextstate.FK 1 0 0 0 1 
+
+State Machine - |DE1_SoC_Computer|ScaraController:controller|CalculateSteps:stepsCalc|nextstate
+Name nextstate.ConvertToInt nextstate.MultiplyConversion nextstate.ConvertThetaToDouble nextstate.Init 
+nextstate.Init 0 0 0 0 
+nextstate.ConvertThetaToDouble 0 0 1 1 
+nextstate.MultiplyConversion 0 1 0 1 
+nextstate.ConvertToInt 1 0 0 1 
+
+State Machine - |DE1_SoC_Computer|ScaraController:controller|CalculateAngles:anglesCalc|nextstate
+Name nextstate.AtanXY nextstate.Gamma nextstate.K2Calc nextstate.K1Calc nextstate.SineTh2 nextstate.CosineTh2 nextstate.TargetToDouble nextstate.Init nextstate.Thetas 
+nextstate.Init 0 0 0 0 0 0 0 0 0 
+nextstate.TargetToDouble 0 0 0 0 0 0 1 1 0 
+nextstate.CosineTh2 0 0 0 0 0 1 0 1 0 
+nextstate.SineTh2 0 0 0 0 1 0 0 1 0 
+nextstate.K1Calc 0 0 0 1 0 0 0 1 0 
+nextstate.K2Calc 0 0 1 0 0 0 0 1 0 
+nextstate.Gamma 0 1 0 0 0 0 0 1 0 
+nextstate.AtanXY 1 0 0 0 0 0 0 1 0 
+nextstate.Thetas 0 0 0 0 0 0 0 1 1 
+
+State Machine - |DE1_SoC_Computer|ScaraController:controller|CalculateAngles:anglesCalc|K1:k1Calculation|nextstate
+Name nextstate.Add nextstate.Init nextstate.Mult 
+nextstate.Init 0 0 0 
+nextstate.Mult 0 1 1 
+nextstate.Add 1 1 0 
+
+State Machine - |DE1_SoC_Computer|ScaraController:controller|ForwardKinematics:FKine|TrigState
+Name TrigState.InitTrig TrigState.SummedTrig TrigState.Theta1Trig 
+TrigState.InitTrig 0 0 0 
+TrigState.Theta1Trig 1 0 1 
+TrigState.SummedTrig 1 1 0 
+
+State Machine - |DE1_SoC_Computer|ScaraController:controller|ForwardKinematics:FKine|nextstate
+Name nextstate.ConvThToFloat nextstate.ConvertToInt nextstate.AddTrig nextstate.MultTrig nextstate.ConvTrigToDouble nextstate.TrigCalcs nextstate.AddThetas nextstate.Init 
+nextstate.Init 0 0 0 0 0 0 0 0 
+nextstate.AddThetas 0 0 0 0 0 0 1 1 
+nextstate.TrigCalcs 0 0 0 0 0 1 0 1 
+nextstate.ConvTrigToDouble 0 0 0 0 1 0 0 1 
+nextstate.MultTrig 0 0 0 1 0 0 0 1 
+nextstate.AddTrig 0 0 1 0 0 0 0 1 
+nextstate.ConvertToInt 0 1 0 0 0 0 0 1 
+nextstate.ConvThToFloat 1 0 0 0 0 0 0 1 
+
+State Machine - |DE1_SoC_Computer|ScaraController:controller|ForwardKinematics:FKine|TrigNextState
+Name TrigNextState.InitTrig TrigNextState.SummedTrig TrigNextState.Theta1Trig 
+TrigNextState.InitTrig 0 0 0 
+TrigNextState.Theta1Trig 1 0 1 
+TrigNextState.SummedTrig 1 1 0 
+
+State Machine - |DE1_SoC_Computer|Computer_System:The_System|Computer_System_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:onchip_sram_s2_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
+state.ST_IDLE 0 0 0 0 
+state.ST_COMP_TRANS 1 0 0 1 
+state.ST_UNCOMP_TRANS 1 0 1 0 
+state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
+
+State Machine - |DE1_SoC_Computer|Computer_System:The_System|Computer_System_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:fifo_hps_to_fpga_in_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
+state.ST_IDLE 0 0 0 0 
+state.ST_COMP_TRANS 1 0 0 1 
+state.ST_UNCOMP_TRANS 1 0 1 0 
+state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
+
+State Machine - |DE1_SoC_Computer|Computer_System:The_System|Computer_System_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:fifo_fpga_to_hps_out_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
+state.ST_IDLE 0 0 0 0 
+state.ST_COMP_TRANS 1 0 0 1 
+state.ST_UNCOMP_TRANS 1 0 1 0 
+state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
+
+State Machine - |DE1_SoC_Computer|Computer_System:The_System|Computer_System_mm_interconnect_1:mm_interconnect_1|altera_merlin_burst_adapter:fifo_fpga_to_hps_out_csr_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
+state.ST_IDLE 0 0 0 0 
+state.ST_COMP_TRANS 1 0 0 1 
+state.ST_UNCOMP_TRANS 1 0 1 0 
+state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
+
+State Machine - |DE1_SoC_Computer|Computer_System:The_System|Computer_System_mm_interconnect_1:mm_interconnect_1|altera_merlin_burst_adapter:fifo_hps_to_fpga_in_csr_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
+state.ST_IDLE 0 0 0 0 
+state.ST_COMP_TRANS 1 0 0 1 
+state.ST_UNCOMP_TRANS 1 0 1 0 
+state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
+
+State Machine - |DE1_SoC_Computer|ScaraController:controller|CalculateAngles:anglesCalc|SineTh2:sineCalculation|nextstate
+Name nextstate.Square nextstate.Root nextstate.Subtract nextstate.Init 
+nextstate.Init 0 0 0 0 
+nextstate.Subtract 0 0 1 1 
+nextstate.Root 0 1 0 1 
+nextstate.Square 1 0 0 1 
