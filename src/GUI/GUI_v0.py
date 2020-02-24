@@ -27,10 +27,23 @@
 
 import PySimpleGUI as sg
 import cv2
-import easycall as easy
 import numpy as np
+import GUI.easycall as easycall
+
 def test_func(colorPalette, granularity, maxlines, papersize):
     print("Color: ",colorPalette, "Granularity: ", granularity, "maxlines: ", maxlines, "papersize: ", papersize)
+
+def reportDone():
+    print("Command is done")
+
+def reportSend(gcode):
+    print("Command is being sent: " + gcode)
+
+def reportSent(success, code):
+    if success:
+        print("Command is sent")
+    else:
+        print("Command send failed")
 
 sg.theme('Reddit')
 
@@ -95,7 +108,7 @@ layout = [[sg.Column(menu_lay, key='menu'), sg.Column(file_brow_lay, visible=Fal
                 sg.Column(load_png_lay, visible=False, key='load_png'),
                 sg.Column(parser_feedback_lay, visible=False, key='parse')],
           [sg.Button('Exit', key='Exit')]]
-		  
+
 
 
 
@@ -147,6 +160,10 @@ while True:
     elif event == 'OK':                                     # Submit gcode file path
         file_path = values['inputbox']
         # Execute G code here
+        gcode = open(file_path).read()
+
+
+        streamFromGcode(gcode, reportDone, easycall.giveCommand(reportSend), reportSent)
 
         window['file'].update(visible=False)
         window['parse'].update(visible=True)
@@ -167,13 +184,16 @@ while True:
         colorPalette = [(color1 >> 16,  color1 % (2**16) >> 8, color1 % (2**8)), (color2 >> 16, (color2 % (2**16)) >> 8,
                         color2 % (2**8)), (color3 >> 16,  (color3 % (2**16)) >> 8, color3 % (2**8))]
         print(colorPalette)
-        granularity = values['granularity']
-        maxLines = values['maxlines']
-        paperSize = (values['dim1'], values['dim2'])
+        granularity = float(values['granularity'])
+        maxLines = int(values['maxlines'])
+        paperSize = (float(values['dim1']), float(values['dim2']))
         # final_img is image to be sent
         cv2.imwrite("final_image.png", img=final_img)
         # Call CV function here
-        #test_func(colorPalette, granularity, maxLines, paperSize)
+        # test_func(colorPalette, granularity, maxLines, paperSize)
+
+        easycall.streamFromImage(final_img, colorPalette, granularity, maxLines, paperSize, reportDone, reportSend, reportSent)
+
         window['cv_set'].update(visible=False)
         window['parser_feed'].update(visible=True)
 
@@ -189,5 +209,5 @@ def update_feed(new_text: str):
     window['parser_feed'].update(new_text)
     return
 
-def test_func(colorPalette, granularity, maxlines, papersize):
-    print("Color: ",colorPalette, "Granularity: ", granularity, "maxlines: ", maxlines, "papersize: ", papersize)
+#def test_func(colorPalette, granularity, maxlines, papersize):
+#   print("Color: ",colorPalette, "Granularity: ", granularity, "maxlines: ", maxlines, "papersize: ", papersize)

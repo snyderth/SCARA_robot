@@ -5,4 +5,11 @@ Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 
 Top level modules:
 	stp_counter
 
+} {} {}} C:/Users/kylen/projects/ece342/SCARA_robot/hdl/StepperMotor/StepperFPGA/stepper_motor/stepper_motor.sv {1 {vlog -work work -sv -stats=none C:/Users/kylen/projects/ece342/SCARA_robot/hdl/StepperMotor/StepperFPGA/stepper_motor/stepper_motor.sv
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module stepper_motor
+
+Top level modules:
+	stepper_motor
+
 } {} {}}
