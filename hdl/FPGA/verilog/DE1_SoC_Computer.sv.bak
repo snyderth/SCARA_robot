@@ -575,29 +575,31 @@ end // always @(posedge state_clock)
 // From Qsys
 
 
-Fake_Controller fake_controller(
-	.reset(~initEnable),
-	.clk(CLOCK_50),
-	.controller_ready(c2ci_controller_ready),
-	.set_ready(~KEY[0]), 
-	.controller_interface_out_ready(controller_interface_out_ready),
-	.cmd(ci2c_controller_state_reg),
-	.x_value(ci2c_x_value),
-	.y_value(ci2c_y_value),
-	.cmd_word_1(LEDR[3:0]),
-	.cmd_word_2(LEDR[7:4]),
-	.x_value_word_1(hex[11:8]),
-	.x_value_word_2(hex[15:12]),
-	.y_value_word_1(hex[19:16]),
-	.y_value_word_2(hex[23:20])
-);
+//Fake_Controller fake_controller(
+//	.reset(~initEnable),
+//	.clk(CLOCK_50),
+//	.controller_ready(c2ci_controller_ready),
+//	.set_ready(~KEY[0]), 
+//	.controller_interface_out_ready(controller_interface_out_ready),
+//	.cmd(ci2c_controller_state_reg),
+//	.x_value(ci2c_x_value),
+//	.y_value(ci2c_y_value),
+//	.cmd_word_1(LEDR[3:0]),
+//	.cmd_word_2(LEDR[7:4]),
+//	.x_value_word_1(hex[11:8]),
+//	.x_value_word_2(hex[15:12]),
+//	.y_value_word_1(hex[19:16]),
+//	.y_value_word_2(hex[23:20])
+//);
 
 
 
 Controller_Interface controller_interface (
 	.clk(CLOCK_50),
 	.block(~initEnable),
-	.command_in(commandIn.to_set),
+	.cmd(commandIn.cmd),
+	.x_value_in(commandIn.x_value),
+	.y_value_in(commandIn.y_value),
 	.memory_ready(memory_ready),
 	.controller_ready(c2ci_controller_ready),
 	.controller_interface_in_ready(controller_interface_in_ready),
@@ -608,6 +610,71 @@ Controller_Interface controller_interface (
 
 
 );
+
+//TODO: this sucks. Make this an interface or something.
+wire c2sm1_steps1;
+wire c2sm1_dir1;
+wire c2sm1_endEffectorState;
+wire c2smALL_dataReady;
+
+wire sm12c2_stepperReady;
+wire sm22c2_stepperReady;
+wire steppersReady;
+
+
+assign steppersReady = sm12c2_stepperReady & sm22c2_stepperReady;
+
+wire c2sm2_steps2;
+wire c2sm2_dir2;
+
+ScaraController controller (
+	.controlStateReg(ci2c_controller_state_reg),
+	.xTarget(ci2c_x_value),
+	.yTarget(c12c_y_value),
+	.stepperReady(steppersReady),	//TODO: Connect
+	.enable(controller_interface_out_ready),
+	.clk(CLOCK_50),
+	.reset(~initEnable),
+	.steps1(c2sm1_steps1), //TODO: Connect
+	.steps2(c2sm2_steps2), //TODO: Connect
+	.dir1(c2sm1_dir1), //TODO: Connect
+	.dir2(c2sm2_dir2), //TODO: Connect
+	.endEffectorState(), //TODO: Connect
+	.dataReady(c2smALL_dataReady), //TODO: Connect
+	.readyForNewData(c2ci_controller_ready)
+);
+
+
+
+stepper_motor joint1(
+	.clk_50(CLOCK50),
+	.reset_n(~initEnable),
+	.new_in(c2smALL_dataReady),
+	.num_steps(c2sm2_steps2),
+	.fast(0),
+	.direction(c2sm2_dir2),
+	.enable(1),
+	.step(GPIO_0[7]), //STEP1
+	.dir(GPIO_0[9]), //DIR1
+	.finished(sm22c2_stepperReady),	
+);
+stepper_motor joint2(
+	.clk_50(CLOCK50),
+	.reset_n(~initEnable),
+	.new_in(c2smALL_dataReady),
+	.num_steps(c2sm2_steps2),
+	.fast(0),
+	.direction(c2sm2_dir2),
+	.enable(1),
+	.step(GPIO_0[13]), //STEP2
+	.dir(GPIO_0[15]), //DIR2
+	.finished(sm22c2_stepperReady),	
+);
+
+assign GPIO_0[5] = 1; // EN_N_1
+assign GPIO_0[11] = 1; //EN_N_2
+
+
 
 Computer_System The_System (
 	////////////////////////////////////
