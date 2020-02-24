@@ -13,3 +13,5 @@ module DCMotor(
 			);
 			
 			assign pen_status = !limit_switch;
+			
+			
