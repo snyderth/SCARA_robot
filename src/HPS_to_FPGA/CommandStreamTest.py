@@ -8,4 +8,4 @@ if __name__ == "__main__":
 
     commands = gcodeToCommands(gcode)
 
-    streamProcess(commands, lambda x: print(commandToGcode(x, 1)), lambda : print("done"))
+    streamProcess(commands, lambda x: print(commandToGcode(x, 1)), lambda : print("done"), lambda b,x: print(b))

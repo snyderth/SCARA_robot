@@ -128,7 +128,7 @@ module SineTh2(input logic [63:0] CosTh2,
 										.clk(clk),
 										.result(SinTh2),
 										.dataReady(RootDone),
-										.reset(RootReset)
+										.reset(RootRes)
 										);
 										
 				SRLatch done(.set(RootDone),

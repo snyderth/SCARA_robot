@@ -9,7 +9,8 @@ module stepper_motor(input  logic clk_50,
 							
 							output logic step,
 							output logic dir,
-							output logic finished);
+							output logic finished,
+							output logic [7:0] steps_out);
 							
 							logic [31:0] count;
 							logic [7:0] step_count;
@@ -39,6 +40,7 @@ module stepper_motor(input  logic clk_50,
 		
 		//50 Mhz clock
 		//Want 
+		assign steps_out = set_steps;
 		assign adjustment = set_fast ? 500 : 5000; //MUST NOT RECEIVE MORE THAN 99 STEPS
 		assign longest_step = set_fast ? 50000 : 500000;
 		assign step_length  = step_count < set_steps/2 ? longest_step - adjustment * step_count : longest_step -  adjustment * (set_steps - step_count);

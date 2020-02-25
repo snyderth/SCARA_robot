@@ -1,5 +1,5 @@
 Flow report for DE1_SoC_Computer
-Mon Feb 24 11:47:14 2020
+Mon Feb 24 21:47:10 2020
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -37,24 +37,29 @@ refer to the applicable agreement for further details.
 
 
 
-+---------------------------------------------------------------------------+
-; Flow Summary                                                              ;
-+-----------------------------+---------------------------------------------+
-; Flow Status                 ; Flow Failed - Mon Feb 24 11:47:13 2020      ;
-; Quartus Prime Version       ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
-; Revision Name               ; DE1_SoC_Computer                            ;
-; Top-level Entity Name       ; DE1_SoC_Computer                            ;
-; Family                      ; Cyclone V                                   ;
-; Device                      ; 5CSEMA5F31C6                                ;
-; Timing Models               ; Final                                       ;
-; Logic utilization (in ALMs) ; N/A until Partition Merge                   ;
-; Total registers             ; N/A until Partition Merge                   ;
-; Total pins                  ; N/A until Partition Merge                   ;
-; Total virtual pins          ; N/A until Partition Merge                   ;
-; Total block memory bits     ; N/A until Partition Merge                   ;
-; Total PLLs                  ; N/A until Partition Merge                   ;
-; Total DLLs                  ; N/A until Partition Merge                   ;
-+-----------------------------+---------------------------------------------+
++-------------------------------------------------------------------------------+
+; Flow Summary                                                                  ;
++---------------------------------+---------------------------------------------+
+; Flow Status                     ; Successful - Mon Feb 24 21:47:10 2020       ;
+; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
+; Revision Name                   ; DE1_SoC_Computer                            ;
+; Top-level Entity Name           ; DE1_SoC_Computer                            ;
+; Family                          ; Cyclone V                                   ;
+; Device                          ; 5CSEMA5F31C6                                ;
+; Timing Models                   ; Final                                       ;
+; Logic utilization (in ALMs)     ; 14,828 / 32,070 ( 46 % )                    ;
+; Total registers                 ; 27147                                       ;
+; Total pins                      ; 368 / 457 ( 81 % )                          ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 13,970 / 4,065,280 ( < 1 % )                ;
+; Total DSP Blocks                ; 87 / 87 ( 100 % )                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 1 / 6 ( 17 % )                              ;
+; Total DLLs                      ; 1 / 4 ( 25 % )                              ;
++---------------------------------+---------------------------------------------+
 
 
 +-----------------------------------------+
@@ -62,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 02/24/2020 11:44:35 ;
+; Start date & time ; 02/24/2020 21:32:23 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; DE1_SoC_Computer    ;
 +-------------------+---------------------+
@@ -73,7 +78,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+-------------------------------------------------------------------------------+---------------+------------------------------------------+----------------+
 ; Assignment Name                     ; Value                                                                         ; Default Value ; Entity Name                              ; Section Id     ;
 +-------------------------------------+-------------------------------------------------------------------------------+---------------+------------------------------------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 79349036723727.158257346717056                                                ; --            ; --                                       ; --             ;
+; COMPILER_SIGNATURE_ID               ; 79349036723727.158260873821040                                                ; --            ; --                                       ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT              ; Systemverilog Hdl                                                             ; --            ; --                                       ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (SystemVerilog)                                               ; <None>        ; --                                       ; --             ;
 ; HPS_ISW_FILE                        ; Computer_System/synthesis/submodules/sequencer/alt_types.pre.h                ; --            ; Computer_System_ARM_A9_HPS_hps_io_border ; --             ;
@@ -129,8 +134,12 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:02:50     ; 1.0                     ; 5895 MB             ; 00:03:24                           ;
-; Total                ; 00:02:50     ; --                      ; --                  ; 00:03:24                           ;
+; Analysis & Synthesis ; 00:03:07     ; 1.5                     ; 5977 MB             ; 00:04:56                           ;
+; Fitter               ; 00:08:38     ; 1.4                     ; 8061 MB             ; 00:20:16                           ;
+; Assembler            ; 00:00:27     ; 1.0                     ; 5197 MB             ; 00:00:25                           ;
+; Timing Analyzer      ; 00:01:40     ; 2.2                     ; 6217 MB             ; 00:03:26                           ;
+; EDA Netlist Writer   ; 00:00:17     ; 1.0                     ; 5419 MB             ; 00:00:17                           ;
+; Total                ; 00:14:09     ; --                      ; --                  ; 00:29:20                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -140,6 +149,10 @@ refer to the applicable agreement for further details.
 ; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +----------------------+------------------+------------+------------+----------------+
 ; Analysis & Synthesis ; LAPTOP-BADUBN8B  ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; LAPTOP-BADUBN8B  ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; LAPTOP-BADUBN8B  ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; LAPTOP-BADUBN8B  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; LAPTOP-BADUBN8B  ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
@@ -147,6 +160,10 @@ refer to the applicable agreement for further details.
 ; Flow Log ;
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off DE1_SoC_Computer -c DE1_SoC_Computer
+quartus_fit --read_settings_files=off --write_settings_files=off DE1_SoC_Computer -c DE1_SoC_Computer
+quartus_asm --read_settings_files=off --write_settings_files=off DE1_SoC_Computer -c DE1_SoC_Computer
+quartus_sta DE1_SoC_Computer -c DE1_SoC_Computer
+quartus_eda --read_settings_files=off --write_settings_files=off DE1_SoC_Computer -c DE1_SoC_Computer
 
 
 

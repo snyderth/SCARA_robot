@@ -35,50 +35,128 @@ module CosineTh2(input logic [63:0] xTarget_d,
 				/*	Square x and y once conversions are finished */
 				
 				logic mult1Done, mult1Begin, xSquareDone, ySquareDone;
-				logic [63:0] xTargSquared, yTargSquared;
+				logic [63:0] xTargSquared, yTargSquared, l1l2;
 //				
 //				SRLatch multStage1 (.set(convDone),
 //											.reset(reset | mult1Done),
 //											.q(mult1Begin)
 //											);
-											
-				DoubleMultiply xSquared(
-												.in_ready(enable),
-												.reset(reset),
-												.dataa(xTarget_d),
-												.datab(xTarget_d),
-												.result(xTargSquared),
-												.data_ready(xSquareDone),
-												.clk(clk)
-												);
+					
+
+				/* Multiply the squared functions state machine*/
+					
+				logic XSquareEn;
+				logic YSquareEn, MultStageDone;
+				logic l1l2En;
+				logic [63:0] MultOp1, MultOp2, MultRes;
 				
-				DoubleMultiply ySquared(
-												.reset(reset),
-												.in_ready(enable),
-												.dataa(yTarget_d),
-												.datab(yTarget_d),
-												.result(yTargSquared),
-												.data_ready(ySquareDone),
-												.clk(clk)
-												);
-												
+				typedef enum logic [2:0] {Init, SqX, SqY, l1l2State} MultStateType;
+				MultStateType MultState, MultStateNext;
 				
 				
-				// During this stage we can also multiply l1 and l2
-				logic [63:0] l1l2;
-				logic l1l2Done;
+				always_ff@(posedge clk) begin
+					if(reset) begin
+						XSquareEn <= 0;
+						YSquareEn <= 0;
+						l1l2En <= 0;
+						MultStateNext <= Init;
+					end
+					else if(MultState == Init) begin
+						if(enable) begin
+							MultStateNext <= SqX;
+							XSquareEn <= 0;
+							YSquareEn <= 0;
+							l1l2En <= 0;
+						end
+					end
+					else if(MultState == SqX) begin
+						if(MultStageDone) begin
+							XSquareEn <= 0;
+							MultStateNext <= SqY;
+							xTargSquared <= MultRes;
+						end
+						else begin
+							mult1Done <= 0;
+							XSquareEn <= 1;
+							MultOp1 <= xTarget_d;
+							MultOp2 <= xTarget_d;
+						end
+					end
+					else if(MultState == SqY) begin
+						if(MultStageDone) begin
+							YSquareEn <= 0;
+							MultStateNext <= l1l2State;
+							yTargSquared <= MultRes;
+						end
+						else begin
+							MultOp1 <= yTarget_d;
+							MultOp2 <= yTarget_d;
+							YSquareEn <= 1;
+						end
+					end
+					else if(MultState == l1l2State) begin
+						if(MultStageDone) begin
+							l1l2En <= 0;
+							l1l2 <= MultRes;
+							MultStateNext <= Init;
+							mult1Done <= 1; // Signal to the next stage to run
+						end
+						else begin 
+							l1l2En <= 1;
+							MultOp1 <= l1;
+							MultOp2 <= l2;
+						end
+					end
+					
+					MultState <= MultStateNext;
 				
-			  DoubleMultiply l1Timesl2(
-												.reset(reset),
-												.in_ready(enable),
-												.dataa(l1),
-												.datab(l2),
-												.result(l1l2),
-												.data_ready(l1l2Done),
-												.clk(clk));
+				end
 				
-				
-				assign mult1Done = xSquareDone & ySquareDone & l1l2Done;
+				DoubleMultiply MultStageOne(.in_ready(l1l2En | YSquareEn | XSquareEn),
+													.data_ready(MultStageDone),
+													.dataa(MultOp1),
+													.datab(MultOp2),
+													.result(MultRes),
+													.clk(clk),
+													.reset(~l1l2En & ~YSquareEn & ~XSquareEn));
+					
+//				DoubleMultiply xSquared(
+//												.in_ready(enable),
+//												.reset(reset),
+//												.dataa(xTarget_d),
+//												.datab(xTarget_d),
+//												.result(xTargSquared),
+//												.data_ready(xSquareDone),
+//												.clk(clk)
+//												);
+//				
+//				DoubleMultiply ySquared(
+//												.reset(reset),
+//												.in_ready(enable),
+//												.dataa(yTarget_d),
+//												.datab(yTarget_d),
+//												.result(yTargSquared),
+//												.data_ready(ySquareDone),
+//												.clk(clk)
+//												);
+//												
+//				
+//				
+//				// During this stage we can also multiply l1 and l2
+//				logic l1l2Done;
+//				logic [63:0] l1l2;
+//
+//			  DoubleMultiply l1Timesl2(
+//												.reset(reset),
+//												.in_ready(enable),
+//												.dataa(l1),
+//												.datab(l2),
+//												.result(l1l2),
+//												.data_ready(l1l2Done),
+//												.clk(clk));
+//				
+//				
+//				assign mult1Done = xSquareDone & ySquareDone & l1l2Done;
 				
 				/***********************************************/
 				
@@ -165,7 +243,7 @@ module CosineTh2(input logic [63:0] xTarget_d,
 											.reset(reset),
 											.q(invEnable));
 		
-				ClockTimer #(4, 27) divTimer(.en(invEnable),
+				ClockTimer #(5, 27) divTimer(.en(invEnable),
 														.clk(clk),
 														.reset(~invEnable | reset),
 														.expire(invDone));
@@ -178,7 +256,7 @@ module CosineTh2(input logic [63:0] xTarget_d,
 				Inverter invertdivisor(.data(divisor),
 												.result(twicel1l2Inv),
 												.clock(clk),
-												.clk_en(divEnable));
+												.clk_en(invEnable));
 				
 				DoubleMultiply performDivision(.dataa(xyMinl1l2),
 														.datab(twicel1l2Inv),

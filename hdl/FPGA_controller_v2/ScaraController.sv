@@ -75,7 +75,6 @@ module ScaraController(input logic [4:0] controlStateReg,
 					else if(controlStateReg[2] & controlStateReg[0]) nextstate <= FK;
 					else if(controlStateReg[0]) nextstate <= Angles;
 					
-					newDataReceived <= 1;
 				end
 			
 			end
@@ -84,7 +83,11 @@ module ScaraController(input logic [4:0] controlStateReg,
 					FKEn <= 0;
 					nextstate <= Angles;
 				end
-				else FKEn <= 1;
+				else begin 
+					newDataReceived <= 1;
+
+					FKEn <= 1;
+				end 
 			end
 			else if(state == Angles) begin
 				if(AnglesDone) begin

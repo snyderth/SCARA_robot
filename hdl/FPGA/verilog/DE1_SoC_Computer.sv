@@ -593,7 +593,6 @@ end // always @(posedge state_clock)
 //);
 
 
-
 Controller_Interface controller_interface (
 	.clk(CLOCK_50),
 	.block(~initEnable),
@@ -612,7 +611,7 @@ Controller_Interface controller_interface (
 );
 
 //TODO: this sucks. Make this an interface or something.
-wire c2sm1_steps1;
+wire [7:0] c2sm1_steps1;
 wire c2sm1_dir1;
 wire c2sm1_endEffectorState;
 wire c2smALL_dataReady;
@@ -621,16 +620,15 @@ wire sm12c2_stepperReady;
 wire sm22c2_stepperReady;
 wire steppersReady;
 
-
 assign steppersReady = sm12c2_stepperReady & sm22c2_stepperReady;
 
-wire c2sm2_steps2;
+wire [7:0] c2sm2_steps2;
 wire c2sm2_dir2;
 
 ScaraController controller (
 	.controlStateReg(ci2c_controller_state_reg),
 	.xTarget(ci2c_x_value),
-	.yTarget(c12c_y_value),
+	.yTarget(ci2c_y_value),
 	.stepperReady(steppersReady),	//TODO: Connect
 	.enable(controller_interface_out_ready),
 	.clk(CLOCK_50),
@@ -645,9 +643,8 @@ ScaraController controller (
 );
 
 
-
 stepper_motor joint1(
-	.clk_50(CLOCK50),
+	.clk_50(CLOCK_50),
 	.reset_n(~initEnable),
 	.new_in(c2smALL_dataReady),
 	.num_steps(c2sm2_steps2),
@@ -656,10 +653,11 @@ stepper_motor joint1(
 	.enable(1),
 	.step(GPIO_0[7]), //STEP1
 	.dir(GPIO_0[9]), //DIR1
-	.finished(sm22c2_stepperReady)
+	.finished(sm12c2_stepperReady),
+	.steps_out(hex[7:0])
 );
 stepper_motor joint2(
-	.clk_50(CLOCK50),
+	.clk_50(CLOCK_50),
 	.reset_n(~initEnable),
 	.new_in(c2smALL_dataReady),
 	.num_steps(c2sm2_steps2),
@@ -668,11 +666,11 @@ stepper_motor joint2(
 	.enable(1),
 	.step(GPIO_0[13]), //STEP2
 	.dir(GPIO_0[15]), //DIR2
-	.finished(sm22c2_stepperReady)
+	.finished(sm22c2_stepperReady),
+	.steps_out(hex[15:8])
 );
-
-assign GPIO_0[5] = 1; // EN_N_1
-assign GPIO_0[11] = 1; //EN_N_2
+assign GPIO_0[5] = 0; // EN_N_1
+assign GPIO_0[11] = 0; //EN_N_2
 
 
 
