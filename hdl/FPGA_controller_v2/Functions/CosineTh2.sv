@@ -202,11 +202,16 @@ module CosineTh2(input logic [63:0] xTarget_d,
 				logic multLatchReset, l1l2Times2LatchDone;
 				// necesssary because multiplication takes half the time
 				// of addition
-				SRLatch l1l2DoubledLatch(
-												.set(l1l2Times2Done),
-												.reset(reset | multLatchReset),
-												.q(l1l2Times2LatchDone)
-												);
+//				SRLatch l1l2DoubledLatch(
+//												.set(l1l2Times2Done),
+//												.reset(reset | multLatchReset),
+//												.q(l1l2Times2LatchDone)
+//												);
+//	
+		always_ff@(posedge clk) begin
+			if(reset | multLatchReset) l1l2Times2LatchDone <= 0;
+			else if(l1l2Times2Done) l1l2Times2LatchDone <= 1;
+		end		
 				
 				logic [63:0] divisor;
 				// Register to hold the result of the multiplication.
@@ -239,9 +244,14 @@ module CosineTh2(input logic [63:0] xTarget_d,
 				logic invEnable, invDone;
 		
 
-				SRLatch dividerLatch (.set(subtractionDone),
-											.reset(reset),
-											.q(invEnable));
+//				SRLatch dividerLatch (.set(subtractionDone),
+//											.reset(reset),
+//											.q(invEnable));
+always_ff@(posedge clk) begin
+			if(reset) invEnable <= 0;
+			else if(subtractionDone) invEnable <= 1;
+		end		
+	
 		
 				ClockTimer #(5, 27) divTimer(.en(invEnable),
 														.clk(clk),

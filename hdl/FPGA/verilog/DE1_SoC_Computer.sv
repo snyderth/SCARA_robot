@@ -504,7 +504,7 @@ always @(posedge CLOCK_50) begin
 	end
 	
 	// delay before we read
-	if (HPS_to_FPGA_state == DELAY_READ_DATA) begin
+	if (HPS_to_FPGA_state == DELAY_READ_DATA && controller_interface_in_ready == 1) begin
 		// zero the read request BEFORE the data appears 
 		// in the next state!
 		hps_to_fpga_read <= 1'b0 ;
@@ -514,7 +514,7 @@ always @(posedge CLOCK_50) begin
 	
 	// delay untill controller_interface is ready for new data
 	// this test checks to see if we need more fifo read time
-	if (HPS_to_FPGA_state == DELAY_AWAIT_DATA) begin
+	if (HPS_to_FPGA_state == DELAY_AWAIT_DATA ) begin
 			memory_ready <= 0;
 			HPS_to_FPGA_state <= AWAIT_DATA ;
 		// Signal that return data is ready
@@ -523,7 +523,7 @@ always @(posedge CLOCK_50) begin
 	end
 	
 	// read the word from the FIFO
-	if ((HPS_to_FPGA_state == READ_DATA) && (hps_to_fpga_read == 1'b0) && controller_interface_in_ready == 1) begin
+	if ((HPS_to_FPGA_state == READ_DATA) && (hps_to_fpga_read == 1'b0)) begin
 		commandIn.cmd <= hps_to_fpga_readdata[3:0] ; // store the data
 		commandIn.x_value <= hps_to_fpga_readdata[17:4];
 		commandIn.y_value <= hps_to_fpga_readdata[31:18];

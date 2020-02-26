@@ -15,7 +15,8 @@ vsim work.Testbench -L altera_mf_ver -L lpm_ver
 #add wave CLOCK_50
 #add wave GPIO_0
 #add wave /Testbench/controller/*
-add wave /Testbench/
+add wave /Testbench/joint1/*
+add wave /Testbench/joint2/*
 add wave *
 force CLOCK_50 0 @ 0, 1 @ 5 -r 10
 force initEnable 0 @ 0, 1 @ 20

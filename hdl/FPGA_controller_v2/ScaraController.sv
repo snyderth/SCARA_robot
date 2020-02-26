@@ -15,10 +15,21 @@ module ScaraController(input logic [4:0] controlStateReg,
 								
 		/* For receiving new data and moving data through from stepper motors */
 		logic newDataReceived;
-		
-		SRLatch newDataLatch(.set(stepperReady),
-									.reset(newDataReceived),
-									.q(readyForNewData));
+		always_ff@(posedge clk)
+		begin
+			if(stepperReady && !newDataReceived)
+			begin
+				readyForNewData <= 1;
+			end
+			else if(newDataReceived)
+			begin
+				readyForNewData <= 0;
+				
+			end
+		end
+//		SRLatch newDataLatch(.set(stepperReady),
+//									.reset(newDataReceived),
+//									.q(readyForNewData));
 		
 		/**********************************************************************/
 		

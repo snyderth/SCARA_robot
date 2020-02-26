@@ -11,11 +11,15 @@ module DoubleAdder(input logic [63:0] datab,
 			logic en1; // For the intermediate enable between latch and adder
 			logic dsync, n1; // For the sync
 			
-			SRLatch lat(.set(in_ready),
-							.reset(reset | res),
-							.q(en1),
-							.qn());
-			
+//			SRLatch lat(.set(in_ready),
+//							.reset(reset | res),
+//							.q(en1),
+//							.qn());
+			always_ff@(posedge clk) begin
+				if(reset | res) en1 <= 0;
+				else if(in_ready) en1 <= 1;
+			end		
+
 						
 			Adder addy(.datab(datab),
 							.dataa(dataa),

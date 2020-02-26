@@ -31,11 +31,15 @@ module Arctan2(input logic [63:0] arg1,
 					logic convStart, convDone;
 					logic [31:0] arg1FixedPoint, arg2FixedPoint;
 					
-					SRLatch convBegin(
-										.set(enable),
-										.reset(reset | convDone),
-										.q(convStart));
-					
+//					SRLatch convBegin(
+//										.set(enable),
+//										.reset(reset | convDone),
+//										.q(convStart));
+always_ff@(posedge clk) begin
+			if(reset | convDone) convStart <= 0;
+			else if(enable) convStart <= 1;
+		end		
+						
 					DoubleTo32BitFixed arg1Conv(
 											.clock(clk),
 											.clk_en(convStart),
@@ -62,10 +66,14 @@ module Arctan2(input logic [63:0] arg1,
 					/*				Actual arctan function					*/
 					logic atanStart, atanDone;
 					
-					SRLatch atan2Begin(.set(convDone),
-											.reset(reset | atanDone),
-											.q(atanStart));
-					
+//					SRLatch atan2Begin(.set(convDone),
+//											.reset(reset | atanDone),
+//											.q(atanStart));
+always_ff@(posedge clk) begin
+			if(reset | atanDone) atanStart <= 0;
+			else if(convDone) atanStart <= 1;
+		end		
+						
 					Atan2 arctangent(.en(atanStart),
 							.clk(clk),
 							.areset(reset),

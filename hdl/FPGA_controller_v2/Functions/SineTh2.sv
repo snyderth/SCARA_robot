@@ -131,10 +131,14 @@ module SineTh2(input logic [63:0] CosTh2,
 										.reset(RootRes)
 										);
 										
-				SRLatch done(.set(RootDone),
-								.reset(reset | SquareEn),
-								.q(dataReady));
-				
+//				SRLatch done(.set(RootDone),
+//								.reset(reset | SquareEn),
+//								.q(dataReady));
+always_ff@(posedge clk) begin
+			if(reset | SquareEn) dataReady <= 0;
+			else if(RootDone) dataReady <= 1;
+		end		
+					
 				
 endmodule
 

@@ -30,7 +30,10 @@ module SRLatch(input logic set,
 				qn <= 0;
 			end
 		end
+	
+
+//	nor (q, reset, qn); 
+//	nor (qn, set, q); 
 					
-					
-					
+		
 endmodule

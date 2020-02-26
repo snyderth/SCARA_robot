@@ -35,12 +35,15 @@ module DoubleMultiply(input logic [63:0] dataa,
 		
 		
 		/* Make sure we start the mult and the clock time simult.*/
-		SRLatch InCtrl(.set(in_ready),
-							.reset(reset | out),
-							.q(clock_en),
-							.qn());
-							
-							
+//		SRLatch InCtrl(.set(in_ready),
+//							.reset(reset | out),
+//							.q(clock_en),
+//							.qn());
+//		
+		always_ff@(posedge clk) begin
+			if(reset | out) clock_en <= 0;
+			else if(in_ready) clock_en <= 1;
+		end		
 		MultiplierFP mult(.clock(clk),
 							 .clk_en(clock_en & ~data_ready),
 							 .dataa(dataa),
