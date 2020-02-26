@@ -1,6 +1,6 @@
 <session jtag_chain="DE-SoC [USB-1]" jtag_device="@2: 5CSE(BA5|MA5)/5CSTFD5D5/.. (0x02D120DD)" sof_file="DE1_SoC_Computer.sof">
   <display_tree gui_logging_enabled="1">
-    <display_branch instance="auto_signaltap_0" signal_set="signal_set: 2020/02/25 16:01:58  #0" trigger="trigger: 2020/02/25 16:01:58  #1"/>
+    <display_branch instance="auto_signaltap_0" signal_set="signal_set: 2020/02/25 16:05:55  #0" trigger="trigger: 2020/02/25 16:05:55  #1"/>
   </display_tree>
   <instance enabled="true" entity_name="sld_signaltap" is_auto_node="yes" is_expanded="true" name="auto_signaltap_0" source_file="sld_signaltap.vhd">
     <node_ip_info instance_id="0" mfg_id="110" node_id="0" version="6"/>
@@ -3791,13 +3791,12 @@
         </log>
       </trigger>
     </signal_set>
-    <signal_set name="signal_set: 2020/02/25 16:01:58  #0">
+    <signal_set name="signal_set: 2020/02/25 16:05:55  #0">
       <clock name="CLOCK_50" polarity="posedge" tap_mode="classic"/>
       <config pipeline_level="0" ram_type="AUTO" reserved_data_nodes="0" reserved_storage_qualifier_nodes="0" reserved_trigger_nodes="0" sample_depth="128" trigger_in_enable="no" trigger_out_enable="no"/>
       <top_entity/>
       <signal_vec>
         <trigger_input_vec>
-          <wire name="Controller_Interface:controller_interface" tap_mode="classic"/>
           <wire name="HPS_to_FPGA_state.AWAIT_DATA" tap_mode="classic"/>
           <wire name="HPS_to_FPGA_state.DELAY_AWAIT_DATA" tap_mode="classic"/>
           <wire name="HPS_to_FPGA_state.DELAY_READ_DATA" tap_mode="classic"/>
@@ -3807,12 +3806,8 @@
           <wire name="ScaraController:controller|state.Init" tap_mode="classic"/>
           <wire name="ScaraController:controller|state.Steps" tap_mode="classic"/>
           <wire name="ScaraController:controller|state.Wait" tap_mode="classic"/>
-          <wire name="command:commandIn" tap_mode="classic"/>
-          <wire name="stepper_motor:joint1|stp_counter:step_counter" tap_mode="classic"/>
-          <wire name="stepper_motor:joint2|stp_counter:step_counter" tap_mode="classic"/>
         </trigger_input_vec>
         <data_input_vec>
-          <wire name="Controller_Interface:controller_interface" tap_mode="classic"/>
           <wire name="HPS_to_FPGA_state.AWAIT_DATA" tap_mode="classic"/>
           <wire name="HPS_to_FPGA_state.DELAY_AWAIT_DATA" tap_mode="classic"/>
           <wire name="HPS_to_FPGA_state.DELAY_READ_DATA" tap_mode="classic"/>
@@ -3822,12 +3817,8 @@
           <wire name="ScaraController:controller|state.Init" tap_mode="classic"/>
           <wire name="ScaraController:controller|state.Steps" tap_mode="classic"/>
           <wire name="ScaraController:controller|state.Wait" tap_mode="classic"/>
-          <wire name="command:commandIn" tap_mode="classic"/>
-          <wire name="stepper_motor:joint1|stp_counter:step_counter" tap_mode="classic"/>
-          <wire name="stepper_motor:joint2|stp_counter:step_counter" tap_mode="classic"/>
         </data_input_vec>
         <storage_qualifier_input_vec>
-          <wire name="Controller_Interface:controller_interface" tap_mode="classic"/>
           <wire name="HPS_to_FPGA_state.AWAIT_DATA" tap_mode="classic"/>
           <wire name="HPS_to_FPGA_state.DELAY_AWAIT_DATA" tap_mode="classic"/>
           <wire name="HPS_to_FPGA_state.DELAY_READ_DATA" tap_mode="classic"/>
@@ -3837,73 +3828,58 @@
           <wire name="ScaraController:controller|state.Init" tap_mode="classic"/>
           <wire name="ScaraController:controller|state.Steps" tap_mode="classic"/>
           <wire name="ScaraController:controller|state.Wait" tap_mode="classic"/>
-          <wire name="command:commandIn" tap_mode="classic"/>
-          <wire name="stepper_motor:joint1|stp_counter:step_counter" tap_mode="classic"/>
-          <wire name="stepper_motor:joint2|stp_counter:step_counter" tap_mode="classic"/>
         </storage_qualifier_input_vec>
       </signal_vec>
       <presentation>
         <unified_setup_data_view>
           <node is_selected="false" level-0="alt_or" mnemonics="HPS_to_FPGA_state_table" name="HPS_to_FPGA_state" order="lsb_to_msb" radix="mnemonics" state="collapse" type="state machine">
-            <node data_index="0" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.AWAIT_DATA" storage_index="0" tap_mode="classic" trigger_index="0" type="unknown"/>
-            <node data_index="1" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.DELAY_AWAIT_DATA" storage_index="1" tap_mode="classic" trigger_index="1" type="unknown"/>
-            <node data_index="2" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.DELAY_READ_DATA" storage_index="2" tap_mode="classic" trigger_index="2" type="unknown"/>
-            <node data_index="3" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.READ_DATA" storage_index="3" tap_mode="classic" trigger_index="3" type="unknown"/>
+            <node data_index="1" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.AWAIT_DATA" storage_index="1" tap_mode="classic" trigger_index="1" type="unknown"/>
+            <node data_index="2" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.DELAY_AWAIT_DATA" storage_index="2" tap_mode="classic" trigger_index="2" type="unknown"/>
+            <node data_index="3" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.DELAY_READ_DATA" storage_index="3" tap_mode="classic" trigger_index="3" type="unknown"/>
+            <node data_index="4" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.READ_DATA" storage_index="4" tap_mode="classic" trigger_index="4" type="unknown"/>
           </node>
           <node is_selected="false" level-0="alt_or" mnemonics="state_table" name="ScaraController:controller|state" order="lsb_to_msb" radix="mnemonics" state="collapse" type="state machine">
-            <node data_index="4" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Angles" storage_index="4" tap_mode="classic" trigger_index="4" type="unknown"/>
-            <node data_index="5" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.FK" storage_index="5" tap_mode="classic" trigger_index="5" type="unknown"/>
-            <node data_index="6" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Init" storage_index="6" tap_mode="classic" trigger_index="6" type="unknown"/>
-            <node data_index="7" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Steps" storage_index="7" tap_mode="classic" trigger_index="7" type="unknown"/>
-            <node data_index="8" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Wait" storage_index="8" tap_mode="classic" trigger_index="8" type="unknown"/>
+            <node data_index="5" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Angles" storage_index="5" tap_mode="classic" trigger_index="5" type="unknown"/>
+            <node data_index="6" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.FK" storage_index="6" tap_mode="classic" trigger_index="6" type="unknown"/>
+            <node data_index="7" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Init" storage_index="7" tap_mode="classic" trigger_index="7" type="unknown"/>
+            <node data_index="8" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Steps" storage_index="8" tap_mode="classic" trigger_index="8" type="unknown"/>
+            <node data_index="9" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Wait" storage_index="9" tap_mode="classic" trigger_index="9" type="unknown"/>
           </node>
-          <node duplicate_name_allowed="false" is_data_input="true" is_node_valid="false" is_selected="false" is_storage_input="true" is_trigger_input="true" name="stepper_motor:joint1|stp_counter:step_counter" tap_mode="classic" type="unknown"/>
-          <node duplicate_name_allowed="false" is_data_input="true" is_node_valid="false" is_selected="true" is_storage_input="true" is_trigger_input="true" name="stepper_motor:joint2|stp_counter:step_counter" tap_mode="classic" type="unknown"/>
-          <node duplicate_name_allowed="false" is_data_input="true" is_node_valid="false" is_selected="false" is_storage_input="true" is_trigger_input="true" name="command:commandIn" tap_mode="classic" type="unknown"/>
-          <node duplicate_name_allowed="false" is_data_input="true" is_node_valid="false" is_selected="false" is_storage_input="true" is_trigger_input="true" name="Controller_Interface:controller_interface" tap_mode="classic" type="unknown"/>
         </unified_setup_data_view>
         <data_view>
           <bus is_selected="false" level-0="alt_or" mnemonics="HPS_to_FPGA_state_table" name="HPS_to_FPGA_state" order="lsb_to_msb" radix="mnemonics" state="collapse" type="state machine">
-            <net data_index="1" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.AWAIT_DATA" storage_index="1" tap_mode="classic" trigger_index="1" type="unknown"/>
-            <net data_index="2" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.DELAY_AWAIT_DATA" storage_index="2" tap_mode="classic" trigger_index="2" type="unknown"/>
-            <net data_index="3" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.DELAY_READ_DATA" storage_index="3" tap_mode="classic" trigger_index="3" type="unknown"/>
-            <net data_index="4" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.READ_DATA" storage_index="4" tap_mode="classic" trigger_index="4" type="unknown"/>
+            <net data_index="0" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.AWAIT_DATA" storage_index="0" tap_mode="classic" trigger_index="0" type="unknown"/>
+            <net data_index="1" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.DELAY_AWAIT_DATA" storage_index="1" tap_mode="classic" trigger_index="1" type="unknown"/>
+            <net data_index="2" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.DELAY_READ_DATA" storage_index="2" tap_mode="classic" trigger_index="2" type="unknown"/>
+            <net data_index="3" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.READ_DATA" storage_index="3" tap_mode="classic" trigger_index="3" type="unknown"/>
           </bus>
           <bus is_selected="false" level-0="alt_or" mnemonics="state_table" name="ScaraController:controller|state" order="lsb_to_msb" radix="mnemonics" state="collapse" type="state machine">
-            <net data_index="5" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Angles" storage_index="5" tap_mode="classic" trigger_index="5" type="unknown"/>
-            <net data_index="6" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.FK" storage_index="6" tap_mode="classic" trigger_index="6" type="unknown"/>
-            <net data_index="7" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Init" storage_index="7" tap_mode="classic" trigger_index="7" type="unknown"/>
-            <net data_index="8" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Steps" storage_index="8" tap_mode="classic" trigger_index="8" type="unknown"/>
-            <net data_index="9" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Wait" storage_index="9" tap_mode="classic" trigger_index="9" type="unknown"/>
+            <net data_index="4" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Angles" storage_index="4" tap_mode="classic" trigger_index="4" type="unknown"/>
+            <net data_index="5" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.FK" storage_index="5" tap_mode="classic" trigger_index="5" type="unknown"/>
+            <net data_index="6" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Init" storage_index="6" tap_mode="classic" trigger_index="6" type="unknown"/>
+            <net data_index="7" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Steps" storage_index="7" tap_mode="classic" trigger_index="7" type="unknown"/>
+            <net data_index="8" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Wait" storage_index="8" tap_mode="classic" trigger_index="8" type="unknown"/>
           </bus>
-          <net data_index="11" duplicate_name_allowed="false" is_data_input="true" is_node_valid="false" is_selected="false" is_storage_input="true" is_trigger_input="true" name="stepper_motor:joint1|stp_counter:step_counter" storage_index="11" tap_mode="classic" trigger_index="11" type="unknown"/>
-          <net data_index="12" duplicate_name_allowed="false" is_data_input="true" is_node_valid="false" is_selected="true" is_storage_input="true" is_trigger_input="true" name="stepper_motor:joint2|stp_counter:step_counter" storage_index="12" tap_mode="classic" trigger_index="12" type="unknown"/>
-          <net data_index="10" duplicate_name_allowed="false" is_data_input="true" is_node_valid="false" is_selected="false" is_storage_input="true" is_trigger_input="true" name="command:commandIn" storage_index="10" tap_mode="classic" trigger_index="10" type="unknown"/>
-          <net data_index="0" duplicate_name_allowed="false" is_data_input="true" is_node_valid="false" is_selected="false" is_storage_input="true" is_trigger_input="true" name="Controller_Interface:controller_interface" storage_index="0" tap_mode="classic" trigger_index="0" type="unknown"/>
         </data_view>
         <setup_view>
           <bus is_selected="false" level-0="alt_or" mnemonics="HPS_to_FPGA_state_table" name="HPS_to_FPGA_state" order="lsb_to_msb" radix="mnemonics" state="collapse" type="state machine">
-            <net data_index="1" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.AWAIT_DATA" storage_index="1" tap_mode="classic" trigger_index="1" type="unknown"/>
-            <net data_index="2" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.DELAY_AWAIT_DATA" storage_index="2" tap_mode="classic" trigger_index="2" type="unknown"/>
-            <net data_index="3" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.DELAY_READ_DATA" storage_index="3" tap_mode="classic" trigger_index="3" type="unknown"/>
-            <net data_index="4" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.READ_DATA" storage_index="4" tap_mode="classic" trigger_index="4" type="unknown"/>
+            <net data_index="0" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.AWAIT_DATA" storage_index="0" tap_mode="classic" trigger_index="0" type="unknown"/>
+            <net data_index="1" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.DELAY_AWAIT_DATA" storage_index="1" tap_mode="classic" trigger_index="1" type="unknown"/>
+            <net data_index="2" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.DELAY_READ_DATA" storage_index="2" tap_mode="classic" trigger_index="2" type="unknown"/>
+            <net data_index="3" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="HPS_to_FPGA_state.READ_DATA" storage_index="3" tap_mode="classic" trigger_index="3" type="unknown"/>
           </bus>
           <bus is_selected="false" level-0="alt_or" mnemonics="state_table" name="ScaraController:controller|state" order="lsb_to_msb" radix="mnemonics" state="collapse" type="state machine">
-            <net data_index="5" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Angles" storage_index="5" tap_mode="classic" trigger_index="5" type="unknown"/>
-            <net data_index="6" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.FK" storage_index="6" tap_mode="classic" trigger_index="6" type="unknown"/>
-            <net data_index="7" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Init" storage_index="7" tap_mode="classic" trigger_index="7" type="unknown"/>
-            <net data_index="8" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Steps" storage_index="8" tap_mode="classic" trigger_index="8" type="unknown"/>
-            <net data_index="9" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Wait" storage_index="9" tap_mode="classic" trigger_index="9" type="unknown"/>
+            <net data_index="4" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Angles" storage_index="4" tap_mode="classic" trigger_index="4" type="unknown"/>
+            <net data_index="5" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.FK" storage_index="5" tap_mode="classic" trigger_index="5" type="unknown"/>
+            <net data_index="6" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Init" storage_index="6" tap_mode="classic" trigger_index="6" type="unknown"/>
+            <net data_index="7" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Steps" storage_index="7" tap_mode="classic" trigger_index="7" type="unknown"/>
+            <net data_index="8" duplicate_name_allowed="true" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="true" name="ScaraController:controller|state.Wait" storage_index="8" tap_mode="classic" trigger_index="8" type="unknown"/>
           </bus>
-          <net data_index="11" duplicate_name_allowed="false" is_data_input="true" is_node_valid="false" is_selected="false" is_storage_input="true" is_trigger_input="true" name="stepper_motor:joint1|stp_counter:step_counter" storage_index="11" tap_mode="classic" trigger_index="11" type="unknown"/>
-          <net data_index="12" duplicate_name_allowed="false" is_data_input="true" is_node_valid="false" is_selected="true" is_storage_input="true" is_trigger_input="true" name="stepper_motor:joint2|stp_counter:step_counter" storage_index="12" tap_mode="classic" trigger_index="12" type="unknown"/>
-          <net data_index="10" duplicate_name_allowed="false" is_data_input="true" is_node_valid="false" is_selected="false" is_storage_input="true" is_trigger_input="true" name="command:commandIn" storage_index="10" tap_mode="classic" trigger_index="10" type="unknown"/>
-          <net data_index="0" duplicate_name_allowed="false" is_data_input="true" is_node_valid="false" is_selected="false" is_storage_input="true" is_trigger_input="true" name="Controller_Interface:controller_interface" storage_index="0" tap_mode="classic" trigger_index="0" type="unknown"/>
         </setup_view>
         <trigger_in_editor/>
         <trigger_out_editor/>
       </presentation>
-      <trigger attribute_mem_mode="false" gap_record="true" name="trigger: 2020/02/25 16:01:58  #1" position="pre" power_up_trigger_mode="false" record_data_gap="true" segment_size="1" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="false" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_type="circular">
+      <trigger attribute_mem_mode="false" gap_record="true" name="trigger: 2020/02/25 16:05:55  #1" position="pre" power_up_trigger_mode="false" record_data_gap="true" segment_size="1" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="false" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_type="circular">
         <power_up_trigger position="pre" storage_qualifier_disabled="no"/>
         <events use_custom_flow_control="no">
           <level enabled="yes" name="condition1" type="basic">
@@ -3913,8 +3889,8 @@
           </level>
         </events>
         <storage_qualifier_events>
-          <transitional>1111111111111
-            <pwr_up_transitional>1111111111111</pwr_up_transitional>
+          <transitional>111111111
+            <pwr_up_transitional>111111111</pwr_up_transitional>
           </transitional>
           <storage_qualifier_level type="basic">
             <power_up>
