@@ -610,6 +610,7 @@ Controller_Interface controller_interface (
 
 );
 
+
 //TODO: this sucks. Make this an interface or something.
 wire [7:0] c2sm1_steps1;
 wire c2sm1_dir1;
