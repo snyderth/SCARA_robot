@@ -7,6 +7,7 @@ vcom -work work ../../../../FPGA_controller_v2/Atan2/simulation/submodules/Atan2
 
 vsim work.Testbench -L altera_mf_ver -L lpm_ver 
 
+
 #add wave cmd
 #add wave -radix signed x_value
 #add wave -radix signed y_value
@@ -14,17 +15,19 @@ vsim work.Testbench -L altera_mf_ver -L lpm_ver
 #add wave initEnable
 #add wave CLOCK_50
 #add wave GPIO_0
+add wave /Testbench/controller/anglesCalc/*
 add wave /Testbench/controller/*
 add wave /Testbench/joint1/*
-add wave /Testbench/joint2/*
+#add wave /Testbench/joint1/*
+#add wave /Testbench/joint2/*
 add wave *
 force CLOCK_50 0 @ 0, 1 @ 5 -r 10
 force initEnable 0 @ 0, 1 @ 20
 
 
 force cmd 4'd0  
-force x_value 14'd3838
-force y_value 14'd4567
+force x_value 14'd4095
+force y_value 14'd4095
 
 force memory_ready 0 @ 0, 1 @ 5 -r 10
 

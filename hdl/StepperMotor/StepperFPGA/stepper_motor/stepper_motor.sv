@@ -25,11 +25,11 @@ module stepper_motor(input  logic clk_50,
 							logic [31:0]	step_length;
 							logic [31:0]	longest_step;
 							logic [31:0]	adjustment;
-							
+							logic step_prev;
 		initial
 			begin
 				count = 0;
-				step_count = 0;
+				//step_count = 0;
 			end
 		
 		//According to data sheet:
@@ -49,9 +49,9 @@ module stepper_motor(input  logic clk_50,
 		
 		always_comb
 			if(set_fast)
-				step_length = 50000;
+				step_length = 5000;
 			else
-				step_length = 500000;
+				step_length = 50000;
 		
 		assign reset_time_n = (count < step_length) & !new_in;
 		assign reset_step_n = !new_in;
@@ -65,12 +65,22 @@ module stepper_motor(input  logic clk_50,
 										.reset1_n(reset_time_n),
 										.en(enable & (!finished)),
 										.q(count));
-		
-		stp_counter #(8) step_counter(.clk(!step),
-										.reset_n(reset_n),
-										.reset1_n(reset_step_n),
-										.en(enable),
-										.q(step_count));
+		always_ff@(posedge clk_50) begin
+			if(!reset_step_n) begin
+				step_count <= 0;
+				step_prev <= 0;
+			end
+		//Falling edge
+			if(step_prev && !step) begin
+				step_count <= step_count + 1;
+			end
+			step_prev <= step;
+		end
+//		stp_counter #(8) step_counter(.clk(!step),
+//										.reset_n(reset_n),
+//										.reset1_n(reset_step_n),
+//										.en(enable),
+//										.q(step_count));
 		
 							
 		always_ff @(posedge new_in, negedge reset_n)

@@ -646,11 +646,11 @@ ScaraController controller (
 
 stepper_motor joint1(
 	.clk_50(CLOCK_50),
-	.reset_n(~initEnable),
+	.reset_n(initEnable),
 	.new_in(c2smALL_dataReady),
-	.num_steps(c2sm2_steps2),
-	.fast(0),
-	.direction(c2sm2_dir2),
+	.num_steps(c2sm1_steps1),
+	.fast(SW[0]),
+	.direction(c2sm1_dir1),
 	.enable(1),
 	.step(GPIO_0[7]), //STEP1
 	.dir(GPIO_0[9]), //DIR1
@@ -659,10 +659,10 @@ stepper_motor joint1(
 );
 stepper_motor joint2(
 	.clk_50(CLOCK_50),
-	.reset_n(~initEnable),
+	.reset_n(initEnable),
 	.new_in(c2smALL_dataReady),
 	.num_steps(c2sm2_steps2),
-	.fast(0),
+	.fast(SW[0]),
 	.direction(c2sm2_dir2),
 	.enable(1),
 	.step(GPIO_0[13]), //STEP2

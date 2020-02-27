@@ -7,19 +7,12 @@ module Testbench (input [3:0] cmd,
 	output [31:0] GPIO_0	
 );
 
-wire [13:0] ci2c_x_value;
-wire [13:0] ci2c_y_value;
-wire [4:0] ci2c_controller_state_reg;
-wire c2ci_controller_ready;
-wire controller_interface_out_ready;
-wire controller_interface_in_ready;
-
 Controller_Interface controller_interface (
 	.clk(CLOCK_50),
 	.block(~initEnable),
-	.cmd(cmd),
-	.x_value_in(x_value),
-	.y_value_in(y_value),
+	.cmd(commandIn.cmd),
+	.x_value_in(commandIn.x_value),
+	.y_value_in(commandIn.y_value),
 	.memory_ready(memory_ready),
 	.controller_ready(c2ci_controller_ready),
 	.controller_interface_in_ready(controller_interface_in_ready),
@@ -30,6 +23,7 @@ Controller_Interface controller_interface (
 
 
 );
+
 
 //TODO: this sucks. Make this an interface or something.
 wire [7:0] c2sm1_steps1;
@@ -58,36 +52,37 @@ ScaraController controller (
 	.steps2(c2sm2_steps2), //TODO: Connect
 	.dir1(c2sm1_dir1), //TODO: Connect
 	.dir2(c2sm2_dir2), //TODO: Connect
-	.endEffectorState(c2sm1_endEffectorState), //TODO: Connect
+	.endEffectorState(), //TODO: Connect
 	.dataReady(c2smALL_dataReady), //TODO: Connect
 	.readyForNewData(c2ci_controller_ready)
 );
 
 
-
 stepper_motor joint1(
 	.clk_50(CLOCK_50),
-	.reset_n(~initEnable),
+	.reset_n(initEnable),
 	.new_in(c2smALL_dataReady),
-	.num_steps(c2sm2_steps2),
+	.num_steps(c2sm1_steps1),
 	.fast(0),
-	.direction(c2sm2_dir2),
+	.direction(c2sm1_dir1),
 	.enable(1),
-	.step(GPIO_0[7]), //STEP1
+	.step(), //STEP1
 	.dir(GPIO_0[9]), //DIR1
-	.finished(sm12c2_stepperReady)
+	.finished(sm12c2_stepperReady),
+	.steps_out()
 );
 stepper_motor joint2(
 	.clk_50(CLOCK_50),
-	.reset_n(~initEnable),
+	.reset_n(initEnable),
 	.new_in(c2smALL_dataReady),
 	.num_steps(c2sm2_steps2),
 	.fast(0),
 	.direction(c2sm2_dir2),
 	.enable(1),
-	.step(GPIO_0[13]), //STEP2
-	.dir(GPIO_0[15]), //DIR2
-	.finished(sm22c2_stepperReady)
+	.step(), //STEP2
+	.dir(), //DIR2
+	.finished(sm22c2_stepperReady),
+	.steps_out()
 );
 
 endmodule
