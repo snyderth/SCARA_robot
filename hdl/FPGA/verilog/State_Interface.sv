@@ -67,7 +67,6 @@ begin
 				begin
 					linear <= 1; //Nonlinear move
 					tool_change <= 0;
-					raise_tool <= 0;
 					x_value <= x_value_in;
 					y_value <= y_value_in;
 				end
@@ -75,22 +74,47 @@ begin
 				begin
 					linear <= 1; //Linear move
 					tool_change <= 0;
-					raise_tool <= 0;
 					x_value <= x_value_in;
 					y_value <= y_value_in;
 				end
-			G20: inches <= 1; //Set Inches
-			G21: inches <= 0; //Set millimeters
-			G90: absolute <= 1;	
-			G91: absolute <= 0;
+			G20: 
+			begin 
+				linear <= 0; 
+				tool_change <= 0;
+				inches <= 1; //Set Inches
+			end 
+			G21: 
+			begin
+				linear <= 0; 
+				tool_change <= 0;
+				inches <= 0; //Set millimeters
+			end
+			G90: 
+		   begin
+				linear <= 0; 
+				tool_change <= 0;
+				absolute <= 1; //Set absolute	
+			end
+			G91: 
+			begin
+				linear <= 0; 
+				tool_change <=0;
+				absolute <= 0; //Set relative
+			end 
 			M6: 
-				begin
-					tool_change <= 1;
-					x_value <= x_value_in;
-					linear <= 0;					
-				end
+			begin
+				tool_change <= 1;
+				x_value <= x_value_in;
+				linear <= 0;					
+			end
 			
-			M72: raise_tool <= 1;
+			M72: 
+			begin
+				raise_tool <= !raise_tool;
+				linear <= 0;
+				tool_change <= 0;
+				
+			end
 		endcase
 	end
 			

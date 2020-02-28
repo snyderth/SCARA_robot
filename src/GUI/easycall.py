@@ -2,22 +2,24 @@ from Vision.vision import asGCode
 from HPS_to_FPGA.CommandCodeStreamer import streamProcess
 from GCode.gcodeParser import commandToGcode, gcodeToCommands, commandCode, COMMAND_MAP
 from functools import partial
+from GUI.SerialInterface import serialSendCommands
 
 def streamFromImage(img, colorPalette, granularity, maxLines, paperSize, reportDone, reportSend, reportSent):
     '''
     Send gcode to the fpga derived from an image
-    @param reportSend: Function in the format (int)->None that reports when a value is about to be sent
-    @param reportSent: Function in the format (bool, int)->None that reports when a value has been sent, and if it was succe,ssful or not.
+    @param reportSend: Function in the format (string)->None that reports when a value is about to be sent
+    @param reportSent: Function in the format (bool, string)->None that reports when a value has been sent, and if it was succe,ssful or not.
     @param reportDone: Function in the format ()->None that reports when the FPGA is done executing
     '''
     gcode = asGCode(img, colorPalette, granularity, maxLines, paperSize)
-    __stream(gcode, reportDone, reportSend, reportSent)
+    __stream(gcode, giveCommand(reportDone), reportSend, lambda b, c: giveCommand(partial(reportSent, b))(c))
 
 def streamFromGcode(gcode, reportDone, reportSend, reportSent):
     '''
     Send gcode to the fpga
     '''
-    __stream(gcode, reportDone, reportSend, reportSent)
+    __stream(gcode, giveCommand(reportDone), reportSend, lambda b, c: giveCommand(partial(reportSent, b))(c))
+
 
 
 def reportSendWhenCommand(handler, command):
@@ -48,3 +50,6 @@ def __whenCommand(handler, command, code):
 def __stream(gcode, reportDone, reportSend, reportSent):
     commands = gcodeToCommands(gcode)
     streamProcess(commands, reportDone, reportSend, reportSent)
+def __streamSerial(gcode, ser):
+    commands = gcodeToCommands(gcode)
+    serialSendCommands(ser, commands)

@@ -189,7 +189,7 @@ module DE1_SoC_Computer (
 //=======================================================
 //  PARAMETER declarations
 //=======================================================
-enum {READ_DATA, AWAIT_DATA, DELAY_READ_DATA, DELAY_AWAIT_DATA} HPS_to_FPGA_states;
+enum {FLUSH, READ_DATA, AWAIT_DATA, DELAY_READ_DATA, DELAY_AWAIT_DATA} HPS_to_FPGA_states;
 //=======================================================
 //  PORT declarations
 //=======================================================
@@ -428,7 +428,7 @@ reg hps_to_fpga_read ; // read command
 // base+1 => status bits; 
 //           bit0==1 if full
 //           bit1==1 if empty
-wire [31:0] hps_to_fpga_out_csr_address = 32'd1 ; // fill_level  // should probably init to 0
+wire [31:0] hps_to_fpga_out_csr_address = 32'd0 ; // fill_level  // should probably init to 0
 reg[31:0] hps_to_fpga_out_csr_readdata ;
 reg hps_to_fpga_out_csr_read ; // status regs read cmd
 reg [7:0] HPS_to_FPGA_state ;
@@ -446,7 +446,7 @@ reg fpga_to_hps_in_write ; // write command
 // base+1 => status bits; 
 //           bit0==1 if full
 //           bit1==1 if empty
-wire [31:0] fpga_to_hps_in_csr_address = 32'd1 ; // fill_level  // should probably init to 0
+wire [31:0] fpga_to_hps_in_csr_address = 0;//32'd1 ; // fill_level  // should probably init to 0
 reg[31:0] fpga_to_hps_in_csr_readdata ;
 reg fpga_to_hps_in_csr_read ; // status regs read cmd
 reg [7:0] FPGA_to_HPS_state ;
@@ -475,6 +475,7 @@ always @(posedge CLOCK_50) begin
 
    //  state machine and read/write controls
 	if(initEnable == 0) begin
+		hps_to_fpga_out_csr_read <= 1;
 		sram_write <= 1'b0 ;
 		commandCount <= 0 ;
 		HPS_to_FPGA_state <= AWAIT_DATA ;
@@ -483,6 +484,8 @@ always @(posedge CLOCK_50) begin
 		initEnable = 1;
 		memory_ready <= 0;
 		hps_to_fpga_read <= 0;
+		
+	
 	end  // if(init_enable == 0)
 
 // changing this to - get 4 32-bit words (command-data)
@@ -498,13 +501,16 @@ always @(posedge CLOCK_50) begin
 	// Is there data in HPS_to_FPGA FIFO
 	// and the last transfer is complete
 	// data_buffer_valid is only used by the FPGA to HPS FIFO !!
-	if (HPS_to_FPGA_state == AWAIT_DATA && !(hps_to_fpga_out_csr_readdata[1]))  begin
+	if (HPS_to_FPGA_state == AWAIT_DATA && hps_to_fpga_out_csr_readdata > 0 && controller_interface_in_ready == 1)  begin
 		hps_to_fpga_read <= 1'b1 ;
 		HPS_to_FPGA_state <= DELAY_READ_DATA ; //
 	end
 	
+ 
+	
 	// delay before we read
-	if (HPS_to_FPGA_state == DELAY_READ_DATA && controller_interface_in_ready == 1) begin
+
+	if (HPS_to_FPGA_state == DELAY_READ_DATA) begin
 		// zero the read request BEFORE the data appears 
 		// in the next state!
 		hps_to_fpga_read <= 1'b0 ;
@@ -700,7 +706,7 @@ Computer_System The_System (
 	.fifo_hps_to_fpga_out_readdata      (hps_to_fpga_readdata),      //  fifo_hps_to_fpga_out.readdata
 	.fifo_hps_to_fpga_out_read          (hps_to_fpga_read),          //   out.read
 	.fifo_hps_to_fpga_out_waitrequest   (),                            //   out.waitrequest
-	.fifo_hps_to_fpga_out_csr_address   (32'd1), //(hps_to_fpga_out_csr_address),   // fifo_hps_to_fpga_out_csr.address
+	.fifo_hps_to_fpga_out_csr_address   (hps_to_fpga_out_csr_address),   // fifo_hps_to_fpga_out_csr.address
 	.fifo_hps_to_fpga_out_csr_read      (1'b1), //(hps_to_fpga_out_csr_read),      //   csr.read
 	.fifo_hps_to_fpga_out_csr_writedata (),                              //   csr.writedata
 	.fifo_hps_to_fpga_out_csr_write     (1'b0),                           //   csr.write

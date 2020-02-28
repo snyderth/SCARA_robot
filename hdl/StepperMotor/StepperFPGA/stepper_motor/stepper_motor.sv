@@ -49,9 +49,9 @@ module stepper_motor(input  logic clk_50,
 		
 		always_comb
 			if(set_fast)
-				step_length = 5000;
+				step_length = 2500000;
 			else
-				step_length = 50000;
+				step_length = 5000000;
 		
 		assign reset_time_n = (count < step_length) & !new_in;
 		assign reset_step_n = !new_in;
@@ -66,15 +66,18 @@ module stepper_motor(input  logic clk_50,
 										.en(enable & (!finished)),
 										.q(count));
 		always_ff@(posedge clk_50) begin
-			if(!reset_step_n) begin
+			if(!reset_step_n | !reset_n) begin
 				step_count <= 0;
 				step_prev <= 0;
 			end
+			
 		//Falling edge
-			if(step_prev && !step) begin
-				step_count <= step_count + 1;
+			else begin
+				if(step_prev && !step) begin
+					step_count <= step_count + 1;
+				end
+				step_prev <= step;
 			end
-			step_prev <= step;
 		end
 //		stp_counter #(8) step_counter(.clk(!step),
 //										.reset_n(reset_n),
