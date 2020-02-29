@@ -24,12 +24,12 @@ enum {G00, G01, G20, G21, G90, G91, M2, M6, M72} Command_Code;
 
 reg linear;
 reg inches;
-reg absolute;
+reg relative;
 reg raise_tool;
 reg tool_change;
 
 
-assign controller_state_reg = {tool_change, raise_tool, absolute, inches, linear};
+assign controller_state_reg = {tool_change, raise_tool, relative, inches, linear};
 
 //The controller has new information when the memory does
 //assign controller_interface_out_ready = memory_ready;
@@ -56,7 +56,7 @@ begin
 	begin
 		linear <= 0;
 		inches <= 1;
-		absolute <= 1;
+		relative <= 0;
 		raise_tool <= 0;
 		tool_change <= 0;
 	end
@@ -93,13 +93,13 @@ begin
 		   begin
 				linear <= 0; 
 				tool_change <= 0;
-				absolute <= 1; //Set absolute	
+				relative <= 0; //Set absolute	
 			end
 			G91: 
 			begin
 				linear <= 0; 
 				tool_change <=0;
-				absolute <= 0; //Set relative
+				relative <= 1; //Set relative
 			end 
 			M6: 
 			begin
