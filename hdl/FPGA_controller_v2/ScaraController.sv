@@ -165,10 +165,12 @@ module ScaraController(input logic [4:0] controlStateReg,
 							.clk(clk),
 							.enable(AnglesEn),
 							.reset(~AnglesEn | reset),
+							.relative(controlStateReg[2]),
 							.dataReady(AnglesDone),
 							.th1(th1Target),
 							.th2(th2Target)
 							);
+							
 							
 		logic [12:0] theta1Diff, theta2Diff;
 		always_comb begin
