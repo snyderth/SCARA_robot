@@ -144,7 +144,7 @@ module ScaraController(input logic [4:0] controlStateReg,
 										.dataReady(FKDone));
 										
 		always_comb begin
-			if(!controlStateReg[2]) begin
+			if(controlStateReg[2]) begin
 				xTarg = xTarget + xCurrent;
 				yTarg = yTarget + yCurrent;
 			end

@@ -3,22 +3,24 @@ from HPS_to_FPGA.CommandCodeStreamer import streamProcess
 from GCode.gcodeParser import commandToGcode, gcodeToCommands, commandCode, COMMAND_MAP
 from functools import partial
 from GUI.SerialInterface import serialSendCommands
+import serial
 
-def streamFromImage(img, colorPalette, granularity, maxLines, paperSize, reportDone, reportSend, reportSent):
+def streamFromImage(img, colorPalette, granularity, maxLines, paperSize, reportDone, reportSend, reportSent, streamProcess):
     '''
     Send gcode to the fpga derived from an image
     @param reportSend: Function in the format (string)->None that reports when a value is about to be sent
     @param reportSent: Function in the format (bool, string)->None that reports when a value has been sent, and if it was succe,ssful or not.
     @param reportDone: Function in the format ()->None that reports when the FPGA is done executing
+    @param streamProcess: Function in the format (gcode: string, reportDone:(string)->None, reportSent:(bool, string)->None, reportDone:()->None) that sends values to the FPGA. Preimplemented: localStream, serialStream
     '''
     gcode = asGCode(img, colorPalette, granularity, maxLines, paperSize)
-    __stream(gcode, giveCommand(reportDone), reportSend, lambda b, c: giveCommand(partial(reportSent, b))(c))
+    streamFromGcode(gcode, reportDone, reportSend, reportSent, streamProcess)
 
-def streamFromGcode(gcode, reportDone, reportSend, reportSent):
+def streamFromGcode(gcode, reportDone, reportSend, reportSent, streamProcess):
     '''
     Send gcode to the fpga
     '''
-    __stream(gcode, giveCommand(reportDone), reportSend, lambda b, c: giveCommand(partial(reportSent, b))(c))
+    streamProcess(gcode, reportDone, giveCommand(reportSend), lambda b, c: giveCommand(partial(reportSent, b))(c))
 
 
 
@@ -47,9 +49,13 @@ def __whenCommand(handler, command, code):
         handler(gcode)
 
 
-def __stream(gcode, reportDone, reportSend, reportSent):
+def localStream(gcode, reportDone, reportSend, reportSent):
     commands = gcodeToCommands(gcode)
     streamProcess(commands, reportDone, reportSend, reportSent)
-def __streamSerial(gcode, ser):
+
+def serialStream(port, baud):
+    return partial(__streamSerial, port, baud)
+
+def __streamSerial(port, baud, gcode, reportDone, reportSend, reportSent):
     commands = gcodeToCommands(gcode)
-    serialSendCommands(ser, commands)
+    serialSendCommands(port, baud, commands, reportDone, reportSend, reportSent)
