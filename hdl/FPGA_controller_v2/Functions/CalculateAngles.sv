@@ -154,7 +154,7 @@ module CalculateAngles (
 		/******************* Convert targets to double *****************/
 				
 				logic [63:0] xTarget_d, yTarget_d;
-						
+				
 												
 				//NOTE: Conversions are 15 bit even though
 				// x and y are 14 bit because the converters
@@ -164,13 +164,13 @@ module CalculateAngles (
 												.clk_en(T2DEn),
 												.clock(clk),
 												.result(xTarget_d),
-												.dataa({1'b0, xTarget}));
+												.dataa({xTarget[13], 1'b0, xTarget[12:0]}));
 												
 				Int15BitToDouble ytarget(
 												.clk_en(T2DEn),
 												.clock(clk),
 												.result(yTarget_d),
-												.dataa({1'b0, yTarget}));
+												.dataa({yTarget[13], 1'b0, yTarget[12:0]}));
 												
 				ClockTimer #(4, 6) convTimer(.en(T2DEn),
 														.reset(~T2DEn),
@@ -309,21 +309,23 @@ module CalculateAngles (
 										
 		// Selecting where the output to the arctan
 		// function should go.
-		always_ff@(posedge atanDone) begin
-			if(state == Gamma) begin
-				gammaIntermediate <= resultAtan;
-				GammaDone <= 1'b1;
-				ThetaDone <= 1'b0;
-			end
-			else if (state == AtanXY) begin
-				GammaDone <= 1'b0;
-				arctanXYRes <= resultAtan;
-				AtanXYDone <= 1'b1;
-			end
-			else if (state == Thetas) begin
-				ThetaDone <= 1'b1;
-				AtanXYDone <= 1'b0;
-				th2res <= resultAtan;
+		always_ff@(posedge clk) begin
+			if(atanDone) begin
+				if(state == Gamma) begin
+					gammaIntermediate <= resultAtan;
+					GammaDone <= 1'b1;
+					ThetaDone <= 1'b0;
+				end
+				else if (state == AtanXY) begin
+					GammaDone <= 1'b0;
+					arctanXYRes <= resultAtan;
+					AtanXYDone <= 1'b1;
+				end
+				else if (state == Thetas) begin
+					ThetaDone <= 1'b1;
+					AtanXYDone <= 1'b0;
+					th2res <= resultAtan;
+				end
 			end
 
 		end
@@ -331,18 +333,28 @@ module CalculateAngles (
 										
 		
 		// Latch onto the result		
-		always_ff@(posedge AtanXYDone)
-			arctanXY <= arctanXYRes;
-			
-		// Latch onto the result
-		always_ff@(posedge GammaDone)
-			gammaResult <= gammaIntermediate;
-			
-					/*	Calculate Thetas */
-		always_ff@(posedge ThetaDone) begin
-			th1res <= arctanXY - gammaResult;			
-			th2hold <= th2res;
+		always_ff@(posedge clk) begin
+			if(AtanXYDone) begin
+				arctanXY <= arctanXYRes;
+			end
+			if(GammaDone) begin
+				gammaResult <= gammaIntermediate;
+			end
+			if(ThetaDone) begin
+				th1res <= arctanXY - gammaResult;			
+				th2hold <= th2res;
+
+			end
 		end
+//		// Latch onto the result
+//		always_ff@(posedge GammaDone)
+//			gammaResult <= gammaIntermediate;
+//			
+//					/*	Calculate Thetas */
+//		always_ff@(posedge ThetaDone) begin
+//			th1res <= arctanXY - gammaResult;			
+//			th2hold <= th2res;
+//		end
 			
 		/*********************************************/
 		

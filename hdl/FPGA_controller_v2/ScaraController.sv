@@ -66,8 +66,8 @@ module ScaraController(input logic [4:0] controlStateReg,
 		/* Main state machine transition logic */
 		always_ff@(posedge clk) begin
 			if(reset) begin
-				th1Current <= 13'b000_0110010010;
-				th2Current <= 13'b000_0110010010; //pi/4 start
+				th1Current <= 13'b000_1100100100;
+				th2Current <= 13'b000_1100100100; //pi/4 start
 				nextstate <= Init;
 				FKEn <= 0;
 				AnglesEn <= 0;

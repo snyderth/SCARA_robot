@@ -164,7 +164,7 @@ if __name__ == '__main__':
         k = cv.waitKey(1)
 
         if k % 256 == 27:
-            # ESC pressed
+            # ESC pressed+
             print("Escape hit, closing...")
             break
         elif k % 256 == 32:
