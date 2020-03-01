@@ -3,6 +3,7 @@ from HPS_to_FPGA.CommandCodeStreamer import streamProcess
 from GCode.gcodeParser import commandToGcode, gcodeToCommands, commandCode, COMMAND_MAP
 from functools import partial
 from GUI.SerialInterface import serialSendCommands
+from GUI.easycalltools import *
 import serial
 
 def streamFromImage(img, colorPalette, granularity, maxLines, paperSize, reportDone, reportSend, reportSent, streamProcess):
@@ -31,12 +32,12 @@ def reportSendWhenCommand(handler, command):
     '''
     return partial(__whenCommand, handler, command)
 
-def giveCommand(handler):
-    return partial(__asCommand, handler)
-
-def __asCommand(handler, code):
-    gcode = commandToGcode(code, 1)
-    handler(gcode)
+# def giveCommand(handler):
+#     return partial(__asCommand, handler)
+#
+# def __asCommand(handler, code):
+#     gcode = commandToGcode(code, 1)
+#     handler(gcode)
 
 
 def __whenCommand(handler, command, code):
