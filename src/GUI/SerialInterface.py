@@ -1,7 +1,6 @@
 import serial
 import HPS_to_FPGA.CommandCodeStreamer as ci
-from functools import partial
-from GUI.easycall import giveCommand
+from easycalltools import *
 
 DONE_SIGNAL = "Done"
 SEND_SIGNAL = "Send"
