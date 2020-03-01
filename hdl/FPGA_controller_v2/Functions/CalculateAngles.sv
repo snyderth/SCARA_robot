@@ -160,14 +160,14 @@ module CalculateAngles (
 				logic [14:0] xTargetConversionInput, yTargetConversionInput;
 				
 				always_comb begin
-					if(relative) begin
-						xTargetConversionInput = {xTarget[13], 1'b0, xTarget[12:0]};
-						yTargetConversionInput = {yTarget[13], 1'b0, yTarget[12:0]};
-					end
-					else begin
+//					if(relative) begin
+//						xTargetConversionInput = {xTarget[13], 1'b0, xTarget[12:0]};
+//						yTargetConversionInput = {yTarget[13], 1'b0, yTarget[12:0]};
+//					end
+					//else begin
 						xTargetConversionInput = {1'b0, xTarget};
 						yTargetConversionInput = {1'b0, yTarget};
-					end
+					//end
 				end
 		
 				//NOTE: Conversions are 15 bit even though

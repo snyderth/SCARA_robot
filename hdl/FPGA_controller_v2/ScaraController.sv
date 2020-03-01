@@ -15,18 +15,18 @@ module ScaraController(input logic [4:0] controlStateReg,
 								
 		/* For receiving new data and moving data through from stepper motors */
 		logic newDataReceived;
-		always_ff@(posedge clk)
-		begin
-			if(stepperReady && !newDataReceived)
-			begin
-				readyForNewData <= 1;
-			end
-			else if(newDataReceived)
-			begin
-				readyForNewData <= 0;
-				
-			end
-		end
+//		always_ff@(posedge clk)
+//		begin
+//			if(stepperReady && !newDataReceived)
+//			begin
+//				readyForNewData <= 1;
+//			end
+//			else if(newDataReceived)
+//			begin
+//				readyForNewData <= 0;
+//				
+//			end
+//		end
 //		SRLatch newDataLatch(.set(stepperReady),
 //									.reset(newDataReceived),
 //									.q(readyForNewData));
@@ -75,17 +75,23 @@ module ScaraController(input logic [4:0] controlStateReg,
 				WaitEn <= 0;
 			end
 			else if(state == Init) begin
-				newDataReceived <= 0;
 				FKEn <= 0;
 				AnglesEn <= 0;
 				StepsEn <= 0;
 				WaitEn <= 0;
 				if(enable) begin
-					
+					newDataReceived <= 1;
+					readyForNewData <= 0;
 					if(controlStateReg[4]) nextstate <= Wait;
 					else if(controlStateReg[2] & controlStateReg[0] & stepperReady) nextstate <= FK;
 					else if(controlStateReg[0] & stepperReady) nextstate <= Angles;
 					
+				end
+				else begin
+					newDataReceived <= 0;
+					if(stepperReady) begin
+						readyForNewData <= 1;
+					end
 				end
 			
 			end
@@ -96,7 +102,7 @@ module ScaraController(input logic [4:0] controlStateReg,
 				end
 				else begin 
 					newDataReceived <= 1;
-
+					//readyForNewData <= 0;
 					FKEn <= 1;
 				end 
 			end
@@ -107,7 +113,11 @@ module ScaraController(input logic [4:0] controlStateReg,
 //					th1Current <= th1Target;
 //					th2Current <= th2Target;
 				end
-				else AnglesEn <= 1;
+				else begin
+					AnglesEn <= 1;
+					newDataReceived <= 1;
+					//readyForNewData <= 0;
+				end	
 			end
 			else if (state == Steps) begin
 				if(StepsDone) begin
@@ -173,29 +183,28 @@ module ScaraController(input logic [4:0] controlStateReg,
 							.th2(th2Target)
 							);
 							
-							
+		logic AnglesDonePrev;					
 		logic [12:0] theta1Diff, theta2Diff;
 		always_ff@(posedge clk) begin
 			if(reset) begin 
 				th1Current <= 13'b000_1100100100;
 				th2Current <= 13'b000_1100100100; //pi/4 start
 			end
-			else if(AnglesDone) begin
+			//Rising edge of AnglesDone
+			else if(!AnglesDonePrev && AnglesDone) begin
 			
 				//Update with new angles
 				th1Current <= th1Target;
 				th2Current <= th2Target;
+				//Update input for steps
+				theta1Diff <= th1Target - th1Current;
+				theta2Diff <= th2Target - th2Current;
 
 			end			
-		end
-		
-		always_comb begin
-			
-			//Update input for steps
-			theta1Diff = th1Target - th1Current;
-			theta2Diff = th2Target - th2Current;
+			AnglesDonePrev <= AnglesDone;
 
 		end
+		
 		
 		
 		logic [8:0] steps1int, steps2int;

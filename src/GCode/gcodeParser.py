@@ -16,6 +16,7 @@ class Mode(Enum):
 CODE_BITS = 4
 ARG_BITS = 14
 
+pygc.GCodeDista
 #Offsets
 CODE_OFFSET = 0
 ARGX_OFFSET = CODE_OFFSET + CODE_BITS

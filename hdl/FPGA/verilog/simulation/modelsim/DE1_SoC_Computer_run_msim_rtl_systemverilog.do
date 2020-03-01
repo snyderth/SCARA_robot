@@ -68,7 +68,6 @@ vlog -sv -work work +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_con
 vlog -sv -work work +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SqRoot {C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SqRoot/SquareRoot.sv}
 vlog -sv -work work +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/DoubleMultiplier {C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/DoubleMultiplier/DoubleMultiply.sv}
 vlog -sv -work work +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/DoubleAdder {C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/DoubleAdder/DoubleAdder.sv}
-vlog -sv -work work +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/BasicBlocks/SRLatch {C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/BasicBlocks/SRLatch/SRLatch.sv}
 vlog -sv -work work +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/StepperMotor/StepperFPGA/stepper_motor {C:/Users/catsr/source/repos/SCARA_robot/hdl/StepperMotor/StepperFPGA/stepper_motor/stp_counter.sv}
 vlog -sv -work work +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2 {C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/ScaraController.sv}
 vlog -sv -work work +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/StepperMotor/StepperFPGA/stepper_motor {C:/Users/catsr/source/repos/SCARA_robot/hdl/StepperMotor/StepperFPGA/stepper_motor/stepper_motor.sv}

@@ -189,7 +189,7 @@ module DE1_SoC_Computer (
 //=======================================================
 //  PARAMETER declarations
 //=======================================================
-enum {FLUSH, READ_DATA, AWAIT_DATA, DELAY_READ_DATA, DELAY_AWAIT_DATA} HPS_to_FPGA_states;
+enum {READ_DATA, AWAIT_DATA, DELAY_READ_DATA, DELAY_AWAIT_DATA, DELAY_AWAIT_DATA_AGAIN} HPS_to_FPGA_states;
 //=======================================================
 //  PORT declarations
 //=======================================================
@@ -517,12 +517,13 @@ always @(posedge CLOCK_50) begin
 		HPS_to_FPGA_state <= READ_DATA;
 	end
 	
-	
+
 	// delay untill controller_interface is ready for new data
 	// this test checks to see if we need more fifo read time
-	if (HPS_to_FPGA_state == DELAY_AWAIT_DATA ) begin
-			memory_ready <= 0;
-			HPS_to_FPGA_state <= AWAIT_DATA ;
+	if (HPS_to_FPGA_state == DELAY_AWAIT_DATA && !controller_interface_in_ready) begin
+		HPS_to_FPGA_state <= DELAY_AWAIT_DATA_AGAIN;
+		memory_ready <= 0;
+
 		// Signal that return data is ready
 		data_buffer_valid <= 1'b1 ;
 
