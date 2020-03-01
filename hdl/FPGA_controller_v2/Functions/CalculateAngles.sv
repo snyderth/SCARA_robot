@@ -156,9 +156,6 @@ module CalculateAngles (
 				
 				logic [63:0] xTarget_d, yTarget_d;
 				
-<<<<<<< HEAD
-												
-=======
 			
 				logic [14:0] xTargetConversionInput, yTargetConversionInput;
 				
@@ -173,7 +170,6 @@ module CalculateAngles (
 					end
 				end
 		
->>>>>>> a3d2174a00e4d2d2f4e55670379b640165357e38
 				//NOTE: Conversions are 15 bit even though
 				// x and y are 14 bit because the converters
 				// take in two's complement, so if MSb is set,
@@ -182,21 +178,13 @@ module CalculateAngles (
 												.clk_en(T2DEn),
 												.clock(clk),
 												.result(xTarget_d),
-<<<<<<< HEAD
-												.dataa({xTarget[13], 1'b0, xTarget[12:0]}));
-=======
 												.dataa(xTargetConversionInput)); // Moving the sign bit out
->>>>>>> a3d2174a00e4d2d2f4e55670379b640165357e38
 												
 				Int15BitToDouble ytarget(
 												.clk_en(T2DEn),
 												.clock(clk),
 												.result(yTarget_d),
-<<<<<<< HEAD
-												.dataa({yTarget[13], 1'b0, yTarget[12:0]}));
-=======
 												.dataa(yTargetConversionInput)); // Moving the sign bit out
->>>>>>> a3d2174a00e4d2d2f4e55670379b640165357e38
 												
 				ClockTimer #(4, 6) convTimer(.en(T2DEn),
 														.reset(~T2DEn),
@@ -359,29 +347,6 @@ module CalculateAngles (
 		
 		// Latch onto the result		
 		always_ff@(posedge clk) begin
-<<<<<<< HEAD
-			if(AtanXYDone) begin
-				arctanXY <= arctanXYRes;
-			end
-			if(GammaDone) begin
-				gammaResult <= gammaIntermediate;
-			end
-			if(ThetaDone) begin
-				th1res <= arctanXY - gammaResult;			
-				th2hold <= th2res;
-
-			end
-		end
-//		// Latch onto the result
-//		always_ff@(posedge GammaDone)
-//			gammaResult <= gammaIntermediate;
-//			
-//					/*	Calculate Thetas */
-//		always_ff@(posedge ThetaDone) begin
-//			th1res <= arctanXY - gammaResult;			
-//			th2hold <= th2res;
-//		end
-=======
 			if(AtanXYDone) arctanXY <= arctanXYRes;
 			if(GammaDone) gammaResult <= gammaIntermediate; 
 			if(ThetaDone) begin
@@ -394,7 +359,6 @@ module CalculateAngles (
 //		// Latch onto the result
 //		always_ff@(posedge GammaDone)
 //			gammaResult <= gammaIntermediate;
->>>>>>> a3d2174a00e4d2d2f4e55670379b640165357e38
 			
 					/*	Calculate Thetas */
 //		always_ff@(posedge ThetaDone) begin
