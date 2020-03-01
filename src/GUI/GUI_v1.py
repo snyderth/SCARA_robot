@@ -23,13 +23,13 @@ def reportDone():
     print("Command is done")
 
 def reportSend(gcode):
-    print("Command is being sent: " + gcode)
+    print("Command is being sent: {}".format(gcode))
 
 def reportSent(success, code):
     if success:
-        print("Command is sent")
+        print("Command {} is sent".format(code))
     else:
-        print("Command send failed")
+        print("Command {} send failed".format(code))
 
 sg.theme('Reddit')
 
@@ -40,6 +40,8 @@ frame = None
 ret = None
 imgbytes = None
 file_path = ""
+height = 482
+width = 642
 
 com = 'COM4'
 baud = 115200
@@ -125,7 +127,8 @@ while True:
     elif event == 'sendGcode':
         print("Sending GCode...")
         gcode = open(file_path).read()
-        easycall.streamFromGcode(gcode, reportDone, easycall.giveCommand(reportSend), reportSent, easycall.serialStream(com, baud))
+        easycall.streamFromGcode(gcode, reportDone, easycall.giveCommand(reportSend), reportSent,
+                                 easycall.serialStream(com, baud))
     elif event == 'apply':
         print("Saved OpenCV Settings:")
         color1 = int(values['color1'], 16)
@@ -146,15 +149,18 @@ while True:
     if recording:  # Only update webcam image when in live video mode
         # From https://github.com/PySimpleGUI/PySimpleGUI/blob/master/DemoPrograms/Demo_OpenCV_Webcam.py example
         ret, frame = cap.read()
+        height = frame.shape[0]
+        width = frame.shape[1]
         imgbytes = cv2.imencode('.png', frame)[1].tobytes()
         window['image'].update(data=imgbytes)
     file_path = str(values['inputbox'])
     if file_path.lower().endswith(('.png')):
         #window['sendimgfile'].update(disabled=False)
-        height = 482
         tempimg = cv2.imread(file_path)
-        final_img = cv2.resize(tempimg, (int(tempimg.shape[1]/tempimg.shape[0]*height), height), interpolation=cv2.INTER_NEAREST)
-        final_imgbytes = cv2.imencode('.png', final_img)[1].tobytes()
+        final_img = tempimg
+        dim = (min(int(tempimg.shape[1]/tempimg.shape[0]*height), width), height)
+        final_img_disp = cv2.resize(tempimg, dim, interpolation=cv2.INTER_LANCZOS4)
+        final_imgbytes = cv2.imencode('.png', final_img_disp)[1].tobytes()
         window['image'].update(data=final_imgbytes)
         recording = False
         window['imgtext'].update('Image to use:')
