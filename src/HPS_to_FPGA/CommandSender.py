@@ -1,10 +1,8 @@
 from HPS_to_FPGA.CommandCodeStreamer import *
 from GCode.gcodeParser import *
 def main():
-       gcodeFile = open("test.gcode", "r")
-    
-
-       gcode = gcodeFile.read()
+    while True:
+       gcode = input("> ")#gcodeFile.read()
        print(gcode)
        print("parsing")
        commands = gcodeToCommands(gcode)

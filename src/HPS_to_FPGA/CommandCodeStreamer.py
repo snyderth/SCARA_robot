@@ -14,12 +14,11 @@ def streamProcess(FPGACommands, reportDone, reportSend, reportSent):
     '''
 
     @param FPGACommands: FPGA command values, in order of execution.
-    @param reportDone: Function in the format ()->None that reports when the process is done
-    @param reportSend: Function in the format (int)->None that reports when the process is about to send
-    @param reportSent: Function in the format (bool, int)->None that reports when the process has sent a command with success true/fal
+    @param reportFPGA: Function in the format (int)->None that reports any value returned by the FPGA
+    @param reportDone: Function in the format ()->None that reports when the FPGA is done executing
     @return: None
     '''
-    #print(os.environ)
+    print("streamProcess")
     mi = MemoryInterface(os.path.abspath(path))
     for command in FPGACommands:
 
@@ -30,4 +29,5 @@ def streamProcess(FPGACommands, reportDone, reportSend, reportSent):
         reportSend(command)
         success = mi.writeFifoBlocking(command)
         reportSent(success, command)
+
 

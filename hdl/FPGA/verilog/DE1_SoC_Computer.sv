@@ -521,7 +521,7 @@ always @(posedge CLOCK_50) begin
 	// delay untill controller_interface is ready for new data
 	// this test checks to see if we need more fifo read time
 	if (HPS_to_FPGA_state == DELAY_AWAIT_DATA && !controller_interface_in_ready) begin
-		HPS_to_FPGA_state <= DELAY_AWAIT_DATA_AGAIN;
+		HPS_to_FPGA_state <= AWAIT_DATA;
 		memory_ready <= 0;
 
 		// Signal that return data is ready
