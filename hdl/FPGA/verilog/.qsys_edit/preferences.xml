@@ -3,13 +3,12 @@
  <debug showDebugMenu="0" />
  <systemtable filter="All Interfaces">
   <columns>
-   <connections preferredWidth="191" />
-   <irq preferredWidth="47" />
+   <connections preferredWidth="47" />
+   <irq preferredWidth="34" />
    <export preferredWidth="235" />
    <description preferredWidth="305" />
   </columns>
  </systemtable>
- <library
-   expandedCategories="Library/University Program,Library/University Program/Audio &amp; Video,Library/Qsys Interconnect,Library/University Program/Audio &amp; Video/Video,Library,Library/Qsys Interconnect/Memory-Mapped,Library/Basic Functions/On Chip Memory,Library/Qsys Interconnect/Memory-Mapped Alpha,Library/Basic Functions" />
+ <library expandedCategories="Library,Project" />
  <window width="1920" height="1042" x="0" y="0" />
 </preferences>

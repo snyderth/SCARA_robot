@@ -1,3 +1,4 @@
+print("wow")
 from ctypes import *
 import os
 
@@ -8,9 +9,12 @@ class MemoryInterface:
         @param libhps_to_fpga_cpath: Path to hps_to_fpga .so file. Expects that file implements:
             int write_fifo_dword_blocking(int)
         '''
+        print("MemoryInterface")
         self.hps_to_fpga_c = CDLL(libhps_to_fpga_cpath)
+        print("CDLL done")
         self.hps_to_fpga_c.init_fifo()
-        self.hps_to_fpga_c.read_fifo_dword_nonblocking.argtypes = [POINTER(c_int)]
+        print("inti fifo done")
+        #self.hps_to_fpga_c.read_fifo_dword_nonblocking.argtypes = [POINTER(c_int)]
         #print(dir(self.hps_to_fpga_c))
        # if(self.hps_to_fpga_c.init_fifo() < 0):
        #     raise Exception("Could not initialize memory interface. errno: " + os.strerror(get_errno()));

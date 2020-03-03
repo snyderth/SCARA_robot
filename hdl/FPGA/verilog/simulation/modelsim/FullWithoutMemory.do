@@ -17,18 +17,21 @@ vsim work.Testbench -L altera_mf_ver -L lpm_ver
 #add wave GPIO_0
 add wave /Testbench/controller/anglesCalc/*
 add wave /Testbench/controller/*
-add wave /Testbench/joint1/*
+#add wave /Testbench/joint1/*
 #add wave /Testbench/joint1/*
 #add wave /Testbench/joint2/*
 add wave *
-force CLOCK_50 0 @ 0, 1 @ 5 -r 10
-force initEnable 0 @ 0, 1 @ 20
+force CLOCK_50 0 @ 0, 1 @ 1 -r 2
+force initEnable 0 @ 0, 1 @ 3
 
 
-force cmd 4'd0  
-force x_value 14'd4095
-force y_value 14'd4095
 
-force memory_ready 0 @ 0, 1 @ 5 -r 10
+force cmd 4'd5 @ 0
+force cmd 4'd0 @ 10
+force x_value 14'd15649 @ 10, 14'd0 @ 1050
+force y_value 14'd0 @10, 14'd15649 @ 1050
+
+
+force memory_ready 1 @ 0 
 
 run 10000

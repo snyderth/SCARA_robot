@@ -7,12 +7,19 @@ module Testbench (input [3:0] cmd,
 	output [31:0] GPIO_0	
 );
 
+wire [13:0] ci2c_x_value;
+wire [13:0] ci2c_y_value;
+wire [4:0] ci2c_controller_state_reg;
+wire c2ci_controller_ready;
+wire controller_interface_out_ready;
+wire controller_interface_in_ready;
+
 Controller_Interface controller_interface (
 	.clk(CLOCK_50),
 	.block(~initEnable),
-	.cmd(commandIn.cmd),
-	.x_value_in(commandIn.x_value),
-	.y_value_in(commandIn.y_value),
+	.cmd(cmd),
+	.x_value_in(x_value),
+	.y_value_in(y_value),
 	.memory_ready(memory_ready),
 	.controller_ready(c2ci_controller_ready),
 	.controller_interface_in_ready(controller_interface_in_ready),
@@ -44,7 +51,7 @@ ScaraController controller (
 	.controlStateReg(ci2c_controller_state_reg),
 	.xTarget(ci2c_x_value),
 	.yTarget(ci2c_y_value),
-	.stepperReady(steppersReady),	//TODO: Connect
+	.stepperReady(1),	//TODO: Connect
 	.enable(controller_interface_out_ready),
 	.clk(CLOCK_50),
 	.reset(~initEnable),
@@ -58,31 +65,31 @@ ScaraController controller (
 );
 
 
-stepper_motor joint1(
-	.clk_50(CLOCK_50),
-	.reset_n(initEnable),
-	.new_in(c2smALL_dataReady),
-	.num_steps(c2sm1_steps1),
-	.fast(0),
-	.direction(c2sm1_dir1),
-	.enable(1),
-	.step(), //STEP1
-	.dir(GPIO_0[9]), //DIR1
-	.finished(sm12c2_stepperReady),
-	.steps_out()
-);
-stepper_motor joint2(
-	.clk_50(CLOCK_50),
-	.reset_n(initEnable),
-	.new_in(c2smALL_dataReady),
-	.num_steps(c2sm2_steps2),
-	.fast(0),
-	.direction(c2sm2_dir2),
-	.enable(1),
-	.step(), //STEP2
-	.dir(), //DIR2
-	.finished(sm22c2_stepperReady),
-	.steps_out()
-);
+//stepper_motor joint1(
+//	.clk_50(CLOCK_50),
+//	.reset_n(initEnable),
+//	.new_in(c2smALL_dataReady),
+//	.num_steps(c2sm1_steps1),
+//	.fast(0),
+//	.direction(c2sm1_dir1),
+//	.enable(1),
+//	.step(), //STEP1
+//	.dir(GPIO_0[9]), //DIR1
+//	.finished(sm12c2_stepperReady),
+//	.steps_out()
+//);
+//stepper_motor joint2(
+//	.clk_50(CLOCK_50),
+//	.reset_n(initEnable),
+//	.new_in(c2smALL_dataReady),
+//	.num_steps(c2sm2_steps2),
+//	.fast(0),
+//	.direction(c2sm2_dir2),
+//	.enable(1),
+//	.step(), //STEP2
+//	.dir(), //DIR2
+//	.finished(sm22c2_stepperReady),
+//	.steps_out()
+//);
 
 endmodule
