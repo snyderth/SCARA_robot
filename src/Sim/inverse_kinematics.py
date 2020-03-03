@@ -13,6 +13,7 @@ class methodIK(Enum):
 LOGFILE = open("./ThetasForPositions.csv", "w")
 LOGFILE.write("x,y,th1,th2\n")
 
+SIMULATE = True 
 METHOD = methodIK.GEOMETRIC
 
 fig, ax = plt.subplots()
@@ -21,7 +22,7 @@ ax.grid()
 xdata, ydata = [], []
 
 CONVERSION=(2**14)/11
-INCHES=False
+INCHES=True
 
 class SCARA_IK:
     """
@@ -149,6 +150,55 @@ class SCARA_IK:
         return line
 
 
+    def geometric_method_proof_of_concept(self):
+        """
+        x = l1 cos(th1) + l2 cos(th1 + th2)
+        y = l1 sin(th1) + l2 sin(th1 + th2)
+        x^2 + y^2 = l1^2 + l_2^2 + 2 l1 l2 cos(th2)
+
+
+        cos(th2) = (x^2 + y^2 - l1^2 - l2^2) / 2l1l2
+        sin(th2) = +/- sqrt(1-cos^2(th2))
+        th2 = Atan2(sin(th2), cos(th2)) NOTE: Sign of sin(th2) determines 
+                                            manipulator elbow-up (+) or 
+                                            elbow-down (-)
+        
+        k1 = l1 + l2 cos(th2)
+        k2 = l2 * sin(th2)
+
+        gamma = Atan2(k2, k1)
+
+        th1 = Atan2(y, x) - Atan2(k2, k1)
+        """
+        (x, y) = self.effector_pos()
+
+        print(self.target[0])
+        print(self.target[1])
+        
+        print(self.joint_lengths[0])
+        print(self.joint_lengths[1])
+        costh2 = ((self.target[0] ** 2) + (self.target[1] ** 2) - (self.joint_lengths[0] ** 2) - (self.joint_lengths[1] ** 2)) / (2 * self.joint_lengths[0] * self.joint_lengths[1])
+        sinth2 = np.sqrt(1 - (costh2 ** 2))
+        th2 = np.arctan2(sinth2, costh2)
+        print("CosTh2: {}".format(costh2))
+        print("SinTh2: {}".format(sinth2))
+        k1 = self.joint_lengths[0] + self.joint_lengths[1] * costh2
+        k2 = self.joint_lengths[1] * sinth2
+        print("len2: {}".format(self.joint_lengths[1]))
+        print("k1: {}, k2: {}".format(k1, k2))
+        gamma = np.arctan2(k2, k1)
+        th1 = np.arctan2(self.target[1], self.target[0]) - gamma
+        print("Gamma: {}".format(gamma))
+        print("Arctan xy: {}".format(th1 + gamma))
+        print("Joint Steps: 1: {} 2: {}".format((th1 - self.joint_ang[0]) * 31.8310155049, (th2-self.joint_ang[1]) * 31.8310155049))
+        self.joint_ang[0] = th1
+        self.joint_ang[1] = th2
+        print("Joint Angles: {}, {}".format(th1, th2))
+        LOGFILE.write("{},{},{},{}\n".format(self.target[0], self.target[1], th1, th2))
+        
+        self.calc_joint_pos()
+ 
+
     def geometric_method(self):
         """
         x = l1 cos(th1) + l2 cos(th1 + th2)
@@ -189,12 +239,80 @@ class SCARA_IK:
         th1 = np.arctan2(self.target[1], self.target[0]) - gamma
         print("Gamma: {}".format(gamma))
         print("Arctan xy: {}".format(th1 + gamma))
-        self.joint_ang[0] = th1
-        self.joint_ang[1] = th2
+        print("Joint Steps: 1: {} 2: {}".format((th1 - self.joint_ang[0]) * 31.8310155049, (th2-self.joint_ang[1]) * 31.8310155049))
+        diff1 = th1 - self.joint_ang[0]
+        diff2 = th2 - self.joint_ang[1]
+        
+        # self.joint_ang[0] = th1
+        # self.joint_ang[1] = th2
+        # self.calc_joint_pos()
+        # self.draw()
+
+        steps1 = 31.8310155049 * diff1
+        steps2 = 31.8310155049 * diff2
+        dir1 = steps1 / abs(steps1)
+        dir2 = steps2 / abs(steps2)
+        print("Direction 1: {}, 2: {}".format(dir1, dir2))
+        steps1 = abs(steps1)
+        steps2 = abs(steps2)
+
+        diffX = self.target[0] - x
+        diffY = self.target[1] - y
+
+
+        # for interpolating and mirroroing after the for loop
+        xInc = diffX / (max(int(steps1), int(steps2)))
+        yInc = diffY / (max(int(steps1), int(steps2)))
+
+
+        print("Starting Joint 1:{}, 2:".format(self.joint_ang[0], self.joint_ang[1]))
+        print("Target: {}, {}".format(th1, th2))
+        for i in range(max(int(steps1), int(steps2))):
+            if(steps1 > 0):
+                self.joint_ang[0] += dir1 * 1.8 * np.pi / 180
+                steps1 -= 1
+            if(steps2 > 0):
+                self.joint_ang[1] += dir2 * 1.8 * np.pi / 180
+                steps2 -= 1
+            self.calc_joint_pos()
+            self.arm_path_sim.append((self.joint_pos[2][0], self.joint_pos[2][1]))
+
+
+        mapped_path = [( -2 * (actual[0] - (xInc * i + x)) + actual[0] ,  -2 * (actual[1] - (yInc * i + y)) + actual[1]) for i, actual in enumerate(self.arm_path_sim)]
+        # mapped_path = [((2 * (actual[0] - (xInc * i)) + actual[0]), (2 * (actual[1] - (yInc * i)) + actual[1])) for i, actual in enumerate(self.arm_path_sim)]
+
+        ypoints = [point[1] for point in mapped_path]
+        xpoints = [point[0] for point in mapped_path]
+        xline = [(x + (i * xInc)) for i in range(len(self.arm_path_sim))]
+        yline = [y + (i * yInc) for i in range(len(self.arm_path_sim))]
+
+        
+
+        print(mapped_path)
+
+        plt.plot(xpoints, ypoints)
+        plt.plot(xline, yline)
+        plt.show() 
+
+        print("End point: {},{}".format(self.joint_ang[0], self.joint_ang[1]))
+        # self.joint_ang[0] = th1
+        # self.joint_ang[1] = th2
         print("Joint Angles: {}, {}".format(th1, th2))
         LOGFILE.write("{},{},{},{}\n".format(self.target[0], self.target[1], th1, th2))
-        self.calc_joint_pos()
+
         
+
+        self.calc_joint_pos()
+
+        return mapped_path
+            
+
+    
+
+    def get_joint_trajectory(self):
+        """ Returns a list of tuples describing the actual path of the end effector between 
+        """
+        return self.arm_path_sim
 
     def jacobian_inverse_method(self):
         # print("Getting x and y position")
@@ -405,7 +523,7 @@ class SCARA_IK:
         # }
 
         # algorithms[method]
-        if METHOD == methodIK.JACOBIAN_PS:
+        if METHOD == methodIK.JACOBIAN_PS and SIMULATE == True:
             print("")
             self.arm_path_sim.append(self.joint_pos)
             path = self.plan_path()
@@ -420,7 +538,7 @@ class SCARA_IK:
         elif METHOD == methodIK.FABRIK:
             self.FABRIK_method()
         
-        elif METHOD == methodIK.JACOBIAN_INV:
+        elif METHOD == methodIK.JACOBIAN_INV and SIMULATE == True:
             # Start the simulator animation at the current position
             self.arm_path_sim.append(self.joint_pos)
             path = self.plan_path() # Plan path between current and target. Assumes target is set
@@ -432,18 +550,23 @@ class SCARA_IK:
                 self.jacobian_inverse_method()
                 self.arm_path_sim.append(self.joint_pos)
                 print("Moved to {}".format(t))
+        elif METHOD == methodIK.GEOMETRIC and SIMULATE == True:
+            self.geometric_method() # plots the points and populates the array
 
-        elif METHOD == methodIK.GEOMETRIC:
+        elif METHOD == methodIK.GEOMETRIC_POC and SIMULATE == True:
+            
             self.arm_path_sim.append(self.joint_pos)
             path = self.plan_path()
             for t in path:
                 print("Moving to {}".format(t))
                 self.target = t
-                self.geometric_method()
+                self.geometric_method_proof_of_concept()
                 print(self.joint_pos)
                 self.arm_path_sim.append(self.joint_pos)
-            print("End Goal: {}".format(robot.target))
+            # print("End Goal: {}".format(robot.target))
         # self.check_position_viability()
+        elif METHOD == methodIK.GEOMETRIC and SIMULATE == False:
+            self.geometric_method()
 
         # self.draw()
 
@@ -452,8 +575,8 @@ class SCARA_IK:
         x_pos = [x[0] for x in self.joint_pos]
         y_pos = [y[1] for y in self.joint_pos]
         plt.plot(x_pos, y_pos, 'bo--', linewidth=2, markersize=12)
-        plt.xlim((-6, 11))
-        plt.ylim((-6, 11))
+        plt.xlim((-6, 15))
+        plt.ylim((-6, 15))
         plt.show()
         
 
@@ -491,8 +614,8 @@ def init_animation():
         ax.set_ylim(-6 * CONVERSION, 11 * CONVERSION)
         ax.set_xlim(-6 * CONVERSION, 11 * CONVERSION)
     else:
-        ax.set_ylim(-6, 11)
-        ax.set_xlim(-6, 11)
+        ax.set_ylim(-15, 15)
+        ax.set_xlim(-15, 15)
     line.set_data(xdata, ydata)
     return line,
 
@@ -510,8 +633,15 @@ def animate(data):
     line.set_data(xdata, ydata)
     return line, 
 
+
+def animate_geometric(data):
+    xdata.append(data[0])
+    ydata.append(data[1])
+    line.set_data(xdata, ydata)
+    return line, 
+
 if __name__ == '__main__':
-    robot = SCARA_IK([5.55, 8.75])
+    robot = SCARA_IK([5.55, 9.25])
 
     print("Maximum stretch: {}".format(robot.max_len()))
     print("Current joint angles: {}".format(robot.angles()))
@@ -519,9 +649,23 @@ if __name__ == '__main__':
 
     try:
         print("Setting target")
-        robot.set_target(4000, 3000)
-        print("Running math")
+        # robot.set_target(2904, 9830)
+        # robot.set_target(4.9, 13.2)
+        # print("Running math")
+        # robot.run()
+        # robot.set_target(5.9, 13.2)
+        # robot.run()
+        # robot.set_target(5.9, 12.2)
+        # robot.run()
+        # robot.set_target(4, 12.9)
+        # robot.run()
+        robot.set_target(6, 4)
         robot.run()
+        # robot.set_target(4, 5)
+        # robot.run()
+
+
+
         print("Joint Angles:")
         print(robot.angles)
         # robot.set_target(1, 1)
@@ -532,7 +676,9 @@ if __name__ == '__main__':
         #robot.run()
         #robot.set_target(1,1)
         #robot.run()
-        animate = animation.FuncAnimation(fig, animate, robot.playback, blit=False, interval=1, repeat=True, init_func=init_animation)
+        if SIMULATE == True:
+            animate = animation.FuncAnimation(fig, animate_geometric, robot.playback, blit=False, interval=1, repeat=False, init_func=init_animation)
+            # animate = animation.FuncAnimation(fig, animate_geometric, robot.playback, blit=False, interval=1, repeat=True, init_func=init_animation)
     except Exception as ex:
         print(ex)
 
