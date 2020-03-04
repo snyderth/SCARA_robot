@@ -3,12 +3,17 @@ from enum import Enum
 import pygcode as pygc
 import Sim.scara_ik as ik
 import matplotlib.pyplot as plt
+import logging as logger
 # Commands are formatted like so:
 # |code|argX|argY|
 # 0    3   17    31
 # code is an integer from 0 to 8 representing a specific G/M code
 # Each argument is in terms of a fraction of an 11 in or 279.4 mm sheet of paper
 # ArgX may also represent a T argument for the relevant codes
+
+
+## For logging functionality
+logger.basicConfig(level=logger.CRITICAL)
 
 # Constants
 class Mode(Enum):
@@ -83,7 +88,7 @@ def commandToGcode(command, conversion):
 
     units = commandUnits(gcodeCommand)
     if units != None:
-        unit_to_bits, _ = units
+        unit_to_bits, _, _ = units
         conversion = 1 / unit_to_bits
 
     gcode += gcodeCommand + " "
@@ -145,7 +150,7 @@ def gcodeToCommands(gcodeText):
     @return:
 
     '''
-    print([JOINT_1_LENGTH, JOINT_2_LENGTH])
+    logger.debug("Joint lengths (1,2): ({}, {})".format(JOINT_1_LENGTH, JOINT_2_LENGTH))
     arm = ik.SCARA_IK(([JOINT_1_LENGTH, JOINT_2_LENGTH]))
 
     lines = gcodeText.split("\n");
@@ -170,9 +175,10 @@ def gcodeToCommands(gcodeText):
 
             # check if command changes units
             units = commandUnits(cmd)
+            print("Units: {}".format(units))
             if units:
-                conversion, max = units
-
+                conversion, max, min = units
+            logger.debug("Conversion: " + str(conversion))
             # Get enumeration value of cmd
             code = commandToCode(cmd)
 
@@ -190,10 +196,21 @@ def gcodeToCommands(gcodeText):
                 print("start: " + str((xPos * 1/conversion, yPos * 1/conversion)))
                 print("end: " + str((xEnd * 1/conversion, yEnd * 1/conversion)))
 
-#                    arm.set_target(xEnd, yEnd)
-#                   points = arm.geometric_method()
+                arm.set_target(xEnd, yEnd)
+                logger.info("Computing the angles to move to ({}, {})".format(xEnd, yEnd))
+                points = arm.geometric_method()
                 # Linear moves must be split into a number of smaller segments for the arm to retain accuracy
-                commands += interpolateLinear(code, xPos, yPos, xEnd, yEnd, INTERPOLATION_LENGTH, positioning)#interpolate(code, INTERPOLATION_LENGTH, positioning, points)
+                #commands += interpolateLinear(code, xPos, yPos, xEnd, yEnd, INTERPOLATION_LENGTH, positioning)#interpolate(code, INTERPOLATION_LENGTH, positioning, points)
+                logger.debug("Points:\n{}".format(points))
+                newCommand = interpolate(code, INTERPOLATION_LENGTH, positioning, points)
+                logger.debug("new command type: {}".format(type(newCommand)))
+                logger.debug("commands type: {}".format(type(commands)))
+
+                if type(newCommand) is type(None):
+                    logger.critical("The new command is NoneType!!")
+                if type(commands) is type(None):
+                    logger.critical("The commands list cannot be of type \"NoneType\"")
+                commands = commands + newCommand
                 xPos = xEnd
                 yPos = yEnd
             # for key in gcode.params:
@@ -322,9 +339,17 @@ def interpolate(code, segLength, mode, points):
     @return: List of move commands that draw the line in increments of segLength
     '''
     commands = []
-    for i in range(0, len(points), segLength):
-        commands.append(createCommand(code, int(points[i][0]) , int(points[i][1])))
-
+    logger.debug(">> Segment Length: {}".format(segLength))
+    logger.debug(">> Points: {}".format(points))
+    logger.debug("Type of code: {}, segLength: {}, mode: {}, points: {}".format(type(code), type(segLength), type(mode), type(points))) 
+    for i in range(0, len(points)): #, int(segLength)):
+        logger.info("({}, {})".format(points[i][0], points[i][1]))
+        xData.append(points[i][0])
+        yData.append(points[i][1])
+        newCommand = createCommand(code, int(points[i][0]) , int(points[i][1]))
+        logger.info("Bitwise GCode: {0:b}".format(newCommand))
+        commands.append(newCommand) #createCommand(code, int(points[i][0]) , int(points[i][1])))
+    return commands
 
 
 def commandHasArgs(code):
@@ -427,7 +452,7 @@ def commandToCode(code):
 # test code
 if __name__ == '__main__':
 
-    gcodeFile = open("test.gcode", "r")
+    gcodeFile = open("GCode/test.gcode", "r")
 
     gcode = gcodeFile.read()
     print(gcode)
