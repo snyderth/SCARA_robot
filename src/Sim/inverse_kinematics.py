@@ -21,7 +21,7 @@ line, = ax.plot([], [], 'bo-', linewidth=2, markersize=12)
 ax.grid()
 xdata, ydata = [], []
 
-CONVERSION=(2**14)/11
+CONVERSION=(2**14)/22
 INCHES=True
 
 class SCARA_IK:
@@ -45,7 +45,7 @@ class SCARA_IK:
 
 
         for i in range(len(joint_len)):
-            if i is 0:
+            if i == 0:
                 x = joint_len[i]
             else:
                 x = joint_len[i] + joint_len[i-1]
@@ -60,6 +60,7 @@ class SCARA_IK:
         # self.draw()
         print(self.joint_ang)
 
+        print(self.effector_pos())
         self.length_max = 0
         for x in self.joint_lengths:
             self.length_max += x
@@ -582,7 +583,7 @@ class SCARA_IK:
 
     def calc_angles(self):
          for i in range(1, len(self.joint_pos)):
-            if i is 1:
+            if i == 1:
                 self.joint_ang[i-1] = np.arctan2(self.joint_pos[i][1], self.joint_pos[i][0])
             else:
                 self.joint_ang[i-1] = np.arctan2(self.joint_pos[i][1], self.joint_pos[i][0]) - self.joint_ang[i-2]
@@ -660,7 +661,8 @@ if __name__ == '__main__':
         # robot.set_target(4, 12.9)
         # robot.run()
         robot.set_target(6, 4)
-        robot.run()
+        robot.geometric_method()
+        # robot.run()
         # robot.set_target(4, 5)
         # robot.run()
 
