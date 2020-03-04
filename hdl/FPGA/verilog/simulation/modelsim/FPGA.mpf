@@ -96,8 +96,9 @@ twentynm_hssi_ver = $MODEL_TECH/../altera/verilog/twentynm_hssi
 twentynm_hip_ver = $MODEL_TECH/../altera/verilog/twentynm_hip
 cyclone10lp_ver = $MODEL_TECH/../altera/verilog/cyclone10lp
 
-work = work
+work = rtl_work
 bep = bep
+Computer_System = Computer_System
 [vcom]
 ; VHDL93 variable selects language version as the default. 
 ; Default is VHDL-2002.

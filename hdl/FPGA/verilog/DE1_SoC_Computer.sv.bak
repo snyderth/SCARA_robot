@@ -189,7 +189,7 @@ module DE1_SoC_Computer (
 //=======================================================
 //  PARAMETER declarations
 //=======================================================
-enum {READ_DATA, AWAIT_DATA, DELAY_READ_DATA, DELAY_AWAIT_DATA} HPS_to_FPGA_states;
+enum {READ_DATA, AWAIT_DATA, DELAY_READ_DATA, DELAY_AWAIT_DATA, DELAY_AWAIT_DATA_AGAIN} HPS_to_FPGA_states;
 //=======================================================
 //  PORT declarations
 //=======================================================
@@ -428,7 +428,7 @@ reg hps_to_fpga_read ; // read command
 // base+1 => status bits; 
 //           bit0==1 if full
 //           bit1==1 if empty
-wire [31:0] hps_to_fpga_out_csr_address = 32'd1 ; // fill_level  // should probably init to 0
+wire [31:0] hps_to_fpga_out_csr_address = 32'd0 ; // fill_level  // should probably init to 0
 reg[31:0] hps_to_fpga_out_csr_readdata ;
 reg hps_to_fpga_out_csr_read ; // status regs read cmd
 reg [7:0] HPS_to_FPGA_state ;
@@ -446,7 +446,7 @@ reg fpga_to_hps_in_write ; // write command
 // base+1 => status bits; 
 //           bit0==1 if full
 //           bit1==1 if empty
-wire [31:0] fpga_to_hps_in_csr_address = 32'd1 ; // fill_level  // should probably init to 0
+wire [31:0] fpga_to_hps_in_csr_address = 0;//32'd1 ; // fill_level  // should probably init to 0
 reg[31:0] fpga_to_hps_in_csr_readdata ;
 reg fpga_to_hps_in_csr_read ; // status regs read cmd
 reg [7:0] FPGA_to_HPS_state ;
@@ -475,6 +475,7 @@ always @(posedge CLOCK_50) begin
 
    //  state machine and read/write controls
 	if(initEnable == 0) begin
+		hps_to_fpga_out_csr_read <= 1;
 		sram_write <= 1'b0 ;
 		commandCount <= 0 ;
 		HPS_to_FPGA_state <= AWAIT_DATA ;
@@ -483,6 +484,8 @@ always @(posedge CLOCK_50) begin
 		initEnable = 1;
 		memory_ready <= 0;
 		hps_to_fpga_read <= 0;
+		
+	
 	end  // if(init_enable == 0)
 
 // changing this to - get 4 32-bit words (command-data)
@@ -498,12 +501,15 @@ always @(posedge CLOCK_50) begin
 	// Is there data in HPS_to_FPGA FIFO
 	// and the last transfer is complete
 	// data_buffer_valid is only used by the FPGA to HPS FIFO !!
-	if (HPS_to_FPGA_state == AWAIT_DATA && !(hps_to_fpga_out_csr_readdata[1]))  begin
+	if (HPS_to_FPGA_state == AWAIT_DATA && hps_to_fpga_out_csr_readdata > 0 && controller_interface_in_ready == 1)  begin
 		hps_to_fpga_read <= 1'b1 ;
 		HPS_to_FPGA_state <= DELAY_READ_DATA ; //
 	end
 	
+ 
+	
 	// delay before we read
+
 	if (HPS_to_FPGA_state == DELAY_READ_DATA) begin
 		// zero the read request BEFORE the data appears 
 		// in the next state!
@@ -511,19 +517,20 @@ always @(posedge CLOCK_50) begin
 		HPS_to_FPGA_state <= READ_DATA;
 	end
 	
-	
+
 	// delay untill controller_interface is ready for new data
 	// this test checks to see if we need more fifo read time
-	if (HPS_to_FPGA_state == DELAY_AWAIT_DATA) begin
-			memory_ready <= 0;
-			HPS_to_FPGA_state <= AWAIT_DATA ;
+	if (HPS_to_FPGA_state == DELAY_AWAIT_DATA && !controller_interface_in_ready) begin
+		HPS_to_FPGA_state <= AWAIT_DATA;
+		memory_ready <= 0;
+
 		// Signal that return data is ready
 		data_buffer_valid <= 1'b1 ;
 
 	end
 	
 	// read the word from the FIFO
-	if ((HPS_to_FPGA_state == READ_DATA) && (hps_to_fpga_read == 1'b0) && controller_interface_in_ready == 1) begin
+	if ((HPS_to_FPGA_state == READ_DATA) && (hps_to_fpga_read == 1'b0)) begin
 		commandIn.cmd <= hps_to_fpga_readdata[3:0] ; // store the data
 		commandIn.x_value <= hps_to_fpga_readdata[17:4];
 		commandIn.y_value <= hps_to_fpga_readdata[31:18];
@@ -593,7 +600,6 @@ end // always @(posedge state_clock)
 //);
 
 
-
 Controller_Interface controller_interface (
 	.clk(CLOCK_50),
 	.block(~initEnable),
@@ -611,8 +617,9 @@ Controller_Interface controller_interface (
 
 );
 
+
 //TODO: this sucks. Make this an interface or something.
-wire c2sm1_steps1;
+wire [7:0] c2sm1_steps1;
 wire c2sm1_dir1;
 wire c2sm1_endEffectorState;
 wire c2smALL_dataReady;
@@ -621,16 +628,15 @@ wire sm12c2_stepperReady;
 wire sm22c2_stepperReady;
 wire steppersReady;
 
-
 assign steppersReady = sm12c2_stepperReady & sm22c2_stepperReady;
 
-wire c2sm2_steps2;
+wire [7:0] c2sm2_steps2;
 wire c2sm2_dir2;
 
 ScaraController controller (
 	.controlStateReg(ci2c_controller_state_reg),
 	.xTarget(ci2c_x_value),
-	.yTarget(c12c_y_value),
+	.yTarget(ci2c_y_value),
 	.stepperReady(steppersReady),	//TODO: Connect
 	.enable(controller_interface_out_ready),
 	.clk(CLOCK_50),
@@ -643,36 +649,54 @@ ScaraController controller (
 	.dataReady(c2smALL_dataReady), //TODO: Connect
 	.readyForNewData(c2ci_controller_ready)
 );
-
-
-
+logic joint1_step_scale;
+logic joint2_step_scale;
+always_comb begin 
+	if (c2sm1_steps1 == 0 || c2sm2_steps2 == 0) begin
+		joint1_step_scale = 1;
+		joint2_step_scale = 1;
+	end
+	else if(c2sm1_steps1 > c2sm2_steps2) begin
+		joint1_steps_scale = 1;
+		joint2_steps_scale = c2sm1_steps1 / c2sm2_steps2;
+	end
+	else begin 
+		joint1_steps_scale = c2sm2_steps2/c2sm1_steps1;
+		joint2_steps_scale = 1;
+	end
+	
+end
 stepper_motor joint1(
-	.clk_50(CLOCK50),
-	.reset_n(~initEnable),
+	.clk_50(CLOCK_50),
+	.reset_n(initEnable),
 	.new_in(c2smALL_dataReady),
-	.num_steps(c2sm2_steps2),
-	.fast(0),
-	.direction(c2sm2_dir2),
+	.num_steps(c2sm1_steps1),
+	.fast(SW[0]),
+	.direction(c2sm1_dir1),
+	.step_scale(joint1_step_scale),
 	.enable(1),
 	.step(GPIO_0[7]), //STEP1
 	.dir(GPIO_0[9]), //DIR1
-	.finished(sm22c2_stepperReady),	
+	.finished(sm12c2_stepperReady),
+	.steps_out(hex[7:0])
 );
 stepper_motor joint2(
-	.clk_50(CLOCK50),
-	.reset_n(~initEnable),
+	.clk_50(CLOCK_50),
+	.reset_n(initEnable),
 	.new_in(c2smALL_dataReady),
 	.num_steps(c2sm2_steps2),
-	.fast(0),
+	.fast(SW[0]),
 	.direction(c2sm2_dir2),
+	
+	.step_scale(joint2_step_scale),
 	.enable(1),
 	.step(GPIO_0[13]), //STEP2
 	.dir(GPIO_0[15]), //DIR2
-	.finished(sm22c2_stepperReady),	
+	.finished(sm22c2_stepperReady),
+	.steps_out(hex[15:8])
 );
-
-assign GPIO_0[5] = 1; // EN_N_1
-assign GPIO_0[11] = 1; //EN_N_2
+assign GPIO_0[5] = 0; // EN_N_1
+assign GPIO_0[11] = 0; //EN_N_2
 
 
 
@@ -701,7 +725,7 @@ Computer_System The_System (
 	.fifo_hps_to_fpga_out_readdata      (hps_to_fpga_readdata),      //  fifo_hps_to_fpga_out.readdata
 	.fifo_hps_to_fpga_out_read          (hps_to_fpga_read),          //   out.read
 	.fifo_hps_to_fpga_out_waitrequest   (),                            //   out.waitrequest
-	.fifo_hps_to_fpga_out_csr_address   (32'd1), //(hps_to_fpga_out_csr_address),   // fifo_hps_to_fpga_out_csr.address
+	.fifo_hps_to_fpga_out_csr_address   (hps_to_fpga_out_csr_address),   // fifo_hps_to_fpga_out_csr.address
 	.fifo_hps_to_fpga_out_csr_read      (1'b1), //(hps_to_fpga_out_csr_read),      //   csr.read
 	.fifo_hps_to_fpga_out_csr_writedata (),                              //   csr.writedata
 	.fifo_hps_to_fpga_out_csr_write     (1'b0),                           //   csr.write

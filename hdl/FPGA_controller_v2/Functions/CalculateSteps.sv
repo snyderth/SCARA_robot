@@ -26,8 +26,8 @@ module CalculateSteps(input signed [12:0] th1,
 							output logic dir1,
 							output logic dir2,
 							output logic dataReady);
-				//31.8310155049 steps/rad
-				logic [63:0] convRadToSteps = 64'b0100000000111111110101001011110101101110101000000000001110110001;
+				//95.4930465147 //31.8310155049 steps/rad 
+				logic [63:0] convRadToSteps = 64'b0100000001010111110111111000111000010010111110000000001011000101;//64'b0100000000111111110101001011110101101110101000000000001110110001;
 							
 				logic ConvThEn, ConvThDone;
 				logic MultEn, MultDone;
@@ -106,6 +106,7 @@ module CalculateSteps(input signed [12:0] th1,
 														.clk(clk),
 														.expire(ConvThDone)
 															);
+				
 				/**********************************************/
 				
 				/*		Multiply by conversion 	*/

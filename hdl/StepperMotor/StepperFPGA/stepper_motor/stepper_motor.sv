@@ -5,8 +5,8 @@ module stepper_motor(input  logic clk_50,
 							input  logic fast,
 							input  logic direction,
 							input  logic enable,
-							
-							
+							input  logic [15:0] step_scale,
+							input  logic [2:0] step_divide
 							output logic step,
 							output logic dir,
 							output logic finished,
@@ -17,7 +17,6 @@ module stepper_motor(input  logic clk_50,
 							
 							logic [7:0] set_steps;
 							logic 		set_dir;
-							logic			set_fast;
 							
 							logic reset_time_n;
 							logic reset_step_n;
@@ -48,14 +47,10 @@ module stepper_motor(input  logic clk_50,
 		
 		
 		always_comb
-			if(set_fast)
-				step_length = 2500000;
-			else
-				step_length = 5000000;
-		
+			 step_length = ((5000000 / step_divide) << 8) / (step_scale);
 		assign reset_time_n = (count < step_length) & !new_in;
 		assign reset_step_n = !new_in;
-		assign step 		  = (count > step_length/2);
+		assign step 		  = (count > step_length >> 1);
 		
 		assign dir 			  = set_dir;
 		assign finished 	  = (step_count == set_steps);

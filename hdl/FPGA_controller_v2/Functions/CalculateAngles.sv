@@ -165,8 +165,12 @@ module CalculateAngles (
 //						yTargetConversionInput = {yTarget[13], 1'b0, yTarget[12:0]};
 //					end
 					//else begin
-						xTargetConversionInput = {1'b0, xTarget};
-						yTargetConversionInput = {1'b0, yTarget};
+					
+					//Extend sign
+
+					xTargetConversionInput = {1'b0, xTarget};
+					yTargetConversionInput = {1'b0, yTarget};
+					
 					//end
 				end
 		

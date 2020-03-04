@@ -225,9 +225,9 @@ class SCARA_IK:
 
         print(mapped_path)
 
-        plt.plot(xpoints, ypoints)
-        plt.plot(xline, yline)
-        plt.show() 
+        # plt.plot(xpoints, ypoints)
+        # plt.plot(xline, yline)
+        # plt.show()
 
         print("End point: {},{}".format(self.joint_ang[0], self.joint_ang[1]))
         # self.joint_ang[0] = th1
