@@ -617,7 +617,6 @@ Controller_Interface controller_interface (
 
 );
 
-
 //TODO: this sucks. Make this an interface or something.
 wire [7:0] c2sm1_steps1;
 wire c2sm1_dir1;
@@ -649,7 +648,36 @@ ScaraController controller (
 	.dataReady(c2smALL_dataReady), //TODO: Connect
 	.readyForNewData(c2ci_controller_ready)
 );
+logic [15:0] c2sm1_steps1_fixed;
+logic [15:0] c2sm2_steps2_fixed;
 
+assign c2sm1_steps1_fixed = c2sm1_steps1 << 8;
+assign c2sm2_steps2_fixed = c2sm2_steps2 << 8;
+logic [15:0] joint1_step_scale;
+logic [15:0] joint2_step_scale;
+always_comb begin 
+	if (!initEnable || SW[1]) begin
+		joint1_step_scale = 16'd1 << 8;
+		joint2_step_scale = 16'd1 << 8;
+	end
+	else begin
+
+		if (c2sm1_steps1_fixed == 0 || c2sm2_steps2_fixed == 0) begin
+			joint1_step_scale = 16'd1 << 8;
+			joint2_step_scale = 16'd1 << 8;
+		end
+		else if(c2sm1_steps1_fixed > c2sm2_steps2_fixed) begin
+			joint2_step_scale = 16'd1 << 8;
+			joint1_step_scale = (c2sm1_steps1_fixed / c2sm2_steps2);
+		end
+		else begin 
+			joint2_step_scale = (c2sm2_steps2_fixed / c2sm1_steps1);
+			joint1_step_scale = 16'd1 << 8;
+		end
+	
+		
+	end
+end
 
 stepper_motor joint1(
 	.clk_50(CLOCK_50),
@@ -658,7 +686,9 @@ stepper_motor joint1(
 	.num_steps(c2sm1_steps1),
 	.fast(SW[0]),
 	.direction(c2sm1_dir1),
+	.step_scale(joint1_step_scale),
 	.enable(1),
+	.step_divide(SW[9:7])
 	.step(GPIO_0[7]), //STEP1
 	.dir(GPIO_0[9]), //DIR1
 	.finished(sm12c2_stepperReady),
@@ -669,8 +699,10 @@ stepper_motor joint2(
 	.reset_n(initEnable),
 	.new_in(c2smALL_dataReady),
 	.num_steps(c2sm2_steps2),
-	.fast(SW[0]),
+	//.fast(SW[0]),
 	.direction(c2sm2_dir2),
+	.step_divide(SW[9:7])
+	.step_scale(joint2_step_scale),
 	.enable(1),
 	.step(GPIO_0[13]), //STEP2
 	.dir(GPIO_0[15]), //DIR2

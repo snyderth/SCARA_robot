@@ -45,7 +45,7 @@ class SCARA_IK:
 
 
         for i in range(len(joint_len)):
-            if i is 0:
+            if i == 0:
                 x = joint_len[i]
             else:
                 x = joint_len[i] + joint_len[i-1]
@@ -290,9 +290,9 @@ class SCARA_IK:
 
         print(mapped_path)
 
-        plt.plot(xpoints, ypoints)
-        plt.plot(xline, yline)
-        plt.show() 
+        # plt.plot(xpoints, ypoints)
+        # plt.plot(xline, yline)
+        # plt.show()
 
         print("End point: {},{}".format(self.joint_ang[0], self.joint_ang[1]))
         # self.joint_ang[0] = th1
@@ -582,7 +582,7 @@ class SCARA_IK:
 
     def calc_angles(self):
          for i in range(1, len(self.joint_pos)):
-            if i is 1:
+            if i == 1:
                 self.joint_ang[i-1] = np.arctan2(self.joint_pos[i][1], self.joint_pos[i][0])
             else:
                 self.joint_ang[i-1] = np.arctan2(self.joint_pos[i][1], self.joint_pos[i][0]) - self.joint_ang[i-2]

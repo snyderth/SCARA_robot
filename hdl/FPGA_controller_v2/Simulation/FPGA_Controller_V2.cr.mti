@@ -118,6 +118,15 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	DoubleTo32BitFixed
 
+} {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleToFixed42Bit.v {1 {vlog -work work -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleToFixed42Bit.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module DoubleToFixed42Bit_altbarrel_shift_p4h
+-- Compiling module DoubleToFixed42Bit_altfp_convert_mtp
+-- Compiling module DoubleToFixed42Bit
+
+Top level modules:
+	DoubleToFixed42Bit
+
 } {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/K1.sv {1 {vlog -work work -sv -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/K1.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module K1
@@ -139,35 +148,19 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling entity Atan2_CORDIC_0
 -- Compiling architecture normal of Atan2_CORDIC_0
 
-} {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleToFixed42Bit.v {1 {vlog -work work -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleToFixed42Bit.v
+} {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/SRLatch.sv {1 {vlog -work work -sv -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/SRLatch.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module DoubleToFixed42Bit_altbarrel_shift_p4h
--- Compiling module DoubleToFixed42Bit_altfp_convert_mtp
--- Compiling module DoubleToFixed42Bit
+-- Compiling module SRLatch
 
 Top level modules:
-	DoubleToFixed42Bit
+	SRLatch
 
-} {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/ForwardKinematics.sv {1 {vlog -work work -sv -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/ForwardKinematics.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module ForwardKinematics
-
-Top level modules:
-	ForwardKinematics
-
-} {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/CalculateSteps.sv {1 {vlog -work work -sv -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/CalculateSteps.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module CalculateSteps
-
-Top level modules:
-	CalculateSteps
-
-} {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SqRoot/SquareRoot.sv {1 {vlog -work work -sv -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SqRoot/SquareRoot.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module SquareRoot
-
-Top level modules:
-	SquareRoot
+} {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/dspba_library_package.vhd {1 {vcom -work work -2002 -explicit -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/dspba_library_package.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling package dspba_library_package
 
 } {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SqRoot/SqRoot.v {1 {vlog -work work -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SqRoot/SqRoot.v
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
@@ -178,26 +171,26 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	SqRoot
 
-} {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/dspba_library_package.vhd {1 {vcom -work work -2002 -explicit -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/simulation/submodules/dspba_library_package.vhd
-Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling package dspba_library_package
-
-} {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/SRLatch.sv {1 {vlog -work work -sv -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/SRLatch.sv
+} {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SqRoot/SquareRoot.sv {1 {vlog -work work -sv -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/SqRoot/SquareRoot.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module SRLatch
+-- Compiling module SquareRoot
 
 Top level modules:
-	SRLatch
+	SquareRoot
 
-} {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDivider.sv {1 {vlog -work work -sv -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDivider.sv
+} {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/CalculateSteps.sv {1 {vlog -work work -sv -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/CalculateSteps.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module DoubleDivider
+-- Compiling module CalculateSteps
 
 Top level modules:
-	DoubleDivider
+	CalculateSteps
+
+} {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/ForwardKinematics.sv {1 {vlog -work work -sv -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/ForwardKinematics.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ForwardKinematics
+
+Top level modules:
+	ForwardKinematics
 
 } {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/MultiplierFP.v {1 {vlog -work work -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/MultiplierFP.v
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
@@ -207,12 +200,12 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	MultiplierFP
 
-} {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/CosineTh2.sv {1 {vlog -work work -sv -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/CosineTh2.sv
+} {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDivider.sv {1 {vlog -work work -sv -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleDivider.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module CosineTh2
+-- Compiling module DoubleDivider
 
 Top level modules:
-	CosineTh2
+	DoubleDivider
 
 } {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleAdder.sv {1 {vlog -work work -sv -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Simulation/DoubleAdder.sv
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
@@ -220,6 +213,13 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 
 Top level modules:
 	DoubleAdder
+
+} {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/CosineTh2.sv {1 {vlog -work work -sv -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/CosineTh2.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module CosineTh2
+
+Top level modules:
+	CosineTh2
 
 } {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/Atan2.v {1 {vlog -work work -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Atan2/synthesis/Atan2.v
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
@@ -242,13 +242,6 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling entity dspba_pipe
 -- Compiling architecture rtl of dspba_pipe
 
-} {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/Arctan2.sv {1 {vlog -work work -sv -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/Arctan2.sv
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module Arctan2
-
-Top level modules:
-	Arctan2
-
 } {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/Inverter/Inverter.v {1 {vlog -work work -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Arithmetic/Inverter/Inverter.v
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module Inverter_altfp_inv_and_or_ekd
@@ -265,5 +258,12 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 
 Top level modules:
 	Inverter
+
+} {} {}} Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/Arctan2.sv {1 {vlog -work work -sv -stats=none Z:/home/thomas/Documents/classes/ECE342/SCARA_robot/hdl/FPGA_controller_v2/Functions/Arctan2.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Arctan2
+
+Top level modules:
+	Arctan2
 
 } {} {}}

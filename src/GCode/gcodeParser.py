@@ -1,8 +1,8 @@
 import math
 from enum import Enum
 import pygcode as pygc
-
-
+import Sim.scara_ik as ik
+import matplotlib.pyplot as plt
 # Commands are formatted like so:
 # |code|argX|argY|
 # 0    3   17    31
@@ -47,8 +47,8 @@ X_BIAS = 0 * IN_TO_BITS  # 4*IN_TO_BITS
 JOINT_1_LENGTH = 5.55 * IN_TO_BITS
 JOINT_2_LENGTH = 9.25 * IN_TO_BITS
 
-# Maximum line length
-INTERPOLATION_LENGTH = MAX_IN * IN_TO_BITS  # (1 / 16) * IN_TO_BITS
+# Maximum steps
+INTERPOLATION_LENGTH = (1) * IN_TO_BITS#1 * IN_TO_BITS
 
 # Set arm to be at 45 degree angles initially
 INIT_X = JOINT_1_LENGTH * math.cos(math.pi / 4) + JOINT_2_LENGTH * math.cos(math.pi / 2)
@@ -63,6 +63,11 @@ GCODE_MAP = {str(pygc.GCodeRapidMove()): 0, str(pygc.GCodeLinearMove()): 1, str(
 # Inverse command map useful decoding fpga commands
 COMMAND_MAP = {v: k for k, v in GCODE_MAP.items()}
 
+def signed(arg):
+    arg = int(arg)
+    if arg.bit_length() == ARG_BITS:
+        arg = arg - 2 ** ARG_BITS
+    return arg
 
 def commandToGcode(command, conversion):
     '''
@@ -91,8 +96,8 @@ def commandToGcode(command, conversion):
             arg = (command & ((1 << ARG_BITS) - 1))
 
             # Argument is negative in ARG_BITS representation, invert it to be negative in int representation.
-            if arg.bit_length() == ARG_BITS:
-                arg = arg - 2 ** ARG_BITS
+           # if arg.bit_length() == ARG_BITS:
+            #    arg = arg - 2 ** ARG_BITS
 
             # Don't convert tool change units
             if gcodeCommand != str(pygc.GCodeToolChange()):
@@ -115,7 +120,7 @@ def commandsToGcode(commands):
     '''
     print("commandsToGcode")
     program = []
-    conversion = 1 / IN_TO_BITS
+    conversion = 1 #/ IN_TO_BITS
 
     for command in commands:
         gcode, conversion = commandToGcode(command, conversion)
@@ -140,6 +145,8 @@ def gcodeToCommands(gcodeText):
     @return:
 
     '''
+    print([JOINT_1_LENGTH, JOINT_2_LENGTH])
+    arm = ik.SCARA_IK(([JOINT_1_LENGTH, JOINT_2_LENGTH]))
 
     lines = gcodeText.split("\n");
     parsedLines = list(map(pygc.Line, lines))
@@ -164,50 +171,54 @@ def gcodeToCommands(gcodeText):
             # check if command changes units
             units = commandUnits(cmd)
             if units:
-                conversion, max, min = units
-            print("conversion: " + str(conversion))
+                conversion, max = units
+
             # Get enumeration value of cmd
             code = commandToCode(cmd)
-            # interpolate linear movement commands
+
             if commandMovesLinear(cmd) and len(gcode.params) > 0:
-                #               xNew = noMove(xPos, positioning)
-                #                yNew = noMove(yPos, positioning)
-                #
-                #               if "X" in gcode.params:
-                #                    xNew = paramToArg(gcode.params["X"].value, conversion, min, max, positioning)
-                #                if "Y" in gcode.params:
-                #                    yNew = paramToArg(gcode.params["Y"].value, conversion, min, max, positioning)
-                #                print("xNew " +str(xNew))
-                #                print("xPos " + str(xPos))
-                #                #print(gcode.params["X"].value)
-                #                #print(positioning)
-                #                xEnd = increment(xPos, xNew, positioning, X_BIAS)
-                #                yEnd = increment(yPos, yNew, positioning, Y_BIAS)
-                #                print("xEnd " + str(xEnd))
-                #                #Linear moves must be split into a number of smaller segments for the arm to retain accuracy
-                #                commands += interpolate(code, xPos, yPos, xEnd, yEnd, INTERPOLATION_LENGTH, positioning)
 
-                #                xPos = xEnd
-                #               yPos = yEnd
-                for key in gcode.params:
-                    offset = ARGX_OFFSET if key == "X" or key == "T" else ARGY_OFFSET
-                    if key != "T":
-                        command |= extractArg(gcode.params[key].value, conversion, min, max, positioning, offset)
+                xNew = noMove(xPos, positioning)
+                yNew = noMove(yPos, positioning)
 
-                        # command |= extractArg(gcode.params[key].value, 1, 2 ** ARG_BITS, offset)
-                commands.append(command)
+                if "X" in gcode.params:
+                    xNew = paramToArg(gcode.params["X"].value, conversion, min, max, positioning)
+                if "Y" in gcode.params:
+                    yNew = paramToArg(gcode.params["Y"].value, conversion, min, max, positioning)
+                xEnd = increment(xPos, xNew, positioning, 0)
+                yEnd = increment(yPos, yNew, positioning, 0)
+                print("start: " + str((xPos * 1/conversion, yPos * 1/conversion)))
+                print("end: " + str((xEnd * 1/conversion, yEnd * 1/conversion)))
+
+#                    arm.set_target(xEnd, yEnd)
+#                   points = arm.geometric_method()
+                # Linear moves must be split into a number of smaller segments for the arm to retain accuracy
+                commands += interpolateLinear(code, xPos, yPos, xEnd, yEnd, INTERPOLATION_LENGTH, positioning)#interpolate(code, INTERPOLATION_LENGTH, positioning, points)
+                xPos = xEnd
+                yPos = yEnd
+            # for key in gcode.params:
+            #     offset = ARGX_OFFSET if key == "X" or key == "T" else ARGY_OFFSET
+            #     if key != "T":
+            #         command |= extractArg(gcode.params[key].value, conversion, min, max, positioning, offset)
+
+                    # command |= extractArg(gcode.params[key].value, 1, 2 ** ARG_BITS, offset)
 
             else:
 
                 if cmd == str(pygc.GCodeToolChange()):
                     if "T" in gcode.params:
-                        command |= extractArg(gcode.params["T"].value, 1, 2 ** ARG_BITS, ARGX_OFFSET)
+                        command |= extractArg(gcode.params["T"].value, 1, 0, 2 ** ARG_BITS, positioning, ARGX_OFFSET)
                 if cmd == str(pygc.GCodeIncrementalDistanceMode()):
                     positioning = Mode.RELATIVE
                 if cmd == str(pygc.GCodeAbsoluteDistanceMode()):
                     positioning = Mode.ABSOLUTE
                 command |= code << CODE_OFFSET
                 commands.append(command)
+    else:
+        if gcodeLine.text == "M72":
+            code = GCODE_MAP["M72"]
+            commands.append(createCommand(code, 0, 0))
+
     return commands
 
 
@@ -247,8 +258,9 @@ def createCommand(code, xArg, yArg):
     '''
     return code | (xArg << ARGX_OFFSET) | (yArg << ARGY_OFFSET)
 
-
-def interpolate(code, xStart, yStart, xEnd, yEnd, segLength, mode):
+xData = []
+yData = []
+def interpolateLinear(code, xStart, yStart, xEnd, yEnd, segLength, mode):
     '''
     Split line (xStart, yStart), (xEnd, yEnd) into a number of segments sized segLength or less and return them as commands with the code code.
     @param code: Command code
@@ -261,36 +273,58 @@ def interpolate(code, xStart, yStart, xEnd, yEnd, segLength, mode):
     @return: List of move commands that draw the line in increments of segLength
     '''
     commands = []
-
     xDelta = xEnd - xStart
     yDelta = yEnd - yStart
-    print("xDelta: " + str(xDelta))
+
     hypotenuse = math.sqrt(xDelta ** 2 + yDelta ** 2)
-    angle = math.atan2(yDelta, xDelta)
+
+    div = math.ceil(hypotenuse / segLength)
+    xInc = xDelta / div
+    yInc = yDelta / div
+
+    extra = hypotenuse - (segLength * div)
+
+    if extra < 0:
+        div -= 1
 
     if mode == Mode.ABSOLUTE:
         xCurrent = xStart
         yCurrent = yStart
-        for i in range(0, int(hypotenuse // segLength) + 1):
-            # Make the length of the line segment be the segment length or the remainder of the hypotenuse smaller than the segment length
-            segHypotenuse = min(segLength, hypotenuse - (segLength * i + 1))
-            xInc = segHypotenuse * math.cos(angle)
-            yInc = segHypotenuse * math.sin(angle)
+        xData.append(xStart)
+        yData.append(yStart)
+        for i in range(0, div):
 
             xCurrent += xInc
             yCurrent += yInc
-
+            xData.append(xCurrent)
+            yData.append(yCurrent)
             commands.append(createCommand(code, int(xCurrent), int(yCurrent)))
+        commands.append(createCommand(code, int(xEnd), int(yEnd)))
     else:
-        for i in range(0, int(hypotenuse // segLength) + 1):
-            # Make the length of the line segment be the segment length or the remainder of the hypotenuse smaller than the segment length
-            segHypotenuse = min(segLength, hypotenuse - (segLength * i + 1))
-            xInc = segHypotenuse * math.cos(angle)
-            yInc = segHypotenuse * math.sin(angle)
-
+        for i in range(0, div):
             commands.append(createCommand(code, int(xInc), int(yInc)))
-
+        angle = math.atan2(yDelta, xDelta)
+        extraIncX = math.cos(angle) * extra
+        extraIncY = math.sin(angle) * extra
+        commands.append(createCommand(code, int(extraIncX), int(extraIncY)))
     return commands
+
+def interpolate(code, segLength, mode, points):
+    '''
+    Split line (xStart, yStart), (xEnd, yEnd) into a number of segments sized segLength or less and return them as commands with the code code.
+    @param code: Command code
+    @param xStart: Starting x point
+    @param yStart: Starting y point
+    @param xEnd: Ending x point
+    @param yEnd: Ending y point
+    @param segLength: Maximum size of segment
+    @param mode: ABSOLUTE or RELATIVE
+    @return: List of move commands that draw the line in increments of segLength
+    '''
+    commands = []
+    for i in range(0, len(points), segLength):
+        commands.append(createCommand(code, int(points[i][0]) , int(points[i][1])))
+
 
 
 def commandHasArgs(code):
@@ -392,12 +426,17 @@ def commandToCode(code):
 
 # test code
 if __name__ == '__main__':
-    gcodeFile = open("../../test.gcode", "r")
+
+    gcodeFile = open("test.gcode", "r")
 
     gcode = gcodeFile.read()
+    print(gcode)
+    commands = gcodeToCommands(gcode)
+    xData = [x * 1/IN_TO_BITS for x in xData]
+    yData = [y * 1/IN_TO_BITS for y in yData]
 
-    commands = gcodeToCommands("G01 X-7.0 Y-10.0")
-
+    plt.plot(xData, yData)
+    plt.show()
     reverseGcode = commandsToGcode(commands)
 
     print(reverseGcode)

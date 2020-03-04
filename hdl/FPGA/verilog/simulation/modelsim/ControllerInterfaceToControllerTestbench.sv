@@ -51,7 +51,7 @@ ScaraController controller (
 	.controlStateReg(ci2c_controller_state_reg),
 	.xTarget(ci2c_x_value),
 	.yTarget(ci2c_y_value),
-	.stepperReady(1),	//TODO: Connect
+	.stepperReady(steppersReady),	//TODO: Connect
 	.enable(controller_interface_out_ready),
 	.clk(CLOCK_50),
 	.reset(~initEnable),
@@ -63,33 +63,64 @@ ScaraController controller (
 	.dataReady(c2smALL_dataReady), //TODO: Connect
 	.readyForNewData(c2ci_controller_ready)
 );
+logic [15:0] c2sm1_steps1_fixed;
+logic [15:0] c2sm2_steps2_fixed;
 
+assign c2sm1_steps1_fixed = c2sm1_steps1 << 8;
+assign c2sm2_steps2_fixed = c2sm2_steps2 << 8;
+logic [15:0] joint1_step_scale;
+logic [15:0] joint2_step_scale;
+always_comb begin 
+	if (!initEnable || 0) begin
+		joint1_step_scale = 16'd1 << 8;
+		joint2_step_scale = 16'd1 << 8;
+	end
+	else begin
 
-//stepper_motor joint1(
-//	.clk_50(CLOCK_50),
-//	.reset_n(initEnable),
-//	.new_in(c2smALL_dataReady),
-//	.num_steps(c2sm1_steps1),
-//	.fast(0),
-//	.direction(c2sm1_dir1),
-//	.enable(1),
-//	.step(), //STEP1
-//	.dir(GPIO_0[9]), //DIR1
-//	.finished(sm12c2_stepperReady),
-//	.steps_out()
-//);
-//stepper_motor joint2(
-//	.clk_50(CLOCK_50),
-//	.reset_n(initEnable),
-//	.new_in(c2smALL_dataReady),
-//	.num_steps(c2sm2_steps2),
-//	.fast(0),
-//	.direction(c2sm2_dir2),
-//	.enable(1),
-//	.step(), //STEP2
-//	.dir(), //DIR2
-//	.finished(sm22c2_stepperReady),
-//	.steps_out()
-//);
+		if (c2sm1_steps1_fixed == 0 || c2sm2_steps2_fixed == 0) begin
+			joint1_step_scale = 16'd1 << 8;
+			joint2_step_scale = 16'd1 << 8;
+		end
+		else if(c2sm1_steps1_fixed > c2sm2_steps2_fixed) begin
+			joint2_step_scale = 16'd1 << 8;
+			joint1_step_scale = (c2sm1_steps1_fixed / c2sm2_steps2);
+		end
+		else begin 
+			joint2_step_scale = (c2sm2_steps2_fixed / c2sm1_steps1);
+			joint1_step_scale = 16'd1 << 8;
+		end
+	
+		
+	end
+end
 
+stepper_motor joint1(
+	.clk_50(CLOCK_50),
+	.reset_n(initEnable),
+	.new_in(c2smALL_dataReady),
+	.num_steps(c2sm1_steps1),
+	.fast(1),
+	.direction(c2sm1_dir1),
+	.step_scale(joint1_step_scale),
+	.enable(1),
+	.step(GPIO_0[7]), //STEP1
+	.dir(GPIO_0[9]), //DIR1
+	.finished(sm12c2_stepperReady),
+	.steps_out()
+);
+stepper_motor joint2(
+	.clk_50(CLOCK_50),
+	.reset_n(initEnable),
+	.new_in(c2smALL_dataReady),
+	.num_steps(c2sm2_steps2),
+	.fast(1),
+	.direction(c2sm2_dir2),
+	
+	.step_scale(joint2_step_scale),
+	.enable(1),
+	.step(GPIO_0[13]), //STEP2
+	.dir(GPIO_0[15]), //DIR2
+	.finished(sm22c2_stepperReady),
+	.steps_out()
+);
 endmodule
