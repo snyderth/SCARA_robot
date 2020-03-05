@@ -139,15 +139,16 @@ while True:
         values['inputbox'] = ""
     elif event == 'sendimg':        # Routine for when "Send Image" button is pressed.
         print("Sending image to OpenCV...")
-        easycall.streamFromImage(final_img, colorPalette, granularity, maxLines, paperSize, reportDone,
-                                 easycall.giveCommand(reportSend), reportSent, easycall.serialStream(com, baud))
+        #easycall.streamFromImage(final_img, colorPalette, granularity, maxLines, paperSize, reportDone,
+                                 #easycall.giveCommand(reportSend), reportSent, easycall.serialStream(com, baud))
 
     elif event == 'sendGcode':      # Routine for when "Send GCode File" button is pressed.
         print("Sending GCode...")
-        gcode = open(file_path).read()
-        ftp
-        easycall.streamFromGcode(gcode, reportDone, easycall.giveCommand(reportSend), reportSent,
-                                 easycall.serialStream(com, baud))
+        #gcode = open(file_path).read()
+
+        ftp.executeGCodeSFTP(file_path)
+        #easycall.streamFromGcode(gcode, reportDone, easycall.giveCommand(reportSend), reportSent,
+                                 #easycall.serialStream(com, baud))
     elif event == 'apply':          # Routine for when "Apply" button is pressed.
         print("Saved OpenCV Settings:")
 
