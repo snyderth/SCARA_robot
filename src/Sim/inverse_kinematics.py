@@ -21,7 +21,7 @@ line, = ax.plot([], [], 'bo-', linewidth=2, markersize=12)
 ax.grid()
 xdata, ydata = [], []
 
-CONVERSION=(2**14)/11
+CONVERSION=(2**14)/22
 INCHES=True
 
 class SCARA_IK:
@@ -60,6 +60,7 @@ class SCARA_IK:
         # self.draw()
         print(self.joint_ang)
 
+        print(self.effector_pos())
         self.length_max = 0
         for x in self.joint_lengths:
             self.length_max += x
@@ -660,7 +661,8 @@ if __name__ == '__main__':
         # robot.set_target(4, 12.9)
         # robot.run()
         robot.set_target(6, 4)
-        robot.run()
+        robot.geometric_method()
+        # robot.run()
         # robot.set_target(4, 5)
         # robot.run()
 
