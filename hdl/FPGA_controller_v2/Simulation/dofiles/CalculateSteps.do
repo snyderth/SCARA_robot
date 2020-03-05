@@ -1,3 +1,7 @@
+# CalculateSteps simulation
+# Author: Thomas Snyder
+# Date: 02/05/2020
+
 vlog -work work ../Conversions/*.v
 vlog -work work ../Functions/CalculateSteps.sv
 

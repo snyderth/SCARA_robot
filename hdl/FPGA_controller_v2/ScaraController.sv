@@ -1,3 +1,24 @@
+/***************************************************
+*	File: 		ScaraController
+*	Author: 		Thomas Snyder
+*	Date:			2/26/2020
+*	Description:The Top level controller for the scara
+*					robot arm.
+*	Latency: 	333 Clock cycles
+*
+*	Parameters:
+*				None
+*	Dependencies:
+*				ForwardKinematics.sv
+*				CalculateAngles.sv
+*				CalculateSteps.sv
+*				ClockTimer.sv
+*
+*	NOTE: This module must be simulated with the
+*			lpm_ver, altera_ver, altera_mf_ver libraries.
+*			This is done using the -L <library> flag with
+*			the vsim command in the simulation dofile
+***************************************************/
 module ScaraController(input logic [4:0] controlStateReg,
 								input signed [13:0] xTarget,
 								input signed [13:0] yTarget,
@@ -16,21 +37,7 @@ module ScaraController(input logic [4:0] controlStateReg,
 								
 		/* For receiving new data and moving data through from stepper motors */
 		logic newDataReceived;
-//		always_ff@(posedge clk)
-//		begin
-//			if(stepperReady && !newDataReceived)
-//			begin
-//				readyForNewData <= 1;
-//			end
-//			else if(newDataReceived)
-//			begin
-//				readyForNewData <= 0;
-//				
-//			end
-//		end
-//		SRLatch newDataLatch(.set(stepperReady),
-//									.reset(newDataReceived),
-//									.q(readyForNewData));
+
 		
 		/**********************************************************************/
 		
@@ -69,8 +76,6 @@ module ScaraController(input logic [4:0] controlStateReg,
 		/* Main state machine transition logic */
 		always_ff@(posedge clk) begin
 			if(reset) begin
-//				th1Current <= 13'b000_1100100100;
-//				th2Current <= 13'b000_1100100100; //pi/4 start
 				nextstate <= Init;
 				FKEn <= 0;
 				AnglesEn <= 0;
@@ -114,8 +119,6 @@ module ScaraController(input logic [4:0] controlStateReg,
 				if(AnglesDone) begin
 					AnglesEn <= 0;
 					nextstate <= Steps;
-//					th1Current <= th1Target;
-//					th2Current <= th2Target;
 				end
 				else begin
 					AnglesEn <= 1;
@@ -147,7 +150,7 @@ module ScaraController(input logic [4:0] controlStateReg,
 		
 		end
 		
-		
+		/* Forward Kinematics State */
 		ForwardKinematics FKine (.theta1(th1Current),
 										.theta2(th2Current),
 										.clk(clk),
@@ -158,18 +161,25 @@ module ScaraController(input logic [4:0] controlStateReg,
 										.x(xCurrent),
 										.y(yCurrent),
 										.dataReady(FKDone));
-										
+		
+		/************************************************/
+		/*				
+				Update the cartesian targets based on
+				relative or absolute mode
+		*/
+		
 		always_comb begin
-			if(controlStateReg[2]) begin
+			if(controlStateReg[2]) begin /* Relative mode */
 				xTarg = xTarget + xCurrent;
 				yTarg = yTarget + yCurrent;
 			end
-			else begin
+			else begin /* 	Absolute mode */
 				xTarg = xTarget;
 				yTarg = yTarget;
 			end
 		end
 		
+		/*		Calculate the angles that the arm must achieve */
 		
 		CalculateAngles anglesCalc(
 							.yTarget(yTarg),
@@ -186,7 +196,12 @@ module ScaraController(input logic [4:0] controlStateReg,
 							.th1(th1Target),
 							.th2(th2Target)
 							);
+		/*******************************************/					
 							
+		/* Get the difference between current and target
+			angles to calculate the steps that must be taken
+			to get to the target
+			*/
 		logic AnglesDonePrev;					
 		logic [12:0] theta1Diff, theta2Diff;
 		always_ff@(posedge clk) begin
@@ -205,11 +220,11 @@ module ScaraController(input logic [4:0] controlStateReg,
 				theta2Diff <= th2Target - th2Current;
 
 			end			
-			AnglesDonePrev <= AnglesDone;
+			AnglesDonePrev <= AnglesDone;//Keep track for rising edge
 
 		end
 		
-		
+		/*	Calculate the steps from the difference in angles */
 		
 		logic [8:0] steps1int, steps2int;
 		
@@ -225,24 +240,34 @@ module ScaraController(input logic [4:0] controlStateReg,
 							.steps1(steps1int),
 							.steps2(steps2int)
 							);
+							
+		/******************************************/
+		
+		/*		Output Stage 	*/
 		always_comb begin
 			if(reset) begin
 				steps1 = 0;
 				steps2 = 0;
 			end
 			else begin
+				/* Steps outputs are 8 bit numbers*/
 				steps1 = steps1int[7:0];
 				steps2 = steps2int[7:0];
 
 			end
 		end
+		/********************************************/
 		
 		assign dataReady = StepsDone;
-
+		// Signal to stepper motor drivers when data done
+		
+		/* Wait state for tool change */
 		
 		ClockTimer #(32, 750_000_000) WaitState (.en(WaitEn), 
 													.reset(~WaitEn | reset),
 													.expire(WaitDone),
 													.clk(clk)); 
+													
+		/********************************/
 		
 endmodule

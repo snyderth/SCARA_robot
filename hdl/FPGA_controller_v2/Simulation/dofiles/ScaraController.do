@@ -1,3 +1,8 @@
+# ScaraController simulation
+# Author: Thomas Snyder
+# Date: 02/05/2020
+
+
 #vlog -work work ../Conversions/*v
 #vlog -work work ../Arithmetic/FloatAdder/FloatAdder.v
 #vlog -work work ../Arithmetic/SinCos/Sine.v
@@ -45,6 +50,9 @@ add wave dir2
 add wave endEffectorState
 add wave dataReady
 
+
+add wave /ScaraController/*
+
 add wave AnglesDone
 add wave AnglesEn
 
@@ -54,7 +62,7 @@ force reset 1 @ 0, 0 @ 15
 force xTarget 14'd7222 @ 0
 force yTarget 14'd8340 @ 0
 force controlStateReg 5'b00001 @ 0, 5'b01001 @ 4000, 5'b00001 @ 4500, 5'b10000 @ 10000
+force stepperReady 1 @ 0 
 
 
-
-run 3500
+run 7000

@@ -1,12 +1,17 @@
+# Arctan2 simulation
+# Author: Thomas Snyder
+# Date: 02/05/2020
+
 vlog -work work Counter.sv
 vlog -work work ClockTimer.sv
 vlog -work work DoubleTo32BitFixed.v
 vlog -work work Atan2.v
 vlog -work work ../Functions/Arctan2.sv
 
-
 vsim -L 220model_ver work.Arctan2
 
+# define new radixes for modelsim to display fixed
+# point numbers
 radix define fixed32 -fixed -signed -fraction 15
 radix define fixed13 -fixed -signed -fraction 10
 
@@ -30,6 +35,8 @@ force clk 0 @ 0, 1 @ 5 -r 10
 force enable 0 @ 0, 1 @ 20, 0 @ 40, 1 @ 320, 0 @ 340
 force reset 1 @ 0, 0 @ 15
 
+
+## 64-bit double precision numbers
 force arg1 64'b0100000010111000010110001001110110001001101011010111101100001001 @ 0
 force arg2 64'b0100000010010000010010100111100100000100101001111001000001001111 @ 0
 

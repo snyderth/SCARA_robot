@@ -1,3 +1,8 @@
+# DoubleMultiply simulation
+# Author: Thomas Snyder
+# Date: 02/05/2020
+
+
 # Compile the necessary files
 vlog -work work MultiplierFP.v
 vlog -work work ClockTimer.sv

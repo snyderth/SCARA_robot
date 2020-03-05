@@ -1,3 +1,8 @@
+# Fixed13BitToFloat simulation
+# Author: Thomas Snyder
+# Date: 02/05/2020
+
+
 vlog -work work ../Conversions/Fixed13BitToFloat.v
 
 vsim -L lpm_ver work.Fixed13BitToFloat
