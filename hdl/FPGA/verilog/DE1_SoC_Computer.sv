@@ -684,11 +684,11 @@ stepper_motor joint1(
 	.reset_n(initEnable),
 	.new_in(c2smALL_dataReady),
 	.num_steps(c2sm1_steps1),
-	.fast(SW[0]),
+	//.fast(SW[0]),
 	.direction(c2sm1_dir1),
 	.step_scale(joint1_step_scale),
 	.enable(1),
-	.step_divide(SW[9:7])
+	.step_divide(SW[9:7]),
 	.step(GPIO_0[7]), //STEP1
 	.dir(GPIO_0[9]), //DIR1
 	.finished(sm12c2_stepperReady),
@@ -701,7 +701,7 @@ stepper_motor joint2(
 	.num_steps(c2sm2_steps2),
 	//.fast(SW[0]),
 	.direction(c2sm2_dir2),
-	.step_divide(SW[9:7])
+	.step_divide(SW[9:7]),
 	.step_scale(joint2_step_scale),
 	.enable(1),
 	.step(GPIO_0[13]), //STEP2

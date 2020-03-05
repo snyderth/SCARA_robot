@@ -2,11 +2,11 @@ module stepper_motor(input  logic clk_50,
 							input  logic reset_n,
 							input	 logic new_in,
 							input  logic [7:0] num_steps,
-							input  logic fast,
+							//input  logic fast,
 							input  logic direction,
 							input  logic enable,
 							input  logic [15:0] step_scale,
-							input  logic [2:0] step_divide
+							input  logic [2:0] step_divide,
 							output logic step,
 							output logic dir,
 							output logic finished,
@@ -87,14 +87,14 @@ module stepper_motor(input  logic clk_50,
 					begin
 						set_steps	<= 0;
 						set_dir		<= 0;
-						set_fast		<= 0;
+						//set_fast		<= 0;
 						
 					end
 				else
 					begin
 						set_steps	<= num_steps;
 						set_dir		<= direction;
-						set_fast		<= fast;
+						//set_fast		<= fast;
 					end
 			end
 			
