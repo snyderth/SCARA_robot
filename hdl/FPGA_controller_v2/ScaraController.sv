@@ -56,10 +56,11 @@ module ScaraController(input logic [4:0] controlStateReg,
 		/* Separate logic for end effector */
 		always_ff@(posedge clk) begin
 			if(reset) begin
-				endEffectorState <= 0;
+				endEffectorState <= 1;
 			end
-			else if(controlStateReg[3] | controlStateReg[4]) endEffectorState <= 1;
-			else endEffectorState <= 0;
+			else if(controlStateReg[3]) endEffectorState <= 0;
+			else if(state == Wait) endEffectctorState <= 0;
+			else endEffectorState <= 1;
 			
 		end
 		
@@ -236,7 +237,7 @@ module ScaraController(input logic [4:0] controlStateReg,
 		assign dataReady = StepsDone;
 
 		
-		ClockTimer #(13, 200) WaitState (.en(WaitEn), 
+		ClockTimer #(32, 750_000_000) WaitState (.en(WaitEn), 
 													.reset(~WaitEn | reset),
 													.expire(WaitDone),
 													.clk(clk)); 
