@@ -19,6 +19,7 @@ import PySimpleGUI as sg
 import cv2
 import numpy as np
 import GUI.easycall as easycall
+import GUI.FTPInterface as ftp
 
 # An unused test function to demonstrate functionality of the GUI.
 def test_func(colorPalette, granularity, maxlines, papersize):
@@ -144,6 +145,7 @@ while True:
     elif event == 'sendGcode':      # Routine for when "Send GCode File" button is pressed.
         print("Sending GCode...")
         gcode = open(file_path).read()
+        ftp
         easycall.streamFromGcode(gcode, reportDone, easycall.giveCommand(reportSend), reportSent,
                                  easycall.serialStream(com, baud))
     elif event == 'apply':          # Routine for when "Apply" button is pressed.
