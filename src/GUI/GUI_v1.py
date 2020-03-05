@@ -20,7 +20,7 @@ import cv2
 import numpy as np
 import GUI.easycall as easycall
 import GUI.FTPInterface as ftp
-
+import Vision.vision as vision
 # An unused test function to demonstrate functionality of the GUI.
 def test_func(colorPalette, granularity, maxlines, papersize):
     print("Color: ",colorPalette, "Granularity: ", granularity, "maxlines: ", maxlines, "papersize: ", papersize)
@@ -141,7 +141,12 @@ while True:
         print("Sending image to OpenCV...")
         #easycall.streamFromImage(final_img, colorPalette, granularity, maxLines, paperSize, reportDone,
                                  #easycall.giveCommand(reportSend), reportSent, easycall.serialStream(com, baud))
+        gcode = vision.asGCode(final_img, colorPalette, granularity, maxLines, paperSize)
+        gcodeFile = open("img.gcode", "w")
+        gcodeFile.write(gcode)
+        gcodeFile.close()
 
+        ftp.executeGCodeSFTP("img.gcode")
     elif event == 'sendGcode':      # Routine for when "Send GCode File" button is pressed.
         print("Sending GCode...")
         #gcode = open(file_path).read()

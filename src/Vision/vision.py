@@ -6,9 +6,9 @@ import numpy as np
 import operator
 from GCode.gcodeFormatter import *
 from functools import reduce, partial
-
-X_BIAS = 124.02
-Y_BIAS = 124.02
+from GCode.gcodeParser import INIT_X, INIT_Y, MM_TO_BITS
+X_BIAS = INIT_X * (1/MM_TO_BITS)
+Y_BIAS = INIT_Y * (1/MM_TO_BITS)
 
 def asGCode(img, colorPalette: [(int, int, int)], granularity: float, maxLines: int, paperSize: (int, int)):
     '''
@@ -90,14 +90,14 @@ def linesAsGCode(contoursAsLines, palette, imageSize, paperSize):
             gcode.append(m6.format(tool=currentTool))
 
         # Send pen to first point
-        gcode.append(m72)
-        gcode.append(g01.format(x=segments[0][0][0] * mmPerPxX + X_BIAS, y=segments[0][0][1] * mmPerPxY + Y_BIAS))
-        gcode.append(m72)
+        #gcode.append(m72)
+        gcode.append(g01.format(x=X_BIAS - segments[0][0][0] * mmPerPxX , y=Y_BIAS - segments[0][0][1] * mmPerPxY))
+        #gcode.append(m72)
 
         if (len(segments) > 1):
             for s in range(1, len(segments)):
                 # Draw to subsequent points
-                gcode.append(g01.format(x=segments[s][0][0] * mmPerPxX + X_BIAS, y=segments[s][0][1] * mmPerPxY + Y_BIAS))
+                gcode.append(g01.format(x=X_BIAS - segments[s][0][0] * mmPerPxX, y=Y_BIAS - segments[s][0][1] * mmPerPxY ))
     # End of program
     gcode.append(m2)
 
@@ -171,7 +171,7 @@ if __name__ == '__main__':
             # SPACE pressed
             img = frame
 
-            gcode = asGCode(img, [(0, 0, 0), (0, 255, 0), (105, 71, 59), (158, 124, 219)], 10, 32, (215, 279))
+            gcode = asGCode(img, [(0, 0, 0)], 10, 32, (100, 100))
             print(gcode)
 
             file = open("../test.gcode", "w")

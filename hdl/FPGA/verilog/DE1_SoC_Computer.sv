@@ -631,7 +631,8 @@ assign steppersReady = sm12c2_stepperReady & sm22c2_stepperReady;
 
 wire [7:0] c2sm2_steps2;
 wire c2sm2_dir2;
-
+logic controller2endEffectorendEffectorState;
+logic endEffector2ControllerPenState;
 ScaraController controller (
 	.controlStateReg(ci2c_controller_state_reg),
 	.xTarget(ci2c_x_value),
@@ -644,9 +645,26 @@ ScaraController controller (
 	.steps2(c2sm2_steps2), //TODO: Connect
 	.dir1(c2sm1_dir1), //TODO: Connect
 	.dir2(c2sm2_dir2), //TODO: Connect
-	.endEffectorState(), //TODO: Connect
+	.endEffectorState(controller2endEffectorendEffectorState), 
+	.penState(endEffector2ControllerPenState),
 	.dataReady(c2smALL_dataReady), //TODO: Connect
 	.readyForNewData(c2ci_controller_ready)
+	
+);
+
+DCMotor endEffector(
+		.clk_50(CLOCK_50),
+	   .reset_n(initEnable),
+		.enable(1),
+	   .duty({SW[6:5], 6'b111111}),
+		.set_pen(controller2endEffectorendEffectorState), // 0 = up, 1 = down
+		.limit_switch(GPIO_0[19]), // 0 = down, 1 = up
+		.fault_n(),
+		.pen_status(endEffector2ControllerPenState), // 0 = up, 1 = down
+		.pwm(GPIO_0[18]),
+		.dir(GPIO_0[20]),
+		.brake(GPIO_0[24])
+
 );
 logic [15:0] c2sm1_steps1_fixed;
 logic [15:0] c2sm2_steps2_fixed;

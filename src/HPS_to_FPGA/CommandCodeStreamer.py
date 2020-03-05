@@ -18,7 +18,7 @@ def streamProcess(FPGACommands, reportDone, reportSend, reportSent):
     @param reportDone: Function in the format ()->None that reports when the FPGA is done executing
     @return: None
     '''
-    print("streamProcess")
+    print("Stream Process")
     mi = MemoryInterface(os.path.abspath(path))
     for command in FPGACommands:
 

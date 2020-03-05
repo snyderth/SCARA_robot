@@ -43,11 +43,15 @@ assign controller_interface_in_ready = controller_ready;
 //	.q(controller_interface_out_ready)
 //);
 logic m1;
+logic c1;
+logic memory_ready_prev;
 
 always_ff@(posedge clk)
 begin
 	m1 <= memory_ready;
+//	c1 <= controller_ready;
 	controller_interface_out_ready <= m1;
+//	controller_interface_in_ready <= c1;
 
 end
 always_ff @(posedge clk) 
@@ -57,10 +61,10 @@ begin
 		linear <= 0;
 		inches <= 1;
 		relative <= 0;
-		raise_tool <= 0;
+		raise_tool <= 1;
 		tool_change <= 0;
 	end
-	if(memory_ready & controller_ready & ~block)
+	if(memory_ready && controller_ready && ~block)
 	begin
 		case (cmd)
 			G00:
@@ -110,14 +114,17 @@ begin
 			
 			M72: 
 			begin
-				raise_tool <= !raise_tool;
-				linear <= 0;
-				tool_change <= 0;
-				
+				if(!memory_ready_prev && memory_ready) begin
+					if(raise_tool == 1) raise_tool <= 0;
+					else raise_tool <= 1;
+					linear <= 0;
+					tool_change <= 0;
+				end
 			end
 		endcase
+
 	end
-			
+	memory_ready_prev <= memory_ready;
 end
 
 endmodule

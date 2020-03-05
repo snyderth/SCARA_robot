@@ -53,7 +53,7 @@ JOINT_1_LENGTH = 5.55 * IN_TO_BITS
 JOINT_2_LENGTH = 9.25 * IN_TO_BITS
 
 # Maximum steps
-INTERPOLATION_LENGTH = (1) * IN_TO_BITS#1 * IN_TO_BITS
+INTERPOLATION_LENGTH = (1/8) * IN_TO_BITS#1 * IN_TO_BITS
 
 # Set arm to be at 45 degree angles initially
 INIT_X = JOINT_1_LENGTH * math.cos(math.pi / 4) + JOINT_2_LENGTH * math.cos(math.pi / 2)
@@ -143,7 +143,7 @@ def commandCode(command: int):
     return code
 
 
-def gcodeToCommands(gcodeText):
+def gcodeToCommands(gcodeText, useArcInterpolation = False):
     '''
     Convert gcode text to a list of commands. Throws exceptions if there are errors in the gcode.
     @param gcodeText:
@@ -151,7 +151,9 @@ def gcodeToCommands(gcodeText):
 
     '''
     logger.debug("Joint lengths (1,2): ({}, {})".format(JOINT_1_LENGTH, JOINT_2_LENGTH))
-    arm = ik.SCARA_IK(([JOINT_1_LENGTH, JOINT_2_LENGTH]))
+    arm = None
+    if useArcInterpolation:
+        arm = ik.SCARA_IK(([JOINT_1_LENGTH, JOINT_2_LENGTH]))
 
     lines = gcodeText.split("\n");
     parsedLines = list(map(pygc.Line, lines))
@@ -195,22 +197,24 @@ def gcodeToCommands(gcodeText):
                 yEnd = increment(yPos, yNew, positioning, 0)
                 print("start: " + str((xPos * 1/conversion, yPos * 1/conversion)))
                 print("end: " + str((xEnd * 1/conversion, yEnd * 1/conversion)))
-
-                arm.set_target(xEnd, yEnd)
-                logger.info("Computing the angles to move to ({}, {})".format(xEnd, yEnd))
-                points = arm.geometric_method()
+                if useArcInterpolation:
+                    arm.set_target(xEnd, yEnd)
+                    logger.info("Computing the angles to move to ({}, {})".format(xEnd, yEnd))
+                    points = arm.geometric_method()
                 # Linear moves must be split into a number of smaller segments for the arm to retain accuracy
                 #commands += interpolateLinear(code, xPos, yPos, xEnd, yEnd, INTERPOLATION_LENGTH, positioning)#interpolate(code, INTERPOLATION_LENGTH, positioning, points)
-                logger.debug("Points:\n{}".format(points))
-                newCommand = interpolate(code, INTERPOLATION_LENGTH, positioning, points)
-                logger.debug("new command type: {}".format(type(newCommand)))
-                logger.debug("commands type: {}".format(type(commands)))
+                    logger.debug("Points:\n{}".format(points))
+                    newCommand = interpolate(code, INTERPOLATION_LENGTH, positioning, points)
+                    logger.debug("new command type: {}".format(type(newCommand)))
+                    logger.debug("commands type: {}".format(type(commands)))
 
-                if type(newCommand) is type(None):
-                    logger.critical("The new command is NoneType!!")
-                if type(commands) is type(None):
-                    logger.critical("The commands list cannot be of type \"NoneType\"")
-                commands = commands + newCommand
+                    if type(newCommand) is type(None):
+                        logger.critical("The new command is NoneType!!")
+                    if type(commands) is type(None):
+                        logger.critical("The commands list cannot be of type \"NoneType\"")
+                    commands = commands + newCommand
+                else:
+                    commands += interpolateLinear(code, xPos, yPos, xEnd, yEnd, INTERPOLATION_LENGTH, positioning)
                 xPos = xEnd
                 yPos = yEnd
             # for key in gcode.params:
@@ -452,11 +456,11 @@ def commandToCode(code):
 # test code
 if __name__ == '__main__':
 
-    gcodeFile = open("GCode/test.gcode", "r")
+    gcodeFile = open("test.gcode", "r")
 
     gcode = gcodeFile.read()
     print(gcode)
-    commands = gcodeToCommands(gcode)
+    commands = gcodeToCommands(gcode, True)
     xData = [x * 1/IN_TO_BITS for x in xData]
     yData = [y * 1/IN_TO_BITS for y in yData]
 

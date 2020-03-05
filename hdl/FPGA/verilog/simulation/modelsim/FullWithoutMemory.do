@@ -15,9 +15,9 @@ vsim work.Testbench -L altera_mf_ver -L lpm_ver
 #add wave initEnable
 #add wave CLOCK_50
 #add wave GPIO_0
-add wave /Testbench/controller/anglesCalc/*
+#add wave /Testbench/controller/anglesCalc/*
 add wave /Testbench/controller/*
-
+add wave /Testbench/controller_interface/*
 #add wave /Testbench/joint1/*
 #add wave /Testbench/joint1/*
 #add wave /Testbench/joint2/*
@@ -27,16 +27,18 @@ force initEnable 0 @ 0, 1 @ 3
 
 
 
-force cmd 4'd5 @ 0
-force cmd 4'd0 @ 10
-force cmd 4'd8 @ 20
-force cmd 4'd0 @ 40
 force cmd 4'd8 @ 100
-force cmd 4'd0 @ 120
+force /Testbench/endEffector/limit_switch 1 @ 0, 0 @ 150, 1 @ 200
+force cmd 4'd8 @ 160
+#force cmd 4'd8 @ 140
+#force cmd 4'd6 @ 180
+#force cmd 4'd8 @ 200
 #force x_value 14'd7000 @20, 14'd7000 @ 2000
 #force y_value 14'd6000 @20, 14'd7000 @ 2000
 
 
-force memory_ready 0 @ 0, 1 @ 20, 0 @ 200, 1 @ 1000
-
+force memoryReady 0 @ 0, 1 @ 100, 0 @ 110, 1 @ 160, 0 @ 170
+#, 1 @ 120, 0 @ 130, 1 @ 140,0 @ 150, 1 @ 180, 0 @ 190, 1 @ 200, 0 @ 210
+#when {/Testbench/controller_interface_in_ready = 0} {force -deposit /Testbench/memory_ready 0}
+#when {/Testbench/controller_interface_in_ready = 1} {force -deposit /Testbench/memory_ready 1}
 run 2000

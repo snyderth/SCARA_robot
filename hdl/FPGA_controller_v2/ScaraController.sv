@@ -5,6 +5,7 @@ module ScaraController(input logic [4:0] controlStateReg,
 								input logic enable,
 								input logic clk,
 								input logic reset,
+								input logic penState,
 								output logic [7:0] steps1,
 								output logic [7:0] steps2,
 								output logic dir1,
@@ -47,6 +48,7 @@ module ScaraController(input logic [4:0] controlStateReg,
 		logic AnglesEn, AnglesDone;
 		logic StepsEn, StepsDone;
 		logic WaitEn, WaitDone;
+		logic penStatePrev;
 		
 		
 		typedef enum logic [3:0] {FK, Angles, Steps, Wait, Init} statetype;
@@ -59,7 +61,7 @@ module ScaraController(input logic [4:0] controlStateReg,
 				endEffectorState <= 1;
 			end
 			else if(controlStateReg[3]) endEffectorState <= 0;
-			else if(state == Wait) endEffectctorState <= 0;
+			else if(state == Wait) endEffectorState <= 0;
 			else endEffectorState <= 1;
 			
 		end
@@ -74,6 +76,7 @@ module ScaraController(input logic [4:0] controlStateReg,
 				AnglesEn <= 0;
 				StepsEn <= 0;
 				WaitEn <= 0;
+				readyForNewData <= 1;
 			end
 			else if(state == Init) begin
 				FKEn <= 0;
@@ -90,7 +93,7 @@ module ScaraController(input logic [4:0] controlStateReg,
 				end
 				else begin
 					newDataReceived <= 0;
-					if(stepperReady) begin
+					if(stepperReady && endEffectorState == penState) begin
 						readyForNewData <= 1;
 					end
 				end

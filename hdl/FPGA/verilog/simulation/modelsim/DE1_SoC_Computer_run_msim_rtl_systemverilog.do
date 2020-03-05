@@ -5,6 +5,10 @@ if {[file exists rtl_work]} {
 vlib rtl_work
 vmap work rtl_work
 
+
+vlog -sv -work work +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/DCMotor {C:/Users/catsr/source/repos/SCARA_robot/hdl/DCMotor/DCMotor.sv}
+vlog -sv -work work +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/DCMotor {C:/Users/catsr/source/repos/SCARA_robot/hdl/DCMotor/dc_cnt.sv}
+
 vlog -vlog01compat -work work +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Conversions {C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Int15BitToDouble.v}
 vlog -vlog01compat -work work +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Conversions {C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Conversions/FloatToDouble.v}
 vlog -vlog01compat -work work +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Conversions {C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Fixed13BitToFloat.v}

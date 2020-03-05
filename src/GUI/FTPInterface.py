@@ -25,4 +25,8 @@ def executeGCodeSFTP(gcodeFilePath):
 if __name__ == "__main__":
 
     gcodeFile = "../GCode/test.gcode"
-    executeGCodeSFTP(gcodeFile)
+    result = executeGCodeSFTP(gcodeFile)
+    print("STDOUT: ")
+    print(result[0])
+    print("STDERR: ")
+    print(result[1])

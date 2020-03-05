@@ -6,7 +6,6 @@ def main():
 
        gcode = gcodeFile.read()
        print(gcode)
-       print("parsing")
        commands = gcodeToCommands(gcode)
        print("sending")
        streamProcess(commands,lambda _: print("done"), lambda x: print(commandToGcode(x, 1)), lambda s,x: print(s))
