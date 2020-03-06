@@ -146,12 +146,14 @@ while True:
         gcodeFile.write(gcode)
         gcodeFile.close()
 
-        ftp.executeGCodeSFTP("img.gcode")
+        stdout, stderr = ftp.executeGCodeSFTP("img.gcode")
+        print(stdout)
     elif event == 'sendGcode':      # Routine for when "Send GCode File" button is pressed.
         print("Sending GCode...")
         #gcode = open(file_path).read()
 
-        ftp.executeGCodeSFTP(file_path)
+        stdout, stderr = ftp.executeGCodeSFTP(file_path)
+        print(stdout)
         #easycall.streamFromGcode(gcode, reportDone, easycall.giveCommand(reportSend), reportSent,
                                  #easycall.serialStream(com, baud))
     elif event == 'apply':          # Routine for when "Apply" button is pressed.

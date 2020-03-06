@@ -90,14 +90,14 @@ def linesAsGCode(contoursAsLines, palette, imageSize, paperSize):
             gcode.append(m6.format(tool=currentTool))
 
         # Send pen to first point
-        #gcode.append(m72)
-        gcode.append(g01.format(x=X_BIAS - segments[0][0][0] * mmPerPxX , y=Y_BIAS - segments[0][0][1] * mmPerPxY))
-        #gcode.append(m72)
+        gcode.append(m72)
+        gcode.append(g01.format(x=X_BIAS + segments[0][0][0] * mmPerPxX , y=Y_BIAS - segments[0][0][1] * mmPerPxY))
+        gcode.append(m72)
 
         if (len(segments) > 1):
             for s in range(1, len(segments)):
                 # Draw to subsequent points
-                gcode.append(g01.format(x=X_BIAS - segments[s][0][0] * mmPerPxX, y=Y_BIAS - segments[s][0][1] * mmPerPxY ))
+                gcode.append(g01.format(x=X_BIAS + segments[s][0][0] * mmPerPxX, y=Y_BIAS - segments[s][0][1] * mmPerPxY ))
     # End of program
     gcode.append(m2)
 
@@ -179,7 +179,7 @@ if __name__ == '__main__':
             file.close()
         elif k % 256 == ord('b'):
             img = cv.imread('burmese.jpg')
-            gcode = asGCode(img, [(0, 0, 0), (0, 255, 0), (105, 71, 59), (158, 124, 219)], 2, 32, (215, 279))
+            gcode = asGCode(img, [(0, 0, 0)], 2, 32, (100, 100))
             print(gcode)
 
             file = open("../test.gcode", "w")

@@ -5,10 +5,6 @@ if {[file exists rtl_work]} {
 vlib rtl_work
 vmap work rtl_work
 
-
-vlog -sv -work work +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/DCMotor {C:/Users/catsr/source/repos/SCARA_robot/hdl/DCMotor/DCMotor.sv}
-vlog -sv -work work +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/DCMotor {C:/Users/catsr/source/repos/SCARA_robot/hdl/DCMotor/dc_cnt.sv}
-
 vlog -vlog01compat -work work +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Conversions {C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Int15BitToDouble.v}
 vlog -vlog01compat -work work +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Conversions {C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Conversions/FloatToDouble.v}
 vlog -vlog01compat -work work +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Conversions {C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Conversions/Fixed13BitToFloat.v}
@@ -60,6 +56,8 @@ vlog -vlog01compat -work Computer_System +incdir+C:/Users/catsr/source/repos/SCA
 vlog -vlog01compat -work Computer_System +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA/verilog/Computer_System/synthesis/submodules {C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA/verilog/Computer_System/synthesis/submodules/hps_sdram_p0_altdqdqs.v}
 vlog -vlog01compat -work Computer_System +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA/verilog/Computer_System/synthesis/submodules {C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA/verilog/Computer_System/synthesis/submodules/hps_sdram_p0_clock_pair_generator.v}
 vlog -vlog01compat -work Computer_System +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA/verilog/Computer_System/synthesis/submodules {C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA/verilog/Computer_System/synthesis/submodules/hps_sdram_p0_generic_ddio.v}
+vlog -sv -work work +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/DCMotor {C:/Users/catsr/source/repos/SCARA_robot/hdl/DCMotor/DCMotor.sv}
+vlog -sv -work work +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/DCMotor {C:/Users/catsr/source/repos/SCARA_robot/hdl/DCMotor/dc_cnt.sv}
 vlog -sv -work work +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Functions {C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Functions/SineTh2.sv}
 vlog -sv -work work +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Functions {C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Functions/K1.sv}
 vlog -sv -work work +incdir+C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Functions {C:/Users/catsr/source/repos/SCARA_robot/hdl/FPGA_controller_v2/Functions/ForwardKinematics.sv}

@@ -100,8 +100,8 @@ def commandToGcode(command, conversion):
             gcode += argName
             arg = (command & ((1 << ARG_BITS) - 1))
 
-            # Argument is negative in ARG_BITS representation, invert it to be negative in int representation.
-           # if arg.bit_length() == ARG_BITS:
+            #Argument is negative in ARG_BITS representation, invert it to be negative in int representation.
+            # if arg.bit_length() == ARG_BITS:
             #    arg = arg - 2 ** ARG_BITS
 
             # Don't convert tool change units
@@ -214,7 +214,10 @@ def gcodeToCommands(gcodeText, useArcInterpolation = False):
                         logger.critical("The commands list cannot be of type \"NoneType\"")
                     commands = commands + newCommand
                 else:
-                    commands += interpolateLinear(code, xPos, yPos, xEnd, yEnd, INTERPOLATION_LENGTH, positioning)
+                    if positioning == Mode.ABSOLUTE:
+                        commands += interpolateLinear(code, xPos, yPos, xEnd, yEnd, INTERPOLATION_LENGTH, positioning)
+                    else:
+                        commands.append(createCommand(code, xNew, yNew))
                 xPos = xEnd
                 yPos = yEnd
             # for key in gcode.params:
@@ -235,10 +238,10 @@ def gcodeToCommands(gcodeText, useArcInterpolation = False):
                     positioning = Mode.ABSOLUTE
                 command |= code << CODE_OFFSET
                 commands.append(command)
-    else:
-        if gcodeLine.text == "M72":
-            code = GCODE_MAP["M72"]
-            commands.append(createCommand(code, 0, 0))
+        else:
+            if gcodeLine.text == "M72":
+                code = GCODE_MAP["M72"]
+                commands.append(createCommand(code, 0, 0))
 
     return commands
 
@@ -322,12 +325,7 @@ def interpolateLinear(code, xStart, yStart, xEnd, yEnd, segLength, mode):
             commands.append(createCommand(code, int(xCurrent), int(yCurrent)))
         commands.append(createCommand(code, int(xEnd), int(yEnd)))
     else:
-        for i in range(0, div):
-            commands.append(createCommand(code, int(xInc), int(yInc)))
-        angle = math.atan2(yDelta, xDelta)
-        extraIncX = math.cos(angle) * extra
-        extraIncY = math.sin(angle) * extra
-        commands.append(createCommand(code, int(extraIncX), int(extraIncY)))
+        commands.append(createCommand(code, int(xDelta), int(yDelta)))
     return commands
 
 def interpolate(code, segLength, mode, points):
@@ -456,17 +454,17 @@ def commandToCode(code):
 # test code
 if __name__ == '__main__':
 
-    gcodeFile = open("test.gcode", "r")
+    gcodeFile = open("../../all.gcode", "r")
 
     gcode = gcodeFile.read()
     print(gcode)
-    commands = gcodeToCommands(gcode, True)
+    commands = gcodeToCommands(gcode, False)
     xData = [x * 1/IN_TO_BITS for x in xData]
     yData = [y * 1/IN_TO_BITS for y in yData]
 
-    plt.plot(xData, yData)
-    plt.show()
+    #plt.plot(xData, yData)
+    #plt.show()
     reverseGcode = commandsToGcode(commands)
-
+    print("Parsed: ")
     print(reverseGcode)
 
