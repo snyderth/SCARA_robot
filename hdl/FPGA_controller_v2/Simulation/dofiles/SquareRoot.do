@@ -1,3 +1,8 @@
+# SquareRoot simulation
+# Author: Thomas Snyder
+# Date: 02/05/2020
+
+
 vlog -work work ../Arithmetic/SqRoot/SqRoot.v
 vlog -work work ../Arithmetic/SqRoot/SquareRoot.sv
 

@@ -1,14 +1,19 @@
-vlog -work work ../Conversions/*v
-vlog -work work ../Arithmetic/FloatAdder/FloatAdder.v
-vlog -work work ../Arithmetic/SinCos/Sine.v
-vlog -work work ../Arithmetic/SinCos/Cosine.v
-vlog -work work ../Arithmetic/SqRoot/*v
-vlog -work work ../Functions/CosineTh2.sv
-vlog -work work ../Functions/SineTh2.sv
-vlog -work work ../Arithmetic/Inverter/Inverter.v
-vlog -work work ../Functions/ForwardKinematics.sv
-vlog -work work ../Functions/CalculateAngles.sv
-vlog -work work ../Functions/CalculateSteps.sv
+# SineTh2 simulation
+# Author: Thomas Snyder
+# Date: 02/05/2020
+
+
+#vlog -work work ../Conversions/*v
+#vlog -work work ../Arithmetic/FloatAdder/FloatAdder.v
+#vlog -work work ../Arithmetic/SinCos/Sine.v
+#vlog -work work ../Arithmetic/SinCos/Cosine.v
+#vlog -work work ../Arithmetic/SqRoot/*v
+#vlog -work work ../Functions/CosineTh2.sv
+#vlog -work work ../Functions/SineTh2.sv
+#vlog -work work ../Arithmetic/Inverter/Inverter.v
+#vlog -work work ../Functions/ForwardKinematics.sv
+#vlog -work work ../Functions/CalculateAngles.sv
+#vlog -work work ../Functions/CalculateSteps.sv
 vlog -work work ../ScaraController.sv
 
 
@@ -45,6 +50,9 @@ add wave dir2
 add wave endEffectorState
 add wave dataReady
 
+
+add wave /ScaraController/*
+
 add wave AnglesDone
 add wave AnglesEn
 
@@ -57,4 +65,4 @@ force controlStateReg 5'b00001 @ 0, 5'b01001 @ 4000, 5'b00001 @ 4500, 5'b10000 @
 
 
 
-run 3500
+run 7000

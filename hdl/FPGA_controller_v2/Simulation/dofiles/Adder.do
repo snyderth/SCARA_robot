@@ -1,3 +1,7 @@
+# Adder simulation
+# Author: Thomas Snyder
+# Date: 02/05/2020
+
 #Compile adder
 vlog -work work Adder.v
 

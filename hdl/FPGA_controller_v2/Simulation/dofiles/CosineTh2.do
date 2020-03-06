@@ -1,3 +1,8 @@
+# CosineTh2 simulation
+# Author: Thomas Snyder
+# Date: 02/05/2020
+
+
 #vlog -work work Adder.v
 #vlog -work work MuliplerFP.v
 #vlog -work work DoubleDiv.v

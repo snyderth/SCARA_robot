@@ -1,3 +1,8 @@
+# DoubleAdder simulation
+# Author: Thomas Snyder
+# Date: 02/05/2020
+
+
 #Compile adder
 vlog -work work DoubleAdder.sv
 vlog -work work Adder.v

@@ -1,3 +1,7 @@
+# CalculateAngles simulation
+# Author: Thomas Snyder
+# Date: 02/05/2020
+
 vlog -work work ../Functions/K1.sv
 vlog -work work ../Functions/Arctan2.sv
 vlog -work work ../Functions/CosineTh2.sv

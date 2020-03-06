@@ -1,3 +1,8 @@
+# K1 Coefficient simulation
+# Author: Thomas Snyder
+# Date: 02/05/2020
+
+
 vlog -work work ../Functions/K1.sv
 
 vsim -L lpm_ver work.K1
