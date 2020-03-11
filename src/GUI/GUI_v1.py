@@ -1,5 +1,9 @@
+##
+# @file
+# A graphical user interface for the GCode parser and computer vision modules
+
 """
-    Program:    GUI_v0.py
+    Program:    GUI_v1.py
     Author:     Kyle Noble
     Date:       2/28/2020
 

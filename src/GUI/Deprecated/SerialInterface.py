@@ -1,3 +1,6 @@
+"""
+NOT USED IN PRODUCTION CODE
+"""
 import serial
 import HPS_to_FPGA.CommandCodeStreamer as ci
 from GUI.easycalltools import *

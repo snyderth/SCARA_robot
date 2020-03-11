@@ -1,3 +1,14 @@
+##
+# @file
+# A simulation for the multiple inverse kinematics solutions of
+# the SCARA topology
+#
+"""
+File:   Inverse_Kinematics.py
+Description: A simulation for the SCARA inverse kinematics problem.
+Author:     Thomas Snyder
+Date:       2/5/2020
+"""
 import numpy as np
 import matplotlib as mpt
 import matplotlib.pyplot as plt

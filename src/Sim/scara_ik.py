@@ -1,3 +1,14 @@
+##
+# @file
+# Scara inverse kinematics class.
+"""
+File:   scara_ik.py
+Description: The scara inverse kinematics solver that implements
+            4 different methods to the SCARA inverse kinematics
+            problem. 
+Author: Thomas Snyder
+Date:   3/5/2020
+"""
 import numpy as np
 import matplotlib as mpt
 import matplotlib.pyplot as plt
